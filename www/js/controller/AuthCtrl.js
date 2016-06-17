@@ -1,7 +1,6 @@
 DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $rootScope, $ionicModal, $http, $ionicPopup, patientRegistrationService, doctorRegistrationService, DoctorReg) {
 
 
-console.log('auth controller called');
   $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
     $rootScope.Doctor = {};

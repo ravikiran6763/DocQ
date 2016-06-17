@@ -1,6 +1,36 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $ionicLoading, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
 {
 
+		$scope.user = {};
+
+
+
+		$scope.user.rememberMe = false;
+		$scope.loginData = {};
+		
+
+			$scope.rememberme =  function()
+			{
+
+						if($scope.user.rememberMe)
+						{
+
+								$remember('username', $scope.loginData.phone);
+
+
+						}
+
+						else
+						{
+
+								$remember('username', '');
+								$remember('password', '');
+
+						}
+
+
+
+			}
 
 		$scope.sendForm = function($event,form)
 		{
@@ -10,13 +40,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 	  };
 
 		var special = {};
-			$rootScope.loginData={};
+
 			var sample= $cookies.get('usernum');
-			console.log(sample);
+
 			$scope.doLogIn = function()
 			{
 
-	
+
 				$ionicLoading.show({
 				 content: 'Logging please wait...',
 				 template: '<div>'+' <ion-spinner class="rippel"></ion-spinner><br><div class="backdrop visible backdrop-loading active wm-proper-times" style="height: 260px;   margin-top: 245px; left: 8;"></div>'+
@@ -31,6 +61,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 
 			$cookies.put('usernum', $scope.loginData.phone);
+
+
 
 				//  var sample= $cookies.remove('usernum');
         $localStorage.user = $scope.loginData.phone;

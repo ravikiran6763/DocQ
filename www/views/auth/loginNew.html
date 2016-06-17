@@ -1,15 +1,12 @@
 <ion-view class="walkthrough-view" cache-view="false">
-
-
-        <ion-content class="has-header" scroll="false">
-
-          <form class="login-form" novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
-            <div class="header" >
-              <div class="logoContainer">
-                <img class="logo " ng-src="img/dq_login_logo.png" >
-              </div>
+        <ion-content scroll="false">
+          <div class="bar-header bar-light">
+            <div class="logoContainer">
+              <img class="logo " ng-src="img/dq_login_logo.png" >
             </div>
-            <div class="form-cls">
+          </div>
+          <form class="login-form" novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
+            <div class="form-cls spacer">
               <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
               <label class="item item-input phone_field text-center control-label" >
                 <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
@@ -28,7 +25,7 @@
 
               <div class="row remember-forgot">
                    <label  class="col"   >
-                     <input  type="checkbox" name="rememberMe" ng-model="user.rememberMe" >
+                     <input  type="checkbox" name="rememberMe" ng-model="user.rememberMe" ng-click="rememberme();">
                      <span style="text-align: center">Remember me</span>
                    </label>
                    <a  class="col"  ui-sref="auth.forgot-password">
@@ -41,21 +38,23 @@
                 Register
               </button>
             </div>
+
+            <div class="footer-bar-cls  hide-on-keyboard-open">
+
+              <div class="learn-more-content">
+                <a>
+                  <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Learn More</p>
+                </a>
+              </div>
+              <div class="register-content-btn-cls">
+                <a  class=""  ui-sref="auth.doctorRegistration">
+                  <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
+                </a>
+              </div>
+
+            </div>
+
           </form>
-          <div class="footer-bar-cls  hide-on-keyboard-open">
-
-            <div class="learn-more-content">
-              <a>
-                <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Learn More</p>
-              </a>
-            </div>
-            <div class="register-content-btn-cls">
-              <a  class=""  ui-sref="auth.doctorRegistration">
-                <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
-              </a>
-            </div>
-
-          </div>
 
         </ion-content>
 

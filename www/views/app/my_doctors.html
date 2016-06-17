@@ -3,7 +3,7 @@
     <span>My Doctors</span>
   </ion-nav-title> -->
   <ion-content  >
-    <div class="doctorList">
+    <div>
           <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.doctorPhone}});"><!--ui-sref="app.viewdoctor_profile({ docPhone: doctor.dpno})"-->
             <img src="img/doc.jpg">
             <h2>Dr.{{doctor.doctorFname}} {{doctor.doctorLname}} </h2> <i class="icon ion-android-add-circle"></i>
