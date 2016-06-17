@@ -19,6 +19,7 @@
       .top-content{
         height: 15vh;
         //background-color: red;
+        margin-top: 10vh !important;
         h1{
           font-size: 5vw;
           text-align: center;
@@ -95,7 +96,7 @@
 
 
       li {
-        height: 31.3%;
+        height: 19%;
         border-bottom: 1px solid #fff;
 
         @include clearfix();
@@ -136,7 +137,7 @@
         }
 
         .name-content {
-          float: left;
+          // float: left;
           padding: 2vh 2vh;
           height: 100%;
 
