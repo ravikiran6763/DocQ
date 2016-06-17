@@ -1,0 +1,157 @@
+<ion-view class="patientprofile-view" cache-view="false">
+
+  <ion-content ng-repeat="doctor in doctor_details">
+    <div class="profile-info">
+      <pre-img >
+        <img ng-src="img/doc.jpg" spinner-on-load>
+      </pre-img>
+      <h4>{{doctor.doctorFname+doctor.doctorMname+doctor.doctorLname}} </h4>
+    </div>
+
+    <div class="profile-details">
+
+          <div class="card ">
+            <div class="row">
+                  <div class="col">First Name</div>
+                  <div class="col">{{doctor.doctorFname}}</div>
+            </div>
+            <div class="row">
+                  <div class="col">Middle Name</div>
+                  <div class="col">{{doctor.doctorMname}}</div>
+            </div>
+            <div class="row">
+                  <div class="col">Last Name</div>
+                  <div class="col">{{doctor.doctorLname}}</div>
+            </div>
+          </div>
+
+           <div class="card">
+             <div class="row">
+                   <div class="col">Degrees</div>
+                   <div class="col">{{doctor.doc_degrees}}</div>
+             </div>
+             <div class="row">
+                   <div class="col">Practicing Since</div>
+                   <div class="col">{{doctor.practice_since}}</div>
+             </div>
+           </div>
+
+          <div class="card ">
+            <div class="row">
+                  <div class="col">Age</div>
+                  <div class="col">{{doctor.age}}</div>
+            </div>
+            <div class="row">
+                  <div class="col">Gender</div>
+                  <div class="col">{{doctor.gender}}</div>
+            </div>
+          </div>
+
+         <div class="card ">
+           <div class="row">
+                 <div class="col">Country</div>
+                 <div class="col">{{doctor.country}}</div>
+
+           </div>
+           <div class="row">
+                 <div class="col">City</div>
+                 <div class="col">{{doctor.city}}</div>
+
+           </div>
+           <div class="row">
+                 <div class="col">Address Line1</div>
+                 <div class="col">{{doctor.adress_line1}}</div>
+
+           </div>
+           <div class="row">
+                 <div class="col">Address Line2</div>
+                 <div class="col">{{doctor.adress_line2}}</div>
+
+           </div>
+           <div class="row">
+                 <div class="col">Pincode</div>
+                 <div class="col">{{doctor.pincode}}</div>
+
+           </div>
+
+         </div>
+          <div class="card">
+            <div class="row">
+                  <div class="col">Email</div>
+                  <div class="col col-67">{{doctor.doctoremail}}</div>
+
+            </div>
+          </div>
+
+          <div class="card ">
+            <div class="row">
+                  <div class="col">Language 1</div>
+                  <div class="col">{{doctor.language1}}</div>
+
+            </div>
+            <div class="row">
+                  <div class="col">Language 2</div>
+                  <div class="col">{{doctor.language2}}</div>
+
+            </div>
+          </div>
+
+          <div class="card" ui-sref="templates.chat_with_patient">
+              <div class="row">
+                    <div class="col">Change Password {{doctor.dpass}}</div>
+              </div>
+           </div>
+
+          <div class="card">
+            <div class="row">
+                  <div class="col">Mobile Number</div>
+                  <div class="col">{{doctor.dpno}}</div>
+            </div>
+           </div>
+
+           <div class="card ">
+             <div class="row">
+                   <div class="col">Bank Details</div>
+                   <div class="col">{{doctor.bank_name}}</div>
+             </div>
+             <div class="row">
+                   <div class="col">A/C No</div>
+                   <div class="col">{{doctor.acc_num}}</div>
+             </div>
+             <div class="row">
+                   <div class="col">IFSC Code</div>
+                   <div class="col">{{doctor.ifsc}}</div>
+             </div>
+           </div>
+
+            <div class="card">
+              <div class="row">
+                    <div class="col">Consulting Fee</div>
+                    <div class="col">{{doctor.fee}}</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="row">
+                    <div class="col">Specialities</div>
+                    <div class="col">{{doctor.speciality_id}}</div>
+              </div>
+            </div>
+
+            <div class="card item item-text-wrap">
+              <div class="row">
+                    <div class="col-75">Medical Council Membership</div>
+                    <div class="col"></div>
+              </div>
+              <div class="row ">
+                    <div class="col-75">Medical Council Membership</div>
+                    <div class="col"></div>
+              </div>
+            </div>
+
+    </div>
+
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-view class="doc-reg-1-view" cache-view="false">
+  <ion-content>
+
+    <div class="bar-header bar-light">
+      <div class="top-content">
+             <p>Doctor Registration</p>
+             <img  src="./img/progress1.png" >
+             <p class="reg_message"> DoctorQuick is a unique technology to help you consult and treat patients at your own time and pace from different corners of the country and get paid for your time.</p>
+     </div>  
+    </div>
+<form name="DocReg" novalidate >
+   <div class="form-content">
+     <div class="input-types">
+
+              <label class="item item-input " >
+                  <input type="text" placeholder="First Name" name="doc_fname" ng-model="Doctor.doc_fname" required>
+                    <!-- <span class="help-block" ng-show="DocReg.username.$error.required">Required</span> -->
+              </label>
+
+             <label class="item item-input" >
+                 <input type="text" placeholder="Middle Name" name="doc_mname" ng-model="Doctor.doc_mname" >
+             </label>
+
+             <label class="item item-input" >
+                 <input type="text" placeholder="Last Name" name="doc_lname" ng-model="Doctor.doc_lname" required>
+             </label>
+
+     </div>
+
+    </div>
+
+    <div class="bottom-content">
+          <button type="submit" class="login button button-block  "  ng-disabled="!DocReg.$valid"  ui-sref="auth.doctorRegistration2" ng-click="reg_doc();">
+            <span>Next</span>
+          </button>
+           <!-- <button class="login button button-block  " ui-sref="auth.doctorRegistration2">Next</button> -->
+     </div>
+</form>
+</ion-content>
+</ion-view>

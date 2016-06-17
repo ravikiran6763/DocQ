@@ -1,0 +1,88 @@
+<ion-view cache-view="false" enable-menu-with-back-views="true"  >
+  <ion-side-menus enable-menu-with-back-views="true" >
+    <ion-side-menu-content class="post-size-14px" >
+      <ion-nav-bar class="bar app-top-bar">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon icon ion-ios-chatbubble-outline" blink blink-class="energized" menu-toggle="left" ng-show="showNotification" >
+            </button>
+            <span class="notify-badge " ng-show="showBadge" ui-sref="templates.consulted_patient" >{{2}}</span>
+            <i class="back-btn-cls ion-ios-arrow-back" ng-click='goBack()' ng-show="showBackBtn"></i>
+        </ion-nav-buttons>
+
+        <ion-nav-title >
+          <p class="title">{{headerTxt}}</p>
+            <!-- <img class="doctor-status " ng-src="" ng-show="showDocStatus"> its no more required-->
+        </ion-nav-title>
+
+        <ion-nav-buttons side="right">
+          <a class="button button-icon button-clear ion-navicon" menu-toggle="right">
+          </a>
+        </ion-nav-buttons>
+
+      </ion-nav-bar>
+
+      <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+
+    <ion-side-menu side="right" class="main-menu" expose-aside-when="large"  >
+    <ion-content class="doc-sidemenu sidemenu-padding" >
+
+    <ion-item class="item-icon-left" ng-click="getDocDetails();" menu-close ui-sref="templates.doc_profile"><!-- ui-sref="templates.doc_profile" -->
+    <i class="icon ion-android-bookmark"></i>
+    <h2 class="menu-text">Profile</h2>
+    </ion-item>
+    <ion-item class="item-icon-left" nav-clear menu-close ng-click="getMyConsultations();"ui-sref="templates.consulted_patient">
+    <i class="icon ion-social-wordpress"></i>
+    <h2 class="menu-text">My Consultations</h2>
+    </ion-item>
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_profile">
+    <i class="icon ion-asterisk"></i>
+    <h2 class="menu-text">Review App</h2>
+    </ion-item>
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc-customercare">
+    <i class="icon ion-gear-a"></i>
+    <h2 class="menu-text">Customer Care</h2>
+    </ion-item>
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_acc_statement">
+    <i class="icon ion-android-wifi"></i>
+    <h2 class="menu-text">Account Statements</h2>
+    </ion-item>
+
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.invite_reviews">
+    <i class="icon ion-android-cloud-circle"></i>
+    <h2 class="menu-text">Invite Reviews</h2>
+    </ion-item>
+
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+    <i class="icon ion-android-cloud-done"></i>
+    <h2 class="menu-text">Terms Of Use</h2>
+    </ion-item>
+    <!--
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.invite_contacts">
+    <i class="icon ion-gear-a"></i>
+    <h2 class="menu-text">Invite Reviews</h2>
+    </ion-item> -->
+
+
+    <ul >
+      <li class="item item-toggle">
+        <i class="icon ion-document"></i>
+        <h3>Notifications</h3>
+      <label class="toggle toggle-assertive">
+          <input type="checkbox">
+          <div class="track">
+              <div class="handle"></div>
+              <p class="status-txt-cls">{{checkedValue ? 'ON' : 'OFF'}}</p>
+          </div>
+      </label>
+      </li>
+    </ul>
+
+
+    </ion-content>
+
+    </ion-side-menu>
+
+
+  </ion-side-menus>
+</ion-view>

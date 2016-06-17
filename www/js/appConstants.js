@@ -1,0 +1,83 @@
+/*globals angular */
+
+'use strict';
+
+/**
+ * Contains the Constants, which are available across the app.
+ * @author Tushar
+ */
+DoctorQuickApp.constant('BASE_URL', {
+        //Development http://ec2-52-39-133-220.us-west-2.compute.amazonaws.com/
+        // 'url': 'http://greetbss.greettech.com/'
+        //Development
+        // 'url': 'http://greetbss.greettech.com/'
+        //Testing
+        // 'url' :'http://ec2-52-39-133-220.us-west-2.compute.amazonaws.com/'
+        //Staging
+        'url' : 'http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/'
+    })
+.constant('API', {
+          /*COMMON APIS*/
+        'login': 'common/dqLogin.php',
+        'patientRegistration':'DQ/patientegistration.php',
+        'doctorRegistration':'doctor/doctorRegistration.php',
+        'login': 'common/dqLogin.php',
+        'logout': 'logout',
+
+        /*PATIENT APIS*/
+        'patientRegistration' :'patient/patientRegistration.php',
+        'patientDetails'      :'patient/patientDetails.php',
+        'fetchMyDoctors'      :'patient/fetchMyDoctors.php',
+        'myConsultations'     :'patient/myConsultations.php',
+        'myWalletBalance'     :'patient/myWalletBalance.php',
+        'patientQuery'        :'patient/patientQuery.php',
+        'paientCallBack'      :'patient/paientCallBack.php',
+        'getMedicalSpecialist' : 'patient/listallspecialities.php',
+        'fetchSpecificSpeciality' : 'patient/fetchSpecificSpeciality.php',
+        'fetchSpecificDoctor'     :'patient/fetchSpecificDoctor.php',
+        'doctorbydifferentscenario' : 'patient/doctorlist.php',
+        'sendotp' : 'textgurutest.php',
+
+        'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
+        'rateMyDoctor':'patient/rateMyDoctor.php',
+        'doctorbydifferentscenario' : 'patient/doctorlist.php',
+        'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
+        'rateMyDoctor':'patient/rateMyDoctor.php',
+
+        /*DOCTOR APIS*/
+        'doctorRegistration'  :'doctor/doctorRegistration.php',
+        'doctorDetails':'doctor/doctorDetails.php',
+        'myConsultedPatients':'doctor/myConsultedPatients.php',
+        'resendOtp':'DQ/resendOtp.php',
+        'changePassword': 'changePassword',
+
+        'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',
+
+
+        'changePatientPwd':'DQ/changePatientPwd.php',
+        'fetchAllDoctors':'DQ/fetchDoctors.php',
+
+
+
+        'rateMyDoctor':'DQ/rateMyDoctor.php',
+        'getMyDoctorRatings':'DQ/getMyDoctorRatings.php',
+        'sidemenulist':'DQ/sidemenulist.php',
+
+        'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',
+
+
+        /*  DOCTOR ON OFF API */
+        'doctoronoffconditions':'doctor/doctoronoffline.php'
+
+
+
+    })
+.constant('AUTH_EVENTS', {
+      notAuthenticated: 'auth-not-authenticated',
+      notAuthorized: 'auth-not-authorized'
+      })
+
+.constant('USER_ROLES', {
+      admin: 'admin_role',
+      public: 'public_role'
+      });

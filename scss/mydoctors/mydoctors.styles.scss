@@ -1,0 +1,59 @@
+.mydoctor-profile-view
+{
+  background-color:#e2e2e2 !important;// $profile-bg !important;
+font-family: Ubuntu,bold,sans-serif !important;
+  .item-icon-right .icon {
+     right: 20px;
+ }
+ .doctorList{
+   margin-top: 8vh !important;
+ }
+.item-avatar{
+ background-color: #e7e7e7;
+ width: 100%;
+ width: 100vmin;
+ text-align: left;
+ margin-top: 0vh;
+ border-left: none;
+ border-right: none;
+ border-bottom: 1px solid #cbcbcb;
+ border-width:   auto;
+ padding-bottom: 2px;
+ img{
+  margin-top: -1vh !important;
+  padding: 2px;
+  background-color: #dedad7 !important;
+ }
+
+
+}
+.item-avatar:first-child {
+border-top: none;
+}
+.item-avatar:last-child {
+border-bottom: none;
+display: block;
+position: absolute;
+margin-bottom:80px !important;
+}
+h2{
+  font-size: 5vw;
+  font-weight: 400;
+  color: #4b4b4b;
+  margin-top: -1vh !important;
+
+}
+p{
+  // background-color: red;
+  font-size: 4vw !important;
+    margin-top: 0px !important;
+  span{
+    //background-color: red;
+    margin-left: 2vw;
+    font-size: 3vw;
+  }
+
+}
+
+
+}

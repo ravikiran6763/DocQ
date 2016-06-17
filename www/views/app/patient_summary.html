@@ -1,0 +1,56 @@
+<ion-view class="summary-view" cache-view="false">
+
+  <ion-content>
+    <!-- &#9734; prints star character-->
+    <ul class="top-content" ng-repeat="consult in consultedDocDetails">
+      <li>
+        <div class="profile-img">
+          <img src="./img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr.{{consult.doctorfname}} {{consult.doctormname}} {{consult.doctorlname}}</h2>
+          <p>{{consult.doc_degrees}}</p><br>
+          <p >Practicing since {{consult.practice_since}} &nbsp;&nbsp;  <span class="stars alignright" ng-repeat="rating in ratings">
+              <span ng-style="{ 'width': getStars(rating.number) }"></span>
+            </span><span>(4.9/27)</span></p>
+
+        </div>
+        <div class="next-icon">
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </div>
+      </li>
+    </ul>
+    <div class="card ">
+
+      <div class="row">
+        <div class="col-75">Messeges</div>
+        <div class="col"><span class="badge badge-positive ">{{1}}</span></div>
+      </div>
+      <div class="row">
+        <div class="col-75">Add Doctor to favorites</div>
+        <div class="col "><button-star></button-star></div>
+      </div>
+      <div class="row">
+        <div class="col-75">Ratings</div>
+        <div class="col right-side " ><ionic-ratings ratingsobj='ratingsObject'></ionic-ratings></div>
+      </div>
+
+    </div>
+  <div class="suggestion" >
+     <p ng-show="unhappy"> Please Share detials with us why you were unhappy with the consultation so that we can improve our service.</p>
+     <p ng-show="happy"> Please Share detials with us why you were happy with the consultation so that we can improve our service.</p>
+
+    <div class="query-text">
+      <label class="item item-input">
+      <textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment">
+      </textarea>
+      </label>
+    </div>
+    <div class="btn-content">
+      <button class="button button-block" ng-click="sendRatings();">Send</button>
+    </div>
+  </div>
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,51 @@
+<ion-view class="walkthrough-view" cache-view="false">
+  <ion-content class="padding" scroll="true">
+    <!--<div class="list text-center padding">
+          <img ng-src="img/dq_login_logo.png" style="width:65vmin; height:auto;">
+    </div>-->
+    <div class="list text-center padding">
+           <img ng-src="img/dq_login_logo.png" style="width:65vmin; height:auto;">
+         </div>
+  <form name="login_form"  novalidate ng-cloak>
+    <div class="list text-center">
+      <label class="item item-input " >
+          <input  type="text" placeholder="Phone Number" name="user_phone" ng-model="user.phone" required autofocus>
+      </label>
+      <label class="item item-input " show-hide-container>
+          <input  type="password" placeholder="Password" name="user_pin" ng-model="user.pin" required show-hide-input autofocus>
+      </label>
+    </div>
+    <div class="padding-top text-center">
+      <button class=" button button-block button-stable " ng-click="doLogIn();" >
+        Login
+      </button>
+    </div>
+    <div class="login_container" >
+
+        <div class="conditions" >
+            <p >By Logging in you agree to our <a href="#">Terms&Conditions</a></p>
+        </div>
+          <div class="Remember row">
+          <input type="checkbox" value="None" id="squaredTwo" name="check" checked />Remember me
+            <div class="col"><a href="#">Forgot Password?</a></div>
+          </div>
+         <button class=" button button-block button-positive" ui-sref="auth.patientRegistration1" >
+           Register
+         </button>
+         <div class="row row-bottom bottom">
+           <a  class="col button button-small button-clear  "  ui-sref="auth.demo">
+             <img class="img2" ng-src="img/button_change.png"><br><p class="imgtitle">Learn More</p>
+           </a>
+           <a class="col col-50 button button-small button-clear  "  ui-sref="auth.doctorRegistration">
+             <img class="img2" ng-src="img/doc_symbol.png"><br><p class="imgtitle">Register as a Doctor</p>
+           </a>
+         </div>
+
+
+
+      </form>
+    </div>
+
+
+  </ion-content>
+</ion-view>

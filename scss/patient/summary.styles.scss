@@ -1,0 +1,128 @@
+.summary-view
+{
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  ion-content{
+    overflow: scroll !important;
+  }
+  .top-content
+  {
+      width: 100%;
+      height: 20%;
+    li {
+      height: 31.3%;
+      border-bottom: 1px solid #fff;
+
+      @include clearfix();
+
+      &:first-child {
+        //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+      }
+
+      &:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto;
+      }
+
+      .profile-img {
+        width: 15vw;
+        float: left;
+        margin: 2vh 0px 0px 2vh;
+
+        img {
+          border-radius: 50%;
+          width: 20vw;
+          padding: 5px;
+        }
+      }
+
+      .next-icon {
+          width: 4vw;
+          float: right;
+          text-align: center;
+          margin-right: 10px;
+          height: 100%;
+          line-height: 14vh;
+
+        .ion-chevron-right:before {
+          color: #ffffff;
+          font-size: 1.8em;
+        }
+      }
+
+      .name-content {
+        float: left;
+        padding: 3vh 4vh;
+        height: 100%;
+
+        p{
+            font-size: 3.2vw;
+            line-height: 0.3vh;
+            margin: 0px;
+
+          }
+
+        h2{
+
+            font-size: 5vw;
+            font-family: Ubuntu,bold,sans-serif !important;
+            line-height: 6vw;
+          }
+      }
+
+    }
+  }
+  .right-side{
+    float: right;
+  }
+  .suggestion{
+    width: 90%;
+    margin: 0 auto;
+    h2{
+      font-size: 4vw;
+      font-family: inherit;
+      text-align: center;
+    }
+  }
+  .query-text{
+    width: 92%;
+    margin: 0 auto;
+    textarea{
+      height: 20%;
+      height: 20vh;
+      font-family: inherit;
+      font-size: 4vw;
+    }
+  }
+  .btn-content{
+    width: 92%;
+    margin: 0 auto;
+    .button{
+      width: 27%;
+      height: 7vh;
+      float: right;
+      background-color: #69a33d;
+      color:#fff;
+      font-family: inherit;
+    }
+  }
+
+  span.stars, span.stars span {
+    display: block;
+   /* Download the star image here: http://stackoverflow.com/questions/1987524/turn-a-number-into-star-rating-display-using-jquery-and-css */
+   background: url('../img/stars.png') 0 -16px repeat-x;
+    // background: url('https://apppresser.com/wp-content/uploads/2015/11/stars.png') 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars span {
+    background-position: 0 0;
+}
+
+.alignright {
+  float:left;
+}
+
+// favorite consultedDocDetails
+}

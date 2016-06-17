@@ -1,0 +1,17 @@
+<ion-view class="review-view" cache-view="false">
+
+ <ion-content >
+   <div class="top-content">
+     <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
+   </div>
+     <div class="list contacts-list">
+        <div class="list" ng-show="phoneContacts">
+           <!--{{ contact.name.formatted }}-->
+           <p>Firstname LAstname</p>
+        </div>
+        <div ng-repeat="number in contact.phoneNumbers">
+          <p>{{ number.value }}</p>
+        </div>
+     </div>
+ </ion-content>
+</ion-view>

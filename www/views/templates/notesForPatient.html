@@ -1,0 +1,51 @@
+<ion-view class="patient-notes-view" cache-view="false">
+
+  <ion-content scroll="false">
+    <a class="item dark item-avatar item-icon-right"  ><!--ui-sref="app.doctorprofile"-->
+        <img src="img/pat.jpg">
+        <div><h2>FirstName LastName </h2>
+        <p>14:33 on 16/01/2016</p>
+        </div>
+
+    </a>
+    <p class="description">After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
+    <div class="card ">
+    <div class="row">
+          <div class="col col-75"  ui-sref="templates.diagnosisForPatient" >Diagnosis</div>
+  <label class="checkbox">
+             <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" >
+
+  </label>
+
+          <div class="col" ui-sref="templates.diagnosisForPatient"><i class="icon ion-chevron-right icon-accessory" ></i></div>
+    </div>
+    <div class="  row">
+          <div class="col col-75"  ui-sref="templates.patientTests">Tests Recomended</div>
+          <label class="checkbox">
+             <input class="checkbox"  type="checkbox" ng-model="notes.checkedTests"  >
+          </label>
+
+          <div class="col" ui-sref="templates.patientTests"><i class="icon ion-chevron-right icon-accessory"></i></div>
+    </div>
+    <div class="  row">
+          <div class="col col-75"  ui-sref="templates.medicationForPatient" >Medication</div>
+          <label class="checkbox">
+             <input class="checkbox"  type="checkbox" ng-model="notes.checkedMedication" >
+          </label>
+
+          <div class="col" ui-sref="templates.medicationForPatient"><i class="icon ion-chevron-right icon-accessory"></i></div>
+    </div>
+  </div>
+    <tt>Diagnosis = {{notes.checkedDiagnosis}}</tt>
+     <tt>Tests = {{notes.checkedTests}}</tt>
+      <tt>Medication = {{notes.checkedMedication}}</tt>
+      <tt>Result = {{user.testforpatient}}</tt>
+
+  <div class="buttons">
+   <button  class="button button-block button-assertive" >Send prescription</button>
+   <button  class="button button-block button-assertive" >Complete & charge</button>
+   <button  class="button button-block button-energized" >Complete without charge</button>
+ </div>
+
+  </ion-content>
+</ion-view>

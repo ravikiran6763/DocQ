@@ -1,0 +1,82 @@
+<ion-side-menus enable-menu-with-back-views="true">
+  <ion-side-menu-content class="post-size-14px" >
+    <ion-nav-bar class="bar app-top-bar">
+
+      <ion-nav-buttons side="left">
+        <i class="back-btn-cls ion-ios-arrow-back" ng-click='goBack()' ng-show="showBackBtn"></i>
+      </ion-nav-buttons>
+
+      <ion-nav-title>
+        <p class="title">{{headerTxt}}</p>
+      </ion-nav-title>
+
+      <ion-nav-buttons side="right">
+        <p ng-model="status"></p>
+        <button ng-click="toggleLeftSideMenu()" class="button button-icon button-clear ion-navicon">
+        </button>
+      </ion-nav-buttons>
+
+    </ion-nav-bar>
+
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu  side="right" class="main-menu" expose-aside-when="large">
+    <ion-content class="doc-sidemenu sidemenu-padding" ng-class="{'search-side-menu' : sideMenuForSearch}">
+      <ion-list ng-hide="sideMenuForSearch">
+
+        <ion-item class="item-icon-left" ng-click="getPatientDetails();"  ui-sref="app.patient_profile" menu-close>
+          <i class="icon ion-android-bookmark"></i>
+          <h2 class="menu-text">Profile</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ng-click="myDoctors();" ui-sref="app.my_doctors">
+          <i class="icon ion-radio-waves"></i>
+          <h2 class="menu-text">My Doctors</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.my_consultations" ng-click="myConsultations();">
+          <i class="icon ion-social-wordpress"></i>
+          <h2 class="menu-text">My Consultations</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_payments" ng-click="getWallet();">
+          <i class="icon ion-wand"></i>
+          <h2 class="menu-text">Payments</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
+          <i class="icon ion-asterisk"></i>
+          <h2 class="menu-text" >Review App</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
+          <i class="icon ion-android-wifi"></i>
+          <h2 class="menu-text">Notifications</h2>
+        </ion-item>
+        <div class="toggle-position">
+            <md-toggle></md-toggle>
+        </div>
+        <!-- <ul >
+          <li class="test-view">
+            <i class="icon ion-android-wifi"></i>
+
+            Notifications<md-toggle></md-toggle>
+          </li>
+        </ul> -->
+
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_customercare">
+          <i class="icon ion-gear-a"></i>
+          <h2 class="menu-text">Customer Care</h2>
+        </ion-item>
+
+      </ion-list>
+
+    <ion-list class="side-menu-search" ng-show="sideMenuForSearch" ng-repeat="item in specialityList" >
+      <div class="radio_bg">
+          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="h1(item.special);" menu-close><h2 >{{item.special}}</h2></ion-radio>
+      </div>
+    </ion-list>
+
+    </ion-content>
+    <ion-footer-bar align-title="left" class=" item-icon-left" ng-click="confirmSignout();" ng-hide="sideMenuForSearch" nav-clear menu-close >
+        <i class="icon ion-android-bookmark"></i>
+        <h5 class="menu-text">Signout</h5>
+    </ion-footer-bar>
+  </ion-side-menu>
+</ion-side-menus>

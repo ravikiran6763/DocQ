@@ -1,0 +1,30 @@
+<ion-view class="customercare-view" cache-view="false">
+  <ion-content scroll="false">
+    <form class="cc-form">
+      <div class="top-content">
+          <h1>Please contact us through the form below or request a callback </h1>
+          <div class="text-area-content">
+              <label class="item item-input">
+               <textarea placeholder=" " ng-model="cc.query"></textarea>
+             </label>
+          </div>
+          <div class="button-content">
+            <button class="button " ng-click="doctorQuery();">Send</button>
+          </div>
+        </div>
+      <div class="bottom-content">
+          <div class="image-content">
+              <pre-img ratio="" helper-class="" class="cc-bottom-content"  >
+                <img ng-src="img/dq_icon_time_540x960.png" spinner-on-load>
+              </pre-img>
+          </div>
+          <h2>Working hours :9am to 9pm</h2>
+          <h3>(Indian Standard Time)</h3>
+          <div class="button-content">
+              <button class="button button-block" ng-click="doctorCallback();">Request a callback</button>
+          </div>
+      </div>
+
+    </form>
+  </ion-content>
+</ion-view>

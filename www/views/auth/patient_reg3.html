@@ -1,0 +1,66 @@
+<ion-view nav-transition="ios" class="patient-reg-3-view" cache-view="false">
+
+  <ion-content>
+
+    <div class="bar-header bar-light">
+      <div class="back_button icon-left">
+        <i class="register-back-btn icon ion-ios-arrow-back" ng-click="goBack();"></i>
+        <p class="back-txt-cls">Back</p>
+      </div>
+    <div class="top-content">
+
+           <p>Patient Registration</p>
+           <img  src="./img/iOS-Assets-v01_patient_registration_progress3.png">
+           <h1> Please enter the 4 digit verification code in the text message sent to </h1>
+           <h2>{{phoneno}}</h2>
+           <h2>{{otp}}</h2>
+
+     </div>
+    </div>
+
+
+
+   <div class="form-content-1">
+     <div class="row" >
+         <div class="col">
+           <label class="item item-input">
+              <input type='text' mask-clean='true' ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true" shiftInput />
+               <!-- <input type="number" placeholder="1" ng-maxlength="1"> -->
+           </label>
+         </div>
+         <div class="col">
+           <label class="item item-input" >
+               <input type='text' mask-clean='true' ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true" shiftInput/>
+           </label>
+         </div>
+         <div class="col">
+           <label class="item item-input" >
+               <input type='text' mask-clean='true' ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" shiftInput/>
+           </label>
+         </div>
+         <div class="col">
+           <label class="item item-input">
+               <input type='text' mask-clean='true'  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" shiftInput/>
+           </label>
+         </div>
+     </div>
+
+  </div>
+
+       <div class="form-content-2">
+
+
+      </div>
+    <div class="bottom-content">
+
+      <div class="button-bar ">
+          <a class="button resend" ng-click="resendOtp();" >Resend</a>
+          <a class="button confirm"   ng-click="patientRegistration();">Confirm</a>
+      </div>
+
+       <h4>Din't receive a text from DoctorQuick? <p>Tap Resend.</p></h4>
+       <h2 > By Signing in, I agree to DoctorQuicks </h2>
+       <h3 class="link"><a href="#">Terms and Conditions</a> </h3>
+     </div>
+</ion-content>
+</ion-view>

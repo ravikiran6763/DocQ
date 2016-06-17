@@ -1,0 +1,149 @@
+.walkthrough-view
+{
+
+	.submitted input.ng-invalid:not(:focus) {
+	  border:2px solid red;
+	}
+
+	ion-body{
+		width: 320px !important;
+	}
+
+	.login-form {
+		height: auto;
+	}
+.header{
+	height: auto;
+	position: sticky;
+}
+	.form-cls {
+		height: auto;
+    margin-top: 8vh;
+	}
+
+		.logoContainer{
+			margin-top: 5vh;
+			text-align: center;
+    	height: 20%;
+			img{
+							width: 70%;
+				}
+		}
+		input[type="text"]{
+		//	color: green;
+			font-size: 4vw;
+			padding-top: 0px;
+			margin-top: 1vh;
+			font-family: Ubuntu,bold,sans-serif !important;
+			height: 25px;
+
+		}
+		input[type="password"]{
+		//	color: green;
+			font-size: 4vw;
+			padding-top: 0px;
+			margin-top: 1vh;
+			height: 25px;
+			font-family: Ubuntu,bold,sans-serif !important;
+		}
+
+			.phone_field{
+				width: 80%;
+				text-align: center;
+				margin: 0 auto;
+				margin-bottom: 5%;
+				margin-left: 10vw !important;
+				margin-bottom: 3vh;
+				background:#fff !important;
+
+			}
+			.password_field{
+				width: 80%;
+				text-align: center;
+				margin-left: 10vw !important;
+				background:#fff !important;
+				margin-bottom: 3vh;
+			}
+			button{
+				width: 80%;
+				text-align: center;
+				margin-left: 10vw !important;
+				border: none;
+			}
+
+			.button-stable{
+				background-color: #6aa13e;
+			}
+			.button-stable.activated{
+				background-color: #557a23 !important;
+			}
+
+			.button-calm.activated{
+				background-color:#026451!important;
+			}
+			.footer-bar-cls{
+				  height: 10%;
+					// height: 17%;
+					background-color: transparent;
+					border: 0px;
+					background-image: none;
+					// margin-top: -40px !important;
+				 //overflow: hidden !important;
+
+				 .register-content-btn-cls, .learn-more-content {
+					 text-align: center;
+					 width: 50%;
+					 float: left;
+
+					 a {
+						 text-decoration: none !important;
+					 }
+
+					 p {
+							margin: 0px;
+							color: #ffffff;
+					 }
+				 }
+
+				}
+
+			.conditions{
+				width: 80%;
+				margin: 0 auto;
+				font-size: 0.8em;
+			}
+			.login_button {
+					background-color: #6aa13e;
+					color: #ffffff;
+					height: 40px;
+			}
+
+			.remember-forgot {
+				width: 80%;
+				margin: 0 auto;
+
+				span {
+					font-weight: bolder;
+					text-decoration: none;
+					font-size: 0.9em;
+				}
+
+				a {
+					text-decoration: none;
+					font-weight: bolder;
+					text-decoration: none;
+					font-size: 0.9em;
+				}
+			}
+
+			.register_button {
+				background-color: #00745f;
+				color: #ffffff;
+				height: 40px;
+			}
+
+			.spacer {
+				  margin: 5% auto;
+			}
+
+}

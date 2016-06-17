@@ -1,0 +1,16 @@
+<ion-view class="mydoctor-profile-view" cache-view="false" >
+  <!-- <ion-nav-title>
+    <span>My Doctors</span>
+  </ion-nav-title> -->
+  <ion-content  >
+    <div class="doctorList">
+          <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.doctorPhone}});"><!--ui-sref="app.viewdoctor_profile({ docPhone: doctor.dpno})"-->
+            <img src="img/doc.jpg">
+            <h2>Dr.{{doctor.doctorFname}} {{doctor.doctorLname}} </h2> <i class="icon ion-android-add-circle"></i>
+            <p>{{doctor.doctorDegrees}}</p>
+              <p>Practicing since {{doctor.practicingSince}}<span>*****</span></p>
+          </a>
+
+      </div>
+  </ion-content>
+</ion-view>

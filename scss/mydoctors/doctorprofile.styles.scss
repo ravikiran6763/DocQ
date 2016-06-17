@@ -1,0 +1,87 @@
+.doctor-profile-view
+{
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  .profile-img{
+
+    width: 30%;
+    height: 30%;
+    margin: 0 auto;
+    img{
+      width: 30vw;
+      border-radius: 60%;
+      padding: 5px;
+      background-color:#dedad7 !important;
+      margin-top: 8vh !important; 
+    }
+    .doctor-online{
+       padding: 10px 10px 10px 10px;
+       margin-left:23vw;
+       margin-top: 4vh;
+       background-color:#adcb3a !important;// $profile-bg;
+       border-radius: 50%;
+       width: 2vw;
+     }
+  }
+  .profile-info{
+
+    margin: 0 auto;
+    width: 90%;
+    height: 15%;
+    h1,h2,h3{
+        font-family: Ubuntu,bold,sans-serif !important;
+        text-align: center;
+    }
+    h1{
+      font-size: 5vw;
+    }
+    h2{
+      font-size: 4vw;
+      line-height: 0vh;
+      color: #666666 !important;
+    }
+    h3{
+      font-size: 3vw;
+      color: #666666 !important;
+    }
+
+  }
+  .rating-field{
+    height: 10%;
+
+    .card{
+      width: 90% !important;
+      margin: 0 auto;
+    }
+  }
+  .bottom-content{
+    height: 52%;//calc(100%-55%);
+
+    h4{
+      font-size: 4vw;
+      line-height: 0vh;
+      text-align: center;
+      margin-top: 3vh;
+      font-family: Ubuntu,bold,sans-serif !important;
+    }
+    h5{
+      font-size: 3vw;
+      line-height: 0vh;
+      text-align: center;
+      margin-top: 3vh;
+      font-family: Ubuntu,bold,sans-serif !important;
+    }
+    .button-content{
+
+      margin: 0 auto;
+      height: 50%;
+      width: 80%;
+      .button{
+        background-color: #6aa13e;
+        font-family: Ubuntu,bold,sans-serif !important;
+        color: #fff;
+      }
+    }
+  }
+
+}

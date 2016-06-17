@@ -1,0 +1,109 @@
+<ion-view class="patient-refund-view" cache-view="false">
+
+  <!-- <ion-nav-title>
+    <span>Refund</span>
+  </ion-nav-title> -->
+
+  <div class="top-content ">
+      <div class="logo-content">
+        <pre-img ratio="_1_1" helper-class="rounded-image">
+           <img ng-src="img/dq_icon_payments_large_540x960.png" spinner-on-load>
+        </pre-img>
+      </div>
+      <h1>DoctorQuick Wallet</h1>
+      <h2 ng-repeat="refund in patientWalletdetails">Balance:₹{{refund.credit-refund.debit}}</h2>
+  </div>
+  <div class="refund-amount">
+    <label class="item item-input" name="refund_amt" ng-repeat="refund in patientWalletdetails">
+        <input type="number" placeholder="0.0">
+    </label>
+  </div>
+  <div class="button-container">
+    <button class="button button-balanced button-block" >Refund</button>
+  </div>
+  <ion-item class="item-divider">Transaction History</ion-item>
+  <div class="bottom-content">
+    <ul >
+      <li class="" >
+        <div class="profile-img">
+          <img src="img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr LastName <span>₹150.00</span></h2>
+          <p>23 dec 2015</p>
+        </div>
+        <div class="next-icon">
+
+        </div>
+      </li>
+
+      <li class="" >
+        <div class="profile-img">
+          <img src="img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr LastName <span>₹15.00</span></h2>
+          <p>23 dec 2015</p>
+        </div>
+        <div class="next-icon">
+
+        </div>
+      </li>
+
+      <li class="" >
+        <div class="profile-img">
+          <img src="img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr LastName <span>₹150.00</span></h2>
+          <p>23 dec 2015</p>
+        </div>
+        <div class="next-icon">
+
+        </div>
+      </li>
+
+      <li class="" >
+        <div class="profile-img">
+          <img src="img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr LastName <span>₹15.00</span></h2>
+          <p>23 dec 2015</p>
+        </div>
+        <div class="next-icon">
+
+        </div>
+      </li>
+
+      <li class="" >
+        <div class="profile-img">
+          <img src="img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr LastName <span>₹150.00</span></h2>
+          <p>23 dec 2015</p>
+        </div>
+        <div class="next-icon">
+
+        </div>
+      </li>
+
+      <li class="" >
+        <div class="profile-img">
+          <img src="img/doc.jpg">
+        </div>
+        <div class="name-content">
+          <h2>Dr LastName <span>₹15.00</span></h2>
+          <p>23 dec 2015</p>
+        </div>
+        <div class="next-icon">
+
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+
+</ion-view>

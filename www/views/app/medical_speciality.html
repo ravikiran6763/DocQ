@@ -1,0 +1,21 @@
+<ion-view class="medical-speciality-view" cache-view="false" ng-controller="medicalSpecialityController">
+
+  <ion-content >
+
+  <ul class="bottom-content">
+      <li ng-click="getSpecialityDetail({{item.id}});"  ng-repeat="item in specialitiesList">
+        <!-- <li ui-sref="app.specialityDetails({ specialityId: item.id})" ng-repeat="item in specialitiesList"> -->
+
+        <div class="name-content">
+
+          <h2 >{{item.special}}</h2>
+          <div class="sub-content"><p>{{item.content}} </p></div>
+
+        </div>
+        <!-- <i class="icon ion-android-alert"></i> -->
+      </li>
+
+  </ul>
+
+  </ion-content>
+</ion-view>

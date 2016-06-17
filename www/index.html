@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
+    <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width,height=device-height">-->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;; style-src * &apos;unsafe-inline&apos;;"> -->
+    <title>DoctorQuick</title>
+
+    <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="lib/ionic-contrib-tinder-cards/ionic.tdcards.css" rel="stylesheet">
+    <!-- Angular Material CSS using GitCDN to load directly from `bower-material/master` -->
+       <!-- <link rel="stylesheet" href="https://gitcdn.xyz/repo/angular/bower-material/master/angular-material.css"> -->
+
+    <!--ubuntu font-family-->
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu%3Aregular%2Cbold&amp;subset=Latin">
+    <link rel="stylesheet" href="http://mbenford.github.io/ngTagsInput/css/ng-tags-input.min.css">
+    <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
+    <script type="text/javascript" src="lib/ionic/js/ionic.bundle.js"></script>
+    <script type="text/javascript" src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
+    <script type="text/javascript" src="lib/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="lib/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/ngmap/build/scripts/ng-map.min.js"></script>
+    <script type="text/javascript" src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script type="text/javascript" src="lib/moment/min/moment.min.js"></script>
+    <script type="text/javascript" src="lib/angular-moment/angular-moment.min.js"></script>
+    <script type="text/javascript" src="lib/angular-slugify/dist/angular-slugify.min.js"></script>
+    <script type="text/javascript" src="lib/collide/collide.js"></script>
+    <script type="text/javascript" src="lib/ionic-contrib-tinder-cards/ionic.tdcards.js"></script>
+    <script type="text/javascript" src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+    <script type="text/javascript" src="lib/angular-youtube-mb/dist/angular-youtube-embed.min.js"></script>
+    <script type="text/javascript" src="lib/ionic-ratings/dist/ionic-ratings.min.js"></script>
+    <script type="text/javascript" src="lib/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="lib/ngstorage/ngStorage.min.js"></script>
+    <script type="text/javascript" src="lib/angular-base64/angular-base64.js"></script>
+    <script type="text/javascript" src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script>
+    <script type="text/javascript" src="lib/angular-messages/angular-messages.js"></script>
+    <script type="text/javascript" src="lib/angular-cookies/angular-cookies.min.js"></script>
+
+    <!-- <script src="lib/ng-img-crop/source/js/ng-img-crop.js"></script> -->
+
+    <!--load CryptoJS -->
+    <!-- <script src="lib/cryptojslib/rollups/md5.js"></script>
+    <script src="lib/cryptojslib/components/enc-base64-min.js"></script> -->
+    <!-- cordova script (this will be a 404 during development) -->
+    <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+    <script type="text/javascript"  src="cordova.js"></script>
+    <!-- <script type="text/javascript"  src="deviceinformation.js"></script> -->
+
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script> -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.js"></script> -->
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.js"></script>
+   <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"></script>
+
+
+   <!-- Angular Material Javascript using GitCDN to load directly from `bower-material/master` -->
+   <!-- <script src="https://gitcdn.xyz/repo/angular/bower-material/master/angular-material.js"></script> -->
+
+    <script type="text/javascript" src="js/app.js"></script>
+    <!-- Include Constants -->
+    <script type="text/javascript" src="js/appConstants.js"></script>
+    <script type="text/javascript" src="js/controllers.js"></script>
+    <script type="text/javascript" src="js/contactscontroller.js"></script>
+    <script type="text/javascript" src="js/directives.js"></script>
+    <script type="text/javascript" src="js/filters.js"></script>
+    <script type="text/javascript" src="js/services.js"></script>
+    <script type="text/javascript" src="js/factories.js"></script>
+    <script type="text/javascript" src="js/views.js"></script>
+    <script type="text/javascript" src="js/config.js"></script>
+     <!--below script restricts to maxlength input  -->
+    <script type="text/javascript" src="js/maxLength.js"></script>
+    <script type="text/javascript" src="js/ngTags.js"></script>
+    <script type="text/javascript" src="js/prefixfree.min.js"></script>
+    <script type="text/javascript" src="js/sha512.js"></script>
+    <script type="text/javascript" src="js/capturePhoto.js"></script>
+    <!-- Include controllers -->
+    <script type="text/javascript" src="js/controller/medicalSpecialityController.js"></script>
+    <script type="text/javascript" src="js/controller/specialityDetailsController.js"></script>
+    <script type="text/javascript" src="js/controller/LoginCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/PatientProfileCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/searchDoctorsController.js"></script>
+    <script type="text/javascript" src="js/controller/AuthCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/AppCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/patientHomeCtl.js"></script>
+
+      <script type="text/javascript" src="js/controller/patientHomeCtl.js"></script>
+
+
+
+    <script type="text/javascript" src="js/controller/ionicRating.js"></script>
+    <script type="text/javascript" src="js/controller/patientpaymentCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/patientTopupCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/CameraCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/patientCareCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/myconsultationsCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/myDoctorCtrl.js"></script>
+
+    <script type="text/javascript" src="js/controller/searchbyspecialities.js"></script>
+    <script type="text/javascript" src="js/controller/consultSummaryCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/searchbyspecialities.js"></script>
+    <script type="text/javascript" src="js/controller/consultSummaryCtrl.js"></script>
+      <script type="text/javascript" src="js/controller/searchresultcontroller.js"></script>
+
+    <!-- doctor controllers -->
+    <script type="text/javascript" src="js/controller/doctor/doctorCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/doctor/doctorprofileCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/Doctor/docAccStatementCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/Doctor/docProfileCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/Doctor/doctorCareCtrl.js"></script>
+
+
+    <!-- Include Services  -->
+    <script type="text/javascript" src="js/service/medicalSpecialityService.js"></script>
+    <script type="text/javascript" src="js/service/LoginService.js"></script>
+    <script type="text/javascript" src="js/service/patientRegistrationService.js"></script>
+    <script type="text/javascript" src="js/service/patientProfileDetailsService.js"></script>
+    <script type="text/javascript" src="js/service/searchDoctorService.js"></script>
+    <script type="text/javascript" src="js/service/myConsultationService.js"></script>
+    <script type="text/javascript" src="js/service/rateDoctorService.js"></script>
+    <script type="text/javascript" src="js/service/patientWalletService.js"></script>
+    <script type="text/javascript" src="js/service/patientCareServices.js"></script>
+    <script type="text/javascript" src="js/service/doctoronoff.js"></script>
+    <script type="text/javascript" src="js/service/searchbyspecialities.js"></script>
+    <script type="text/javascript" src="js/service/doctoronoff.js"></script>
+    <script type="text/javascript" src="js/service/searchbyspecialities.js"></script>
+    <script type="text/javascript" src="js/service/authService.js"></script>
+
+      <!--doctor services  -->
+    <script type="text/javascript" src="js/service/doctor/doctorCareService.js"></script>
+    <script type="text/javascript" src="js/service/doctor/doctorRegistrationService.js"></script>
+    <script type="text/javascript" src="js/service/doctor/doctorServices.js"></script>
+
+    <!-- <script src="/bower_components/angular-cookies/angular-cookies.js"></script> -->
+  </head>
+  <body ng-app="DoctorQuick" ng-csp=""  ng-controller="AppCtrl">
+
+    <ion-nav-view nav-transition="none" ion-nav-animation="no-animation"></ion-nav-view>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+.patientprofile-view
+{
+  background-color:#e2e2e2 !important;// $profile-bg !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+
+  .profile-info{
+    height: 14vh;
+
+    width: 80%;
+    margin-left: 3vw;
+    margin-top: 8vh !important;
+
+    img{
+      width:20vw;
+      border-radius: 60%;
+      padding: 5px;
+      float: left;
+      background-color: #dedbd6 !important;
+    }
+    h4{
+      font-size: 5vw;
+      margin-left: 17vw;
+      text-align: center;
+      padding-top: 4vh;
+      font-family: inherit;
+      font-weight: 500;
+    }
+  }
+
+  .profile-details{
+    height: 60vh;
+    width: 99%;
+    margin: 0 auto;
+    .card{
+        min-height: 2vh;
+        margin: 2vw;
+        font-size: 4vw;
+      &:first-child{
+
+      }
+    }
+  }
+  h3{
+    text-align: center;
+    font-family: inherit;
+    font-size: 3vw;
+  }
+}

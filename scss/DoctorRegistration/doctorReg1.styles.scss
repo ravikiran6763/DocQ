@@ -1,0 +1,64 @@
+.doc-reg-1-view
+{
+	font-family: Ubuntu,bold,sans-serif !important;
+
+
+	ion-content{
+		overflow: scroll !important;
+		
+	}
+	.top-content{
+		width: 80%;
+		height: 25%;
+		margin: 0 auto;
+		text-align: center;
+		p{
+			text-align: center;
+			padding-top: 20px;
+			font-size:1.2em;
+			font-weight: 500;
+		}
+		img{
+			width: 45%;
+			margin-top: 3vh;
+		}
+		.reg_message{
+			text-align: center;
+
+			font-size:0.9em;
+			font-weight: 600;
+
+		}
+		.button{
+			height: 34px;
+			margin-bottom: 1vh;
+			background-color: red;
+		}
+	}
+	.form-content{
+		padding-top: 30px !important;
+		width: 80%;
+		height: 55%;
+		margin: 0 auto;
+
+		.item-input{
+			margin-bottom: 2vh !important;
+		}
+	}
+	.bottom-content{
+		width: 80%;
+		height: 20%;
+		margin: 0 auto;
+
+		.login{
+			background-color: #6aa13e;
+			border: none;
+			color: #ffffff;
+		}
+		a,h2,h3{
+			font-size: 1em;
+			text-align: center;
+			color: #ffffff;
+		}
+	}
+}
