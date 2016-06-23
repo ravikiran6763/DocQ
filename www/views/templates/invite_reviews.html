@@ -8,14 +8,12 @@
    </div>
 
 
-   <ion-list ng-show="phoneContacts">
-     <ion-checkbox ng-repeat="contact in phoneContacts"
-                      ng-model="item.checked"
-                      ng-checked="item.checked" class="item-checkbox-right">
+   <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
+     <ion-checkbox ng-repeat="number in contact.phoneNumbers"
+                      ng-model="phones[number.value]"
+                      class="item-checkbox-right" ng-click="selectedcontacts(number.value);">
           {{ contact.name.formatted }}
-          <p  ng-repeat="number in contact.phoneNumbers">
-            {{ number.value }}
-          </p>
+
     </ion-checkbox>
      <!-- <ion-item ng-repeat="contact in phoneContacts">
        {{ contact.name.formatted }}

@@ -7,7 +7,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 		$scope.user.rememberMe = false;
 		$scope.loginData = {};
-		
+
 
 			$scope.rememberme =  function()
 			{
@@ -15,7 +15,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 						if($scope.user.rememberMe)
 						{
 
-								$remember('username', $scope.loginData.phone);
+							$cookies.put('Phone', $scope.loginData.phone);
+							$cookies.put('password', $scope.loginData.pin);
 
 
 						}
@@ -23,8 +24,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 						else
 						{
 
-								$remember('username', '');
-								$remember('password', '');
+								$cookies.put('Username', '');
+								$cookies.put('password', '');
 
 						}
 
@@ -41,7 +42,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 		var special = {};
 
-			var sample= $cookies.get('usernum');
+			$scope.loginData.phone = $cookies.get('Phone');
+			$scope.loginData.pin = $cookies.get('password');
+
 
 			$scope.doLogIn = function()
 			{
@@ -60,7 +63,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 			 // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
 
 
-			$cookies.put('usernum', $scope.loginData.phone);
+
 
 
 

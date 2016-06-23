@@ -518,7 +518,7 @@ $stateProvider
     url: "/invite_reviews",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/invite_reviews.html",
+        templateUrl: "views/templates/invite_reviews.html"
 
       }
     }
@@ -574,6 +574,21 @@ $stateProvider
       }
     }
   })
+
+
+  .state('templates.inviteresult', {
+    url: "/inviteresult",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/inviteresult.html",
+        controller : 'inviteresultCtrl'
+
+      }
+    }
+  })
+
+
+
 
   .state('templates.termsOfUse', {
     url: "/termsOfUse",
