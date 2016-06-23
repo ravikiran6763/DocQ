@@ -12043,8 +12043,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .review-view .top-content {
     position: relative;
-    height: 10%;
-    height: 10vh;
+    height: 15%;
+    height: 15vh;
     width: 80%;
     margin: 0 auto;
     overflow: hidden; }

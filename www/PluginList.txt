@@ -9,3 +9,8 @@ cordova-plugin-statusbar 2.1.3 "StatusBar"
 cordova-plugin-whitelist 1.2.2 "Whitelist"
 cordova-plugin-x-toast 2.5.2 "Toast"
 ionic-plugin-keyboard 2.2.0 "Keyboard"
+
+
+///////////Newly Added///////////////
+
+cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME=DocQ

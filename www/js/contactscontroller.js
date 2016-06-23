@@ -1,4 +1,11 @@
-DoctorQuickApp.controller('contactsCtrl', function($scope, $cordovaContacts,$state,invitereviews){
+DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaContacts,$state,invitereviews){
+  $scope.toggle = true;
+	$rootScope.headerTxt="Invite Reviews";
+	$rootScope.showBackBtn=true;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
+
+
       $scope.phoneContacts = [];
       function onSuccess(contacts) {
           for (var i = 0; i < contacts.length; i++) {
