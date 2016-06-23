@@ -240,9 +240,7 @@ DoctorQuickApp.controller('DocRegController', function($scope,$rootScope, $state
 $scope.doc={};
 $scope.reg_doc=function(){
 	data.doctor_reg($scope.doc.doc_fname,$scope.doc.doc_mname,$scope.doc.doc_lname);
-	// console.log($scope.doc.doc_fname);
-	// console.log($scope.doc.doc_mname);
-	// console.log($scope.doc.doc_lname);
+
 }
 $rootScope.showBackBtn=true;
 
