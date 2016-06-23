@@ -4,16 +4,15 @@
 	  border:2px solid red;
 	}
 
-	ion-body{
-		width: 320px !important;
-	}
+
 
 	.login-form {
 		height: 100%;
 	}
 
 	.form-cls {
-		height: 55%;
+		height: auto;
+    margin-top: 9vh !important;
 	}
 
 		.logoContainer{
@@ -84,6 +83,7 @@
 					background-image: none;
 					// margin-top: -40px !important;
 				 //overflow: hidden !important;
+				 margin-top: 1vh;
 
 				 .register-content-btn-cls, .learn-more-content {
 					 text-align: center;

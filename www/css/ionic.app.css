@@ -10069,14 +10069,12 @@ img-crop {
 .walkthrough-view .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
 
-.walkthrough-view ion-body {
-  width: 320px !important; }
-
 .walkthrough-view .login-form {
   height: 100%; }
 
 .walkthrough-view .form-cls {
-  height: 55%; }
+  height: auto;
+  margin-top: 9vh !important; }
 
 .walkthrough-view .logoContainer {
   margin-top: 5vh;
@@ -10134,7 +10132,8 @@ img-crop {
   height: 10%;
   background-color: transparent;
   border: 0px;
-  background-image: none; }
+  background-image: none;
+  margin-top: 1vh; }
   .walkthrough-view .footer-bar-cls .register-content-btn-cls, .walkthrough-view .footer-bar-cls .learn-more-content {
     text-align: center;
     width: 50%;
@@ -12120,12 +12119,13 @@ ion-side-menu .heading-item .message {
       margin-bottom: 1vh;
       background-color: red; }
   .doc-reg-1-view .form-content {
-    padding-top: 30px !important;
     width: 80%;
-    height: 55%;
+    height: 36%;
     margin: 0 auto; }
     .doc-reg-1-view .form-content .item-input {
       margin-bottom: 2vh !important; }
+    .doc-reg-1-view .form-content .input-types {
+      margin-top: 23vh; }
   .doc-reg-1-view .bottom-content {
     width: 80%;
     height: 20%;
