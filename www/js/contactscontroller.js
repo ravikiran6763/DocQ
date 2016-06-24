@@ -47,11 +47,9 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $cordovaContacts,$sta
 
       $scope.phones = {};
 
+      var count = 0;
 
 
-
-
-      var uniquevalues = [];
 
       $scope.selectedcontacts = function(contactno)
       {
@@ -61,7 +59,9 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $cordovaContacts,$sta
             if($scope.phones[contactno])
             {
 
-                console.log(contactno);
+                count++;
+
+
 
               $scope.selectedlist = contactno.split(' ').join('');
 
@@ -84,16 +84,18 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $cordovaContacts,$sta
 
               invitereviews.invitereviewpatient($scope.selectedlist);
 
+                if(count === 3)
+                {
 
+                  $state.go('templates.inviteresult',{'countofselected':count});
 
-            $state.go('templates.inviteresult');
-
-
-
+                }
 
             }
             else
             {
+
+              count--;
 
               //do noting
               console.log('not selected');

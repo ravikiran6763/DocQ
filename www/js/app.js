@@ -577,7 +577,7 @@ $stateProvider
 
 
   .state('templates.inviteresult', {
-    url: "/inviteresult",
+    url: "/inviteresult/:countofselected",
     views: {
       'menuContent': {
         templateUrl: "views/templates/inviteresult.html",
