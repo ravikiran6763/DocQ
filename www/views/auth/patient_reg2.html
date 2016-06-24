@@ -32,24 +32,22 @@
              <ion-radio class="gender" ng-model="PatientDetail.gender" ng-value="'F'" required><p>Female</p></ion-radio>
          </div>
 
+         <div class="input-types1">
+           <label class=" item item-input" >
+               <input type="email" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
+           </label>
+           <label class="item item-input">
+               <input type="password" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password"   required ValidateAlphaNumeric>
+           </label>
+         </div>
+
+         <button class="login button button-block" ng-click="goToNextView(PatientDetail.patient_mob)" type="submit" ng-disabled="!PatientReg2.$valid">Next</button>
+         <h2 > By Signing in, I agree to DoctorQuicks </h2>
+         <h3 class="link"><a href="#">Terms and Conditions</a> </h3>
+
     </div>
-       <div class="form-content-2">
-           <div class="input-types">
-             <label class=" item item-input" >
-                 <input type="email" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
-             </label>
-             <label class="item item-input">
-                 <input type="password" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password"   required ValidateAlphaNumeric>
-             </label>
-           </div>
-      </div>
-      <div class="bottom-content">
+  
 
-             <button class="login button button-block" ng-click="goToNextView(PatientDetail.patient_mob)" type="submit" ng-disabled="!PatientReg2.$valid">Next</button>
-             <h2 > By Signing in, I agree to DoctorQuicks </h2>
-             <h3 class="link"><a href="#">Terms and Conditions</a> </h3>
-
-       </div>
  </form>
 
 </ion-content>

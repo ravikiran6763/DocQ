@@ -36,7 +36,7 @@
 	.form-content-1{
 		padding-top: 30px !important;
 		width: 80%;
-		height: 27%;
+		height: 100% !important;
 		margin: 0 auto;
 
 		.item-input{
@@ -60,6 +60,19 @@
 		  color: #6aa13e;
 			margin-top: -1vh;
 		}
+		.input-types1{
+			margin-top: 2vh !important;
+		}
+		.login{
+			background-color: #6aa13e;
+			border: none;
+			color: #ffffff;
+		}
+		a,h2,h3{
+			font-size: 1em;
+			text-align: center;
+			color: #ffffff;
+		}
 
 	}
 	.form-content-2{
@@ -72,20 +85,14 @@
 			margin-bottom: 2vh !important;
 		}
 	}
+	.bottom-height{
+		margin-top: 25vh;
+	}
 	.bottom-content{
 		width: 80%;
 		height: 20%;
 		margin: 0 auto;
 
-		.login{
-			background-color: #6aa13e;
-			border: none;
-			color: #ffffff;
-		}
-		a,h2,h3{
-			font-size: 1em;
-			text-align: center;
-			color: #ffffff;
-		}
+
 	}
 }

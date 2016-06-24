@@ -12247,6 +12247,9 @@ ion-side-menu .heading-item .message {
       font-size: 1em;
       text-align: center;
       color: #ffffff; }
+    .patient-reg-1-view .bottom-content h2 {
+      line-height: 0 !important;
+      margin-top: 0; }
 
 .patient-reg-3-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12359,7 +12362,7 @@ ion-side-menu .heading-item .message {
   .patient-reg-2-view .form-content-1 {
     padding-top: 30px !important;
     width: 80%;
-    height: 27%;
+    height: 100% !important;
     margin: 0 auto; }
     .patient-reg-2-view .form-content-1 .item-input {
       margin-bottom: 2vh !important; }
@@ -12377,24 +12380,28 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .form-content-1 .item-radio .radio-icon {
       color: #6aa13e;
       margin-top: -1vh; }
+    .patient-reg-2-view .form-content-1 .input-types1 {
+      margin-top: 2vh !important; }
+    .patient-reg-2-view .form-content-1 .login {
+      background-color: #6aa13e;
+      border: none;
+      color: #ffffff; }
+    .patient-reg-2-view .form-content-1 a, .patient-reg-2-view .form-content-1 h2, .patient-reg-2-view .form-content-1 h3 {
+      font-size: 1em;
+      text-align: center;
+      color: #ffffff; }
   .patient-reg-2-view .form-content-2 {
     width: 80%;
     height: 26%;
     margin: 0 auto; }
     .patient-reg-2-view .form-content-2 .item-input {
       margin-bottom: 2vh !important; }
+  .patient-reg-2-view .bottom-height {
+    margin-top: 25vh; }
   .patient-reg-2-view .bottom-content {
     width: 80%;
     height: 20%;
     margin: 0 auto; }
-    .patient-reg-2-view .bottom-content .login {
-      background-color: #6aa13e;
-      border: none;
-      color: #ffffff; }
-    .patient-reg-2-view .bottom-content a, .patient-reg-2-view .bottom-content h2, .patient-reg-2-view .bottom-content h3 {
-      font-size: 1em;
-      text-align: center;
-      color: #ffffff; }
 
 .patientSidemenu-view {
   background-color: #6aa433;
