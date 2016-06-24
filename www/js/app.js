@@ -53,8 +53,6 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
     // for form inputs)
 
 
-
-
     if(window.StatusBar)
     {
         StatusBar.styleDefault();
@@ -62,14 +60,10 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
     if (window.Connection)
     {
-
        if (navigator.connection.type == Connection.NONE)
        {
-
          toast.show("Internet is disconnected on your device");
-
        };
-
      };
     PushNotificationsService.register();
 
@@ -91,25 +85,14 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
   });
   document.addEventListener("deviceready", function () {
-
-
     window.plugins.sim.getSimInfo(successCallback, errorCallback);
-
-
     function successCallback(result) {
-
         alert(result.deviceId);
-
       }
 
     function errorCallback(error) {
       alert(error);
         }
-
-
-
-
-
     // Check for network connection
     if(window.Connection) {
       //you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
@@ -124,11 +107,6 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
         //or you can simply navigate it to a page with the no internet connection html.
       }
     }
-
-
-
-
-
 
   })
   // This fixes transitions for transparent background views
@@ -180,8 +158,6 @@ $ionicPlatform.registerBackButtonAction(function(e){
  },101);
 
 })
-
-
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
