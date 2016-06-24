@@ -1,36 +1,32 @@
-<ion-view class="customercare-view" cache-view="false">
+<ion-view class="inviteResults-view" cache-view="false">
   <ion-content scroll="false">
+      <div class="selected">
+        <p> No of Contacts Selected </p>
+      <div>
 
 
+<<<<<<< HEAD
     <p> {{count}} of Contacts Selected </p>
 
+=======
+>>>>>>> 50495e1409f3abfe4b4eebc4f3b1c40ff88eef97
     <form class="cc-form">
-      <div class="top-content">
+
+      <button class="clear-field button button-clear button-positive" ng-click="Cleardata();">
+        Clear
+      </button>
+      <button class="done button button-clear button-positive" ng-click="Savedata();">
+        Done
+      </button>
 
 
-        <div class="button-content">
-          <button class="button " ng-click="Savedata();">Save</button>
-        </div>
-
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-        <div class="button-content">
-          <button class="button " ng-click="Cleardata();">Clear</button>
-        </div>
-
-<br>
-<br>
-
-
-
-          <div class="text-area-content">
-              <label class="item item-input">
-               <textarea placeholder=" " ng-model="cc.query"></textarea>
-             </label>
-          </div>
-
-        </div>
+    <div class="top-content">
+      <div class="text-area-content">
+        <label class="item item-input">
+          <textarea placeholder=" " ng-model="cc.query"></textarea>
+        </label>
+      </div>
+    </div>
 
 
     </form>

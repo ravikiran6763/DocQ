@@ -2,10 +2,8 @@
 {
 	font-family: Ubuntu,bold,sans-serif !important;
 
-
 	ion-content{
-		overflow: scroll !important;
-		
+		overflow:scroll !important;
 	}
 	.top-content{
 		width: 80%;
@@ -36,13 +34,15 @@
 		}
 	}
 	.form-content{
-		padding-top: 30px !important;
 		width: 80%;
-		height: 55%;
-		margin: 0 auto;
+	    height: 36%;
+	    margin: 0 auto;
 
 		.item-input{
 			margin-bottom: 2vh !important;
+		}
+		.input-types{
+			margin-top: 23vh;
 		}
 	}
 	.bottom-content{

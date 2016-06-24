@@ -1,5 +1,16 @@
 // Ionic Starter App
 
+
+
+
+var handleOpenURL=function(url){
+  alert("Received url"+url);
+  // window.localStorage.setItem('externalLoad',url);
+
+}
+
+
+
 angular.module('underscore', [])
 .factory('_', function() {
   return window._; // assumes underscore has already been loaded on the page

@@ -7,8 +7,7 @@
    <div class="top-content">
      <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
    </div>
-
-
+   
    <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
      <ion-checkbox ng-repeat="number in contact.phoneNumbers"
                       ng-model="phones[number.value]"
@@ -16,48 +15,10 @@
           {{ contact.name.formatted }}
 
     </ion-checkbox>
-     <!-- <ion-item ng-repeat="contact in phoneContacts">
-       {{ contact.name.formatted }}
-       <p ng-hide="numbers" ng-repeat="number in contact.phoneNumbers">
-         {{ number.value }}
-       </p>
-     </ion-item> -->
+
    </ion-list>
 
-       <!-- <div class="padding">
-
-         <div class="list" ng-show="phoneContacts">
-           <div ng-repeat="contact in phoneContacts">
-             <div class="item item-divider">
-               {{ contact.name.formatted }}
-             </div>
-             <div class="item item-text-wrap">
-
-               <div ng-repeat="number in contact.phoneNumbers">
-                 <p>{{ number.value }}</p>
-               </div>
-
-             </div>
-           </div>
-         </div>
-       </div> -->
      </ion-content>
-  <!--<ion-content>
 
-    <div class="contacts-list">
-      <ion-list>
-      <ion-item>
-        <p ng-repeat contact in contacts>{{contact}}</p>
-        <label class="checkbox remember">
-              Firstname Lastname  <input type="checkbox" >
-         </label>
-         <button class="clear-field button button-clear button-positive" ng-click="getAllContacts();">
-           Clear
-         </button>
-      </ion-item>
-
-      </ion-list>
-    </div>
-  </ion-content>-->
 
 </ion-view>
