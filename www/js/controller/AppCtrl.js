@@ -278,7 +278,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	}
 
 	$scope.getSpecialityDetail=function(specialId){
-		// console.log(specialId);
+		console.log(specialId);
 		medicalSpecialityService.getMedicalSpeciality(specialId)
 		 .then(function(response){
 				console.log('Details', response);

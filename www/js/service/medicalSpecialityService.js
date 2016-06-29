@@ -24,6 +24,8 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
               $http.post(BASE_URL.url + API.fetchSpecificSpeciality,specialityId).then ( function(response) {
               if(response.status === 200){
                 deferred.resolve(response.data);
+
+                console.log(response.data);
               }else{
                 deferred.reject(response.data)
               }

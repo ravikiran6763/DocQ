@@ -23,28 +23,25 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
       $cordovaContacts.find(options).then(onSuccess, onError);
       $scope.selectedlist = "";
       $scope.phones = {};
-<<<<<<< HEAD
+
 
       var count = 0;
 
 
 
-=======
+
       var uniquevalues = [];
->>>>>>> 50495e1409f3abfe4b4eebc4f3b1c40ff88eef97
       $scope.selectedcontacts = function(contactno)
       {
             if($scope.phones[contactno])
             {
-<<<<<<< HEAD
+
 
                 count++;
 
 
 
-=======
                 console.log(contactno);
->>>>>>> 50495e1409f3abfe4b4eebc4f3b1c40ff88eef97
               $scope.selectedlist = contactno.split(' ').join('');
               if($scope.selectedlist.length > 10)
               {
@@ -55,7 +52,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
                   $scope.selectedlist = $scope.selectedlist;
               }
               invitereviews.invitereviewpatient($scope.selectedlist);
-<<<<<<< HEAD
+
 
                 if(count === 3)
                 {
@@ -71,14 +68,15 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
               count--;
 
               //do noting
-=======
+
             $state.go('templates.inviteresult');
+
             }
-            else
-            {
-            //do noting
->>>>>>> 50495e1409f3abfe4b4eebc4f3b1c40ff88eef97
-              console.log('not selected');
-            }
+            // else
+            // {
+            // //do noting
+            //
+            //   console.log('not selected');
+            // }
       }
 })

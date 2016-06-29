@@ -1,21 +1,21 @@
 <ion-view class="sepecility-details-view"  cache-view="false" ng-controller="medicalSpecialityController" >
 
-  <ion-content scroll="false" >
+  <ion-content scroll="false" ng-repeat="desc in specialityDetails">
 
-    <a class="item dark item-avatar item-icon-right" ng-repeat="spec in specialityDetails"><!--ui-sref="app.doctorprofile"-->
+    <a class="item dark item-avatar item-icon-right"><!--ui-sref="app.doctorprofile"-->
         <img src="img/dq_icon_specialities_medium_540x960.png">
-        <div><h2>{{spec.special}}</h2>
-        <p>{{spec.description}}</p>
+        <div><h2>{{desc.special}}</h2>
+        <p>{{desc.description}}</p>
         </div>
         <i class="icon ion-android-alert"></i>
     </a>
 
-    <p class="description"  ng-repeat="desc in specialityDetails">{{desc.description}}</p>
+    <p class="description"> {{desc.description}} </p>
 
     <div class="card ">
       <div class="row">
             <div class="col">Online Doctors</div>
-            <div class="col right-side">25</div>
+            <div class="col right-side">{{desc.noofonlinedoctors}}</div>
       </div>
     </div>
 
