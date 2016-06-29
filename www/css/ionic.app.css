@@ -10109,6 +10109,10 @@ img-crop {
   height: auto;
   margin-top: 16vh !important; }
 
+.walkthrough-view .form-cls {
+  height: auto;
+  margin-top: 16vh !important; }
+
 .walkthrough-view .logoContainer {
   margin-top: 5vh;
   text-align: center;
@@ -10687,7 +10691,6 @@ ion-side-menu .heading-item .message {
   .sepecility-details-view .right-side {
     text-align: right; }
   .sepecility-details-view .sendRequest {
-    max-width: 100;
     width: 80vmin;
     height: 8%;
     margin-top: 4vh;
@@ -10696,7 +10699,6 @@ ion-side-menu .heading-item .message {
     text-align: center;
     font-size: 4vw; }
   .sepecility-details-view .description {
-    max-width: 100;
     width: 80vmin;
     height: 20%;
     margin-top: 3vh;
@@ -11256,7 +11258,6 @@ ion-side-menu .heading-item .message {
         margin-left: 4vw;
         padding: 1vh 1vh;
         width: 100%;
-        height: 100%;
         line-height: 1px; }
         .medical-speciality-view .bottom-content li .name-content h2 {
           margin-top: 1vh;
@@ -12264,10 +12265,11 @@ ion-side-menu .heading-item .message {
   .patient-reg-1-view .form-content {
     padding-top: 30px !important;
     width: 80%;
-    height: 55%;
     margin: 0 auto; }
     .patient-reg-1-view .form-content .item-input {
       margin-bottom: 2vh !important; }
+  .patient-reg-1-view .regForm {
+    margin-top: 10vh; }
   .patient-reg-1-view .bottom-content {
     width: 80%;
     height: 35%;
@@ -12275,7 +12277,8 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .bottom-content .login {
       background-color: #6aa13e;
       border: none;
-      color: #ffffff; }
+      color: #ffffff;
+      margin-top: 12vh !important; }
     .patient-reg-1-view .bottom-content a, .patient-reg-1-view .bottom-content h2, .patient-reg-1-view .bottom-content h3 {
       font-size: 1em;
       text-align: center;
@@ -12372,6 +12375,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-2-view ion-content {
     overflow: scroll !important; }
+  .patient-reg-2-view .patientReg2 {
+    margin-top: 8vh !important; }
   .patient-reg-2-view .top-content {
     width: 80%;
     height: 25%;
@@ -12418,7 +12423,8 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .form-content-1 .login {
       background-color: #6aa13e;
       border: none;
-      color: #ffffff; }
+      color: #ffffff;
+      margin-top: 8vh !important; }
     .patient-reg-2-view .form-content-1 a, .patient-reg-2-view .form-content-1 h2, .patient-reg-2-view .form-content-1 h3 {
       font-size: 1em;
       text-align: center;
