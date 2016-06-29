@@ -1,23 +1,22 @@
-DoctorQuickApp.service('invitereviews', function ($http,$q, BASE_URL, API) {
+DoctorQuickApp.service('invitereviews', function ($http,$q) {
 
 
-var con = {};
-
+var con = [];
 
 this.invitereviewpatient = function (listofcontacts) {
 
+      con.push(listofcontacts);
 
-    console.log(listofcontacts);
-      con = listofcontacts;
-      
 
-};
+
+}
 
 
 this.getinvitecontacts = function()
 {
-  console.log(con);
-  return con;
+
+  
+    return con;
 
 
 }

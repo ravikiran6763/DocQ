@@ -1,10 +1,10 @@
-// Ionic Starter App
+// Ionic DoctorQuickApp
 
 
 
 
 var handleOpenURL=function(url){
-  alert("Received url"+url);
+  // alert("Received url"+url);
   // window.localStorage.setItem('externalLoad',url);
 
 }
@@ -87,11 +87,11 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
   document.addEventListener("deviceready", function () {
     window.plugins.sim.getSimInfo(successCallback, errorCallback);
     function successCallback(result) {
-        alert(result.deviceId);
+        // alert(result.deviceId);
       }
 
     function errorCallback(error) {
-      alert(error);
+      // alert(error);
         }
     // Check for network connection
     if(window.Connection) {
@@ -564,7 +564,7 @@ $stateProvider
 
 
   .state('templates.inviteresult', {
-    url: "/inviteresult",
+    url: "/inviteresult/:countofselected",
     views: {
       'menuContent': {
         templateUrl: "views/templates/inviteresult.html",

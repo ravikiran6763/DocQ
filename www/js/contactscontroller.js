@@ -23,12 +23,19 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
       $cordovaContacts.find(options).then(onSuccess, onError);
       $scope.selectedlist = "";
       $scope.phones = {};
+      var count = 0;
+
+
       var uniquevalues = [];
       $scope.selectedcontacts = function(contactno)
       {
             if($scope.phones[contactno])
             {
+    count++;
+
+
                 console.log(contactno);
+
               $scope.selectedlist = contactno.split(' ').join('');
               if($scope.selectedlist.length > 10)
               {
@@ -39,11 +46,29 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
                   $scope.selectedlist = $scope.selectedlist;
               }
               invitereviews.invitereviewpatient($scope.selectedlist);
+
+
+                if(count === 3)
+                {
+
+                  $state.go('templates.inviteresult',{'countofselected':count});
+
+                }
+
+            }
+            else
+            {
+
+              count--;
+
+              //do noting
+
             $state.go('templates.inviteresult');
             }
             else
             {
             //do noting
+
               console.log('not selected');
             }
       }
