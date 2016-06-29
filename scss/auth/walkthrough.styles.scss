@@ -8,7 +8,7 @@
 		height: 100%;
 	}
 
-	.form-cls {
+	.platform-android .form-cls {
 		height: auto;
     margin-top: 16vh !important;
 
@@ -17,6 +17,11 @@
 		.form-cls {
  		margin-top: 9vh !important;
  	}
+	}
+
+	.platform-ios .form-cls {
+		height: auto;
+		margin-top:16vh !important;
 	}
 
 		.logoContainer{
