@@ -3,33 +3,20 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 		$scope.user = {};
 
-
-
 		$scope.user.rememberMe = false;
 		$scope.loginData = {};
-
-
 			$scope.rememberme =  function()
 			{
-
 						if($scope.user.rememberMe)
 						{
-
 							$cookies.put('Phone', $scope.loginData.phone);
 							$cookies.put('password', $scope.loginData.pin);
-
-
 						}
-
 						else
 						{
-
 								$cookies.put('Username', '');
 								$cookies.put('password', '');
-
 						}
-
-
 
 			}
 
@@ -49,24 +36,20 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 			$scope.doLogIn = function()
 			{
 
-
-				$ionicLoading.show({
-				 content: 'Logging please wait...',
-				 template: '<div>'+' <ion-spinner class="rippel"></ion-spinner><br><div class="backdrop visible backdrop-loading active wm-proper-times" style="height: 260px;   margin-top: 245px; left: 8;"></div>'+
-						'<span>Logging in...</span></div>'+
-						'</div>',
-				 animation: 'fade-out',
-				 showBackdrop: true,
-				 maxWidth: 200,
-				 showDelay: 0
-			 });
+				$ionicLoading.show(
+					//uncomment the following lines for customizing loading
+			// 		{
+			// 	 content: 'Logging please wait...',
+			// 	 template: '<div>'+' <ion-spinner class="rippel"></ion-spinner><br><div class="backdrop visible backdrop-loading active wm-proper-times" style="height: 260px;   margin-top: 245px; left: 8;"></div>'+
+			// 			'<span>Logging in...</span></div>'+
+			// 			'</div>',
+			// 	 animation: 'fade-in',
+			// 	 showBackdrop: true,
+			// 	 maxWidth: 100,
+			// 	 showDelay: 0
+			//  }
+		 );
 			 // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
-
-
-
-
-
-
 				//  var sample= $cookies.remove('usernum');
         $localStorage.user = $scope.loginData.phone;
 				$rootScope.u = $scope.loginData.phone;
