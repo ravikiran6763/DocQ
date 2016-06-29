@@ -48,12 +48,12 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
               invitereviews.invitereviewpatient($scope.selectedlist);
 
 
-                if(count === 3)
-                {
+            if(count === 3)
+            {
 
-                  $state.go('templates.inviteresult',{'countofselected':count});
+            $state.go('templates.inviteresult',{'countofselected':count});
 
-                }
+            }
 
             }
             else
@@ -65,11 +65,11 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
             $state.go('templates.inviteresult');
             }
-            else
-            {
-            //do noting
-
-              console.log('not selected');
-            }
+            // else
+            // {
+            // //do noting
+            //
+            //   console.log('not selected');
+            // }
       }
 })

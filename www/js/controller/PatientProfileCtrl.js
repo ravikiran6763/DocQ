@@ -112,7 +112,7 @@ console.log('failure data', error);
 									 alert('Upload Done');
 								 }
 							 }); //End putObject
-						 } //end onloadend
+						 }; //end onloadend
 				 var blob = dataURItoBlob(imageURI);
 				 reader.readAsBinaryString(blob);
 				 }, function(err) {
@@ -262,12 +262,7 @@ console.log('failure data', error);
 						}
 
 
-			 });
-
-
-
-
-
+ });
 
 			//  $scope.choosePicture = function()
 			//  {
