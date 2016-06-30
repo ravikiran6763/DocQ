@@ -11239,35 +11239,34 @@ ion-side-menu .heading-item .message {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
   .medical-speciality-view .bottom-content {
-    height: 100%;
     width: 100%;
     overflow: scroll !important; }
-    .medical-speciality-view .bottom-content li {
+    .medical-speciality-view .bottom-content li, .medical-speciality-view .bottom-content ul {
       border-bottom: 1px solid #cbcbcb;
       *zoom: 1; }
-      .medical-speciality-view .bottom-content li:before, .medical-speciality-view .bottom-content li:after {
+      .medical-speciality-view .bottom-content li:before, .medical-speciality-view .bottom-content li:after, .medical-speciality-view .bottom-content ul:before, .medical-speciality-view .bottom-content ul:after {
         display: table;
         content: "";
         line-height: 0; }
-      .medical-speciality-view .bottom-content li:after {
+      .medical-speciality-view .bottom-content li:after, .medical-speciality-view .bottom-content ul:after {
         clear: both; }
-      .medical-speciality-view .bottom-content li:last-child {
+      .medical-speciality-view .bottom-content li:last-child, .medical-speciality-view .bottom-content ul:last-child {
         border-bottom: none !important;
         margin-bottom: 10px auto; }
-      .medical-speciality-view .bottom-content li .name-content {
+      .medical-speciality-view .bottom-content li .name-content, .medical-speciality-view .bottom-content ul .name-content {
         margin-left: 4vw;
         padding: 1vh 1vh;
         width: 100%;
         line-height: 1px; }
-        .medical-speciality-view .bottom-content li .name-content h2 {
+        .medical-speciality-view .bottom-content li .name-content h2, .medical-speciality-view .bottom-content ul .name-content h2 {
           margin-top: 1vh;
           font-size: 4vw;
           color: #000;
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 6vw; }
-      .medical-speciality-view .bottom-content li .sub-content {
+      .medical-speciality-view .bottom-content li .sub-content, .medical-speciality-view .bottom-content ul .sub-content {
         width: 90% !important; }
-      .medical-speciality-view .bottom-content li p {
+      .medical-speciality-view .bottom-content li p, .medical-speciality-view .bottom-content ul p {
         font-size: 3.3vw;
         color: #878787;
         white-space: nowrap !important;

@@ -8,8 +8,4 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			$rootScope.showDocStatus=false;
 
 
-
-
-
-
 })
