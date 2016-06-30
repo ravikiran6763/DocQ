@@ -107,11 +107,34 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 						{
 						$state.go('templates.doctor_home');
 						}
-						else {
-							$ionicPopup.alert({
-						 title: 'Invalid Credentials',
-						 template:'Please Enter Correct Details'
-						 })
+						else{
+
+							$scope.myPopup = $ionicPopup.show({
+								title: 'Invalid Credentials',
+								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();">X</div>',
+								cssClass: 'loginPopup',
+								scope: $scope,
+								// buttons: [
+								// 	{ text: 'Cancel' },
+								// 	{
+								// 	text: '<b>Agree</b>',
+								// 	type: 'button-positive',
+								//
+								// 	},
+								// ]
+							});
+							$scope.closethis = function()
+							{
+							$scope.myPopup.close();
+							};
+
+
+						// 	$ionicPopup.show({
+						// //  title: 'Invalid Credentials',
+						// //  templateUrl:'views/app/my_doctors.html'
+						//  template:'<div><p>Invalid Credentials</p></div><div style="position: absolute; top: 0px; left: 0px" ng-controller="DriversCtrl" ng-Click="closethis();">X</div>'
+						//
+						//  })
 						}
 
 				}).catch(function(error){
@@ -121,13 +144,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 			$timeout(function () {
 			 $ionicLoading.hide();
 		 }, 1000);
-			//to pass patient phone number to profile detail service
-			// patientProfileDetailsService.getPatientDetails(userDetails)
-			// 		.then(function(response){
-			// 		console.log(response);
-			// }).catch(function(error){
-			// 	console.log('failure data', error);
-			// });
+
 		}
 
   var template = '<ion-popover-view><ion-header-bar> <h1 class="title">Video Player</h1> </ion-header-bar> <ion-content> Hello dere! </ion-content></ion-popover-view>';

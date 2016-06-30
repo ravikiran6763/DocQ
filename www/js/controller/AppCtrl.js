@@ -334,9 +334,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 			console.log('failure data', error);
 			});
 
-
-
-
 	$scope.myDoctors=function(){
 				$state.go('app.my_doctors')
 	}
