@@ -69,12 +69,13 @@ console.log('check box changed', $scope.checkedValue);
 
 	}
 
+	$scope.res = {};
+
 
 	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
 
 		$scope.res = response;
 		
-
 
 }).catch(function(error){
 	console.log('failure data', error);
