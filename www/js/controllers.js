@@ -7,7 +7,7 @@ DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicC
 })
 
 
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope, $ionicConfig, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$localStorage, $ionicConfig, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
 
 		$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -68,6 +68,18 @@ console.log('check box changed', $scope.checkedValue);
 		$rootScope.showDocStatus=true;
 
 	}
+
+
+	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+
+		$scope.res = response;
+		
+
+
+}).catch(function(error){
+	console.log('failure data', error);
+});
+
 
 
 

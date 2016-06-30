@@ -5,4 +5,19 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showBackBtn=true;
     $rootScope.checkedValue = false;
 
+
+    $scope.sendrequesttoonlinedoctors = function(id)
+    {
+
+
+        medicalSpecialityService.sendrequesttodoctor(id);
+        
+
+
+    }
+
+
+
+
+
 });

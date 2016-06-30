@@ -36,6 +36,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchSpecificSpeciality' : 'patient/fetchSpecificSpeciality.php',
         'fetchSpecificDoctor'     :'patient/fetchSpecificDoctor.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
+        'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
+
         'sendotp' : 'textgurutest.php',
 
 
@@ -53,6 +55,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'resendOtp':'DQ/resendOtp.php',
         'changePassword': 'changePassword',
         'invitereviews' : 'invitereview.php',
+        'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
 
 
         'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',

@@ -23,73 +23,28 @@
       </ion-slide-box>
     </div>
       <ion-item class="item-divider">Requests Pending</ion-item>
-      <ul class="bottom-content">
+      <ul class="bottom-content" ng-repeat="r in res">
+
+
         <li class="" ui-sref="templates.patientRequest">
           <div class="profile-img">
             <img src="img/patient.jpg">
           </div>
           <div class="name-content">
-            <h2>FirstName LastName</h2>
-            <p>Male,Age 36</p><p>Region or Location</p>
+            <h2>{{r.patientFname}} {{r.patientLname}}</h2>
+            <p>{{r.patientSex}},Age {{r.patientAge}}</p><p>Region or Location</p>
           </div>
           <div class="next-icon">
             <i class="icon ion-chevron-right icon-accessory"></i>
           </div>
         </li>
-        <li class="" ui-sref="templates.patientRequest">
-          <div class="profile-img">
-            <img src="img/patient.jpg">
-          </div>
-          <div class="name-content">
-            <h2>FirstName LastName</h2>
-            <p>Male,Age 36</p><p>Region or Location</p>
-          </div>
-          <div class="next-icon">
-            <i class="icon ion-chevron-right icon-accessory"></i>
-          </div>
-        </li>
-        <li class="" ui-sref="templates.patientRequest">
-          <div class="profile-img">
-            <img src="img/patient.jpg">
-          </div>
-          <div class="name-content">
-            <h2>FirstName LastName</h2>
-            <p>Male,Age 36</p><p>Region or Location</p>
-          </div>
-          <div class="next-icon">
-            <i class="icon ion-chevron-right icon-accessory"></i>
-          </div>
-        </li>
-        <li class="" ui-sref="templates.patientRequest">
-          <div class="profile-img">
-            <img src="img/patient.jpg">
-          </div>
-          <div class="name-content">
-            <h2>FirstName LastName</h2>
-            <p>Male,Age 36</p><p>Region or Location</p>
-          </div>
-          <div class="next-icon">
-            <i class="icon ion-chevron-right icon-accessory"></i>
-          </div>
-        </li>
-        <li class="" ui-sref="templates.patientRequest">
-          <div class="profile-img">
-            <img src="img/patient.jpg">
-          </div>
-          <div class="name-content">
-            <h2>FirstName LastName</h2>
-            <p>Male,Age 36</p><p>Region or Location</p>
-          </div>
-          <div class="next-icon">
-            <i class="icon ion-chevron-right icon-accessory"></i>
-          </div>
-        </li>
+
       </ul>
   </ion-content>
 
 
   <ion-item class="toggle-item">
-    
+
     <label class="toggle toggle-assertive">
        <input type="checkbox" ng-model="checkedValue" ng-change="changeStatus(checkedValue)">
        <div class="track">

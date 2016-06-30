@@ -4,7 +4,7 @@
   *
 */
 
-DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL, API){
+DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL, API,$localStorage){
 
       this.getMedicalSpecialist = function(){
             var deferred = $q.defer();
@@ -32,6 +32,37 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
           });
           return deferred.promise;
         }
+
+
+        this.sendrequesttodoctor = function(medicalSpecialityId)
+        {
+
+
+            var patientrequest = {
+
+              patientphno : $localStorage.user,
+              specialityId : medicalSpecialityId
+
+            }
+
+
+          var deferred = $q.defer();
+
+          $http.post(BASE_URL.url + API.sendrequesttodoctor,patientrequest)
+          .success(function (data, status, headers, config){
+            console.log(data);
+            deferred.resolve(data);
+          })
+          .error(function (){
+            deferred.reject('Error while getting data');
+          });
+
+          return deferred.promise;
+
+
+
+        }
+
 
 
 });

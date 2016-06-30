@@ -22,7 +22,6 @@
 		}
 		.reg_message{
 			text-align: center;
-
 			font-size:0.9em;
 			font-weight: 600;
 
@@ -36,12 +35,15 @@
 	.form-content{
 		padding-top: 30px !important;
 		width: 80%;
-		height: 55%;
+		// height: 55%;
 		margin: 0 auto;
 
 		.item-input{
 			margin-bottom: 2vh !important;
 		}
+	}
+	.regForm{
+		margin-top: 10vh;
 	}
 	.bottom-content{
 		width: 80%;
@@ -52,11 +54,16 @@
 			background-color: #6aa13e;
 			border: none;
 			color: #ffffff;
+			margin-top: 12vh !important;
 		}
 		a,h2,h3{
 			font-size: 1em;
 			text-align: center;
 			color: #ffffff;
+		}
+		h2{
+			line-height: 0 !important;
+			margin-top: 0;
 		}
 	}
 }
