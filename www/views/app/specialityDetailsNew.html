@@ -1,6 +1,23 @@
 <ion-view class="sepecility-details-view"  cache-view="false" ng-controller="medicalSpecialityController" >
 
   <ion-content scroll="false" ng-repeat="desc in specialityDetails">
+<<<<<<< HEAD
+
+    <a class="item dark item-avatar item-icon-right"><!--ui-sref="app.doctorprofile"-->
+        <img src="img/dq_icon_specialities_medium_540x960.png">
+        <div><h2>{{desc.special}}</h2>
+        <p>{{desc.description}}</p>
+        </div>
+        <i class="icon ion-android-alert"></i>
+    </a>
+
+    <p class="description"> {{desc.description}} </p>
+
+    <div class="card ">
+      <div class="row">
+            <div class="col">Online Doctors</div>
+            <div class="col right-side">{{desc.noofonlinedoctors}}</div>
+=======
     <div>
       <a class="item dark item-avatar item-icon-right" ><!--ui-sref="app.doctorprofile"-->
           <img src="img/dq_icon_specialities_medium_540x960.png">
@@ -17,11 +34,16 @@
               <div class="col">Online Doctors</div>
               <div class="col right-side">{{desc.noofonlinedoctors}}</div>
         </div>
+>>>>>>> e25461d176cbd2ef9379ab49cac307bcbf5810a3
       </div>
 
+<<<<<<< HEAD
+    <a class="login button button-block button-stable" ng-click="sendrequesttoonlinedoctors({{desc.id}});">
+=======
     </div>
     <p class="sendRequest">Send request for a consultation to all {{desc.special}} Specialists who are online</p>
     <a class="login button button-block button-stable" >
+>>>>>>> e25461d176cbd2ef9379ab49cac307bcbf5810a3
       send Request
     </a>
 

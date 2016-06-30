@@ -5,6 +5,21 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showBackBtn=true;
     $rootScope.checkedValue = false;
 
+
+
+    $scope.sendrequesttoonlinedoctors = function(id)
+    {
+
+
+        medicalSpecialityService.sendrequesttodoctor(id);
+
+
+
+    }
+
+
+
+
     $ionicLoading.show(
       {
         content: '',
@@ -32,6 +47,7 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
  		 }).catch(function(error){
  				 console.log('failure data', error);
  		 });
+
 
 
 });
