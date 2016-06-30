@@ -1,4 +1,25 @@
 // General reset styles
+.loginPopup {
+	.popup{
+		position: relative;
+		width: 100%;
+		background-color: #6fa02d;
+		top: 42vh;
+    bottom: 0;
+	}
+	.popup-head {
+		padding: 15px 10px;
+		border-bottom: 0px;
+		text-align: center;
+	}
+	.popup-title {
+		margin: 0;
+		padding: 0;
+		font-size: 15px;
+		color: #fff;
+	}
+
+}
 .menu .sidemenu-padding{
 	padding-top: 7vh !important;
 }

@@ -16,12 +16,16 @@ doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
        });
 
      };
-     
+
 
   }).catch(function(error){
 console.log('failure data', error);
 });
 
-
+doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
+$scope.myDocDetails=response;
+}).catch(function(error){
+console.log('failure data', error);
+});
 
 })

@@ -278,7 +278,11 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	}
 
 	$scope.getSpecialityDetail=function(specialId){
+
 		console.log(specialId);
+
+		$localStorage.SpecilityId=specialId;
+
 		medicalSpecialityService.getMedicalSpeciality(specialId)
 		 .then(function(response){
 				console.log('Details', response);
@@ -332,19 +336,15 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 			console.log('failure data', error);
 			});
 
-
-
-
 	$scope.myDoctors=function(){
 				$state.go('app.my_doctors')
-
 	}
 
 	$scope.viewDocProfile=function(docPhone){
-
-doctorServices.myDoctorsDetails(docPhone).then(function(response){
-			$scope.myDocDetails=response;
-			$state.go('app.viewdoctor_profile');
+		$localStorage.DoctorPhone=docPhone;
+		doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
+		$scope.myDocDetails=response;
+		$state.go('app.viewdoctor_profile');
 		}).catch(function(error){
 		console.log('failure data', error);
 		});

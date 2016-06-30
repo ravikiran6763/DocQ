@@ -23,7 +23,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
       $cordovaContacts.find(options).then(onSuccess, onError);
       $scope.selectedlist = "";
       $scope.phones = {};
-<<<<<<< HEAD
+
 
 
       var count = 0;
@@ -31,17 +31,16 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
 
 
-=======
+
       var count = 0;
 
 
->>>>>>> 3b3ff4e4626d16d032aa8e5c88309f52d6f1e9a1
       var uniquevalues = [];
       $scope.selectedcontacts = function(contactno)
       {
             if($scope.phones[contactno])
             {
-<<<<<<< HEAD
+
 
 
                 count++;
@@ -49,13 +48,13 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
 
                 console.log(contactno);
-=======
+
     count++;
 
 
                 console.log(contactno);
 
->>>>>>> 3b3ff4e4626d16d032aa8e5c88309f52d6f1e9a1
+
               $scope.selectedlist = contactno.split(' ').join('');
               if($scope.selectedlist.length > 10)
               {
@@ -68,12 +67,12 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
               invitereviews.invitereviewpatient($scope.selectedlist);
 
 
-                if(count === 3)
-                {
+            if(count === 3)
+            {
 
-                  $state.go('templates.inviteresult',{'countofselected':count});
+            $state.go('templates.inviteresult',{'countofselected':count});
 
-                }
+            }
 
             }
             else
@@ -86,20 +85,20 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
             $state.go('templates.inviteresult');
 
             }
-<<<<<<< HEAD
+
             // else
             // {
             // //do noting
             //
             //   console.log('not selected');
             // }
-=======
-            else
-            {
-            //do noting
 
-              console.log('not selected');
-            }
->>>>>>> 3b3ff4e4626d16d032aa8e5c88309f52d6f1e9a1
+            // else
+            // {
+            // //do noting
+            //
+            //   console.log('not selected');
+            // }
+
       }
 })
