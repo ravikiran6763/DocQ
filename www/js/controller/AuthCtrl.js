@@ -153,14 +153,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
     doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
       console.log(response);
       $scope.Doctor = {};
-
-
     }).catch(function(error){
       console.log('failure data', error);
 
     });
     var showDoc= $ionicPopup.show({
-      template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style><p>Thank you for registering Dr. Firstname Middlename,Lastname someone from DoctorQuick will call you soon to help you with the signup.<p/>",
+      template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style><p>Thank you for registering Dr. $scope.Doctor.doc_fname Middlename,Lastname someone from DoctorQuick will call you soon to help you with the signup.<p/>",
       title: 'Thank You',
       scope: $scope,
       buttons: [
@@ -172,7 +170,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
          type: 'button',
          onTap: function() {
            console.log('Doctor Registered Successfully');
-
            $state.go('auth.loginNew');
 
          }
