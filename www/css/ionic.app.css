@@ -11394,7 +11394,8 @@ ion-side-menu .heading-item .message {
         text-align: center;
         margin-right: 10px;
         height: 100%;
-        line-height: 14vh; }
+        line-height: 14vh;
+        margin-top: 5vh; }
         .doctorscreen-view .bottom-content li .next-icon .ion-chevron-right:before {
           color: #ffffff;
           font-size: 1.8em; }
@@ -11530,7 +11531,7 @@ ion-side-menu .heading-item .message {
     height: 50vh;
     overflow: scroll !important; }
     .doctor-acc-view .bottom-content li {
-      height: 31.3%;
+      height: 24%;
       border-bottom: 1px solid #fff;
       *zoom: 1; }
       .doctor-acc-view .bottom-content li:before, .doctor-acc-view .bottom-content li:after {
@@ -11592,7 +11593,7 @@ ion-side-menu .heading-item .message {
       width: 100%;
       font-size: 6vw;
       margin-left: -6vw;
-      margin-top: -17vh !important;
+      margin-top: 1vh !important;
       padding-bottom: 2%;
       word-spacing: 1px;
       text-align: center;
@@ -11602,7 +11603,7 @@ ion-side-menu .heading-item .message {
       width: 100%;
       font-size: 4vw;
       margin-left: -6vw;
-      margin-top: -13vh !important;
+      margin-top: 5vh !important;
       padding-bottom: 2%;
       word-spacing: 1px;
       line-height: -2px;
@@ -11614,7 +11615,7 @@ ion-side-menu .heading-item .message {
       width: 100%;
       font-size: 4vw;
       margin-left: -6vw;
-      margin-top: -10vh !important;
+      margin-top: 8vh !important;
       padding-bottom: 2%;
       word-spacing: 1px;
       line-height: -2px;
@@ -11823,64 +11824,60 @@ ion-side-menu .heading-item .message {
       width: 100%;
       font-size: 5vw;
       margin-left: -6vw;
-      margin-top: -17vh !important;
+      margin-top: 0vh !important;
       padding-bottom: 2%;
-      word-spacing: 1px;
+      /* word-spacing: 1px; */
       text-align: center;
       color: white;
-      font-weight: lighter;
-      text-shadow: 2px 0px black !important; }
+      font-weight: 400;
+      /* text-shadow: 2px 0px black !important; */ }
     .call-view .top-content h2 {
       position: absolute;
       width: 100%;
       font-size: 4vw;
       margin-left: -6vw;
-      margin-top: -13vh !important;
+      margin-top: 3vh !important;
       padding-bottom: 2%;
       word-spacing: 1px;
       line-height: -2px;
       text-align: center;
-      font-weight: lighter;
-      color: white;
-      text-shadow: 2px 0px black !important; }
+      font-weight: 300;
+      color: white; }
     .call-view .top-content h3 {
       position: absolute;
       width: 100%;
       font-size: 4vw;
       margin-left: -6vw;
-      margin-top: -10vh !important;
+      margin-top: 5vh !important;
       padding-bottom: 2%;
       word-spacing: 1px;
       line-height: -2px;
       text-align: center;
-      font-weight: lighter;
-      color: white;
-      text-shadow: 2px 0px black !important; }
+      font-weight: 300;
+      color: white; }
     .call-view .top-content h4 {
       position: absolute;
       width: 100%;
       font-size: 12vw;
       margin-left: -6vw;
-      margin-top: 5vh !important;
+      margin-top: 17vh !important;
       padding-bottom: 2%;
-      word-spacing: 1px;
+      /* word-spacing: 1px; */
       text-align: center;
       color: white;
       text-shadow: 2px 0px black !important; }
     .call-view .top-content h5 {
       position: absolute;
-      width: 100%;
+      /* width: 100%; */
       font-size: 5vw;
       margin-left: -10vw;
-      margin-top: 17vh !important;
-      padding-left: 80px;
+      margin-top: 29vh !important;
+      padding-left: 63px;
       padding-right: 50px;
       word-spacing: 1px;
       line-height: -4px;
       text-align: center;
-      font-weight: lighter;
-      color: white;
-      text-shadow: 2px 0px black !important; }
+      color: white; }
     .call-view .top-content .user-image {
       padding: 5px;
       background-color: #dedad7 !important;
@@ -11900,7 +11897,7 @@ ion-side-menu .heading-item .message {
   .call-view .bottom-content {
     height: 40%;
     padding-top: 5px;
-    margin-top: 15vh; }
+    margin-top: 35vh; }
     .call-view .bottom-content .button-bar {
       width: 100% !important; }
     .call-view .bottom-content .button {
