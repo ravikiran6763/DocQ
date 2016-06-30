@@ -1,14 +1,14 @@
 .call-view
 {
     font-family: Ubuntu,bold,sans-serif !important;
+    background-color:#858583 !important;
   body{
     width: 100;
     height: auto;
     min-width: 320px;
     background-color: red;
-
   }
-    background-color:#858583 !important;
+
 	.top-content
 	{
     width: 100%;
@@ -31,72 +31,64 @@
       width: 100%;
       font-size: 5vw;
       margin-left: -6vw;
-      margin-top: -17vh !important;
+      margin-top: 0vh !important;
       padding-bottom: 2%;
-      //margin-left: 16vw;
-      word-spacing: 1px;
+      /* word-spacing: 1px; */
       text-align: center;
       color: white;
-      font-weight: lighter;
-      text-shadow: 2px 0px black !important;
+      font-weight: 400;
+      /* text-shadow: 2px 0px black !important; */
     }
     h2{
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: -13vh !important;
-      padding-bottom: 2%;
-      //margin-left: 16vw;
-      word-spacing: 1px;
-      line-height: -2px;
-      text-align: center;
-      font-weight: lighter;
-      color: white;
-      text-shadow: 2px 0px black !important;
+        position: absolute;
+        width: 100%;
+        font-size: 4vw;
+        margin-left: -6vw;
+        margin-top: 3vh !important;
+        padding-bottom: 2%;
+        word-spacing: 1px;
+        line-height: -2px;
+        text-align: center;
+        font-weight: 300;
+        color: white;
     }
     h3{
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: -10vh !important;
-      padding-bottom: 2%;
-      //margin-left: 16vw;
-      word-spacing: 1px;
-      line-height: -2px;
-      text-align: center;
-      font-weight: lighter;
-      color: white;
-      text-shadow: 2px 0px black !important;
+        position: absolute;
+        width: 100%;
+        font-size: 4vw;
+        margin-left: -6vw;
+        margin-top: 5vh !important;
+        padding-bottom: 2%;
+        word-spacing: 1px;
+        line-height: -2px;
+        text-align: center;
+        font-weight: 300;
+        color: white;
     }
     h4{
-      position: absolute;
-      width: 100%;
-      font-size: 12vw;
-      margin-left: -6vw;
-      margin-top: 5vh !important;
-      padding-bottom: 2%;
-      //margin-left: 16vw;
-      word-spacing: 1px;
-      text-align: center;
-      color: white;
-      text-shadow: 2px 0px black !important;
+        position: absolute;
+        width: 100%;
+        font-size: 12vw;
+        margin-left: -6vw;
+        margin-top: 17vh !important;
+        padding-bottom: 2%;
+        /* word-spacing: 1px; */
+        text-align: center;
+        color: white;
+        text-shadow: 2px 0px black !important;
     }
     h5{
-      position: absolute;
-      width: 100%;
-      font-size: 5vw;
-      margin-left: -10vw;
-      margin-top: 17vh !important;
-      padding-left: 80px;
-      padding-right: 50px;
-      word-spacing: 1px;
-      line-height: -4px;
-      text-align: center;
-      font-weight: lighter;
-      color: white;
-      text-shadow: 2px 0px black !important;
+        position: absolute;
+        /* width: 100%; */
+        font-size: 5vw;
+        margin-left: -10vw;
+        margin-top: 29vh !important;
+        padding-left: 63px;
+        padding-right: 50px;
+        word-spacing: 1px;
+        line-height: -4px;
+        text-align: center;
+        color: white;
 
     }
     .user-image
@@ -134,7 +126,7 @@
 	{
 		height: 40%;
 		padding-top: 5px;
-		margin-top: 15vh;
+		margin-top: 35vh;
     // background-color: yellow;
   //  box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
        .button-bar {
