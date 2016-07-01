@@ -37,6 +37,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchSpecificDoctor'     :'patient/fetchSpecificDoctor.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
+        // 'sendrequesttodoctor' : 'patient/checkMyWalletBalance.php',
+
 
         'sendotp' : 'textgurutest.php',
 
