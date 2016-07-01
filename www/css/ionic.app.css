@@ -9842,6 +9842,25 @@ a.button {
   font-size: 15px;
   color: #fff; }
 
+.videoPopup .popup {
+  width: 85%;
+  border-radius: 10px; }
+
+.videoPopup .popup-buttons {
+  padding: 0;
+  min-height: 0; }
+
+.videoPopup .popup-buttons .button {
+  border-radius: 0;
+  margin-right: 0;
+  color: #fff; }
+
+.videoPopup .button-royal {
+  background-color: #9e3136 !important; }
+
+.videoPopup .button-positive {
+  background-color: #6a9136 !important; }
+
 .menu .sidemenu-padding {
   padding-top: 7vh !important; }
 
@@ -11394,7 +11413,6 @@ ion-side-menu .heading-item .message {
         float: right;
         text-align: center;
         margin-right: 10px;
-        height: 100%;
         line-height: 14vh;
         margin-top: 5vh; }
         .doctorscreen-view .bottom-content li .next-icon .ion-chevron-right:before {
