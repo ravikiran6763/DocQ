@@ -1,25 +1,35 @@
 <ion-view class="doc-reg2-view" cache-view="false" >
   <ion-content scroll="false" class= "padding-top">
-  <div class="top-content">
+    <div class="top-content">
       <img src="./img/progress2.png">
-  </div>
+    </div>
   <form name="DocReg1" novalidate >
-  <div class="form-content" >
-    <label class="item item-input" >
+    <div class="form-content" >
+      <label class="item item-input" >
         <input type="email" placeholder="Email Address" name="doc_email" ng-model="Doctor.doc_email" validate-email required>
-    </label>
+      </label>
 
-    <label class="item item-input" >
+      <label class="item item-input" >
         <span class="input-label">+91</span>
         <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='Doctor.doc_phone' mask='9999999999' restrict="reject" clean="true" required/>
-    </label>
-
-  </div>
-
-  </div>
-  <div class="bottom-content">
-  <button class="button button-block" type="submit" ng-click="doctorRegistration();" ng-disabled="!DocReg1.$valid">Submit</button>
-  </div>
-</form>
+      </label>
+    </div>
+    <div class="bottom-content">
+      <button class="button button-block" type="submit" ng-click="doctorRegistration(); openModal();" ng-disabled="!DocReg1.$valid">Submit</button>
+    </div>
+  </form>
   </ion-content>
+
+  <script id="my-modal.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar>
+        <h1 class="title">My Modal title</h1>
+      </ion-header-bar>
+      <ion-content>
+        Hello!
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+
 </ion-view>
