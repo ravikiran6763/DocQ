@@ -74,7 +74,24 @@ console.log('check box changed', $scope.checkedValue);
 
 	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
 
-		$scope.res = response;
+
+		if(response.length === 0)
+		{
+
+					$scope.res = "No Request Pending";
+
+
+		}
+		else
+		{
+
+					$scope.res = response;
+
+
+		}
+
+
+
 
 
 }).catch(function(error){
