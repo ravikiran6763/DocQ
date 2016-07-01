@@ -177,7 +177,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 })
 
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -191,62 +191,296 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig)
 			checkedMedication : false
 		};
 
+		$scope.sendprescription = function()
+		{
+
+					$scope.diagnosis = testresultbydoctor.getdiagnosis();
+					$scope.tests = testresultbydoctor.gettests();
+					$scope.medication = testresultbydoctor.getmedication();
+
+						if($scope.notes.checkedDiagnosis && $scope.notes.checkedMedication && $scope.notes.checkedTests)
+						{
+
+								$scope.diagnosis = testresultbydoctor.getdiagnosis();
+								$scope.tests = testresultbydoctor.gettests();
+								$scope.medication = testresultbydoctor.getmedication();
+
+									var allresultschecked = {
+
+										diagnosis : $scope.diagnosis,
+										tests : $scope.tests,
+										medication : $scope.medication
+
+									}
+
+									console.log(allresultschecked);
+
+
+						}
+						else if($scope.notes.checkedDiagnosis && $scope.notes.checkedTests)
+						{
+
+									alert('You Missed Medication');
+
+									$scope.diagnosis = testresultbydoctor.getdiagnosis();
+									$scope.tests = testresultbydoctor.gettests();
+
+
+									var diagandtests = {
+
+										diagnosis : $scope.diagnosis,
+										tests : $scope.tests
+
+
+									}
+
+									console.log(diagandtests);
+
+
+
+						}
+						else if($scope.notes.checkedDiagnosis && $scope.notes.checkedMedication)
+						{
+
+									alert('You Missed Tests');
+
+									$scope.diagnosis = testresultbydoctor.getdiagnosis();
+									$scope.medication = testresultbydoctor.getmedication();
+
+									var diagandmedication = {
+
+										diagnosis : $scope.diagnosis,
+										medication : $scope.medication
+
+									}
+
+									console.log(diagandmedication);
+
+
+
+
+						}
+						else if($scope.notes.checkedTests && $scope.notes.checkedMedication)
+						{
+
+								alert('You Missed Diagnosis');
+
+
+								$scope.tests = testresultbydoctor.gettests();
+								$scope.medication = testresultbydoctor.getmedication();
+
+								var testsandmedication = {
+
+									tests : $scope.tests,
+									medication : $scope.medication
+
+								}
+
+								console.log(testsandmedication);
+
+						}
+						else if($scope.notes.checkedDiagnosis)
+						{
+
+							$scope.diagnosis = testresultbydoctor.getdiagnosis();
+
+							var onlydiagnosis = {
+
+								diagnosis : $scope.diagnosis
+
+							}
+
+							console.log(onlydiagnosis);
+
+
+						}
+						else if($scope.notes.checkedTests)
+						{
+
+							$scope.tests = testresultbydoctor.gettests();
+
+							var onlytests = {
+
+								tests : $scope.tests
+
+							}
+
+							console.log(onlytests);
+
+
+
+						}
+						else if($scope.notes.checkedMedication)
+						{
+
+							$scope.medication = testresultbydoctor.getmedication();
+
+							var onlymedication = {
+
+								medication : $scope.medication
+
+							}
+
+							console.log(onlymedication);
+
+
+						}
+						else
+						{
+
+								alert('Please Select Atleast One Tests')
+
+						}
+
+
+		}
+
+
+
+
+
+
 
 })
 
-DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionicConfig) {
+DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
 
 		$rootScope.user={};
 		$scope.notes = {};
 		$rootScope.showNotification=false;
 		$rootScope.showBadge=false;
+		$scope.toggle = true;
+		$rootScope.headerTxt="Tests";
+		$rootScope.showBackBtn=true;
 
-		$scope.done=function(){
-		//alert($scope.user.testforpatient);
-		console.log(	$scope.notes.checkedTests);
-		//$scope.notes.checkedTests=true;
+
+
+		$scope.done=function()
+		{
+
+				if($scope.notes.checkedTests)
+				{
+
+
+
+						testresultbydoctor.testrecommended($scope.notes.checkedTests);
+
+
+
+				}
+				else
+				{
+							alert('Please Enter Something')
+
+				}
+
 		}
-		$scope.clear=function(){
-			$scope.user.testforpatient="";
+
+
+		$scope.clear=function()
+		{
+
+
+			$scope.notes.checkedTests="";
+
+
 		}
-			  $scope.toggle = true;
-				$rootScope.headerTxt="Tests";
-				$rootScope.showBackBtn=true;
+
+
 
 })
-DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope, $ionicConfig) {
+
+
+DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConfig,testresultbydoctor) {
 
 		$scope.diagnosis={};
-		$scope.done=function(){
-		alert($scope.diagnosis.diagnosisforpatient);
-		console.log('done dana done');
+		$scope.toggle = true;
+		$rootScope.headerTxt="Diagnosis";
+		$rootScope.showBackBtn=true;
+		$rootScope.showNotification=false;
+		$rootScope.showBadge=false;
+
+
+		$scope.done=function()
+		{
+
+
+				if($scope.diagnosis.diagnosisforpatient)
+				{
+
+
+
+						testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
+
+
+				}
+				else
+				{
+							alert('Please Enter Something')
+
+				}
+
+
 		}
-		$scope.clear=function(){
-			$scope.diagnosis.diagnosisforpatient="";
+
+
+		$scope.clear=function()
+		{
+
+
+				$scope.diagnosis.diagnosisforpatient="";
+
+
 		}
-			  $scope.toggle = true;
-				$rootScope.headerTxt="Diagnosis";
-				$rootScope.showBackBtn=true;
-				$rootScope.showNotification=false;
-				$rootScope.showBadge=false;
+
+
+
 
 })
 
-DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $ionicConfig) {
 
+
+DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
+
+
+
+		$scope.toggle = true;
+		$rootScope.headerTxt="Medication";
+		$rootScope.showBackBtn=true;
+		$rootScope.showNotification=false;
+		$rootScope.showBadge=false;
 		$scope.medication={};
-		$scope.done=function(){
-		alert($scope.medication.medicationforpatient);
-		console.log('done dana done');
+
+
+
+		$scope.done=function()
+		{
+
+				if($scope.medication.medicationforpatient)
+				{
+
+						testresultbydoctor.medicationdone($scope.medication.medicationforpatient);
+
+				}
+				else
+				{
+							alert('Please Enter Something')
+
+				}
+
 		}
-		$scope.clear=function(){
+
+
+
+		$scope.clear=function()
+		{
+
 			$scope.medication.medicationforpatient="";
+
 		}
-			  $scope.toggle = true;
-				$rootScope.headerTxt="Medication";
-				$rootScope.showBackBtn=true;
-				$rootScope.showNotification=false;
-				$rootScope.showBadge=false;
+
+
+
 
 })
 
