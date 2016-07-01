@@ -20,8 +20,9 @@
       </ion-slide-box>
     </div>
       <ion-item class="item-divider">Requests Pending</ion-item>
-      <ul class="bottom-content" ng-repeat="r in res">
-        <li class="" ui-sref="templates.patientRequest">
+      <ul class="bottom-content" ng-repeat="r in res" >
+
+        <li class="" ui-sref="templates.patientRequest({pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno})">
           <div class="profile-img">
             <img src="img/patient.jpg">
           </div>

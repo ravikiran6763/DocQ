@@ -56,6 +56,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'changePassword': 'changePassword',
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
+        'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
 
 
         'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',

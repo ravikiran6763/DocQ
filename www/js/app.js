@@ -469,10 +469,10 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest",
+    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/patientRequest.html",
+        templateUrl: "views/templates/patientRequestfromdocotor.html",
           controller: 'patientrequestCtrl'
       }
     }

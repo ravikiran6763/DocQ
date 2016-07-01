@@ -75,7 +75,7 @@ console.log('check box changed', $scope.checkedValue);
 	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
 
 		$scope.res = response;
-		
+
 
 }).catch(function(error){
 	console.log('failure data', error);
@@ -84,20 +84,79 @@ console.log('check box changed', $scope.checkedValue);
 
 
 
+
 })
 
 
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope, $ionicConfig) {
-//alert('hello');
-  $scope.toggle = true;
-	$rootScope.headerTxt="Request";
-	$rootScope.showBackBtn=true;
-	$rootScope.showNotification=false;
-	$rootScope.showBadge=false;
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
 
-	 $scope.$watch('toggle', function(){
-			 $scope.toggleText = $scope.toggle ? 'Accept!' : 'Accepted';
-	 });
+			  $scope.toggle = true;
+				$rootScope.headerTxt="Request";
+				$rootScope.showBackBtn=true;
+				$rootScope.showNotification=false;
+				$rootScope.showBadge=false;
+
+				$scope.toggleText = "Accept";
+
+
+
+
+	//  $scope.$watch('toggle', function(){
+	// 		 $scope.toggleText = $scope.toggle ? 'Accept' : 'Accepted';
+	 //
+	// 		 console.log('accpet clicked');
+	 //
+	 //
+	//  });
+
+
+				 $scope.pfname = $stateParams.pfname;
+				 $scope.plname = $stateParams.plname;
+
+				 $scope.page = $stateParams.page;
+				 $scope.psex = $stateParams.psex;
+
+				 $scope.pphno = $stateParams.pphno;
+
+
+				 $scope.acceptclicked = function()
+				 {
+
+					 	var docpatphno = {
+							accpetcode : "1",
+							doctorphno : $localStorage.user,
+							patientphno : $stateParams.pphno
+
+
+						}
+
+
+
+						 $scope.toggleText = "Accepted";
+
+						 patientrequesttodoctor.accpetedbydoctor(docpatphno);
+
+				 }
+
+
+
+				 $scope.decline = function()
+				 {
+
+							 var docpatphno = {
+							 declinecode : "2",
+							 doctorphno : $localStorage.user,
+							 patientphno : $stateParams.pphno
+
+
+						 }
+
+							patientrequesttodoctor.declinedbydoctor(docpatphno);
+
+
+				 }
+
+
 
 })
 
