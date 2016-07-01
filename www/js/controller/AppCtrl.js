@@ -12,10 +12,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 
 	$scope.searchDoctors=function()
 	{
-
-
 			$state.go('app.searchDoctors');
-
 	}
 
 		$rootScope.goBack = function ()
