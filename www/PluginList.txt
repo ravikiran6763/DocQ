@@ -14,3 +14,4 @@ ionic-plugin-keyboard 2.2.0 "Keyboard"
 ///////////Newly Added///////////////
 
 cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME=DocQ
+bower install ion-alpha-scroll --save   ----> Alphabatical scroll

@@ -43,77 +43,75 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-ratings',
   'base64',
   'ionic-datepicker',
-  'ngMessages'
+  'ngMessages',
+  'ion-alpha-scroll'
 ])
 
 DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
 
   $ionicPlatform.on("deviceready", function(){
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if(window.StatusBar)
+      {
+      StatusBar.styleDefault();
+      }
 
+      if (window.Connection)
+      {
+      if (navigator.connection.type == Connection.NONE)
+      {
+      toast.show("Internet is disconnected on your device");
+      };
+      };
+      PushNotificationsService.register();
 
-    if(window.StatusBar)
-    {
-        StatusBar.styleDefault();
-    }
+      // Android customization
+      cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
+      // Enable background mode
+      cordova.plugins.backgroundMode.enable();
 
-    if (window.Connection)
-    {
-       if (navigator.connection.type == Connection.NONE)
-       {
-         toast.show("Internet is disconnected on your device");
-       };
-     };
-    PushNotificationsService.register();
-
-    // Android customization
-    cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
-    // Enable background mode
-    cordova.plugins.backgroundMode.enable();
-
-    // Called when background mode has been activated
-    cordova.plugins.backgroundMode.onactivate = function () {
-        setTimeout(function () {
-            // Modify the currently displayed notification
-            cordova.plugins.backgroundMode.configure({
-                text:'Running in background for more than 5s now.'
-            });
-        }, 5000);
-    }
-
-
+      // Called when background mode has been activated
+      cordova.plugins.backgroundMode.onactivate = function () {
+      setTimeout(function () {
+      // Modify the currently displayed notification
+      cordova.plugins.backgroundMode.configure({
+      text:'Running in background for more than 5s now.'
+      });
+      }, 5000);
+      }
   });
+
   document.addEventListener("deviceready", function () {
-    window.plugins.sim.getSimInfo(successCallback, errorCallback);
-    function successCallback(result) {
-        // alert(result.deviceId);
+      window.plugins.sim.getSimInfo(successCallback, errorCallback);
+      function successCallback(result) {
+      // alert(result.deviceId);
       }
 
-    function errorCallback(error) {
+      function errorCallback(error) {
       // alert(error);
-        }
-    // Check for network connection
-    if(window.Connection) {
-      //you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
-      console.log(navigator.connection.type);
-      if(navigator.connection.type == Connection.NONE) {
-        $ionicPopup.confirm({
-        title: 'Network Problem',
-        content: 'Sorry, Please Check Your Network Connection.'
-        }).then(function(){
-                            ionic.Platform.exitApp();
-                    })
-        //or you can simply navigate it to a page with the no internet connection html.
       }
-    }
+      // Check for network connection
+      if(window.Connection) {
+      //you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
+          console.log(navigator.connection.type);
+          if(navigator.connection.type == Connection.NONE) {
+          $ionicPopup.confirm({
+          title: 'Network Problem',
+          content: 'Sorry, Please Check Your Network Connection.'
+          }).then(function(){
+          ionic.Platform.exitApp();
+          })
+          //or you can simply navigate it to a page with the no internet connection html.
+          }
+      }
 
   })
   // This fixes transitions for transparent background views
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-    if(toState.name.indexOf('app.patient_home') > -1)
-    {
+      if(toState.name.indexOf('app.patient_home') > -1)
+      {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
       //$ionicConfig.views.transition('platform');
       // If it's ios, then enable swipe back again
@@ -121,43 +119,43 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       {
         $ionicConfig.views.swipeBackEnabled(true);
       }
-    	console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
-    }
+        console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+      }
 
-    if (toState.name != "app.searchDoctors") {
-      $rootScope.sideMenuForSearch = false;
-    }
+      if (toState.name != "app.searchDoctors") {
+        $rootScope.sideMenuForSearch = false;
+      }
 
   });
 
   $ionicPlatform.on("resume", function(){
-    PushNotificationsService.register();
+  PushNotificationsService.register();
   });
 
-//press again to exit
+  //press again to exit
 
-$ionicPlatform.registerBackButtonAction(function(e){
-   if ($rootScope.backButtonPressedOnceToExit) {
-     ionic.Platform.exitApp();
-   }
+  $ionicPlatform.registerBackButtonAction(function(e){
+      if ($rootScope.backButtonPressedOnceToExit) {
+      ionic.Platform.exitApp();
+      }
 
-   else if ($ionicHistory.backView()) {
-     $ionicHistory.goBack();
-   }
-   else {
-     $rootScope.backButtonPressedOnceToExit = true;
-     window.plugins.toast.showShortCenter(
-       "Press back button again to exit",function(a){},function(b){}
-     );
-     setTimeout(function(){
-       $rootScope.backButtonPressedOnceToExit = false;
-     },2000);
-   }
-   e.preventDefault();
-   return false;
- },101);
+      else if ($ionicHistory.backView()) {
+      $ionicHistory.goBack();
+      }
+      else {
+      $rootScope.backButtonPressedOnceToExit = true;
+      window.plugins.toast.showShortCenter(
+      "Press back button again to exit",function(a){},function(b){}
+      );
+      setTimeout(function(){
+      $rootScope.backButtonPressedOnceToExit = false;
+      },2000);
+      }
+      e.preventDefault();
+      return false;
+  },101);
 
-})
+  })
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
   $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';

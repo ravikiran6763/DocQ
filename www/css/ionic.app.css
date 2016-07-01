@@ -11328,7 +11328,8 @@ ion-side-menu .heading-item .message {
     width: 100%; }
 
 .doctorscreen-view {
-  font-family: Ubuntu,bold,sans-serif !important; }
+  font-family: Ubuntu,bold,sans-serif !important;
+  background-color: #6fa22c; }
   .doctorscreen-view ion-content {
     overflow: hidden !important; }
   .doctorscreen-view .slider-content {

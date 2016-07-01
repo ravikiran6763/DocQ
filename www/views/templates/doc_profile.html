@@ -5,7 +5,7 @@
       <pre-img >
         <img ng-src="img/doc.jpg" spinner-on-load>
       </pre-img>
-      <h4>{{doctor.doctorFname+doctor.doctorMname+doctor.doctorLname}} </h4>
+      <h4>{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h4>
     </div>
 
     <div class="profile-details">
@@ -13,15 +13,15 @@
           <div class="card ">
             <div class="row">
                   <div class="col">First Name</div>
-                  <div class="col">{{doctor.doctorFname}}</div>
+                  <div class="col">{{doctor.doctorFname | capitalize}}</div>
             </div>
             <div class="row">
                   <div class="col">Middle Name</div>
-                  <div class="col">{{doctor.doctorMname}}</div>
+                  <div class="col">{{doctor.doctorMname | capitalize}}</div>
             </div>
             <div class="row">
                   <div class="col">Last Name</div>
-                  <div class="col">{{doctor.doctorLname}}</div>
+                  <div class="col">{{doctor.doctorLname | capitalize}}</div>
             </div>
           </div>
 
@@ -55,7 +55,7 @@
            </div>
            <div class="row">
                  <div class="col">City</div>
-                 <div class="col">{{doctor.city}}</div>
+                 <div class="col">{{doctor.city | capitalize}}</div>
 
            </div>
            <div class="row">
@@ -86,12 +86,12 @@
           <div class="card ">
             <div class="row">
                   <div class="col">Language 1</div>
-                  <div class="col">{{doctor.language1}}</div>
+                  <div class="col">{{doctor.language1 | capitalize}}</div>
 
             </div>
             <div class="row">
                   <div class="col">Language 2</div>
-                  <div class="col">{{doctor.language2}}</div>
+                  <div class="col">{{doctor.language2 | capitalize}}</div>
 
             </div>
           </div>
@@ -112,7 +112,7 @@
            <div class="card ">
              <div class="row">
                    <div class="col">Bank Details</div>
-                   <div class="col">{{doctor.bank_name}}</div>
+                   <div class="col">{{doctor.bank_name | capitalize}}</div>
              </div>
              <div class="row">
                    <div class="col">A/C No</div>
@@ -134,7 +134,7 @@
             <div class="card">
               <div class="row">
                     <div class="col">Specialities</div>
-                    <div class="col">{{doctor.speciality_id}}</div>
+                    <div class="col">{{doctor.speciality_id }}</div>
               </div>
             </div>
 

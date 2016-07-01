@@ -1,0 +1,35 @@
+<ion-view class="patient-request-view" cache-view="false">
+
+  <ion-content scroll="false">
+    <div class="top-content row">
+
+      <div class="profile-container">
+        <div class="user-image-container">
+          <pre-img ratio="_1_1" helper-class="rounded-image">
+            <!--<img class="user-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" spinner-on-load>-->
+            <img class="user-image " ng-src="img/patient.jpg" spinner-on-load>
+          </pre-img>
+        </div>
+        <h1>{{pfname}} {{plname}}</h1>
+        <h2>{{psex}},Age:{{page}}</h2>
+        <h3>Bangalore,India</h3>
+        <h4>Requested a Voice call</h4><!--Consultation accepted-->
+        <h5>30 min ago</h5><!--Please wait for the call-->
+      </div>
+
+
+    </div>
+  </ion-content>
+  <ion-footer-bar class="row row-bottom bottom">
+  <div class="bottom-content row">
+
+      <div class="button-bar" >
+        <button class="button deny-btn" ng-click="decline();" ui-sref="templates.requestAccepted"><span class="btn-title">Decline</span></button>
+         <!-- <button class="button accpt-btn"  ng-click="toggle = !toggle" >{{toggleText}}</button> -->
+         <button class="button accpt-btn"  ng-click="acceptclicked();" >{{toggleText}}</button>
+
+      </div>
+
+  </div>
+ </ion-footer-bar>
+</ion-view>
