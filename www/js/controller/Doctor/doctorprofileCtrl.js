@@ -8,6 +8,9 @@ $rootScope.checkedValue = false;
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
   $scope.myConsultedDoctors=response;
 
+
+
+
   $scope.showConfirm = function() {
        var confirmPopup = $ionicPopup.confirm({
          title: '<h4>Thank You</h4>',
