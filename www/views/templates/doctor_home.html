@@ -19,10 +19,13 @@
 
       </ion-slide-box>
     </div>
+
       <ion-item class="item-divider">Requests Pending</ion-item>
+
       <ul class="bottom-content">
 
         <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno})">
+
           <div class="profile-img">
             <img src="img/patient.jpg">
           </div>
@@ -34,8 +37,10 @@
             <i class="icon ion-chevron-right icon-accessory"></i>
           </div>
         </li>
+        <li ng-show="!res.length">NO PENDING REQUESTS</li>
 
       </ul>
+
   </ion-content>
 
 
@@ -49,7 +54,7 @@
        </div>
      </label>
 
-
+ <!-- <p class="noRequests">No Pending Requests<p> -->
    </ion-item>
 
 

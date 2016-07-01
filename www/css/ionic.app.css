@@ -11355,6 +11355,12 @@ ion-side-menu .heading-item .message {
     background-color: red;
     width: 100%;
     height: 50%; }
+  .doctorscreen-view .noRequests {
+    background-color: red;
+    position: absolute;
+    margin-top: 45vh;
+    z-index: 0;
+    visibility: hidden; }
   .doctorscreen-view .slides.slider, .doctorscreen-view .slider-slides {
     height: 100%; }
   .doctorscreen-view .slider-slide img {
@@ -11386,7 +11392,9 @@ ion-side-menu .heading-item .message {
     width: 100%;
     height: 45%;
     box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
-    overflow: scroll !important; }
+    overflow: scroll !important;
+    position: absolute;
+    z-index: 1; }
     .doctorscreen-view .bottom-content li {
       height: 31.3%;
       border-bottom: 1px solid #fff;
