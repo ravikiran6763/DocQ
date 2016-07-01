@@ -75,20 +75,20 @@ console.log('check box changed', $scope.checkedValue);
 	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
 
 
-		if(response.length === 0)
-		{
-
-					$scope.res = "No Request Pending";
-
-
-		}
-		else
-		{
+		// if(response.length === 0)
+		// {
+		//
+		// 			$scope.res = "No Request Pending";
+		//
+		//
+		// }
+		// else
+		// {
 
 					$scope.res = response;
 
 
-		}
+		//}
 
 
 
@@ -161,7 +161,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 				 {
 
 							 var docpatphno = {
-							 declinecode : "2",
+							 accpetcode : "2",
 							 doctorphno : $localStorage.user,
 							 patientphno : $stateParams.pphno
 
