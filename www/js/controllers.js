@@ -74,6 +74,18 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 				$scope.toggleText = "Accept";
 
+
+	//  $scope.$watch('toggle', function(){
+	// 		 $scope.toggleText = $scope.toggle ? 'Accept' : 'Accepted';
+	 //
+	// 		 console.log('accpet clicked');
+	 //
+	 //
+	//  });
+
+				$rootScope.pfname = $stateParams.pfname;
+				$rootScope.plname = $stateParams.plname;
+
 				 $scope.pfname = $stateParams.pfname;
 				 $scope.plname = $stateParams.plname;
 
@@ -127,6 +139,10 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 			checkedTests : false,
 			checkedMedication : false
 		};
+
+		$scope.patientfname = $rootScope.pfname;
+		$scope.patientlname = $rootScope.plname;
+
 
 		$scope.sendprescription = function()
 		{
@@ -219,6 +235,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						else if($scope.notes.checkedDiagnosis)
 						{
 
+							alert('You have Missed tests and Medication');
+
+
 							$scope.diagnosis = testresultbydoctor.getdiagnosis();
 
 							var onlydiagnosis = {
@@ -233,6 +252,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						}
 						else if($scope.notes.checkedTests)
 						{
+
+							alert('You have Missed Diagnosis and Medication');
+
 
 							$scope.tests = testresultbydoctor.gettests();
 
@@ -249,6 +271,8 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						}
 						else if($scope.notes.checkedMedication)
 						{
+
+								alert('You have Missed Diagnosis and Tests');
 
 							$scope.medication = testresultbydoctor.getmedication();
 
@@ -271,12 +295,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 
 
 		}
-
-
-
-
-
-
 
 })
 

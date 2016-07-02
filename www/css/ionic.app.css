@@ -9824,6 +9824,16 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.bar-footer {
+  bottom: 0;
+  border-top-width: 1px;
+  border-bottom-width: 0;
+  background-position: top;
+  height: 44px;
+  background-color: #20242c; }
+  .bar-footer h5 {
+    color: #cccccc; }
+
 .notificationOn {
   margin-top: 1vh; }
 

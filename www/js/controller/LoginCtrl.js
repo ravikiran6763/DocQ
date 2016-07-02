@@ -2,7 +2,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 {
 
 		$scope.user = {};
-
 		$scope.user.rememberMe = false;
 		$scope.loginData = {};
 			$scope.rememberme =  function()

@@ -240,7 +240,24 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$scope.confirmSignout = function() {
    var confirmPopup = $ionicPopup.confirm({
      title: 'DoctorQuick',
-     template: 'Are you sure you want to Signout?'
+     template: 'Are you sure you want to Signout?',
+		 cssClass: 'videoPopup',
+			scope: $scope,
+			buttons: [
+				{
+					text: 'Cancel',
+					type: 'button-royal',
+				},
+				{
+					text: 'Topup',
+					type: 'button-positive',
+					//  onTap: function(e) {
+					 //
+					// 		$state.go('app.patient_topup');
+					 //
+					//  }
+				},
+			 ]
    });
 
    confirmPopup.then(function(res) {
@@ -337,17 +354,9 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 				$state.go('app.my_doctors')
 	}
 
-	$scope.viewDocProfile=function(docPhone){
-		$localStorage.DoctorPhone=docPhone;
-		doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
-		$scope.myDocDetails=response;
-		$state.go('app.viewdoctor_profile');
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
 
 
-	}
+
 
 
 	$scope.myConsultations=function(){
