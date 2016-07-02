@@ -10,7 +10,7 @@
               <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
               <label class="item item-input phone_field text-center control-label" >
                 <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
-                  <input class="form-control" type="number" placeholder="Phone Number" name="user_phone" ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
+                  <input class="form-control" type="number" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
               </label>
               <label class="item item-input password_field control-label" show-hide-container>
                   <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  >

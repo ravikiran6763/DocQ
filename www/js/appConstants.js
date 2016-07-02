@@ -42,7 +42,6 @@ DoctorQuickApp.constant('BASE_URL', {
 
         'sendotp' : 'textgurutest.php',
 
-
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',

@@ -44,8 +44,9 @@ console.log('failure data', error);
             cssClass: 'videoPopup',
             scope: $scope,
             buttons: [
-             	{ text: 'Cancel',
-                 type: 'button-royal', },
+             	{
+                text: 'Cancel',
+                type: 'button-royal', },
              	{
              	text: 'Topup',
              	type: 'button-positive',
