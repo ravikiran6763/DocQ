@@ -74,24 +74,8 @@ console.log('check box changed', $scope.checkedValue);
 	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
 
 
-		// if(response.length === 0)
-		// {
-		//
-		// 			$scope.res = "No Request Pending";
-		//
-		//
-		// }
-		// else
-		// {
 
 					$scope.res = response;
-
-
-		//}
-
-
-
-
 
 }).catch(function(error){
 	console.log('failure data', error);
@@ -124,6 +108,9 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 	 //
 	 //
 	//  });
+
+				$rootScope.pfname = $stateParams.pfname;
+				$rootScope.plname = $stateParams.plname;
 
 
 				 $scope.pfname = $stateParams.pfname;
@@ -190,6 +177,10 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 			checkedTests : false,
 			checkedMedication : false
 		};
+
+		$scope.patientfname = $rootScope.pfname;
+		$scope.patientlname = $rootScope.plname;
+
 
 		$scope.sendprescription = function()
 		{
@@ -282,6 +273,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						else if($scope.notes.checkedDiagnosis)
 						{
 
+							alert('You have Missed tests and Medication');
+
+
 							$scope.diagnosis = testresultbydoctor.getdiagnosis();
 
 							var onlydiagnosis = {
@@ -296,6 +290,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						}
 						else if($scope.notes.checkedTests)
 						{
+
+							alert('You have Missed Diagnosis and Medication');
+
 
 							$scope.tests = testresultbydoctor.gettests();
 
@@ -312,6 +309,8 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						}
 						else if($scope.notes.checkedMedication)
 						{
+
+								alert('You have Missed Diagnosis and Tests');
 
 							$scope.medication = testresultbydoctor.getmedication();
 
@@ -334,12 +333,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 
 
 		}
-
-
-
-
-
-
 
 })
 
