@@ -39,10 +39,10 @@
     <tt>Diagnosis = {{notes.checkedDiagnosis}}</tt>
      <tt>Tests = {{notes.checkedTests}}</tt>
       <tt>Medication = {{notes.checkedMedication}}</tt>
-      <tt>Result = {{user.testforpatient}}</tt>
+      <tt>Result = {{allchecked}}</tt>
 
   <div class="buttons">
-   <button  class="button button-block button-assertive" >Send prescription</button>
+   <button  class="button button-block button-assertive" ng-click="sendprescription();">Send prescription</button>
    <button  class="button button-block button-assertive" >Complete & charge</button>
    <button  class="button button-block button-energized" >Complete without charge</button>
  </div>
