@@ -147,10 +147,93 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 		$scope.sendprescription = function()
 		{
 
+					var options = {
+
+											quality: 50,
+											saveToPhotoAlbum: true,
+											correctOrientation:true
+							};
+
 
 					//test jpeg image response
 
-					testresultbydoctor.jpegtest();
+					testresultbydoctor.jpegtest().then(movePic,function(response){
+
+							$rootScope.imgURI=response;
+
+
+
+			}).catch(function(error){
+				console.log('failure data', error);
+			});
+
+
+						function movePic(response)
+						{
+
+								 console.log("move pic");
+								 console.log(response);
+								 window.resolveLocalFileSystemURL(response, resolveOnSuccess, resOnError);
+
+						}
+
+
+
+						function resolveOnSuccess(entry)
+						{
+
+								console.log("resolvetosuccess");
+
+								//new file name
+								var newFileName = "veeresh_camera" + ".jpg";
+								var myFolderApp = "Test";
+
+								window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
+										console.log("folder create");
+
+										//The folder is created if doesn't exist
+										fileSys.root.getDirectory( myFolderApp,
+												{create:true, exclusive: false},
+												function(directory) {
+														console.log("move to file..");
+														entry.moveTo(fileSys.root, newFileName,  successMove, resOnError);
+														console.log("release");
+
+												},
+												resOnError);
+								},
+								resOnError);
+						}
+
+
+						function successMove(entry)
+						{
+								//I do my insert with "entry.fullPath" as for the path
+								console.log("success");
+								//this is file path, customize your path
+								console.log(entry);
+						}
+
+					function resOnError(error)
+					{
+
+							console.log(error);
+
+					}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 					$scope.diagnosis = testresultbydoctor.getdiagnosis();
 					$scope.tests = testresultbydoctor.gettests();

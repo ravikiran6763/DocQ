@@ -402,7 +402,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 
 doctorServices.myDoctorsDetails(consultedDoc).then(function(response){
 			$scope.consultedDocDetails=response;
-			// console.log($scope.consultedDocDetails);
+			console.log($scope.consultedDocDetails);
 			$state.go('app.patient_summary');
 		}).catch(function(error){
 		console.log('failure data', error);
