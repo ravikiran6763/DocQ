@@ -458,13 +458,7 @@ DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 	};
 })
 
-DoctorQuickApp.controller('ForgotPasswordCtrl', function($scope, $state) {
-	$scope.recoverPassword = function(){
-		$state.go('app.patient_home');
-	};
 
-
-})
 //newly added for DQ
 
 
@@ -500,6 +494,7 @@ DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig,
 	 	$rootScope.headerTxt="Video";
 		$rootScope.showBackBtn=true;
 		$rootScope.checkedValue = false;
+		$rootScope.showNotification=false;
 	// $rootScope.headerTxt="Customer Care";
 	// $rootScope.showBackBtn=true;termsCtrl
 
@@ -543,12 +538,12 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($scope,$rootScope,$ioni
 })
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
-   $scope.toggle = true;
+   	$scope.toggle = true;
 	 	$rootScope.headerTxt="Terms Of Use";
 		$rootScope.showBackBtn=true;
 		$rootScope.checkedValue = false;
-	// $rootScope.headerTxt="Customer Care";
-	// $rootScope.showBackBtn=true;
+		$rootScope.showNotification=false;
+
 
 })
 ;

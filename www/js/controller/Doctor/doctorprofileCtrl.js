@@ -56,9 +56,7 @@ console.log('failure data', error);
              	text: 'Topup',
              	type: 'button-positive',
                onTap: function(e) {
-
                  	$state.go('app.patient_topup');
-
                }
 
              	},

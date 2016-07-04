@@ -18,8 +18,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 		$rootScope.goBack = function ()
 		{
 
-			window.history.back();
-
+						window.history.back();
 
 		}
 
@@ -249,13 +248,15 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 					type: 'button-royal',
 				},
 				{
-					text: 'Topup',
+					text: 'Ok',
 					type: 'button-positive',
-					//  onTap: function(e) {
-					 //
-					// 		$state.go('app.patient_topup');
-					 //
-					//  }
+					 onTap: function(e) {
+						//  signOut();
+						console.log('ok cliked');
+						$localStorage.$reset;
+						$state.go('auth.loginNew');
+
+					 }
 				},
 			 ]
    });

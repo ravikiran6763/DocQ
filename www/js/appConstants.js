@@ -4,7 +4,7 @@
 
 /**
  * Contains the Constants, which are available across the app.
- * @author Tushar
+ * @author Ravikiran
  */
 DoctorQuickApp.constant('BASE_URL', {
         //Development http://ec2-52-39-133-220.us-west-2.compute.amazonaws.com/
@@ -18,11 +18,12 @@ DoctorQuickApp.constant('BASE_URL', {
     })
 .constant('API', {
           /*COMMON APIS*/
-        'login': 'common/dqLogin.php',
+
         'patientRegistration':'DQ/patientegistration.php',
         'doctorRegistration':'doctor/doctorRegistration.php',
         'login': 'common/dqLogin.php',
         'logout': 'logout',
+        'ForgotPassword': 'common/forgotPassword.php',
 
         /*PATIENT APIS*/
         'patientRegistration' :'patient/patientRegistration.php',
@@ -61,17 +62,11 @@ DoctorQuickApp.constant('BASE_URL', {
 
 
         'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',
-
-
         'changePatientPwd':'DQ/changePatientPwd.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
-
-
-
         'rateMyDoctor':'DQ/rateMyDoctor.php',
         'getMyDoctorRatings':'DQ/getMyDoctorRatings.php',
         'sidemenulist':'DQ/sidemenulist.php',
-
         'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',
 
 
