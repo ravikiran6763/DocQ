@@ -337,10 +337,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 
 		}
 
-
-
-
-
 	$scope.myDoctors=function(){
 
 			doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
@@ -354,11 +350,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$scope.myDoctors=function(){
 				$state.go('app.my_doctors')
 	}
-
-
-
-
-
 
 	$scope.myConsultations=function(){
 			// $scope.userPhone=LoginService.returnUserPhone();
@@ -375,39 +366,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.ratedTo;
 	$rootScope.myDocRating={};
 
-	$scope.consultationDetails=function(consultedDoc){
 
-			console.log('Clicked');
-
-		$rootScope.ratedTo=consultedDoc;
-		console.log($rootScope.ratedTo);
-		$scope.patient_details ={};
-		$scope.userPhone=LoginService.returnUserPhone();
-
-		var myDocratedValues={
-
-		ratedBy:$scope.userPhone,
-		ratedTo:$rootScope.ratedTo
-
-		};
-
-		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
-			$rootScope.myDocRating = response;
-				$scope.myRating=$rootScope.myDocRating;
-				console.log($scope.myRating);
-			}).catch(function(error){
-				console.log('failure data', error);
-		});
-
-
-doctorServices.myDoctorsDetails(consultedDoc).then(function(response){
-			$scope.consultedDocDetails=response;
-			// console.log($scope.consultedDocDetails);
-			$state.go('app.patient_summary');
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
-	}
 
 //Rating functionality
 
@@ -422,51 +381,8 @@ $scope.ratingsObject = {
 	}
 
 };
-$scope.unhappy = true;
-var rating={};
-$rootScope.ratingValue;
-$scope.ratingsCallback = function(rating) {
-	$rootScope.ratingValue=rating;
-	// console.log('Selected rating is : ', rating);
-		console.log('Selected rating is : ', $rootScope.ratingValue);
-					if(rating <= 3)
-					{
-							$scope.unhappy = true;
-							$scope.happy = false;
-					}
-					else if (rating >= 4)
-					{
-							$scope.happy = true;
-							$scope.unhappy = false;
-					}
-					else
-					{
-							$scope.unhappy = true;
-							$scope.happy = false;
-					}
-};
-$scope.ratingComments={};
 
-$scope.sendRatings=function(){
-	$scope.patient_details ={};
-	$scope.userPhone=LoginService.returnUserPhone();
 
-	var ratedValues={
-	rates:$rootScope.ratingValue,
-	ratedBy:$scope.userPhone,
-	ratedTo:$rootScope.ratedTo,
-	ratingComments:$scope.ratingComments.comment
-	};
-
-	rateDoctorServices.rateDoctor(ratedValues).then(function(response){
-		$scope.rated=response;
-		$scope.ratingComments.comment="";
-		// $state.go('app.patient_home');
-		$state.go($state.current, {}, {reload: true});
-		}).catch(function(error){
-			console.log('failure data', error);
-		});
-	}
 
 	$scope.ratings = [{ name: 'DocRating', number: '3.5' }]
 

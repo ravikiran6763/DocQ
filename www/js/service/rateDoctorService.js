@@ -4,7 +4,7 @@ DoctorQuickApp.service('rateDoctorServices', function ($http,$q, BASE_URL, API) 
   this.getDocRatingsByMe  = function (myDocratedValues) {
     console.log('from service',myDocratedValues);
     var deferred = $q.defer();
-
+    // console.log(BASE_URL.url + API.getMyDoctorRatings);
     $http.post(BASE_URL.url + API.getMyDoctorRatings,myDocratedValues)
     .success(function (data, status, headers, config){
       deferred.resolve(data);
