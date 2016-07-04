@@ -23,13 +23,16 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 
 	$scope.viewDocProfile=function(docPhone){
+			$ionicLoading.show();
 		$localStorage.DoctorPhone=docPhone;
 		doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
 		$scope.myDocDetails=response;
 		$state.go('app.viewdoctor_profile');
+
 		}).catch(function(error){
 		console.log('failure data', error);
 		});
+			$ionicLoading.hide();
 
 
 	}

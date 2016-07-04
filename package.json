@@ -14,6 +14,11 @@
     "gulp-util": "^2.2.14",
     "shelljs": "^0.3.0"
   },
+  "scripts": {
+    "start": "npm run ionicserver && npm run nodeserver",
+    "nodeserver": "node server.js",
+    "ionicserver": "ionic serve"
+  },
   "cordovaPlugins": [
     "cordova-plugin-device",
     "cordova-plugin-console",

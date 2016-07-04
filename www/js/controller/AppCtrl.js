@@ -18,8 +18,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 		$rootScope.goBack = function ()
 		{
 
-			window.history.back();
-
+						window.history.back();
 
 		}
 
@@ -240,7 +239,26 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$scope.confirmSignout = function() {
    var confirmPopup = $ionicPopup.confirm({
      title: 'DoctorQuick',
-     template: 'Are you sure you want to Signout?'
+     template: 'Are you sure you want to Signout?',
+		 cssClass: 'videoPopup',
+			scope: $scope,
+			buttons: [
+				{
+					text: 'Cancel',
+					type: 'button-royal',
+				},
+				{
+					text: 'Ok',
+					type: 'button-positive',
+					 onTap: function(e) {
+						//  signOut();
+						console.log('ok cliked');
+						$localStorage.$reset;
+						$state.go('auth.loginNew');
+
+					 }
+				},
+			 ]
    });
 
    confirmPopup.then(function(res) {

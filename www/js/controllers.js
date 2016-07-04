@@ -18,53 +18,34 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 
 	$rootScope.changeStatus = function (e)
 	{
-
-
 		$scope.checkedValue = "";
-
-
 				if(e)
 				{
-
 						$scope.checkedValue = true;
-
-
 						var whichdoctoronoff = {
 
 							doctorphno : $localStorage.user,
 							onoff : 1
-
-
 						}
-
 						doctoronoffdetails.doctoronoff(whichdoctoronoff);
-
 				}
 				else
 				{
-
 						$scope.checkedValue = false;
-
 						var whichdoctoronoff = {
 								doctorphno : $localStorage.user,
 								onoff : 0
-
 					}
-
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
-
-
 				}
-
-
 
 		$scope.docStatus = [
 	    {name: 'one', hidden: true},
 
 	  	];
 
-console.log('check box changed', $scope.checkedValue);
-		$rootScope.showDocStatus=true;
+			console.log('check box changed', $scope.checkedValue);
+		// $rootScope.showDocStatus=true;
 
 	}
 
@@ -73,16 +54,11 @@ console.log('check box changed', $scope.checkedValue);
 
 	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
 
-
-
 					$scope.res = response;
 
 }).catch(function(error){
 	console.log('failure data', error);
 });
-
-
-
 
 
 })
@@ -99,8 +75,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 				$scope.toggleText = "Accept";
 
 
-
-
 	//  $scope.$watch('toggle', function(){
 	// 		 $scope.toggleText = $scope.toggle ? 'Accept' : 'Accepted';
 	 //
@@ -111,7 +85,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 				$rootScope.pfname = $stateParams.pfname;
 				$rootScope.plname = $stateParams.plname;
-
 
 				 $scope.pfname = $stateParams.pfname;
 				 $scope.plname = $stateParams.plname;
@@ -129,20 +102,11 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 							accpetcode : "1",
 							doctorphno : $localStorage.user,
 							patientphno : $stateParams.pphno
-
-
 						}
-
-
-
 						 $scope.toggleText = "Accepted";
-
 						 patientrequesttodoctor.accpetedbydoctor(docpatphno);
 
 				 }
-
-
-
 				 $scope.decline = function()
 				 {
 
@@ -150,8 +114,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 							 accpetcode : "2",
 							 doctorphno : $localStorage.user,
 							 patientphno : $stateParams.pphno
-
-
 						 }
 
 							patientrequesttodoctor.declinedbydoctor(docpatphno);
@@ -501,13 +463,7 @@ DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 	};
 })
 
-DoctorQuickApp.controller('ForgotPasswordCtrl', function($scope, $state) {
-	$scope.recoverPassword = function(){
-		$state.go('app.patient_home');
-	};
 
-
-})
 //newly added for DQ
 
 
@@ -543,6 +499,7 @@ DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig,
 	 	$rootScope.headerTxt="Video";
 		$rootScope.showBackBtn=true;
 		$rootScope.checkedValue = false;
+		$rootScope.showNotification=false;
 	// $rootScope.headerTxt="Customer Care";
 	// $rootScope.showBackBtn=true;termsCtrl
 
@@ -586,12 +543,12 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($scope,$rootScope,$ioni
 })
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
-   $scope.toggle = true;
+   	$scope.toggle = true;
 	 	$rootScope.headerTxt="Terms Of Use";
 		$rootScope.showBackBtn=true;
 		$rootScope.checkedValue = false;
-	// $rootScope.headerTxt="Customer Care";
-	// $rootScope.showBackBtn=true;
+		$rootScope.showNotification=false;
+
 
 })
 ;
