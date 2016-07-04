@@ -185,6 +185,11 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 		$scope.sendprescription = function()
 		{
 
+
+					//test jpeg image response
+
+					testresultbydoctor.jpegtest();
+					
 					$scope.diagnosis = testresultbydoctor.getdiagnosis();
 					$scope.tests = testresultbydoctor.gettests();
 					$scope.medication = testresultbydoctor.getmedication();
