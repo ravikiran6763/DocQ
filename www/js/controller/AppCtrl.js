@@ -377,8 +377,10 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 
 	$scope.consultationDetails=function(consultedDoc){
 
+			console.log('Clicked');
+
 		$rootScope.ratedTo=consultedDoc;
-		// console.log($rootScope.ratedTo);
+		console.log($rootScope.ratedTo);
 		$scope.patient_details ={};
 		$scope.userPhone=LoginService.returnUserPhone();
 

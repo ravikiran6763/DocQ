@@ -25,10 +25,10 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localS
 
 			$scope.payuOrder = function(form) {
 							$scope.payu_params = {
-											// key: "0MQaQP",
-											// salt: "13p0PXZk",
-											key: "gtKFFx",
-											salt: "eCwWELxi",
+											key: "0MQaQP",
+											salt: "13p0PXZk",
+											//key: "gtKFFx",
+											//salt: "eCwWELxi",
 											txnid:Math.floor(Math.random() * 100000000000),
 											amount:"1",
 											productinfo:"test",
@@ -60,8 +60,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localS
 										{
 												bytes.push(payu_params_string.charCodeAt(i));
 										}
-										// var winURL = "https://secure.payu.in/_payment";
-										var winURL = "https://test.payu.in/_payment";
+										var winURL = "https://secure.payu.in/_payment";
+										//var winURL = "https://test.payu.in/_payment";
 
 
 										// var winURL = "https://test.payu.in/_payment";
