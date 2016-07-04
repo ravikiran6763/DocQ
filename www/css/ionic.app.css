@@ -9824,6 +9824,9 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.bar .buttons-left span {
+  margin-right: 35px !important; }
+
 .bar-footer {
   bottom: 0;
   border-top-width: 1px;
@@ -10630,8 +10633,8 @@ ion-side-menu .heading-item .message {
       width: 14%;
       width: 14vw;
       margin: 0 auto;
-      padding-top: 10%;
-      padding-top: 10vh; }
+      padding-top: 12%;
+      padding-top: 12vh; }
     .patient-payment-view .pay-content .top-content {
       height: 15vh;
       margin-top: 10vh !important; }
@@ -10656,9 +10659,7 @@ ion-side-menu .heading-item .message {
     .patient-payment-view .pay-content .button-content {
       height: 10vh;
       width: 90%;
-      margin-left: 7vw;
-      padding-top: 2%;
-      padding-top: 2vh; }
+      margin-left: 7vw; }
       .patient-payment-view .pay-content .button-content .refund {
         width: 50%;
         float: left; }
@@ -10904,8 +10905,7 @@ ion-side-menu .heading-item .message {
     .patient-refund-view .top-content .logo-content {
       height: 30%;
       width: 20%;
-      padding-top: 10%;
-      padding-top: 10vh;
+      padding-top: 12vh;
       margin: 0 auto; }
       .patient-refund-view .top-content .logo-content img {
         margin-left: 3vw; }
@@ -10998,8 +10998,8 @@ ion-side-menu .heading-item .message {
     .patient-topup-view .top-content .logo-content {
       height: 30%;
       width: 20%;
-      padding-top: 10%;
-      padding-top: 10vh;
+      padding-top: 12%;
+      padding-top: 12vh;
       margin: 0 auto; }
       .patient-topup-view .top-content .logo-content img {
         margin-left: 3vw; }
@@ -12215,7 +12215,7 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .doc-reg-1-view ion-content {
     width: auto;
-    height: auto;
+    height: 100%;
     overflow: scroll !important; }
   .doc-reg-1-view .top-content {
     width: 80%;
@@ -12245,7 +12245,7 @@ ion-side-menu .heading-item .message {
     .doc-reg-1-view .form-content .item-input {
       margin-bottom: 2vh !important; }
     .doc-reg-1-view .form-content .input-types {
-      margin-top: 23vh; }
+      margin-top: 30vh; }
   .doc-reg-1-view .bottom-content {
     width: 80%;
     height: 35%;
@@ -12258,6 +12258,8 @@ ion-side-menu .heading-item .message {
       font-size: 1em;
       text-align: center;
       color: #ffffff; }
+    .doc-reg-1-view .bottom-content .bottomSpacing {
+      margin-top: 10vh; }
 
 .doc-reg2-view {
   font-family: Ubuntu,bold,sans-serif !important; }

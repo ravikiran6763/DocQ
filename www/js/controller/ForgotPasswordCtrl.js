@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('ForgotPasswordCtrl', function($scope, $state, ForgotPassword) {
+DoctorQuickApp.controller('ForgotPasswordCtrl', function($scope, $state, $ionicLoading, ForgotPassword) {
 $scope.user = {};
 
   console.log('forgotPasseword');
@@ -12,9 +12,7 @@ $scope.user = {};
     }).catch(function(error){
       console.log('failure data', error);
     });
-
-
-		// $state.go('auth.loginNew');
+		$state.go('auth.loginNew');
 	};
 
 

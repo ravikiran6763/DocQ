@@ -2,7 +2,7 @@
 {
 	ion-content{
 		width: auto;
-		height: auto;
+		height: 100%;
 		overflow: scroll !important;
 	}
 	font-family: Ubuntu,bold,sans-serif !important;
@@ -44,7 +44,7 @@
 			margin-bottom: 2vh !important;
 		}
 		.input-types{
-			margin-top: 23vh;
+			margin-top: 30vh;
 		}
 	}
 	.bottom-content{
@@ -61,6 +61,9 @@
 			font-size: 1em;
 			text-align: center;
 			color: #ffffff;
+		}
+		.bottomSpacing{
+			margin-top: 10vh;
 		}
 	}
 }

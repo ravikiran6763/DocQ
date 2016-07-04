@@ -531,11 +531,7 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicCo
 
 })
 
-DoctorQuickApp.controller('consultSummaryCtrl', function($scope,$rootScope,$ionicConfig, $http) {
-	$rootScope.headerTxt="Summary";
-	$rootScope.showBackBtn=true;
-	$rootScope.checkedValue = false;
-})
+
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
    	$scope.toggle = true;
