@@ -1,14 +1,26 @@
 <ion-view class="patientprofile-view" cache-view="false" >
   <ion-content ng-repeat="patient in patient_details" scrollbar-y="false">
-    <div class="profile-info">
-      <pre-img >
-        <img ng-src="img/doc.jpg"  ng-click="changePhoto();" spinner-on-load>
-        <!-- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-        <img ng-show="imgURI === undefined" ng-src="img/doc.jpg"> -->
 
-      </pre-img>
-      <h4>{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}}</h4>
+    <div class="profile-info">
+
+      <div class="imageContainer">
+        <pre-img >
+          <img ng-src="img/doc.jpg"  ng-click="changePhoto();" spinner-on-load>
+          <!-- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+          <img ng-show="imgURI === undefined" ng-src="img/doc.jpg"> -->
+
+        </pre-img>
+
+      </div>
+      <div class="profileName">
+        <p >{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}}</p>
+      </div>
+
+
     </div>
+
+
+  
 
     <div class="profile-details">
         <div class="card ">

@@ -13076,30 +13076,32 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patientprofile-view .profile-info {
     height: 14vh;
-    background-color: teal;
-    width: 100% !important;
-    margin-left: 3vw;
-    margin-top: 2vh; }
-    .patientprofile-view .profile-info img {
-      width: 20vw;
-      border-radius: 60%;
-      padding: 5px;
-      float: left;
-      background-color: #dedbd6 !important; }
+    width: 100% !important; }
     .patientprofile-view .profile-info .imageContainer {
-      background-color: blue; }
+      width: 30% !important;
+      background-color: blue;
+      float: left; }
+      .patientprofile-view .profile-info .imageContainer img {
+        width: 20vw;
+        border-radius: 60%;
+        padding: 5px;
+        float: left;
+        background-color: #dedbd6 !important;
+        margin-top: 1vh;
+        margin-left: 4vw; }
     .patientprofile-view .profile-info .profileName {
-      margin-left: 12vw;
-      width: 100%;
-      background-color: red; }
-    .patientprofile-view .profile-info h4 {
-      font-size: 5vw;
-      margin-left: -5vw;
-      text-align: center;
-      padding-top: 3vh;
-      font-family: inherit;
-      font-weight: 500;
-      width: 100%; }
+      width: 80%;
+      float: right;
+      /* margin-left: -11vw; */
+      padding: 20px 0 0 20px; }
+      .patientprofile-view .profile-info .profileName h4 {
+        font-size: 5vw;
+        margin-left: -5vw;
+        text-align: center;
+        padding-top: 3vh;
+        font-family: inherit;
+        font-weight: 500;
+        width: 100%; }
   .patientprofile-view .profile-details {
     height: 60vh;
     width: 99%;
