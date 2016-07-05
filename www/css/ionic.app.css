@@ -13076,7 +13076,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patientprofile-view .profile-info {
     height: 14vh;
-    width: 80%;
+    background-color: teal;
+    width: 100% !important;
     margin-left: 3vw;
     margin-top: 2vh; }
     .patientprofile-view .profile-info img {
@@ -13085,13 +13086,20 @@ ion-side-menu .heading-item .message {
       padding: 5px;
       float: left;
       background-color: #dedbd6 !important; }
+    .patientprofile-view .profile-info .imageContainer {
+      background-color: blue; }
+    .patientprofile-view .profile-info .profileName {
+      margin-left: 12vw;
+      width: 100%;
+      background-color: red; }
     .patientprofile-view .profile-info h4 {
       font-size: 5vw;
-      margin-left: 17vw;
+      margin-left: -5vw;
       text-align: center;
-      padding-top: 4vh;
+      padding-top: 3vh;
       font-family: inherit;
-      font-weight: 500; }
+      font-weight: 500;
+      width: 100%; }
   .patientprofile-view .profile-details {
     height: 60vh;
     width: 99%;

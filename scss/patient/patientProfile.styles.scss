@@ -5,8 +5,8 @@
 
   .profile-info{
     height: 14vh;
-
-    width: 80%;
+    background-color: teal;
+    width: 100% !important;
     margin-left: 3vw;
     margin-top: 2vh;
 
@@ -17,13 +17,23 @@
       float: left;
       background-color: #dedbd6 !important;
     }
+    .imageContainer{
+      background-color: blue;
+    }
+    .profileName{
+    margin-left: 12vw;
+    width: 100%;
+    background-color: red;
+    }
     h4{
       font-size: 5vw;
-      margin-left: 17vw;
+      // margin-left: 4vw;
+      margin-left: -5vw;
       text-align: center;
-      padding-top: 4vh;
+      padding-top: 3vh;
       font-family: inherit;
       font-weight: 500;
+      width: 100%;
     }
   }
 

@@ -2,10 +2,14 @@
 
   <ion-content ng-repeat="doctor in doctor_details">
     <div class="profile-info">
+      
       <pre-img >
         <img ng-src="img/doc.jpg" spinner-on-load>
       </pre-img>
-      <h4>{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h4>
+      <div class="profileName">
+        <h4 >Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h4>
+      </div>
+
     </div>
 
     <div class="profile-details">
