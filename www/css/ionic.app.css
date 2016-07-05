@@ -11134,7 +11134,8 @@ ion-side-menu .heading-item .message {
         line-height: 14vh; }
         .summary-view .top-content li .next-icon .ion-chevron-right:before {
           color: #ffffff;
-          font-size: 1.8em; }
+          font-size: 1.8em;
+          padding: 25px 0 0 0; }
       .summary-view .top-content li .name-content {
         float: left;
         padding: 3vh 4vh;
@@ -11174,15 +11175,28 @@ ion-side-menu .heading-item .message {
       background-color: #69a33d;
       color: #fff;
       font-family: inherit; }
-  .summary-view span.stars, .summary-view span.stars span {
-    display: block;
-    background: url("../img/stars2.png") 0 -16px repeat-x;
-    width: 80px;
-    height: 16px; }
-  .summary-view span.stars span {
-    background-position: 0 0; }
   .summary-view .alignright {
     float: left; }
+  .summary-view .rating {
+    color: #a9a9a9;
+    margin: -13px;
+    padding: 0;
+    font-size: 5vw; }
+  .summary-view ul.rating {
+    display: inline-block; }
+  .summary-view .rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: none !important;
+    font-size: 5vw; }
+  .summary-view .rating .filled {
+    color: #ffb14c;
+    border: none !important;
+    font-size: 5vw; }
 
 .search-view {
   background-color: #e2e2e2;

@@ -55,6 +55,7 @@
         .ion-chevron-right:before {
           color: #ffffff;
           font-size: 1.8em;
+          padding: 25px 0 0 0;
         }
       }
 
@@ -114,23 +115,49 @@
       font-family: inherit;
     }
   }
-
-
-  span.stars, span.stars span {
-      display: block;
-      background: url('../img/stars2.png') 0 -16px repeat-x;
-      width: 80px;
-      height: 16px;
-
-  }
-
-  span.stars span {
-      background-position: 0 0;
-  }
+  //
+  //
+  // span.stars, span.stars span {
+  //     display: block;
+  //     background: url('../img/stars2.png') 0 -16px repeat-x;
+  //     width: 80px;
+  //     height: 16px;
+  //
+  // }
+  //
+  // span.stars span {
+  //     background-position: 0 0;
+  // }
 
 
 .alignright {
   float:left;
+}
+
+.rating {
+
+    color: #a9a9a9;
+    margin: -13px;
+    padding: 0;
+    font-size: 5vw
+}
+ul.rating {
+    display: inline-block;
+}
+.rating li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    border: none !important;
+    font-size: 5vw
+}
+.rating .filled {
+    color: #ffb14c;
+    border: none !important;
+    font-size: 5vw;
 }
 
 // favorite consultedDocDetails

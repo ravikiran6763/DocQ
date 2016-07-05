@@ -39,7 +39,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
-        // 'sendrequesttodoctor' : 'patient/checkMyWalletBalance.php',
+        'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
 
 
         'sendotp' : 'textgurutest.php',
@@ -65,7 +65,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',
         'changePatientPwd':'DQ/changePatientPwd.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
-      
+
 
         'sidemenulist':'DQ/sidemenulist.php',
         'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',

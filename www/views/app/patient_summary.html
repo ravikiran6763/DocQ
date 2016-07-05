@@ -10,17 +10,12 @@
         <div class="name-content">
           <h2>Dr.{{consult.doctorFname}} {{consult.doctorMname}} {{consult.doctorLname}}</h2>
           <p>{{consult.doc_degrees}}</p>
-          <p >Practicing since {{consult.practicingSince}}   <span class="stars alignright" ng-repeat="rating in ratings">
-              <span ng-style="{ 'width': getStars(rating.number) }"></span>
+          <p >Practicing since {{consult.practicingSince}}
+        <div class="ratingContainer">
+            <span ng-repeat="rating in ratings">
+              <div star-rating rating-value="rating.current" max="rating.max" ></div>
             </span>
-            <!-- <span class="stars">(4.9/27)</span> -->
-            <!-- <p> <span class="stars">{$mpercent}</span>    </p> -->
-
-            <div class="ratingContainer">
-              <span class="stars">
-                <span></span>(4.9/27)
-              </span>
-            </div>
+        </div>
           </p>
 
         </div>

@@ -4,7 +4,7 @@ DoctorQuickApp.service('rateDoctorServices', function ($http,$q, BASE_URL, API) 
   this.getDocRatingsByMe  = function (myDocratedValues) {
     console.log('from service',myDocratedValues);
     var deferred = $q.defer();
-    // console.log(BASE_URL.url + API.getMyDoctorRatings);
+    console.log(BASE_URL.url + API.getMyDoctorRatings);
     $http.post(BASE_URL.url + API.getMyDoctorRatings,myDocratedValues)
     .success(function (data, status, headers, config){
       deferred.resolve(data);
@@ -16,6 +16,23 @@ DoctorQuickApp.service('rateDoctorServices', function ($http,$q, BASE_URL, API) 
     return deferred.promise;
 
   }
+  
+  this.getDocRatingsByAll  = function (consultedDoctor) {
+    console.log('from service',consultedDoctor);
+    var deferred = $q.defer();
+    console.log(BASE_URL.url + API.getDocRatingsByAll);
+    $http.post(BASE_URL.url + API.getDocRatingsByAll,consultedDoctor)
+    .success(function (data, status, headers, config){
+      deferred.resolve(data);
+    })
+    .error(function (){
+      deferred.reject('Error while getting data');
+    });
+
+    return deferred.promise;
+
+  }
+
 
 this.rateDoctor = function (ratedValues) {
     console.log('from service',ratedValues);

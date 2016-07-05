@@ -4,6 +4,22 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 	$rootScope.checkedValue = false;
 
 
+	rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
+ 	$scope.myDoctorRatings=response;//store the response array in doctor details
+ 	console.log($scope.myDoctorRatings);
+	$scope.ratings = [{
+				 current: $scope.myDoctorRatings,
+				 max: 5
+		 }, ];
+
+  }).catch(function(error){
+  console.log('failure data', error);
+  });
+
+
+		//  console.log($localStorage.consultedDoctor);
+
+
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
@@ -86,7 +102,6 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
-
 			}).catch(function(error){
 				console.log('failure data', error);
 		});
@@ -95,26 +110,26 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 			// 	$("span.stars").stars();
 			// });
 
-			$( ".stars" ).each(function() {
-			    // Get the value
-			    var val = $(this).data("rating");
-			    // Make sure that the value is in 0 - 5 range, multiply to get width
-			    var size = Math.max(0, (Math.min(5, val))) * 16;
-			    // Create stars holder
-			    var $span = $('<span />').width(size);
-			    // Replace the numerical value with stars
-			    $(this).html($span);
-			});
+			// $( ".stars" ).each(function() {
+			//     // Get the value
+			//     var val = $(this).data("rating");
+			//     // Make sure that the value is in 0 - 5 range, multiply to get width
+			//     var size = Math.max(0, (Math.min(5, val))) * 16;
+			//     // Create stars holder
+			//     var $span = $('<span />').width(size);
+			//     // Replace the numerical value with stars
+			//     $(this).html($span);
+			// });
 
-
-			
-		function testData(){
-
-	  return ("entering");
-	}
-	$scope.imagesData = testData;
-
-	console.log($scope.imagesData());
+	//
+	//
+	// 	function testData(){
+	//
+	//   return ("entering");
+	// }
+	// $scope.imagesData = testData;
+	//
+	// console.log($scope.imagesData());
 
 
 })
