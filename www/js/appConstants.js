@@ -46,7 +46,7 @@ DoctorQuickApp.constant('BASE_URL', {
 
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
-        'doctorbydifferentscenario' : 'patient/doctorlist.php',
+        
         // 'rateMyDoctor':'patient/rateMyDoctor.php',
 
 

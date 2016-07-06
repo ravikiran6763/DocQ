@@ -377,9 +377,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/searchresultbydoctor.html"
-
-
-
       }
     }
   })

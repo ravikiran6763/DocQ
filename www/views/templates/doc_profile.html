@@ -13,6 +13,11 @@
       <div class="profileName">
         <p >Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </p>
       </div>
+      <div class="ratingContainer">
+          <span ng-repeat="rating in ratings">
+            <div star-rating rating-value="rating.current" max="rating.max" ></div>
+          </span>
+      </div>
 
 
     </div>

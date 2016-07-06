@@ -1,14 +1,18 @@
 <ion-view class="doctor-profile-view" cache-view="false">
 
-  <ion-content scroll="false">
-      <div class="profile-img">
+  <ion-content scroll="false" ng-repeat="mydocs in myDocDetails">
+      <div class="profile-img ">
         <pre-img ratio="_1_1" helper-class="rounded-image">
-            <img ng-src="img/doc.jpg" spinner-on-load>
-              <img class="doctor-online " ng-src="" spinner-on-load>
+            <img class="item-icon-right" ng-src="img/doc.jpg" spinner-on-load>
+            <!-- <i class="icon ion-android-add-circle" ></i> -->
+
+            <i class="icon ion-android-add-circle" ng-show="{{mydocs.onoff == 1}}"></i>
+            <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{mydocs.onoff == 2}}"></i>
+              <!-- <img class="doctor-online " ng-src="" spinner-on-load> -->
         </pre-img>
       </div>
-      <div class="profile-info" ng-repeat="mydocs in myDocDetails">
-        <h1>Dr.{{mydocs.doctorfname}} {{mydocs.doctorMname}} {{ mydocs.doctorLname}}</h1>
+      <div class="profile-info" >
+        <h1>Dr.{{mydocs.doctorfname}} {{mydocs.doctorMname}} {{ mydocs.doctorLname}} {{mydocs.onoff}}</h1>
         <h2>{{mydocs.doctorDegrees}}</h2>
         <h3>practicing since {{mydocs.practicingSince}}</h3>
       </div>
@@ -40,7 +44,7 @@
                 </button>
               </div>
           </div>
-          <h5 ng-repeat="mydocs in myDocDetails">Consultation fee: ₹{{mydocs.doctorFee}}</h5>
+          <h5 >Consultation fee: ₹{{mydocs.doctorFee}}</h5>
     </div>
 
   </ion-content>

@@ -6,7 +6,11 @@
     <div>
           <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.doctorPhone}});"><!--ui-sref="app.viewdoctor_profile({ docPhone: doctor.dpno})"-->
             <img src="img/doc.jpg">
-            <h2>Dr.{{doctor.doctorFname}} {{doctor.doctorLname}} </h2> <i class="icon ion-android-add-circle"></i>
+            <h2>Dr.{{doctor.doctorFname}} {{doctor.doctorLname}} </h2>
+            <!-- <i class="icon ion-android-add-circle"></i> -->
+            <i class="icon ion-android-add-circle" ng-show="{{doctor.onoff == 1}}"></i>
+            <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doctor.onoff == 2}}"></i>
+
             <p>{{doctor.doctorDegrees}}</p>
               <p>Practicing since {{doctor.practicingSince}}<span>*****</span></p>
           </a>

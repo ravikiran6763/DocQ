@@ -18,11 +18,13 @@
               <div class="  col">
                 Rating
               </div>
-              <div class=" col">
-                4.9/23
+              <div class=" col" ng-repeat="rating in ratings">
+                {{rating.current | number:1}}/23
               </div>
-              <div class=" col">
-                *****
+              <div class="col ratingContainer">
+                  <span ng-repeat="rating in ratings">
+                    <div star-rating rating-value="rating.current" max="rating.max" ></div>
+                  </span>
               </div>
         </div>
 

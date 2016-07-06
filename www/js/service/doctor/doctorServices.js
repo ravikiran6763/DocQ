@@ -17,9 +17,9 @@ this.doctorDetails = function (docPhone) {
 
 //mydoctors function
 this.myDoctorsFetched = function (userPhone) {
-  console.log(userPhone);
+  // console.log(userPhone);
   var deferred = $q.defer();
-  console.log(BASE_URL.url + API.fetchMyDoctors);
+  // console.log(BASE_URL.url + API.fetchMyDoctors);
   $http.post(BASE_URL.url + API.fetchMyDoctors,userPhone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
@@ -31,9 +31,9 @@ this.myDoctorsFetched = function (userPhone) {
 }
 
 this.myDoctorsDetails = function (mydocPhone) {
-
-
+console.log(mydocPhone);
   var deferred = $q.defer();
+  console.log(BASE_URL.url + API.fetchSpecificDoctor);
   $http.post(BASE_URL.url + API.fetchSpecificDoctor,mydocPhone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);

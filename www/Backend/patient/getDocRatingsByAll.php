@@ -12,6 +12,7 @@
         // $ratedBy = $myDocratedValues->ratedBy;
         //  $ratedTo = $myDocratedValues->ratedTo;
           $DocRatings = array();
+					$count = array();
 
          $sql = "select count(*) as rated from doctorRatings where  ratingTo='$ratedTo' ";
 
@@ -28,8 +29,8 @@
           while($row = mysql_fetch_array($retval))
           {
                 $total=$row['totalRtings'];
-
                $DocRatings=($total/$count);
+							 array_push($DocRatings,$count);
           }
 
         }
@@ -40,6 +41,8 @@
         }
         // echo json_encode($doctorDetails);
 echo json_encode($DocRatings);
+// echo json_encode($count);
+
 
 
 

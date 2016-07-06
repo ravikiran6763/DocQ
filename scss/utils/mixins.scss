@@ -43,3 +43,30 @@
   $opacity-ie: $opacity * 100;
   filter: alpha(opacity=$opacity-ie); //IE8
 }
+
+@mixin if-min-resolution($dppx) {
+  @include if-resolution(min, $dppx) {
+    @content;
+  }
+}
+
+@mixin if-max-resolution($dppx) {
+  @include if-resolution(max, $dppx) {
+    @content;
+    
+  }
+}
+
+@mixin if-resolution($prefix, $dppx) {
+  // 1px = 96dpi
+  $dpi: $dppx * 96;
+  @media
+    (-webkit-#{$prefix}-device-pixel-ratio: #{$dppx}),
+    (   #{$prefix}--moz-device-pixel-ratio: #{$dppx}),
+    (     -o-#{$prefix}-device-pixel-ratio: #{$dppx*2}/2),
+    (        #{$prefix}-device-pixel-ratio: #{$dppx}),
+    (                #{$prefix}-resolution: #{$dpi}dpi),
+    (                #{$prefix}-resolution: #{$dppx}dppx) {
+      @content;
+  }
+}

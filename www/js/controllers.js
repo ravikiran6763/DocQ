@@ -34,7 +34,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 						$scope.checkedValue = false;
 						var whichdoctoronoff = {
 								doctorphno : $localStorage.user,
-								onoff : 0
+								onoff : 2
 					}
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
 				}

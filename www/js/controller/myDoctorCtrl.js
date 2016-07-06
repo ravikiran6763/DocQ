@@ -27,6 +27,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		$localStorage.DoctorPhone=docPhone;
 		doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
 		$scope.myDocDetails=response;
+		console.log($scope.myDocDetails);
 		$state.go('app.viewdoctor_profile');
 
 		}).catch(function(error){

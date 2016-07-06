@@ -134,10 +134,6 @@ $scope.BalanceForVoiveCall=function()
 
 }
 
-
-
-
-
     doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
     $scope.myDocDetails=response;
     }).catch(function(error){
