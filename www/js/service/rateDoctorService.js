@@ -16,7 +16,7 @@ DoctorQuickApp.service('rateDoctorServices', function ($http,$q, BASE_URL, API) 
     return deferred.promise;
 
   }
-  
+
   this.getDocRatingsByAll  = function (consultedDoctor) {
     console.log('from service',consultedDoctor);
     var deferred = $q.defer();

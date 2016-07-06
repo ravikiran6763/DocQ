@@ -6,6 +6,7 @@ DoctorQuickApp.service('LoginService', function ($http,$q, BASE_URL, API) {
 	this.loginprocess = function (userDetails) {
 		userPhone = userDetails.userNum;
 		var deferred = $q.defer();
+    console.log(BASE_URL.url + API.login);
 		$http.post(BASE_URL.url + API.login,userDetails)
 		.success(function (data, status, headers, config){
 			deferred.resolve(data);
