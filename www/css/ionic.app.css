@@ -10504,7 +10504,7 @@ ion-side-menu .heading-item .message {
 
 .ion-android-alert::before {
   content: url("../img/dq_notifier_offline2_540x960.png");
-  padding: 0 16px 7px 0;
+  padding: 0 0 27px 0;
   padding-top: 0;
   padding-left: 100px; }
 
@@ -10609,7 +10609,7 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .doctor-profile-view .profile-img {
     width: 30%;
-    height: 30%;
+    height: 25% !important;
     margin: 0 auto; }
     .doctor-profile-view .profile-img img {
       width: 30vw;
@@ -10834,7 +10834,6 @@ ion-side-menu .heading-item .message {
       margin-left: 1vw; }
     .sepecility-details-view .item-avatar p {
       font-size: 4vw;
-      margin-top: -1vh;
       margin-left: 1vw; }
     .sepecility-details-view .item-avatar .icon {
       margin-left: 2vw;
@@ -10858,8 +10857,7 @@ ion-side-menu .heading-item .message {
     width: 80vmin;
     margin-left: 10vw !important;
     font-weight: 400;
-    color: white;
-    text-shadow: 1px 1px black !important; }
+    color: white; }
   .sepecility-details-view .top-content {
     height: 75%;
     text-align: center; }

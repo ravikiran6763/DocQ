@@ -3,27 +3,11 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
+		 console.log($localStorage.consultedDoctor);
 
-	rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
- 	$scope.myDoctorRatings=response;//store the response array in doctor details
- 	console.log($scope.myDoctorRatings);
-	$scope.ratings = [{
-				 current: $scope.myDoctorRatings,
-				 max: 5
-		 }, ];
-
-  }).catch(function(error){
-  console.log('failure data', error);
-  });
-
-
-		//  console.log($localStorage.consultedDoctor);
-
-
-	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
-
 }).catch(function(error){
 	console.log('failure data', error);
 });
@@ -105,31 +89,6 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 			}).catch(function(error){
 				console.log('failure data', error);
 		});
-
-			// $(function() {
-			// 	$("span.stars").stars();
-			// });
-
-			// $( ".stars" ).each(function() {
-			//     // Get the value
-			//     var val = $(this).data("rating");
-			//     // Make sure that the value is in 0 - 5 range, multiply to get width
-			//     var size = Math.max(0, (Math.min(5, val))) * 16;
-			//     // Create stars holder
-			//     var $span = $('<span />').width(size);
-			//     // Replace the numerical value with stars
-			//     $(this).html($span);
-			// });
-
-	//
-	//
-	// 	function testData(){
-	//
-	//   return ("entering");
-	// }
-	// $scope.imagesData = testData;
-	//
-	// console.log($scope.imagesData());
 
 
 })

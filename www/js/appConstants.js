@@ -40,6 +40,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
+        'docSummary' : 'patient/docSummary.php',
 
 
         'sendotp' : 'textgurutest.php',

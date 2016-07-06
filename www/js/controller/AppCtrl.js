@@ -332,9 +332,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 			console.log('failure data', error);
 			});
 
-	$scope.myDoctors=function(){
-				$state.go('app.my_doctors')
-	}
 
 	$scope.myConsultations=function(){
 			// $scope.userPhone=LoginService.returnUserPhone();
@@ -351,47 +348,10 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.ratedTo;
 	$rootScope.myDocRating={};
 
-
-
-//Rating functionality
-
-$scope.ratingsObject = {
-	iconOn: 'ion-ios-star',    //Optional
-	iconOff: 'ion-ios-star-outline',   //Optional
-	rating:  $scope.myRating, //fetch value from database if already rated
-	minRating:0,    //Optional
-	//	readOnly: true, //Optional
-	callback: function(rating) {    //Mandatory
-		$scope.ratingsCallback(rating);
-	}
-
-};
-
-
-
-	// $scope.ratings = [{ name: 'DocRating', number: '3.5' }]
-
-   $scope.getStars = function(rating) {
-     // Get the value
-     var val = parseFloat(rating);
-     // Turn value into number/100
-     var size = val/5*100;
-     return size + '%';
-   }
-
 	 $scope.getWallet=function(){
      $rootScope.patientWalletdetails ={};
 		 $rootScope.patientTransactiondetails ={};
 		 $state.go('app.patient_payments');
-
-
-			//  patientWalletServices.mytransactionHistory($scope.userPhone).then(function(response){
-      //   $rootScope.patientTransactiondetails=response;
-			 //
-      //   // $state.go('app.patient_profile');
-      //   }).catch(function(error){
-      //     console.log('failure data', error);
-      //   });
    }
 
 	 $scope.balAmnt;

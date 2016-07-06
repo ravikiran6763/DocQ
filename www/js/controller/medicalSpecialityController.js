@@ -5,31 +5,21 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showBackBtn=true;
     $rootScope.checkedValue = false;
 
-
-
     $scope.sendrequesttoonlinedoctors = function(id)
     {
-
-
-        medicalSpecialityService.sendrequesttodoctor(id);
-
-
+      console.log('buttonclickrd');
+      $ionicLoading.show();
+      medicalSpecialityService.sendrequesttodoctor(id).then(function(response){
+          // console.log('successfull data', response);
+          $scope.requestSent = response;
+          console.log($scope.requestSent);
+          $ionicLoading.hide();
+       }).catch(function(error){
+           console.log('failure data', error);
+       });;
 
     }
 
-
-
-
-    $ionicLoading.show(
-      {
-        content: '',
-        // template:'Fetching Specialities..',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 100,
-        showDelay: 0
-      }
-    );
     medicalSpecialityService.getMedicalSpecialist()
     .then(function(response){
         console.log('successfull data', response);
