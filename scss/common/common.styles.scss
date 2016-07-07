@@ -3,7 +3,6 @@
 /* for Rting Stars*/
 
 .rating {
-
     color: #a9a9a9;
     margin: -13px;
     padding: 0;
@@ -13,19 +12,19 @@ ul.rating {
     display: inline-block;
 }
 .rating li {
-    list-style-type: none;
-    display: inline-block;
-    padding: 1px;
-    text-align: center;
-    font-weight: bold;
-    cursor: pointer;
-    border: none !important;
-    font-size: 5vw
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: none !important;
+  font-size: 4vw;
 }
 .rating .filled {
     color: #ffb14c;
     border: none !important;
-    font-size: 5vw;
+    font-size: 4vw;
 }
 
 /* for Rting Stars*/

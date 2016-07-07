@@ -86,6 +86,21 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
+				// console.log($scope.myRating);
+			}).catch(function(error){
+				console.log('failure data', error);
+		});
+
+		//to fetch the overall Rating o0f a doctor
+
+		rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
+			$rootScope.myDocRating = response;
+				$scope.myRating=$rootScope.myDocRating;
+				$scope.ratings = [{
+	 		        current: $scope.myRating,
+	 		        max: 5
+	 		    }, ];
+				console.log($scope.myRating);
 			}).catch(function(error){
 				console.log('failure data', error);
 		});

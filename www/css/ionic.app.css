@@ -9842,12 +9842,12 @@ ul.rating {
   font-weight: bold;
   cursor: pointer;
   border: none !important;
-  font-size: 5vw; }
+  font-size: 4vw; }
 
 .rating .filled {
   color: #ffb14c;
   border: none !important;
-  font-size: 5vw; }
+  font-size: 4vw; }
 
 /* for Rting Stars*/
 .bar .buttons-left span {
@@ -10491,22 +10491,13 @@ ion-side-menu .heading-item .message {
   content: url("../img/dq_arrow_grey_forward_540x960.png"); }
 
 .ion-android-add-circle::before {
-  content: url("../img/dq_notifier_online_540x960.png");
-  padding: 30px 10px;
-  padding-top: 0px;
-  padding-left: 100px; }
+  content: url("../img/dq_notifier_online_540x960.png"); }
 
 .ion-android-arrow-dropdown-circle::before {
-  content: url("../img/dq_notifier_offline_540x960.png");
-  padding: 30px 10px;
-  padding-top: 0px;
-  padding-left: 100px; }
+  content: url("../img/dq_notifier_offline_540x960.png"); }
 
 .ion-android-alert::before {
-  content: url("../img/dq_notifier_offline2_540x960.png");
-  padding: 0 0 27px 0;
-  padding-top: 0;
-  padding-left: 100px; }
+  content: url("../img/dq_notifier_offline2_540x960.png"); }
 
 .ion-android-wifi::before {
   content: url("../img/dq_icon_small_payments_540x960.png"); }
@@ -10524,6 +10515,20 @@ ion-side-menu .heading-item .message {
 
 .ion-ios-star-outline::before {
   color: black; }
+
+.ion-android-favorite-outline:before {
+  content: "";
+  font-size: 6vw;
+  margin: -3px;
+  color: teal;
+  float: right; }
+
+.ion-android-favorite:before {
+  content: "";
+  font-size: 6vw;
+  margin: -3px;
+  color: teal;
+  float: right; }
 
 .pateint-view .top-content {
   height: 40%;
@@ -10600,7 +10605,7 @@ ion-side-menu .heading-item .message {
       margin-left: 2vw;
       font-size: 3vw; }
   .mydoctor-profile-view .ratingContainer {
-    position: relative;
+    position: absolute;
     margin-top: -8px !important;
     margin-left: 42vw !important; }
 
@@ -10618,17 +10623,9 @@ ion-side-menu .heading-item .message {
       background-color: #dedad7 !important;
       margin-top: 4vh; }
     .doctor-profile-view .profile-img i {
-      padding: 30px 10px;
-      padding-top: 29px;
-      padding-left: 78px;
-      position: relative; }
-    .doctor-profile-view .profile-img .doctor-online {
-      padding: 10px 10px 10px 10px;
-      margin-left: 23vw;
-      margin-top: 4vh;
-      background-color: #adcb3a !important;
-      border-radius: 50%;
-      width: 2vw; }
+      position: absolute;
+      padding-left: 79px;
+      padding-top: 30px; }
   .doctor-profile-view .profile-info {
     margin: 0 auto;
     width: 90%;
@@ -11144,10 +11141,32 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .summary-view ion-content {
     overflow: scroll !important; }
+  .summary-view .row {
+    padding: 15px !important; }
+  .summary-view .cord {
+    margin: 0 4px 16px 4px; }
+  .summary-view .badge.badge-positive {
+    background-color: #e81616;
+    color: #fff;
+    margin: -4px;
+    float: right; }
+  .summary-view .badge {
+    background-color: transparent;
+    color: #AAAAAA;
+    z-index: 1;
+    /* display: inline-block; */
+    padding: 1px 5px;
+    /* min-width: 10px; */
+    border-radius: 10px;
+    vertical-align: baseline;
+    /* text-align: center; */
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px; }
   .summary-view .ratingContainer {
     position: relative;
     /* margin-top: -2vh; */
-    float: right;
     /* margin-right: -23px; */
     margin-left: 36vw; }
   .summary-view .top-content {

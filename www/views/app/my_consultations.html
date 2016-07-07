@@ -4,7 +4,7 @@
 
           <a class="item item-avatar item-icon-right"  ng-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" ><!--ui-sref="app.doctorprofile"-->
             <img src="img/doc.jpg">
-            <h2>Dr.{{consult.doctorFname}} {{consult.doctorLname}} <span>{{consult.consultDate}}</span></h2>
+            <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
             <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
           </a>
 

@@ -2,6 +2,7 @@
 {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important;
+
   .profile-img{
 
     width: 30%;
@@ -15,19 +16,11 @@
       margin-top: 4vh
     }
     i{
-    padding: 30px 10px;
-    padding-top: 29px;
-    padding-left: 78px;
-    position: relative;
+      position: absolute;
+      padding-left: 79px;
+      padding-top: 30px;
     }
-    .doctor-online{
-       padding: 10px 10px 10px 10px;
-       margin-left:23vw;
-       margin-top: 4vh;
-       background-color:#adcb3a !important;// $profile-bg;
-       border-radius: 50%;
-       width: 2vw;
-     }
+
   }
   .profile-info{
 
