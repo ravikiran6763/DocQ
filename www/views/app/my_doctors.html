@@ -4,7 +4,7 @@
   </ion-nav-title> -->
   <ion-content  >
     <div>
-          <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.ratingTo}});"><!--ui-sref="app.viewdoctor_profile({ docPhone: doctor.dpno})"-->
+          <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ui-sref="app.viewdoctor_profile({ docPhone: doctor.ratingTo})" ><!--ng-click="viewDocProfile({{doctor.ratingTo}});-->
             <img src="img/doc.jpg">
             <h2 >Dr.{{doctor.doctorFname | capitalize }} {{doctor.doctorLname | capitalize}}</h2>
             <!-- <i class="icon ion-android-add-circle"></i> -->

@@ -3,7 +3,7 @@ DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $ionicPo
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
-
+// console.log(docPhone);
 $ionicLoading.show();
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
@@ -140,6 +140,6 @@ $scope.BalanceForVoiveCall=function()
     console.log('failure data', error);
     });
 
-  
+
 
 })

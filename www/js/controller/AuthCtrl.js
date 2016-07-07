@@ -169,27 +169,12 @@ $scope.playVideo = function() {
   $ionicLoading.show();
   $scope.videoPlayerPopup = $ionicPopup.show({
     title: 'DoctorQuick',
-    template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
-
-    '<a>'+
-    '<div class="row">'+
-      '<div class="col">'+
-        '<div class="video-container">'+
-          '<iframe src="http://www.youtube.com/embed/shGhZzJ7o-g?rel=0" frameborder="0" allowfullscreen></iframe>'+
-
-
-    '</a>',
+    template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 12px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
+        '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/AQ-P5RR7r40" frameborder="0" allowfullscreen></iframe>',
     // templateUrl: "views/app/viewdoctor_profile.html",
     cssClass: 'videoPlayerPopup',
     scope: $scope,
-    // buttons: [
-    // 	{ text: 'Cancel' },
-    // 	{
-    // 	text: '<b>Agree</b>',
-    // 	type: 'button-positive',
-    //
-    // 	},
-    // ]
+
   });
   $ionicLoading.hide();
   $scope.closethis = function()
