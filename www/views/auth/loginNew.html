@@ -20,7 +20,7 @@
                 Login
               </button>
               <div class="conditions" >
-                    <p class="login-fonts text-center">By Logging in you agree to our <a >Terms&Conditions</a></p>
+                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();">Terms&Conditions</a></p>
               </div>
 
               <div class="row remember-forgot">
@@ -43,12 +43,14 @@
 
               <div class="learn-more-content">
                 <a>
-                  <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Learn More</p>
+
+                  <img class="img2"  ng-src="img/button_change.png" ng-click="playVideo()"><br>
+                  <p class="doc_reg" style="text-align: center">Learn More</p>
                 </a>
               </div>
               <div class="register-content-btn-cls">
                 <a  class=""  ui-sref="auth.doctorRegistration">
-                  <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
+                  <img class="img2" class="modal transparent fullscreen-player"  ng-src="img/doc_symbol.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
                 </a>
               </div>
 

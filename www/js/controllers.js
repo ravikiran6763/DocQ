@@ -1,5 +1,7 @@
 // APP
 
+
+
 DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicConfig) {
 	//console.log('sidemenu');
 	$rootScope.docAvailable = false;

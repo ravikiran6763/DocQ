@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $rootScope, $ionicModal, $http, $ionicPopup, patientRegistrationService, doctorRegistrationService, DoctorReg) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $rootScope, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService, DoctorReg) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -129,5 +129,75 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
       ]
     });
   }
+
+  $scope.termsAndCond=function(){
+    // console.log('clicked');
+    $ionicLoading.show();
+    $scope.termsPopup = $ionicPopup.show({
+      title: 'Terms Of Use',
+      template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
+      '<div class="terms-content">'+
+      '<li>Use of the Site. DoctorQuick Private Limited. (“DoctorQuick”, “we”, “us”, or “our”) operates the website located at www.doctorquick.com and other related websites and mobile applications with links to these Terms of Use (collectively, the “Site”). We offer online telehealth services (the “Services”) enabling our members (“Members”) to report their health history and engage healthcare professionals (“Treating Providers”) to obtain medical and healthcare services (“Services”). By accessing and using the Site, you agree to be bound by these Terms of Use and all other terms and policies that appear on the Site. If you do not wish to be bound by any of these Terms of Use, you may not use the Site or the Services.</li>'+
+      '<br><li>Use of the Site. DoctorQuick Private Limited. (“DoctorQuick”, “we”, “us”, or “our”) operates the website located at www.doctorquick.com and other related websites and mobile applications with links to these Terms of Use (collectively, the “Site”). We offer online telehealth services (the “Services”) enabling our members (“Members”) to report their health history and engage healthcare professionals (“Treating Providers”) to obtain medical and healthcare services (“Services”). By accessing and using the Site, you agree to be bound by these Terms of Use and all other terms and policies that appear on the Site. If you do not wish to be bound by any of these Terms of Use, you may not use the Site or the Services.</li>'+
+
+      '</div>',
+      // templateUrl: "views/app/viewdoctor_profile.html",
+      cssClass: 'termsPopup',
+      scope: $scope,
+      // buttons: [
+      // 	{ text: 'Cancel' },
+      // 	{
+      // 	text: '<b>Agree</b>',
+      // 	type: 'button-positive',
+      //
+      // 	},
+      // ]
+    });
+
+    $scope.closethis = function()
+    {
+    $scope.termsPopup.close();
+    };
+$ionicLoading.hide();
+  }
+
+  //video popoverOptions
+
+  $scope.clipSrc = 'https://www.youtube.com/watch?v=L83qMnbJ198';
+
+$scope.playVideo = function() {
+  $ionicLoading.show();
+  $scope.videoPlayerPopup = $ionicPopup.show({
+    title: 'DoctorQuick',
+    template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
+
+    '<a>'+
+    '<div class="row">'+
+      '<div class="col">'+
+        '<div class="video-container">'+
+          '<iframe src="http://www.youtube.com/embed/shGhZzJ7o-g?rel=0" frameborder="0" allowfullscreen></iframe>'+
+
+
+    '</a>',
+    // templateUrl: "views/app/viewdoctor_profile.html",
+    cssClass: 'videoPlayerPopup',
+    scope: $scope,
+    // buttons: [
+    // 	{ text: 'Cancel' },
+    // 	{
+    // 	text: '<b>Agree</b>',
+    // 	type: 'button-positive',
+    //
+    // 	},
+    // ]
+  });
+  $ionicLoading.hide();
+  $scope.closethis = function()
+  {
+  $scope.videoPlayerPopup.close();
+  };
+	// $scope.showModal('templates/video-popover.html');
+}
+
 
 })

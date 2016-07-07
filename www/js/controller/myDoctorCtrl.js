@@ -1,7 +1,26 @@
 
 
-DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfig, $http, $state, $localStorage, $ionicLoading, doctorServices) {
+DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfig, $http, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
 
+	$scope.txt = "Test text";
+
+	$scope.getDocRatingsAll = function(doctorPhone) {
+			// alert("Loaded!");
+
+			console.log(doctorPhone);
+
+			rateDoctorServices.getDocRatingsByAll(doctorPhone).then(function(response){
+				$scope.docRating=response;
+				console.log($scope.myConsultedDoctors);
+				$ionicLoading.hide();
+			}).catch(function(error){
+			console.log('failure data', error);
+			});
+			$scope.ratings = [{
+						current: $scope.docRating,
+						max: 5
+				}, ];
+	};
 
 	$rootScope.headerTxt="My Doctors";
 	$rootScope.showBackBtn=true;
@@ -12,15 +31,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	    hideOnStageChange: true
 	});
 
-	$scope.ratings = [{
- 				current: 4,
- 				max: 5
- 		}, ];
+
 
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
     console.log($scope.myConsultedDoctors);
-    $state.go('app.my_doctors');
 		$ionicLoading.hide();
   }).catch(function(error){
   console.log('failure data', error);

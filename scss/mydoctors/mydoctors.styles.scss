@@ -52,7 +52,7 @@ h2{
 }
 p{
   // background-color: red;
-  font-size: 4vw !important;
+  font-size: 3.6vw !important;
     margin-top: 0px !important;
     line-height: 13px;
   span{
@@ -65,8 +65,22 @@ p{
 .ratingContainer{
   position: absolute;
   margin-top: -8px !important;
-  margin-left: 42vw !important;
+  margin-left: 39vw !important;
 }
+.totalReview{
+  font-size: 3vw;
+    float: right;
+    // margin: -21px -29px 0 0;
+        margin: -20px -44px 0 0;
+}
+.item-icon-left .icon:before, .item-icon-right .icon:before {
+  display: block;
+    width: 32px;
+    /* text-align: center; */
+    padding: 15px;
+    margin-top: -6vh;
+}
+
 
 
 }

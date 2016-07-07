@@ -140,4 +140,6 @@ $scope.BalanceForVoiveCall=function()
     console.log('failure data', error);
     });
 
+  
+
 })
