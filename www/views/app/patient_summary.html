@@ -2,17 +2,26 @@
 
   <ion-content>
     <!-- &#9734; prints star character-->
-    <ul class="top-content" ng-repeat="consult in consultedDocDetails">
+    <ul class="top-content" ng-repeat="consult in myDoctor">
       <li>
         <div class="profile-img">
           <img src="./img/doc.jpg">
         </div>
         <div class="name-content">
-          <h2>Dr.{{consult.doctorfname}} {{consult.doctormname}} {{consult.doctorlname}}</h2>
-          <p>{{consult.doc_degrees}}</p><br>
-          <p >Practicing since {{consult.practice_since}} &nbsp;&nbsp;  <span class="stars alignright" ng-repeat="rating in ratings">
+          <h2>Dr.{{consult.doctorFname}} {{consult.doctorMname}} {{consult.doctorLname}}</h2>
+          <p>{{consult.doc_degrees}}</p>
+          <p >Practicing since {{consult.practicingSince}}   <span class="stars alignright" ng-repeat="rating in ratings">
               <span ng-style="{ 'width': getStars(rating.number) }"></span>
-            </span><span>(4.9/27)</span></p>
+            </span>
+            <!-- <span class="stars">(4.9/27)</span> -->
+            <!-- <p> <span class="stars">{$mpercent}</span>    </p> -->
+
+            <div class="ratingContainer">
+              <span class="stars">
+                <span></span>(4.9/27)
+              </span>
+            </div>
+          </p>
 
         </div>
         <div class="next-icon">
@@ -32,7 +41,7 @@
       </div>
       <div class="row">
         <div class="col-75">Ratings</div>
-        <div class="col right-side " ><ionic-ratings ratingsobj='ratingsObject'></ionic-ratings></div>
+        <div class=" right-side " ><ionic-ratings ratingsobj='ratingsObject'></ionic-ratings></div>
       </div>
 
     </div>

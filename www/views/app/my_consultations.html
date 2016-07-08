@@ -1,8 +1,12 @@
 <ion-view class="mypatient-profile-view" cache-view="false" >
 
-  <ion-content ng-repeat="consult in myPatients">
+  <ion-content ng-repeat="consult in myDoctor">
 
+<<<<<<< HEAD
           <a class="item item-avatar item-icon-right"   ng-click="myDoctorsDetails(consult.doctorPhone);" ui-sref="app.patient_summary"><!--ui-sref="app.doctorprofile"-->
+=======
+          <a class="item item-avatar item-icon-right"   ng-click="consultationDetails({{consult.doctorPhone}});" ><!--ui-sref="app.doctorprofile"-->
+>>>>>>> 9b9782726618eec156adacb0ebbb03053e00896f
             <img src="img/doc.jpg">
             <h2>Dr.{{consult.doctorFname}} {{consult.doctorLname}} <span>{{consult.consultDate}}</span></h2>
             <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>

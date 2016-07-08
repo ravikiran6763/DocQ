@@ -85,6 +85,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 				$rootScope.pfname = $stateParams.pfname;
 				$rootScope.plname = $stateParams.plname;
+				$rootScope.pphno = $stateParams.pphno;
+
 
 				 $scope.pfname = $stateParams.pfname;
 				 $scope.plname = $stateParams.plname;
@@ -126,7 +128,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 })
 
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,testresultbydoctor,$cordovaFile) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -146,89 +148,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 
 		$scope.sendprescription = function()
 		{
-
-					var options = {
-
-											quality: 50,
-											saveToPhotoAlbum: true,
-											correctOrientation:true
-							};
-
-
-					//test jpeg image response
-
-					testresultbydoctor.jpegtest().then(movePic,function(response){
-
-							$rootScope.imgURI=response;
-
-
-
-			}).catch(function(error){
-				console.log('failure data', error);
-			});
-
-
-						function movePic(response)
-						{
-
-								 console.log("move pic");
-								 console.log(response);
-								 window.resolveLocalFileSystemURL(response, resolveOnSuccess, resOnError);
-
-						}
-
-
-
-						function resolveOnSuccess(entry)
-						{
-
-								console.log("resolvetosuccess");
-
-								//new file name
-								var newFileName = "veeresh_camera" + ".jpg";
-								var myFolderApp = "Test";
-
-								window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
-										console.log("folder create");
-
-										//The folder is created if doesn't exist
-										fileSys.root.getDirectory( myFolderApp,
-												{create:true, exclusive: false},
-												function(directory) {
-														console.log("move to file..");
-														entry.moveTo(fileSys.root, newFileName,  successMove, resOnError);
-														console.log("release");
-
-												},
-												resOnError);
-								},
-								resOnError);
-						}
-
-
-						function successMove(entry)
-						{
-								//I do my insert with "entry.fullPath" as for the path
-								console.log("success");
-								//this is file path, customize your path
-								console.log(entry);
-						}
-
-					function resOnError(error)
-					{
-
-							console.log(error);
-
-					}
-
-
-
-
-
-
-
-
-
 
 
 
@@ -382,6 +301,40 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope, $ionicConfig,
 						}
 
 
+						if($scope.notes.checkedDiagnosis || $scope.notes.checkedTests || $scope.notes.checkedMedication)
+						{
+
+
+											var prescriptiondetails = {
+
+												docphno : $localStorage.user,
+												patientphno : $rootScope.pphno,
+												diagnosis : $scope.diagnosis,
+												tests : $scope.tests,
+												medication : $scope.medication
+
+
+											};
+
+									//test jpeg image response
+
+									testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
+
+
+								}).catch(function(error){
+									console.log('failure data', error);
+								});
+
+
+
+
+						}
+
+
+
+
+
+
 		}
 
 })
@@ -395,6 +348,11 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 		$scope.toggle = true;
 		$rootScope.headerTxt="Tests";
 		$rootScope.showBackBtn=true;
+
+
+
+		$scope.patientfname = $rootScope.pfname;
+		$scope.patientlname = $rootScope.plname;
 
 
 
@@ -442,6 +400,10 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConf
 		$rootScope.showBackBtn=true;
 		$rootScope.showNotification=false;
 		$rootScope.showBadge=false;
+
+
+		$scope.patientfname = $rootScope.pfname;
+		$scope.patientlname = $rootScope.plname;
 
 
 		$scope.done=function()
@@ -494,6 +456,10 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $ionicCo
 		$rootScope.showBadge=false;
 		$scope.medication={};
 
+
+
+		$scope.patientfname = $rootScope.pfname;
+		$scope.patientlname = $rootScope.plname;
 
 
 		$scope.done=function()
@@ -619,11 +585,7 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicCo
 
 })
 
-DoctorQuickApp.controller('consultSummaryCtrl', function($scope,$rootScope,$ionicConfig, $http) {
-	$rootScope.headerTxt="Summary";
-	$rootScope.showBackBtn=true;
-	$rootScope.checkedValue = false;
-})
+
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
    	$scope.toggle = true;

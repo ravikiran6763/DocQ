@@ -38,6 +38,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchSpecificDoctor'     :'patient/fetchSpecificDoctor.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
+        'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         // 'sendrequesttodoctor' : 'patient/checkMyWalletBalance.php',
 
 
@@ -46,8 +47,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
-        'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
-        'rateMyDoctor':'patient/rateMyDoctor.php',
+        // 'rateMyDoctor':'patient/rateMyDoctor.php',
 
 
         /*DOCTOR APIS*/
@@ -59,14 +59,14 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
-        'testjpegimage' :'prescription/createbase64.php',
+        'testjpegimage' :'prescription/responseasimages.php',
 
 
         'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',
         'changePatientPwd':'DQ/changePatientPwd.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
-        'rateMyDoctor':'DQ/rateMyDoctor.php',
-        'getMyDoctorRatings':'DQ/getMyDoctorRatings.php',
+
+
         'sidemenulist':'DQ/sidemenulist.php',
         'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',
 

@@ -23,8 +23,8 @@ $postdata = file_get_contents("php://input");
 // echo $postdata;
 
 
-$servername = "dq-new.cn214rm1segx.us-west-2.rds.amazonaws.com";
-$username = "Ishikaikku2016";
+$servername = "doctorquick.cy3fske9ly7g.us-west-2.rds.amazonaws.com:3306";
+$username = "doctorquick";
 $password = "aishiteimasu";
 $dbname = "tayokuki";
 
@@ -44,24 +44,22 @@ $dbname = "tayokuki";
 					$doctorPhone = $doctorDetails->doctorPhone;
 
 					$letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-					$specialChar="!@#$%&*()_+=?";
+					// $specialChar="!@#$%&*()_+=?";
 					$numbers = rand(10000, 99999);
 					$prefix = "DQ";
 					$sufix = $letters[rand(0, 51)];
-					$middle=$specialChar[rand(0,12)];
+					// $middle=$specialChar[rand(0,12)];
 					$docPwd = $prefix. $middle . $numbers . $sufix ;
 
 						$docPwd = base64_encode($docPwd);
-
-
-
 						// echo $retval;
-
 				}
-				// echo $docPwd;
+
 				$sql = "INSERT INTO doctorDetails (doctorFname, doctorMname,doctorLname,doctorEmail,doctorPhone,doctorPwd) VALUES ('$doctorFname', '$doctorMname', '$doctorLname','$doctorEmail','$doctorPhone','$docPwd')";
 				// use exec() because no results are returned
 				$conn->exec($sql);
+				$doctoronoff = "INSERT INTO doctor_onoff(doctor_phno,onoff) values ('$doctorPhone',0)";
+				$conn->exec($doctoronoff);
 				echo "New record created successfully";
 		}
 		catch(PDOException $e)
@@ -70,8 +68,5 @@ $dbname = "tayokuki";
 		}
 
 $conn = null;
-
-
-
 
 ?>

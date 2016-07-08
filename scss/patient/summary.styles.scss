@@ -1,9 +1,17 @@
 .summary-view
 {
+
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important;
   ion-content{
     overflow: scroll !important;
+  }
+  .ratingContainer{
+    position: relative;
+    /* margin-top: -2vh; */
+    float: right;
+    /* margin-right: -23px; */
+    margin-left: 36vw;
   }
   .top-content
   {
@@ -107,18 +115,19 @@
     }
   }
 
-  span.stars, span.stars span {
-    display: block;
-   /* Download the star image here: http://stackoverflow.com/questions/1987524/turn-a-number-into-star-rating-display-using-jquery-and-css */
-   background: url('../img/stars.png') 0 -16px repeat-x;
-    // background: url('https://apppresser.com/wp-content/uploads/2015/11/stars.png') 0 -16px repeat-x;
-    width: 80px;
-    height: 16px;
-}
 
-span.stars span {
-    background-position: 0 0;
-}
+  span.stars, span.stars span {
+      display: block;
+      background: url('../img/stars2.png') 0 -16px repeat-x;
+      width: 80px;
+      height: 16px;
+
+  }
+
+  span.stars span {
+      background-position: 0 0;
+  }
+
 
 .alignright {
   float:left;

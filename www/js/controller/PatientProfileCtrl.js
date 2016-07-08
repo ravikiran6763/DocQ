@@ -32,6 +32,7 @@ console.log('failure data', error);
 
 							$cordovaCamera.getPicture(options).then(movePic,function(imageData) {
 									$rootScope.imgURI=imageData;
+								
 							}, function(err) {
 									console.error(err);
 							});
@@ -50,6 +51,7 @@ console.log('failure data', error);
 							function resolveOnSuccess(entry)
 							{
 
+									console.log(entry);
 									console.log("resolvetosuccess");
 
 					        //new file name
