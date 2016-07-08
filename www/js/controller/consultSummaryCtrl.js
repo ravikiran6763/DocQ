@@ -1,13 +1,14 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootScope,$ionicConfig, $http, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
 		 console.log($localStorage.consultedDoctor);
-
+$ionicLoading.show();
 myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
+		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);
 });

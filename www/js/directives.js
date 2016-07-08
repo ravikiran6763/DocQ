@@ -444,6 +444,30 @@ angular.module('DoctorQuick.directives', [])
 
     }
   };
+})
+
+.directive('autoNext', function() {
+    return {
+       restrict: 'A',
+       link: function(scope, element, attr, form) {
+           var otpBox = parseInt(attr.otpBox);
+           var maxLength = parseInt(attr.ngMaxlength);
+           element.on('keypress', function(e) {
+               if (element.val().length > maxLength-1) {
+                  var next = angular.element(document.body).find('[otpBox=' + (otpBox+1) + ']');
+                  if (next.length > 0) {
+                      next.focus();
+                      return next.triggerHandler('keypress', { which: e.which});
+                  }
+                  else  {
+                      return false;
+                  }
+               }
+               return true;
+           });
+
+       }
+    }
 });
 
 ;

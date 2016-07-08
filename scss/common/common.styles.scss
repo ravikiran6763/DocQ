@@ -67,13 +67,18 @@ ul.rating {
     bottom: 0;
     border-top-width: 1px;
     border-bottom-width: 0;
-    background-position: top;
-    height: 44px;
-    background-color: #20242c;
+    /* background-position: top; */
+    height: 12%;
+    background-color: transparent;
+}
 
-		h5{
-			color: #cccccc;
-		}
+
+.bar {
+    border: none;
+    /* background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%); */
+    background-position: bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
 }
 
 .notificationOn{
@@ -458,4 +463,21 @@ img-crop {
 .item-checkbox.item-checkbox-right {
   /*the default item padding*/
   padding: 15px;
+}
+.show-hide-input{
+  width: 80%;
+  margin: 0 auto;
+  // padding-left: 4vw;ßßßßßß
+  // height: 100%;
+  input[type="text"]{
+    font-size: 4vw;
+    padding-top: 2vh;
+    padding-left: 4vw;
+    /* margin-top: 1vh; */
+    height: 9%;
+    font-family: Ubuntu,bold,sans-serif !important;
+    margin: 0 auto;
+    width: 100%;
+    // height: 100%;
+  }
 }

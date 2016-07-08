@@ -6,6 +6,14 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
     $scope.PatientDetail = {};
     $scope.Doctor = {};
 
+//autofocus using jquery
+$('input[maxlength][tabindex]').on('keyup', function() {
+    var $this = $(this);
+    if ($this.val().length == $this.attr('maxlength')) {
+        $("input[maxlength][tabindex='" + (parseInt($this.attr('tabindex')) + 1) + "']").focus();
+    }
+});
+
 //patient Registration forms.
 
   $scope.registerPatient=function()
@@ -21,16 +29,16 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
   $scope.otp = "";
   $scope.goToNextView = function ()
   {
-      $scope.phoneno = $scope.PatientDetail.patient_mob;
-      patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-      {
-          $scope.otp=response;
-        console.log($scope.otp);
-        })
-        .catch(function(error)
-        {
-            console.log('failure data', error);
-        });
+      // $scope.phoneno = $scope.PatientDetail.patient_mob;
+      // patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+      // {
+      //     $scope.otp=response;
+      //   console.log($scope.otp);
+      //   })
+      //   .catch(function(error)
+      //   {
+      //       console.log('failure data', error);
+      //   });
       $state.go('auth.patient_reg3');
   }
   $scope.resendOtp = function()
@@ -170,7 +178,7 @@ $scope.playVideo = function() {
   $scope.videoPlayerPopup = $ionicPopup.show({
     title: 'DoctorQuick',
     template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 12px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
-        '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/ZnWIc3EYGrg" frameborder="0" allowfullscreen></iframe>',
+        '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/ZnWIc3EYGrg" frameborder="0" allowfullscreen autoplay></iframe>',
     // templateUrl: "views/app/viewdoctor_profile.html",
     cssClass: 'videoPlayerPopup',
     scope: $scope,

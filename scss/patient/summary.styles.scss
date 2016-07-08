@@ -9,8 +9,11 @@
   .row{
     padding: 15px !important;
   }
-  .cord{
-    margin: 0 4px 16px 4px;
+  .card{
+    
+    height: 26%;
+    width: 94%;
+    margin: 0 auto;
   }
     .badge.badge-positive {
       background-color: #e81616;
@@ -120,6 +123,9 @@
       font-family: inherit;
       text-align: center;
     }
+    p {
+    margin: 12px 11px 12px;
+    }
   }
   .query-text{
     width: 92%;
@@ -143,19 +149,7 @@
       font-family: inherit;
     }
   }
-  //
-  //
-  // span.stars, span.stars span {
-  //     display: block;
-  //     background: url('../img/stars2.png') 0 -16px repeat-x;
-  //     width: 80px;
-  //     height: 16px;
-  //
-  // }
-  //
-  // span.stars span {
-  //     background-position: 0 0;
-  // }
+
 
 
 .alignright {

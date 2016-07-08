@@ -24,33 +24,37 @@
      <div class="row" >
          <div class="col">
            <label class="item item-input">
-              <input type='text' mask-clean='true' ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true" shiftInput />
+              <!-- <input type='number'   maxlength="1" tabindex="1"  ng-model='otpentered.OTP1'   /> -->
+              <input type='number' mask-clean='true'  maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true" maxlength="1" tabindex="1" />
+
                <!-- <input type="number" placeholder="1" ng-maxlength="1"> -->
            </label>
          </div>
          <div class="col">
            <label class="item item-input" >
-               <input type='text' mask-clean='true' ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true" shiftInput/>
+             <!-- <input type='number'   maxlength="1" tabindex="2"  ng-model='otpentered.OTP1'   /> -->
+
+               <input type='number' mask-clean='true'  maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true"  maxlength="1" tabindex="2"/>
            </label>
          </div>
          <div class="col">
            <label class="item item-input" >
-               <input type='text' mask-clean='true' ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" shiftInput/>
+               <input type='number' mask-clean='true'  maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" maxlength="1" tabindex="3" />
            </label>
          </div>
          <div class="col">
            <label class="item item-input">
-               <input type='text' mask-clean='true'  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" shiftInput/>
+               <input type='number' mask-clean='true'  maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" maxlength="1" tabindex="4"/>
            </label>
          </div>
      </div>
 
   </div>
 
-       <div class="form-content-2">
+       <!-- <div class="form-content-2">
 
 
-      </div>
+      </div> -->
     <div class="bottom-content">
 
       <div class="button-bar ">
@@ -60,7 +64,7 @@
 
        <h4>Din't receive a text from DoctorQuick? <p>Tap Resend.</p></h4>
        <h2 > By Signing in, I agree to DoctorQuicks </h2>
-       <h3 class="link"><a href="#">Terms and Conditions</a> </h3>
+       <h3 class="link"><a ng-click="termsAndCond();">Terms and Conditions</a> </h3>
      </div>
 </ion-content>
 </ion-view>

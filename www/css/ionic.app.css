@@ -9889,11 +9889,16 @@ ul.rating {
   bottom: 0;
   border-top-width: 1px;
   border-bottom-width: 0;
-  background-position: top;
-  height: 44px;
-  background-color: #20242c; }
-  .bar-footer h5 {
-    color: #cccccc; }
+  /* background-position: top; */
+  height: 12%;
+  background-color: transparent; }
+
+.bar {
+  border: none;
+  /* background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%); */
+  background-position: bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat; }
 
 .notificationOn {
   margin-top: 1vh; }
@@ -10200,6 +10205,19 @@ img-crop {
   /*the default item padding*/
   padding: 15px; }
 
+.show-hide-input {
+  width: 80%;
+  margin: 0 auto; }
+  .show-hide-input input[type="text"] {
+    font-size: 4vw;
+    padding-top: 2vh;
+    padding-left: 4vw;
+    /* margin-top: 1vh; */
+    height: 9%;
+    font-family: Ubuntu,bold,sans-serif !important;
+    margin: 0 auto;
+    width: 100%; }
+
 .auth-outer {
   background-color: transparent !important;
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -10242,7 +10260,7 @@ img-crop {
     color: #848484; }
 
 .walkthrough-view ion-content {
-  overflow: visible; }
+  overflow: scroll !important; }
 
 .walkthrough-view .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
@@ -10256,28 +10274,37 @@ img-crop {
 
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 12vh !important; }
+  margin-top: 18vh !important; }
+
+.walkthrough-view .form-group {
+  margin-bottom: 2vh; }
 
 .walkthrough-view .logoContainer {
-  margin-top: 5vh;
+  margin-top: 1vh;
   text-align: center;
   height: 20%; }
   .walkthrough-view .logoContainer img {
-    width: 70%; }
+    width: 75%;
+    margin-top: 4vh; }
 
-.walkthrough-view input[type="text"] {
+.walkthrough-view input[type="number"] {
   font-size: 4vw;
-  padding-top: 0px;
-  margin-top: 1vh;
+  padding-left: 4vw;
+  padding-top: 2vh;
+  margin: 0 auto;
   font-family: Ubuntu,bold,sans-serif !important;
-  height: 25px; }
+  height: 9%;
+  width: 80%; }
 
 .walkthrough-view input[type="password"] {
   font-size: 4vw;
-  padding-top: 0px;
-  margin-top: 1vh;
-  height: 25px;
-  font-family: Ubuntu,bold,sans-serif !important; }
+  padding-top: 2vh;
+  padding-left: 4vw;
+  /* margin-top: 1vh; */
+  height: 9%;
+  font-family: Ubuntu,bold,sans-serif !important;
+  margin: 0 auto;
+  width: 100%; }
 
 .walkthrough-view .phone_field {
   width: 80%;
@@ -10356,6 +10383,33 @@ img-crop {
 
 .walkthrough-view .spacer {
   margin: 5% auto; }
+
+.walkthrough-view .row {
+  padding: 0 !important; }
+
+.walkthrough-view .leftbuttons {
+  float: left;
+  width: 50%;
+  margin: 0 auto; }
+  .walkthrough-view .leftbuttons p {
+    margin: 0 0 10px;
+    color: aliceblue; }
+  .walkthrough-view .leftbuttons img {
+    border: 0;
+    /* margin: 0 auto; */
+    margin-left: 18vw; }
+
+.walkthrough-view .rightbuttons {
+  float: left;
+  width: 50%;
+  margin: 0 auto; }
+  .walkthrough-view .rightbuttons p {
+    margin: 0 0 10px;
+    color: aliceblue; }
+  .walkthrough-view .rightbuttons img {
+    border: 0;
+    /* margin: 0 auto; */
+    margin-left: 18vw; }
 
 .login-view [ng\:cloak], .login-view [ng-cloak], .login-view [data-ng-cloak], .login-view [x-ng-cloak], .login-view .ng-cloak, .login-view .x-ng-cloak {
   display: none !important; }
@@ -10596,6 +10650,14 @@ ion-side-menu .heading-item .message {
   color: teal;
   float: right; }
 
+.ion-eye:before {
+  content: "";
+  margin: -5vh 11vw 0 0; }
+
+.ion-eye-disabled:before {
+  content: "\f306";
+  margin: -5vh 11vw 0 0; }
+
 .pateint-view .top-content {
   height: 40%;
   padding-top: 10px;
@@ -10635,9 +10697,7 @@ ion-side-menu .heading-item .message {
     margin-top: 0vh;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #cbcbcb;
-    border-width: auto;
-    padding-bottom: 2px; }
+    border-width: auto; }
     .mydoctor-profile-view .item-avatar img {
       margin-top: -1vh !important;
       padding: 2px;
@@ -10666,7 +10726,7 @@ ion-side-menu .heading-item .message {
   .mydoctor-profile-view p {
     font-size: 3.6vw !important;
     margin-top: 0px !important;
-    line-height: 13px; }
+    line-height: 2.5vh; }
     .mydoctor-profile-view p span {
       margin-left: 2vw;
       font-size: 3vw; }
@@ -11219,8 +11279,10 @@ ion-side-menu .heading-item .message {
     overflow: scroll !important; }
   .summary-view .row {
     padding: 15px !important; }
-  .summary-view .cord {
-    margin: 0 4px 16px 4px; }
+  .summary-view .card {
+    height: 26%;
+    width: 94%;
+    margin: 0 auto; }
   .summary-view .badge.badge-positive {
     background-color: #e81616;
     color: #fff;
@@ -11301,6 +11363,8 @@ ion-side-menu .heading-item .message {
       font-size: 4vw;
       font-family: inherit;
       text-align: center; }
+    .summary-view .suggestion p {
+      margin: 12px 11px 12px; }
   .summary-view .query-text {
     width: 92%;
     margin: 0 auto; }
@@ -12348,7 +12412,7 @@ ion-side-menu .heading-item .message {
     overflow: scroll !important; }
   .doc-reg-1-view .top-content {
     width: 80%;
-    height: 25%;
+    height: 15%;
     margin: 0 auto;
     text-align: center; }
     .doc-reg-1-view .top-content p {
@@ -12454,7 +12518,7 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .form-content .item-input {
       margin-bottom: 2vh !important; }
   .patient-reg-1-view .regForm {
-    margin-top: 10vh; }
+    margin-top: 6vh !important; }
   .patient-reg-1-view .bottom-content {
     width: 80%;
     height: 35%;
@@ -12471,6 +12535,8 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .bottom-content h2 {
       line-height: 0 !important;
       margin-top: 0; }
+    .patient-reg-1-view .bottom-content a {
+      text-decoration: underline; }
 
 .patient-reg-3-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12478,7 +12544,6 @@ ion-side-menu .heading-item .message {
     overflow: scroll !important; }
   .patient-reg-3-view .back_button {
     margin: 0 auto;
-    height: 15%;
     margin-left: 5vw !important;
     margin-top: 5vh !important; }
   .patient-reg-3-view .top-content {
