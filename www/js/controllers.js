@@ -6,10 +6,11 @@ DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicC
 	//console.log('sidemenu');
 	$rootScope.docAvailable = false;
 
-})
+});
 
 
 DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$localStorage, $ionicConfig, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
+
 		$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
 		$rootScope.showNotification=true;
@@ -20,7 +21,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 
 	$rootScope.changeStatus = function (e)
 	{
-		$scope.checkedValue = "";
+			$scope.checkedValue = "";
+
 				if(e)
 				{
 						$scope.checkedValue = true;
@@ -63,10 +65,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 });
 
 
-})
+});
 
 
-<<<<<<< HEAD
+
 DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
 
 			  $scope.toggle = true;
@@ -101,9 +103,12 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 
 				 $scope.acceptclicked = function()
-				 {
-=======
->>>>>>> 190b264e3975079a3788e0512bc83e61f52c0aa2
+				 {}
+
+
+});
+
+
 
 
 
@@ -127,10 +132,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
 		$scope.sendprescription = function()
 		{
-
-
-
-
 
 
 					$scope.diagnosis = testresultbydoctor.getdiagnosis();
@@ -316,7 +317,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
 		}
 
-})
+});
 
 DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
 
@@ -368,7 +369,7 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 
 
 
-})
+});
 
 
 DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConfig,testresultbydoctor) {
@@ -420,7 +421,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConf
 
 
 
-})
+});
 
 
 
@@ -470,7 +471,7 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $ionicCo
 
 
 
-})
+});
 
 
 
@@ -482,14 +483,14 @@ DoctorQuickApp.controller('doc_customercareCtrl', function($scope,$rootScope, $i
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 
-})
+});
 
 DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 	$scope.user = {};
 	$scope.doSignUp = function(){
 		$state.go('app.patient_home');
 	};
-})
+});
 
 
 //newly added for DQ
@@ -505,7 +506,7 @@ $scope.reg_doc=function(){
 $rootScope.showBackBtn=true;
 
 
-})
+});
 
 
 
@@ -519,7 +520,7 @@ DoctorQuickApp.controller('reviewCtrl', function($scope,$rootScope, $ionicConfig
 		$rootScope.showDocStatus=false;
 
 
-})
+});
 
 DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig, $http) {
 
@@ -532,7 +533,7 @@ DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig,
 	// $rootScope.showBackBtn=true;termsCtrl
 
 
-})
+});
 
 
 DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ionicConfig, $http) {
@@ -540,7 +541,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ion
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
-})
+});
 
 
 DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$ionicConfig, $http) {
@@ -555,14 +556,14 @@ DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$ionic
 
 	   };
 
-})
+});
 
 DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicConfig, $http) {
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
-})
+});
 
 
 
@@ -574,5 +575,4 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 		$rootScope.showNotification=false;
 
 
-})
-;
+});
