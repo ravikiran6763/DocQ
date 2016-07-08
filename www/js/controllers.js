@@ -60,13 +60,11 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 
 }).catch(function(error){
 	console.log('failure data', error);
-});
+})
 
 
 })
 
-
-<<<<<<< HEAD
 DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
 
 			  $scope.toggle = true;
@@ -102,9 +100,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 				 $scope.acceptclicked = function()
 				 {
-=======
->>>>>>> 190b264e3975079a3788e0512bc83e61f52c0aa2
-
 
 
 DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,testresultbydoctor,$cordovaFile) {
@@ -496,13 +491,13 @@ DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 
 
 DoctorQuickApp.controller('DocRegController', function($scope,$rootScope, $state,data) {
-//alert('hello');
-$scope.doc={};
-$scope.reg_doc=function(){
-	data.doctor_reg($scope.doc.doc_fname,$scope.doc.doc_mname,$scope.doc.doc_lname);
+			//alert('hello');
+			$scope.doc={};
+			$scope.reg_doc=function(){
+				data.doctor_reg($scope.doc.doc_fname,$scope.doc.doc_mname,$scope.doc.doc_lname);
 
-}
-$rootScope.showBackBtn=true;
+			}
+			$rootScope.showBackBtn=true;
 
 
 })
