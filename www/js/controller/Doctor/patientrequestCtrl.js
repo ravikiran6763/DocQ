@@ -7,14 +7,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 				$scope.toggleText = "Accept";
 
-	//  $scope.$watch('toggle', function(){
-	// 		 $scope.toggleText = $scope.toggle ? 'Accept' : 'Accepted';
-	 //
-	// 		 console.log('accpet clicked');
-	 //
-	 //
-	//  });
-
 				$rootScope.pfname = $stateParams.pfname;
 				$rootScope.plname = $stateParams.plname;
 				 $scope.pfname = $stateParams.pfname;

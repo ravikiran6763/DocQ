@@ -1,9 +1,13 @@
-DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $ionicPopup, $timeout, $rootScope, $localStorage, $ionicLoading, doctorServices) {
+DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup, $timeout, $rootScope, $localStorage, $ionicLoading, doctorServices) {
 
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
 // console.log(docPhone);
+
+$rootScope.docPhone = $stateParams.docPhone;
+console.log($rootScope.docPhone);
+
 $ionicLoading.show();
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;

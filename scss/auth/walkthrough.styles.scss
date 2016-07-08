@@ -1,6 +1,9 @@
 .walkthrough-view
 {
 
+	ion-content{
+		overflow: visible;
+	}
 
 	.submitted input.ng-invalid:not(:focus) {
 	  border:2px solid red;
@@ -11,16 +14,7 @@
 		height: 100%;
 	}
 
-	.platform-android .form-cls {
-		height: auto;
-    margin-top: 16vh !important;
 
-	}
-	.platform-android{
-		.form-cls {
- 		margin-top: 9vh !important;
- 	}
-	}
 
 	.platform-ios .form-cls {
 		height: auto;
@@ -28,7 +22,7 @@
 	}
 	.form-cls {
 		height: auto;
-		margin-top:16vh !important;
+		margin-top:12vh !important;
 	}
 
 		.logoContainer{
@@ -99,7 +93,7 @@
 					background-image: none;
 					// margin-top: -40px !important;
 				 //overflow: hidden !important;
-				 margin-top: 1vh;
+				 margin-top: 3vh;
 
 				 .register-content-btn-cls, .learn-more-content {
 					 text-align: center;

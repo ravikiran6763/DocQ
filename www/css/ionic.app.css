@@ -10241,18 +10241,14 @@ img-crop {
   .toggle-view-anchor * {
     color: #848484; }
 
+.walkthrough-view ion-content {
+  overflow: visible; }
+
 .walkthrough-view .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
 
 .walkthrough-view .login-form {
   height: 100%; }
-
-.walkthrough-view .platform-android .form-cls {
-  height: auto;
-  margin-top: 16vh !important; }
-
-.walkthrough-view .platform-android .form-cls {
-  margin-top: 9vh !important; }
 
 .walkthrough-view .platform-ios .form-cls {
   height: auto;
@@ -10260,7 +10256,7 @@ img-crop {
 
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 16vh !important; }
+  margin-top: 12vh !important; }
 
 .walkthrough-view .logoContainer {
   margin-top: 5vh;
@@ -10319,7 +10315,7 @@ img-crop {
   background-color: transparent;
   border: 0px;
   background-image: none;
-  margin-top: 1vh; }
+  margin-top: 3vh; }
   .walkthrough-view .footer-bar-cls .register-content-btn-cls, .walkthrough-view .footer-bar-cls .learn-more-content {
     text-align: center;
     width: 50%;
