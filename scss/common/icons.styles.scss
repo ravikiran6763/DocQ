@@ -61,16 +61,24 @@
 //front page ionicons-font-path
 .ion-android-add-circle::before{
     content: url('../img/dq_notifier_online_540x960.png');
-    padding: 30px 10px;
-    padding-top: 0px;
-    padding-left: 100px;
+    // padding: 30px 10px;
+    // padding-top: 0px;
+    // padding-left: 100px;
 }
+
+.ion-android-arrow-dropdown-circle::before{
+    content: url('../img/dq_notifier_offline_540x960.png');
+    // padding: 30px 10px;
+    // padding-top: 0px;
+    // padding-left: 100px;
+}
+
 
 .ion-android-alert::before{
     content: url('../img/dq_notifier_offline2_540x960.png');
-    padding: 0 16px 7px 0;
-    padding-top: 0;
-    padding-left: 100px;
+    // padding: 0 0 27px 0;
+    // padding-top: 0;
+    // padding-left: 100px;
 }
 
 //Doctor screens
@@ -93,4 +101,27 @@
 }
 .ion-ios-star-outline::before{
   color: black;
+}
+
+.ion-android-favorite-outline:before {
+    content: "";
+    font-size: 6vw;
+    margin: -3px;
+    color: teal;
+    float: right;
+}
+.ion-android-favorite:before {
+    content: "";
+    font-size: 6vw;
+    margin: -3px;
+    color: teal;
+    float: right;
+}
+.ion-eye:before  {
+content: "";
+margin: -5vh 11vw 0 0;
+}
+.ion-eye-disabled:before  {
+content: "\f306";
+margin: -5vh 11vw 0 0;
 }

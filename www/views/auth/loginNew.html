@@ -7,20 +7,29 @@
           </div>
           <form class="login-form" novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
             <div class="form-cls ">
+
+              <div class="form-group">
+
+                <input class="form-control" type="number" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
+
+                <!-- <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  > -->
+              </div>
+              <div class="form-group" show-hide-container>
+
+                <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  >
+
+                <!-- <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  > -->
+              </div>
+
+
               <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
-              <label class="item item-input phone_field text-center control-label" >
-                <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
-                  <input class="form-control" type="number" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
-              </label>
-              <label class="item item-input password_field control-label" show-hide-container>
-                  <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  >
-                  <!-- <p ng-show="loginForm.password.$error.required">* Password is required</p> -->
-              </label>
+
+
               <button class="login_button" ng-click="doLogIn();" >
                 Login
               </button>
               <div class="conditions" >
-                    <p class="login-fonts text-center">By Logging in you agree to our <a >Terms&Conditions</a></p>
+                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();">Terms&Conditions</a></p>
               </div>
 
               <div class="row remember-forgot">
@@ -39,44 +48,45 @@
               </button>
             </div>
 
-            <div class="footer-bar-cls  hide-on-keyboard-open">
+            <!-- <div class="footer-bar-cls  hide-on-keyboard-open">
 
               <div class="learn-more-content">
                 <a>
-                  <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Learn More</p>
+
+                  <img class="img2"  ng-src="img/button_change.png" ng-click="playVideo()"><br>
+                  <p class="doc_reg" style="text-align: center">Learn More</p>
                 </a>
               </div>
               <div class="register-content-btn-cls">
                 <a  class=""  ui-sref="auth.doctorRegistration">
-                  <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
+                  <img class="img2" class="modal transparent fullscreen-player"  ng-src="img/doc_symbol.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
                 </a>
               </div>
 
-            </div>
+            </div> -->
 
           </form>
 
         </ion-content>
+        <ion-footer-bar  >
+          <div class="leftbuttons">
+            <!-- <button class="button">Left Button</button> -->
+            <a>
 
-        <!-- <ion-footer-bar class="row   hide-on-keyboard-open" >
-             <a  class="col" ng-click="openPopover($event)" >
-               <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Learn More</p>
-             </a>
-             <a  class="col"  ui-sref="auth.doctorRegistration">
-               <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
-             </a>
-             <div class="col learn-more-content">
-               <a>
-                 <img class="img2" style="text-align: center" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Learn More</p>
-               </a>
-             </div>
-             <div class="col register-content-btn-cls">
-               <a  class=""  ui-sref="auth.doctorRegistration">
-                 <img class="img2" ng-src="img/button_change.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
-               </a>
-             </div>
+              <img class="img2"  ng-src="img/button_change.png" ng-click="playVideo()"><br>
+              <p class="doc_reg" style="text-align: center">Learn More</p>
+            </a>
+          </div>
 
-       </ion-footer-bar> -->
+          <div class="rightbuttons" >
+            <!-- <button class="button">Right Button</button> -->
+            <a  ui-sref="auth.doctorRegistration">
+              <img class="img2" class="modal transparent fullscreen-player"  ng-src="img/doc_symbol.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
+            </a>
+          </div>
+        </ion-footer-bar>
+
+
 
 
 

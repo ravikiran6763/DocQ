@@ -1,5 +1,7 @@
 // APP
 
+
+
 DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicConfig) {
 	//console.log('sidemenu');
 	$rootScope.docAvailable = false;
@@ -34,7 +36,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 						$scope.checkedValue = false;
 						var whichdoctoronoff = {
 								doctorphno : $localStorage.user,
-								onoff : 0
+								onoff : 2
 					}
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
 				}
@@ -64,6 +66,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 })
 
 
+<<<<<<< HEAD
 DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
 
 			  $scope.toggle = true;
@@ -99,33 +102,9 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 				 $scope.acceptclicked = function()
 				 {
+=======
+>>>>>>> 190b264e3975079a3788e0512bc83e61f52c0aa2
 
-					 	var docpatphno = {
-							accpetcode : "1",
-							doctorphno : $localStorage.user,
-							patientphno : $stateParams.pphno
-						}
-						 $scope.toggleText = "Accepted";
-						 patientrequesttodoctor.accpetedbydoctor(docpatphno);
-
-				 }
-				 $scope.decline = function()
-				 {
-
-							 var docpatphno = {
-							 accpetcode : "2",
-							 doctorphno : $localStorage.user,
-							 patientphno : $stateParams.pphno
-						 }
-
-							patientrequesttodoctor.declinedbydoctor(docpatphno);
-
-
-				 }
-
-
-
-})
 
 
 DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,testresultbydoctor,$cordovaFile) {

@@ -19,8 +19,8 @@ DoctorQuickApp.constant('BASE_URL', {
 .constant('API', {
           /*COMMON APIS*/
 
-        'patientRegistration':'DQ/patientegistration.php',
-        'doctorRegistration':'doctor/doctorRegistration.php',
+        // 'patientRegistration':'DQ/patientegistration.php',
+
         'login': 'common/dqLogin.php',
         'logout': 'logout',
         'ForgotPassword': 'common/forgotPassword.php',
@@ -39,16 +39,14 @@ DoctorQuickApp.constant('BASE_URL', {
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
-        // 'sendrequesttodoctor' : 'patient/checkMyWalletBalance.php',
+        'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
+        'docSummary' : 'patient/docSummary.php',
 
 
         'sendotp' : 'textgurutest.php',
-
-        'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
-        'doctorbydifferentscenario' : 'patient/doctorlist.php',
-        // 'rateMyDoctor':'patient/rateMyDoctor.php',
 
+        // 'rateMyDoctor':'patient/rateMyDoctor.php',
 
         /*DOCTOR APIS*/
         'doctorRegistration'  :'doctor/doctorRegistration.php',

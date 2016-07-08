@@ -4,16 +4,15 @@
 
 		header('Content-type: text/html; charset=utf-8');
 
-		$postdata = file_get_contents("php://input");
+		 $postdata = file_get_contents("php://input");
 		if (isset($postdata))
 		{
 
-
-        $myDocratedValues=json_decode($postdata);
+        $ratedTo=json_decode($postdata);
         $ratedBy = $myDocratedValues->ratedBy;
-        $ratedTo = $myDocratedValues->ratedTo;
+         $ratedTo = $myDocratedValues->ratedTo;
           $rating = array();
-         $sql = "select count(*) as rated from doctorRatings where ratedBy='$ratedBy' and ratingTo='$ratedTo' ";
+          $sql = "select count(*) as rated from doctorRatings where  ratingTo='$ratedTo' ";
 
         $retval = mysql_query( $sql, $dbhandle );
 
@@ -22,7 +21,7 @@
             $count=$row['rated'];
           if($count ==1){
 
-						echo $sql1 = "select rating from doctorRatings where ratedBy='$ratedBy' and ratingTo='$ratedTo' ";
+						 $sql1 = "select rating from doctorRatings where ratingTo='$ratedTo' ";
 
             $retval1 = mysql_query( $sql1, $dbhandle );
             while($row = mysql_fetch_array($retval1))

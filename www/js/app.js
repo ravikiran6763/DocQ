@@ -377,9 +377,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/searchresultbydoctor.html"
-
-
-
       }
     }
   })
@@ -400,7 +397,7 @@ $stateProvider
 
 //doctor profile
   .state('app.viewdoctor_profile', {
-    url: "/viewdoctor_profile/",
+    url: "/viewdoctor_profile/:rating/:ratingCount/",
     views: {
       'menuContent': {
         templateUrl: "views/app/viewdoctor_profile.html",

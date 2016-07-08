@@ -6,10 +6,41 @@
   ion-content{
     overflow: scroll !important;
   }
+  .row{
+    padding: 15px !important;
+  }
+  .card{
+    
+    height: 26%;
+    width: 94%;
+    margin: 0 auto;
+  }
+    .badge.badge-positive {
+      background-color: #e81616;
+      color: #fff;
+      margin: -4px;
+      float: right;
+
+    }
+  .badge{
+    background-color: transparent;
+    color: #AAAAAA;
+    z-index: 1;
+    /* display: inline-block; */
+    padding: 1px 5px;
+    /* min-width: 10px; */
+    border-radius: 10px;
+    vertical-align: baseline;
+    /* text-align: center; */
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+  }
   .ratingContainer{
     position: relative;
     /* margin-top: -2vh; */
-    float: right;
+    // float: right;
     /* margin-right: -23px; */
     margin-left: 36vw;
   }
@@ -55,6 +86,7 @@
         .ion-chevron-right:before {
           color: #ffffff;
           font-size: 1.8em;
+          padding: 25px 0 0 0;
         }
       }
 
@@ -91,6 +123,9 @@
       font-family: inherit;
       text-align: center;
     }
+    p {
+    margin: 12px 11px 12px;
+    }
   }
   .query-text{
     width: 92%;
@@ -116,22 +151,12 @@
   }
 
 
-  span.stars, span.stars span {
-      display: block;
-      background: url('../img/stars2.png') 0 -16px repeat-x;
-      width: 80px;
-      height: 16px;
-
-  }
-
-  span.stars span {
-      background-position: 0 0;
-  }
-
 
 .alignright {
   float:left;
 }
+
+
 
 // favorite consultedDocDetails
 }

@@ -6,7 +6,9 @@
         <div><h2>{{desc.special}}</h2>
         <p>{{desc.description}}</p>
         </div>
-        <i class="icon ion-android-alert"></i>
+        <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == 0}}"></i>
+        <i class="icon ion-android-add-circle" ng-show="{{desc.noofonlinedoctors >= 1}}"></i>
+
     </a>
 
     <p class="description"> {{desc.description}} </p>

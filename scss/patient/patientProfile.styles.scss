@@ -3,28 +3,54 @@
   background-color:#e2e2e2 !important;// $profile-bg !important;
   font-family: Ubuntu,bold,sans-serif !important;
 
+  .ratingContainer{
+    position: relative;
+  
+    margin-left: 29vw;
+  }
+
   .profile-info{
     height: 14vh;
+    // background-color: teal;
+    width: 100% !important;
+    // margin-left: 3vw;
+    // margin-top: 2vh;
+    .imageContainer{
+    width: 30% !important;
 
-    width: 80%;
-    margin-left: 3vw;
-    margin-top: 2vh;
+    background-color: blue;
+    float: left;
+      img{
+        width:20vw;
+        border-radius: 60%;
+        padding: 5px;
+        float: left;
+        background-color: #dedbd6 !important;
+        margin-top: 1vh;
+        margin-left: 4vw;
+      }
+    }
+    .profileName{
+      width: 80%;
 
-    img{
-      width:20vw;
-      border-radius: 60%;
-      padding: 5px;
-      float: left;
-      background-color: #dedbd6 !important;
+      float: right;
+      /* margin-left: -11vw; */
+      padding: 20px 0 0 20px;
+
+      h4{
+        font-size: 5vw;
+        // margin-left: 4vw;
+        margin-left: -5vw;
+        text-align: center;
+        padding-top: 3vh;
+        font-family: inherit;
+        font-weight: 500;
+        width: 100%;
+      }
     }
-    h4{
-      font-size: 5vw;
-      margin-left: 17vw;
-      text-align: center;
-      padding-top: 4vh;
-      font-family: inherit;
-      font-weight: 500;
-    }
+
+
+
   }
 
   .profile-details{

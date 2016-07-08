@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices) {
 
 
 	$rootScope.headerTxt='';
@@ -9,6 +9,10 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.doclist = {};
 	$scope.myDocDetail = {};
 
+	$scope.ratings = [{
+ 				current: $scope.myDoctorRatings,
+ 				max: 5
+ 		}, ];
 
 	$scope.searchDoctors=function()
 	{
@@ -32,7 +36,18 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 					console.log('failure data', error);
 					});
 
+					$scope.myDoctorRatings={}
+					rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
+				 	$scope.myDoctorRatings=response;//store the response array in doctor details
 
+					$scope.ratings = [{
+								 current: $scope.myDoctorRatings,
+								 max: 5
+						 }, ];
+						 console.log($scope.ratings);
+				  }).catch(function(error){
+				  console.log('failure data', error);
+				  });
 
 		}
 
@@ -167,66 +182,36 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 
 				$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
 				{
-
 						$scope.doclist = {};
-
 							if(specialitywise == null && catwise == null && genderwise == null && languagewise == null)
 							{
-
 								alert('Please Select Atlease One Search Criteria');
-
 							}
 							else
 							{
 								/* Patients Selected One of the Search Criteria */
-
 									var searchdoctor = {
-
 										byspecial:specialitywise,
 										bygender:catwise,
 										bystatus:genderwise,
 										bylanguage:languagewise
-
 									};
-
-
-
-
-
 									searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
-
 										if(Object.keys(response).length)
 										{
 											$state.go('app.doctorsearch');
-
 												 $scope.doclist = response;
 												 console.log(response);
-
-
-
-
 										}
 										else {
 												//$state.go('templates.doctorsearch');
-
 												console.log(response);
 											$rootScope.doclist = "no doctors found";
 										}
-
-
-
 									}).catch(function (response, data, status, header) {
-
 									});
-
-
-
 							}
-
 				}
-
-
-
 
 	//signout
 	$rootScope.signOut = function (){
@@ -347,9 +332,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 			console.log('failure data', error);
 			});
 
-	$scope.myDoctors=function(){
-				$state.go('app.my_doctors')
-	}
 
 	$scope.myConsultations=function(){
 			// $scope.userPhone=LoginService.returnUserPhone();
@@ -366,6 +348,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.ratedTo;
 	$rootScope.myDocRating={};
 
+<<<<<<< HEAD
 
 
 doctorServices.myDoctorsDetails(consultedDoc).then(function(response){
@@ -404,19 +387,12 @@ $scope.ratingsObject = {
      return size + '%';
    }
 
+=======
+>>>>>>> 190b264e3975079a3788e0512bc83e61f52c0aa2
 	 $scope.getWallet=function(){
      $rootScope.patientWalletdetails ={};
 		 $rootScope.patientTransactiondetails ={};
 		 $state.go('app.patient_payments');
-
-
-			//  patientWalletServices.mytransactionHistory($scope.userPhone).then(function(response){
-      //   $rootScope.patientTransactiondetails=response;
-			 //
-      //   // $state.go('app.patient_profile');
-      //   }).catch(function(error){
-      //     console.log('failure data', error);
-      //   });
    }
 
 	 $scope.balAmnt;

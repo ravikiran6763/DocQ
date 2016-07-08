@@ -9824,6 +9824,64 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+/* for Rting Stars*/
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden; }
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
+.centerme {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%; }
+
+.fullscreen-player {
+  max-width: 100%;
+  max-height: 100%;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  overflow: none;
+  position: fixed;
+  right: 0;
+  top: 0; }
+
+.rating {
+  color: #a9a9a9;
+  margin: -13px;
+  padding: 0;
+  font-size: 5vw; }
+
+ul.rating {
+  display: inline-block; }
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  border: none !important;
+  font-size: 4vw; }
+
+.rating .filled {
+  color: #ffb14c;
+  border: none !important;
+  font-size: 4vw; }
+
+/* for Rting Stars*/
 .bar .buttons-left span {
   margin-right: 35px !important; }
 
@@ -9831,11 +9889,16 @@ a.button {
   bottom: 0;
   border-top-width: 1px;
   border-bottom-width: 0;
-  background-position: top;
-  height: 44px;
-  background-color: #20242c; }
-  .bar-footer h5 {
-    color: #cccccc; }
+  /* background-position: top; */
+  height: 12%;
+  background-color: transparent; }
+
+.bar {
+  border: none;
+  /* background-image: linear-gradient(0deg, #ddd, #ddd 50%, transparent 50%); */
+  background-position: bottom;
+  background-size: 100% 1px;
+  background-repeat: no-repeat; }
 
 .notificationOn {
   margin-top: 1vh; }
@@ -9857,6 +9920,44 @@ a.button {
   padding: 0;
   font-size: 15px;
   color: #fff; }
+
+.termsPopup .popup {
+  width: 90%;
+  height: 100%;
+  background-color: #fff;
+  top: 42vh; }
+
+.termsPopup .popup-head {
+  padding: 15px 10px;
+  border-bottom: 0px;
+  text-align: center; }
+
+.termsPopup .popup-title {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  color: #fff; }
+
+.videoPlayerPopup .popup {
+  width: 90%;
+  height: 100%;
+  background-color: transparent;
+  top: 42vh; }
+
+.videoPlayerPopup .popup-head {
+  padding: 15px 10px;
+  border-bottom: 0px;
+  text-align: center; }
+
+.videoPlayerPopup .popup-title {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  color: #fff; }
+
+.videoPlayerPopup .popup-container .popup {
+  max-width: 100%;
+  max-height: 100%; }
 
 .videoPopup .popup {
   width: 85%;
@@ -10104,6 +10205,19 @@ img-crop {
   /*the default item padding*/
   padding: 15px; }
 
+.show-hide-input {
+  width: 80%;
+  margin: 0 auto; }
+  .show-hide-input input[type="text"] {
+    font-size: 4vw;
+    padding-top: 2vh;
+    padding-left: 4vw;
+    /* margin-top: 1vh; */
+    height: 9%;
+    font-family: Ubuntu,bold,sans-serif !important;
+    margin: 0 auto;
+    width: 100%; }
+
 .auth-outer {
   background-color: transparent !important;
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -10145,18 +10259,14 @@ img-crop {
   .toggle-view-anchor * {
     color: #848484; }
 
+.walkthrough-view ion-content {
+  overflow: scroll !important; }
+
 .walkthrough-view .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
 
 .walkthrough-view .login-form {
   height: 100%; }
-
-.walkthrough-view .platform-android .form-cls {
-  height: auto;
-  margin-top: 16vh !important; }
-
-.walkthrough-view .platform-android .form-cls {
-  margin-top: 9vh !important; }
 
 .walkthrough-view .platform-ios .form-cls {
   height: auto;
@@ -10164,28 +10274,37 @@ img-crop {
 
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 16vh !important; }
+  margin-top: 18vh !important; }
+
+.walkthrough-view .form-group {
+  margin-bottom: 2vh; }
 
 .walkthrough-view .logoContainer {
-  margin-top: 5vh;
+  margin-top: 1vh;
   text-align: center;
   height: 20%; }
   .walkthrough-view .logoContainer img {
-    width: 70%; }
+    width: 75%;
+    margin-top: 4vh; }
 
-.walkthrough-view input[type="text"] {
+.walkthrough-view input[type="number"] {
   font-size: 4vw;
-  padding-top: 0px;
-  margin-top: 1vh;
+  padding-left: 4vw;
+  padding-top: 2vh;
+  margin: 0 auto;
   font-family: Ubuntu,bold,sans-serif !important;
-  height: 25px; }
+  height: 9%;
+  width: 80%; }
 
 .walkthrough-view input[type="password"] {
   font-size: 4vw;
-  padding-top: 0px;
-  margin-top: 1vh;
-  height: 25px;
-  font-family: Ubuntu,bold,sans-serif !important; }
+  padding-top: 2vh;
+  padding-left: 4vw;
+  /* margin-top: 1vh; */
+  height: 9%;
+  font-family: Ubuntu,bold,sans-serif !important;
+  margin: 0 auto;
+  width: 100%; }
 
 .walkthrough-view .phone_field {
   width: 80%;
@@ -10223,7 +10342,7 @@ img-crop {
   background-color: transparent;
   border: 0px;
   background-image: none;
-  margin-top: 1vh; }
+  margin-top: 3vh; }
   .walkthrough-view .footer-bar-cls .register-content-btn-cls, .walkthrough-view .footer-bar-cls .learn-more-content {
     text-align: center;
     width: 50%;
@@ -10264,6 +10383,33 @@ img-crop {
 
 .walkthrough-view .spacer {
   margin: 5% auto; }
+
+.walkthrough-view .row {
+  padding: 0 !important; }
+
+.walkthrough-view .leftbuttons {
+  float: left;
+  width: 50%;
+  margin: 0 auto; }
+  .walkthrough-view .leftbuttons p {
+    margin: 0 0 10px;
+    color: aliceblue; }
+  .walkthrough-view .leftbuttons img {
+    border: 0;
+    /* margin: 0 auto; */
+    margin-left: 18vw; }
+
+.walkthrough-view .rightbuttons {
+  float: left;
+  width: 50%;
+  margin: 0 auto; }
+  .walkthrough-view .rightbuttons p {
+    margin: 0 0 10px;
+    color: aliceblue; }
+  .walkthrough-view .rightbuttons img {
+    border: 0;
+    /* margin: 0 auto; */
+    margin-left: 18vw; }
 
 .login-view [ng\:cloak], .login-view [ng-cloak], .login-view [data-ng-cloak], .login-view [x-ng-cloak], .login-view .ng-cloak, .login-view .x-ng-cloak {
   display: none !important; }
@@ -10465,16 +10611,13 @@ ion-side-menu .heading-item .message {
   content: url("../img/dq_arrow_grey_forward_540x960.png"); }
 
 .ion-android-add-circle::before {
-  content: url("../img/dq_notifier_online_540x960.png");
-  padding: 30px 10px;
-  padding-top: 0px;
-  padding-left: 100px; }
+  content: url("../img/dq_notifier_online_540x960.png"); }
+
+.ion-android-arrow-dropdown-circle::before {
+  content: url("../img/dq_notifier_offline_540x960.png"); }
 
 .ion-android-alert::before {
-  content: url("../img/dq_notifier_offline2_540x960.png");
-  padding: 0 16px 7px 0;
-  padding-top: 0;
-  padding-left: 100px; }
+  content: url("../img/dq_notifier_offline2_540x960.png"); }
 
 .ion-android-wifi::before {
   content: url("../img/dq_icon_small_payments_540x960.png"); }
@@ -10492,6 +10635,28 @@ ion-side-menu .heading-item .message {
 
 .ion-ios-star-outline::before {
   color: black; }
+
+.ion-android-favorite-outline:before {
+  content: "";
+  font-size: 6vw;
+  margin: -3px;
+  color: teal;
+  float: right; }
+
+.ion-android-favorite:before {
+  content: "";
+  font-size: 6vw;
+  margin: -3px;
+  color: teal;
+  float: right; }
+
+.ion-eye:before {
+  content: "";
+  margin: -5vh 11vw 0 0; }
+
+.ion-eye-disabled:before {
+  content: "\f306";
+  margin: -5vh 11vw 0 0; }
 
 .pateint-view .top-content {
   height: 40%;
@@ -10532,13 +10697,19 @@ ion-side-menu .heading-item .message {
     margin-top: 0vh;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #cbcbcb;
-    border-width: auto;
-    padding-bottom: 2px; }
+    border-width: auto; }
     .mydoctor-profile-view .item-avatar img {
       margin-top: -1vh !important;
       padding: 2px;
-      background-color: #dedad7 !important; }
+      background-color: #dedad7 !important;
+      position: absolute;
+      top: 18px;
+      left: 16px;
+      max-width: 50px;
+      max-height: 50px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%; }
   .mydoctor-profile-view .item-avatar:first-child {
     border-top: none; }
   .mydoctor-profile-view .item-avatar:last-child {
@@ -10550,20 +10721,36 @@ ion-side-menu .heading-item .message {
     font-size: 5vw;
     font-weight: 400;
     color: #4b4b4b;
-    margin-top: -1vh !important; }
+    margin-top: -1vh !important;
+    line-height: 4vh; }
   .mydoctor-profile-view p {
-    font-size: 4vw !important;
-    margin-top: 0px !important; }
+    font-size: 3.6vw !important;
+    margin-top: 0px !important;
+    line-height: 2.5vh; }
     .mydoctor-profile-view p span {
       margin-left: 2vw;
       font-size: 3vw; }
+  .mydoctor-profile-view .ratingContainer {
+    position: absolute;
+    margin-top: -8px !important;
+    margin-left: 39vw !important; }
+  .mydoctor-profile-view .totalReview {
+    font-size: 3vw;
+    float: right;
+    margin: -20px -44px 0 0; }
+  .mydoctor-profile-view .item-icon-left .icon:before, .mydoctor-profile-view .item-icon-right .icon:before {
+    display: block;
+    width: 32px;
+    /* text-align: center; */
+    padding: 15px;
+    margin-top: -6vh; }
 
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
   .doctor-profile-view .profile-img {
     width: 30%;
-    height: 30%;
+    height: 25% !important;
     margin: 0 auto; }
     .doctor-profile-view .profile-img img {
       width: 30vw;
@@ -10571,13 +10758,10 @@ ion-side-menu .heading-item .message {
       padding: 5px;
       background-color: #dedad7 !important;
       margin-top: 4vh; }
-    .doctor-profile-view .profile-img .doctor-online {
-      padding: 10px 10px 10px 10px;
-      margin-left: 23vw;
-      margin-top: 4vh;
-      background-color: #adcb3a !important;
-      border-radius: 50%;
-      width: 2vw; }
+    .doctor-profile-view .profile-img i {
+      position: absolute;
+      padding-left: 86px;
+      padding-top: 24px; }
   .doctor-profile-view .profile-info {
     margin: 0 auto;
     width: 90%;
@@ -10783,7 +10967,6 @@ ion-side-menu .heading-item .message {
       margin-left: 1vw; }
     .sepecility-details-view .item-avatar p {
       font-size: 4vw;
-      margin-top: -1vh;
       margin-left: 1vw; }
     .sepecility-details-view .item-avatar .icon {
       margin-left: 2vw;
@@ -10807,8 +10990,7 @@ ion-side-menu .heading-item .message {
     width: 80vmin;
     margin-left: 10vw !important;
     font-weight: 400;
-    color: white;
-    text-shadow: 1px 1px black !important; }
+    color: white; }
   .sepecility-details-view .top-content {
     height: 75%;
     text-align: center; }
@@ -11095,10 +11277,34 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .summary-view ion-content {
     overflow: scroll !important; }
+  .summary-view .row {
+    padding: 15px !important; }
+  .summary-view .card {
+    height: 26%;
+    width: 94%;
+    margin: 0 auto; }
+  .summary-view .badge.badge-positive {
+    background-color: #e81616;
+    color: #fff;
+    margin: -4px;
+    float: right; }
+  .summary-view .badge {
+    background-color: transparent;
+    color: #AAAAAA;
+    z-index: 1;
+    /* display: inline-block; */
+    padding: 1px 5px;
+    /* min-width: 10px; */
+    border-radius: 10px;
+    vertical-align: baseline;
+    /* text-align: center; */
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px; }
   .summary-view .ratingContainer {
     position: relative;
     /* margin-top: -2vh; */
-    float: right;
     /* margin-right: -23px; */
     margin-left: 36vw; }
   .summary-view .top-content {
@@ -11134,7 +11340,8 @@ ion-side-menu .heading-item .message {
         line-height: 14vh; }
         .summary-view .top-content li .next-icon .ion-chevron-right:before {
           color: #ffffff;
-          font-size: 1.8em; }
+          font-size: 1.8em;
+          padding: 25px 0 0 0; }
       .summary-view .top-content li .name-content {
         float: left;
         padding: 3vh 4vh;
@@ -11156,6 +11363,8 @@ ion-side-menu .heading-item .message {
       font-size: 4vw;
       font-family: inherit;
       text-align: center; }
+    .summary-view .suggestion p {
+      margin: 12px 11px 12px; }
   .summary-view .query-text {
     width: 92%;
     margin: 0 auto; }
@@ -11174,13 +11383,6 @@ ion-side-menu .heading-item .message {
       background-color: #69a33d;
       color: #fff;
       font-family: inherit; }
-  .summary-view span.stars, .summary-view span.stars span {
-    display: block;
-    background: url("../img/stars2.png") 0 -16px repeat-x;
-    width: 80px;
-    height: 16px; }
-  .summary-view span.stars span {
-    background-position: 0 0; }
   .summary-view .alignright {
     float: left; }
 
@@ -11494,20 +11696,6 @@ ion-side-menu .heading-item .message {
       font-size: 4vw; }
     .doctorscreen-view .toggle-item .toggle.toggle-assertive input:checked + .track .status-txt-cls {
       left: 4vw !important; }
-
-.docprofile-view {
-  background-color: #e2e2e2 !important;
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .docprofile-view .top-content {
-    height: 15%;
-    height: 15vh;
-    background-color: red;
-    width: 90%;
-    margin: 0 auto; }
-    .docprofile-view .top-content .profile-image {
-      width: 30%;
-      height: inherit;
-      background-color: blue; }
 
 .doctor-acc-view {
   background-color: #e2e2e2 !important;
@@ -12224,7 +12412,7 @@ ion-side-menu .heading-item .message {
     overflow: scroll !important; }
   .doc-reg-1-view .top-content {
     width: 80%;
-    height: 25%;
+    height: 15%;
     margin: 0 auto;
     text-align: center; }
     .doc-reg-1-view .top-content p {
@@ -12330,7 +12518,7 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .form-content .item-input {
       margin-bottom: 2vh !important; }
   .patient-reg-1-view .regForm {
-    margin-top: 10vh; }
+    margin-top: 6vh !important; }
   .patient-reg-1-view .bottom-content {
     width: 80%;
     height: 35%;
@@ -12347,6 +12535,8 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .bottom-content h2 {
       line-height: 0 !important;
       margin-top: 0; }
+    .patient-reg-1-view .bottom-content a {
+      text-decoration: underline; }
 
 .patient-reg-3-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12354,7 +12544,6 @@ ion-side-menu .heading-item .message {
     overflow: scroll !important; }
   .patient-reg-3-view .back_button {
     margin: 0 auto;
-    height: 15%;
     margin-left: 5vw !important;
     margin-top: 5vh !important; }
   .patient-reg-3-view .top-content {
@@ -13060,24 +13249,37 @@ ion-side-menu .heading-item .message {
 .patientprofile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patientprofile-view .ratingContainer {
+    position: relative;
+    margin-left: 29vw; }
   .patientprofile-view .profile-info {
     height: 14vh;
-    width: 80%;
-    margin-left: 3vw;
-    margin-top: 2vh; }
-    .patientprofile-view .profile-info img {
-      width: 20vw;
-      border-radius: 60%;
-      padding: 5px;
-      float: left;
-      background-color: #dedbd6 !important; }
-    .patientprofile-view .profile-info h4 {
-      font-size: 5vw;
-      margin-left: 17vw;
-      text-align: center;
-      padding-top: 4vh;
-      font-family: inherit;
-      font-weight: 500; }
+    width: 100% !important; }
+    .patientprofile-view .profile-info .imageContainer {
+      width: 30% !important;
+      background-color: blue;
+      float: left; }
+      .patientprofile-view .profile-info .imageContainer img {
+        width: 20vw;
+        border-radius: 60%;
+        padding: 5px;
+        float: left;
+        background-color: #dedbd6 !important;
+        margin-top: 1vh;
+        margin-left: 4vw; }
+    .patientprofile-view .profile-info .profileName {
+      width: 80%;
+      float: right;
+      /* margin-left: -11vw; */
+      padding: 20px 0 0 20px; }
+      .patientprofile-view .profile-info .profileName h4 {
+        font-size: 5vw;
+        margin-left: -5vw;
+        text-align: center;
+        padding-top: 3vh;
+        font-family: inherit;
+        font-weight: 500;
+        width: 100%; }
   .patientprofile-view .profile-details {
     height: 60vh;
     width: 99%;

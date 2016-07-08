@@ -3,27 +3,21 @@
 
     <div class="profile-info">
 
+      <div class="imageContainer">
+        <pre-img >
+          <img ng-src="img/doc.jpg"  ng-click="changePhoto();" spinner-on-load>
+          <!-- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+          <img ng-show="imgURI === undefined" ng-src="img/doc.jpg"> -->
 
-        <!-- <img ng-src="img/doc.jpg" spinner-on-load> -->
+        </pre-img>
 
- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-
-   <div class="button-bar"> <a class="button" ng-click="getPhoto();">Camera</a>  </div>
-
-
-  </ion-content>
-
-
-
-      <!-- <h4>{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}}</h4> -->
-
+      </div>
+      <div class="profileName">
+        <p >{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}}</p>
+      </div>
 
     </div>
 
-      <!-- <div class="button-bar"> <a class="button" ng-click="takePicture();">Take photo</a>  </div> -->
-
-      <!-- <div class="button-bar"> <a class="button" ng-click="choosePicture();">Choose photo</a>  </div> -->
-<!--
     <div class="profile-details">
         <div class="card ">
             <div class="row">
@@ -48,8 +42,8 @@
             </div>
          </div>
     </div>
-    <h3><a href="#">Terms of use</a></h3>
- -->
+    <h3><a  ng-click="termsAndCond()">Terms of use</a></h3>
+
 
   </ion-content>
 </ion-view>

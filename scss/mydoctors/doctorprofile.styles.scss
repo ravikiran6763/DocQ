@@ -2,10 +2,11 @@
 {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important;
+
   .profile-img{
 
     width: 30%;
-    height: 30%;
+    height: 25% !important;
     margin: 0 auto;
     img{
       width: 30vw;
@@ -14,14 +15,12 @@
       background-color:#dedad7 !important;
       margin-top: 4vh
     }
-    .doctor-online{
-       padding: 10px 10px 10px 10px;
-       margin-left:23vw;
-       margin-top: 4vh;
-       background-color:#adcb3a !important;// $profile-bg;
-       border-radius: 50%;
-       width: 2vw;
-     }
+    i{
+      position: absolute;
+    padding-left: 86px;
+    padding-top: 24px;
+    }
+
   }
   .profile-info{
 

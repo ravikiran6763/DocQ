@@ -1,6 +1,6 @@
 {
-  "name": "DocQ",
-  "app_id": "",
+  "name": "proxy-example",
+  "app_id": "bd00003c",
   "gulpStartupTasks": [
     "sass",
     "watch"
@@ -9,8 +9,6 @@
     "www/**/*",
     "!www/lib/**/*"
   ],
-  "name": "proxy-example",
-  "app_id": "",
   "proxies": [
     {
       "path": "/api",

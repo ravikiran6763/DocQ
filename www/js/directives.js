@@ -390,6 +390,84 @@ angular.module('DoctorQuick.directives', [])
             });
         }
     };
+})
+
+.directive('starRating', function () {
+    return {
+        restrict: 'A',
+        template: '<ul class="rating">' +
+            '<li ng-repeat="star in stars" ng-class="star">' +
+            '\u2605' +
+            '</li>' +
+            '</ul>',
+        scope: {
+            ratingValue: '=',
+            max: '='
+        },
+        link: function (scope, elem, attrs) {
+            scope.stars = [];
+            for (var i = 0; i < scope.max; i++) {
+                scope.stars.push({
+                    filled: i < scope.ratingValue
+                });
+            }
+        }
+    }
+})
+
+.directive('iconSwitcher', function() {
+
+  return {
+    restrict : 'A',
+
+    link : function(scope, elem, attrs) {
+
+      var currentState = true;
+
+      elem.on('click', function() {
+        console.log('You clicked me!');
+
+        if(currentState === true) {
+          console.log('It is on!');
+          angular.element(elem).removeClass(attrs.onIcon);
+          angular.element(elem).addClass(attrs.offIcon);
+        } else {
+          console.log('It is off!');
+          angular.element(elem).removeClass(attrs.offIcon);
+          angular.element(elem).addClass(attrs.onIcon);
+        }
+
+        currentState = !currentState
+
+      });
+
+
+    }
+  };
+})
+
+.directive('autoNext', function() {
+    return {
+       restrict: 'A',
+       link: function(scope, element, attr, form) {
+           var otpBox = parseInt(attr.otpBox);
+           var maxLength = parseInt(attr.ngMaxlength);
+           element.on('keypress', function(e) {
+               if (element.val().length > maxLength-1) {
+                  var next = angular.element(document.body).find('[otpBox=' + (otpBox+1) + ']');
+                  if (next.length > 0) {
+                      next.focus();
+                      return next.triggerHandler('keypress', { which: e.which});
+                  }
+                  else  {
+                      return false;
+                  }
+               }
+               return true;
+           });
+
+       }
+    }
 });
 
 ;

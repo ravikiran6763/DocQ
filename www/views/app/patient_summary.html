@@ -8,41 +8,40 @@
           <img src="./img/doc.jpg">
         </div>
         <div class="name-content">
-          <h2>Dr.{{consult.doctorFname}} {{consult.doctorMname}} {{consult.doctorLname}}</h2>
+          <h2>Dr.{{consult.doctorFname | capitalize}} {{consult.doctorMname | capitalize}} {{consult.doctorLname | capitalize}}</h2>
           <p>{{consult.doc_degrees}}</p>
-          <p >Practicing since {{consult.practicingSince}}   <span class="stars alignright" ng-repeat="rating in ratings">
-              <span ng-style="{ 'width': getStars(rating.number) }"></span>
+          <p >Practicing since {{consult.practicingSince}}
+        <div class="ratingContainer">
+            <span ng-repeat="rating in ratings">
+              <div star-rating rating-value="rating.current" max="rating.max" ></div>
             </span>
-            <!-- <span class="stars">(4.9/27)</span> -->
-            <!-- <p> <span class="stars">{$mpercent}</span>    </p> -->
-
-            <div class="ratingContainer">
-              <span class="stars">
-                <span></span>(4.9/27)
-              </span>
-            </div>
+              <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
+        </div>
           </p>
 
         </div>
-        <div class="next-icon">
-          <i class="icon ion-chevron-right icon-accessory"></i>
-        </div>
+        <!-- <div class="next-icon">
+
+        </div> -->
       </li>
     </ul>
     <div class="card ">
 
-      <div class="row">
-        <div class="col-75">Messeges</div>
-        <div class="col"><span class="badge badge-positive ">{{1}}</span></div>
-      </div>
-      <div class="row">
-        <div class="col-75">Add Doctor to favorites</div>
-        <div class="col "><button-star></button-star></div>
-      </div>
-      <div class="row">
-        <div class="col-75">Ratings</div>
-        <div class=" right-side " ><ionic-ratings ratingsobj='ratingsObject'></ionic-ratings></div>
-      </div>
+          <div class="row">
+            <div class="col-75">Messeges</div>
+            <div class="col"><span class="badge badge-positive ">{{1}}</span></div>
+          </div>
+          <div class="row">
+            <div class="col-75">Add Doctor to favorites</div>
+            <div class="col ">
+            <i class="icon  ion-android-favorite-outline" on-icon="ion-android-favorite-outline" off-icon="ion-android-favorite" icon-switcher></i>
+             <!-- <i class="icon ion-information-circled" on-icon="ion-information-circled" off-icon="ion-information"  /> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-75">Ratings</div>
+            <div class=" right-side " ><ionic-ratings ratingsobj='ratingsObject'></ionic-ratings></div>
+          </div>
 
     </div>
   <div class="suggestion" >

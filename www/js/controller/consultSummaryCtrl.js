@@ -1,13 +1,14 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootScope,$ionicConfig, $http, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
-
-	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+		 console.log($localStorage.consultedDoctor);
+$ionicLoading.show();
+myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
-
+		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);
 });
@@ -86,35 +87,24 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
-
+				// console.log($scope.myRating);
 			}).catch(function(error){
 				console.log('failure data', error);
 		});
 
-			// $(function() {
-			// 	$("span.stars").stars();
-			// });
+		//to fetch the overall Rating o0f a doctor
 
-			$( ".stars" ).each(function() {
-			    // Get the value
-			    var val = $(this).data("rating");
-			    // Make sure that the value is in 0 - 5 range, multiply to get width
-			    var size = Math.max(0, (Math.min(5, val))) * 16;
-			    // Create stars holder
-			    var $span = $('<span />').width(size);
-			    // Replace the numerical value with stars
-			    $(this).html($span);
-			});
-
-
-			
-		function testData(){
-
-	  return ("entering");
-	}
-	$scope.imagesData = testData;
-
-	console.log($scope.imagesData());
+		rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
+			$rootScope.myDocRating = response;
+				$scope.myRating=$rootScope.myDocRating;
+				$scope.ratings = [{
+	 		        current: $scope.myRating,
+	 		        max: 5
+	 		    }, ];
+				console.log($scope.myRating);
+			}).catch(function(error){
+				console.log('failure data', error);
+		});
 
 
 })
