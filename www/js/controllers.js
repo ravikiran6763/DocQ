@@ -59,7 +59,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 					$scope.res = response;
 
 }).catch(function(error){
-	console.log('failure data', error);
+		console.log('failure data', error);
 })
 
 
