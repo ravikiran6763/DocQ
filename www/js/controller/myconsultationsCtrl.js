@@ -23,5 +23,14 @@ $scope.consultationDetails=function(consultedDoc){
 		$ionicLoading.hide();
 	$state.go('app.patient_summary');
 }
+// for doctors consultationDetails
+$ionicLoading.show();
+myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 
+	$scope.myPatients=response;//store the response array in doctor details
+console.log($scope.myPatients);
+$ionicLoading.hide();
+}).catch(function(error){
+console.log('failure data', error);
+});
 })

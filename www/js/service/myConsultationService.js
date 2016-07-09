@@ -33,4 +33,24 @@ this.docSummaryDetails = function (doc_phone) {
 
 }
 
+//for doctors consultationDetails
+
+
+this.myConsultedPatients = function (doctor_phone) {
+// console.log(patient_phone);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.myConsultedPatients);
+  $http.post(BASE_URL.url + API.myConsultedPatients,doctor_phone)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+
+  return deferred.promise;
+
+}
+
+
 });
