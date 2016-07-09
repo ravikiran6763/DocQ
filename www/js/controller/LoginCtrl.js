@@ -146,38 +146,5 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 		}
 
-  var template = '<ion-popover-view><ion-header-bar> <h1 class="title">Video Player</h1> </ion-header-bar> <ion-content> Hello dere! </ion-content></ion-popover-view>';
-//var template = '<ion-popover-view><ion-header-bar> <h1 class="title">Video Player</h1> </ion-header-bar> <ion-content> <div class="player">	<div class="mediaplayer item item-image"> <video poster="http://corrupt-system.de/assets/media/sintel/sintel-trailer.jpg" controls preload="none"><source src="http://corrupt-system.de/assets/media/sintel/sintel-trailer.m4v" type="video/mp4" /><source src="http://corrupt-system.de/assets/media/sintel/sintel-trailer.webm" type="video/webm" /></video></div></div></ion-content></ion-popover-view>';
-  $scope.popover = $ionicPopover.fromTemplate(template, {
-    scope: $scope
-  });
-
-  // .fromTemplateUrl() method
-  // $ionicPopover.fromTemplateUrl('video.html', {
-  //   scope: $scope
-  // }).then(function(popover) {
-  //   $scope.popover = popover;
-  // });
-
-
-  $scope.openPopover = function($event) {
-    $scope.popover.show($event);
-  };
-  $scope.closePopover = function() {
-    $scope.popover.hide();
-  };
-  //Cleanup the popover when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.popover.remove();
-  });
-  // Execute action on hide popover
-  $scope.$on('popover.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove popover
-  $scope.$on('popover.removed', function() {
-    // Execute action
-  });
-
 
 })

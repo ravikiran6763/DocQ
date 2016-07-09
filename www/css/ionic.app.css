@@ -9825,6 +9825,40 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.checkbox input:before, .checkbox-icon:before {
+  display: table;
+  width: 100%;
+  height: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 28px;
+  border-color: teal;
+  background: #fff;
+  content: ' ';
+  -webkit-transition: background-color 20ms ease-in-out;
+  transition: background-color 20ms ease-in-out; }
+
+.checkbox input:checked:before, .checkbox input:checked + .checkbox-icon:before {
+  background: #fff;
+  border-color: #579696; }
+
+.checkbox input:after, .checkbox-icon:after {
+  -webkit-transition: opacity 0.05s ease-in-out;
+  transition: opacity 0.05s ease-in-out;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  display: table;
+  width: 14px;
+  height: 6px;
+  border: 1px solid teal;
+  border-top: 0;
+  border-right: 0;
+  content: ' ';
+  opacity: 0; }
+
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -9939,7 +9973,7 @@ ul.rating {
   color: #fff; }
 
 .videoPlayerPopup .popup {
-  width: 90%;
+  width: 100%;
   height: 100%;
   background-color: transparent;
   top: 42vh; }
@@ -10268,6 +10302,9 @@ img-crop {
 .walkthrough-view .login-form {
   height: 100%; }
 
+.walkthrough-view .underLine {
+  text-decoration: underline; }
+
 .walkthrough-view .platform-ios .form-cls {
   height: auto;
   margin-top: 16vh !important; }
@@ -10337,22 +10374,6 @@ img-crop {
 .walkthrough-view .button-calm.activated {
   background-color: #026451 !important; }
 
-.walkthrough-view .footer-bar-cls {
-  height: 10%;
-  background-color: transparent;
-  border: 0px;
-  background-image: none;
-  margin-top: 3vh; }
-  .walkthrough-view .footer-bar-cls .register-content-btn-cls, .walkthrough-view .footer-bar-cls .learn-more-content {
-    text-align: center;
-    width: 50%;
-    float: left; }
-    .walkthrough-view .footer-bar-cls .register-content-btn-cls a, .walkthrough-view .footer-bar-cls .learn-more-content a {
-      text-decoration: none !important; }
-    .walkthrough-view .footer-bar-cls .register-content-btn-cls p, .walkthrough-view .footer-bar-cls .learn-more-content p {
-      margin: 0px;
-      color: #ffffff; }
-
 .walkthrough-view .conditions {
   width: 80%;
   margin: 0 auto;
@@ -10410,6 +10431,27 @@ img-crop {
     border: 0;
     /* margin: 0 auto; */
     margin-left: 18vw; }
+
+.walkthrough-view .rememberMe {
+  text-align: center;
+  margin-left: 8vw;
+  margin-top: -3.5vh;
+  font-size: 4vw; }
+
+.walkthrough-view .forgotPass {
+  margin: 0.6vh 0 0 6vw; }
+
+.walkthrough-view label {
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: -10px;
+  font-weight: bold; }
+
+.walkthrough-view input[type="checkbox"] {
+  height: 20px;
+  width: 20px;
+  position: relative;
+  margin: 11px 0 2px 8px; }
 
 .login-view [ng\:cloak], .login-view [ng-cloak], .login-view [data-ng-cloak], .login-view [x-ng-cloak], .login-view .ng-cloak, .login-view .x-ng-cloak {
   display: none !important; }
@@ -10925,6 +10967,8 @@ ion-side-menu .heading-item .message {
     margin-left: 6vw; }
   .sepecility-details-view .right-side {
     text-align: right; }
+  .sepecility-details-view .col {
+    margin: 0 0 0 4vw; }
   .sepecility-details-view .sendRequest {
     width: 80vmin;
     height: 8%;
@@ -11278,7 +11322,8 @@ ion-side-menu .heading-item .message {
   .summary-view ion-content {
     overflow: scroll !important; }
   .summary-view .row {
-    padding: 15px !important; }
+    padding: 15px !important;
+    margin: 0 !important; }
   .summary-view .card {
     height: 26%;
     width: 94%;
@@ -11895,6 +11940,9 @@ ion-side-menu .heading-item .message {
       margin-left: 30vw;
       margin-top: -5vh;
       font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-request-view .row {
+    margin-right: 0;
+    margin-left: 0; }
   .patient-request-view .bottom-content {
     padding-top: 5px; }
     .patient-request-view .bottom-content .button-bar {
@@ -11928,6 +11976,11 @@ ion-side-menu .heading-item .message {
     overflow-y: scroll !important; }
   .patient-notes-view .buttons {
     margin-top: 5vh; }
+  .patient-notes-view .col {
+    display: block;
+    padding: 4px;
+    width: 100%;
+    margin: 4px 2px 0 11px; }
   .patient-notes-view .item-avatar {
     background-color: #e2e2e2;
     width: 100%;
@@ -11973,13 +12026,16 @@ ion-side-menu .heading-item .message {
     width: 90vmin;
     margin-left: 5vw;
     margin-top: 2vh; }
+    .patient-notes-view .card i {
+      font-size: 5vw; }
     .patient-notes-view .card .checkbox {
       max-width: 100%;
-      width: 49px;
-      height: 35px;
-      margin-top: -5px;
+      width: 52px;
+      height: 25px;
+      /* margin-top: -3px; */
       padding: 10px auto;
-      position: relative; }
+      position: relative;
+      margin: -2px -8px 0 1px !important; }
     .patient-notes-view .card .checkbox label:after {
       content: 'hello';
       width: 14px;
@@ -12006,7 +12062,7 @@ ion-side-menu .heading-item .message {
       padding-right: 16px; }
   .patient-notes-view .description {
     width: 80vmin;
-    height: 20%;
+    height: 15%;
     margin-top: 4vh;
     padding: 10px auto;
     margin-left: 10vw;
@@ -12143,8 +12199,7 @@ ion-side-menu .heading-item .message {
       width: 80vmin;
       margin-left: 10vw !important;
       font-weight: 500;
-      color: white;
-      text-shadow: 1px 1px black !important; }
+      color: white; }
 
 .doc-sidemenu {
   background-color: #20242c !important; }
@@ -12252,7 +12307,7 @@ ion-side-menu .heading-item .message {
       width: 100%;
       height: 45vh;
       margin-top: 24vh;
-      margin-left: -2vw;
+      margin-left: -3vw;
       position: absolute;
       box-shadow: 0px -5px 10px rgba(50, 50, 50, 0.75);
       top: 5; }
@@ -12277,6 +12332,8 @@ ion-side-menu .heading-item .message {
       background-color: rgba(56, 126, 245, 0.8); }
     .prescription-view .bottom-content .sign-up.button {
       background-color: rgba(255, 76, 76, 0.8); }
+  .prescription-view .row {
+    margin: 0 !important; }
 
 .patient-chat-view {
   background-color: #e7e7e7 !important;
@@ -13252,6 +13309,8 @@ ion-side-menu .heading-item .message {
   .patientprofile-view .ratingContainer {
     position: relative;
     margin-left: 29vw; }
+  .patientprofile-view .col {
+    margin: 1vw 0 0 5vw; }
   .patientprofile-view .profile-info {
     height: 14vh;
     width: 100% !important; }

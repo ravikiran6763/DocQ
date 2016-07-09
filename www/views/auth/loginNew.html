@@ -29,16 +29,16 @@
                 Login
               </button>
               <div class="conditions" >
-                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();">Terms&Conditions</a></p>
+                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();"><span class="underLine">Terms&Conditions</span></a></p>
               </div>
 
               <div class="row remember-forgot">
-                   <label  class="col"   >
-                     <input  type="checkbox" name="rememberMe" ng-model="user.rememberMe" ng-click="rememberme();">
-                     <span style="text-align: center">Remember me</span>
+                   <label  class="col-50 "   >
+                     <input type="checkbox" name="rememberMe" ng-model="user.rememberMe" ng-click="rememberme();">
+                     <p class="rememberMe" >Remember me</p>
                    </label>
-                   <a  class="col"  ui-sref="auth.forgotPassword">
-                     <span style="text-align: center">Forgot Password</span>
+                   <a  class="col-50 "  ui-sref="auth.forgotPassword">
+                     <p class="forgotPass" >Forgot Password</p>
                    </a>
 
              </div>
@@ -47,23 +47,6 @@
                 Register
               </button>
             </div>
-
-            <!-- <div class="footer-bar-cls  hide-on-keyboard-open">
-
-              <div class="learn-more-content">
-                <a>
-
-                  <img class="img2"  ng-src="img/button_change.png" ng-click="playVideo()"><br>
-                  <p class="doc_reg" style="text-align: center">Learn More</p>
-                </a>
-              </div>
-              <div class="register-content-btn-cls">
-                <a  class=""  ui-sref="auth.doctorRegistration">
-                  <img class="img2" class="modal transparent fullscreen-player"  ng-src="img/doc_symbol.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
-                </a>
-              </div>
-
-            </div> -->
 
           </form>
 

@@ -349,8 +349,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.myDocRating={};
 
 
-
-
 doctorServices.myDoctorsDetails(consultedDoc).then(function(response){
 			$scope.consultedDocDetails=response;
 			console.log($scope.consultedDocDetails);
@@ -386,7 +384,6 @@ $scope.ratingsObject = {
      var size = val/5*100;
      return size + '%';
    }
-
 
 	 $scope.getWallet=function(){
      $rootScope.patientWalletdetails ={};

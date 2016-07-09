@@ -24,6 +24,7 @@
   <preference name="BackupWebStorage" value="none"/>
   <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
   <preference name="SplashScreen" value="screen"/>
+  <preference name="orientation" value="portrait" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

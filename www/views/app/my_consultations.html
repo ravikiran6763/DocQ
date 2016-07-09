@@ -2,19 +2,12 @@
 
   <ion-content >
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-          <a class="item item-avatar item-icon-right"   ng-click="myDoctorsDetails(consult.doctorPhone);" ui-sref="app.patient_summary"><!--ui-sref="app.doctorprofile"-->
-=======
-          <a class="item item-avatar item-icon-right"   ng-click="consultationDetails({{consult.doctorPhone}});" ><!--ui-sref="app.doctorprofile"-->
->>>>>>> 9b9782726618eec156adacb0ebbb03053e00896f
-=======
-          <a class="item item-avatar item-icon-right"  ng-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" ><!--ui-sref="app.doctorprofile"-->
->>>>>>> 190b264e3975079a3788e0512bc83e61f52c0aa2
-            <img src="img/doc.jpg">
-            <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
-            <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
-          </a>
+
+    <a class="item item-avatar item-icon-right"  ng-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" ><!--ui-sref="app.doctorprofile"-->
+      <img src="img/doc.jpg">
+      <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
+      <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
+    </a>
 
 
   </ion-content>
