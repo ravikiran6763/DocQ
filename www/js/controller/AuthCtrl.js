@@ -26,27 +26,43 @@ $('input[maxlength][tabindex]').on('keyup', function() {
   {
       $state.go('auth.patient_reg2');
   }
+
+
+
+
   $scope.otp = "";
+
+
   $scope.goToNextView = function ()
   {
-      // $scope.phoneno = $scope.PatientDetail.patient_mob;
-      // patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-      // {
-      //     $scope.otp=response;
-      //   console.log($scope.otp);
-      //   })
-      //   .catch(function(error)
-      //   {
-      //       console.log('failure data', error);
-      //   });
+
+      $scope.phoneno = $scope.PatientDetail.patient_mob;
+      patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+      {
+          $scope.otp=response;
+        console.log($scope.otp);
+        })
+        .catch(function(error)
+        {
+            console.log('failure data', error);
+        });
+
+
+
       $state.go('auth.patient_reg3');
   }
+
+
   $scope.resendOtp = function()
   {
+
       $scope.OTP1 = "";
       $scope.OTP2 = "";
       $scope.OTP3 = "";
       $scope.OTP4 = "";
+
+
+
     patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
     {
         $scope.otp=response;
@@ -57,9 +73,25 @@ $('input[maxlength][tabindex]').on('keyup', function() {
           console.log('failure data', error);
       });
   }
+
     $scope.otpentered = {};
+
     $scope.patientRegistration = function()
     {
+
+
+
+        console.log($scope.otpentered.OTP1);
+
+        console.log($scope.otpentered.OTP2);
+
+        console.log($scope.otpentered.OTP3);
+
+
+        console.log($scope.otpentered.OTP4);
+
+
+
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
             alert('Please Enter OTP');
@@ -92,6 +124,7 @@ $('input[maxlength][tabindex]').on('keyup', function() {
         {
               alert('Incorrect OTP');
         }
+
     }
 
   $scope.doctorRegistration = function()

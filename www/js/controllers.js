@@ -60,6 +60,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 
 					$scope.res = response;
 
+					console.log($scope.res);
+
+
+
 }).catch(function(error){
 	console.log('failure data', error);
 });
@@ -128,6 +132,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
+		$scope.prequestedtime = $rootScope.requesteddatetime;
+
+		console.log($scope.prequestedtime);
 
 
 		$scope.sendprescription = function()
@@ -335,7 +342,6 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 		$scope.patientlname = $rootScope.plname;
 
 
-
 		$scope.done=function()
 		{
 
@@ -384,7 +390,6 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConf
 
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
-
 
 		$scope.done=function()
 		{
