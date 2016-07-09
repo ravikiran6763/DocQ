@@ -29,16 +29,16 @@ $('input[maxlength][tabindex]').on('keyup', function() {
   $scope.otp = "";
   $scope.goToNextView = function ()
   {
-      // $scope.phoneno = $scope.PatientDetail.patient_mob;
-      // patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-      // {
-      //     $scope.otp=response;
-      //   console.log($scope.otp);
-      //   })
-      //   .catch(function(error)
-      //   {
-      //       console.log('failure data', error);
-      //   });
+      $scope.phoneno = $scope.PatientDetail.patient_mob;
+      patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+      {
+          $scope.otp=response;
+        console.log($scope.otp);
+        })
+        .catch(function(error)
+        {
+            console.log('failure data', error);
+        });
       $state.go('auth.patient_reg3');
   }
   $scope.resendOtp = function()

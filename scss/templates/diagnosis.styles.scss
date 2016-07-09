@@ -67,7 +67,7 @@ font-family: Ubuntu,bold,sans-serif !important;
 			height: 45vh;
 			//background-color: red;
 			margin-top: 24vh ;
-			margin-left: -2vw;
+			margin-left: -3vw;
 			position: absolute;
 			box-shadow:  0px -5px 10px rgba(50, 50, 50, 0.75);
 
@@ -110,5 +110,8 @@ font-family: Ubuntu,bold,sans-serif !important;
 		{
 			background-color: $auth-signup-btn-bg;
 		}
+	}
+	.row{
+		margin: 0 !important;
 	}
 }

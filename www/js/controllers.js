@@ -99,7 +99,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 
 				 $scope.acceptclicked = function()
-				 {
+				 {}
+
+
+});				 
 
 
 DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,testresultbydoctor,$cordovaFile) {

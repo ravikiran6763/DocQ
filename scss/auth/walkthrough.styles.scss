@@ -95,32 +95,7 @@
 			.button-calm.activated{
 				background-color:#026451!important;
 			}
-			.footer-bar-cls{
-				  height: 10%;
-					// height: 17%;
-					background-color: transparent;
-					border: 0px;
-					background-image: none;
-					// margin-top: -40px !important;
-				 //overflow: hidden !important;
-				 margin-top: 3vh;
 
-				 .register-content-btn-cls, .learn-more-content {
-					 text-align: center;
-					 width: 50%;
-					 float: left;
-
-					 a {
-						 text-decoration: none !important;
-					 }
-
-					 p {
-							margin: 0px;
-							color: #ffffff;
-					 }
-				 }
-
-				}
 
 			.conditions{
 				width: 80%;
@@ -190,6 +165,27 @@
 					/* margin: 0 auto; */
 					margin-left: 18vw;
 				}
+			}
+			.rememberMe{
+				text-align: center;
+				margin-left: 8vw;
+		    margin-top: -3.5vh;
+		    font-size: 4vw;
+			}
+			.forgotPass{
+				margin: 0.6vh 0 0 6vw;
+			}
+			label {
+			display: inline-block;
+			margin-bottom: 5px;
+			margin-top: -10px;
+			font-weight: bold;
+			}
+			input[type="checkbox"]{
+				height: 20px;
+				width: 20px;
+				position: relative;
+    	margin: 11px 0 2px 8px;
 			}
 
 
