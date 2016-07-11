@@ -5,17 +5,17 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
-
+$ionicLoading.show();
 console.log($localStorage.user);
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
-
+		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);
 });
 
 $scope.consultationDetails=function(consultedDoc){
-	$ionicLoading.show();
+
 	console.log(consultedDoc);
 	$scope.consultedDoc=consultedDoc;
 	// console.log($scope.consultedDoc);
@@ -27,7 +27,7 @@ $scope.consultationDetails=function(consultedDoc){
 $ionicLoading.show();
 myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 
-	$scope.myPatients=response;//store the response array in doctor details
+$scope.myPatients=response;//store the response array in doctor details
 console.log($scope.myPatients);
 $ionicLoading.hide();
 }).catch(function(error){

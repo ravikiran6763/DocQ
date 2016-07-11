@@ -3,6 +3,7 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localS
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showBadge=false;
+	$rootScope.showNotification=false;
 	$rootScope.cc={};
 	$scope.doctorQuery=function(){
     var doctorQuery={

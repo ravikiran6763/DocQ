@@ -4,7 +4,7 @@
     <div>
           <a class="item item-avatar item-icon-right" ng-repeat="doc in doclist" ng-click="viewDoc2({{doc.doctorPhone}});">
             <img src="img/doc.jpg">
-            <h2>Dr.{{doc.doctorFname}} {{doc.doctorLname}} </h2>
+            <h2>Dr.{{doc.doctorFname |capitalize }} {{doc.doctorLname |capitalize }} </h2>
             <i class="icon ion-android-add-circle" ng-show="{{doc.onoff == 1}}"></i>
             <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doc.onoff == 2}}"></i>
             <p>{{doc.doctorDegrees}} Degrees</p>

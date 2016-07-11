@@ -49,10 +49,11 @@
      <p ng-show="happy"> Please Share detials with us why you were happy with the consultation so that we can improve our service.</p>
 
     <div class="query-text">
-      <label class="item item-input">
+      <label for="ratingComments" >
+
+      </label>
       <textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment">
       </textarea>
-      </label>
     </div>
     <div class="btn-content">
       <button class="button button-block" ng-click="sendRatings();">Send</button>
