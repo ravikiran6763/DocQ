@@ -23,6 +23,7 @@ if(isset($data))
 
 
 
+
 //IF SPECIALITY IS SELECTED ENTER INSDIE LOOP
 if($byspecial)
 {
@@ -46,22 +47,22 @@ if($byspecial)
   elseif($bygender && $bystatus)
   {
   //SPECILAITY,STATUS AND GENDER SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctor_onoff.onoff = '$bystatus' AND doctorSpecialityId='$specid' AND  doctorSex like '%$bygender%'";
+   $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctor_onoff.onoff = '$bystatus' AND doctorSpecialityId='$specid' and  doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND  doctorSex like '%$bygender%'";
   }
   elseif($bygender && $bylanguage)
   {
   //SPECIALITY,GENDER AND LANGUAGE SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails where doctorSpecialityId='$specid' AND doctorSex like '%$bygender%' AND (doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%')";
+  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorSpecialityId='$specid' and  doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctorSex like '%$bygender%' AND (doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%')";
   }
   elseif($bystatus && $bylanguage)
   {
   //SPECIALITY,LANGUAGE AND STATUS SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff  from doctorDetails,doctor_onoff where doctorSpecialityId='$specid' AND doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctor_onoff.onoff = '$bystatus' AND (doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%')";
+  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff  from doctorDetails,doctor_onoff where doctorSpecialityId='$specid' and  doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctor_onoff.onoff = '$bystatus' AND (doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%')";
   }
   elseif($bygender)
   {
   //SPECIALITY AND GENDER SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff  from doctorDetails where doctorSpecialityId='$specid' AND doctorSex like '%$bygender%'";
+  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff  from doctorDetails,doctor_onoff where doctorSpecialityId='$specid' and  doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctorSex like '%$bygender%'";
   }
   elseif($bystatus)
   {
@@ -71,12 +72,12 @@ if($byspecial)
   elseif($bylanguage)
   {
   //SPECIALITY AND LANGUAGE SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails where doctorSpecialityId='$specid' AND (doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%')";
+  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorSpecialityId='$specid' and  doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND (doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%')";
   }
   else
   {
   //IF SPECIALITY IS SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails  where doctorSpecialityId='$specid'";
+  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff  where doctorDetails.doctorPhone = doctor_onoff.doctor_phno and doctorSpecialityId='$specid'";
   }
 }
 elseif($bygender)
@@ -99,8 +100,10 @@ elseif($bygender)
   }
   else
   {
+
+
   //ONLY IF GENDER IS SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails where doctorSex='$bygender'";
+  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorSex='$bygender'";
   }
 
 }
