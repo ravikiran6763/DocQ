@@ -9825,13 +9825,9 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
-.patientSideMenu .bar-footer {
-  bottom: 0;
-  border-top-width: 1px;
-  border-bottom-width: 0;
-  /* background-position: top; */
-  height: 8%;
-  background-color: transparent; }
+.title .title-center .header-item {
+  left: 0;
+  right: 0; }
 
 .checkbox input:before, .checkbox-icon:before {
   display: table;

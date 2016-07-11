@@ -349,7 +349,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.myDocRating={};
 
 
-doctorServices.myDoctorsDetails(consultedDoc).then(function(response){
+doctorServices.myDoctorsDetails().then(function(response){
 			$scope.consultedDocDetails=response;
 			console.log($scope.consultedDocDetails);
 			$state.go('app.patient_summary');

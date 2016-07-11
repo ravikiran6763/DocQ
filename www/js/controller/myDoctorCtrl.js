@@ -36,7 +36,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
 		$scope.ratings = [{
-					current: 4,
+					current: 1,
 					max: 5
 			}, ];
     console.log($scope.myConsultedDoctors);
