@@ -10293,8 +10293,11 @@ img-crop {
   .toggle-view-anchor * {
     color: #848484; }
 
-.walkthrough-view ion-content {
-  overflow: scroll !important; }
+.walkthrough-view .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  margin-top: 20px; }
+
+.walkthrough-view .platform-ios.platform-cordova .logoContainer img {
+  margin-top: 2vh; }
 
 .walkthrough-view .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
@@ -10305,19 +10308,15 @@ img-crop {
 .walkthrough-view .underLine {
   text-decoration: underline; }
 
-.walkthrough-view .platform-ios .form-cls {
-  height: auto;
-  margin-top: 16vh !important; }
-
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 18vh !important; }
+  margin-top: 20vh !important; }
 
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
 
 .walkthrough-view .logoContainer {
-  margin-top: 1vh;
+  margin-top: 0;
   text-align: center;
   height: 20%; }
   .walkthrough-view .logoContainer img {
