@@ -1,6 +1,19 @@
 // General reset styles
 
 /* for Rting Stars*/
+
+.patientSideMenu{
+  
+  .bar-footer {
+      bottom: 0;
+      border-top-width: 1px;
+      border-bottom-width: 0;
+      /* background-position: top; */
+      height: 8%;
+      background-color: transparent;
+  }
+
+}
 .checkbox input:before, .checkbox-icon:before {
     display: table;
     width: 100%;

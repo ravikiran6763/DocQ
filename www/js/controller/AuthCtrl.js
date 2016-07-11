@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $rootScope, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService, DoctorReg) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $rootScope, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -7,12 +7,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
     $scope.Doctor = {};
 
 //autofocus using jquery
-$('input[maxlength][tabindex]').on('keyup', function() {
-    var $this = $(this);
-    if ($this.val().length == $this.attr('maxlength')) {
-        $("input[maxlength][tabindex='" + (parseInt($this.attr('tabindex')) + 1) + "']").focus();
-    }
-});
+// $('input[maxlength][tabindex]').on('keyup', function() {
+//     var $this = $(this);
+//     if ($this.val().length == $this.attr('maxlength')) {
+//         $("input[maxlength][tabindex='" + (parseInt($this.attr('tabindex')) + 1) + "']").focus();
+//     }
+// });
 
 //patient Registration forms.
 

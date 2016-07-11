@@ -22,81 +22,8 @@ angular.module('DoctorQuick.factories', [])
 
 })
 
-.factory('DoctorReg', function($http){
-  return{
-          DoctorRegProcess:function(doc_fname,doc_mname,doc_lname,doc_email,doc_num){
-            // console.log('from factory');
-            // console.log(doc_fname);
-            // console.log(doc_mname);
-            // console.log(doc_lname);
-            // console.log(doc_email);
-            // console.log(doc_num);
-            var link = "http://greetbss.greettech.com/DQ/doctorregistration.php";
 
-            return $http.post(link,{DocFname:doc_fname,DocMname:doc_mname,DocLname:doc_lname,DocEmail:doc_email,DocPhnum:doc_num}).success(function (data, status) {
-
-                console.log(data);
-
-              })
-          }
-      };
-
-
-})
-
-//Speciality
-
-.factory('Speciality', function($http){
-  return{
-          selectSpeciality:function(){
-
-
-            var link = "http://greetbss.greettech.com/DQ/speciality/listallspecialities.php";
-
-            return $http.post(link).success(function (data, status) {
-
-              return data;
-              // console.log(data);
-
-              })
-          }
-      };
-
-
-})
-
-.factory('data', function($http){
-
-  return{
-
-          loginprocess:function(userDetails)
-          {
-
-              var link = "http://greetbss.greettech.com/DQ/patientordoctor.php";
-              return $http.post(link,{logphno : loginphno,logpw : loginpw}).success(function (data, status) {
-
-                console.log(data);
-                  return data;
-
-                })
-                .error(function (data, status) {
-                  console.log("Error storing device token." + data + " " + status);
-                  alert('You are not connected to the greet network');
-                });
-
-
-          },
-
-          doctor_reg:function(doc_fname,doc_mname,doc_lname){
-
-          }
-
-      };
-
-
-})
-
-
+//remember
 
 .factory('$remember', function() {
             function fetchValue(name) {

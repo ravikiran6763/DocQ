@@ -86,6 +86,10 @@
     content: url('../img/dq_icon_small_payments_540x960.png');
 }
 
+.ion-log-out::before{
+    content: url('../img/signout.png');
+}
+
 .ion-ios-calendar-outline::before{
  content: url('../img/dq_icon_calendar_540x960.png');
  font-size: 9vw;
