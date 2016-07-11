@@ -27,8 +27,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localS
 							$scope.payu_params = {
 											key: "0MQaQP",
 											salt: "13p0PXZk",
-											//key: "gtKFFx",
-											//salt: "eCwWELxi",
+											// key: "gtKFFx",
+											// salt: "eCwWELxi",
 											txnid:Math.floor(Math.random() * 100000000000),
 											amount:"1",
 											productinfo:"test",

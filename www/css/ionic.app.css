@@ -9825,6 +9825,10 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.title .title-center .header-item {
+  left: 0;
+  right: 0; }
+
 .checkbox input:before, .checkbox-icon:before {
   display: table;
   width: 100%;
@@ -10293,8 +10297,11 @@ img-crop {
   .toggle-view-anchor * {
     color: #848484; }
 
-.walkthrough-view ion-content {
-  overflow: scroll !important; }
+.walkthrough-view .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+  margin-top: 20px; }
+
+.walkthrough-view .platform-ios.platform-cordova .logoContainer img {
+  margin-top: 2vh; }
 
 .walkthrough-view .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
@@ -10305,19 +10312,15 @@ img-crop {
 .walkthrough-view .underLine {
   text-decoration: underline; }
 
-.walkthrough-view .platform-ios .form-cls {
-  height: auto;
-  margin-top: 16vh !important; }
-
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 18vh !important; }
+  margin-top: 20vh !important; }
 
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
 
 .walkthrough-view .logoContainer {
-  margin-top: 1vh;
+  margin-top: 0;
   text-align: center;
   height: 20%; }
   .walkthrough-view .logoContainer img {
@@ -10664,6 +10667,9 @@ ion-side-menu .heading-item .message {
 .ion-android-wifi::before {
   content: url("../img/dq_icon_small_payments_540x960.png"); }
 
+.ion-log-out::before {
+  content: url("../img/signout.png"); }
+
 .ion-ios-calendar-outline::before {
   content: url("../img/dq_icon_calendar_540x960.png");
   font-size: 9vw;
@@ -10779,7 +10785,7 @@ ion-side-menu .heading-item .message {
   .mydoctor-profile-view .totalReview {
     font-size: 3vw;
     float: right;
-    margin: -20px -44px 0 0; }
+    margin: -17px -44px 0 0; }
   .mydoctor-profile-view .item-icon-left .icon:before, .mydoctor-profile-view .item-icon-right .icon:before {
     display: block;
     width: 32px;

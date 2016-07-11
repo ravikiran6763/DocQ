@@ -1,6 +1,11 @@
 // General reset styles
 
 /* for Rting Stars*/
+
+.title .title-center .header-item{
+  left: 0;
+  right: 0;
+}
 .checkbox input:before, .checkbox-icon:before {
     display: table;
     width: 100%;

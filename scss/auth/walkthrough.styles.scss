@@ -1,10 +1,15 @@
 .walkthrough-view
 {
 
-	ion-content{
-		overflow: scroll !important;
-	}
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+	margin-top: 20px;
 
+}
+.platform-ios.platform-cordova{
+	.logoContainer img{
+		margin-top: 2vh;
+	}
+}
 	.submitted input.ng-invalid:not(:focus) {
 	  border:2px solid red;
 	}
@@ -18,20 +23,17 @@
 	text-decoration: underline;
 }
 
-	.platform-ios .form-cls {
-		height: auto;
-		margin-top:16vh !important;
-	}
+
 	.form-cls {
 		height: auto;
-		margin-top:18vh !important;
+		margin-top:20vh !important;
 	}
 	.form-group {
 	    margin-bottom: 2vh;
 	}
 
 		.logoContainer{
-			margin-top: 1vh;
+			margin-top: 0;
 			text-align: center;
     	height: 20%;
 			img{
