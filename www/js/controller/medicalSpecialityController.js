@@ -7,13 +7,29 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
 
     $scope.sendrequesttoonlinedoctors = function(id)
     {
-      console.log('buttonclickrd');
+      console.log('buttonclicked');
       $ionicLoading.show();
       medicalSpecialityService.sendrequesttodoctor(id).then(function(response){
           // console.log('successfull data', response);
-          $scope.requestSent = response;
-          console.log($scope.requestSent);
-          $ionicLoading.hide();
+
+          if(response)
+          {
+
+            $scope.requestSent = response;
+            console.log($scope.requestSent);
+            $ionicLoading.hide();
+
+            alert('Request Sent')
+
+
+          }
+          else {
+
+            alert('error');
+
+          }
+
+
        }).catch(function(error){
            console.log('failure data', error);
        });;

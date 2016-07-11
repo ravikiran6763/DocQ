@@ -79,15 +79,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
 
 
 
-        console.log($scope.otpentered.OTP1);
-
-        console.log($scope.otpentered.OTP2);
-
-        console.log($scope.otpentered.OTP3);
-
-
-        console.log($scope.otpentered.OTP4);
-
 
 
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
