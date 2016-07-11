@@ -103,7 +103,7 @@ elseif($bygender)
 
 
   //ONLY IF GENDER IS SELECTED
-  $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorSex='$bygender'";
+   $sqlresults = "select doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff from doctorDetails,doctor_onoff where doctorSex='$bygender' and doctorDetails.doctorPhone = doctor_onoff.doctor_phno ";
   }
 
 }

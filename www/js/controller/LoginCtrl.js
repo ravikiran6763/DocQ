@@ -53,15 +53,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
         $localStorage.user = $scope.loginData.phone;
 				$rootScope.u = $scope.loginData.phone;
 				/*
-					if(!$scope.loginData.phone && !$scope.loginData.pin)
-					{
-							$ionicPopup.alert({
-							title: 'Enter your Login Details',
-							template:'Please Enter your Login credentials'
-							})
-							return true;
-					}
-
+				
 					if(!$scope.loginData.phone )
 					{
 							$ionicPopup.alert({

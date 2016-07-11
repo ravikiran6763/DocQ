@@ -105,7 +105,10 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 
 
 			$scope.sidemenu = {};
-
+				// $scope.specfic = {};
+				//
+				// $scope.onoff = {};
+				// $scope.languagedata = {};
 
 			$scope.h1 = function(val)	{
 
@@ -123,14 +126,14 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 							if(val === "Male")
 							{
 
-								$scope.gender = "M";
+								$scope.gender = "Male";
 
 
 							}
 							else
 							{
 
-								$scope.gender = "F";
+								$scope.gender = "Female";
 
 							}
 
@@ -164,15 +167,15 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 				}
 
 
-					 searchbyspecialities.specialitywisesearch($scope.specfic);
-					 searchbyspecialities.categorywisesearch($scope.gender);
-					 searchbyspecialities.genderwisesearch($scope.onoff);
-					 searchbyspecialities.languagewisesearch($scope.languagedata);
+					searchbyspecialities.specialitywisesearch($scope.specfic);
+					searchbyspecialities.categorywisesearch($scope.gender);
+					searchbyspecialities.genderwisesearch($scope.onoff);
+					searchbyspecialities.languagewisesearch($scope.languagedata);
 
 					$scope.specialdata =  searchbyspecialities.getSpecialData();
-						$scope.genderdata =  searchbyspecialities.getcategoryData();
-							$scope.statusdata =  searchbyspecialities.getgenderData();
-								$scope.languagedataselected =  searchbyspecialities.getlanguageData();
+					$scope.genderdata =  searchbyspecialities.getcategoryData();
+					$scope.statusdata =  searchbyspecialities.getgenderData();
+					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
 
 
 
@@ -196,15 +199,31 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 										bylanguage:languagewise
 									};
 									searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
+
 										if(Object.keys(response).length)
 										{
+
 											$state.go('app.doctorsearch');
+											$ionicLoading.show();
 												 $scope.doclist = response;
 												 console.log(response);
+												 $ionicLoading.hide();
+										}
+										else if(Object.keys(response).length == 0)
+										{
+											console.log('empty');
+											$ionicPopup.alert({
+											title: 'Sorry',
+											template:' no doctors are available right now!!'
+											})
+											return true;
+
 										}
 										else {
-												//$state.go('templates.doctorsearch');
+											$scope.doclist = response;
 												console.log(response);
+												$state.go('app.doctorsearch');
+
 											$rootScope.doclist = "no doctors found";
 										}
 									}).catch(function (response, data, status, header) {
@@ -213,12 +232,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 				}
 
 	//signout
-	$rootScope.signOut = function (){
-		console.log('signOut');
-		alert('Are you sure, You want to Signout from the App?');
-
-		$state.go('auth.loginNew');
-	}
 
 	$scope.confirmSignout = function() {
    var confirmPopup = $ionicPopup.confirm({
