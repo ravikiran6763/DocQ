@@ -1,5 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices) {
-
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -217,7 +216,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 	$rootScope.signOut = function (){
 		console.log('signOut');
 		alert('Are you sure, You want to Signout from the App?');
-		$localStorage.$reset;
+
 		$state.go('auth.loginNew');
 	}
 
@@ -237,10 +236,13 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 					type: 'button-positive',
 					 onTap: function(e) {
 						//  signOut();
+						$ionicLoading.show();
 						console.log('ok cliked');
-						$localStorage.$reset;
-						$state.go('auth.loginNew');
+						$window.localStorage.clear();
 
+						$window.location = '/';
+
+						$ionicLoading.hide();
 					 }
 				},
 			 ]
@@ -323,41 +325,19 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $ionic
 		}
 
 	$scope.myDoctors=function(){
-
-			doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
-				$scope.myConsultedDoctors=response;
-				console.log($scope.myConsultedDoctors);
-				$state.go('app.my_doctors');
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
-
-
-	$scope.myConsultations=function(){
-			// $scope.userPhone=LoginService.returnUserPhone();
-			// 	var patient_phone=$scope.userPhone;
-				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-				$scope.myconsultations=response;
-				 console.log($scope.myconsultations);
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
+		$state.go('app.my_doctors');
 	}
 
-
-	$rootScope.ratedTo;
-	$rootScope.myDocRating={};
-
-
-doctorServices.myDoctorsDetails().then(function(response){
-			$scope.consultedDocDetails=response;
-			console.log($scope.consultedDocDetails);
-			$state.go('app.patient_summary');
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
-	}
-
+		$scope.myConsultations=function(){
+				// $scope.userPhone=LoginService.returnUserPhone();
+				// 	var patient_phone=$scope.userPhone;
+					myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+					$scope.myconsultations=response;
+					 console.log($scope.myconsultations);
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+		}
 
 //Rating functionality
 

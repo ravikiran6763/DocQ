@@ -5,7 +5,7 @@ $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
 // console.log(docPhone);
 
-$rootScope.docPhone = $stateParams.docPhone;
+$rootScope.docPhone = $stateParams.ratingTo;
 console.log($rootScope.docPhone);
 
 $ionicLoading.show();
@@ -137,8 +137,8 @@ $scope.BalanceForVoiveCall=function()
   });
 
 }
-
-    doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
+  console.log($localStorage.docPhone);
+    doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
     $scope.myDocDetails=response;
     }).catch(function(error){
     console.log('failure data', error);

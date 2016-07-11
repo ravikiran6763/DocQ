@@ -2,7 +2,9 @@
 
 DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfig, $http, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
 
-	$scope.txt = "Test text";
+	$rootScope.headerTxt="My Doctors";
+	$rootScope.showBackBtn=true;
+	$rootScope.checkedValue = false;
 
 	$scope.getDocRatingsAll = function(doctorPhone) {
 			// alert("Loaded!");
@@ -22,12 +24,10 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 				}, ];
 	};
 
-	$rootScope.headerTxt="My Doctors";
-	$rootScope.showBackBtn=true;
-	$rootScope.checkedValue = false;
+
 
 	$ionicLoading.show({
-	    template: '<ion-spinner icon="dots"></ion-spinner>',
+	    template: '',
 	    hideOnStageChange: true
 	});
 
@@ -47,9 +47,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 
 	$scope.viewDocProfile=function(docPhone){
+		$localStorage.docPhone=docPhone
+		console.log(docPhone);
 			$ionicLoading.show();
 		$localStorage.DoctorPhone=docPhone;
-		doctorServices.myDoctorsDetails($localStorage.DoctorPhone).then(function(response){
+		doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
 		$scope.myDocDetails=response;
 		console.log($scope.myDocDetails);
 		$state.go('app.viewdoctor_profile');
