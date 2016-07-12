@@ -1,14 +1,22 @@
 // General reset styles
 
 /* for Rting Stars*/
-.title .title-left .header-item{
-  left: 0;
-  right: 0;
+.css-form input.ng-invalid.ng-touched {
+    border-color: #FA787E;
+  }
+
+  .css-form input.ng-valid.ng-touched {
+    border-color: #78FA89;
+  }
+  
+.submitted input.ng-invalid:not(:focus) {
+  border:2px solid red;
 }
-.title .title-center .header-item{
-  left: 0;
-  right: 0;
-}
+.platform-android.has-translucent-status-bar .header-title{
+    height: 80px;
+    padding-top: 40px;
+ }
+
 .bar.app-top-bar .title * {
     color: #FFFFFF !important;
     left:0;

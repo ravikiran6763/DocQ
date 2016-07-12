@@ -5,14 +5,32 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
     $rootScope.Doctor = {};
     $scope.PatientDetail = {};
     $scope.Doctor = {};
+    $scope.master={};
+console.log('AuthCtrl');
+$scope.sendForm = function($event,form)
+{
+     $event.preventDefault();
+     $scope.submitted = true;
 
-//autofocus using jquery
-// $('input[maxlength][tabindex]').on('keyup', function() {
-//     var $this = $(this);
-//     if ($this.val().length == $this.attr('maxlength')) {
-//         $("input[maxlength][tabindex='" + (parseInt($this.attr('tabindex')) + 1) + "']").focus();
-//     }
-// });
+};
+$scope.submitForm = function(form){
+  if(form.$valid) {
+   // Code here if valid
+  }
+};
+    $scope.validateUser = function(PatientDetail) {
+      console.log($scope.PatientDetail);
+      if ($scope.PatientDetail.$valid) {
+            alert("Previewed");
+
+        } else {
+            $state.go('auth.patient_reg2');
+        }
+
+        // $scope.master = angular.copy(PatientDetail);
+        // console.log($scope.master.patient_age);
+        // $state.go('auth.patient_reg2');
+      };
 
 //patient Registration forms.
 
@@ -24,7 +42,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
 
   $scope.goToPatientReg2 = function ()
   {
-      $state.go('auth.patient_reg2');
+    $state.go('auth.patient_reg2');
   }
 
 

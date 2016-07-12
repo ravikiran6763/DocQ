@@ -33,9 +33,9 @@
     <div class="bottom-content">
       <div class="bottomSpacing">
 
-        <button type="submit" class="login button button-block  "  ng-disabled="!DocReg.$valid"  ui-sref="auth.doctorRegistration2" ng-click="reg_doc();">
+        <!-- <button type="submit" class="login button button-block  "  ng-disabled="!DocReg.$valid"  ui-sref="auth.doctorRegistration2" ng-click="reg_doc();">
           <span>Next</span>
-        </button>
+        </button> -->
 
       </div>
 
@@ -43,4 +43,15 @@
      </div>
 </form>
 </ion-content>
+<ion-footer-bar  >
+
+  <!-- <button class="login button button-block"  type="submit" ng-click="goToPatientReg2()" ng-disabled="!PatientReg1.$valid">Next</button> -->
+<!-- <button class="login button button-block" type="submit" ng-disabled="!PatientReg1.$valid">Next</button> -->
+<button type="submit" class="login button button-block  "  ng-disabled="!DocReg.$valid"  ui-sref="auth.doctorRegistration2" ng-click="reg_doc();">
+  <span>Next</span>
+</button>
+
+          <!-- <h2 > By Signing in, I agree to DoctorQuicks <a ng-click="termsAndCond();">Terms and Conditions</a>  </h2> -->
+
+</ion-footer-bar>
 </ion-view>

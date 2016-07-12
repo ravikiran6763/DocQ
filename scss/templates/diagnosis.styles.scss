@@ -48,18 +48,20 @@ font-family: Ubuntu,bold,sans-serif !important;
 		height: 75%;
 		text-align: center;
 		.clear-field{
-			color:#343434;
-			margin-top: 4vh ;
-			margin-left: 0vw;
-			font-size: 4vw;
-			font-weight: 300;
+			color: #343434;
+	    margin-top: 4vh;
+	    margin-left: 0vw;
+	    font-size: 4vw;
+	    float: left;
+	    font-weight: 300;
 		}
 		.done{
-			color:#343434;
-			margin-top: 4vh ;
-			margin-left: 60vw;
-			font-size: 4vw;
-			font-weight: 300;
+			color: #343434;
+    margin-top: 4vh;
+    /* margin-left: 60vw; */
+    float: right;
+    font-size: 4vw;
+    font-weight: 300;
 		}
 		.textform{
 			max-width: 100%;
