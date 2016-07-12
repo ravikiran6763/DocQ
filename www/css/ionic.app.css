@@ -9833,6 +9833,11 @@ a.button {
   left: 0;
   right: 0; }
 
+.bar.app-top-bar .title * {
+  color: #FFFFFF !important;
+  left: 0;
+  right: 0; }
+
 .checkbox input:before, .checkbox-icon:before {
   display: table;
   width: 100%;
