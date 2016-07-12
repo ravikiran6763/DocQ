@@ -254,7 +254,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 						$window.localStorage.clear();
 
 
-						$window.location = '#/';
+						$window.location = '/';
 						// $urlRouterProvider.otherwise('/auth/loginNew');
 
 						$ionicLoading.hide();
