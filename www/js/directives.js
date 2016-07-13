@@ -445,11 +445,11 @@ angular.module('DoctorQuick.directives', [])
     }
   };
 })
-// the following directive is to link the buttons together
+// the following directive is to link the buttons 
 .directive("linked",function(){
     return function (scope, element, attrs) {
         var id = attrs["linked"];
-        element.on("buttenClicked",function(){
+        element.on("click",function(){
             document.getElementById(id).click();
         });
     };

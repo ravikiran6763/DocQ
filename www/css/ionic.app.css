@@ -12622,7 +12622,7 @@ ion-side-menu .heading-item .message {
     height: 35%;
     margin: 0 auto; }
   .patient-reg-1-view .bar {
-    height: 20%;
+    height: 16%;
     width: 100%; }
     .patient-reg-1-view .bar .login {
       background-color: #6aa13e;
@@ -12630,7 +12630,7 @@ ion-side-menu .heading-item .message {
       color: #ffffff;
       position: absolute;
       width: 81%;
-      height: 38%;
+      height: 46%;
       margin: 0 0 0 25px; }
     .patient-reg-1-view .bar a, .patient-reg-1-view .bar h2, .patient-reg-1-view .bar h3 {
       font-size: 1em;
@@ -12728,7 +12728,7 @@ ion-side-menu .heading-item .message {
   .patient-reg-2-view ion-content {
     overflow: scroll !important; }
   .patient-reg-2-view .patientReg2 {
-    margin-top: 2vh !important; }
+    margin-top: 6vh !important; }
   .patient-reg-2-view .top-content {
     width: 80%;
     height: 25%;

@@ -5,38 +5,35 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
     $rootScope.Doctor = {};
     $scope.PatientDetail = {};
     $scope.Doctor = {};
-    $scope.master={};
-console.log('AuthCtrl');
 $scope.submitted = false;
- $scope.enableSubmitButton = false;
-
- $scope.user = {};
-  $scope.wasSubmitted = false;
 
 
+$scope.sendForm = function($event,form)
+{
+     $event.preventDefault()
+     $scope.submitted = true
 
-$scope.submitForm = function($event,form) {
-   // check to make sure the form is completely valid
-   $event.preventDefault()
-   $scope.submitted = true;
-  //  $scope.enableSubmitButton = true;
+};
+$scope.validateUser=function(isFormValid){
+  console.log('isFormValid ', isFormValid)
 
-     console.log('submit clicked');
-  console.log($scope.PatientDetail);
+  console.log('clicked');
 
-   $state.go('auth.patient_reg2');
+  $scope.submitted = true;
+  if(isFormValid) {
+    // console.log($scope.PatientDetail);
+    $state.go('auth.patient_reg2');
+  }
+  // console.log($rootScope.PatientDetail);
 
- };
-    $scope.validateUser = function(PatientDetail) {
-      console.log($scope.PatientDetail);
-
-            $state.go('auth.patient_reg2');
+  // $state.go('auth.patient_reg2');
+}
 
 
-        // $scope.master = angular.copy(PatientDetail);
-        // console.log($scope.master.patient_age);
-        // $state.go('auth.patient_reg2');
-      };
+
+
+
+
 
 //patient Registration forms.
 
@@ -48,7 +45,7 @@ $scope.submitForm = function($event,form) {
 
   $scope.goToPatientReg2 = function ()
   {
-    $state.go('auth.patient_reg2');
+      $state.go('auth.patient_reg2');
   }
 
 
