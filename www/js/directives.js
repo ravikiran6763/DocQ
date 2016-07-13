@@ -445,29 +445,15 @@ angular.module('DoctorQuick.directives', [])
     }
   };
 })
-
-.directive('submit', function() {
-  return {
-    restrict: 'A',
-    link: function(scope, formElement, attrs) {
-      var form;
-      form = scope[attrs.name];
-      return formElement.bind('submit', function() {
-        angular.forEach(form, function(field, name) {
-          if (typeof name === 'string' && !name.match('^[\$]')) {
-            if (field.$pristine) {
-              return field.$setViewValue(field.$value);
-            }
-          }
+// the following directive is to link the buttons together
+.directive("linked",function(){
+    return function (scope, element, attrs) {
+        var id = attrs["linked"];
+        element.on("buttenClicked",function(){
+            document.getElementById(id).click();
         });
-        if (form.$valid) {
-          return scope.$apply(attrs.submit);
-        }
-      });
-    }
-  };
+    };
 })
-
 
 .directive('autoNext', function() {
     return {

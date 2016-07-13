@@ -19,12 +19,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 			}
 
-		// $scope.sendForm = function($event,form)
-		// {
-	  //      $event.preventDefault()
-	  //      $scope.submitted = true
-		//
-	  // };
+		$scope.sendForm = function($event,form)
+		{
+	       $event.preventDefault()
+	       $scope.submitted = true
+
+	  };
 
 		var special = {};
 

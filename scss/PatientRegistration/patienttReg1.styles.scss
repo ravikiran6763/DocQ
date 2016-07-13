@@ -5,6 +5,16 @@
 		height: 100%;
 
 	}
+	.submitted input.ng-invalid:not(:focus) {
+	  border:2px solid red;
+	}
+		input.ng-invalid.ng-dirty:not(:focus) {
+		border: 2px solid red;
+		}
+		input.ng-valid.ng-dirty {
+		// border: 2px solid green;
+		}
+
 	font-family: Ubuntu,bold,sans-serif !important;
 
 	.top-content{

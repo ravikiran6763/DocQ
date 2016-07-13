@@ -1,54 +1,53 @@
-
-
 <ion-view class="patient-reg-1-view" cache-view="false">
 
+<ion-content>
 
-<ion-content >
   <div class="bar-header bar-light">
     <div class="top-content">
             <p>Patient Registration</p>
             <img  src="./img/iOS-Assets-v01_patient_registration_progress1.png" >
            <p class="reg_message"> Register now and get your first consultation FREE with doctor of your choice. </p>
-
    </div>
   </div>
 
-<!-- <form name="PatientReg1" novalidate ng-submit="validateUser($event)" ng-class={submitted:submitted}> -->
-<form name="formName" ng-submit="submitForm(formName)">
-<!-- <form name="PatientReg1" novalidate ng-init="disabled=false" > -->
+<form name="PatientReg1"  ng-submit="submitForm($event)"  ng-class={submitted:submitted}>
    <div class="form-content">
      <div class="input-types">
-
        <label class="item item-input" >
-           <input type="text" placeholder="First Name" name="patient_fname" ng-model="PatientDetail.patient_fname"  required>
+           <input type="text" placeholder="First Name" name="patient_fname" ng-model="patientfname"  required>
        </label>
 
        <label class="item item-input">
-           <input type="text" placeholder="Middle Name" name="patient_mname" ng-model="PatientDetail.patient_mname" >
+           <input type="text" placeholder="Middle Name" name="patient_mname" ng-model="patientmname" >
        </label>
 
        <label class="item item-input">
-           <input type="text" placeholder="Last Name" name="patient_lname" ng-model="PatientDetail.patient_lname"  required>
+           <input type="text" placeholder="Last Name" name="patient_lname" ng-model="patientlname"  required>
        </label>
 
        <label class="item item-input" >
-           <input type='number' placeholder="Age" mask-clean='true' ng-model='PatientDetail.patient_age' mask='99' restrict="reject" clean="true"  required />
+           <input type='number' placeholder="Age" mask-clean='true' ng-model='patientage' mask='99' restrict="reject" clean="true"  required />
        </label>
 
      </div>
 
+<button type="submit" ng-show="false" id="buttenClicked"  ng-disabled="!PatientReg1.$valid" value="NEXT">Hidden</button>
+
     </div>
 
-<!-- <button class="login button button-block"  type="submit"  ng-click="validateUser(PatientDetail);">Next</button> -->
 </form>
+<!-- <button class="login button button-block"  type="submit"  ng-click="validateUser(PatientDetail);">Next</button> -->
+
 </ion-content>
 
-<ion-footer-bar  >
+<ion-footer-bar>
 
-  <!-- <button class="login button button-block"  type="submit" ng-click="goToPatientReg2()" ng-disabled="!PatientReg1.$valid">Next</button> -->
-<!-- <button class="login button button-block" type="submit" ng-disabled="!PatientReg1.$valid">Next</button> -->
-          <button class="login button button-block"  type="submit"  ng-click="submitForm(formName)">Next</button>
+  <button class="login button button-block"  linked="buttenClicked" >Next</button>
+<!-- <button class="login button button-block" type="submit" ng-disabled="PatientReg1.PatientReg1.$valid">Next</button> -->
+          <!-- <button class="login button button-block"  type="submit"  ng-click="submitForm(formName)">Next</button> -->
           <h2 > By Signing in, I agree to DoctorQuicks <a ng-click="termsAndCond();">Terms and Conditions</a>  </h2>
 
 </ion-footer-bar>
+
+
 </ion-view>

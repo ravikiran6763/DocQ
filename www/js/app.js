@@ -159,7 +159,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    $httpProvider.defaults.withCredentials = true
+
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
