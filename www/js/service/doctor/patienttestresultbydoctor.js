@@ -115,6 +115,8 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
 
         console.log('enetered');
+
+
         //create folder in SD card ad DQIMAGES  Directory
 
         $cordovaFile.createDir(cordova.file.externalRootDirectory, "DQIMAGES", true)
@@ -126,7 +128,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
 
         //Download jpeg file as patient name from this url and store it in DQIMAGES Folder
-        var url = encodeURI("http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg");
+        var url = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
 
         var filename = url.split("/").pop();
 

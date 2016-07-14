@@ -1,5 +1,5 @@
 'use strict';
-DoctorQuickApp.service('doctorServices', function ($http,$q, BASE_URL, API) {
+DoctorQuickApp.service('doctorServices', function ($http,$q,$localStorage, BASE_URL, API) {
 
 this.doctorDetails = function (docPhone) {
   var deferred = $q.defer();
@@ -61,11 +61,14 @@ this.myConsultedPatients = function (meDoc) {
 
 
 this.checkMyBalance = function (myNumber) {
-  console.log(myNumber);
+
+
+
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.myWalletBalance,myNumber)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
+
   })
   .error(function (){
     deferred.reject('Error while getting data');

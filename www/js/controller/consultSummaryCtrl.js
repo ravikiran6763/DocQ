@@ -107,4 +107,36 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 		});
 
 
+		$scope.chatclicked = function()
+		{
+
+				console.log($localStorage.consultedDoctor);
+				console.log($localStorage.user);
+
+
+						var username = "greet+"+$localStorage.user;
+						var password = "DQ_patient";
+
+							var persontocall = "greet+" + $localStorage.consultedDoctor;
+
+
+							var success = function(message)
+							{
+								alert(message);
+							}
+
+							var failure = function()
+							{
+								alert("Error calling Hello Plugin");
+							}
+
+							hello.chat(username,password,persontocall,success, failure);
+
+
+		}
+
+
+
+
+
 })
