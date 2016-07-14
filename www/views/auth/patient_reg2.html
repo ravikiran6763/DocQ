@@ -11,49 +11,82 @@
 
        </div>
     </div>
+    <form name="PatientReg2" ng-submit="submitForm($event)" ng-class={submitted:submitted}>
+       <div class="form-content">
+         <div class="input-types">
 
-   <form name="PatientReg2" novalidate class="patientReg2">
-     <div class="form-content-1">
+             <!-- <span class="input-label">+91</span> -->
+             <input type='number' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true"  required />
 
-       <div class="input-types">
-         <label class="item item-input" >
-           <!-- <select ng-model="country" ng-init="country=countries[0]" ng-options="country.dial_code for country in countries"></select> -->
-            <!-- <input type="number" size=10 placeholder="Mobile Number" name="pat_phnum" ng-model="patient.pat_phnum" required > -->
-            <span class="input-label">+91</span>
-            <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail2.patient_mob' mask='9999999999' restrict="reject" clean="true"  required />
-            <!-- <input type='text' mask-clean='true' placeholder="Mobile Number" ng-model='ticketPin' mask='9999999999' restrict="reject" clean="true" required /> -->
-         </label>
-       </div>
+             <div class="button-bar icon-left">
 
-         <div class="button-bar icon-left">
-             <!-- <a class="button ion-male"   ng-click="gender();">Male</a>
-             <a class="button ion-female"  ng-click="gender();">Female</a> -->
-             <ion-radio class="gender" ng-model="PatientDetail2.gender" ng-value="'M'" required><p>Male</p></ion-radio>
-             <ion-radio class="gender" ng-model="PatientDetail2.gender" ng-value="'F'" required><p>Female</p></ion-radio>
+               <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" style="height:40px; border:none; margin-bottom: 2vh;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Male</span></ion-radio>
+               <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'F'" style="height:40px; border:none; margin-bottom: 2vh;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Female</span></ion-radio>
+             </div>
+
+
+             <input type="email" class="form-control" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
+             <input type="password" class="form-control" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password"   required ValidateAlphaNumeric>
+
+           </div>
+
+
+
+
          </div>
 
-         <div class="input-types1">
-           <label class=" item item-input" >
-               <input type="email" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail2.pat_email" validate-email required>
-           </label>
-           <label class="item item-input">
-               <input type="password" placeholder="Password"  name="pat_password" ng-model="PatientDetail2.pat_password"   required ValidateAlphaNumeric>
-           </label>
-         </div>
+        </div>
 
+        <button class="login button button-block" id="link" ng-hide="true" type="submit" ng-click="validateUser1(PatientReg2.$valid)" >Next</button>
 
+    <!-- <button class="login button button-block" id="link" ng-hide="true" type="submit" ng-click="validateUser(PatientReg1.$valid)" >Next</button> -->
+    <!-- <button class="login button button-block" ng-click="goToNextView(PatientDetail.patient_mob)" type="submit" >Next</button> -->
 
-    </div>
+    </form>
 
-
- </form>
 
 </ion-content>
 
 <ion-footer-bar  >
 
-        <button class="login button button-block" ng-click="goToNextView(PatientDetail2.patient_mob)" type="submit" ng-disabled="!PatientReg2.$valid">Next</button>
+        <button class="login button button-block" ng-click="validateUser1(PatientReg2.$valid)" type="submit" linked="link">Next</button>
+
           <h2 > By Signing in, I agree to DoctorQuicks <a ng-click="termsAndCond();">Terms and Conditions</a>  </h2>
 
 </ion-footer-bar>
 </ion-view>
+
+
+
+<!-- <form name="PatientReg2" novalidate class="patientReg2">
+  <div class="form-content-1">
+
+    <div class="input-types">
+      <label class="item item-input" >
+         <span class="input-label">+91</span>
+         <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true"  required />
+      </label>
+    </div>
+
+      <div class="button-bar icon-left">
+
+          <ion-radio class="gender" ng-model="PatientDetail.gender" ng-value="'M'" required><p>Male</p></ion-radio>
+          <ion-radio class="gender" ng-model="PatientDetail.gender" ng-value="'F'" required><p>Female</p></ion-radio>
+      </div>
+
+      <div class="input-types1">
+        <label class=" item item-input" >
+            <input type="email" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
+        </label>
+        <label class="item item-input">
+            <input type="password" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password"   required ValidateAlphaNumeric>
+        </label>
+      </div>
+
+
+
+ </div>
+ <button class="login button button-block" ng-click="goToNextView(PatientDetail.patient_mob)" type="submit" ng-disabled="!PatientReg2.$valid">Next</button>
+
+
+</form> -->

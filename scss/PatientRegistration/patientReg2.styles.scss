@@ -4,7 +4,14 @@
 
 
 	ion-content{
+		width: auto;
+		height: 100%;
 		overflow: scroll !important;
+
+	}
+	.submitted input.ng-invalid:not(:focus) {
+	  border:2px solid red;
+
 	}
 	.patientReg2{
 		margin-top: 6vh !important;
@@ -36,11 +43,12 @@
 			background-color: red;
 		}
 	}
+
 	.form-content-1{
 		// padding-top: 30px !important;
 		width: 80%;
-		height: 100% !important;
-		margin: 0 auto;
+    height: 36%;
+    margin: 0 auto;
 
 		.item-input{
 			margin-bottom: 2vh !important;
@@ -63,42 +71,38 @@
 		  color: #6aa13e;
 			margin-top: -1vh;
 		}
-		.input-types1{
-			margin-top: 2vh !important;
-		}
-		.login{
-			background-color: #6aa13e;
-			border: none;
-			color: #ffffff;
-			margin-top: 8vh !important;
-		}
-		a,h2,h3{
-			font-size: 1em;
-			text-align: center;
-			color: #ffffff;
-		}
+
+		.form-control +.item-radio input:checked + .radio-content .radio-icon {
+    visibility: visible;
+    color: #6f9f2d;
+    position: absolute;
+    /* margin: 0 auto; */
+    margin-top: -1vh;
+}
 
 
 	}
-
-	.bottom-height{
-		margin-top: 25vh;
-	}
-	.bottom-content{
+.item-radio .item-content{
+	    padding: 4vh 0 0 28vw;
+}
+	.input-types{
 		width: 80%;
-		height: 20%;
-		margin: 0 auto;
-
+	margin: 0 auto;
 	}
-	.item p{
-		font-size: 4vw;
-	}
-	h2{
-				margin-top: -2vh;
-	}
-	h3{
-				margin-top: -2vh;
-	}
+	input[type="number"]{
+		margin-top: 2vh !important;
+		height: 40px !important;
+		padding-left: 10px;
+		margin-bottom: 2vh;
+	// height: 100%;
+}
+input[type="password"]{
+	margin-top: 2vh !important;
+	height: 40px !important;
+	padding-left: 10px;
+	margin-bottom: 2vh;
+// height: 100%;
+}
 	.bar{
 		// background-color: red;
 		height: 20%;

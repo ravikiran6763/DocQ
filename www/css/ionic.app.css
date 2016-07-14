@@ -10269,6 +10269,14 @@ img-crop {
     font-family: Ubuntu,bold,sans-serif !important;
     margin: 0 auto;
     width: 100%; }
+  .show-hide-input .formFields {
+    font-size: 4vw;
+    padding-top: 2vh;
+    padding-left: 4vw;
+    margin-top: 1vh;
+    height: 20% !important;
+    font-family: Ubuntu,bold,sans-serif !important;
+    width: 100%; }
 
 .auth-outer {
   background-color: transparent !important;
@@ -12526,6 +12534,11 @@ ion-side-menu .heading-item .message {
       color: #ffffff; }
     .doc-reg-1-view .bottom-content .bottomSpacing {
       margin-top: 10vh; }
+  .doc-reg-1-view input[type="text"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    width: 100%; }
   .doc-reg-1-view .bar {
     height: 20%;
     width: 100%; }
@@ -12582,7 +12595,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
-    height: 100%; }
+    height: 100%;
+    overflow: scroll !important; }
   .patient-reg-1-view .submitted input.ng-invalid:not(:focus) {
     border: 2px solid red; }
   .patient-reg-1-view input.ng-invalid.ng-dirty:not(:focus) {
@@ -12616,11 +12630,19 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .form-content .item-input {
       margin-bottom: 2vh !important; }
     .patient-reg-1-view .form-content .input-types {
-      margin-top: 20vh; }
+      margin-top: 22vh; }
   .patient-reg-1-view .bottom-content {
     width: 80%;
     height: 35%;
     margin: 0 auto; }
+  .patient-reg-1-view input[type="text"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px; }
+  .patient-reg-1-view input[type="number"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px; }
   .patient-reg-1-view .bar {
     height: 16%;
     width: 100%; }
@@ -12726,7 +12748,11 @@ ion-side-menu .heading-item .message {
 .patient-reg-2-view {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-2-view ion-content {
+    width: auto;
+    height: 100%;
     overflow: scroll !important; }
+  .patient-reg-2-view .submitted input.ng-invalid:not(:focus) {
+    border: 2px solid red; }
   .patient-reg-2-view .patientReg2 {
     margin-top: 6vh !important; }
   .patient-reg-2-view .top-content {
@@ -12751,7 +12777,7 @@ ion-side-menu .heading-item .message {
       background-color: red; }
   .patient-reg-2-view .form-content-1 {
     width: 80%;
-    height: 100% !important;
+    height: 36%;
     margin: 0 auto; }
     .patient-reg-2-view .form-content-1 .item-input {
       margin-bottom: 2vh !important; }
@@ -12769,29 +12795,27 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .form-content-1 .item-radio .radio-icon {
       color: #6aa13e;
       margin-top: -1vh; }
-    .patient-reg-2-view .form-content-1 .input-types1 {
-      margin-top: 2vh !important; }
-    .patient-reg-2-view .form-content-1 .login {
-      background-color: #6aa13e;
-      border: none;
-      color: #ffffff;
-      margin-top: 8vh !important; }
-    .patient-reg-2-view .form-content-1 a, .patient-reg-2-view .form-content-1 h2, .patient-reg-2-view .form-content-1 h3 {
-      font-size: 1em;
-      text-align: center;
-      color: #ffffff; }
-  .patient-reg-2-view .bottom-height {
-    margin-top: 25vh; }
-  .patient-reg-2-view .bottom-content {
+    .patient-reg-2-view .form-content-1 .form-control + .item-radio input:checked + .radio-content .radio-icon {
+      visibility: visible;
+      color: #6f9f2d;
+      position: absolute;
+      /* margin: 0 auto; */
+      margin-top: -1vh; }
+  .patient-reg-2-view .item-radio .item-content {
+    padding: 4vh 0 0 28vw; }
+  .patient-reg-2-view .input-types {
     width: 80%;
-    height: 20%;
     margin: 0 auto; }
-  .patient-reg-2-view .item p {
-    font-size: 4vw; }
-  .patient-reg-2-view h2 {
-    margin-top: -2vh; }
-  .patient-reg-2-view h3 {
-    margin-top: -2vh; }
+  .patient-reg-2-view input[type="number"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    margin-bottom: 2vh; }
+  .patient-reg-2-view input[type="password"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    margin-bottom: 2vh; }
   .patient-reg-2-view .bar {
     height: 20%;
     width: 100%; }

@@ -3,10 +3,12 @@
 	ion-content{
 		width: auto;
 		height: 100%;
+		overflow: scroll !important;
 
 	}
 	.submitted input.ng-invalid:not(:focus) {
 	  border:2px solid red;
+		
 	}
 		input.ng-invalid.ng-dirty:not(:focus) {
 		border: 2px solid red;
@@ -55,13 +57,25 @@
 			margin-bottom: 2vh !important;
 		}
 		.input-types{
-			margin-top: 20vh;
+			margin-top: 22vh;
 		}
 	}
 	.bottom-content{
 		width: 80%;
 		height: 35%;
 		margin: 0 auto;
+	}
+	input[type="text"]{
+		margin-top: 2vh !important;
+		height: 40px !important;
+		padding-left: 10px;
+	// height: 100%;
+}
+		input[type="number"]{
+			margin-top: 2vh !important;
+			height: 40px !important;
+			padding-left: 10px;
+		// height: 100%;
 	}
 
 
