@@ -1,18 +1,78 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $rootScope, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $rootScope, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
+    $rootScope.PatientDetail2 = {};
+
     $rootScope.Doctor = {};
     $scope.PatientDetail = {};
     $scope.Doctor = {};
 
-//autofocus using jquery
-// $('input[maxlength][tabindex]').on('keyup', function() {
-//     var $this = $(this);
-//     if ($this.val().length == $this.attr('maxlength')) {
-//         $("input[maxlength][tabindex='" + (parseInt($this.attr('tabindex')) + 1) + "']").focus();
-//     }
-// });
+    $scope.submitted = false;
+
+
+$scope.sendForm = function($event,form)
+{
+     $event.preventDefault()
+     $scope.submitted = true
+
+};
+$scope.validateUser=function(isFormValid){
+  console.log('isFormValid ', isFormValid)
+
+  console.log('clicked');
+
+  $scope.submitted = true;
+  if(isFormValid) {
+    // console.log($scope.PatientDetail);
+    $state.go('auth.patient_reg2');
+  }
+  // console.log($rootScope.PatientDetail);
+
+  // $state.go('auth.patient_reg2');
+}
+
+    $scope.validateUser1=function(isForm1Valid){
+    console.log('isForm1Valid ', isForm1Valid)
+    console.log($scope.PatientDetail);
+    console.log('clicked');
+
+    $scope.submitted = true;
+    if(isForm1Valid) {
+    // console.log($scope.PatientDetail);
+      // console.log($rootScope.PatientDetail);
+      $scope.phoneno = $scope.PatientDetail.patient_mob;
+      patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+      {
+        $scope.otp=response;
+        console.log($scope.otp);
+      })
+      .catch(function(error)
+      {
+        console.log('failure data', error);
+      });
+      $state.go('auth.patient_reg3');
+    }
+
+    }
+
+
+//Validate  Doctor
+$scope.validateDoctor=function(isDocFormValid){
+  console.log('isDocFormValid ', isDocFormValid)
+console.log($rootScope.Doctor);
+  console.log('clicked');
+
+  $scope.submitted = true;
+  if(isDocFormValid) {
+    console.log($scope.Doctor);
+    // console.log('isDocFormValid ', isDocFormValid)
+    $state.go('auth.doctorRegistration2');
+  }
+  // console.log($rootScope.PatientDetail);
+
+  // $state.go('auth.patient_reg2');
+}
 
 //patient Registration forms.
 
@@ -37,15 +97,15 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
   {
 
       $scope.phoneno = $scope.PatientDetail.patient_mob;
-      patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-      {
-          $scope.otp=response;
-        console.log($scope.otp);
-        })
-        .catch(function(error)
+        patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
         {
-            console.log('failure data', error);
-        });
+            $scope.otp=response;
+          console.log($scope.otp);
+          })
+          .catch(function(error)
+          {
+              console.log('failure data', error);
+          });
 
       $state.go('auth.patient_reg3');
   }
@@ -77,10 +137,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
     $scope.patientRegistration = function()
     {
 
-
-
-
-
+      console.log('reg clicked');
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
             alert('Please Enter OTP');
@@ -98,11 +155,42 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
                   pateientSex:$scope.PatientDetail.gender,
                   pateientPwd:$scope.PatientDetail.pat_password
                 };
-
+                console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
+            console.log(response);
+            if(response =='ERROR'){
+              console.log("Patient Already Exist");
+
+              //Alert Popup goes healthcare
+              $scope.myPopup = $ionicPopup.show({
+								title: 'Patient Already Exist',
+								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();">X</div>',
+								cssClass: 'loginPopup',
+								scope: $scope,
+								// buttons: [
+								// 	{ text: 'Cancel' },
+								// 	{
+								// 	text: '<b>Agree</b>',
+								// 	type: 'button-positive',
+								//
+								// 	},
+								// ]
+							});
+							$scope.closethis = function()
+							{
+							$scope.myPopup.close();
+              $window.localStorage.clear();
+              $state.go('auth.loginNew');
+
+							};
+
+            }
+            else{
               $state.go('app.patient_home');
               $scope.PatientDetail =  {};
+            }
+
           })
           .catch(function(error)
           {
@@ -116,8 +204,29 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
 
     }
 
-  $scope.doctorRegistration = function()
+
+    $scope.validateUser=function(isFormValid){
+
+
+      console.log('clicked');
+
+      $scope.submitted = true;
+      if(isFormValid) {
+
+        // console.log($scope.PatientDetail);
+        // $state.go('auth.patient_reg2');
+      }
+      // console.log($rootScope.PatientDetail);
+
+      // $state.go('auth.patient_reg2');
+    }
+
+
+  $scope.doctorRegistration = function(isDocForm1Valid)
   {
+    console.log('clicked');
+console.log('isDocForm1Valid ', isDocForm1Valid)
+    $scope.submitted = true;
     var doctorDetails={
       doctorFname : $scope.Doctor.doc_fname,
       doctorMname : $scope.Doctor.doc_mname,
@@ -128,36 +237,57 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $roo
 
     doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
       console.log(response);
+      if(response == 'ERROR'){
+        console.log("Patient Already Exist");
+        //Alert Popup goes healthcare
+        $scope.myPopup = $ionicPopup.show({
+          title: 'Doctor Already Exist',
+          template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p></div>',
+          cssClass: 'loginPopup',
+          scope: $scope,
+          });
+        $scope.closethis = function()
+        {
+        $scope.myPopup.close();
+        $window.localStorage.clear();
+        $state.go('auth.loginNew');
+
+        };
+
+      }
+      else{
+        var showDoc= $ionicPopup.show({
+          scope: $scope,
+          // template:'<div class="row list-inset" ng-repeat= "(key, data) in '+$scope.myData+'" >'+
+          //          '<div class="col font_type2" >{{key}}</div>'+
+          //          '<div class="col font_type2" >{{data}}</div>'+
+          //          '</div>',
+          template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style><body><p >Thank you for registering Dr. {{doc.doctorFname}} Middlename,Lastname someone from DoctorQuick will call you soon to help you with the signup.<p/></body>",
+          title: 'Thank You',
+
+          buttons: [
+          //  { text: 'Cancel',
+          // 	 //  type: 'button-positive',
+          // 	},
+           {
+             text: '<b>Close</b>',
+             type: 'button',
+             onTap: function() {
+               console.log('Doctor Registered Successfully');
+               $state.go('auth.loginNew');
+
+             }
+           }
+          ]
+        });
+      }
       $scope.Doctor = {};
     }).catch(function(error){
       console.log('failure data', error);
 
     });
 
-    var showDoc= $ionicPopup.show({
-      scope: $scope,
-      // template:'<div class="row list-inset" ng-repeat= "(key, data) in '+$scope.myData+'" >'+
-      //          '<div class="col font_type2" >{{key}}</div>'+
-      //          '<div class="col font_type2" >{{data}}</div>'+
-      //          '</div>',
-      template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style><body><p >Thank you for registering Dr. {{doc.doctorFname}} Middlename,Lastname someone from DoctorQuick will call you soon to help you with the signup.<p/></body>",
-      title: 'Thank You',
 
-      buttons: [
-      //  { text: 'Cancel',
-      // 	 //  type: 'button-positive',
-      // 	},
-       {
-         text: '<b>Close</b>',
-         type: 'button',
-         onTap: function() {
-           console.log('Doctor Registered Successfully');
-           $state.go('auth.loginNew');
-
-         }
-       }
-      ]
-    });
   }
 
   $scope.termsAndCond=function(){

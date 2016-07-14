@@ -1,8 +1,4 @@
 // Ionic DoctorQuickApp
-
-
-
-
 var handleOpenURL=function(url){
   // alert("Received url"+url);
   // window.localStorage.setItem('externalLoad',url);
@@ -115,11 +111,11 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
       //$ionicConfig.views.transition('platform');
       // If it's ios, then enable swipe back again
-      if(ionic.Platform.isIOS())
-      {
-        $ionicConfig.views.swipeBackEnabled(true);
-      }
-        console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+        if(ionic.Platform.isIOS())
+        {
+          $ionicConfig.views.swipeBackEnabled(true);
+        }
+          console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
 
       if (toState.name != "app.searchDoctors") {

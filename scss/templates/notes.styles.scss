@@ -43,6 +43,7 @@
    h2{
      font-size: 5vw;
      margin-left: 5vw;
+     margin-top: 2vh;
    }
    p{
      font-size: 4vw;
@@ -78,13 +79,13 @@
       font-size: 5vw;
     }
     .checkbox {
-    max-width: 100%;
-    width: 52px;
-    height: 25px;
-    /* margin-top: -3px; */
-    padding: 10px auto;
+    // max-width: 100%;
+    // width: 52px;
+    // height: 25px;
+    // /* margin-top: -3px; */
+    // padding: 10px auto;
     position: relative;
-    margin: -2px -8px 0 1px !important;
+    margin: -4px -2px 0 1px !important;
     }
     .checkbox label:after {
       content: 'hello';

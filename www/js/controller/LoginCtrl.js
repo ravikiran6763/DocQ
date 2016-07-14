@@ -39,52 +39,17 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 					//uncomment the following lines for customizing loading
 			// 		{
 			// 	 content: 'Logging please wait...',
-			// 	 template: '<div>'+' <ion-spinner class="rippel"></ion-spinner><br><div class="backdrop visible backdrop-loading active wm-proper-times" style="height: 260px;   margin-top: 245px; left: 8;"></div>'+
-			// 			'<span>Logging in...</span></div>'+
-			// 			'</div>',
+			// 	 template: '',
 			// 	 animation: 'fade-in',
 			// 	 showBackdrop: true,
 			// 	 maxWidth: 100,
 			// 	 showDelay: 0
 			//  }
 		 );
-			 // Set a timeout to clear loader, however you would actually call the $ionicLoading.hide(); method whenever everything is ready or loaded.
-				//  var sample= $cookies.remove('usernum');
+
         $localStorage.user = $scope.loginData.phone;
 				$rootScope.u = $scope.loginData.phone;
-				/*
-					if(!$scope.loginData.phone && !$scope.loginData.pin)
-					{
-							$ionicPopup.alert({
-							title: 'Enter your Login Details',
-							template:'Please Enter your Login credentials'
-							})
-							return true;
-					}
 
-					if(!$scope.loginData.phone )
-					{
-							$ionicPopup.alert({
-							title: 'Invalid Mobile Number or Password',
-							template:'Please try again if the problem persist call us directly'
-							})
-							return true;
-					}
-					if(!$scope.loginData.pin)
-					{
-						 $ionicPopup.alert({
-						title: 'Invalid Password',
-						template:'Please Enter Correct Password'
-						})
-						return true;
-					}
-
-					*/
-
-				// 	else{
-				// 	$ionicLoading.show({ template: 'Loading...' });
-				//
-				// }$ionicLoading.hide();
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{

@@ -9,38 +9,33 @@
    </div>
   </div>
 
-<form name="DocReg" novalidate >
+<form name="DocReg" ng-submit="submitForm($event)" ng-class={submitted:submitted} >
    <div class="form-content">
      <div class="input-types">
 
-              <label class="item item-input " >
-                  <input type="text" placeholder="First Name" name="doc_fname" ng-model="Doctor.doc_fname" required>
-                    <!-- <span class="help-block" ng-show="DocReg.username.$error.required">Required</span> -->
-              </label>
+       <input type="text" class="form-control" placeholder="First Name" name="doc_fname" ng-model="Doctor.doc_fname" required>
+       <input type="text" class="form-control" placeholder="Middle Name" name="doc_mname" ng-model="Doctor.doc_mname" >
+       <input type="text" class="form-control" placeholder="Last Name" name="doc_lname" ng-model="Doctor.doc_lname" required>
 
-             <label class="item item-input" >
-                 <input type="text" placeholder="Middle Name" name="doc_mname" ng-model="Doctor.doc_mname" >
-             </label>
-
-             <label class="item item-input" >
-                 <input type="text" placeholder="Last Name" name="doc_lname" ng-model="Doctor.doc_lname" required>
-             </label>
 
      </div>
 
     </div>
 
-    <div class="bottom-content">
-      <div class="bottomSpacing">
-
-        <button type="submit" class="login button button-block  "  ng-disabled="!DocReg.$valid"  ui-sref="auth.doctorRegistration2" ng-click="reg_doc();">
-          <span>Next</span>
-        </button>
-
-      </div>
-
-           <!-- <button class="login button button-block  " ui-sref="auth.doctorRegistration2">Next</button> -->
-     </div>
+    <button type="submit" class="login button button-block" id="DocReg"  ng-disabled="!DocReg.$valid" ng-hide="true"  ng-click="validateDoctor(DocReg.$valid)">
+      <span>Next</span>
+    </button>
 </form>
 </ion-content>
+<ion-footer-bar  >
+
+  <!-- <button class="login button button-block"  type="submit" ng-click="goToPatientReg2()" ng-disabled="!PatientReg1.$valid">Next</button> -->
+<!-- <button class="login button button-block" type="submit" ng-disabled="!PatientReg1.$valid">Next</button> -->
+<button type="submit" class="login button button-block"  ng-click="validateDoctor(DocReg.$valid)"  linked="DocReg">
+  <span>Next</span>
+</button>
+
+          <!-- <h2 > By Signing in, I agree to DoctorQuicks <a ng-click="termsAndCond();">Terms and Conditions</a>  </h2> -->
+
+</ion-footer-bar>
 </ion-view>

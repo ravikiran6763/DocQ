@@ -1,13 +1,26 @@
 // General reset styles
 
 /* for Rting Stars*/
-.title .title-left .header-item{
-  left: 0;
-  right: 0;
+.css-form input.ng-invalid.ng-touched {
+    border-color: #FA787E;
+  }
+
+  .css-form input.ng-valid.ng-touched {
+    border-color: #78FA89;
+  }
+
+.submitted input.ng-invalid:not(:focus) {
+  border:2px solid red;
 }
-.title .title-center .header-item{
-  left: 0;
-  right: 0;
+.platform-android.has-translucent-status-bar .header-title{
+    height: 80px;
+    padding-top: 40px;
+ }
+
+.bar.app-top-bar .title * {
+    color: #FFFFFF !important;
+    left:0;
+    right: 0;
 }
 .checkbox input:before, .checkbox-icon:before {
     display: table;
@@ -523,4 +536,15 @@ img-crop {
     width: 100%;
     // height: 100%;
   }
+  .formFields{
+		font-size: 4vw;
+		padding-top: 2vh;
+		padding-left: 4vw;
+	 	margin-top: 1vh;
+		height: 20% !important;
+		font-family: Ubuntu,bold,sans-serif !important;
+		// margin: 0 auto;
+		width: 100%;
+		// height: 100%;
+	}
 }
