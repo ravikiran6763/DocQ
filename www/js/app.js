@@ -1,8 +1,4 @@
 // Ionic DoctorQuickApp
-
-
-
-
 var handleOpenURL=function(url){
   // alert("Received url"+url);
   // window.localStorage.setItem('externalLoad',url);

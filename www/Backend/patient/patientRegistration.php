@@ -53,7 +53,7 @@
 
 			if(mysql_error())
 			// if(!$retval)
-		
+
 			{
 				// die('Could not enter data: ' . mysql_error());
 
@@ -82,16 +82,13 @@
 
 
 
-                   curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
-                   curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
-                   $result = curl_exec($ch);
+								curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
+								curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
+								$result = curl_exec($ch);
 
-                echo $result;
-
-
-                $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                echo $http_status;
+								echo $result;
+								$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+								echo $http_status;
 
 
 

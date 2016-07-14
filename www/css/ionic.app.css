@@ -11566,6 +11566,8 @@ ion-side-menu .heading-item .message {
 .medical-speciality-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .medical-speciality-view ion-content {
+    overflow: scroll !important; }
   .medical-speciality-view .bottom-content {
     width: 100%;
     overflow: scroll !important; }
@@ -12590,6 +12592,16 @@ ion-side-menu .heading-item .message {
       color: #fff; }
   .doc-reg2-view .popup-body {
     font-family: Ubuntu,bold,sans-serif !important; }
+  .doc-reg2-view input[type="email"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    width: 100%; }
+  .doc-reg2-view input[type="number"] {
+    margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    width: 100%; }
 
 .patient-reg-1-view {
   font-family: Ubuntu,bold,sans-serif !important; }

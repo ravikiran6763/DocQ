@@ -204,8 +204,29 @@ console.log($rootScope.Doctor);
 
     }
 
-  $scope.doctorRegistration = function()
+
+    $scope.validateUser=function(isFormValid){
+
+
+      console.log('clicked');
+
+      $scope.submitted = true;
+      if(isFormValid) {
+
+        // console.log($scope.PatientDetail);
+        // $state.go('auth.patient_reg2');
+      }
+      // console.log($rootScope.PatientDetail);
+
+      // $state.go('auth.patient_reg2');
+    }
+
+
+  $scope.doctorRegistration = function(isDocForm1Valid)
   {
+    console.log('clicked');
+console.log('isDocForm1Valid ', isDocForm1Valid)
+    $scope.submitted = true;
     var doctorDetails={
       doctorFname : $scope.Doctor.doc_fname,
       doctorMname : $scope.Doctor.doc_mname,
@@ -221,7 +242,7 @@ console.log($rootScope.Doctor);
         //Alert Popup goes healthcare
         $scope.myPopup = $ionicPopup.show({
           title: 'Doctor Already Exist',
-          template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();">X</div>',
+          template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p></div>',
           cssClass: 'loginPopup',
           scope: $scope,
           });
