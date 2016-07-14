@@ -470,15 +470,15 @@ $stateProvider
     }
   })
 
-  .state('templates.chat_with_patient', {
-    url: "/chat_with_patient",
-    views: {
-      'menuContent': {
-        templateUrl: "views/templates/chat_with_patient.html",
-        controller:'chatWithPatientCtrl'
-      }
-    }
-  })
+  // .state('templates.chat_with_patient', {
+  //   url: "/chat_with_patient",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/templates/chat_with_patient.html",
+  //       controller:'chatWithPatientCtrl'
+  //     }
+  //   }
+  // })
   .state('templates.doc-customercare', {
     url: "/doc_customercare",
     views: {
