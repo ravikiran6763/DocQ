@@ -40,7 +40,8 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'base64',
   'ionic-datepicker',
   'ngMessages',
-  'ion-alpha-scroll'
+  'ion-alpha-scroll',
+  'intlpnIonic'
 ])
 
 DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {

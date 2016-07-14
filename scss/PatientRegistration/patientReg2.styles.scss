@@ -71,14 +71,15 @@
 		  color: #6aa13e;
 			margin-top: -1vh;
 		}
-
-		.form-control +.item-radio input:checked + .radio-content .radio-icon {
+		.item-radio input:checked + .radio-content .item-content {
+		    background: #fff !important;
+		}
+		.item-radio input:checked + .radio-content .radio-icon {
     visibility: visible;
-    color: #6f9f2d;
-    position: absolute;
-    /* margin: 0 auto; */
-    margin-top: -1vh;
+    color: #6aa13e;
+    margin: -7px 0 0 0;
 }
+
 
 
 	}
@@ -98,6 +99,20 @@
 }
 input[type="password"]{
 	margin-top: 2vh !important;
+	height: 40px !important;
+	padding-left: 10px;
+	margin-bottom: 2vh;
+// height: 100%;
+}
+input[type="email"]{
+	margin-top: 0vh !important;
+	height: 40px !important;
+	padding-left: 10px;
+	margin-bottom: 2vh;
+// height: 100%;
+}
+input[type="tel"]{
+	margin-top: 0vh !important;
 	height: 40px !important;
 	padding-left: 10px;
 	margin-bottom: 2vh;
@@ -127,4 +142,18 @@ input[type="password"]{
 		}
 
 	}
+// 	.international {
+//     /* border-color: #ddd; */
+//     background-color: #fff;
+//     color: #444;
+//     position: relative;
+//     z-index: 2;
+//     display: block;
+//     margin: 8px 0 0 0;
+//     padding: 16px;
+//     /* border-width: 1px; */
+//     border-style: solid;
+//     font-size: 16px;
+//     height: 40px;
+// }
 }

@@ -1,6 +1,15 @@
 // General reset styles
 
 /* for Rting Stars*/
+
+.item-radio input:checked + .radio-content .item-content {
+    background: #ffffff;
+}
+.item-radio input:checked + .radio-content .radio-icon {
+    visibility: visible;
+    color: #6aa13e;
+    margin: -7px 0 0 0;
+}
 .css-form input.ng-invalid.ng-touched {
     border-color: #FA787E;
   }
