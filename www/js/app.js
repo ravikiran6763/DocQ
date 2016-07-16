@@ -162,7 +162,7 @@ DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
     }
 ]);
 
-DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 
   //INTRO
   $stateProvider

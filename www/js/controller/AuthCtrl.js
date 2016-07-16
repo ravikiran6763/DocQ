@@ -214,7 +214,7 @@ console.log($rootScope.Doctor);
       if(isFormValid) {
 
         // console.log($scope.PatientDetail);
-        // $state.go('auth.patient_reg2');
+        $state.go('auth.patient_reg2');
       }
       // console.log($rootScope.PatientDetail);
 

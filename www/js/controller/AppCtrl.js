@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicHistory, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -235,43 +235,39 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 
 	$scope.confirmSignout = function() {
    var confirmPopup = $ionicPopup.confirm({
-     title: 'DoctorQuick',
-     template: 'Are you sure you want to Signout?',
-		 cssClass: 'videoPopup',
-			scope: $scope,
-			buttons: [
-				{
+					title: 'DoctorQuick',
+					template: 'Are you sure you want to Signout?',
+					cssClass: 'videoPopup',
+					scope: $scope,
+					buttons: [
+					{
 					text: 'Cancel',
 					type: 'button-royal',
-				},
-				{
+					},
+					{
 					text: 'Ok',
 					type: 'button-positive',
-					 onTap: function(e) {
-						//  signOut();
-						$ionicLoading.show();
-						console.log('ok cliked');
-						$window.localStorage.clear();
+					onTap: function(e) {
+					console.log('ok');
+					// $window.location = '/';
+					// // $urlRouterProvider.otherwise('/auth/loginNew');
+					//
+					// $ionicLoading.hide();
 
+					// $scope.logout = function() {
 
-						$window.location = '/';
-						// $urlRouterProvider.otherwise('/auth/loginNew');
+					// Clear all cache and history
+					// $timeout(function () {
+					$ionicHistory.clearCache();
+					$ionicHistory.clearHistory();
+					$window.localStorage.clear();
+						$state.go('auth.loginNew');
+					// }, 100)
 
-						$ionicLoading.hide();
-					 }
-				},
-			 ]
-   });
-
-   confirmPopup.then(function(res) {
-     if(res) {
-
-			 $state.go('auth.loginNew');
-     } else {
-       // Do nothing
-			 $state.go('app.patient_home');
-     }
-   });
+					}
+					},
+					]
+					});
  		};
 
  $rootScope.toggleLeftSideMenu = function () {
