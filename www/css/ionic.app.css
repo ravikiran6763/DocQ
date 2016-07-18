@@ -9825,6 +9825,14 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.item-radio input:checked + .radio-content .item-content {
+  background: #ffffff; }
+
+.item-radio input:checked + .radio-content .radio-icon {
+  visibility: visible;
+  color: #6aa13e;
+  margin: -7px 0 0 0; }
+
 .css-form input.ng-invalid.ng-touched {
   border-color: #FA787E; }
 
@@ -12756,6 +12764,8 @@ ion-side-menu .heading-item .message {
     margin: 0 0 0 4vh;
     font-size: 3vh;
     line-height: 6vh; }
+  .patient-reg-3-view .row {
+    margin: 0 !important; }
 
 .patient-reg-2-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12807,12 +12817,12 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .form-content-1 .item-radio .radio-icon {
       color: #6aa13e;
       margin-top: -1vh; }
-    .patient-reg-2-view .form-content-1 .form-control + .item-radio input:checked + .radio-content .radio-icon {
+    .patient-reg-2-view .form-content-1 .item-radio input:checked + .radio-content .item-content {
+      background: #fff !important; }
+    .patient-reg-2-view .form-content-1 .item-radio input:checked + .radio-content .radio-icon {
       visibility: visible;
-      color: #6f9f2d;
-      position: absolute;
-      /* margin: 0 auto; */
-      margin-top: -1vh; }
+      color: #6aa13e;
+      margin: -7px 0 0 0; }
   .patient-reg-2-view .item-radio .item-content {
     padding: 4vh 0 0 28vw; }
   .patient-reg-2-view .input-types {
@@ -12825,6 +12835,16 @@ ion-side-menu .heading-item .message {
     margin-bottom: 2vh; }
   .patient-reg-2-view input[type="password"] {
     margin-top: 2vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    margin-bottom: 2vh; }
+  .patient-reg-2-view input[type="email"] {
+    margin-top: 0vh !important;
+    height: 40px !important;
+    padding-left: 10px;
+    margin-bottom: 2vh; }
+  .patient-reg-2-view input[type="tel"] {
+    margin-top: 0vh !important;
     height: 40px !important;
     padding-left: 10px;
     margin-bottom: 2vh; }

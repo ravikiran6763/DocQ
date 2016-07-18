@@ -1,5 +1,10 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
 {
+
+// if ($localStorage.user  === undefined and $localStorage.pass === undefined) {
+// console.log('undefinded');
+// 						// $scope.doLogIn(preLoginDetails);
+//         }
 
 		$scope.user = {};
 		$scope.user.rememberMe = false;
@@ -48,26 +53,32 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 		 );
 
         $localStorage.user = $scope.loginData.phone;
+				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
 
+<<<<<<< HEAD
 
 
 
 
 
+=======
+>>>>>>> 0e93c51205a4e9b68596bf8b60709c581579dd65
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
 				var userDetails={
 					userNum : $scope.loginData.phone,
 					password : $scope.loginData.pin
 				};
-				console.log(userDetails);
+				// console.log(userDetails);
 
 				LoginService.loginprocess(userDetails)
 						.then(function(response){
 					 console.log(response);
+
 						if(response === "patient")
 						{
+<<<<<<< HEAD
 
 
 							var uname1 = "greet+"+$scope.loginData.phone;
@@ -94,6 +105,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 
 
+=======
+						
+>>>>>>> 0e93c51205a4e9b68596bf8b60709c581579dd65
 						$state.go('app.patient_home');
 						}
 

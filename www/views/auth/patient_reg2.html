@@ -12,15 +12,16 @@
        </div>
     </div>
     <form name="PatientReg2" ng-submit="submitForm($event)" ng-class={submitted:submitted}>
-       <div class="form-content">
+       <div class="form-content" style="margin-top: 4vh;">
          <div class="input-types">
 
-             <!-- <span class="input-label">+91</span> -->
-             <input type='number' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true"  required />
+             <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true"  required ></input>
+
+             <!-- <intlpn  class="international" ng-model='PatientDetail.patient_mob' placeholder="Mobile Number" default-country="in" only-country="['in']" mask='9999999999999' required></intlpn> -->
 
              <div class="button-bar icon-left">
 
-               <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" style="height:40px; border:none; margin-bottom: 2vh;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Male</span></ion-radio>
+               <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" style="height:40px; border:none; margin-bottom: 2vh; margin-right:2vw;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Male</span></ion-radio>
                <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'F'" style="height:40px; border:none; margin-bottom: 2vh;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Female</span></ion-radio>
              </div>
 

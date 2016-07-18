@@ -1,7 +1,7 @@
 angular.module('DoctorQuick.directives', [])
 
 
-.directive('mdToggle', function($ionicGesture, $timeout) {
+.directive('mdToggle', function($ionicGesture, $timeout,$state) {
 	return {
 		restrict: 'E',
     replace: 'true',
@@ -445,7 +445,7 @@ angular.module('DoctorQuick.directives', [])
     }
   };
 })
-// the following directive is to link the buttons 
+// the following directive is to link the buttons
 .directive("linked",function(){
     return function (scope, element, attrs) {
         var id = attrs["linked"];
@@ -454,6 +454,23 @@ angular.module('DoctorQuick.directives', [])
         });
     };
 })
+
+// .directive('navClear', ['$ionicViewService', function($ionicViewService,$state) {
+//   return {
+//     restrict: 'AC',
+// 		link: function ($scope, $element, $attr) {
+// 	    var uiSref = $attr.uiSref;
+// 	    $element.bind('click', function () {
+// 	        if(!$state.is(uiSref)) {
+// 	            $ionicViewService.nextViewOptions({
+// 	                disableAnimate: true,
+// 	                disableBack: true
+// 	            });
+// 	        }
+// 	    });
+// 	}
+//   };
+// }])
 
 .directive('autoNext', function() {
     return {

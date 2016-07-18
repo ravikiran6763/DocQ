@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $rootScope, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $rootScope, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -9,6 +9,40 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
     $scope.Doctor = {};
 
     $scope.submitted = false;
+
+
+    if($localStorage.user && $localStorage.pass){
+      // alert('user already logged in')
+      // $scope.doLogIn();
+      console.log('userNum' , $localStorage.user);
+      console.log('password' , $localStorage.pass);
+      var preLoginDetails={
+        userNum : $localStorage.user,
+        password : $localStorage.pass
+      };
+      console.log(preLoginDetails);
+
+      // $state.go('app.patient_home');
+      LoginService.loginprocess(preLoginDetails).then(function(response){
+        $scope.LoginStatus=response;
+
+        if(response === "patient")
+        {
+        $ionicLoading.show();
+        $state.go('app.patient_home');
+        }
+
+        else if(response === "doctor")
+        {
+        // $state.go('templates.doctor_home');
+        }
+        console.log($scope.LoginStatus);
+        $ionicLoading.hide();
+      }).catch(function(error){
+      console.log('failure data', error);
+      });
+      $ionicLoading.hide();
+    }
 
 
 $scope.sendForm = function($event,form)
@@ -214,7 +248,7 @@ console.log($rootScope.Doctor);
       if(isFormValid) {
 
         // console.log($scope.PatientDetail);
-        // $state.go('auth.patient_reg2');
+        $state.go('auth.patient_reg2');
       }
       // console.log($rootScope.PatientDetail);
 
