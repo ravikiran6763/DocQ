@@ -30,6 +30,31 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 							onoff : 1
 						}
 						doctoronoffdetails.doctoronoff(whichdoctoronoff);
+
+							var uname1 = "greet+"+$localStorage.user;
+
+								var pw1 = "DQ_doctor";
+
+
+								console.log(uname1);
+								console.log(pw1);
+
+								var success = function(message)
+								{
+									alert(message);
+								}
+
+								var failure = function()
+								{
+									alert("Error calling Hello Plugin");
+								}
+
+								hello.login(uname1,pw1,success, failure);
+
+
+
+
+
 				}
 				else
 				{
@@ -39,6 +64,29 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 								onoff : 2
 					}
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
+
+
+					var unametologout = "greet+"+$localStorage.user;
+					var pwtologout = "DQ_doctor";
+
+						alert(unametologout);
+
+
+					var success = function(message)
+					{
+						alert(message);
+					}
+
+					var failure = function()
+					{
+						alert("Error calling Hello Plugin");
+					}
+
+					hello.logout(unametologout,pwtologout,success, failure);
+
+
+
+
 				}
 
 		$scope.docStatus = [
@@ -106,7 +154,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 				 {}
 
 
-});				 
+});
 
 
 DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,testresultbydoctor,$cordovaFile) {

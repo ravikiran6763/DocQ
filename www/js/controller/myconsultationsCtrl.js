@@ -79,10 +79,15 @@ console.log('chat clicked');
 
 				var failure = function()
 				{
+
 					alert("Error calling Hello Plugin");
+
 				}
 
 				hello.chat(username,password,persontocall,success, failure);
+
+
+				//hello.chat(persontocall,success, failure);
 
 
 

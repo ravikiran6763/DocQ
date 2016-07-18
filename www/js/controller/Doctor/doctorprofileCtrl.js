@@ -39,7 +39,9 @@ console.log('failure data', error);
 
              var success = function(message)
               {
-                alert(message);
+
+                  alert(message);
+
               }
 
               var failure = function()
@@ -50,7 +52,7 @@ console.log('failure data', error);
 
                 hello.greet(uname,pw,persontocall,success, failure);
 
-                
+
 
         if($scope.myBalance >= 250)
         {
