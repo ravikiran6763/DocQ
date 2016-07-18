@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicConfig, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicConfig, $ionicHistory, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
 
 
 			$rootScope.headerTxt="DoctorQuick";
@@ -7,5 +7,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			$rootScope.showBadge=true;
 			$rootScope.showDocStatus=false;
 
-
+			$ionicHistory.nextViewOptions({
+			disableAnimate: true,
+			disableBack: true
+			});
 })
