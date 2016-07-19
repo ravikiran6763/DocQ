@@ -6,19 +6,21 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 		$rootScope.showBadge=true;
 		$rootScope.showDocStatus=false;
 
+    
+  if($localStorage.onOff == 1){
     $scope.checkedValue=true;
-    $scope.onoff=1;
+  }
+
 	$rootScope.changeStatus = function (e)
 	{
-		$scope.checkedValue = "";
+		$scope.checkedValue = true;
 				if(e)
 				{
 						$scope.checkedValue = true;
-
+            $localStorage.onOff=1
 						var whichdoctoronoff = {
-
 							doctorphno : $localStorage.user,
-							onoff : 1
+							onoff : $localStorage.onOff
 						}
 						doctoronoffdetails.doctoronoff(whichdoctoronoff);
 
@@ -50,10 +52,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 				else
 				{
 						$scope.checkedValue = false;
-
+            $localStorage.onOff=2
 						var whichdoctoronoff = {
 								doctorphno : $localStorage.user,
-								onoff : 2
+								onoff : $localStorage.onOff
 					}
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
 
