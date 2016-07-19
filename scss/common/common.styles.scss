@@ -1,7 +1,10 @@
 // General reset styles
 
 /* for Rting Stars*/
-
+.title .title-center .header-item{
+  left: 0px !important;
+  right: 0px !important;
+}
 .item-radio input:checked + .radio-content .item-content {
     background: #ffffff;
 }
