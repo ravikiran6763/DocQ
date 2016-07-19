@@ -57,10 +57,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
+        'docAccDetails' : 'doctor/docAccDetails.php',
         'testjpegimage' :'prescription/responseasimages.php',
 
 
-        'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',
         'changePatientPwd':'DQ/changePatientPwd.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
 

@@ -23,18 +23,19 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
       console.log(preLoginDetails);
 
       // $state.go('app.patient_home');
+        $ionicLoading.show();
       LoginService.loginprocess(preLoginDetails).then(function(response){
         $scope.LoginStatus=response;
 
         if(response === "patient")
         {
-        $ionicLoading.show();
+
         $state.go('app.patient_home');
         }
 
         else if(response === "doctor")
         {
-        // $state.go('templates.doctor_home');
+        $state.go('templates.doctor_home');
         }
         console.log($scope.LoginStatus);
         $ionicLoading.hide();
