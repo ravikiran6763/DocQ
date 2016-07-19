@@ -29,7 +29,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
         if(response === "patient")
         {
-
         $state.go('app.patient_home');
         }
 

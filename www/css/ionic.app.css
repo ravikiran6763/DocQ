@@ -11581,7 +11581,8 @@ ion-side-menu .heading-item .message {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
   .medical-speciality-view ion-content {
-    overflow: scroll !important; }
+    overflow: scroll !important;
+    overflow-x: hidden; }
   .medical-speciality-view .bottom-content {
     width: 100%;
     overflow: scroll !important; }
@@ -11787,6 +11788,16 @@ ion-side-menu .heading-item .message {
 .doctor-acc-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .doctor-acc-view .item-icon-left ion-spinner {
+    float: left;
+    margin-left: -3.2em;
+    margin-right: 1em;
+    margin-top: -0.2em; }
+  .doctor-acc-view .spinner svg {
+    width: 28px;
+    height: 28px;
+    stroke: #999;
+    fill: #999; }
   .doctor-acc-view .top-content {
     height: 30vh; }
     .doctor-acc-view .top-content .pay-logo {
@@ -12101,7 +12112,7 @@ ion-side-menu .heading-item .message {
   .patient-notes-view .description {
     width: 80vmin;
     height: 15%;
-    margin-top: 4vh;
+    margin-top: 0 !important;
     padding: 10px auto;
     margin-left: 10vw;
     text-align: center;

@@ -57,7 +57,9 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
+        'docAccountsBalance' : 'doctor/docAccountsBalance.php',
         'docAccDetails' : 'doctor/docAccDetails.php',
+
         'testjpegimage' :'prescription/responseasimages.php',
 
 

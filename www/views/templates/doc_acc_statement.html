@@ -1,6 +1,6 @@
 <ion-view class="doctor-acc-view" cache-view="false">
 
-  <div class="top-content">
+  <div class="top-content" ng-repeat="bal in availableBalance">
     <div class="pay-logo">
       <pre-img ratio="_1_1" helper-class="rounded-image">
          <img ng-src="img/dq_icon_payments_large_540x960.png" spinner-on-load>
@@ -9,7 +9,7 @@
     <h1>Report</h1>
     <div class="bal-info">
       <div class="balance-content">
-        <p>Available <span>₹120</span></p>
+        <p>Available <span>₹{{bal.totalBal}}</span></p>
       </div>
     </div>
   </div>
@@ -31,11 +31,11 @@
           <img src="img/doc.jpg">
         </div>
         <div class="name-content">
-            <h2>Firstname LastName <span>₹120</span></h2>
-            <p>23 dec 2015</p>
+            <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}}</span></h2>
+            <p>{{details.consultedDate |  date :  "dd.MM.y"}}</p>
         </div>
         </li>
-        <li ng-show="!res.DocAcc" style="margin-top: 8vh;"><center><b style="color:#417611;">No Transactions Yet</b></center></li>
+        <!-- <li ng-show="!details.DocAcc" style="margin-top: 8vh;"><center><b style="color:#417611;">Please Select date to view Transaction details</b></center></li> -->
 
     </ul>
   </div>

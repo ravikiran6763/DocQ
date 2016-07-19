@@ -5,6 +5,21 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+console.log($localStorage.user);
+
+accountsService.docAccountsDetails($localStorage.user);
+
+
+accountsService.docAccountsBalance($localStorage.user).then(function(response){
+    $scope.availableBalance=response;
+    console.log($scope.availableBalance);
+  }).catch(function(error){
+  console.log('failure data', error);
+});
+
+
+
+
 
   var ipObj1 = {
       callback: function (val) {  //Mandatory
@@ -32,7 +47,12 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
           $rootScope.toDate = $filter('date')(new Date(val),'yyyy-MM-dd');
           // $localStorage.toDate=$rootScope.toDate;
 
-          accountsService.docAccountsDetails();
+          accountsService.docAccountsDetails().then(function(response){
+              // console.log(response);
+              $scope.DocAcc=response;
+              }).catch(function(error){
+            console.log('failure data', error);
+          });
         },
 
         from: new Date(2016, 1, 1), //Optional
