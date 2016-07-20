@@ -3,6 +3,9 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$ioni
 	$rootScope.headerTxt="Patient Profile";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
+
 	$scope.loginData={};
 	console.log($localStorage.user);
 
@@ -32,7 +35,7 @@ console.log('failure data', error);
 
 							$cordovaCamera.getPicture(options).then(movePic,function(imageData) {
 									$rootScope.imgURI=imageData;
-								
+
 							}, function(err) {
 									console.error(err);
 							});
@@ -116,7 +119,7 @@ console.log('failure data', error);
 					{
 					$scope.termsPopup.close();
 					};
-					
+
 				}
 
 

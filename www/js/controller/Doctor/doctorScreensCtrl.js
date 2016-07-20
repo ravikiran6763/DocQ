@@ -6,7 +6,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 		$rootScope.showBadge=true;
 		$rootScope.showDocStatus=false;
 
-    
+
   if($localStorage.onOff == 1){
     $scope.checkedValue=true;
   }
@@ -44,10 +44,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 
 								hello.login(uname1,pw1,success, failure);
 
-
-
-
-
 				}
 				else
 				{
@@ -64,22 +60,15 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 					var pwtologout = "DQ_doctor";
 
 						alert(unametologout);
-
-
 					var success = function(message)
 					{
 						alert(message);
 					}
-
 					var failure = function()
 					{
 						alert("Error calling Hello Plugin");
 					}
-
 					hello.logout(unametologout,pwtologout,success, failure);
-
-
-
 
 				}
 
@@ -94,19 +83,12 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 	}
 
 	$scope.res = {};
-
-
-	doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-
-					$scope.res = response;
-
-					console.log($scope.res);
-
-
-
-}).catch(function(error){
-		console.log('failure data', error);
-})
+    doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+    $scope.res = response;
+    console.log($scope.res);
+    }).catch(function(error){
+    console.log('failure data', error);
+    })
 
 
 })

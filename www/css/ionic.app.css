@@ -10434,7 +10434,8 @@ img-crop {
 .walkthrough-view .register_button {
   background-color: #00745f;
   color: #ffffff;
-  height: 40px; }
+  height: 40px;
+  margin-top: 0; }
 
 .walkthrough-view .spacer {
   margin: 5% auto; }

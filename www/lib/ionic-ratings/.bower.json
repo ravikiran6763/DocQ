@@ -35,7 +35,6 @@
     "commit": "886afe2b73fae756d72bbfca59eaa251f6b2de0d"
   },
   "_source": "https://github.com/rajeshwarpatlolla/ionic-ratings.git",
-  "_target": "^0.2.0",
-  "_originalSource": "ionic-ratings",
-  "_direct": true
+  "_target": "~0.2.0",
+  "_originalSource": "ionic-ratings"
 }

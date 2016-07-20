@@ -34,7 +34,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
         else if(response === "doctor")
         {
-        $state.go('templates.doctor_home');
+        // $state.go('templates.doctor_home');
         }
         console.log($scope.LoginStatus);
         $ionicLoading.hide();

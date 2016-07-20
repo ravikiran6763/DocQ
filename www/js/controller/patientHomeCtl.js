@@ -3,10 +3,10 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
+			$rootScope.showDocStatus=false;
 			$rootScope.showNotification=true;
 			$rootScope.showBadge=true;
-			$rootScope.showDocStatus=false;
-
+			
 			$ionicHistory.nextViewOptions({
 			disableAnimate: true,
 			disableBack: true

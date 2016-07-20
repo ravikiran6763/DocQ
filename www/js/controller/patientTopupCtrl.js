@@ -1,11 +1,10 @@
-
-// DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaInAppBrowser, $http, patientWalletServices) {
-
-DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaInAppBrowser, $http, patientWalletServices, payu) {
+DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaInAppBrowser, $http, patientWalletServices, payu,patientProfileDetailsService) {
 
 	$rootScope.headerTxt="Topup";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
 
   $scope.payment={};
 	$scope.payu_params = {};
@@ -16,24 +15,46 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localS
      console.log('failure data', error);
    });
 
-	$scope.testlink=function(){
-		console.log('');
-		// window.open('http://bss.greettech.com/DQ/PayUMoney_form.php')
-	}
 
 
+$scope.patient_details=[];
+	 patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+		$scope.patient_details=response;
+		console.log($scope.patient_details);
+		var data=$scope.patient_details//take all json data into this variable
+		 var totList=[];
+				for(var i=0; i<data.length; i++){
+
+						$scope.patientFname=data[i].patientFname,
+						$scope.patientEmail=data[i].patientEmail,
+
+				console.log($scope.patientFname);
+				console.log($scope.patientEmail);
+
+				}
+
+ }).catch(function(error){
+ console.log('failure data', error);
+ })
+
+			// CardName: Any name
+			// CardNumber: 5123456789012346
+			// CVV: 123
+			// Expiry: May 2017
 
 			$scope.payuOrder = function(form) {
+				// console.log($scope.payment.topUp);
+				console.log($scope.profileList)
 							$scope.payu_params = {
 											key: "0MQaQP",
 											salt: "13p0PXZk",
-											// key: "gtKFFx",
-											// salt: "eCwWELxi",
+											// key: "gtKFFx",//test keys
+											// salt: "eCwWELxi",//test salt
 											txnid:Math.floor(Math.random() * 100000000000),
-											amount:"1",
-											productinfo:"test",
-											firstname:"amit",
-											email:"amit.tantia@gmail.com",
+											amount:$scope.payment.topUp,
+											productinfo:"DoctorQuickWalletBalance",
+											firstname:$scope.patientFname,
+											email:$scope.patientEmail,
 											surl: encodeURI("http://greetbss.greettech.com/DQ/payuSucces.php"), //url needs to be encode
 											furl: encodeURI("http://www.doctorquick.com/") // url needs to be encode
 							}
@@ -61,7 +82,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localS
 												bytes.push(payu_params_string.charCodeAt(i));
 										}
 										var winURL = "https://secure.payu.in/_payment";
-										//var winURL = "https://test.payu.in/_payment";
+										// var winURL = "https://test.payu.in/_payment";
 
 
 										// var winURL = "https://test.payu.in/_payment";
@@ -86,15 +107,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$localS
 														document.body.removeChild(form);
 												}
 										}
-										// var winName = "payu";
-										//
-										// var windowoption='resizable=yes,height=600,width=800,location=0,menubar=0,scrollbars=1';
-										//
-										// document.body.appendChild(form);
-										// 	window.open("winURL", winName,windowoption);
-										// 	form.target = winName;
-										// 	form.submit();
-										// 	document.body.removeChild(form);
+
 						 }
 
 })

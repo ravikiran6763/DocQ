@@ -2,6 +2,8 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope, $rootScope, $local
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
 	$rootScope.cc={};
 	$scope.sendQuery=function(){
     var patientQuery={

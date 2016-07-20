@@ -1,10 +1,10 @@
-
-
 DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfig, $http, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
 
 	$rootScope.headerTxt="My Doctors";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
 
 	$scope.getDocRatingsAll = function(doctorPhone) {
 			// alert("Loaded!");

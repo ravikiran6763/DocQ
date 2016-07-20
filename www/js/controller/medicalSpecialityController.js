@@ -4,6 +4,9 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
     $rootScope.checkedValue = false;
+    $rootScope.showNotification=false;
+    $rootScope.showBadge=false;
+
 
     $scope.sendrequesttoonlinedoctors = function(id)
     {
