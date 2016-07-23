@@ -12,7 +12,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 			checkedTests : false,
 			checkedMedication : false
 		};
-console.log($rootScope.pphno);
+    console.log($rootScope.pphno);
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
     $scope.prequestedtime = $rootScope.requesteddatetime;
@@ -131,12 +131,8 @@ console.log($rootScope.pphno);
 						}
 						else if($scope.notes.checkedTests)
 						{
-
 							alert('You have Missed Diagnosis and Medication');
-
-
 							$scope.tests = testresultbydoctor.gettests();
-
 							var onlytests = {
 
 								tests : $scope.tests
@@ -160,53 +156,33 @@ console.log($rootScope.pphno);
 								medication : $scope.medication
 
 							}
-
-							console.log(onlymedication);
-
+						console.log(onlymedication);
 
 						}
 						else
 						{
-
 								alert('Please Select Atleast One Tests')
-
 						}
 
 
 						if($scope.notes.checkedDiagnosis || $scope.notes.checkedTests || $scope.notes.checkedMedication)
 						{
-
-
 											var prescriptiondetails = {
-
 												docphno : $localStorage.user,
 												patientphno : $rootScope.pphno,
 												diagnosis : $scope.diagnosis,
 												tests : $scope.tests,
 												medication : $scope.medication
-
-
 											};
 
 									//test jpeg image response
 
 									testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
-
-
 								}).catch(function(error){
 									console.log('failure data', error);
 								});
 
-
-
-
 						}
-
-
-
-
-
-
 		}
 
 })

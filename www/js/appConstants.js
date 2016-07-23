@@ -24,6 +24,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'login': 'common/dqLogin.php',
         'logout': 'logout',
         'ForgotPassword': 'common/forgotPassword.php',
+        'payuFailure': 'common/payuFailure.php',
+        'payuSucces': 'common/payuSucces.php',
+
+
 
         /*PATIENT APIS*/
         'patientRegistration' :'patient/patientRegistration.php',

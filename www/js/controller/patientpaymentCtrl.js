@@ -4,6 +4,8 @@ console.log($localStorage.user);
   $rootScope.headerTxt="Payments";
   $rootScope.showBackBtn=true;
   $rootScope.checkedValue = false;
+  $rootScope.showNotification=false;
+	$rootScope.showBadge=false;
 
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
    $rootScope.patientWalletdetails=response;

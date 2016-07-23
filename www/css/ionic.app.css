@@ -10337,6 +10337,10 @@ img-crop {
 .walkthrough-view .platform-ios.platform-cordova .logoContainer img {
   margin-top: 2vh; }
 
+.walkthrough-view .button.button-block, .walkthrough-view .button.button-full {
+  margin-top: 0;
+  margin-bottom: 0; }
+
 .walkthrough-view .login-form {
   height: 100%; }
 
@@ -10345,7 +10349,7 @@ img-crop {
 
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 20vh !important; }
+  margin-top: 17vh !important; }
 
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
@@ -10356,7 +10360,7 @@ img-crop {
   height: 20%; }
   .walkthrough-view .logoContainer img {
     width: 75%;
-    margin-top: 4vh; }
+    margin-top: 2vh; }
 
 .walkthrough-view input[type="number"] {
   font-size: 4vw;
@@ -11054,8 +11058,8 @@ ion-side-menu .heading-item .message {
       margin-left: 1vw; }
     .sepecility-details-view .item-avatar .icon {
       margin-left: 2vw;
-      padding-right: 20px;
-      padding-top: 18px; }
+      padding-right: 0px;
+      padding-top: 0px; }
   .sepecility-details-view .item-avatar:first-child {
     border-top: none; }
   .sepecility-details-view .item-avatar:last-child {
