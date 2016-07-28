@@ -199,10 +199,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 										bylanguage:languagewise
 									};
 									searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
-
 										if(Object.keys(response).length)
 										{
-
 											$state.go('app.doctorsearch');
 											$ionicLoading.show();
 												 $scope.doclist = response;

@@ -10891,6 +10891,11 @@ ion-side-menu .heading-item .message {
         color: #fff; }
   .doctor-profile-view .buttonPosition {
     margin-top: 5vh; }
+  .doctor-profile-view .rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+    font-size: 5vw; }
 
 .patient-payment-view {
   background-color: #e2e2e2 !important;

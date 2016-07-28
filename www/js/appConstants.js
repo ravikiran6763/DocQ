@@ -45,6 +45,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
         'docSummary' : 'patient/docSummary.php',
+        'topMeup' : 'patient/topMeUp.php',
+
 
 
         'sendotp' : 'textgurutest.php',

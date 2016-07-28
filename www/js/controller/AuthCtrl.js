@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $rootScope, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $timeout, $rootScope, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -11,38 +11,46 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
     $scope.submitted = false;
 
 
-    if($localStorage.user && $localStorage.pass){
-      // alert('user already logged in')
-      // $scope.doLogIn();
-      console.log('userNum' , $localStorage.user);
-      console.log('password' , $localStorage.pass);
-      var preLoginDetails={
-        userNum : $localStorage.user,
-        password : $localStorage.pass
-      };
-      console.log(preLoginDetails);
+   if($localStorage.user && $localStorage.pass){
 
-      // $state.go('app.patient_home');
-        $ionicLoading.show();
-      LoginService.loginprocess(preLoginDetails).then(function(response){
-        $scope.LoginStatus=response;
 
-        if(response === "patient")
-        {
-        $state.go('app.patient_home');
-        }
+     console.log('user already logged in')
+     $ionicLoading.show();
+     // $scope.doLogIn();
+     console.log('userNum' , $localStorage.user);
+     console.log('password' , $localStorage.pass);
+     var preLoginDetails={
+       userNum : $localStorage.user,
+       password : $localStorage.pass
+     };
+     console.log(preLoginDetails);
 
-        else if(response === "doctor")
-        {
-        // $state.go('templates.doctor_home');
-        }
-        console.log($scope.LoginStatus);
-        $ionicLoading.hide();
-      }).catch(function(error){
-      console.log('failure data', error);
-      });
-      $ionicLoading.hide();
-    }
+     // $state.go('app.patient_home');
+
+         $timeout(function() {
+           LoginService.loginprocess(preLoginDetails).then(function(response){
+             $scope.LoginStatus=response;
+             $ionicLoading.show();
+             if(response === "patient")
+             {
+             $state.go('app.patient_home');
+             }
+
+             else if(response === "doctor")
+             {
+             // $state.go('templates.doctor_home');
+             }
+             console.log($scope.LoginStatus);
+             $ionicLoading.hide();
+           }).catch(function(error){
+           console.log('failure data', error);
+           });
+           console.log('timeout fired');
+         }, 3000);
+
+     $ionicLoading.hide();
+   }
+
 
 
 $scope.sendForm = function($event,form)
@@ -199,7 +207,7 @@ console.log($rootScope.Doctor);
               //Alert Popup goes healthcare
               $scope.myPopup = $ionicPopup.show({
 								title: 'Patient Already Exist',
-								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();">X</div>',
+								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="color:red">X</p></div>',
 								cssClass: 'loginPopup',
 								scope: $scope,
 								// buttons: [
