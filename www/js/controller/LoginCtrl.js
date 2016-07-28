@@ -71,7 +71,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 						if(response === "patient")
 						{
+<<<<<<< HEAD
+
+								var uname1 = "greet+"+$scope.loginData.phone;
+
+=======
 							var uname1 = "greet+"+$scope.loginData.phone;
+>>>>>>> e73064bb31f631a24ff039b0b8bd7c9a1a9499a6
 								var pw1 = "DQ_patient";
 
 
@@ -90,9 +96,17 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 									alert("Error calling Hello Plugin");
 								}
 
+<<<<<<< HEAD
+								hello.login(uname1,pw1,success, failure);
+
+								$state.go('app.patient_home');
+
+
+=======
 								// hello.login(uname1,pw1,success, failure);
 
 						$state.go('app.patient_home');
+>>>>>>> e73064bb31f631a24ff039b0b8bd7c9a1a9499a6
 						}
 
 						else if(response === "doctor")
