@@ -9825,6 +9825,10 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.title .title-center .header-item {
+  left: 0px !important;
+  right: 0px !important; }
+
 .item-radio input:checked + .radio-content .item-content {
   background: #ffffff; }
 
@@ -10333,6 +10337,10 @@ img-crop {
 .walkthrough-view .platform-ios.platform-cordova .logoContainer img {
   margin-top: 2vh; }
 
+.walkthrough-view .button.button-block, .walkthrough-view .button.button-full {
+  margin-top: 0;
+  margin-bottom: 0; }
+
 .walkthrough-view .login-form {
   height: 100%; }
 
@@ -10341,7 +10349,7 @@ img-crop {
 
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 20vh !important; }
+  margin-top: 17vh !important; }
 
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
@@ -10352,7 +10360,7 @@ img-crop {
   height: 20%; }
   .walkthrough-view .logoContainer img {
     width: 75%;
-    margin-top: 4vh; }
+    margin-top: 2vh; }
 
 .walkthrough-view input[type="number"] {
   font-size: 4vw;
@@ -10430,7 +10438,8 @@ img-crop {
 .walkthrough-view .register_button {
   background-color: #00745f;
   color: #ffffff;
-  height: 40px; }
+  height: 40px;
+  margin-top: 0; }
 
 .walkthrough-view .spacer {
   margin: 5% auto; }
@@ -10864,7 +10873,7 @@ ion-side-menu .heading-item .message {
       font-size: 4vw;
       line-height: 0vh;
       text-align: center;
-      margin-top: 3vh;
+      margin-top: 6vh;
       font-family: Ubuntu,bold,sans-serif !important; }
     .doctor-profile-view .bottom-content h5 {
       font-size: 3vw;
@@ -10880,6 +10889,8 @@ ion-side-menu .heading-item .message {
         background-color: #6aa13e;
         font-family: Ubuntu,bold,sans-serif !important;
         color: #fff; }
+  .doctor-profile-view .buttonPosition {
+    margin-top: 5vh; }
 
 .patient-payment-view {
   background-color: #e2e2e2 !important;
@@ -11047,8 +11058,8 @@ ion-side-menu .heading-item .message {
       margin-left: 1vw; }
     .sepecility-details-view .item-avatar .icon {
       margin-left: 2vw;
-      padding-right: 20px;
-      padding-top: 18px; }
+      padding-right: 0px;
+      padding-top: 0px; }
   .sepecility-details-view .item-avatar:first-child {
     border-top: none; }
   .sepecility-details-view .item-avatar:last-child {
@@ -11575,7 +11586,8 @@ ion-side-menu .heading-item .message {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
   .medical-speciality-view ion-content {
-    overflow: scroll !important; }
+    overflow: scroll !important;
+    overflow-x: hidden; }
   .medical-speciality-view .bottom-content {
     width: 100%;
     overflow: scroll !important; }
@@ -11737,7 +11749,7 @@ ion-side-menu .heading-item .message {
           margin: 0px;
           color: #fff; }
         .doctorscreen-view .bottom-content li .name-content h2 {
-          margin: 0px;
+          margin: 2vh 0 0 0;
           font-size: 5vw;
           color: #fff;
           font-family: Ubuntu,bold,sans-serif !important;
@@ -11781,6 +11793,16 @@ ion-side-menu .heading-item .message {
 .doctor-acc-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .doctor-acc-view .item-icon-left ion-spinner {
+    float: left;
+    margin-left: -3.2em;
+    margin-right: 1em;
+    margin-top: -0.2em; }
+  .doctor-acc-view .spinner svg {
+    width: 28px;
+    height: 28px;
+    stroke: #999;
+    fill: #999; }
   .doctor-acc-view .top-content {
     height: 30vh; }
     .doctor-acc-view .top-content .pay-logo {
@@ -12095,7 +12117,7 @@ ion-side-menu .heading-item .message {
   .patient-notes-view .description {
     width: 80vmin;
     height: 15%;
-    margin-top: 4vh;
+    margin-top: 0 !important;
     padding: 10px auto;
     margin-left: 10vw;
     text-align: center;

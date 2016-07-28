@@ -2,6 +2,8 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope, $ionicConf
 
 	$rootScope.headerTxt="Search Doctors";
 	$rootScope.showBackBtn=true;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
 
 	console.log('controller called');
 

@@ -1,7 +1,7 @@
 // Ionic DoctorQuickApp
 var handleOpenURL=function(url){
-  // alert("Received url"+url);
-  // window.localStorage.setItem('externalLoad',url);
+  alert("Received url"+url);
+  window.localStorage.setItem('externalLoad',url);
 
 }
 
@@ -41,7 +41,8 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-datepicker',
   'ngMessages',
   'ion-alpha-scroll',
-  'intlpnIonic'
+  'intlpnIonic',
+  'ionic-letter-avatar'
 ])
 
 DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
@@ -505,7 +506,7 @@ $stateProvider
 
 
   .state('templates.requestAccepted', {
-    url: "/requestAccepted",
+    url: "/requestAccepted/:pfname/:plname/:psex/:page/:pphno",
     views: {
       'menuContent': {
         templateUrl: "views/templates/requestAccepted.html"

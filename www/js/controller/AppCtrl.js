@@ -304,19 +304,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
  }
 
 
- 	$scope.medicalSpeciality = function(){
-      medicalSpecialityService.getMedicalSpecialist()
-			.then(function(response){
-				console.log('appctrl called');
-          console.log('successfull data', response);
-          $scope.specialitiesList = response;
 
-       }).catch(function(error){
-           console.log('failure data', error);
-       });
-
-		$state.go('app.medical_speciality');
-	}
 
 	$scope.getSpecialityDetail=function(specialId){
 

@@ -11,7 +11,10 @@
 	}
 }
 
-
+.button.button-block, .button.button-full {
+     margin-top: 0;
+     margin-bottom: 0;
+}
 
 	.login-form {
 		height: 100%;
@@ -24,7 +27,7 @@
 
 	.form-cls {
 		height: auto;
-		margin-top:20vh !important;
+		margin-top:17vh !important;
 	}
 	.form-group {
 	    margin-bottom: 2vh;
@@ -36,7 +39,7 @@
     	height: 20%;
 			img{
 							width: 75%;
-							margin-top: 4vh;
+							margin-top: 2vh;
 				}
 		}
 		input[type="number"]{
@@ -132,6 +135,7 @@
 				background-color: #00745f;
 				color: #ffffff;
 				height: 40px;
+				margin-top: 0;
 			}
 
 			.spacer {

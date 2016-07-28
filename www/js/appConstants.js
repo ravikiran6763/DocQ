@@ -24,6 +24,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'login': 'common/dqLogin.php',
         'logout': 'logout',
         'ForgotPassword': 'common/forgotPassword.php',
+        'payuFailure': 'common/payuFailure.php',
+        'payuSucces': 'common/payuSucces.php',
+
+
 
         /*PATIENT APIS*/
         'patientRegistration' :'patient/patientRegistration.php',
@@ -57,10 +61,12 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
+        'docAccountsBalance' : 'doctor/docAccountsBalance.php',
+        'docAccDetails' : 'doctor/docAccDetails.php',
+
         'testjpegimage' :'prescription/responseasimages.php',
 
 
-        'getMedicalSpecialistDetails' : 'DQ/speciality/specialitiesDetails.php',
         'changePatientPwd':'DQ/changePatientPwd.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
 

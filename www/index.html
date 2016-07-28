@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1, minimum-scale=1">
     <!--<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width,height=device-height">-->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; script-src * &apos;unsafe-inline&apos; &apos;unsafe-eval&apos;; style-src * &apos;unsafe-inline&apos;;"> -->
-    <meta http-equiv="Content-Security-Policy" content="default-src *;  style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <meta http-equiv="Content-Security-Policy" content="  style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
 
     <title>DoctorQuick</title>
 
@@ -26,6 +26,8 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout-new.js"></script>
+
 
     <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
     <script type="text/javascript" src="lib/ionic/js/ionic.bundle.js"></script>
@@ -101,6 +103,8 @@
     <script type="text/javascript" src="js/prefixfree.min.js"></script>
     <script type="text/javascript" src="js/sha512.js"></script>
     <script type="text/javascript" src="js/capturePhoto.js"></script>
+    <script type="text/javascript" src="js/ionicLetterAvatar.js"></script>
+
     <!-- Include controllers -->
     <script type="text/javascript" src="js/controller/medicalSpecialityController.js"></script>
     <script type="text/javascript" src="js/controller/specialityDetailsController.js"></script>
@@ -132,10 +136,13 @@
 
     <!-- doctor controllers -->
     <script type="text/javascript" src="js/controller/Doctor/doctorCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/Doctor/doctorScreensCtrl.js"></script>
+
     <script type="text/javascript" src="js/controller/Doctor/doctorprofileCtrl.js"></script>
     <script type="text/javascript" src="js/controller/Doctor/docAccStatementCtrl.js"></script>
     <script type="text/javascript" src="js/controller/Doctor/docProfileCtrl.js"></script>
     <script type="text/javascript" src="js/controller/Doctor/doctorCareCtrl.js"></script>
+    <script type="text/javascript" src="js/controller/Doctor/notesCtrl.js"></script>
     <script type="text/javascript" src="js/controller/Doctor/chatWithPatientCtrl.js"></script>
     <script type="text/javascript" src="js/controller/doctor/patientrequestCtrl.js"></script>
 
@@ -158,7 +165,7 @@
     <script type="text/javascript" src="js/service/searchbyspecialities.js"></script>
     <script type="text/javascript" src="js/service/doctoronoff.js"></script>
     <script type="text/javascript" src="js/service/searchbyspecialities.js"></script>
-    <!-- <script type="text/javascript" src="js/service/authService.js"></script> -->
+    <script type="text/javascript" src="js/service/payuService.js"></script>
       <script type="text/javascript" src="js/service/patientrequestodoctorservice.js"></script>
 
 
@@ -169,6 +176,8 @@
     <script type="text/javascript" src="js/service/doctor/invitereviews.js"></script>
     <script type="text/javascript" src="js/service/doctor/invitereviewsresultservice.js"></script>
     <script type="text/javascript" src="js/service/doctor/patienttestresultbydoctor.js"></script>
+    <script type="text/javascript" src="js/service/doctor/accountsService.js"></script>
+
 
     <!-- <script src="/bower_components/angular-cookies/angular-cookies.js"></script> -->
   </head>

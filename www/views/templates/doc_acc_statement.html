@@ -1,6 +1,6 @@
 <ion-view class="doctor-acc-view" cache-view="false">
 
-  <div class="top-content">
+  <div class="top-content" ng-repeat="bal in availableBalance">
     <div class="pay-logo">
       <pre-img ratio="_1_1" helper-class="rounded-image">
          <img ng-src="img/dq_icon_payments_large_540x960.png" spinner-on-load>
@@ -9,7 +9,7 @@
     <h1>Report</h1>
     <div class="bal-info">
       <div class="balance-content">
-        <p>Available <span>₹120</span></p>
+        <p>Available <span>₹{{bal.totalBal}}</span></p>
       </div>
     </div>
   </div>
@@ -26,96 +26,17 @@
   </div>
   <div class="bottom-content">
     <ul >
-      <li class="" >
+        <li class="" ng-repeat="details in DocAcc">
         <div class="profile-img">
           <img src="img/doc.jpg">
         </div>
         <div class="name-content">
-          <h2>Firstname LastName <span>₹120</span></h2>
-          <p>23 dec 2015</p>
+            <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}}</span></h2>
+            <p>{{details.consultedDate |  date :  "dd.MM.y"}}</p>
         </div>
-        <div class="next-icon">
+        </li>
+        <!-- <li ng-show="!details.DocAcc" style="margin-top: 8vh;"><center><b style="color:#417611;">Please Select date to view Transaction details</b></center></li> -->
 
-        </div>
-      </li>
-
-      <li class="" >
-        <div class="profile-img">
-          <img src="img/dq_icon_payments_large_540x960.png">
-        </div>
-        <div class="name-content">
-          <h2>Withdrawl<span>₹20</span></h2>
-          <p>23 dec 2015</p>
-        </div>
-        <div class="next-icon">
-
-        </div>
-      </li>
-
-      <li class="" >
-        <div class="profile-img">
-          <img src="img/doc.jpg">
-        </div>
-        <div class="name-content">
-          <h2>Firstname LastName <span>₹120</span></h2>
-          <p>23 dec 2015</p>
-        </div>
-        <div class="next-icon">
-
-        </div>
-      </li>
-
-      <li class="" >
-        <div class="profile-img">
-          <img src="img/doc.jpg">
-        </div>
-        <div class="name-content">
-          <h2>Firstname LastName <span>₹120</span></h2>
-          <p>23 dec 2015</p>
-        </div>
-        <div class="next-icon">
-
-        </div>
-      </li>
-
-      <li class="" >
-        <div class="profile-img">
-          <img src="img/doc.jpg">
-        </div>
-        <div class="name-content">
-          <h2>Firstname LastName <span>₹120</span></h2>
-          <p>23 dec 2015</p>
-        </div>
-        <div class="next-icon">
-
-        </div>
-      </li>
-
-      <li class="" >
-        <div class="profile-img">
-          <img src="img/doc.jpg">
-        </div>
-        <div class="name-content">
-          <h2>Firstname LastName <span>₹120</span></h2>
-          <p>23 dec 2015</p>
-        </div>
-        <div class="next-icon">
-
-        </div>
-      </li>
-
-      <li class="" >
-        <div class="profile-img">
-          <img src="img/doc.jpg">
-        </div>
-        <div class="name-content">
-          <h2>Firstname LastName <span>₹120</span></h2>
-          <p>23 dec 2015</p>
-        </div>
-        <div class="next-icon">
-
-        </div>
-      </li>
     </ul>
   </div>
 </ion-view>
