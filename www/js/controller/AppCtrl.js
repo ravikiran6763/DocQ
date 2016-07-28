@@ -234,6 +234,34 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 	//signout
 
 	$scope.confirmSignout = function() {
+
+
+
+		var unametologout = "greet+"+$localStorage.user;
+
+		var pwtologout = "DQ_patient";
+
+
+		console.log(unametologout);
+		console.log(pwtologout);
+
+
+
+		var success = function(message)
+		{
+			alert(message);
+		}
+
+		var failure = function()
+		{
+			alert("Error calling Hello Plugin");
+		}
+
+		hello.logout(unametologout,pwtologout,success, failure);
+
+
+
+
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
 					template: 'Are you sure you want to Signout?',

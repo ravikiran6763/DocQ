@@ -56,14 +56,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
 
-<<<<<<< HEAD
 
-
-
-
-
-=======
->>>>>>> 0e93c51205a4e9b68596bf8b60709c581579dd65
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
 				var userDetails={
@@ -78,10 +71,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 						if(response === "patient")
 						{
-<<<<<<< HEAD
 
-
-							var uname1 = "greet+"+$scope.loginData.phone;
+								var uname1 = "greet+"+$scope.loginData.phone;
 
 								var pw1 = "DQ_patient";
 
@@ -103,12 +94,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 								hello.login(uname1,pw1,success, failure);
 
+								$state.go('app.patient_home');
 
 
-=======
-						
->>>>>>> 0e93c51205a4e9b68596bf8b60709c581579dd65
-						$state.go('app.patient_home');
 						}
 
 						else if(response === "doctor")
