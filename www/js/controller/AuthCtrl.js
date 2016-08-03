@@ -29,12 +29,11 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
         if(response === "patient")
         {
-<<<<<<< HEAD
+
         //$ionicLoading.show();
         //$state.go('app.patient_home');
-=======
+
         $state.go('app.patient_home');
->>>>>>> e73064bb31f631a24ff039b0b8bd7c9a1a9499a6
         }
 
         else if(response === "doctor")

@@ -7,7 +7,7 @@
     <author email="you@example.com" href="http://example.com.com/">
       Your Name Here
     </author>
-<<<<<<< HEAD
+
   <content src="index.html"/>
   <access origin="*"/>
   <access origin="tel:*" launch-external="yes"/>
@@ -94,7 +94,7 @@
 
 </platform>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
-=======
+
     <content src="index.html" />
     <access origin="*" />
     <access launch-external="yes" origin="tel:*" />
@@ -167,5 +167,5 @@
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
->>>>>>> e73064bb31f631a24ff039b0b8bd7c9a1a9499a6
+
 </widget>
