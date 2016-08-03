@@ -2,7 +2,7 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
 
       this.getMedicalSpecialist = function(){
             var deferred = $q.defer();
-            // console.log(BASE_URL.url + API.getMedicalSpecialist);
+            console.log(BASE_URL.url + API.getMedicalSpecialist);
             $http.get(BASE_URL.url + API.getMedicalSpecialist).then ( function(response) {
                 if(response.status === 200){
                   deferred.resolve(response.data);
