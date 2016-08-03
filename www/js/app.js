@@ -414,6 +414,16 @@ $stateProvider
     }
   })
 
+  .state('app.callAccepted', {
+    url: "/callAccepted",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/callAccepted.html"
+
+      }
+    }
+  })
+
 
 
   .state('templates', {

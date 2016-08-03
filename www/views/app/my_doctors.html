@@ -2,7 +2,11 @@
   <!-- <ion-nav-title>
     <span>My Doctors</span>
   </ion-nav-title> -->
+
   <ion-content  >
+    <ion-refresher on-refresh="doRefresh()">
+
+        </ion-refresher>
     <div>
           <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.ratingTo}});" >
             <ionic-letter-avatar data={{doctor.doctorFname}} data={{doctor.doctorLname}} shape="round" charcount='1'></ionic-letter-avatar>

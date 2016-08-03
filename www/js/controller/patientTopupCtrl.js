@@ -1,10 +1,13 @@
-DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,$localStorage, $location, $ionicConfig,$cordovaInAppBrowser, $http, patientWalletServices, payu,patientProfileDetailsService,BASE_URL, API) {
+DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,$localStorage, $location, $ionicConfig,$cordovaInAppBrowser, $http, patientWalletServices, RazorPayService ,patientProfileDetailsService,BASE_URL, API) {
 
 	$rootScope.headerTxt="Topup";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+
+	$scope.paymentid= "";
+
 
   $scope.payment={};
 	$scope.payu_params = {};
@@ -14,6 +17,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
    }).catch(function(error){
      console.log('failure data', error);
    });
+
+//RAZORPAY DETAILS
 
 //key id:rzp_test_mzUbTyUmUd2dyE
 //Key secret :Ocof0Yf9Ms36q8Pq7EtE2zUd
@@ -39,20 +44,6 @@ $scope.patient_details=[];
  console.log('failure data', error);
  })
 
-			// CardName: Any name
-			// CardNumber: 5123456789012346
-			// CVV: 123
-			// Expiry: May 2017
-// console.log($location.path());
-			// console.log(FailureURI);
-			// var FailureURI=BASE_URL.url + API.payuFailure;
-			var FailureURI=$location.path();
-console.log(FailureURI);
-			var payuSucces=BASE_URL.url + API.payuSucces;
-console.log(FailureURI);
-console.log(payuSucces);
-
-
 
 
 				$scope.payToDq=function(){
@@ -60,27 +51,52 @@ console.log(payuSucces);
 					console.log($scope.payment.topUp);
 					var options = {
 							description: 'Consult A Doctor Now',
-							// image: 'http://www.greettech.com/dq/icon.png',
-							image: '../img/icon.png',
 							currency: 'INR',
 							key: 'rzp_test_mzUbTyUmUd2dyE',
 							amount:$scope.payment.topUpAmt ,
 							name: 'DoctorQuick',
-							prefill: {email: $scope.patientEmail, contact: $localStorage.user, name: $scope.patientFname},
-							theme: {color: '#007460'}
+							method:{
+								wallet:false
+							},
+							prefill: {
+								email: $scope.patientEmail,
+								contact: $localStorage.user,
+								name: $scope.patientFname
+							},
+							// theme: {color: '#6aa13e'}
 					}
-					console.log(options);
-							var successCallback = function(payment_id) {
-							alert('payment_id: ' + payment_id);
+					// console.log(options);
+					RazorPayService.topUpOptions(options);
+					var successCallback = function(payment_id) {
+					// alert('payment_id: ' + payment_id);
 
-							}
+					$scope.paymentid = payment_id;
+						RazorPayService.topUp($scope.paymentid).then(function(response){
+					   $rootScope.patientWalletUpdate=response;
+						//  alert($rootScope.patientWalletUpdate);
+						 if($rootScope.patientWalletUpdate=='TransactionSuccessful'){
+							  // $state.go('app.patient_topup');
+								$state.go($state.current, $stateParams, {reload: true, inherit: false});
+						 }
+						 if($rootScope.patientWalletUpdate=='ERROR'){
+							  alert('Error While Initiating Payment');
+						 }
+						 $scope.payment.topUpAmt="";
+						 $window.location.reload(true);
 
-							var cancelCallback = function(error) {
-							alert(error.description + ' (Error '+error.code+')');
-							}
+						// $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
+					 console.log($rootScope.patientWalletUpdate);
+					   }).catch(function(error){
+					     console.log('failure data', error);
+					   });
+					}
+
+					var cancelCallback = function(error) {
+					alert(error.description + ' (Error '+error.code+')');
+					}
 
 
-							RazorpayCheckout.open(options, successCallback, cancelCallback);
+					RazorpayCheckout.open(options, successCallback, cancelCallback);
 
 				}
 /*
@@ -179,5 +195,19 @@ $scope.payuOrder = function(form) {
 							}
 
 			 }
+			 CardName: Any name
+	 		CardNumber: 5123456789012346
+	 		CVV: 123
+	 		Expiry: May 2017
+	 console.log($location.path());
+	 		console.log(FailureURI);
+	 		var FailureURI=BASE_URL.url + API.payuFailure;
+	 			var FailureURI=$location.path();
+	 console.log(FailureURI);
+	 			var payuSucces=BASE_URL.url + API.payuSucces;
+	 console.log(FailureURI);
+	 console.log(payuSucces);
+
+
 
 */

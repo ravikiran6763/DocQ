@@ -71,12 +71,20 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 						if(response === "patient")
 						{
+<<<<<<< HEAD
 
 
 								var uname1 = "greet+"+$scope.loginData.phone;
 
 
 							var uname1 = "greet+"+$scope.loginData.phone;
+=======
+
+								var uname1 = "greet+"+$scope.loginData.phone;
+
+							var uname1 = "greet+"+$scope.loginData.phone;
+
+>>>>>>> 664226f4434dd5ab2b3c95cfb3387f7e292b12bb
 								var pw1 = "DQ_patient";
 
 
@@ -95,8 +103,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 									alert("Error calling Hello Plugin");
 								}
 
+<<<<<<< HEAD
 
 								hello.login(uname1,pw1,success, failure);
+=======
+								// hello.login(uname1,pw1,success, failure);
+>>>>>>> 664226f4434dd5ab2b3c95cfb3387f7e292b12bb
 
 								$state.go('app.patient_home');
 
@@ -116,7 +128,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 							$scope.myPopup = $ionicPopup.show({
 								title: 'Invalid Credentials',
-								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();">X</div>',
+								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px;" ng-controller="LoginCtrl" ng-Click="closethis();"><span style="color:red;">X<span></div>',
 								cssClass: 'loginPopup',
 								scope: $scope,
 								// buttons: [

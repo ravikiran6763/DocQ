@@ -24,9 +24,9 @@
               <div class=" col" ng-repeat="rating in ratings">
                 {{rating.current | number:1}}/23
               </div>
-              <div class="col ratingContainer">
+              <div class="col ">
                   <span ng-repeat="rating in ratings">
-                    <div star-rating rating-value="rating.current" max="rating.max" ></div>
+                    <div star-rating rating-value="rating.current" max="rating.max" style="margin:0 !important;"></div>
                   </span>
               </div>
         </div>

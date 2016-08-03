@@ -7,32 +7,39 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
-    $ionicLoading.show();
+
     $scope.sendrequesttoonlinedoctors = function(id)
     {
-$ionicLoading.show();
+      $ionicLoading.show();
+    //   $ionicLoading.show({
+    //   content: 'Loading...',
+    //   animation: 'fade-in',
+    //   showBackdrop: false,
+    //   maxWidth: 200,
+    //   showDelay: 500,
+    // });
       console.log('buttonclicked');
 
       medicalSpecialityService.sendrequesttodoctor(id).then(function(response){
-          console.log('successfull data', response);
+
+          // console.log('successfull data', response);
 
           if(response)
           {
             $scope.requestSent = response;
-            console.log($scope.requestSent);
+            // $state.go('app.callAccepted');
+            alert('Request Sent');
             $ionicLoading.hide();
-            console.log('Request Sent');
           }
           else {
             alert('error');
           }
        }).catch(function(error){
            console.log('failure data', error);
-       });;
+       });
     }
 
-    medicalSpecialityService.getMedicalSpecialist()
-    .then(function(response){
+    medicalSpecialityService.getMedicalSpecialist().then(function(response){
         console.log('successfull data', response);
         $scope.specialitiesList = response;
         $ionicLoading.hide();

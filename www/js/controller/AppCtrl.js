@@ -1,5 +1,6 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicHistory, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicHistory, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService) {
 
+console.log('appCtrl');
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
@@ -199,10 +200,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 										bylanguage:languagewise
 									};
 									searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
-
 										if(Object.keys(response).length)
 										{
-
 											$state.go('app.doctorsearch');
 											$ionicLoading.show();
 												 $scope.doclist = response;
@@ -257,10 +256,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.logout(unametologout,pwtologout,success, failure);
-
-
-
+		// hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
@@ -302,8 +298,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $windo
 	 $rootScope.sideMenuForSearch = false;
 	 $ionicSideMenuDelegate.toggleRight();
  }
-
-
 
 
 	$scope.getSpecialityDetail=function(specialId){
@@ -414,6 +408,55 @@ $scope.ratingsObject = {
 		$state.go('app.capture');
 	  console.log('upload picture');
 	};
+
+	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+			// console.log('successfull data', response);
+			$scope.calledDetails=response;
+			console.log($scope.calledDetails);
+			var data=$scope.calledDetails//take all json data into this variable
+			 var totList=[];
+					for(var i=0; i<data.length; i++){
+
+							$rootScope.cal_flag=data[i].cal_flag,
+							$rootScope.onoff=data[i].onoff,
+
+					console.log($rootScope.cal_flag);
+					console.log($rootScope.onoff);
+
+					}
+					if($rootScope.cal_flag == 0){
+						// alert('readyforcall');
+
+						$ionicModal.fromTemplate('<div class="modal"><header class="bar bar-header bar-positive"> <h1 class="title">I\'m A Modal</h1><div class="button button-clear" ng-click="modal2.hide()"><span class="icon ion-close"></span></div></header><content has-header="true" padding="true"><p>This is a modal</p></content></div>', {
+						scope: $scope,
+						animation: 'slide-left-right'
+						});
+
+						$ionicPopup.alert({
+						title: 'Call Accepted',
+						template:' A Doctor has accepted your call request',
+						cssClass: 'videoPopup',
+						buttons: [
+							{
+							text: 'Ok',
+							type: 'button-royal',
+							onTap: function(e) {
+								// console.log('ok tapped');
+								// $state.go('app.callAccepted');
+
+
+							}
+							},
+						]
+						})
+
+
+					}
+	 }).catch(function(error){
+			 console.log('failure data', error);
+	 });
+	console.log($rootScope.cal_flag);
+
 
 
 });

@@ -21,43 +21,28 @@ console.log('failure data', error);
       $ionicLoading.show();
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
         // console.log(response[0][0]);
-        $scope.myBalance=response[0][0];
+      $scope.myBalance=response[0][0];
 
           console.log('pop up page clicked');
-
-
-
-              	var uname = "greet+"+$localStorage.user;
+          	var uname = "greet+"+$localStorage.user;
              var pw = "DQ_patient";
 
              var persontocall = "greet+" + $localStorage.docPhone;
-
-
              console.log(uname);
              console.log(persontocall);
 
-
              var success = function(message)
               {
-
                   alert(message);
-
               }
-
               var failure = function()
               {
                 alert("Error calling Hello Plugin");
               }
-
-
                 hello.greet(uname,pw,persontocall,success, failure);
-
-
 
         if($scope.myBalance >= 250)
         {
-
-
           // var confirmPopup = $ionicPopup.confirm({
           //   template: '<b>Request for Video call has been sent <br><center>00:02</center></b>',
           //   cssClass: 'videoPopup',
@@ -109,7 +94,7 @@ console.log('failure data', error);
 
     }
 //for voice call
-$scope.BalanceForVoiveCall=function()
+$scope.BalanceForVoiceCall=function()
 {
   $ionicLoading.show();
   doctorServices.checkMyBalance($localStorage.user).then(function(response){
