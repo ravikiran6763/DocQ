@@ -13,7 +13,7 @@
 
     <!-- Alphabatical scrolling -->
     <link href="lib/ion-alpha-scroll/src/ion-alpha-scroll.css" rel="stylesheet">
-
+    <link href="lib/ionic-nifty-modal/nifty.modal.css" rel="stylesheet">
 
     <!-- Angular Material CSS using GitCDN to load directly from `bower-material/master` -->
        <!-- <link rel="stylesheet" href="https://gitcdn.xyz/repo/angular/bower-material/master/angular-material.css"> -->
@@ -28,7 +28,17 @@
     <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
     <script src="https://checkout.razorpay.com/v1/checkout-new.js"></script>
 
-
+    <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCEMZ08zOhAFMDut8d_op4D1ZFk9bQ694c",
+        authDomain: "docq-cdcfb.firebaseapp.com",
+        databaseURL: "https://docq-cdcfb.firebaseio.com",
+        storageBucket: "",
+      };
+      firebase.initializeApp(config);
+    </script>
     <!-- <script src="https://www.youtube.com/iframe_api"></script> -->
     <script type="text/javascript" src="lib/ionic/js/ionic.bundle.js"></script>
     <script type="text/javascript" src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>

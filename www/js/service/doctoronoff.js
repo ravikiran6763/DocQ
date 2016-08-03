@@ -26,8 +26,8 @@ DoctorQuickApp.service('doctoronoffdetails', function ($http,$q, BASE_URL, API) 
 
     $http.post(BASE_URL.url + API.getdoctorrequest,doctorphno)
     .success(function (data, status, headers, config){
-      console.log(data);
-      
+      // console.log(data);
+
       deferred.resolve(data);
     })
     .error(function (){

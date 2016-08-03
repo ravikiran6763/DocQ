@@ -12,9 +12,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
 
    if($localStorage.user && $localStorage.pass){
-
-
-<<<<<<< HEAD
      console.log('user already logged in')
      $ionicLoading.show();
      // $scope.doLogIn();
@@ -51,17 +48,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
      $ionicLoading.hide();
    }
-=======
-        if(response === "patient")
-        {
-<<<<<<< HEAD
-        //$ionicLoading.show();
-        //$state.go('app.patient_home');
-=======
-        $state.go('app.patient_home');
->>>>>>> e73064bb31f631a24ff039b0b8bd7c9a1a9499a6
-        }
->>>>>>> 2bfc4d72f0a58f7a916ecae86de0804f77c148e0
+      
 
 
 

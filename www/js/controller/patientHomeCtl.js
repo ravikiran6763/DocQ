@@ -1,6 +1,6 @@
 DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicLoading, $ionicConfig, $ionicHistory, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, doctoronoffdetails) {
 
-
+console.log('patienthome ctrl');
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
 			$rootScope.showDocStatus=false;
