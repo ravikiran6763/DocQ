@@ -442,7 +442,7 @@ $scope.ratingsObject = {
 							type: 'button-royal',
 							onTap: function(e) {
 								// console.log('ok tapped');
-								// $state.go('app.callAccepted');
+								$state.go('app.callAccepted');
 
 
 							}

@@ -9825,7 +9825,7 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
-.title .title-center .header-item {
+.title .title-left .header-item {
   left: 0px !important;
   right: 0px !important; }
 
@@ -10771,6 +10771,9 @@ ion-side-menu .heading-item .message {
 .mydoctor-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .mydoctor-profile-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .mydoctor-profile-view .item-icon-right .icon {
     right: 20px; }
   .mydoctor-profile-view .item-avatar {
@@ -10832,6 +10835,9 @@ ion-side-menu .heading-item .message {
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .doctor-profile-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .doctor-profile-view .profile-img {
     width: 30%;
     height: 25% !important;
@@ -10900,6 +10906,9 @@ ion-side-menu .heading-item .message {
 .callAccpted-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .callAccpted-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .callAccpted-view .profile-img {
     width: 30%;
     height: 25% !important;
@@ -10989,6 +10998,9 @@ ion-side-menu .heading-item .message {
 .patient-payment-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-payment-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .patient-payment-view .pay-content {
     overflow: hidden !important;
     height: 47%;
@@ -11097,6 +11109,9 @@ ion-side-menu .heading-item .message {
 .sepecility-details-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .sepecility-details-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .sepecility-details-view .card {
     font-size: 4vw;
     margin-top: 8vh;
@@ -11197,6 +11212,9 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .customercare-view ion-content {
     overflow: scroll !important; }
+  .customercare-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .customercare-view .cc-form {
     height: 100%; }
   .customercare-view .top-content {
@@ -11263,6 +11281,9 @@ ion-side-menu .heading-item .message {
 .patient-refund-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-refund-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .patient-refund-view .top-content {
     height: 30%;
     height: 30vh; }
@@ -11356,6 +11377,9 @@ ion-side-menu .heading-item .message {
 .patient-topup-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-topup-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .patient-topup-view .top-content {
     height: 25%;
     height: 25vh; }
@@ -11457,6 +11481,9 @@ ion-side-menu .heading-item .message {
 .summary-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .summary-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .summary-view ion-content {
     overflow: scroll !important; }
   .summary-view .row {
@@ -11573,6 +11600,9 @@ ion-side-menu .heading-item .message {
 .search-view {
   background-color: #e2e2e2;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .search-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .search-view .top-content {
     position: relative;
     height: 30vh;
@@ -11645,6 +11675,9 @@ ion-side-menu .heading-item .message {
 .mypatient-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .mypatient-profile-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .mypatient-profile-view .top-content {
     position: relative;
     width: 100%;
@@ -11679,6 +11712,9 @@ ion-side-menu .heading-item .message {
 .medical-speciality-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .medical-speciality-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .medical-speciality-view ion-content {
     overflow: scroll !important;
     overflow-x: hidden; }
@@ -12983,453 +13019,11 @@ ion-side-menu .heading-item .message {
       margin: 8vh 0 0 10vw;
       width: 80%; }
 
-.patientSidemenu-view {
-  background-color: #6aa433;
-  font-family: Ubuntu,bold,sans-serif !important; }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (device-width: 320px) and (device-height: 480px) and (-webkit-min-device-pixel-ratio: 2) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
-    .patientSidemenu-view .itemDevider {
-      margin-top: -2vh; }
-    .patientSidemenu-view .patientList {
-      margin-top: 57.5vh;
-      padding-bottom: 10px; }
-    .patientSidemenu-view .listContent {
-      background-color: red; }
-    .patientSidemenu-view .headerTitle {
-      color: red;
-      font-size: 20px;
-      text-align: center;
-      margin-left: -2vw; }
-    .patientSidemenu-view .iconleft {
-      margin-left: -1vw; }
-    .patientSidemenu-view .badge-container {
-      position: absolute;
-      margin-left: -2vh;
-      margin-top: 0.4vh;
-      background-color: #ba272f !important; }
-    .patientSidemenu-view .slideThree {
-      width: 52px;
-      height: 25px;
-      background: #68a23d !important;
-      margin-left: 180px;
-      margin-top: -22px;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideThree:after {
-      content: 'OFF';
-      color: #000;
-      position: absolute;
-      left: 26px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15); }
-    .patientSidemenu-view .slideThree:before {
-      content: 'ON';
-      color: #ffffff;
-      position: relative;
-      left: 4px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold; }
-    .patientSidemenu-view .slideThree label {
-      display: block;
-      width: 26px;
-      height: 20px;
-      cursor: pointer;
-      position: absolute;
-      top: 2px;
-      left: 1px;
-      z-index: 1;
-      background: #fcfff4;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 60px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease;
-      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3); }
-    .patientSidemenu-view .slideThree input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideThree input[type=checkbox]:checked + label {
-      left: 26px; }
-    .patientSidemenu-view .slideTwo {
-      width: 122px;
-      height: 50px;
-      background: #69a33d;
-      margin-top: -58vh;
-      margin-left: 35vw;
-      position: absolute;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideTwo:after {
-      content: 'OFFLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 20vw;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo:before {
-      content: 'ONLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 10px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo label {
-      display: block;
-      width: 55px;
-      height: 55px;
-      cursor: pointer;
-      position: absolute;
-      top: -3px;
-      left: 3px;
-      z-index: 1;
-      background: red;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 50px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
-    .patientSidemenu-view .slideTwo input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideTwo input[type=checkbox]:checked + label {
-      left: 65px; } }
-  @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (device-width: 320px) and (device-height: 568px) and (-webkit-min-device-pixel-ratio: 2) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
-    .patientSidemenu-view .headerTitle {
-      color: red;
-      font-size: 20px;
-      text-align: center;
-      margin-left: 20vw; }
-    .patientSidemenu-view .iconleft {
-      margin-left: -1vw;
-      padding-left: 10px; }
-    .patientSidemenu-view .badge-container {
-      position: absolute;
-      margin-left: -2vh;
-      margin-top: 0.4vh;
-      background-color: #ba272f !important; }
-    .patientSidemenu-view .slideThree {
-      width: 52px;
-      height: 25px;
-      background: #68a23d !important;
-      margin-left: 180px;
-      margin-top: -22px;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideThree:after {
-      content: 'OFF';
-      color: #000;
-      position: absolute;
-      left: 26px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15); }
-    .patientSidemenu-view .slideThree:before {
-      content: 'ON';
-      color: #ffffff;
-      position: relative;
-      left: 4px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold; }
-    .patientSidemenu-view .slideThree label {
-      display: block;
-      width: 26px;
-      height: 20px;
-      cursor: pointer;
-      position: absolute;
-      top: 2px;
-      left: 1px;
-      z-index: 1;
-      background: #fcfff4;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 60px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease;
-      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3); }
-    .patientSidemenu-view .slideThree input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideThree input[type=checkbox]:checked + label {
-      left: 26px; }
-    .patientSidemenu-view .slideTwo {
-      width: 125px;
-      height: 50px;
-      background: #69a33d;
-      margin-top: -45vh;
-      margin-left: 35vw;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideTwo:after {
-      content: 'OFFLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 17vw;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo:before {
-      content: 'ONLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 10px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo label {
-      display: block;
-      width: 55px;
-      height: 55px;
-      cursor: pointer;
-      position: absolute;
-      top: -3px;
-      left: 3px;
-      z-index: 1;
-      background: red;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 50px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
-    .patientSidemenu-view .slideTwo input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideTwo input[type=checkbox]:checked + label {
-      left: 68px;
-      right: 10px; } }
-  @media only screen and (min-device-width: 375px) and (max-device-width: 627px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait) {
-    .patientSidemenu-view .headerTitle {
-      color: red;
-      font-size: 25px;
-      text-align: center;
-      margin-left: 25vw; }
-    .patientSidemenu-view .iconleft {
-      margin-left: -1vw;
-      padding-left: 10px; }
-    .patientSidemenu-view .badge-container {
-      position: absolute;
-      margin-left: -2vh;
-      margin-top: 0.4vh;
-      background-color: #ba272f !important; }
-    .patientSidemenu-view .slideThree {
-      width: 52px;
-      height: 25px;
-      background: #68a23d !important;
-      margin-left: 180px;
-      margin-top: -22px;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideThree:after {
-      content: 'OFF';
-      color: #000;
-      position: absolute;
-      left: 26px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15); }
-    .patientSidemenu-view .slideThree:before {
-      content: 'ON';
-      color: #ffffff;
-      position: relative;
-      left: 4px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold; }
-    .patientSidemenu-view .slideThree label {
-      display: block;
-      width: 26px;
-      height: 20px;
-      cursor: pointer;
-      position: absolute;
-      top: 2px;
-      left: 1px;
-      z-index: 1;
-      background: #fcfff4;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 60px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease;
-      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3); }
-    .patientSidemenu-view .slideThree input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideThree input[type=checkbox]:checked + label {
-      left: 26px; }
-    .patientSidemenu-view .slideTwo {
-      width: 125px;
-      height: 50px;
-      background: #69a33d;
-      margin-top: -45vh;
-      margin-left: 35vw;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideTwo:after {
-      content: 'OFFLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 17vw;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo:before {
-      content: 'ONLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 10px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo label {
-      display: block;
-      width: 55px;
-      height: 55px;
-      cursor: pointer;
-      position: absolute;
-      top: -3px;
-      left: 3px;
-      z-index: 1;
-      background: red;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 50px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
-    .patientSidemenu-view .slideTwo input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideTwo input[type=checkbox]:checked + label {
-      left: 68px;
-      right: 10px; } }
-  @media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (device-width: 414px) and (device-height: 736px) and (-webkit-min-device-pixel-ratio: 3) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait) {
-    .patientSidemenu-view .onlineOffline {
-      margin-top: 0.7vh; }
-    .patientSidemenu-view .headerTitle {
-      color: red;
-      font-size: 25px;
-      text-align: center;
-      margin-left: 25vw; }
-    .patientSidemenu-view .iconleft {
-      margin-left: -1vw;
-      padding-left: 10px; }
-    .patientSidemenu-view .badge-container {
-      position: absolute;
-      margin-left: -2vh;
-      margin-top: 0.4vh;
-      background-color: #ba272f !important; }
-    .patientSidemenu-view .slideThree {
-      width: 52px;
-      height: 25px;
-      background: #68a23d !important;
-      margin-left: 180px;
-      margin-top: -22px;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideThree:after {
-      content: 'OFF';
-      color: #000;
-      position: absolute;
-      left: 26px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold;
-      text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15); }
-    .patientSidemenu-view .slideThree:before {
-      content: 'ON';
-      color: #ffffff;
-      position: relative;
-      left: 4px;
-      z-index: 0;
-      font: 12px/26px Arial, sans-serif;
-      font-weight: bold; }
-    .patientSidemenu-view .slideThree label {
-      display: block;
-      width: 26px;
-      height: 20px;
-      cursor: pointer;
-      position: absolute;
-      top: 2px;
-      left: 1px;
-      z-index: 1;
-      background: #fcfff4;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 60px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease;
-      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3); }
-    .patientSidemenu-view .slideThree input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideThree input[type=checkbox]:checked + label {
-      left: 26px; }
-    .patientSidemenu-view .slideTwo {
-      width: 126px;
-      height: 50px;
-      background: #69a33d;
-      margin-top: -45vh;
-      margin-left: 35vw;
-      position: relative;
-      border-radius: 50px;
-      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2); }
-    .patientSidemenu-view .slideTwo:after {
-      content: 'OFFLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 16vw;
-      z-index: 0;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo:before {
-      content: 'ONLINE';
-      color: white;
-      position: absolute;
-      top: 15px;
-      left: 8px;
-      z-index: 0;
-      font-weight: bold;
-      text-align: center; }
-    .patientSidemenu-view .slideTwo label {
-      display: block;
-      width: 60px;
-      height: 60px;
-      cursor: pointer;
-      position: absolute;
-      top: -3px;
-      left: 3px;
-      z-index: 1;
-      background: red;
-      background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      background: linear-gradient(to bottom, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
-      border-radius: 50px;
-      -webkit-transition: all 0.4s ease;
-      transition: all 0.4s ease; }
-    .patientSidemenu-view .slideTwo input[type=checkbox] {
-      visibility: hidden; }
-    .patientSidemenu-view .slideTwo input[type=checkbox]:checked + label {
-      left: 68px;
-      right: 10px; } }
-
 .patientscreen-view {
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patientscreen-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .patientscreen-view ion-content {
     overflow: hidden !important; }
   .patientscreen-view .slider-content {
@@ -13540,6 +13134,9 @@ ion-side-menu .heading-item .message {
 .patientprofile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patientprofile-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
   .patientprofile-view .ratingContainer {
     position: relative;
     margin-left: 29vw; }

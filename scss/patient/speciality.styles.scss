@@ -2,6 +2,10 @@
 {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important;
+  .title .title-left .header-item{
+    left: 0px !important;
+    right: 0px !important;
+  }
   ion-content{
     overflow: scroll !important;
     overflow-x: hidden;

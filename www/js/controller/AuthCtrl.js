@@ -22,9 +22,31 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
        password : $localStorage.pass
      };
      console.log(preLoginDetails);
+     var message="loading";
+     $timeout(function() {
+       $ionicLoading.show();
+       LoginService.loginprocess(preLoginDetails).then(function(response){
+         $scope.LoginStatus=response;
+
+         if(response === "patient")
+         {
+         $state.go('app.patient_home');
+         }
+
+         else if(response === "doctor")
+         {
+         // $state.go('templates.doctor_home');
+         }
+         console.log($scope.LoginStatus);
+         $ionicLoading.hide();
+       }).catch(function(error){
+       console.log('failure data', error);
+       });
+   }, 1000);
 
      // $state.go('app.patient_home');
 
+<<<<<<< HEAD
          $timeout(function() {
            LoginService.loginprocess(preLoginDetails).then(function(response){
              $scope.LoginStatus=response;
@@ -59,6 +81,10 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
      $ionicLoading.hide();
    }
 
+=======
+     $ionicLoading.hide();
+   }
+>>>>>>> a918971ee8bd6dcdedf446094ac0cd54199aebe0
 
 $scope.sendForm = function($event,form)
 {

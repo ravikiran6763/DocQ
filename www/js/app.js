@@ -2,7 +2,6 @@
 var handleOpenURL=function(url){
   alert("Received url"+url);
   window.localStorage.setItem('externalLoad',url);
-
 }
 
 
@@ -41,7 +40,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-datepicker',
   'ngMessages',
   'ion-alpha-scroll',
-  'intlpnIonic',
+  // 'intlpnIonic',
   'ionic-letter-avatar'
 ])
 
@@ -163,8 +162,13 @@ DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
     }
 ]);
 
+DoctorQuickApp.config(function( $ionicConfigProvider) {
+       $ionicConfigProvider.navBar.alignTitle('center');
+});
+
 DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 
+// $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
   $stateProvider
   .state('auth', {
