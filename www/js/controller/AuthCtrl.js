@@ -46,7 +46,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
      // $state.go('app.patient_home');
 
-<<<<<<< HEAD
          $timeout(function() {
            LoginService.loginprocess(preLoginDetails).then(function(response){
              $scope.LoginStatus=response;
@@ -69,22 +68,8 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
          }, 3000);
 
 
-        // if(response === "patient")
-        // {
-        //
-        // //$ionicLoading.show();
-        // //$state.go('app.patient_home');
-        //
-        // $state.go('app.patient_home');
-        // }
-
-     $ionicLoading.hide();
    }
 
-=======
-     $ionicLoading.hide();
-   }
->>>>>>> a918971ee8bd6dcdedf446094ac0cd54199aebe0
 
 $scope.sendForm = function($event,form)
 {
