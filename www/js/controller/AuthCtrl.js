@@ -46,36 +46,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
      // $state.go('app.patient_home');
 
-         $timeout(function() {
-           LoginService.loginprocess(preLoginDetails).then(function(response){
-             $scope.LoginStatus=response;
-             $ionicLoading.show();
-             if(response === "patient")
-             {
-             $state.go('app.patient_home');
-             }
 
-             else if(response === "doctor")
-             {
-             // $state.go('templates.doctor_home');
-             }
-             console.log($scope.LoginStatus);
-             $ionicLoading.hide();
-           }).catch(function(error){
-           console.log('failure data', error);
-           });
-           console.log('timeout fired');
-         }, 3000);
-
-
-        // if(response === "patient")
-        // {
-        //
-        // //$ionicLoading.show();
-        // //$state.go('app.patient_home');
-        //
-        // $state.go('app.patient_home');
-        // }
 
      $ionicLoading.hide();
    }
