@@ -48,9 +48,24 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
 
 
+<<<<<<< HEAD
+        if(response === "patient")
+        {
+
+        //$ionicLoading.show();
+        //$state.go('app.patient_home');
+
+        $state.go('app.patient_home');
+        }
+=======
      $ionicLoading.hide();
    }
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> 664226f4434dd5ab2b3c95cfb3387f7e292b12bb
+>>>>>>> 5f91b15027d9bb72e6b6ca5e2736351f23c4f8a3
 
 
 
