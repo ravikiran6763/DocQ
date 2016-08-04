@@ -46,21 +46,18 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
            console.log('timeout fired');
          }, 3000);
 
-<<<<<<< HEAD
-        if(response === "patient")
-        {
 
-        //$ionicLoading.show();
-        //$state.go('app.patient_home');
+        // if(response === "patient")
+        // {
+        //
+        // //$ionicLoading.show();
+        // //$state.go('app.patient_home');
+        //
+        // $state.go('app.patient_home');
+        // }
 
-        $state.go('app.patient_home');
-        }
-=======
      $ionicLoading.hide();
    }
-      
->>>>>>> 664226f4434dd5ab2b3c95cfb3387f7e292b12bb
-
 
 
 $scope.sendForm = function($event,form)
