@@ -422,7 +422,8 @@ $stateProvider
     url: "/callAccepted",
     views: {
       'menuContent': {
-        templateUrl: "views/app/callAccepted.html"
+        templateUrl: "views/app/callAccepted.html",
+        controller:'callAcceptedCtrl'
 
       }
     }

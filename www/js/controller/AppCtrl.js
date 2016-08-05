@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicHistory, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
 
 console.log('appCtrl');
 	$rootScope.headerTxt='';
@@ -21,9 +21,7 @@ console.log('appCtrl');
 
 		$rootScope.goBack = function ()
 		{
-
 						window.history.back();
-
 		}
 
 		$scope.viewDoc2=function(docPhone){
@@ -56,14 +54,12 @@ console.log('appCtrl');
 			$rootScope.specialityList = {};
 
 			$scope.showSideMenu = function (selectedSearch){
-
 					if (selectedSearch == "gender")
 					{
 							$rootScope.specialityList = [
 								{'special': 'Male'},
 								{'special': 'Female'}
 							]
-
 				};
 				if (selectedSearch == "language") {
 
@@ -89,10 +85,8 @@ console.log('appCtrl');
 				//Make API request and get the data
 				if (selectedSearch == "speciality")
 				{
-
 							searchDoctorServices.specialitySearch().then(function(response){
 							$rootScope.specialityList=response;
-
 
 					}).catch(function(error){
 						console.log('failure data', error);
@@ -404,59 +398,85 @@ $scope.ratingsObject = {
 	// 	//  console.log($rootScope.myBalance);
 	//  }
 	/*image upload code goes here*/
-	$scope.changePhoto = function() {
-		$state.go('app.capture');
-	  console.log('upload picture');
-	};
-
-	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
-			// console.log('successfull data', response);
-			$scope.calledDetails=response;
-			console.log($scope.calledDetails);
-			var data=$scope.calledDetails//take all json data into this variable
-			 var totList=[];
-					for(var i=0; i<data.length; i++){
-
-							$rootScope.cal_flag=data[i].cal_flag,
-							$rootScope.onoff=data[i].onoff,
-
-					console.log($rootScope.cal_flag);
-					console.log($rootScope.onoff);
-
-					}
-					if($rootScope.cal_flag == 0){
-						// alert('readyforcall');
-
-						$ionicModal.fromTemplate('<div class="modal"><header class="bar bar-header bar-positive"> <h1 class="title">I\'m A Modal</h1><div class="button button-clear" ng-click="modal2.hide()"><span class="icon ion-close"></span></div></header><content has-header="true" padding="true"><p>This is a modal</p></content></div>', {
-						scope: $scope,
-						animation: 'slide-left-right'
-						});
-
-						$ionicPopup.alert({
-						title: 'Call Accepted',
-						template:' A Doctor has accepted your call request',
-						cssClass: 'videoPopup',
-						buttons: [
-							{
-							text: 'Ok',
-							type: 'button-royal',
-							onTap: function(e) {
-								// console.log('ok tapped');
-								$state.go('app.callAccepted');
 
 
-							}
-							},
-						]
-						})
+
+	// console.log($rootScope.cal_flag);
+
+	$interval(callReqInterval, 5000, 1);
+
+	function callReqInterval() {
+		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+				// console.log('successfull data', response);
+				$scope.calledDetails=response;
+				console.log($scope.calledDetails);
+				var data=$scope.calledDetails//take all json data into this variable
+				 var totList=[];
+						for(var i=0; i<data.length; i++){
+
+								$rootScope.cal_flag=data[i].cal_flag,
+								$rootScope.callId=data[i].callId,
+								$rootScope.onoff=data[i].onoff,
+								$rootScope.doctorPhone=data[i].doctorPhone,
 
 
-					}
-	 }).catch(function(error){
-			 console.log('failure data', error);
-	 });
-	console.log($rootScope.cal_flag);
+						console.log($rootScope.onoff);
+						}
+						if($rootScope.cal_flag == 0){
+							// alert('readyforcall');
+							$ionicPopup.alert({
+							title: 'Call Accepted',
+							template:' A Doctor has accepted your call request',
+							cssClass: 'videoPopup',
+							buttons: [
+								{
+								text: 'Ok',
+								type: 'button-assertive',
+								onTap: function(e) {
+
+									$state.go('app.callAccepted');
+								}
+								},
+							]
+							})
+						}
+		 }).catch(function(error){
+				 console.log('failure data', error);
+		 });
+				console.log('callAtInterval');
+	}
 
 
+	$scope.declineCall=function(){
+		var calldecline={
+			patient:$localStorage.user,
+			doctor:$rootScope.doctorPhone,
+			callId:$rootScope.callId
+
+		}
+
+		callAcceptedService.callDeclined(calldecline).then(function(response){
+		$scope.declineStatus=response;
+		 console.log($scope.declineStatus);
+	}).catch(function(error){
+	console.log('failure data', error);
+	});
+	$state.go('app.patient_home')
+
+	  console.log('decline clicked');
+	}
+
+	$ionicModal.fromTemplate('<ion-modal-view><ion-header-bar class="bar-energized"><h1 class="title">ion-modal-view</h1><a class="button" ng-click="closeModal();">关闭</a></ion-header-bar><ion-content>Hello!</ion-content></ion-modal-view>', {
+         scope: $scope,
+         animation: "slide-in-up"
+     },function(modal) {
+         $scope.modal = modal;
+     });
+     $scope.openModal = function() {
+         $scope.modal.show();
+     };
+     $scope.closeModal = function() {
+         $scope.modal.hide();
+     };
 
 });
