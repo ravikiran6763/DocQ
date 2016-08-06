@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
 
 console.log('appCtrl');
 	$rootScope.headerTxt='';
@@ -9,6 +9,15 @@ console.log('appCtrl');
 	$rootScope.doclist = {};
 	$scope.myDocDetail = {};
 
+	$scope.doRefresh = function() {
+		console.log('Refreshing!');
+		$timeout( function() {
+		
+			$scope.$broadcast('scroll.refreshComplete');
+
+		}, 1000);
+
+	};
 	$scope.ratings = [{
  				current: $scope.myDoctorRatings,
  				max: 5
@@ -250,7 +259,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		 hello.logout(unametologout,pwtologout,success, failure);
+		//  hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',

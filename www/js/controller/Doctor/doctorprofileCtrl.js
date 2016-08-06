@@ -22,7 +22,7 @@ console.log('failure data', error);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
         // console.log(response[0][0]);
       $scope.myBalance=response[0][0];
-
+      $localStorage.patientWalletBalance=$scope.myBalance;
           console.log('pop up page clicked');
           	var uname = "greet+"+$localStorage.user;
              var pw = "DQ_patient";
@@ -39,26 +39,27 @@ console.log('failure data', error);
               {
                 alert("Error calling Hello Plugin");
               }
-                hello.greet(uname,pw,persontocall,success, failure);
+
 
         if($scope.myBalance >= 250)
         {
-          // var confirmPopup = $ionicPopup.confirm({
-          //   template: '<b>Request for Video call has been sent <br><center>00:02</center></b>',
-          //   cssClass: 'videoPopup',
-          //   scope: $scope,
-          //   buttons: [
-          //      { text: 'Cancel',
-          //        type: 'button-royal', },
-          //
-          //      {
-          //      text: 'Resend',
-          //      type: 'button-positive',
-          //
-          //      },
-          //    ]
-          //   //templateUrl: "views/app/viewdoctor_profile.html",
-          // });
+          hello.greet(uname,pw,persontocall,success, failure);
+          var confirmPopup = $ionicPopup.confirm({
+            template: '<b>Request for Video call has been sent <br><center>00:02</center></b>',
+            cssClass: 'videoPopup',
+            scope: $scope,
+            buttons: [
+               { text: 'Cancel',
+                 type: 'button-royal', },
+
+               {
+               text: 'Resend',
+               type: 'button-positive',
+
+               },
+             ]
+            //templateUrl: "views/app/viewdoctor_profile.html",
+          });
 
 
         }

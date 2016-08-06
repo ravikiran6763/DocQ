@@ -9,7 +9,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$stat
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
 
-	$interval(updatedPIc, 5000, 1);
+
 
 	function updatedPIc(){
 		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){

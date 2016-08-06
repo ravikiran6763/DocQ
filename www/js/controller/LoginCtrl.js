@@ -103,9 +103,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 
 
-								hello.login(uname1,pw1,success, failure);
+								// hello.login(uname1,pw1,success, failure);
 
-						
+
 								$state.go('app.patient_home');
 
 
