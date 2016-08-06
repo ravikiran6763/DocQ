@@ -47,54 +47,37 @@
 
 
 		$sql = "INSERT INTO patientDetails (patientFname, patientMname,patientLname,patientAge,patientPhone,patientSex,patientEmail,patientPwd) VALUES ('$pateientFname', '$pateientMname', '$pateientLname','$pateientAge','$pateientPhone','$pateientSex','$pateientEmail','$pateientPwd')";
-
-
-			$retval = mysql_query( $sql, $dbhandle );
+		$retval = mysql_query( $sql, $dbhandle );
 
 			if(mysql_error())
 			// if(!$retval)
-
 			{
 				// die('Could not enter data: ' . mysql_error());
-
 				 echo "ERROR";
 			}
 			else
 			{
-
 				echo "Query Submitted";
-
-
 				 //PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
                                 $password = "DQ_patient";
-
-
                                 //CREATE USERS IN VSEE FROM THE BELOW URL
                                  $USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
-
-
                 //SEND JSON DATA OF USERS TO VSEE API
                 $USER_JSON = '{"secretkey":'.$secretkey.',
                   "username":'.$pateientPhone.',
                   "password":'.$password.',
                   "fn": '.$pateientFname.',
                  "ln": '.$pateientLname.'}';
+                   curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
+                   curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
+                   $result = curl_exec($ch);
+
+                echo $result;
 
 
+                $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-								curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
-								curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
-								$result = curl_exec($ch);
-
-								echo $result;
-								$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-								echo $http_status;
-
-
-
-
-
-
+                echo $http_status;
 
 
 			}

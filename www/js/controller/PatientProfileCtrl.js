@@ -21,6 +21,8 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$stat
 console.log('failure data', error);
 })
 
+
+
 				$scope.termsAndCond=function(){
 					// console.log('clicked');
 					$scope.termsPopup = $ionicPopup.show({
@@ -49,11 +51,25 @@ console.log('failure data', error);
 					};
 
 				}
+
+
 				$scope.changePhoto = function() {
+
+					function updatedPIc(){
+						patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+							$scope.patient_details=response;
+							$ionicLoading.hide();
+							console.log($scope.patient_details);
+
+					}).catch(function(error){
+					console.log('failure data', error);
+					})
+
+					}
 					// $state.go('app.capture');
 					$ionicPopup.alert({
-					title: 'Upload',
-					template:' Choose',
+					title: 'Upload Profile Picture',
+					template:' Choose the source type',
 					cssClass: 'videoPopup',
 					buttons: [
 						{
@@ -123,7 +139,7 @@ console.log('failure data', error);
 											$scope.uploadedData=response;
 											// $ionicLoading.hide();
 											console.log($scope.uploadedData);
-
+											$interval(updatedPIc, 500, 1);
 									}).catch(function(error){
 									console.log('failure data', error);
 									})
