@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$ionicConfig,$localStorage,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 	$rootScope.headerTxt="Patient Profile";
 	$rootScope.showBackBtn=true;
@@ -7,92 +7,35 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$ioni
 	$rootScope.showBadge=false;
 
 	$scope.loginData={};
-	console.log($localStorage.user);
+	$rootScope.patient=$localStorage.user;
 
+	$interval(updatedPIc, 5000, 1);
+
+	function updatedPIc(){
+		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+			$scope.patient_details=response;
+			$ionicLoading.hide();
+			console.log($scope.patient_details);
+
+	}).catch(function(error){
+	console.log('failure data', error);
+	})
+
+	}
+
+	$ionicLoading.show();
 
 	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
 		$scope.patient_details=response;
+		$ionicLoading.hide();
 		console.log($scope.patient_details);
 
 }).catch(function(error){
 console.log('failure data', error);
 })
 
-				$scope.getPhoto = function()
-				{
-
-					var options = {
-
-													quality: 50,
-													destinationType: Camera.DestinationType.FILE_URI,
-													sourceType: Camera.PictureSourceType.CAMERA,
-													allowEdit: false,
-													encodingType: Camera.EncodingType.JPEG,
-													popoverOptions: CameraPopoverOptions,
-													saveToPhotoAlbum: true,
-													correctOrientation:true
-									};
-
-							$cordovaCamera.getPicture(options).then(movePic,function(imageData) {
-									$rootScope.imgURI=imageData;
-
-							}, function(err) {
-									console.error(err);
-							});
 
 
-							function movePic(imageData)
-							{
-
-									 console.log("move pic");
-									 console.log(imageData);
-									 window.resolveLocalFileSystemURL(imageData, resolveOnSuccess, resOnError);
-
-							}
-
-
-							function resolveOnSuccess(entry)
-							{
-
-									console.log(entry);
-									console.log("resolvetosuccess");
-
-					        //new file name
-					        var newFileName = "veeresh_camera" + ".jpg";
-					        var myFolderApp = "Test";
-
-					        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSys) {
-					            console.log("folder create");
-
-											//The folder is created if doesn't exist
-					            fileSys.root.getDirectory( myFolderApp,
-					                {create:true, exclusive: false},
-					                function(directory) {
-					                    console.log("move to file..");
-					                    entry.moveTo(directory, newFileName,  successMove, resOnError);
-					                    console.log("release");
-
-					                },
-					                resOnError);
-					        },
-					        resOnError);
-					    }
-
-							function successMove(entry)
-							{
-					        //I do my insert with "entry.fullPath" as for the path
-					        console.log("success");
-					        //this is file path, customize your path
-					        console.log(entry);
-    					}
-
-				    function resOnError(error)
-						{
-
-								console.log("failed");
-
-						}
-				}
 				$scope.termsAndCond=function(){
 					// console.log('clicked');
 					$scope.termsPopup = $ionicPopup.show({
@@ -121,6 +64,102 @@ console.log('failure data', error);
 					};
 
 				}
+
+
+				$scope.changePhoto = function() {
+
+
+					// $state.go('app.capture');
+					$ionicPopup.alert({
+					title: 'Upload Profile Picture',
+					template:' Choose the source type',
+					cssClass: 'videoPopup',
+					buttons: [
+						{
+						text: 'Camera',
+						type: 'button-assertive',
+						onTap: $scope.takePhoto = function () {
+															var options = {
+																quality: 75,
+																destinationType: Camera.DestinationType.DATA_URL,
+																sourceType: Camera.PictureSourceType.CAMERA,
+																allowEdit: true,
+																encodingType: Camera.EncodingType.JPEG,
+																targetWidth: 300,
+																targetHeight: 300,
+																popoverOptions: CameraPopoverOptions,
+																saveToPhotoAlbum: false
+														};
+
+																$cordovaCamera.getPicture(options).then(function (imageData) {
+																		$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+
+																		var imageUploadData ={
+																			image:$rootScope.imgURI,
+																			patientPhone:$rootScope.patient
+																		}
+
+																		cameraService.uploadPicture(imageUploadData).then(function(response){
+																			$scope.uploadedData=response;
+																			// $ionicLoading.hide();
+																			console.log($scope.uploadedData);
+
+
+																	}).catch(function(error){
+																	console.log('failure data', error);
+																	})
+
+																}, function (err) {
+																		// An error occured. Show a message to the user
+																});
+
+														}
+						},
+						{
+						text: 'Gallery',
+						type: 'button-assertive',
+						onTap: $scope.choosePhoto = function () {
+							var options = {
+								quality: 75,
+								destinationType: Camera.DestinationType.DATA_URL,
+								sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+								allowEdit: true,
+								encodingType: Camera.EncodingType.JPEG,
+								targetWidth: 300,
+								targetHeight: 300,
+								popoverOptions: CameraPopoverOptions,
+								saveToPhotoAlbum: false
+						};
+
+								$cordovaCamera.getPicture(options).then(function (imageData) {
+										$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+
+										var imageUploadData ={
+											image:$rootScope.imgURI,
+											patientPhone:$rootScope.patient
+										}
+
+										cameraService.uploadPicture(imageUploadData).then(function(response){
+											$scope.uploadedData=response;
+											// $ionicLoading.hide();
+											console.log($scope.uploadedData);
+
+									}).catch(function(error){
+									console.log('failure data', error);
+									})
+
+								}, function (err) {
+										// An error occured. Show a message to the user
+								});
+
+						}
+						},
+					]
+					})
+					console.log('upload picture');
+				};
+
+
 
 
 

@@ -1,102 +1,50 @@
-DoctorQuickApp.controller('CameraCtrl', function ($scope, $cordovaCamera, $ionicLoading, $localStorage) {
-	$scope.data = { "ImageURI" :  "Select Image" };
-    $scope.takePicture = function() {
-	  var options = {
-        quality: 50,
-        destinationType: Camera.DestinationType.FILE_URL,
-        sourceType: Camera.PictureSourceType.CAMERA
-      };
-	  $cordovaCamera.getPicture(options).then(
-		function(imageData) {
-			$scope.picData = imageData;
-			$scope.ftLoad = true;
-			$localstorage.set('fotoUp', imageData);
-			$ionicLoading.show({template: 'acquired photos...', duration:500});
-		},
-		function(err){
-			$ionicLoading.show({template: 'loading error...', duration:500});
-			})
-	  }
+DoctorQuickApp.controller('CameraCtrl', function ($scope, $rootScope, $cordovaCamera, $ionicLoading, $localStorage,cameraService) {
+console.log($localStorage.user);
+	$scope.takePhoto = function () {
+	                  var options = {
+	                    quality: 75,
+	                    destinationType: Camera.DestinationType.DATA_URL,
+	                    sourceType: Camera.PictureSourceType.CAMERA,
+	                    allowEdit: true,
+	                    encodingType: Camera.EncodingType.JPEG,
+	                    targetWidth: 300,
+	                    targetHeight: 300,
+	                    popoverOptions: CameraPopoverOptions,
+	                    saveToPhotoAlbum: false
+	                };
 
-	  $scope.selectPicture = function() {
-		var options = {
-			quality: 50,
-			destinationType: Camera.DestinationType.FILE_URI,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY
-		};
+	                    $cordovaCamera.getPicture(options).then(function (imageData) {
+	                        $rootScope.imgURI = "data:image/jpeg;base64," + imageData;
 
-	  $cordovaCamera.getPicture(options).then(
-		function(imageURI) {
-			window.resolveLocalFileSystemURI(imageURI, function(fileEntry) {
-				$scope.picData = fileEntry.nativeURL;
-				$scope.ftLoad = true;
-				var image = document.getElementById('myImage');
-				image.src = fileEntry.nativeURL;
-  			});
-			$ionicLoading.show({template: 'acquired photos...', duration:500});
-		},
-		function(err){
-			$ionicLoading.show({template: 'loading error...', duration:500});
-		})
-	};
+	                    }, function (err) {
+	                        // An error occured. Show a message to the user
+	                    });
 
-    $scope.uploadPicture = function() {
-		$ionicLoading.show({template: 'posting the photo...'});
-		var fileURL = $scope.picData;
-		var options = new FileUploadOptions();
-		options.fileKey = "file";
-		options.fileName = fileURL.substr(fileURL.lastIndexOf('/') + 1);
-		options.mimeType = "image/jpeg";
-		options.chunkedMode = true;
+	                }
 
-		var params = {};
-		params.value1 = "someparams";
-        params.value2 = "otherparams";
+	                $scope.choosePhoto = function () {
+	                  var options = {
+	                    quality: 75,
+	                    destinationType: Camera.DestinationType.DATA_URL,
+	                    sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+	                    allowEdit: true,
+	                    encodingType: Camera.EncodingType.JPEG,
+	                    targetWidth: 300,
+	                    targetHeight: 300,
+	                    popoverOptions: CameraPopoverOptions,
+	                    saveToPhotoAlbum: false
+	                };
 
-		options.params = params;
+	                    $cordovaCamera.getPicture(options).then(function (imageData) {
+	                        $rootScope.imgURI = "data:image/jpeg;base64," + imageData;
 
-		var ft = new FileTransfer();
-		ft.upload(fileURL, encodeURI("http://bss.greettech.com/DQ/upload.php"), viewUploadedPictures, function(error) {$ionicLoading.show({template: 'Errore di connessione...'});
-		$ionicLoading.hide();}, options);
-    }
+													$state.go('app.patient_profile')
+	                    }, function (err) {
+	                        // An error occured. Show a message to the user
+	                    });
+											alert($localStorage.user);
+	                }
 
-	var viewUploadedPictures = function() {
-		$ionicLoading.show({template: 'posting the photo...'});
-        server = "http://bss.greettech.com/DQ/upload.php";
-        if (server) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-            if(xmlhttp.readyState === 4){
-                    if (xmlhttp.status === 200) {
-                document.getElementById('server_images').innerHTML = xmlhttp.responseText;
-                    }
-                    else { $ionicLoading.show({template: 'Error loading...', duration: 1000});
-					return false;
-                    }
-                }
-            };
-            xmlhttp.open("GET", server , true);
-            xmlhttp.send()}	;
-		$ionicLoading.hide();
-    }
 
-	$scope.viewPictures = function() {
-		$ionicLoading.show({template: 'looking for your photographs...'});
-        server = "http://bss.greettech.com/DQ/upload.php";
-        if (server) {
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange=function(){
-            if(xmlhttp.readyState === 4){
-                    if (xmlhttp.status === 200) {
-                document.getElementById('server_images').innerHTML = xmlhttp.responseText;
-                    }
-                    else { $ionicLoading.show({template: 'Error loading...', duration: 1000});
-					return false;
-                    }
-                }
-            };
-            xmlhttp.open("GET", server , true);
-            xmlhttp.send()}	;
-		$ionicLoading.hide();
-    }
+
 })

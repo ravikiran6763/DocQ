@@ -6,15 +6,21 @@
 		if (isset($postdata))
 		{
 
-      $callDetails = array();
+      $uploadData = json_decode($postdata);
 
-      $sql = "select acceptedpatients.id as callId,onoff,doctorPhone,doctorFname,doctorMname,doctorLname,doctorDegrees,practicingSince,doctorFee,cal_flag from doctor_onoff,doctorDetails,acceptedpatients where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone=acceptedpatients.doctorphno and acceptedpatients.patientphno='$postdata' and cal_flag=0";
+  	   $image= $uploadData->image;
+       $patientPhone= $uploadData->patientPhone;
+
+
+      // $callDetails = array();
+
+      echo  $sql = "update patientImages set image='$image' where patientphone='$patientPhone'";
 
       $retval = mysql_query( $sql, $dbhandle );
 
       while($row = mysql_fetch_array($retval))
       {
-        $callDetails[] = $row;
+        echo $row;
 
       }
 

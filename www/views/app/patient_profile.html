@@ -5,9 +5,9 @@
 
       <div class="imageContainer">
         <pre-img >
-          <img ng-src="img/doc.jpg"  ng-click="changePhoto();" spinner-on-load>
-          <!-- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-          <img ng-show="imgURI === undefined" ng-src="img/doc.jpg"> -->
+          <img  ng-hide="patient.image == null "ng-src="{{patient.image}}"  ng-click="changePhoto();" spinner-on-load>
+          <img  ng-show="patient.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();" spinner-on-load>
+
 
         </pre-img>
 
