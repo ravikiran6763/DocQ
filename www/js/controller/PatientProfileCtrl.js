@@ -9,6 +9,19 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$stat
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
 
+	$interval(updatedPIc, 5000, 1);
+
+	function updatedPIc(){
+		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+			$scope.patient_details=response;
+			$ionicLoading.hide();
+			console.log($scope.patient_details);
+
+	}).catch(function(error){
+	console.log('failure data', error);
+	})
+
+	}
 
 	$ionicLoading.show();
 
@@ -55,17 +68,7 @@ console.log('failure data', error);
 
 				$scope.changePhoto = function() {
 
-					function updatedPIc(){
-						patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
-							$scope.patient_details=response;
-							$ionicLoading.hide();
-							console.log($scope.patient_details);
 
-					}).catch(function(error){
-					console.log('failure data', error);
-					})
-
-					}
 					// $state.go('app.capture');
 					$ionicPopup.alert({
 					title: 'Upload Profile Picture',
@@ -100,6 +103,7 @@ console.log('failure data', error);
 																			$scope.uploadedData=response;
 																			// $ionicLoading.hide();
 																			console.log($scope.uploadedData);
+
 
 																	}).catch(function(error){
 																	console.log('failure data', error);
@@ -139,7 +143,7 @@ console.log('failure data', error);
 											$scope.uploadedData=response;
 											// $ionicLoading.hide();
 											console.log($scope.uploadedData);
-											$interval(updatedPIc, 500, 1);
+
 									}).catch(function(error){
 									console.log('failure data', error);
 									})
