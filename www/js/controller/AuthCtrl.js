@@ -44,15 +44,9 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
        });
    }, 1000);
 
-     // $state.go('app.patient_home');
-
-
-
-     $ionicLoading.hide();
    }
 
-     $ionicLoading.hide();
-   }
+  
 
 $scope.sendForm = function($event,form)
 {

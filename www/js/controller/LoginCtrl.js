@@ -72,8 +72,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 						if(response === "patient")
 						{
 
-
-
 								var uname1 = "greet+"+$scope.loginData.phone;
 
 
@@ -105,12 +103,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 
 
-								// hello.login(uname1,pw1,success, failure);
+								hello.login(uname1,pw1,success, failure);
 
-								// hello.login(uname1,pw1,success, failure);
-								// hello.login(uname1,pw1,success, failure);
-
-
+						
 								$state.go('app.patient_home');
 
 
