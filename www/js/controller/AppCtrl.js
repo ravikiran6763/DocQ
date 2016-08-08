@@ -418,6 +418,7 @@ $scope.ratingsObject = {
 
 						console.log($rootScope.cal_flag);
 						}
+<<<<<<< HEAD
 
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
 
@@ -425,6 +426,11 @@ $scope.ratingsObject = {
 						if($rootScope.cal_flag == '4'){
 							console.log($rootScope.cal_flag);
 							//alert('readyforcall');
+=======
+						if($rootScope.cal_flag === '4'){
+
+							// alert('readyforcall');
+>>>>>>> 366bd63bfb30028d174d6fb61e3209469fc946c9
 							$ionicPopup.alert({
 							title: 'Call Accepted',
 							template:' A Doctor has accepted your call request',

@@ -46,16 +46,7 @@ $scope.checkWalletBalance = function()
 
 				hello.greet(uname,pw,persontocall,success, failure);
 
-				callaccpetedbydoctor.accepteddoctor($localStorage.user,$localStorage.Doctocall);
-
-
-
-
-
-
-
-
-
+			
 }
 
 
