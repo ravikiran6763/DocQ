@@ -46,7 +46,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
    }
 
-  
+
 
 $scope.sendForm = function($event,form)
 {

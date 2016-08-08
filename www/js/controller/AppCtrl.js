@@ -257,7 +257,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.logout(unametologout,pwtologout,success, failure);
+		// hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
@@ -397,7 +397,7 @@ $scope.ratingsObject = {
 	 $rootScope.myBalance;
 
 
-	$interval(callReqInterval, 600000);
+	$interval(callReqInterval, 60000);
 
 	function callReqInterval() {
 		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
@@ -417,6 +417,7 @@ $scope.ratingsObject = {
 						console.log($rootScope.onoff);
 						}
 						if($rootScope.cal_flag == 0){
+							console.log($rootScope.cal_flag);
 							// alert('readyforcall');
 							$ionicPopup.alert({
 							title: 'Call Accepted',
