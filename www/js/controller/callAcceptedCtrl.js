@@ -21,22 +21,39 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 $scope.checkWalletBalance = function()
 {
 
-	var uname = "greet+"+$localStorage.user;
-	 var pw = "DQ_patient";
 
-	 var persontocall = "greet+" + $localStorage.docPhone;
-	 console.log(uname);
-	 console.log(persontocall);
+			var uname = "greet+"+$localStorage.user;
+			 var pw = "DQ_patient";
 
-	 var success = function(message)
-		{
-				alert(message);
-		}
-		var failure = function()
-		{
-			alert("Error calling Hello Plugin");
-		}
-		hello.greet(uname,pw,persontocall,success, failure);
+			 var persontocall = "greet+" + $localStorage.Doctocall;
+			 console.log(uname);
+			 console.log(persontocall);
+
+			 	 var success = function(message)
+				{
+
+						alert(message);
+
+
+						$state.go('templates.notesForPatient');
+
+
+				}
+				var failure = function()
+				{
+					alert("Error calling Hello Plugin");
+				}
+
+				hello.greet(uname,pw,persontocall,success, failure);
+
+				callaccpetedbydoctor.accepteddoctor($localStorage.user,$localStorage.Doctocall);
+
+
+
+
+
+
+
 
 
 }
