@@ -414,12 +414,12 @@ $scope.ratingsObject = {
 								$rootScope.onoff=data[i].onoff,
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
-
+								$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
-						}
-						if($rootScope.cal_flag === '4'){
 
-							// alert('readyforcall');
+						if($rootScope.cal_flag === $scope.callFlag){
+
+							alert('readyforcall');
 							$ionicPopup.alert({
 							title: 'Call Accepted',
 							template:' A Doctor has accepted your call request',
@@ -436,6 +436,8 @@ $scope.ratingsObject = {
 							]
 							})
 						}
+						}
+
 		 }).catch(function(error){
 				 console.log('failure data', error);
 		 });
