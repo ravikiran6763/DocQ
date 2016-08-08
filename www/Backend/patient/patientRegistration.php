@@ -69,7 +69,6 @@
 								 echo "ERROR";
 							}
 
-
 						//PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
 						$password = "DQ_patient";
 						//CREATE USERS IN VSEE FROM THE BELOW URL
