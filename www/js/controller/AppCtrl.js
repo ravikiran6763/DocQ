@@ -257,7 +257,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		// hello.logout(unametologout,pwtologout,success, failure);
+		hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
@@ -414,12 +414,32 @@ $scope.ratingsObject = {
 								$rootScope.onoff=data[i].onoff,
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
+<<<<<<< HEAD
 								$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
 
 						if($rootScope.cal_flag === $scope.callFlag){
 
 							alert('readyforcall');
+=======
+
+
+						console.log($rootScope.cal_flag);
+						}
+<<<<<<< HEAD
+
+						$localStorage.Doctocall =  $rootScope.doctorPhone;
+
+
+						if($rootScope.cal_flag == '4'){
+							console.log($rootScope.cal_flag);
+							//alert('readyforcall');
+=======
+						if($rootScope.cal_flag === '4'){
+
+							// alert('readyforcall');
+>>>>>>> 366bd63bfb30028d174d6fb61e3209469fc946c9
+>>>>>>> b5d60b2c551d9b442758a22dd78412e138716d0d
 							$ionicPopup.alert({
 							title: 'Call Accepted',
 							template:' A Doctor has accepted your call request',

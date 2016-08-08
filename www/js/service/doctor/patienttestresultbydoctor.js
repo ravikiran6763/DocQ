@@ -119,7 +119,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
         //create folder in SD card ad DQIMAGES  Directory
 
-        $cordovaFile.createDir(cordova.file.externalRootDirectory, "DQIMAGES", true)
+        $cordovaFile.createDir(cordova.file.dataDirectory, "DQIMAGES", true)
         .then(function (success) {
         console.log("Folder created" + success);
         }, function (error) {
@@ -132,10 +132,10 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
         var filename = url.split("/").pop();
 
-        console.log(cordova.file.externalRootDirectory);
+        console.log(cordova.file.dataDirectory);
 
 
-        var targetPath = cordova.file.externalRootDirectory + "DQIMAGES/" + filename;
+        var targetPath = cordova.file.dataDirectory + "DQIMAGES/" + filename;
 
 
             $cordovaFileTransfer.download(url, targetPath, {}, true).then(function (result) {
