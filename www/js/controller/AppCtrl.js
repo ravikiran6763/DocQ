@@ -333,9 +333,9 @@ console.log('appCtrl');
 
 			var newPwd={
 			newPwd1:$scope.login.password,
-			userPhone:$scope.login.userPhone
+			userPhone:$localStorage.user
 			};
-			 console.log(userPhone);
+			console.log(newPwd);
 			patientProfileDetailsService.changePwd2(newPwd)
 			.then(function(response){
 			console.log(response);
@@ -400,8 +400,9 @@ $scope.ratingsObject = {
 	$interval(callReqInterval, 60000);
 
 	function callReqInterval() {
+		console.log($localStorage.user);
 		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
-				// console.log('successfull data', response);
+				console.log('successfull data', response);
 				$scope.calledDetails=response;
 				// console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable
@@ -414,11 +415,11 @@ $scope.ratingsObject = {
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
 
-						console.log($rootScope.onoff);
+						console.log($rootScope.cal_flag);
 						}
-						if($rootScope.cal_flag == 4){
+						if($rootScope.cal_flag == '4'){
 							console.log($rootScope.cal_flag);
-							// alert('readyforcall');
+							alert('readyforcall');
 							$ionicPopup.alert({
 							title: 'Call Accepted',
 							template:' A Doctor has accepted your call request',

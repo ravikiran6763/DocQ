@@ -49,6 +49,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'callAccepted' : 'patient/callAccepted.php',
         'callDecline' : 'patient/callDecline.php',
         'uploadImage' : 'patient/uploadImage.php',
+        'changePatientPwd':'patient/changePatientPwd.php',
 
 
 
@@ -75,7 +76,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'testjpegimage' :'prescription/responseasimages.php',
 
 
-        'changePatientPwd':'DQ/changePatientPwd.php',
+
         'fetchAllDoctors':'DQ/fetchDoctors.php',
 
 
