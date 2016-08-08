@@ -36,8 +36,6 @@ $scope.checkWalletBalance = function()
 		{
 			alert("Error calling Hello Plugin");
 		}
-
-
 		hello.greet(uname,pw,persontocall,success, failure);
 
 

@@ -49,7 +49,7 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
         }
 
         this.callAccepted = function (patient) {
-      		console.log(patient);
+      		// console.log(patient);
       		var deferred = $q.defer();
           console.log(BASE_URL.url + API.callAccepted);
       		$http.post(BASE_URL.url + API.callAccepted,patient)
