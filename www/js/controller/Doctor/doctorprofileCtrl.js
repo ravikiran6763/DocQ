@@ -97,14 +97,37 @@ console.log('failure data', error);
 //for voice call
 $scope.BalanceForVoiceCall=function()
 {
+
+
+
   $ionicLoading.show();
   doctorServices.checkMyBalance($localStorage.user).then(function(response){
     // console.log(response[0][0]);
     $scope.myBalance=response[0][0];
+
+
+    var uname = "greet+"+$localStorage.user;
+     var pw = "DQ_patient";
+
+     var persontocall = "greet+" + $localStorage.docPhone;
+     console.log(uname);
+     console.log(persontocall);
+
+     var success = function(message)
+      {
+          alert(message);
+      }
+      var failure = function()
+      {
+        alert("Error calling Hello Plugin");
+      }
+
+
+
     if($scope.myBalance >= 250)
     {
 
-
+          hello.audiocallvsee(uname,pw,persontocall,success, failure);
 
 
       var confirmPopup = $ionicPopup.confirm({

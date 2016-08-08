@@ -5,7 +5,7 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
-	
+
  $interval(callAtInterval, 5000);
 
 
@@ -13,5 +13,35 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 
 		console.log('callAtInterval');
 	}
+
+
+$scope.checkWalletBalance = function()
+{
+
+	var uname = "greet+"+$localStorage.user;
+	 var pw = "DQ_patient";
+
+	 var persontocall = "greet+" + $localStorage.docPhone;
+	 console.log(uname);
+	 console.log(persontocall);
+
+	 var success = function(message)
+		{
+				alert(message);
+		}
+		var failure = function()
+		{
+			alert("Error calling Hello Plugin");
+		}
+
+
+		hello.greet(uname,pw,persontocall,success, failure);
+
+
+}
+
+
+
+
 
 })

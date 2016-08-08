@@ -12,7 +12,7 @@ console.log('appCtrl');
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-		
+
 			$scope.$broadcast('scroll.refreshComplete');
 
 		}, 1000);
@@ -259,7 +259,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		//  hello.logout(unametologout,pwtologout,success, failure);
+		hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
