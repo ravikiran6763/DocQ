@@ -417,8 +417,8 @@ $scope.ratingsObject = {
 
 						console.log($rootScope.cal_flag);
 						}
-						if($rootScope.cal_flag == '4'){
-							console.log($rootScope.cal_flag);
+						if($rootScope.cal_flag === '4'){
+
 							// alert('readyforcall');
 							$ionicPopup.alert({
 							title: 'Call Accepted',
