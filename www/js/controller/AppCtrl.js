@@ -12,9 +12,11 @@ console.log('appCtrl');
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 142354ea99f1ef93b38817a991700c9075c64be6
 			$scope.$broadcast('scroll.refreshComplete');
-
 		}, 1000);
 
 	};
@@ -397,28 +399,15 @@ $scope.ratingsObject = {
 
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
-	//  $scope.gotoTopUp=function(balance){
-	// 	 console.log('balance details',$rootScope.patientWalletdetails);
-	// 	 $scope.balAmnt=balance
-	// 	//  var balanceAmount={
-	// 	// 	 balance:$scope.balAmnt
-	// 	//  };
-	// 	//  $rootScope.myBalance=balanceAmount;
-	// 	//  console.log($rootScope.myBalance);
-	//  }
-	/*image upload code goes here*/
 
 
-
-	// console.log($rootScope.cal_flag);
-
-	$interval(callReqInterval, 5000, 1);
+	$interval(callReqInterval, 5000);
 
 	function callReqInterval() {
 		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 				// console.log('successfull data', response);
 				$scope.calledDetails=response;
-				console.log($scope.calledDetails);
+				// console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable
 				 var totList=[];
 						for(var i=0; i<data.length; i++){
@@ -452,7 +441,7 @@ $scope.ratingsObject = {
 		 }).catch(function(error){
 				 console.log('failure data', error);
 		 });
-				console.log('callAtInterval');
+				// console.log('callAtInterval');
 	}
 
 
