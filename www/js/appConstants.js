@@ -50,6 +50,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'callDecline' : 'patient/callDecline.php',
         'uploadImage' : 'patient/uploadImage.php',
         'changePatientPwd':'patient/changePatientPwd.php',
+        'callaccepteddoctor':'patient/insertintomyconsultations.php',
+
 
 
 
