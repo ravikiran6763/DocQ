@@ -397,7 +397,7 @@ $scope.ratingsObject = {
 	 $rootScope.myBalance;
 
 
-	$interval(callReqInterval, 5000);
+	$interval(callReqInterval, 600000);
 
 	function callReqInterval() {
 		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
