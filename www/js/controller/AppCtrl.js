@@ -12,10 +12,6 @@ console.log('appCtrl');
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
-<<<<<<< HEAD
-
-=======
->>>>>>> 142354ea99f1ef93b38817a991700c9075c64be6
 			$scope.$broadcast('scroll.refreshComplete');
 		}, 1000);
 

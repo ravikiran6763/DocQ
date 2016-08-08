@@ -5,11 +5,9 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
-<<<<<<< HEAD
 
  $interval(callAtInterval, 5000);
-=======
->>>>>>> 142354ea99f1ef93b38817a991700c9075c64be6
+
 
  // $interval(callAtInterval, 5000);
  //
