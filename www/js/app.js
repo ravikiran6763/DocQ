@@ -54,7 +54,6 @@ DoctorQuickApp.run(function($cordovaSplashscreen) {
 
 
 DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
-
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)

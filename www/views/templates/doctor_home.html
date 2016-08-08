@@ -27,7 +27,16 @@
         <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno})">
 
           <div class="profile-img">
-            <img src="img/patient.jpg">
+
+
+            <img  ng-hide="r.image == null "ng-src="{{r.image}}"  ng-click="changePhoto();" >
+            <img  ng-show="r.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();" >
+          
+
+
+            <!-- <img src="img/patient.jpg">
+            <img src="img/patient.jpg"> -->
+
           </div>
           <div class="name-content">
             <h2>{{r.patientFname}} {{r.patientLname}} {{date2}}</h2>
