@@ -415,15 +415,22 @@ $scope.ratingsObject = {
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
 
-
+								$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
+<<<<<<< HEAD
 						}
+=======
+
+>>>>>>> 857e3b26b6d90a69dca72af8a2845d4c2e2affcc
 
 
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
 
+<<<<<<< HEAD
 							//alert('readyforcall');
 
+=======
+>>>>>>> 857e3b26b6d90a69dca72af8a2845d4c2e2affcc
 						if($rootScope.cal_flag === '4'){
 
 							// alert('readyforcall');
@@ -444,6 +451,8 @@ $scope.ratingsObject = {
 							]
 							})
 						}
+						}
+
 		 }).catch(function(error){
 				 console.log('failure data', error);
 		 });

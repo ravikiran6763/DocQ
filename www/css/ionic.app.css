@@ -11960,6 +11960,7 @@ ion-side-menu .heading-item .message {
             font-size: 7vw; }
   .doctor-acc-view .item-divider {
     text-align: center;
+    width: 100% !important;
     height: 7vh;
     background-color: #dbdbdb;
     border-top: 1px solid #fff;
