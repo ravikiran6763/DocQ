@@ -72,11 +72,8 @@
 
 				 //PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
                                 $password = "DQ_doctor";
-
-
                                 //CREATE USERS IN VSEE FROM THE BELOW URL
-                                 $USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
-
+                               $USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
 
                 //SEND JSON DATA OF USERS TO VSEE API
                 $USER_JSON = '{"secretkey":'.$secretkey.',

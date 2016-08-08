@@ -419,7 +419,7 @@ $scope.ratingsObject = {
 						}
 						if($rootScope.cal_flag == '4'){
 							console.log($rootScope.cal_flag);
-							alert('readyforcall');
+							// alert('readyforcall');
 							$ionicPopup.alert({
 							title: 'Call Accepted',
 							template:' A Doctor has accepted your call request',

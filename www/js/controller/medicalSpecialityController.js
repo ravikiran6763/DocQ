@@ -7,10 +7,10 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
-
+    $ionicLoading.show();
     $scope.sendrequesttoonlinedoctors = function(id)
     {
-      $ionicLoading.show();
+
     //   $ionicLoading.show({
     //   content: 'Loading...',
     //   animation: 'fade-in',
@@ -21,9 +21,7 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
       console.log('buttonclicked');
 
       medicalSpecialityService.sendrequesttodoctor(id).then(function(response){
-
-          // console.log('successfull data', response);
-
+        // console.log('successfull data', response);
           if(response)
           {
             $scope.requestSent = response;

@@ -44,6 +44,15 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-letter-avatar'
 ])
 
+
+
+DoctorQuickApp.run(function($cordovaSplashscreen) {
+  setTimeout(function() {
+    $cordovaSplashscreen.hide()
+  }, 5000)
+})
+
+
 DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
 
   $ionicPlatform.on("deviceready", function(){
