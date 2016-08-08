@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+=======
 DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+>>>>>>> 784dd5bfe644d2e08cecb60b36674741cd3154c2
 
 	$rootScope.headerTxt="Patient Profile";
 	$rootScope.showBackBtn=true;
