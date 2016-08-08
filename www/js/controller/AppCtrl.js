@@ -416,7 +416,7 @@ $scope.ratingsObject = {
 
 						console.log($rootScope.onoff);
 						}
-						if($rootScope.cal_flag == 0){
+						if($rootScope.cal_flag == 4){
 							console.log($rootScope.cal_flag);
 							// alert('readyforcall');
 							$ionicPopup.alert({
