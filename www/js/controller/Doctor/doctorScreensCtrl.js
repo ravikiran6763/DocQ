@@ -5,11 +5,29 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 		$rootScope.showNotification=true;
 		$rootScope.showBadge=true;
 		$rootScope.showDocStatus=false;
+    // $scope.notificationValue=true;
 
+    $rootScope.changeNotification = function (e)
+    {
+
+      if(e)
+      {
+          $scope.notificationValue = true;
+
+        }
+        else{
+          $scope.notificationValue = false;
+
+        }
+        console.log('check box changed', $scope.notificationValue);
+
+    }
 
   if($localStorage.onOff == 1){
     $scope.checkedValue=true;
   }
+
+
 
 	$rootScope.changeStatus = function (e)
 	{

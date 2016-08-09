@@ -257,7 +257,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.logout(unametologout,pwtologout,success, failure);
+		// hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
@@ -427,7 +427,7 @@ $scope.ratingsObject = {
 							// alert('readyforcall');
 
 							$ionicPopup.alert({
-							title: 'Call Accepted',
+							title: 'Call Request Accepted',
 							template:' A Doctor has accepted your call request',
 							cssClass: 'videoPopup',
 							buttons: [

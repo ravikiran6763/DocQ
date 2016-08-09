@@ -25,58 +25,54 @@
     </ion-side-menu-content>
 
     <ion-side-menu side="right" class="main-menu" expose-aside-when="large"  >
-    <ion-content class="doc-sidemenu sidemenu-padding" >
+  <ion-content class="doc-sidemenu sidemenu-padding" >
 
     <ion-item class="item-icon-left" ng-click="getDocDetails();" menu-close ui-sref="templates.doc_profile"><!-- ui-sref="templates.doc_profile" -->
-    <i class="icon ion-android-bookmark"></i>
-    <h2 class="menu-text">Profile</h2>
+      <i class="icon ion-android-bookmark"></i>
+      <h2 class="menu-text">Profile</h2>
     </ion-item>
     <ion-item class="item-icon-left" nav-clear menu-close ng-click="getMyConsultations();"ui-sref="templates.consulted_patient">
-    <i class="icon ion-social-wordpress"></i>
-    <h2 class="menu-text">My Consultations</h2>
+      <i class="icon ion-social-wordpress"></i>
+      <h2 class="menu-text">My Consultations</h2>
     </ion-item>
     <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_profile">
-    <i class="icon ion-asterisk"></i>
-    <h2 class="menu-text">Review App</h2>
+      <i class="icon ion-asterisk"></i>
+      <h2 class="menu-text">Review App</h2>
     </ion-item>
     <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc-customercare">
-    <i class="icon ion-gear-a"></i>
-    <h2 class="menu-text">Customer Care</h2>
+      <i class="icon ion-gear-a"></i>
+      <h2 class="menu-text">Customer Care</h2>
     </ion-item>
     <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_acc_statement">
-    <i class="icon ion-android-wifi"></i>
-    <h2 class="menu-text">Account Statements</h2>
+      <i class="icon ion-android-wifi"></i>
+      <h2 class="menu-text">Account Statements</h2>
     </ion-item>
 
     <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.invite_reviews">
-    <i class="icon ion-android-cloud-circle"></i>
-    <h2 class="menu-text">Invite Reviews</h2>
+      <i class="icon ion-android-cloud-circle"></i>
+      <h2 class="menu-text">Invite Reviews</h2>
     </ion-item>
 
     <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
-    <i class="icon ion-android-cloud-done"></i>
-    <h2 class="menu-text">Terms Of Use</h2>
+      <i class="icon ion-android-cloud-done"></i>
+      <h2 class="menu-text">Terms Of Use</h2>
     </ion-item>
-    <!--
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.invite_contacts">
-    <i class="icon ion-gear-a"></i>
-    <h2 class="menu-text">Invite Reviews</h2>
-    </ion-item> -->
+
     <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doctor_home">
       <i class="icon ion-android-wifi"></i>
       <h2 class="menu-text">Notifications</h2>
     </ion-item>
     <div class="toggle-position">
-        <!-- <md-toggle></md-toggle> -->
-      <label class="toggle toggle-assertive">
-        <input type="checkbox">
-        <div class="track">
-        <p class="notificationOn">ON</p>
-          <div class="handle"></div>
-
-        </div>
-      </label>
-
+        <label class="toggle toggle-assertive">
+         <input type="checkbox" ng-model="notificationValue" ng-change="changeNotification(notificationValue)">
+         <div class="track">
+           <div class="handle"></div>
+           <p  style="color: #fff; font-size: 4vw; margin-top: 1vh;">ON</p>
+           <p>OFF</p>
+           <!-- <p  ng-show="notificationValue = true " >ON</p>
+          <p  ng-show="notificationValue = False " >OFF</p>  -->
+         </div>
+       </label>
     </div>
 
     <!-- <ul >
