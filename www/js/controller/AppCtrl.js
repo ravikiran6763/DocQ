@@ -257,7 +257,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.logout(unametologout,pwtologout,success, failure);
+		//hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
@@ -418,7 +418,7 @@ $scope.ratingsObject = {
 								$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
 
-						}
+
 
 
 
@@ -452,7 +452,6 @@ $scope.ratingsObject = {
 		 });
 				// console.log('callAtInterval');
 	}
-
 
 	$scope.declineCall=function(){
 		var calldecline={
