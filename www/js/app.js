@@ -256,6 +256,21 @@ $stateProvider
     }
   })
 
+
+  //FEEDS searchDoctors
+  .state('app.testcall', {
+    url: "/testcall",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/testcall.html"
+        
+
+      }
+    }
+  })
+
+
+
   .state('app.patient_profile', {
     url: "/patient_profile",
     views: {
