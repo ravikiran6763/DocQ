@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootScope, $scope, medicalSpecialityService,$localStorage, $ionicLoading) {
+DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootScope, $scope, $interval, medicalSpecialityService,$localStorage, $ionicLoading) {
 
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
@@ -7,17 +7,17 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
-    $ionicLoading.show();
+
     $scope.sendrequesttoonlinedoctors = function(id)
     {
 
-    //   $ionicLoading.show({
-    //   content: 'Loading...',
-    //   animation: 'fade-in',
-    //   showBackdrop: false,
-    //   maxWidth: 200,
-    //   showDelay: 500,
-    // });
+      $ionicLoading.show({
+      content: 'Loading...',
+      animation: 'fade-in',
+      showBackdrop: false,
+      maxWidth: 200,
+      showDelay: 500,
+    });
       console.log('buttonclicked');
 
       medicalSpecialityService.sendrequesttodoctor(id).then(function(response){
@@ -54,6 +54,18 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
  				 console.log('failure data', error);
  		 });
 
+
+     function CheckOnlineDocs() {
+     medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
+      .then(function(response){
+        // console.log('Details', response);
+        $scope.specialityDetails = response;
+        // $state.go('app.specialityDetailsNew');
+      }).catch(function(error){
+         console.log('failure data', error);
+      });
+     }
+     $interval(CheckOnlineDocs, 5000);
 
 
 });

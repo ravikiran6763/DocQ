@@ -307,7 +307,6 @@ console.log('appCtrl');
 		console.log(specialId);
 
 		$localStorage.SpecilityId=specialId;
-
 		medicalSpecialityService.getMedicalSpeciality(specialId)
 		 .then(function(response){
 				console.log('Details', response);
@@ -485,5 +484,18 @@ $scope.ratingsObject = {
      $scope.closeModal = function() {
          $scope.modal.hide();
      };
+
+
+
+		 
+
+
+
+
+
+
+
+
+
 
 });
