@@ -7,7 +7,8 @@
             </div>
           </div>
           <form  novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
-            <div class="form-cls ">
+            <div  ng-class="{ 'form-cls': deviceAndroid === true, 'form-cls-ios': deviceAndroid === false}">
+              <!-- class="form-cls" -->
 
               <div class="form-group">
 

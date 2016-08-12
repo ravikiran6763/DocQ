@@ -8,7 +8,7 @@
 	}
 	.submitted input.ng-invalid:not(:focus) {
 	  border:2px solid red;
-		
+
 	}
 		input.ng-invalid.ng-dirty:not(:focus) {
 		border: 2px solid red;
@@ -49,7 +49,7 @@
 		}
 	}
 	.form-content{
-		width: 80%;
+			width: 80%;
 	    height: 36%;
 	    margin: 0 auto;
 
@@ -59,6 +59,9 @@
 		.input-types{
 			margin-top: 22vh;
 		}
+		// div{
+		// 	margin-top: 22vh !important;
+		// }
 	}
 	.bottom-content{
 		width: 80%;
@@ -77,7 +80,7 @@
 			padding-left: 10px;
 		// height: 100%;
 	}
-
+	
 
 	.bar{
 		// background-color: red;

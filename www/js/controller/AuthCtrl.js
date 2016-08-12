@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $timeout, $rootScope, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -10,7 +10,9 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
     $scope.submitted = false;
 
-
+    $scope.deviceAndroid = ionic.Platform.isAndroid();
+    // alert($scope.deviceAndroid);
+    $scope.devicePlatform = ionic.Platform.isIOS();
    if($localStorage.user && $localStorage.pass){
      console.log('user already logged in')
      $ionicLoading.show();

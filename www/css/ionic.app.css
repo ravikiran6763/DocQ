@@ -10354,6 +10354,10 @@ img-crop {
   height: auto;
   margin-top: 17vh !important; }
 
+.walkthrough-view .form-cls-ios {
+  height: auto;
+  margin-top: 25vh !important; }
+
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
 
@@ -12879,6 +12883,7 @@ ion-side-menu .heading-item .message {
     .patient-reg-3-view .form-content-1 .item-input {
       margin-bottom: 2vh !important; }
   .patient-reg-3-view .form-content-2 {
+    padding-top: 27vh !important;
     width: 80%;
     margin: 0 auto; }
     .patient-reg-3-view .form-content-2 .item-input {
@@ -12922,6 +12927,41 @@ ion-side-menu .heading-item .message {
     line-height: 6vh; }
   .patient-reg-3-view .row {
     margin: 0 !important; }
+  .patient-reg-3-view .bar {
+    height: 40%;
+    width: 100%; }
+    .patient-reg-3-view .bar .button-bar {
+      position: absolute !important;
+      width: 80%;
+      height: 15%;
+      /* margin: 0 auto; */
+      margin-left: 8vw; }
+      .patient-reg-3-view .bar .button-bar .button {
+        background-color: #6aa13e;
+        border: none;
+        padding: 10px auto;
+        width: 100% !important; }
+      .patient-reg-3-view .bar .button-bar .resend {
+        float: left;
+        margin-right: 2vw; }
+      .patient-reg-3-view .bar .button-bar .confirm {
+        float: right;
+        margin-left: 2vw; }
+      .patient-reg-3-view .bar .button-bar a, .patient-reg-3-view .bar .button-bar h2, .patient-reg-3-view .bar .button-bar h3 {
+        font-size: 1em;
+        text-align: center;
+        color: #ffffff; }
+      .patient-reg-3-view .bar .button-bar h4 {
+        text-align: center;
+        margin-top: 7vh; }
+      .patient-reg-3-view .bar .button-bar .rowContent {
+        background-color: red;
+        position: absolute !important;
+        height: 20%;
+        width: 100%;
+        margin-top: 51vh;
+        text-align: center;
+        padding-top: 6vh; }
 
 .patient-reg-2-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12931,8 +12971,6 @@ ion-side-menu .heading-item .message {
     overflow: scroll !important; }
   .patient-reg-2-view .submitted input.ng-invalid:not(:focus) {
     border: 2px solid red; }
-  .patient-reg-2-view .patientReg2 {
-    margin-top: 6vh !important; }
   .patient-reg-2-view .top-content {
     width: 80%;
     height: 25%;
@@ -12953,32 +12991,10 @@ ion-side-menu .heading-item .message {
       height: 34px;
       margin-bottom: 1vh;
       background-color: red; }
-  .patient-reg-2-view .form-content-1 {
-    width: 80%;
-    height: 36%;
-    margin: 0 auto; }
-    .patient-reg-2-view .form-content-1 .item-input {
-      margin-bottom: 2vh !important; }
-      .patient-reg-2-view .form-content-1 .item-input select {
-        border: none;
-        font-family: inherit;
-        background-color: #fff; }
-    .patient-reg-2-view .form-content-1 .item-radio {
-      padding: 0;
-      height: 8vh;
-      text-align: center;
-      width: 100%; }
-    .patient-reg-2-view .form-content-1 .item-radio input:checked ~ .item-content, .patient-reg-2-view .form-content-1 .item-radio .item-content {
-      color: white; }
-    .patient-reg-2-view .form-content-1 .item-radio .radio-icon {
-      color: #6aa13e;
-      margin-top: -1vh; }
-    .patient-reg-2-view .form-content-1 .item-radio input:checked + .radio-content .item-content {
-      background: #fff !important; }
-    .patient-reg-2-view .form-content-1 .item-radio input:checked + .radio-content .radio-icon {
-      visibility: visible;
-      color: #6aa13e;
-      margin: -7px 0 0 0; }
+  .patient-reg-2-view .form-content {
+    margin-top: 0vh !important; }
+  .patient-reg-2-view .form-content-ios {
+    margin-top: 22vh !important; }
   .patient-reg-2-view .item-radio .item-content {
     padding: 4vh 0 0 28vw; }
   .patient-reg-2-view .input-types {
@@ -13000,10 +13016,9 @@ ion-side-menu .heading-item .message {
     padding-left: 10px;
     margin-bottom: 2vh; }
   .patient-reg-2-view input[type="tel"] {
-    margin-top: 0vh !important;
+    margin-top: 12vh !important;
     height: 40px !important;
-    padding-left: 10px;
-    margin-bottom: 2vh; }
+    padding-left: 10px; }
   .patient-reg-2-view .bar {
     height: 20%;
     width: 100%; }

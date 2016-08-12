@@ -66,7 +66,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       {
       if (navigator.connection.type == Connection.NONE)
       {
-      toast.show("Internet is disconnected on your device");
+        toast.show("Internet is disconnected on your device");
       };
       };
       PushNotificationsService.register();
@@ -263,7 +263,7 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/testcall.html"
-        
+
 
       }
     }
