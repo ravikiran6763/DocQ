@@ -13,35 +13,35 @@
            <img  src="./img/iOS-Assets-v01_patient_registration_progress3.png">
            <h1> Please enter the 4 digit verification code in the text message sent to </h1>
            <h2>{{phoneno}}</h2>
-           <h2>{{otp}}</h2>
+           <!-- <h2>{{otp}}</h2> -->
 
      </div>
     </div>
 
    <div  ng-class="{ 'form-content-1': deviceAndroid === true, 'form-content-2': deviceAndroid === false}">
+
+      <!-- <input ng-model="maxLengthReach"></input>
+      <input autofocus-when></input> -->
+
      <div class="row" >
          <div class="col">
-           <label class="item item-input">
-              <!-- <input type='number'   maxlength="1" tabindex="1"  ng-model='otpentered.OTP1'   /> -->
-              <input type='number' mask-clean='true'  maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true"  />
-
-               <!-- <input type="number" placeholder="1" ng-maxlength="1"> -->
+           <label class="item item-input" >
+           <input type='number' mask-clean='true' id="part1" maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true"  />
            </label>
          </div>
          <div class="col">
-           <label class="item item-input" >
-
-               <input type='number' mask-clean='true'  maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true"  />
+           <label class="item item-input"   >
+           <input type='number' mask-clean='true' id="part2" maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true" autofocus-when1 />
            </label>
          </div>
          <div class="col">
-           <label class="item item-input" >
-               <input type='number' mask-clean='true'  maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" />
+           <label class="item item-input"  >
+             <input type='number' mask-clean='true' id="part3" maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" autofocus-When2/>
            </label>
          </div>
          <div class="col">
            <label class="item item-input">
-               <input type='number' mask-clean='true'  maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" />
+             <input type='number' mask-clean='true' id="part4" maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" autofocus-When3/>
            </label>
          </div>
      </div>
