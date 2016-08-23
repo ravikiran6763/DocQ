@@ -27,8 +27,6 @@ DoctorQuickApp.constant('BASE_URL', {
         'payuFailure': 'common/payuFailure.php',
         'payuSucces': 'common/payuSucces.php',
 
-
-
         /*PATIENT APIS*/
         'patientRegistration' :'patient/patientRegistration.php',
         'patientDetails'      :'patient/patientDetails.php',
@@ -52,15 +50,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'changePatientPwd':'patient/changePatientPwd.php',
         'callaccepteddoctor':'patient/insertintomyconsultations.php',
 
-
-
-
-
-
-
         'sendotp' : 'textgurutest.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
-
         // 'rateMyDoctor':'patient/rateMyDoctor.php',
 
         /*DOCTOR APIS*/
@@ -77,19 +68,13 @@ DoctorQuickApp.constant('BASE_URL', {
 
         'testjpegimage' :'prescription/responseasimages.php',
 
-
-
         'fetchAllDoctors':'DQ/fetchDoctors.php',
-
-
         'sidemenulist':'DQ/sidemenulist.php',
         'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',
 
 
         /*  DOCTOR ON OFF API */
         'doctoronoffconditions':'doctor/doctoronoffline.php'
-
-
 
     })
 .constant('AUTH_EVENTS', {

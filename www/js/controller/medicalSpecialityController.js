@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootScope, $scope, $interval, medicalSpecialityService,$localStorage, $ionicLoading) {
+DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootScope, $scope, $interval, $timeout, medicalSpecialityService,$localStorage, $ionicLoading) {
 
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
@@ -7,7 +7,14 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
+    $ionicLoading.show({
+          template: '<p>Loading All Specialities...</p><ion-spinner></ion-spinner>'
+        });
 
+        $timeout(function () {
+          console.log('timeout');
+         $ionicLoading.hide();
+       }, 5000);
     $scope.sendrequesttoonlinedoctors = function(id)
     {
 

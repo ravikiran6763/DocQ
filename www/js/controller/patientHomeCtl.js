@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicLoading, $ionicConfig, $ionicHistory, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, doctoronoffdetails) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, doctoronoffdetails) {
 
 console.log('patienthome ctrl');
 			$rootScope.headerTxt="DoctorQuick";
@@ -13,7 +13,16 @@ console.log('patienthome ctrl');
 			});
 
 			$scope.medicalSpeciality = function(){
-$ionicLoading.show();
+
+				$ionicLoading.show({
+							template: '<p>Loading All Specialities...</p><ion-spinner></ion-spinner>'
+						});
+
+						$timeout(function () {
+							console.log('timeout');
+						 $ionicLoading.hide();
+					 }, 5000);
+
 					medicalSpecialityService.getMedicalSpecialist()
 					.then(function(response){
 						console.log('appctrl called');

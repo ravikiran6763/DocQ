@@ -6,7 +6,12 @@
             <button class="button button-icon icon ion-ios-chatbubble-outline" blink blink-class="energized" menu-toggle="left" ng-show="showNotification" >
             </button>
             <span class="notify-badge " ng-show="showBadge" ui-sref="templates.consulted_patient" >{{2}}</span>
-            <i class="back-btn-cls ion-ios-arrow-back" ng-click='goBack()' ng-show="showBackBtn"></i>
+            <!-- <i class="back-btn-cls ion-ios-arrow-back" ng-click='goBack()' ng-show="showBackBtn"></i> -->
+
+            <button ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
+              <i class="back-btn-cls ion-ios-arrow-back" style="float:left;" ></i>
+
+             </button>
         </ion-nav-buttons>
 
         <ion-nav-title >
@@ -68,9 +73,8 @@
          <div class="track">
            <div class="handle"></div>
            <p  style="color: #fff; font-size: 4vw; margin-top: 1vh;">ON</p>
-           <p>OFF</p>
-           <!-- <p  ng-show="notificationValue = true " >ON</p>
-          <p  ng-show="notificationValue = False " >OFF</p>  -->
+           <!-- <p>OFF</p> -->
+          
          </div>
        </label>
     </div>

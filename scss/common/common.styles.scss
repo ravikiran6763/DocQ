@@ -4,6 +4,10 @@
 // .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
 //   height: auto  !important;
 // }
+title title-center header-item{
+  left: 0 !important;
+  right: 0 !important;
+}
 ion-side-menu.menu-left.menu {
   background-color: teal !important;
 }

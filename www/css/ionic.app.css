@@ -9825,6 +9825,10 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+title title-center header-item {
+  left: 0 !important;
+  right: 0 !important; }
+
 ion-side-menu.menu-left.menu {
   background-color: teal !important; }
 
@@ -13169,7 +13173,8 @@ ion-side-menu .heading-item .message {
       background-color: blue;
       float: left; }
       .patientprofile-view .profile-info .imageContainer img {
-        width: 20vw;
+        width: 21vw !important;
+        height: 11vh !important;
         border-radius: 60%;
         padding: 5px;
         float: left;
