@@ -89,6 +89,7 @@
 		{
 			width: 80%;
     	margin: 0 auto;
+			height: 26% !important;
 
 				.button{
 					background-color: #6aa13e;
@@ -98,11 +99,13 @@
 				.resend{
 					float: left;
 					width: 80%;
+					height: 44px;
 					margin-right: 2vw;
 				}
 				.confirm{
 						float: right;
 						margin-left: 2vw;
+						height: 44px;
 				}
 		}
 	}
@@ -126,9 +129,9 @@
 		width: 100%;
 		.button-bar
 		{
-			position: absolute !important;
+		position: absolute !important;
     width: 80%;
-    height: 15%;
+    height: 26%;
     /* margin: 0 auto; */
     margin-left: 8vw;
 
@@ -141,10 +144,12 @@
 				.resend{
 					float: left;
 					margin-right: 2vw;
+					    padding: 6px;
 				}
 				.confirm{
 						float: right;
 						margin-left: 2vw;
+						    padding: 6px;
 				}
 				a,h2,h3{
 					font-size: 1em;
@@ -166,5 +171,29 @@
 
 				}
 		}
+		.button-stable{
+			background-color: #6aa13e;
+		}
+		.button-stable.activated{
+			background-color: #557a23 !important;
+		}
+
+		.button-calm.activated{
+			background-color:#026451!important;
+		}
 	}
+	.login_button {
+				background-color: #6aa13e;
+				color: #ffffff;
+				height: 48px;
+				width: 80%;
+				margin: 0 0 0 30px;
+				position: absolute;
+			span{
+				color:#fff;
+				font-size: 4.5vw !important;
+			}
+	}
+
+
 }

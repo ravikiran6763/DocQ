@@ -114,18 +114,27 @@ input[type="tel"]{
 		}
 
 	}
-// 	.international {
-//     /* border-color: #ddd; */
-//     background-color: #fff;
-//     color: #444;
-//     position: relative;
-//     z-index: 2;
-//     display: block;
-//     margin: 8px 0 0 0;
-//     padding: 16px;
-//     /* border-width: 1px; */
-//     border-style: solid;
-//     font-size: 16px;
-//     height: 40px;
-// }
+	.login_button {
+				background-color: #6aa13e;
+				color: #ffffff;
+				height: 48px;
+				width: 80%;
+				margin: 0 0 0 30px;
+				position: absolute;
+			span{
+				color:#fff;
+				font-size: 4.5vw !important;
+			}
+	}
+
+	.button-stable{
+		background-color: #6aa13e;
+	}
+	.button-stable.activated{
+		background-color: #557a23 !important;
+	}
+
+	.button-calm.activated{
+		background-color:#026451!important;
+	}
 }

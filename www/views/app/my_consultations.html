@@ -8,7 +8,10 @@
       <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
       <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
     </a>
+    <ul>
+      <li ng-show="!myDoctor.length" style="margin-top: 8vh;"><center><b style="color:teal;">No Consultations yet</b></center></li>
 
+    </ul>
 
   </ion-content>
 </ion-view>

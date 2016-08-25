@@ -6,15 +6,13 @@
         <button class="button button-icon icon ion-ios-chatbubble-outline" blink blink-class="energized" menu-toggle="left" ng-show="showNotification" >
         </button>
         <span class="notify-badge " ng-show="showBadge" >{{2}}</span>
-        <button ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
-          <i class="back-btn-cls ion-ios-arrow-back" style="float:left;" ></i>
-
-         </button>
+        <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
+          <i class="back-btn-cls ion-ios-arrow-back" style="float:left; margin: -5px 0 0 -3px;" ></i>
+       </button>
       </ion-nav-buttons>
 
       <ion-nav-title>
         <p>{{headerTxt}}</p>
-
       </ion-nav-title>
 
       <ion-nav-buttons side="right">

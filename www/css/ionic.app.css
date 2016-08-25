@@ -12731,6 +12731,21 @@ ion-side-menu .heading-item .message {
     .doc-reg-1-view .bar h2 {
       margin: 8vh 0 0 10vw;
       width: 80%; }
+  .doc-reg-1-view .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 48px;
+    width: 80%;
+    margin: 0 auto; }
+    .doc-reg-1-view .login_button span {
+      color: #fff;
+      font-size: 4.5vw !important; }
+  .doc-reg-1-view .button-stable {
+    background-color: #6aa13e; }
+  .doc-reg-1-view .button-stable.activated {
+    background-color: #557a23 !important; }
+  .doc-reg-1-view .button-calm.activated {
+    background-color: #026451 !important; }
 
 .doc-reg2-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12774,6 +12789,21 @@ ion-side-menu .heading-item .message {
     height: 40px !important;
     padding-left: 10px;
     width: 100%; }
+  .doc-reg2-view .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 48px;
+    width: 100%;
+    margin: 0 auto; }
+    .doc-reg2-view .login_button span {
+      color: #fff;
+      font-size: 4.5vw !important; }
+  .doc-reg2-view .button-stable {
+    background-color: #6aa13e; }
+  .doc-reg2-view .button-stable.activated {
+    background-color: #557a23 !important; }
+  .doc-reg2-view .button-calm.activated {
+    background-color: #026451 !important; }
 
 .patient-reg-1-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12845,6 +12875,22 @@ ion-side-menu .heading-item .message {
     .patient-reg-1-view .bar h2 {
       margin: 8vh 0 0 10vw;
       width: 80%; }
+  .patient-reg-1-view .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 48px;
+    width: 80%;
+    margin: 0 0 0 30px;
+    position: absolute; }
+    .patient-reg-1-view .login_button span {
+      color: #fff;
+      font-size: 4.5vw !important; }
+  .patient-reg-1-view .button-stable {
+    background-color: #6aa13e; }
+  .patient-reg-1-view .button-stable.activated {
+    background-color: #557a23 !important; }
+  .patient-reg-1-view .button-calm.activated {
+    background-color: #026451 !important; }
 
 .patient-reg-3-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -12910,7 +12956,8 @@ ion-side-menu .heading-item .message {
       text-align: center; }
     .patient-reg-3-view .bottom-content .button-bar {
       width: 80%;
-      margin: 0 auto; }
+      margin: 0 auto;
+      height: 26% !important; }
       .patient-reg-3-view .bottom-content .button-bar .button {
         background-color: #6aa13e;
         border: none;
@@ -12918,10 +12965,12 @@ ion-side-menu .heading-item .message {
       .patient-reg-3-view .bottom-content .button-bar .resend {
         float: left;
         width: 80%;
+        height: 44px;
         margin-right: 2vw; }
       .patient-reg-3-view .bottom-content .button-bar .confirm {
         float: right;
-        margin-left: 2vw; }
+        margin-left: 2vw;
+        height: 44px; }
   .patient-reg-3-view .register-back-btn {
     float: left;
     font-size: 10vw; }
@@ -12937,7 +12986,7 @@ ion-side-menu .heading-item .message {
     .patient-reg-3-view .bar .button-bar {
       position: absolute !important;
       width: 80%;
-      height: 15%;
+      height: 26%;
       /* margin: 0 auto; */
       margin-left: 8vw; }
       .patient-reg-3-view .bar .button-bar .button {
@@ -12947,10 +12996,12 @@ ion-side-menu .heading-item .message {
         width: 100% !important; }
       .patient-reg-3-view .bar .button-bar .resend {
         float: left;
-        margin-right: 2vw; }
+        margin-right: 2vw;
+        padding: 6px; }
       .patient-reg-3-view .bar .button-bar .confirm {
         float: right;
-        margin-left: 2vw; }
+        margin-left: 2vw;
+        padding: 6px; }
       .patient-reg-3-view .bar .button-bar a, .patient-reg-3-view .bar .button-bar h2, .patient-reg-3-view .bar .button-bar h3 {
         font-size: 1em;
         text-align: center;
@@ -12966,6 +13017,22 @@ ion-side-menu .heading-item .message {
         margin-top: 51vh;
         text-align: center;
         padding-top: 6vh; }
+    .patient-reg-3-view .bar .button-stable {
+      background-color: #6aa13e; }
+    .patient-reg-3-view .bar .button-stable.activated {
+      background-color: #557a23 !important; }
+    .patient-reg-3-view .bar .button-calm.activated {
+      background-color: #026451 !important; }
+  .patient-reg-3-view .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 48px;
+    width: 80%;
+    margin: 0 0 0 30px;
+    position: absolute; }
+    .patient-reg-3-view .login_button span {
+      color: #fff;
+      font-size: 4.5vw !important; }
 
 .patient-reg-2-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -13041,6 +13108,22 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .bar h2 {
       margin: 8vh 0 0 10vw;
       width: 80%; }
+  .patient-reg-2-view .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 48px;
+    width: 80%;
+    margin: 0 0 0 30px;
+    position: absolute; }
+    .patient-reg-2-view .login_button span {
+      color: #fff;
+      font-size: 4.5vw !important; }
+  .patient-reg-2-view .button-stable {
+    background-color: #6aa13e; }
+  .patient-reg-2-view .button-stable.activated {
+    background-color: #557a23 !important; }
+  .patient-reg-2-view .button-calm.activated {
+    background-color: #026451 !important; }
 
 .patientscreen-view {
   font-family: Ubuntu,bold,sans-serif !important; }
