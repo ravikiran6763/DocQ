@@ -9825,7 +9825,8 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
-title title-center header-item {
+.title .title-center .header-item {
+  color: red;
   left: 0 !important;
   right: 0 !important; }
 
@@ -9858,9 +9859,11 @@ ion-side-menu.menu-left.menu {
   padding-top: 40px; }
 
 .bar.app-top-bar .title * {
-  color: #FFFFFF !important;
-  left: 0;
-  right: 0; }
+  color: #FFFFFF !important; }
+
+.buttons .buttons-left .header-item {
+  width: 12% !important;
+  background-color: red; }
 
 .checkbox input:before, .checkbox-icon:before {
   display: table;
@@ -10203,7 +10206,6 @@ ion-spinner.spinner-on-load {
   padding: 1px 6px;
   color: #fff;
   border: none;
-  margin-left: -26px;
   position: absolute;
   border-radius: 50%;
   z-index: 999; }
