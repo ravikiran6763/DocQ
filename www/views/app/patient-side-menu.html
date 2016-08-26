@@ -6,8 +6,8 @@
       <ion-nav-buttons side="left">
         <!-- <button class="button button-icon icon ion-ios-chatbubble-outline" blink blink-class="energized" menu-toggle="left" ng-show="showNotification" >
         </button> -->
-        <i class="back-btn-cls ion-ios-chatbubble-outline" ng-show="showNotification"></i>
-        <span class="notify-badge " ng-show="showBadge" >2</span>
+        <i class="back-btn-cls ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="app.my_consultations"></i>
+        <span class="notify-badge " ng-show="showBadge" ui-sref="app.my_consultations">{{2}}</span>
         <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
           <i class="back-btn-cls ion-ios-arrow-back" style="float:left; margin: -5px 0 0 -3px;" ></i>
        </button>
