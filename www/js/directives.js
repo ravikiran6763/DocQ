@@ -494,6 +494,59 @@ angular.module('DoctorQuick.directives', [])
 
        }
     }
+})
+
+
+.directive("moveNextOnMaxlength", function() {
+    return {
+        restrict: "A",
+        link: function($scope, element) {
+            element.on("input", function(e) {
+                if(element.val().length == element.attr("maxlength")) {
+								    var $nextElement = element.next();
+                    if($nextElement.length) {
+                        $nextElement[0].focus();
+                    }
+                }
+            });
+        }
+    }
+})
+
+.directive('autofocusWhen1', function () {
+    return function (scope, element, attrs) {
+        scope.$watch('otpentered.OTP1', function(newValue){
+					// scope.$watch('maxLengthReach', function(newValue){
+
+            if (newValue.length >= 1 ) {
+                element[0].focus();
+            }
+        });
+    }
+})
+
+.directive('autofocusWhen2', function () {
+    return function (scope, element, attrs) {
+        scope.$watch('otpentered.OTP2', function(newValue){
+					// scope.$watch('maxLengthReach', function(newValue){
+
+            if (newValue.length >= 1 ) {
+                element[0].focus();
+            }
+        });
+    }
+})
+
+.directive('autofocusWhen3', function () {
+    return function (scope, element, attrs) {
+        scope.$watch('otpentered.OTP3', function(newValue){
+					// scope.$watch('maxLengthReach', function(newValue){
+
+            if (newValue.length >= 1 ) {
+                element[0].focus();
+            }
+        });
+    }
 });
 
 ;

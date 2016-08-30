@@ -5,7 +5,7 @@
         An Ionic Framework and Cordova project.
     </description>
     <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+      Ravikiran and Veeresh
     </author>
 
   <content src="index.html"/>
@@ -104,6 +104,7 @@
     <allow-navigation href="https://*/*" />
     <allow-navigation href="data:*" />
     <allow-intent href="*" />
+
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -114,7 +115,9 @@
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="orientation" value="portrait" />
+    <!-- <preference name="StatusBarOverlaysWebView" value="true"/> -->
     <plugin name="cordova-plugin-whitelist" version="1.2.0" />
+
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -168,5 +171,8 @@
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
+    <plugin name="cordova-plugin-device" spec="^1.1.0">
+      <variable name="MY_VARIABLE" value="my_variable_value" />
+    </plugin>
 
 </widget>

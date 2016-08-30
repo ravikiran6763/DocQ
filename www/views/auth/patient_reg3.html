@@ -13,37 +13,35 @@
            <img  src="./img/iOS-Assets-v01_patient_registration_progress3.png">
            <h1> Please enter the 4 digit verification code in the text message sent to </h1>
            <h2>{{phoneno}}</h2>
-           <h2>{{otp}}</h2>
+           <!-- <h2>{{otp}}</h2> -->
 
      </div>
     </div>
 
+   <div  ng-class="{ 'form-content-1': deviceAndroid === true, 'form-content-2': deviceAndroid === false}">
 
+      <!-- <input ng-model="maxLengthReach"></input>
+      <input autofocus-when></input> -->
 
-   <div class="form-content-1">
      <div class="row" >
          <div class="col">
-           <label class="item item-input">
-              <!-- <input type='number'   maxlength="1" tabindex="1"  ng-model='otpentered.OTP1'   /> -->
-              <input type='number' mask-clean='true'  maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true"  />
-
-               <!-- <input type="number" placeholder="1" ng-maxlength="1"> -->
+           <label class="item item-input" >
+           <input type='number' mask-clean='true' id="part1" maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true"  />
            </label>
          </div>
          <div class="col">
-           <label class="item item-input" >
-
-               <input type='number' mask-clean='true'  maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true"  />
+           <label class="item item-input"   >
+           <input type='number' mask-clean='true' id="part2" maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true" autofocus-when1 />
            </label>
          </div>
          <div class="col">
-           <label class="item item-input" >
-               <input type='number' mask-clean='true'  maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" />
+           <label class="item item-input"  >
+             <input type='number' mask-clean='true' id="part3" maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" autofocus-When2/>
            </label>
          </div>
          <div class="col">
            <label class="item item-input">
-               <input type='number' mask-clean='true'  maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" />
+             <input type='number' mask-clean='true' id="part4" maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" autofocus-When3/>
            </label>
          </div>
      </div>
@@ -54,8 +52,7 @@
 
 
       </div> -->
-    <div class="bottom-content">
-
+    <!-- <div class="bottom-content">
       <div class="button-bar ">
           <a class="button resend" ng-click="resendOtp();" >Resend</a>
           <a class="button confirm"   ng-click="patientRegistration();">Confirm</a>
@@ -64,6 +61,20 @@
        <h4>Din't receive a text from DoctorQuick? <p>Tap Resend.</p></h4>
        <h2 > By Signing in, I agree to DoctorQuicks </h2>
        <h3 class="link"><a ng-click="termsAndCond();">Terms and Conditions</a> </h3>
-     </div>
+
+     </div> -->
 </ion-content>
+<ion-footer-bar  >
+  <div class="button-bar ">
+      <a class="button resend button-block button-assertive"  ng-click="resendOtp();" >Resend</a>
+      <a class="button confirm button-block button-assertive"   ng-click="patientRegistration();">Confirm</a>
+  </div>
+  <div class="rowContent" style="text-align:center; margin-top: 6vh; ">
+    <h4 style="font-size:4vw; color:#fff; width: 80%; margin-left: 11vw; margin-top: 5vh;">Din't receive a text from DoctorQuick? Tap Resend.</h4>
+    <h2 style="font-size:3vw; color:#fff; margin-top:13vh; margin-left: 11vw; width:80%;"> By Signing in, I agree to DoctorQuicks <a ng-click="termsAndCond();">Terms and Conditions</a></h2>
+  </div>
+   <!--
+   <h3 class="link"> </h3> -->
+
+</ion-footer-bar>
 </ion-view>

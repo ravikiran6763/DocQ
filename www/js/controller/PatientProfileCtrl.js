@@ -70,8 +70,6 @@ console.log('failure data', error);
 
 
 				$scope.changePhoto = function() {
-
-
 					// $state.go('app.capture');
 					$ionicPopup.alert({
 					title: 'Upload Profile Picture',

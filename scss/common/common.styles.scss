@@ -1,6 +1,18 @@
 // General reset styles
 
 /* for Rting Stars*/
+// .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
+//   height: auto  !important;
+// }
+ .title .title-center .header-item{
+   color: red;
+  left: 0 !important;
+  right: 0 !important;
+}
+ion-side-menu.menu-left.menu {
+  background-color: teal !important;
+}
+
 .title .title-left .header-item{
   left: 0px !important;
   right: 0px !important;
@@ -31,8 +43,11 @@
 
 .bar.app-top-bar .title * {
     color: #FFFFFF !important;
-    left:0;
-    right: 0;
+
+}
+.buttons .buttons-left .header-item{
+  width: 12% !important;
+  background-color: red;
 }
 .checkbox input:before, .checkbox-icon:before {
     display: table;
@@ -443,8 +458,7 @@ ion-spinner.spinner-on-load
 		padding: 1px 6px;
 		color: #fff;
 		border: none;
-		margin-left: -26px;
-		position: absolute;
+	  position: absolute;
 		border-radius: 50%;
 		z-index: 999;
 }

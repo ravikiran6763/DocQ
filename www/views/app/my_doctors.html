@@ -25,6 +25,11 @@
               <span class="totalReview">({{doctor.totalCount}} Reviews)</span>
           </a>
 <!-- ng-init="getDocRatingsAll(doctor.doctorPhone)"  -->
+          <!-- <p ng-show="!myConsultedDoctors.length">No Consultations yet</p> -->
+          <ul>
+            <li ng-show="!myConsultedDoctors.length" style="margin-top: 8vh;"><center><b style="color:teal;">No Consultations yet</b></center></li>
+
+          </ul>
 
       </div>
   </ion-content>

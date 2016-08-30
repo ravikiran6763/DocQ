@@ -14,7 +14,7 @@
 
 	}
 	.patientReg2{
-		margin-top: 6vh !important;
+		// margin-top: 6vh !important;
 	}
 	.top-content{
 		width: 80%;
@@ -44,45 +44,16 @@
 		}
 	}
 
-	.form-content-1{
-		// padding-top: 30px !important;
-		width: 80%;
-    height: 36%;
-    margin: 0 auto;
+		.form-content{
+			// background-color: red;
+			margin-top: 0vh !important;
 
-		.item-input{
-			margin-bottom: 2vh !important;
-			select{
-				border: none;
-				font-family: inherit;
-				background-color: #fff;
-			}
 		}
-		.item-radio {
-    padding: 0;
-    height: 8vh;
-    text-align: center;
-		width: 100%;
-		}
-		.item-radio input:checked ~ .item-content,  .item-radio .item-content    {
-		  color: white;
-		}
-		.item-radio .radio-icon    {
-		  color: #6aa13e;
-			margin-top: -1vh;
-		}
-		.item-radio input:checked + .radio-content .item-content {
-		    background: #fff !important;
-		}
-		.item-radio input:checked + .radio-content .radio-icon {
-    visibility: visible;
-    color: #6aa13e;
-    margin: -7px 0 0 0;
-}
+		.form-content-ios{
+			// background-color: red;
+			margin-top: 22vh !important;
 
-
-
-	}
+		}
 .item-radio .item-content{
 	    padding: 4vh 0 0 28vw;
 }
@@ -112,14 +83,15 @@ input[type="email"]{
 // height: 100%;
 }
 input[type="tel"]{
-	margin-top: 0vh !important;
+	margin-top: 12vh !important;
 	height: 40px !important;
 	padding-left: 10px;
-	margin-bottom: 2vh;
 // height: 100%;
 }
+
 	.bar{
 		// background-color: red;
+
 		height: 20%;
 		width: 100%;
 		.login{
@@ -142,18 +114,27 @@ input[type="tel"]{
 		}
 
 	}
-// 	.international {
-//     /* border-color: #ddd; */
-//     background-color: #fff;
-//     color: #444;
-//     position: relative;
-//     z-index: 2;
-//     display: block;
-//     margin: 8px 0 0 0;
-//     padding: 16px;
-//     /* border-width: 1px; */
-//     border-style: solid;
-//     font-size: 16px;
-//     height: 40px;
-// }
+	.login_button {
+				background-color: #6aa13e;
+				color: #ffffff;
+				height: 48px;
+				width: 80%;
+				margin: 0 0 0 30px;
+				position: absolute;
+			span{
+				color:#fff;
+				font-size: 4.5vw !important;
+			}
+	}
+
+	.button-stable{
+		background-color: #6aa13e;
+	}
+	.button-stable.activated{
+		background-color: #557a23 !important;
+	}
+
+	.button-calm.activated{
+		background-color:#026451!important;
+	}
 }

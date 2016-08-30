@@ -12,14 +12,15 @@
        </div>
     </div>
     <form name="PatientReg2" ng-submit="submitForm($event)" ng-class={submitted:submitted}>
-       <div class="form-content" style="margin-top: 4vh;">
+       <div   ng-class="{ 'form-content': deviceAndroid === true, 'form-content-ios': deviceAndroid === false}">
          <div class="input-types">
 
-             <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true"  required ></input>
+
+           <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ></input>
 
              <!-- <intlpn  class="international" ng-model='PatientDetail.patient_mob' placeholder="Mobile Number" default-country="in" only-country="['in']" mask='9999999999999' required></intlpn> -->
 
-             <div class="button-bar icon-left">
+             <div class="button-bar " style="margin-top: 2vh;">
 
                <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" style="height:40px; border:none; margin-bottom: 2vh; margin-right:2vw;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Male</span></ion-radio>
                <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'F'" style="height:40px; border:none; margin-bottom: 2vh;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Female</span></ion-radio>
@@ -38,7 +39,7 @@
 
         </div>
 
-        <button class="login button button-block" id="link" ng-hide="true" type="submit" ng-click="validateUser1(PatientReg2.$valid)" >Next</button>
+        <button class="login_button button button-block button-assertive" id="link" ng-hide="true" type="submit" ng-click="validateUser1(PatientReg2.$valid)" >Next</button>
 
     <!-- <button class="login button button-block" id="link" ng-hide="true" type="submit" ng-click="validateUser(PatientReg1.$valid)" >Next</button> -->
     <!-- <button class="login button button-block" ng-click="goToNextView(PatientDetail.patient_mob)" type="submit" >Next</button> -->
@@ -50,7 +51,7 @@
 
 <ion-footer-bar  >
 
-        <button class="login button button-block" ng-click="validateUser1(PatientReg2.$valid)" type="submit" linked="link">Next</button>
+        <button class="login_button button button-block button-assertive" ng-click="validateUser1(PatientReg2.$valid)" type="submit" linked="link">Next</button>
 
           <h2 > By Signing in, I agree to DoctorQuicks <a ng-click="termsAndCond();">Terms and Conditions</a>  </h2>
 

@@ -97,4 +97,27 @@
 		}
 
 	}
+
+	.login_button {
+			background-color: #6aa13e;
+			color: #ffffff;
+			height: 48px;
+			width: 80%;
+			margin: 0 auto;
+			span{
+				color:#fff;
+				font-size: 4.5vw !important;
+			}
+	}
+
+	.button-stable{
+		background-color: #6aa13e;
+	}
+	.button-stable.activated{
+		background-color: #557a23 !important;
+	}
+
+	.button-calm.activated{
+		background-color:#026451!important;
+	}
 }

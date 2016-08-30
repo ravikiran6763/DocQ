@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
 
 console.log('appCtrl');
 	$rootScope.headerTxt='';
@@ -9,6 +9,12 @@ console.log('appCtrl');
 	$rootScope.doclist = {};
 	$scope.myDocDetail = {};
 
+
+
+$scope.deviceAndroid = ionic.Platform.isAndroid();
+$scope.devicePlatform = ionic.Platform.isIOS();
+
+console.log($scope.deviceAndroid );
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
@@ -257,7 +263,12 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
+<<<<<<< HEAD
 		hello.logout(unametologout,pwtologout,success, failure);
+=======
+		// hello.logout(unametologout,pwtologout,success, failure);
+		//hello.logout(unametologout,pwtologout,success, failure);
+>>>>>>> 9f9621f747b79bb383f9c5be642d0936c8dde7da
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
@@ -306,7 +317,6 @@ console.log('appCtrl');
 		console.log(specialId);
 
 		$localStorage.SpecilityId=specialId;
-
 		medicalSpecialityService.getMedicalSpeciality(specialId)
 		 .then(function(response){
 				console.log('Details', response);
@@ -430,7 +440,7 @@ $scope.ratingsObject = {
 							// alert('readyforcall');
 
 							$ionicPopup.alert({
-							title: 'Call Accepted',
+							title: 'Call Request Accepted',
 							template:' A Doctor has accepted your call request',
 							cssClass: 'videoPopup',
 							buttons: [
@@ -484,5 +494,18 @@ $scope.ratingsObject = {
      $scope.closeModal = function() {
          $scope.modal.hide();
      };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });
