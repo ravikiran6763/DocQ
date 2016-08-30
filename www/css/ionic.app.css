@@ -10368,7 +10368,7 @@ img-crop {
   margin-bottom: 2vh; }
 
 .walkthrough-view .logoContainer {
-  margin-top: 0;
+  margin-top: 4vh !important;
   text-align: center;
   height: 20%; }
   .walkthrough-view .logoContainer img {
