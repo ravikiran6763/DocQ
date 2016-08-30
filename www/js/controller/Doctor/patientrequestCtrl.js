@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -26,8 +26,15 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 							doctorphno : $localStorage.user,
 							patientphno : $stateParams.pphno
 						}
+
+
 						 $scope.toggleText = "Accepted";
 						 patientrequesttodoctor.accpetedbydoctor(docpatphno);
+
+
+						 $state.go('templates.notesForPatient');
+
+
 
 				 }
 				 $scope.decline = function()

@@ -257,7 +257,7 @@ console.log('appCtrl');
 			alert("Error calling Hello Plugin");
 		}
 
-		//hello.logout(unametologout,pwtologout,success, failure);
+		hello.logout(unametologout,pwtologout,success, failure);
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',

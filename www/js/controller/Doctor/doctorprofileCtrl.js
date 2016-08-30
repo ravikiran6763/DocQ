@@ -5,7 +5,13 @@ $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
 // console.log(docPhone);
 
-$rootScope.docPhone = $stateParams.ratingTo;
+
+$rootScope.consultedDoctor = $stateParams.ratingTo;
+
+
+
+
+// $rootScope.docPhone = $stateParams.ratingTo;
 console.log($rootScope.docPhone);
 
 $ionicLoading.show();
@@ -27,7 +33,12 @@ console.log('failure data', error);
           	var uname = "greet+"+$localStorage.user;
              var pw = "DQ_patient";
 
-             var persontocall = "greet+" + $localStorage.docPhone;
+             //var persontocall = "greet+" + $localStorage.docPhone;
+
+
+             var persontocall = "greet+" + $localStorage.consultedDoctor;
+
+
              console.log(uname);
              console.log(persontocall);
 
@@ -109,7 +120,11 @@ $scope.BalanceForVoiceCall=function()
     var uname = "greet+"+$localStorage.user;
      var pw = "DQ_patient";
 
-     var persontocall = "greet+" + $localStorage.docPhone;
+     //var persontocall = "greet+" + $localStorage.docPhone;
+
+     var persontocall = "greet+" + $localStorage.consultedDoctor;
+
+
      console.log(uname);
      console.log(persontocall);
 
@@ -182,8 +197,8 @@ $scope.BalanceForVoiceCall=function()
   });
 
 }
-  console.log($localStorage.docPhone);
-    doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+  
+    doctorServices.myDoctorsDetails($localStorage.consultedDoctor).then(function(response){
     $scope.myDocDetails=response;
     }).catch(function(error){
     console.log('failure data', error);

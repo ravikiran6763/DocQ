@@ -8,7 +8,7 @@
 
         </ion-refresher>
     <div>
-          <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.ratingTo}});" >
+          <a class="item item-avatar item-icon-right" ng-repeat="doctor in myConsultedDoctors  track by $index" ng-click="viewDocProfile({{doctor.ratingTo}});" >
             <ionic-letter-avatar data={{doctor.doctorFname}} data={{doctor.doctorLname}} shape="round" charcount='1'></ionic-letter-avatar>
             <!-- <img src="img/doc.jpg"> -->
             <!-- ui-sref="app.viewdoctor_profile({ docPhone: doctor.ratingTo,rating:doctor.totalRating,ratingCount:doctor.totalCount})"  -->
