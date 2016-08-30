@@ -56,7 +56,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 
 						if(response === "patient")
 						{
-<<<<<<< HEAD
+
 //
 //								var uname1 = "greet+"+$scope.loginData.phone;
 //
@@ -67,13 +67,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 //								var uname1 = "greet+"+$scope.loginData.phone;
 
 							var uname1 = "greet+"+$scope.loginData.phone;
-=======
+
 
 								var uname1 = "greet+"+$scope.loginData.phone;
 								// var uname1 = "greet+"+$scope.loginData.phone;
 								// var uname1 = "greet+"+$scope.loginData.phone;
 								// var uname1 = "greet+"+$scope.loginData.phone;
->>>>>>> 9f9621f747b79bb383f9c5be642d0936c8dde7da
 
 
 								var pw1 = "DQ_patient";
@@ -88,16 +87,15 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 								{
 									alert("Error calling Hello Plugin");
 								}
-							// hello.login(uname1,pw1,success, failure);
+
+							 hello.login(uname1,pw1,success, failure);
 								$state.go('app.patient_home');
 							// hello.login(uname1,pw1,success, failure);
 
-<<<<<<< HEAD
 						//$state.go('app.patient_home');
 
-=======
 						$state.go('app.patient_home');
->>>>>>> 9f9621f747b79bb383f9c5be642d0936c8dde7da
+
 						}
 
 						else if(response === "doctor")

@@ -256,9 +256,6 @@ $stateProvider
     }
   })
 
-
-<<<<<<< HEAD
-=======
   //FEEDS searchDoctors
   .state('app.testcall', {
     url: "/testcall",
@@ -272,8 +269,6 @@ $stateProvider
   })
 
 
-
->>>>>>> 9f9621f747b79bb383f9c5be642d0936c8dde7da
   .state('app.patient_profile', {
     url: "/patient_profile",
     views: {
