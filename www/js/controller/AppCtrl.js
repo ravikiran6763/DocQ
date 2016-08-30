@@ -263,8 +263,12 @@ console.log($scope.deviceAndroid );
 			alert("Error calling Hello Plugin");
 		}
 
+<<<<<<< HEAD
+		hello.logout(unametologout,pwtologout,success, failure);
+=======
 		// hello.logout(unametologout,pwtologout,success, failure);
 		//hello.logout(unametologout,pwtologout,success, failure);
+>>>>>>> 9f9621f747b79bb383f9c5be642d0936c8dde7da
 
    var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',

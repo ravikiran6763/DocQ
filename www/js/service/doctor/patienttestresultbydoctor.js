@@ -117,6 +117,9 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
         console.log('enetered');
 
 
+
+
+
         //create folder in SD card ad DQIMAGES  Directory
 
         $cordovaFile.createDir(cordova.file.dataDirectory, "DQIMAGES", true)

@@ -5,7 +5,9 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 
 console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
-myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
+
+myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
+// myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();
@@ -63,7 +65,9 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 					var ratedValues={
 						rates:$rootScope.ratingValue,
 						ratedBy:$localStorage.user,
-						ratedTo:$localStorage.consultedDoctor,
+				 ratedTo:$localStorage.Doctocall,
+
+						// ratedTo:$localStorage.consultedDoctor,
 						ratingComments:$scope.ratingComments.comment
 					};
 
@@ -81,7 +85,8 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 
 		var myDocratedValues={
 		ratedBy:$localStorage.user,
-		ratedTo:$localStorage.consultedDoctor
+		ratedTo:$localStorage.Doctocall
+		// ratedTo:$localStorage.consultedDoctor
 		};
 
 		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
@@ -94,7 +99,9 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 
 		//to fetch the overall Rating o0f a doctor
 
-		rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
+rateDoctorServices.getDocRatingsByAll($localStorage.Doctocall).then(function(response){
+
+		// rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
 				$scope.ratings = [{
@@ -117,8 +124,9 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 						var username = "greet+"+$localStorage.user;
 						var password = "DQ_patient";
 
-							var persontocall = "greet+" + $localStorage.consultedDoctor;
+							// var persontocall = "greet+" + $localStorage.consultedDoctor;
 
+					 var persontocall = "greet+" + $localStorage.Doctocall;
 
 							var success = function(message)
 							{

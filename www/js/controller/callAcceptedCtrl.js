@@ -69,6 +69,53 @@ $scope.checkWalletBalance = function()
 
 
 
+$scope.BalanceForVoiceCall = function()
+{
 
 
-})
+      alert('called');
+
+
+	var audiocallflag = 1;
+
+	$scope.startdate = new Date();
+
+	$scope.callid = $rootScope.callId;
+
+
+			var unametoaudiocall = "greet+"+$localStorage.user;
+			 var pwtoaudiocall = "DQ_patient";
+
+			 var persontocallforaudio = "greet+" + $localStorage.Doctocall;
+			//  console.log(uname);
+			//  console.log(persontocallforaudio);
+
+
+				 var success = function(message)
+				{
+
+						alert(message);
+
+						$scope.enddate = new Date();
+
+
+							console.log($localStorage.user);
+							console.log($localStorage.Doctocall);
+
+							callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
+
+						$state.go('app.patient_summary');
+
+
+				}
+				var failure = function()
+				{
+					alert("Error calling Hello Plugin");
+				}
+
+				hello.audiocallvsee(unametoaudiocall,pwtoaudiocall,persontocallforaudio,success, failure);
+
+}
+
+
+});
