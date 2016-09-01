@@ -103,7 +103,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
           if(navigator.connection.type == Connection.NONE) {
           $ionicPopup.confirm({
           title: 'Network Problem',
-          content: 'Sorry, Please Check Your Network Connection.'
+          content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
           }).then(function(){
           ionic.Platform.exitApp();
           })

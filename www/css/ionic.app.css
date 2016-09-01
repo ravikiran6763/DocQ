@@ -12821,7 +12821,8 @@ ion-side-menu .heading-item .message {
     width: 80%;
     height: 15%;
     margin: 0 auto;
-    text-align: center; }
+    text-align: center;
+    padding-top: 25px; }
     .patient-reg-1-view .top-content p {
       text-align: center;
       padding-top: 20px;
@@ -13048,7 +13049,8 @@ ion-side-menu .heading-item .message {
     width: 80%;
     height: 25%;
     margin: 0 auto;
-    text-align: center; }
+    text-align: center;
+    padding-top: 25px; }
     .patient-reg-2-view .top-content p {
       text-align: center;
       padding-top: 20px;

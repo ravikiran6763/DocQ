@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -65,7 +65,7 @@ $scope.validateUser=function(isFormValid){
 
   $scope.submitted = true;
   if(isFormValid) {
-    // console.log($scope.PatientDetail);
+    console.log($scope.PatientDetail.patient_age);
     $state.go('auth.patient_reg2');
   }
   // console.log($rootScope.PatientDetail);
@@ -74,25 +74,34 @@ $scope.validateUser=function(isFormValid){
 }
 
     $scope.validateUser1=function(isForm1Valid){
-    console.log('isForm1Valid ', isForm1Valid)
+    // console.log('isForm1Valid ', isForm1Valid)
     console.log($scope.PatientDetail);
     console.log('clicked');
 
     $scope.submitted = true;
     if(isForm1Valid) {
     // console.log($scope.PatientDetail);
-      // console.log($rootScope.PatientDetail);
-      $scope.phoneno = $scope.PatientDetail.patient_mob;
-      patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-      {
-        $scope.otp=response;
-        console.log($scope.otp);
-      })
-      .catch(function(error)
-      {
-        console.log('failure data', error);
-      });
-      $state.go('auth.patient_reg3');
+      if($scope.PatientDetail.patient_mob.length<10){
+        $cordovaToast.showLongCenter('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else{
+        $scope.phoneno = $scope.PatientDetail.patient_mob;
+        patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+        {
+          $scope.otp=response;
+          console.log($scope.otp);
+        })
+        .catch(function(error)
+        {
+          console.log('failure data', error);
+        });
+        $state.go('auth.patient_reg3');
+      }
+
     }
 
     }
@@ -247,15 +256,22 @@ console.log($rootScope.Doctor);
 
 
     $scope.validateUser=function(isFormValid){
-
-
       console.log('clicked');
-
       $scope.submitted = true;
       if(isFormValid) {
+        if($scope.PatientDetail.patient_age<18){
+          // alert('You Should be 18+ to use this app')
+          $cordovaToast.showLongCenter('You Should be 18+ to use this app', 'short', 'center').then(function(success) {
+          // success
+          }, function (error) {
+          // error
+          });
 
-        // console.log($scope.PatientDetail);
-        $state.go('auth.patient_reg2');
+        }
+        else{
+          $state.go('auth.patient_reg2');
+
+        }
       }
       // console.log($rootScope.PatientDetail);
 
