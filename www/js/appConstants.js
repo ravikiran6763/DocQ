@@ -49,7 +49,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'uploadImage' : 'patient/uploadImage.php',
         'changePatientPwd':'patient/changePatientPwd.php',
         'callaccepteddoctor':'patient/insertintomyconsultations.php',
-
+        'existingPatient' : 'patient/existingPatient.php',
         'sendotp' : 'textgurutest.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
         // 'rateMyDoctor':'patient/rateMyDoctor.php',

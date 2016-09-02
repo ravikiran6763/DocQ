@@ -79,9 +79,12 @@ $scope.validateUser=function(isFormValid){
     console.log('clicked');
 
     $scope.submitted = true;
+    $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+
     if(isForm1Valid) {
-    // console.log($scope.PatientDetail);
-      if($scope.PatientDetail.patient_mob.length<10){
+      if($scope.firstNum < 7){
+        console.log($scope.firstNum);
+
         $cordovaToast.showLongCenter('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
         // success
         }, function (error) {
@@ -89,18 +92,58 @@ $scope.validateUser=function(isFormValid){
         });
       }
       else{
-        $scope.phoneno = $scope.PatientDetail.patient_mob;
-        patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-        {
-          $scope.otp=response;
-          console.log($scope.otp);
-        })
-        .catch(function(error)
-        {
-          console.log('failure data', error);
-        });
-        $state.go('auth.patient_reg3');
-      }
+
+        //check for existing patient
+
+
+          patientRegistrationService.existingPatient($scope.PatientDetail.patient_mob).then(function(response)
+          {
+            $scope.patientExist=response;
+            console.log($scope.patientExist);
+            if($scope.patientExist === 'patient'){
+              $scope.myPopup=$ionicPopup.show({
+                title: 'Patient Already Exist',
+                template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="color:#fff; margin-top: -7px; ">X</p></div>',
+                cssClass: 'loginPopup',
+                scope: $scope,
+                // buttons: [
+                // 	{ text: 'Cancel' },
+                // 	{
+                // 	text: '<b>Agree</b>',
+                // 	type: 'button-positive',
+                //
+                // 	},
+                // ]
+              });
+              $scope.closethis = function()
+              {
+              $scope.myPopup.close();
+              $window.localStorage.clear();
+              // $state.go('auth.loginNew');
+
+              };
+            }
+              else{
+                $scope.phoneno = $scope.PatientDetail.patient_mob;
+                patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+                {
+                  $scope.otp=response;
+                  console.log($scope.otp);
+                })
+                .catch(function(error)
+                {
+                  console.log('failure data', error);
+                });
+                $state.go('auth.patient_reg3');
+              }
+          })
+          .catch(function(error)
+          {
+            console.log('failure data', error);
+          });
+
+        }
+
 
     }
 
