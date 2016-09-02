@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -125,6 +125,8 @@ $scope.validateUser=function(isFormValid){
             }
               else{
                 $scope.phoneno = $scope.PatientDetail.patient_mob;
+                $rootScope.imageData=$base64.encode('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHkDSrh4dvgrpmNFkYQOOmumy9dIBRAuKZmuuAm4V-DNeti04O');
+                console.log($rootScope.imageData);
                 patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
                 {
                   $scope.otp=response;
@@ -246,7 +248,8 @@ console.log($rootScope.Doctor);
                   pateientPhone:$scope.PatientDetail.patient_mob,
                   pateientEmail:$scope.PatientDetail.pat_email,
                   pateientSex:$scope.PatientDetail.gender,
-                  pateientPwd:$scope.PatientDetail.pat_password
+                  pateientPwd:$scope.PatientDetail.pat_password,
+                  patientImage:$rootScope.imageData
                 };
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)

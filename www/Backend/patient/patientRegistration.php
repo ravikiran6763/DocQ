@@ -39,7 +39,12 @@
 	  $pateientEmail= $patientDetails->pateientEmail;
 	  $pateientSex = $patientDetails->pateientSex;
 	  $pateientPwd= $patientDetails->pateientPwd;
+		// $patientImage= $patientDetails->patientImage;
 
+
+		$imagedata = file_get_contents("https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHkDSrh4dvgrpmNFkYQOOmumy9dIBRAuKZmuuAm4V-DNeti04O");
+		             // alternatively specify an URL, if PHP settings allow
+		$patientImage = base64_encode($imagedata);
 
 	  //encodes the password string
 
@@ -59,7 +64,7 @@
 			{
 						echo "Query Submitted";
 
-						$sqlImage = "INSERT INTO patientImages(patientphone) values('$pateientPhone')";
+						$sqlImage = "INSERT INTO patientImages(patientphone,image) values('$pateientPhone','$patientImage')";
 						$retval1 = mysql_query( $sqlImage, $dbhandle );
 
 							if(mysql_error())
