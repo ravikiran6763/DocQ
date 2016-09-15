@@ -3,11 +3,9 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
-console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
 
-myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
-// myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
+myConsultationService.docSummaryDetails($rootScope.consultedDoc).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();
@@ -92,7 +90,7 @@ myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(r
 		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
-				// console.log($scope.myRating);
+				console.log($scope.myRating);
 			}).catch(function(error){
 				console.log('failure data', error);
 		});
@@ -108,7 +106,7 @@ rateDoctorServices.getDocRatingsByAll($localStorage.Doctocall).then(function(res
 	 		        current: $scope.myRating,
 	 		        max: 5
 	 		    }, ];
-				console.log($scope.myRating);
+				console.log('rating',$scope.myRating);
 			}).catch(function(error){
 				console.log('failure data', error);
 		});
