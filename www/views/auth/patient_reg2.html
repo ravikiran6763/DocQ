@@ -15,6 +15,7 @@
        <div   ng-class="{ 'form-content': deviceAndroid === true, 'form-content-ios': deviceAndroid === false}">
          <div class="input-types">
 
+           <img  ng-hide='true' ng-src="img/patientAvatar.png" ng-model='PatientDetail.patientAvatar' >
 
            <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ></input>
 
