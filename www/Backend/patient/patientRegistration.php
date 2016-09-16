@@ -66,7 +66,7 @@
 			{
 						echo "Query Submitted";
 
-					echo	$sqlImage = "INSERT INTO patientImages(patientphone,image) values('$pateientPhone','$ProfileImage')";
+						$sqlImage = "INSERT INTO patientImages(patientphone,image) values('$pateientPhone','$ProfileImage')";
 						$retval1 = mysql_query( $sqlImage, $dbhandle );
 
 							if(mysql_error())
