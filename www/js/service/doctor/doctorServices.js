@@ -31,9 +31,9 @@ this.myDoctorsFetched = function (userPhone) {
 }
 
 this.myDoctorsDetails = function (mydocPhone) {
-console.log(mydocPhone);
+
   var deferred = $q.defer();
-  console.log(BASE_URL.url + API.fetchSpecificDoctor);
+  // console.log(BASE_URL.url + API.fetchSpecificDoctor);
   $http.post(BASE_URL.url + API.fetchSpecificDoctor,mydocPhone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);

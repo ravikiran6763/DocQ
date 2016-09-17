@@ -239,8 +239,6 @@ $stateProvider
     abstract: true,
     templateUrl: "views/app/patient-side-menu.html"
 
-
-
   })
 
 
@@ -262,8 +260,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/testcall.html"
-
-
       }
     }
   })
@@ -451,13 +447,10 @@ $stateProvider
     }
   })
 
-
-
   .state('templates', {
     url: "/templates",
     abstract: true,
     templateUrl: "views/templates/doc-sidemenu.html"
-
   })
 
   .state('templates.doctor_home', {
@@ -626,14 +619,9 @@ $stateProvider
       }
     }
   })
-
 ;
 
-
-
-//Patient signup
-
-
+  //Patient signup
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/auth/loginNew');
 
