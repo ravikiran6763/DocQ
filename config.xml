@@ -29,7 +29,7 @@
   <preference name="SplashScreen" value="3000"/>
   <preference name="orientation" value="portrait" />
   <preference name="Fullscreen" value="true" />
-   <preference name="StatusBarOverlaysWebView" value="false" />
+   <preference name="StatusBarOverlaysWebView" value="true" />
   <plugin name="cordova-plugin-whitelist" version="1.2.0" />
 
   <feature name="StatusBar">

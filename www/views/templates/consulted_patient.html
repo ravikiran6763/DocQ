@@ -2,7 +2,7 @@
 
   <ion-content ng-repeat="patient in myPatients">
           <a class="item item-avatar item-icon-right" ng-click="clicktochat(patient.patientPhone);"><!--ui-sref="app.doctorprofile"-->
-            <img src="img/patient.jpg">
+            <img src="{{patient.image}}">
             <h2>{{patient.patientFname}}  {{patient.patientLname}}<span>{{patient.consultDate}}</span></h2>
             <p>Last sent/received msg</p>  <i class="icon ion-ios-arrow-right"></i>
           </a>

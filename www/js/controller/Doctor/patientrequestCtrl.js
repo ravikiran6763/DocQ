@@ -16,6 +16,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 $scope.psex = $stateParams.psex;
 
 				 $scope.pphno = $stateParams.pphno;
+				 $scope.image = $stateParams.image;
+
 
 
 				 $scope.acceptclicked = function()
