@@ -264,8 +264,6 @@ $stateProvider
     }
   })
 
-
-
   .state('app.patient_profile', {
     url: "/patient_profile",
     views: {
