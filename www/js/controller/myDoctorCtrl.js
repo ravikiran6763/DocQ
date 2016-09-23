@@ -71,16 +71,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 	$scope.viewDocProfile=function(docPhone){
 		$localStorage.docPhone=docPhone
-		$ionicLoading.show();
-		doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
-		$scope.myDocDetails=response;
-		console.log('doc',$scope.myDocDetails);
+
 		$state.go('app.viewdoctor_profile');
 
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
-			$ionicLoading.hide();
+		console.log($localStorage.docPhone);
+	
 	}
 
 	$scope.doRefresh = function() {

@@ -3,12 +3,22 @@ DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $statePa
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
-// console.log(docPhone);
-$rootScope.consultedDoctor = $stateParams.ratingTo;
-// $rootScope.docPhone = $stateParams.ratingTo;
-// console.log($rootScope.docPhone);
+$rootScope.docPhone = $localStorage.docPhone;
+
+console.log($rootScope.docPhone);
+console.log('docprofileview');
 
 $ionicLoading.show();
+
+doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+$scope.myDocDetails1=response;
+console.log('doc',$scope.myDocDetails1);
+
+}).catch(function(error){
+console.log('failure data', error);
+});
+
+
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
     $ionicLoading.hide();
