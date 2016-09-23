@@ -18,16 +18,13 @@ this.myConsultedDoctors = function (patient_phone) {
 }
 
 this.docSummaryDetails = function (doc_phone) {
-<<<<<<< HEAD
 
 
 console.log(patient_phone);
 
 
 
-=======
 console.log(doc_phone);
->>>>>>> b3f35c4121b2cd6542d77a3ba44c69905322f3d9
   var deferred = $q.defer();
   // console.log(BASE_URL.url + API.docSummary);
   $http.post(BASE_URL.url + API.docSummary,doc_phone)
