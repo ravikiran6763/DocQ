@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$localStorage, $ionicConfig, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$localStorage, $ionicConfig, $ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -6,7 +6,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 		$rootScope.showBadge=true;
 		$rootScope.showDocStatus=false;
     // $scope.notificationValue=true;
-
+    $ionicLoading.show();
     $rootScope.changeNotification = function (e)
     {
 
@@ -103,6 +103,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
   $scope.res = {};
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.res = response;
+    $ionicLoading.hide();
     console.log($scope.res);
     }).catch(function(error){
     console.log('failure data', error);
@@ -118,7 +119,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
       }).catch(function(error){
       console.log('failure data', error);
       })
-
    		// console.log('callAtInterval');
    	}
 
