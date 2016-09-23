@@ -10368,7 +10368,7 @@ img-crop {
   margin-bottom: 2vh; }
 
 .walkthrough-view .logoContainer {
-  margin-top: 0;
+  margin-top: 4vh !important;
   text-align: center;
   height: 20%; }
   .walkthrough-view .logoContainer img {
@@ -10392,7 +10392,7 @@ img-crop {
   height: 9%;
   font-family: Ubuntu,bold,sans-serif !important;
   margin: 0 auto;
-  width: 100%; }
+  width: 80%; }
 
 .walkthrough-view .phone_field {
   width: 80%;
@@ -12821,7 +12821,8 @@ ion-side-menu .heading-item .message {
     width: 80%;
     height: 15%;
     margin: 0 auto;
-    text-align: center; }
+    text-align: center;
+    padding-top: 25px; }
     .patient-reg-1-view .top-content p {
       text-align: center;
       padding-top: 20px;
@@ -13048,7 +13049,8 @@ ion-side-menu .heading-item .message {
     width: 80%;
     height: 25%;
     margin: 0 auto;
-    text-align: center; }
+    text-align: center;
+    padding-top: 25px; }
     .patient-reg-2-view .top-content p {
       text-align: center;
       padding-top: 20px;

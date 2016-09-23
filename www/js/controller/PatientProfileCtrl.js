@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -71,14 +71,14 @@ console.log('failure data', error);
 
 				$scope.changePhoto = function() {
 					// $state.go('app.capture');
-					$ionicPopup.alert({
+				var myPopup=	$ionicPopup.show({
 					title: 'Upload Profile Picture',
-					template:' Choose the source type',
+					template:' <center>Choose From</center>',
 					cssClass: 'videoPopup',
 					buttons: [
 						{
 						text: 'Camera',
-						type: 'button-assertive',
+						type: 'icon-left icon-google-drive button-assertive',
 						onTap: $scope.takePhoto = function () {
 															var options = {
 																quality: 75,
@@ -103,7 +103,16 @@ console.log('failure data', error);
 																		cameraService.uploadPicture(imageUploadData).then(function(response){
 																			$scope.uploadedData=response;
 																			// $ionicLoading.hide();
-																			console.log($scope.uploadedData);
+																		$scope.reload = function() {
+																		return $state.transitionTo($state.current, $stateParams, {
+																		reload: true
+																		}).then(function() {
+																		$scope.hideContent = true;
+																		return $timeout(function() {
+																		return $scope.hideContent = false;
+																		}, 1);
+																		});
+																		};
 
 
 																	}).catch(function(error){
@@ -134,7 +143,6 @@ console.log('failure data', error);
 
 								$cordovaCamera.getPicture(options).then(function (imageData) {
 										$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
-
 										var imageUploadData ={
 											image:$rootScope.imgURI,
 											patientPhone:$rootScope.patient
@@ -143,7 +151,17 @@ console.log('failure data', error);
 										cameraService.uploadPicture(imageUploadData).then(function(response){
 											$scope.uploadedData=response;
 											// $ionicLoading.hide();
-											console.log($scope.uploadedData);
+
+											$scope.reload = function() {
+											return $state.transitionTo($state.current, $stateParams, {
+											reload: true
+											}).then(function() {
+											$scope.hideContent = true;
+											return $timeout(function() {
+											return $scope.hideContent = false;
+											}, 1);
+											});
+											};
 
 									}).catch(function(error){
 									console.log('failure data', error);
@@ -156,8 +174,15 @@ console.log('failure data', error);
 						}
 						},
 					]
-					})
-					console.log('upload picture');
+				});
+				$scope.closethis = function()
+				{
+				$scope.myPopup.close();
+				};
+			// 	$timeout(function() {
+		  //     myPopup.close(); //close the popup after 3 seconds for some reason
+			// 		console.log('closed');
+		  //  }, 4000);
 				};
 
 

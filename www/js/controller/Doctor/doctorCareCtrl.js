@@ -6,17 +6,30 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localS
 	$rootScope.showNotification=false;
 	$rootScope.cc={};
 	$scope.doctorQuery=function(){
-    var doctorQuery={
-      patientPhone:$localStorage.user,
-      query:$rootScope.cc.query
-    }
 
-    doctorCareService.submitQuery(doctorQuery).then(function(response){
-        console.log(response);
-        $rootScope.cc.query="";
-      }).catch(function(error){
-      console.log('failure data', error);
-    });
+		if(!$rootScope.cc.query){
+			console.log('$rootScope.cc.query');
+			$cordovaToast.showLongCenter('Please Enter your Query', 'short', 'center').then(function(success) {
+			// success
+			}, function (error) {
+			// error
+			});
+
+		}
+		else{
+			var doctorQuery={
+	      patientPhone:$localStorage.user,
+	      query:$rootScope.cc.query
+	    }
+
+	    doctorCareService.submitQuery(doctorQuery).then(function(response){
+	        console.log(response);
+	        $rootScope.cc.query="";
+	      }).catch(function(error){
+	      console.log('failure data', error);
+	    });
+
+		}
 
 	};
 

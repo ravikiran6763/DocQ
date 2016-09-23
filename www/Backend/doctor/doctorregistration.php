@@ -43,7 +43,7 @@
 		$prefix = "DQ";
 		$sufix = $letters[rand(0, 51)];
 		// $middle=$specialChar[rand(0,12)];
-		$docPwd = $prefix. $middle . $numbers . $sufix ;
+		$docPwd = $prefix. $middle . $numbers;
 
 			$docPwd = base64_encode($docPwd);
 
@@ -71,35 +71,27 @@
 
 
 				 //PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
-                                $password = "DQ_doctor";
-                                //CREATE USERS IN VSEE FROM THE BELOW URL
-                               $USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
+                $password = "DQ_doctor";
+                //CREATE USERS IN VSEE FROM THE BELOW URL
+                $USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
 
                 //SEND JSON DATA OF USERS TO VSEE API
-                $USER_JSON = '{"secretkey":'.$secretkey.',
+                $USER_JSON = '{
+									"secretkey":'.$secretkey.',
                   "username":'.$pateientPhone.',
                   "password":'.$password.',
                   "fn": '.$pateientFname.',
-                 "ln": '.$pateientLname.'}';
-
-
+                 	"ln": '.$pateientLname.'
+								}';
 
                    curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
                    curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
                    $result = curl_exec($ch);
 
-                echo $result;
+		                echo $result;
+		                $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-
-                $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-                echo $http_status;
-
-
-
-
-
-
+		                echo $http_status;
 
 
 			}

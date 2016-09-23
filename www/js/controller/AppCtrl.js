@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
 
 console.log('appCtrl');
 	$rootScope.headerTxt='';
@@ -8,8 +8,9 @@ console.log('appCtrl');
 	$rootScope.showDocStatus=false;
 	$rootScope.doclist = {};
 	$scope.myDocDetail = {};
-
-
+// 
+// var model = $cordovaDevice.getModel();
+// console.log(model);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();

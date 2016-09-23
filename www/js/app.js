@@ -53,7 +53,7 @@ DoctorQuickApp.run(function($cordovaSplashscreen) {
 })
 
 
-DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -103,7 +103,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
           if(navigator.connection.type == Connection.NONE) {
           $ionicPopup.confirm({
           title: 'Network Problem',
-          content: 'Sorry, Please Check Your Network Connection.'
+          content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
           }).then(function(){
           ionic.Platform.exitApp();
           })
@@ -239,8 +239,6 @@ $stateProvider
     abstract: true,
     templateUrl: "views/app/patient-side-menu.html"
 
-
-
   })
 
 
@@ -262,8 +260,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/testcall.html"
-
-
       }
     }
   })
@@ -449,13 +445,10 @@ $stateProvider
     }
   })
 
-
-
   .state('templates', {
     url: "/templates",
     abstract: true,
     templateUrl: "views/templates/doc-sidemenu.html"
-
   })
 
   .state('templates.doctor_home', {
@@ -497,7 +490,7 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno",
+    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno/:image",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -624,14 +617,9 @@ $stateProvider
       }
     }
   })
-
 ;
 
-
-
-//Patient signup
-
-
+  //Patient signup
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/auth/loginNew');
 

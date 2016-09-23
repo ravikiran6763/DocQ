@@ -4,15 +4,9 @@ $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
 // console.log(docPhone);
-
-
 $rootScope.consultedDoctor = $stateParams.ratingTo;
-
-
-
-
 // $rootScope.docPhone = $stateParams.ratingTo;
-console.log($rootScope.docPhone);
+// console.log($rootScope.docPhone);
 
 $ionicLoading.show();
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
@@ -197,7 +191,7 @@ $scope.BalanceForVoiceCall=function()
   });
 
 }
-  
+
     doctorServices.myDoctorsDetails($localStorage.consultedDoctor).then(function(response){
     $scope.myDocDetails=response;
     }).catch(function(error){

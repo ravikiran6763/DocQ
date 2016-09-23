@@ -62,7 +62,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 					max: 5
 			}, ];
     console.log($scope.myConsultedDoctors);
-		
+
 		$ionicLoading.hide();
   }).catch(function(error){
   console.log('failure data', error);
@@ -71,12 +71,10 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 	$scope.viewDocProfile=function(docPhone){
 		$localStorage.docPhone=docPhone
-		console.log(docPhone);
-			$ionicLoading.show();
-		$localStorage.DoctorPhone=docPhone;
+		$ionicLoading.show();
 		doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
 		$scope.myDocDetails=response;
-		console.log($scope.myDocDetails);
+		console.log('doc',$scope.myDocDetails);
 		$state.go('app.viewdoctor_profile');
 
 		}).catch(function(error){
