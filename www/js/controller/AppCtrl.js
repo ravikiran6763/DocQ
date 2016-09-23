@@ -358,16 +358,16 @@ console.log($scope.deviceAndroid );
 		$state.go('app.my_doctors');
 	}
 
-		$scope.myConsultations=function(){
-				// $scope.userPhone=LoginService.returnUserPhone();
-				// 	var patient_phone=$scope.userPhone;
-					myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-					$scope.myconsultations=response;
-					 console.log($scope.myconsultations);
-				}).catch(function(error){
-				console.log('failure data', error);
-				});
-		}
+		// $scope.myConsultations=function(){
+		// 		// $scope.userPhone=LoginService.returnUserPhone();
+		// 		// 	var patient_phone=$scope.userPhone;
+		// 			myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+		// 			$scope.myconsultations=response;
+		// 			 //console.log($scope.myconsultations);
+		// 		}).catch(function(error){
+		// 		console.log('failure data', error);
+		// 		});
+		// }
 
 //Rating functionality
 
@@ -492,18 +492,6 @@ $scope.ratingsObject = {
      $scope.closeModal = function() {
          $scope.modal.hide();
      };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });

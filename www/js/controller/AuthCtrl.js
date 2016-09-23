@@ -15,6 +15,11 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 
 
 
+
+    $scope.deviceAndroid = ionic.Platform.isAndroid();
+    // alert($scope.deviceAndroid);
+    $scope.devicePlatform = ionic.Platform.isIOS();
+
     $scope.deviceAndroid = ionic.Platform.isAndroid();
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
@@ -36,6 +41,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
        LoginService.loginprocess(preLoginDetails).then(function(response){
 
 
+
         $scope.LoginStatus=response;
 
                                                        console.log(response);
@@ -50,6 +56,20 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $win
 //         {
 //         // $state.go('templates.doctor_home');
 //         }
+
+        $scope.LoginStatus=response;
+        console.log(response);
+
+
+        if(response === "patient")
+        {
+        //$state.go('app.patient_home');
+        }
+
+        else if(response === "doctor")
+        {
+        // $state.go('templates.doctor_home');
+        }
          console.log($scope.LoginStatus);
          $ionicLoading.hide();
        }).catch(function(error){
