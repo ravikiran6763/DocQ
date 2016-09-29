@@ -8,17 +8,17 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
-<<<<<<< HEAD
+
 	$ionicLoading.show();
 
 
 
 console.log('called');
 
-=======
+
 $ionicLoading.show();
 // console.log($localStorage.user);
->>>>>>> b3f35c4121b2cd6542d77a3ba44c69905322f3d9
+
 
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
@@ -29,10 +29,10 @@ $ionicLoading.show();
 $scope.consultationDetails=function(consultedDoc)
 {
 
-<<<<<<< HEAD
+
 
 	console.log(consultedDoc);
-=======
+
 	$rootScope.consultedDoc=consultedDoc;
 	$localStorage.consultedDoctor=$scope.consultedDoc;
 		$ionicLoading.hide();
@@ -68,7 +68,7 @@ console.log('chat clicked');
 		var username = "greet+"+$localStorage.user;
 
 	console.log(username);
->>>>>>> b3f35c4121b2cd6542d77a3ba44c69905322f3d9
+
 
 
 
