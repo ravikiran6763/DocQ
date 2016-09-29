@@ -3,8 +3,16 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
+<<<<<<< HEAD
+
+//console.log($localStorage.consultedDoctor);
+
+
+// $ionicLoading.show();
+=======
 //console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
+>>>>>>> 18e31f322fb88cf0c1096c713c93da7eda7d4c51
 
 myConsultationService.docSummaryDetails($rootScope.consultedDoc).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
