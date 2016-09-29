@@ -4,14 +4,13 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 	$rootScope.checkedValue = false;
 
 
-//console.log($localStorage.consultedDoctor);
-
-
+console.log($localStorage.Doctocall);
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
 
-myConsultationService.docSummaryDetails($rootScope.consultedDoc).then(function(response){
+
+myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();

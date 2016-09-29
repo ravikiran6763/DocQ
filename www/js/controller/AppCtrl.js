@@ -35,7 +35,16 @@ console.log($scope.deviceAndroid );
 
 		$rootScope.goBack = function ()
 		{
-						window.history.back();
+						$scope.prevPage=$ionicHistory.currentStateName();
+						console.log($ionicHistory.currentStateName());
+						if($scope.prevPage === 'app.patient_summary'){
+
+							$state.go('app.patient_home');
+
+						}
+						else{
+							window.history.back();
+							}
 		}
 
 		$scope.viewDoc2=function(docPhone){
@@ -388,7 +397,7 @@ $scope.ratingsObject = {
 
 	function callReqInterval() {
 	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
-				console.log('successfull data', response);
+				// console.log('successfull data', response);
 				$scope.calledDetails=response;
 				// console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable
