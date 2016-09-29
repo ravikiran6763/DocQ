@@ -10,12 +10,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
 
     $scope.submitted = false;
 
-
-
-
-
-
-
     $scope.deviceAndroid = ionic.Platform.isAndroid();
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
@@ -23,6 +17,16 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
     $scope.deviceAndroid = ionic.Platform.isAndroid();
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
+
+    ionic.Platform.ready(function(){
+        // will execute when device is ready, or immediately if the device is already ready.
+        if($scope.deviceAndroid){
+          console.log('ready');
+          // StatusBar.hide();
+        }
+
+      });
+
 
    if($localStorage.user && $localStorage.pass){
      console.log('user already logged in')
@@ -39,28 +43,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
      $timeout(function() {
        $ionicLoading.show();
        LoginService.loginprocess(preLoginDetails).then(function(response){
-
-
-
         $scope.LoginStatus=response;
-
-                                                       console.log(response);
-
-//
-//         if(response === "patient")
-//         {
-//         //$state.go('app.patient_home');
-//         }
-//
-//         else if(response === "doctor")
-//         {
-//         // $state.go('templates.doctor_home');
-//         }
-
-        $scope.LoginStatus=response;
-        console.log(response);
-
-
         if(response === "patient")
         {
         //$state.go('app.patient_home');
@@ -78,8 +61,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
    }, 1000);
 
    }
-
-
 
 $scope.sendForm = function($event,form)
 {
@@ -123,8 +104,6 @@ $scope.validateUser=function(isFormValid){
       else{
 
         //check for existing patient
-
-
           patientRegistrationService.existingPatient($scope.PatientDetail.patient_mob).then(function(response)
           {
             $scope.patientExist=response;

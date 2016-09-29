@@ -7,14 +7,7 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
-    $ionicLoading.show({
-          template: '<p>Loading All Specialities...</p><ion-spinner></ion-spinner>'
-        });
 
-        $timeout(function () {
-          console.log('timeout');
-         $ionicLoading.hide();
-       }, 5000);
     $scope.sendrequesttoonlinedoctors = function(id)
     {
 
@@ -47,6 +40,18 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     medicalSpecialityService.getMedicalSpecialist().then(function(response){
         console.log('successfull data', response);
         $scope.specialitiesList = response;
+        if($scope.specialitiesList){
+          $ionicLoading.show({
+                template: '<p>Loading All Specialities...</p><ion-spinner></ion-spinner>'
+              });
+
+              $timeout(function () {
+                console.log('timeout');
+               $ionicLoading.hide();
+             }, 5000);
+        }
+
+
         $ionicLoading.hide();
      }).catch(function(error){
          console.log('failure data', error);

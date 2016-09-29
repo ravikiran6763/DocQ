@@ -141,7 +141,6 @@ console.log($scope.deviceAndroid );
 							}
 							else
 							{
-
 								$scope.gender = "Female";
 
 							}
@@ -388,8 +387,7 @@ $scope.ratingsObject = {
 	$interval(callReqInterval, 60000);
 
 	function callReqInterval() {
-		console.log($localStorage.user);
-		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 				console.log('successfull data', response);
 				$scope.calledDetails=response;
 				// console.log($scope.calledDetails);

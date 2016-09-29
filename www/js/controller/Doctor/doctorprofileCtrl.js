@@ -94,7 +94,10 @@ console.log('failure data', error);
 
         if($scope.myBalance >= 250)
         {
+
           hello.greet(uname,pw,persontocall,success, failure);
+
+
           var confirmPopup = $ionicPopup.confirm({
             template: '<b>Request for Video call has been sent <br><center>00:02</center></b>',
             cssClass: 'videoPopup',

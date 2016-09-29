@@ -188,5 +188,10 @@
     .toggle.toggle-assertive input:checked + .track .status-txt-cls {
       left: 4vw !important;
     }
+
+    .OnlineStatus{
+    background-color: transparent !important;
+    height: 18vh !important;
+    }
   }
 }

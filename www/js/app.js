@@ -53,21 +53,41 @@ DoctorQuickApp.run(function($cordovaSplashscreen) {
 })
 
 
-DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
+      $ionicPlatform.registerBackButtonAction(function (event) {
+        if ( ($state.$current.name=="templates.doctor_home")){
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states.
+                // Do nothing here to disable H/W back button.
+                navigator.app.exitAspp();
+            } else {
+                // For all other states, the H/W BACK button is enabled
+                navigator.app.backHistory();
+            }
+        }, 100);
+
+
+      if (ionic.Platform.isAndroid()) {
+         window.addEventListener("native.hidekeyboard", function () {
+         StatusBar.hide();
+         window.AndroidFullScreen.immersiveMode(false, false);
+           });}
+
       if(window.StatusBar)
       {
-      StatusBar.styleDefault();
+        // StatusBar.styleDefault();
+        StatusBar.hide();
       }
 
       if (window.Connection)
       {
-      if (navigator.connection.type == Connection.NONE)
-      {
-        toast.show("Internet is disconnected on your device");
-      };
+            if (navigator.connection.type == Connection.NONE)
+            {
+              toast.show("Internet is disconnected on your device");
+            };
       };
       PushNotificationsService.register();
 
@@ -85,6 +105,23 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       });
       }, 5000);
       }
+
+          function successFunction()
+          {
+          console.info("It worked!");
+          }
+
+          function errorFunction(error)
+          {
+          console.error(error);
+          }
+
+          function trace(value)
+          {
+          console.log(value);
+          }
+
+      AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
   document.addEventListener("deviceready", function () {
