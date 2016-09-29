@@ -1,10 +1,10 @@
 // Ionic DoctorQuickApp
-var handleOpenURL=function(url){
-  alert("Received url"+url);
-  window.localStorage.setItem('externalLoad',url);
-}
-
-
+// var handleOpenURL=function(url){
+//   alert("Received url"+url);
+//   window.localStorage.setItem('externalLoad',url);
+// }
+//
+//
 
 angular.module('underscore', [])
 .factory('_', function() {
@@ -112,6 +112,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       }
 
   })
+
   // This fixes transitions for transparent background views
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
@@ -126,7 +127,6 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
         }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
-
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
       }
@@ -163,6 +163,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
   })
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
+
   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 
     $httpProvider.defaults.useXDomain = true;
@@ -231,9 +232,6 @@ $stateProvider
 
 })
 
-
-
-
   .state('app', {
     url: "/app",
     abstract: true,
@@ -285,7 +283,7 @@ $stateProvider
   })
   //my_doctors
   .state('app.my_doctors', {
-    url: "/my_doctors",
+    url: "/my_doctors/:test/",
     views: {
       'menuContent': {
         templateUrl: "views/app/my_doctors.html",
@@ -519,8 +517,6 @@ $stateProvider
   })
 
 /* serach results by patients */
-
-
 
   .state('templates.invite_reviews', {
     url: "/invite_reviews",

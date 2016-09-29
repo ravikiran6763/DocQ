@@ -8,7 +8,7 @@ console.log('appCtrl');
 	$rootScope.showDocStatus=false;
 	$rootScope.doclist = {};
 	$scope.myDocDetail = {};
-// 
+//
 // var model = $cordovaDevice.getModel();
 // console.log(model);
 
@@ -284,15 +284,7 @@ console.log($scope.deviceAndroid );
 					type: 'button-positive',
 					onTap: function(e) {
 					console.log('ok');
-					// $window.location = '/';
-					// // $urlRouterProvider.otherwise('/auth/loginNew');
-					//
-					// $ionicLoading.hide();
 
-					// $scope.logout = function() {
-
-					// Clear all cache and history
-					// $timeout(function () {
 					$ionicHistory.clearCache();
 					$ionicHistory.clearHistory();
 					$window.localStorage.clear();
@@ -359,17 +351,6 @@ console.log($scope.deviceAndroid );
 		$state.go('app.my_doctors');
 	}
 
-		// $scope.myConsultations=function(){
-		// 		// $scope.userPhone=LoginService.returnUserPhone();
-		// 		// 	var patient_phone=$scope.userPhone;
-		// 			myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-		// 			$scope.myconsultations=response;
-		// 			 //console.log($scope.myconsultations);
-		// 		}).catch(function(error){
-		// 		console.log('failure data', error);
-		// 		});
-		// }
-
 //Rating functionality
 
 $scope.ratingsObject = {
@@ -383,8 +364,6 @@ $scope.ratingsObject = {
 	}
 
 };
-
-
 
 	$scope.ratings = [{ name: 'DocRating', number: '3.5' }]
 
@@ -423,21 +402,12 @@ $scope.ratingsObject = {
 								$rootScope.onoff=data[i].onoff,
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
-
 								$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
 
-
-
-
-
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
-
-
 						if($rootScope.cal_flag === '4'){
-
 							// alert('readyforcall');
-
 							$ionicPopup.alert({
 							title: 'Call Request Accepted',
 							template:' A Doctor has accepted your call request',
@@ -481,18 +451,18 @@ $scope.ratingsObject = {
 	  console.log('decline clicked');
 	}
 
-	$ionicModal.fromTemplate('<ion-modal-view><ion-header-bar class="bar-energized"><h1 class="title">ion-modal-view</h1><a class="button" ng-click="closeModal();">关闭</a></ion-header-bar><ion-content>Hello!</ion-content></ion-modal-view>', {
-         scope: $scope,
-         animation: "slide-in-up"
-     },function(modal) {
-         $scope.modal = modal;
-     });
-     $scope.openModal = function() {
-         $scope.modal.show();
-     };
-     $scope.closeModal = function() {
-         $scope.modal.hide();
-     };
+	// $ionicModal.fromTemplate('<ion-modal-view><ion-header-bar class="bar-energized"><h1 class="title">ion-modal-view</h1><a class="button" ng-click="closeModal();">关闭</a></ion-header-bar><ion-content>Hello!</ion-content></ion-modal-view>', {
+  //        scope: $scope,
+  //        animation: "slide-in-up"
+  //    },function(modal) {
+  //        $scope.modal = modal;
+  //    });
+  //    $scope.openModal = function() {
+  //        $scope.modal.show();
+  //    };
+  //    $scope.closeModal = function() {
+  //        $scope.modal.hide();
+  //    };
 
 
 });

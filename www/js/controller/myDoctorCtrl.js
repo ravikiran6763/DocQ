@@ -15,7 +15,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 						current: 1,
 						max: 5
 				}, ];
-			// console.log($scope.myConsultedDoctors);
+			console.log($scope.myConsultedDoctors);
 			$ionicLoading.hide();
 		}).catch(function(error){
 		console.log('failure data', error);
@@ -45,15 +45,10 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 						max: 5
 				}, ];
 	};
-
-
-
-	$ionicLoading.show({
-	    template: '',
-	    hideOnStageChange: true
-	});
-
-
+		$ionicLoading.show({
+		    template: '',
+		    hideOnStageChange: true
+		});
 
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
@@ -71,16 +66,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 	$scope.viewDocProfile=function(docPhone){
 		$localStorage.docPhone=docPhone
-		$ionicLoading.show();
-		doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
-		$scope.myDocDetails=response;
-		console.log('doc',$scope.myDocDetails);
+
 		$state.go('app.viewdoctor_profile');
 
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
-			$ionicLoading.hide();
+		console.log($localStorage.docPhone);
+
 	}
 
 	$scope.doRefresh = function() {

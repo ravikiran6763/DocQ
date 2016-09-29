@@ -10863,8 +10863,9 @@ ion-side-menu .heading-item .message {
       margin-top: 4vh; }
     .doctor-profile-view .profile-img i {
       position: absolute;
-      padding-left: 72px;
-      padding-top: 24px; }
+      padding-left: 88px;
+      /* padding-top: 0; */
+      margin-top: -15vh; }
   .doctor-profile-view .profile-info {
     margin: 0 auto;
     width: 90%;

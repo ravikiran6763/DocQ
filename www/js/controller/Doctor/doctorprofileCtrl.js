@@ -1,14 +1,60 @@
-DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup, $timeout, $rootScope, $localStorage, $ionicLoading, doctorServices) {
+DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup, $timeout, $interval, $rootScope, $cordovaNetwork, $localStorage, $ionicLoading, doctorServices) {
 
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
-// console.log(docPhone);
-$rootScope.consultedDoctor = $stateParams.ratingTo;
-// $rootScope.docPhone = $stateParams.ratingTo;
-// console.log($rootScope.docPhone);
+$rootScope.docPhone = $localStorage.docPhone;
+
+console.log($rootScope.docPhone);
+console.log('docprofileview');
 
 $ionicLoading.show();
+
+// $interval(checkDocStatus, 6000);
+
+// $interval(checkConnection, 6000);
+
+doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+$scope.myDocDetails1=response;
+console.log('doc',$scope.myDocDetails1);
+
+}).catch(function(error){
+console.log('failure data', error);
+});
+
+function checkDocStatus() {
+
+  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+  $scope.myDocDetails1=response;
+  console.log('doc',$scope.myDocDetails1);
+
+  }).catch(function(error){
+  console.log('failure data', error);
+  });
+
+}
+console.log(window.connection);
+
+// function checkConnection() {
+//     var networkState = navigator.connection.type;
+//
+//     var states = {};
+//     states[Connection.UNKNOWN]  = 'Unknown connection';
+//     states[Connection.ETHERNET] = 'Ethernet connection';
+//     states[Connection.WIFI]     = 'WiFi connection';
+//     states[Connection.CELL_2G]  = 'Cell 2G connection';
+//     states[Connection.CELL_3G]  = 'Cell 3G connection';
+//     states[Connection.CELL_4G]  = 'Cell 4G connection';
+//     states[Connection.CELL]     = 'Cell generic connection';
+//     states[Connection.NONE]     = 'No network connection';
+//
+//     alert('Connection type: ' + states[networkState]);
+// }
+
+
+
+
+
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
     $ionicLoading.hide();

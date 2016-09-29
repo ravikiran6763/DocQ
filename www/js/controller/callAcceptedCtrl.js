@@ -8,10 +8,6 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 
  // $interval(callAtInterval, 5000);
 
-
- // $interval(callAtInterval, 5000);
- //
- //
  // function callAtInterval() {
  //
  // 	console.log('callAtInterval');
@@ -43,17 +39,11 @@ $scope.checkWalletBalance = function()
 
 						$scope.enddate = new Date();
 
-
 							console.log($localStorage.user);
 							console.log($localStorage.Doctocall);
 
-							callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-
-
-
-
+						callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 						$state.go('app.patient_summary');
-
 
 				}
 				var failure = function()
@@ -62,50 +52,32 @@ $scope.checkWalletBalance = function()
 				}
 
 				hello.greet(uname,pw,persontocall,success, failure);
-
-
-
 }
 
 
 
 $scope.BalanceForVoiceCall = function()
 {
-
-
-      alert('called');
-
-
+      // alert('called');
 	var audiocallflag = 1;
-
 	$scope.startdate = new Date();
-
 	$scope.callid = $rootScope.callId;
 
+				var unametoaudiocall = "greet+"+$localStorage.user;
+			 	var pwtoaudiocall = "DQ_patient";
 
-			var unametoaudiocall = "greet+"+$localStorage.user;
-			 var pwtoaudiocall = "DQ_patient";
-
-			 var persontocallforaudio = "greet+" + $localStorage.Doctocall;
+			 	var persontocallforaudio = "greet+" + $localStorage.Doctocall;
 			//  console.log(uname);
 			//  console.log(persontocallforaudio);
-
-
 				 var success = function(message)
 				{
 
 						alert(message);
-
 						$scope.enddate = new Date();
-
-
 							console.log($localStorage.user);
 							console.log($localStorage.Doctocall);
-
 							callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-
 						$state.go('app.patient_summary');
-
 
 				}
 				var failure = function()
@@ -116,6 +88,5 @@ $scope.BalanceForVoiceCall = function()
 				hello.audiocallvsee(unametoaudiocall,pwtoaudiocall,persontocallforaudio,success, failure);
 
 }
-
 
 });
