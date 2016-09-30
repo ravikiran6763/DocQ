@@ -6,11 +6,11 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 
 console.log($localStorage.Doctocall);
 // $ionicLoading.show();
-//console.log($localStorage.consultedDoctor);
+console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
 
 
-myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
+myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();

@@ -15,6 +15,13 @@ console.log('appCtrl');
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
+console.log($ionicHistory.currentStateName());
+if($ionicHistory.currentStateName() === 'app.patient_home'){
+	console.log($ionicHistory.currentStateName() );
+	$ionicHistory.nextViewOptions({
+					disableBack: true
+			});
+}
 console.log($scope.deviceAndroid );
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
