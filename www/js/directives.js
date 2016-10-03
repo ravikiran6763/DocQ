@@ -537,6 +537,24 @@ angular.module('DoctorQuick.directives', [])
     }
 })
 
+.directive('noSpecialChar', function() {
+return {
+  require: 'ngModel',
+  restrict: 'A',
+  link: function(scope, element, attrs, modelCtrl) {
+    modelCtrl.$parsers.push(function(inputValue) {
+      if (inputValue == null)
+        return ''
+      cleanInputValue = inputValue.replace(/[^\w\s]/gi, '');
+      if (cleanInputValue != inputValue) {
+        modelCtrl.$setViewValue(cleanInputValue);
+        modelCtrl.$render();
+      }
+      return cleanInputValue;
+    });
+  }
+} })
+
 .directive('autofocusWhen3', function () {
     return function (scope, element, attrs) {
         scope.$watch('otpentered.OTP3', function(newValue){

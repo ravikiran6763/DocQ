@@ -9,8 +9,6 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope, $ionicCo
 
   doctorServices.doctorDetails($localStorage.user).then(function(response){
     $scope.doctor_details=response;//store the response array in doctor details
-
-
         if($scope.doctor_details){
           $ionicLoading.show({
               template: '<p>Fetching Details...</p><ion-spinner></ion-spinner>'
@@ -22,7 +20,7 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope, $ionicCo
              }, 3000);
              $ionicLoading.hide();
         }
-    
+
   }).catch(function(error){
     console.log('failure data', error);
   });
