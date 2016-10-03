@@ -14,9 +14,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
 
-    $scope.deviceAndroid = ionic.Platform.isAndroid();
-    // alert($scope.deviceAndroid);
-    $scope.devicePlatform = ionic.Platform.isIOS();
+
 
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
@@ -303,7 +301,12 @@ console.log($rootScope.Doctor);
         }
         else
         {
-              alert('Incorrect OTP');
+              // alert('Incorrect OTP');
+              $cordovaToast.showLongCenter('Valid code must be entered tap on Resend to receive a code again.', 'short', 'center').then(function(success) {
+              // success
+              }, function (error) {
+              // error
+              });
         }
 
     }
@@ -315,7 +318,7 @@ console.log($rootScope.Doctor);
       if(isFormValid) {
         if($scope.PatientDetail.patient_age<18){
           // alert('You Should be 18+ to use this app')
-          $cordovaToast.showLongCenter('You Should be 18+ to use this app', 'short', 'center').then(function(success) {
+          $cordovaToast.showLongCenter('You must be 18 over to register', 'short', 'center').then(function(success) {
           // success
           }, function (error) {
           // error
