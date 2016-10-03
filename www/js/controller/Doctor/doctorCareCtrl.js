@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localStorage, $ionicConfig, $ionicLoading, $http, doctorCareService) {
+DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localStorage, $ionicConfig, $ionicLoading, $http, $cordovaToast, doctorCareService) {
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;

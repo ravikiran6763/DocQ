@@ -52,6 +52,27 @@ DoctorQuickApp.run(function($cordovaSplashscreen) {
   }, 5000)
 })
 
+DoctorQuickApp.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+
+    function successFunction() {
+      console.log("It worked!");
+    }
+
+    function errorFunction(error) {
+        console.log(error);
+      }
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if (window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
+})
 
 DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
