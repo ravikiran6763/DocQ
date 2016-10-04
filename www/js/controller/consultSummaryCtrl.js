@@ -3,15 +3,24 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootSco
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
+<<<<<<< HEAD
 
 //console.log($localStorage.consultedDoctor);
 
+=======
+>>>>>>> 1dac1ddc3e443e908a1b67a01abd23e14a95da01
 
+console.log($localStorage.Doctocall);
 // $ionicLoading.show();
+<<<<<<< HEAD
 //console.log($localStorage.consultedDoctor);
+=======
+console.log($localStorage.consultedDoctor);
+>>>>>>> 1dac1ddc3e443e908a1b67a01abd23e14a95da01
 $ionicLoading.show();
 
-myConsultationService.docSummaryDetails($rootScope.consultedDoc).then(function(response){
+
+myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();

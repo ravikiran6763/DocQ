@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
 
 console.log('appCtrl');
 	$rootScope.headerTxt='';
@@ -15,6 +15,22 @@ console.log('appCtrl');
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
+// var type = $cordovaNetwork.getNetwork();
+// var isOnline = $cordovaNetwork.isOnline();
+// var isOffline = $cordovaNetwork.isOffline();
+//
+// console.log(type);
+// console.log(isOnline);
+// console.log(isOffline);
+
+
+console.log($ionicHistory.currentStateName());
+if($ionicHistory.currentStateName() === 'app.patient_home'){
+	console.log($ionicHistory.currentStateName() );
+	$ionicHistory.nextViewOptions({
+					disableBack: true
+			});
+}
 console.log($scope.deviceAndroid );
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
@@ -35,7 +51,16 @@ console.log($scope.deviceAndroid );
 
 		$rootScope.goBack = function ()
 		{
-						window.history.back();
+						$scope.prevPage=$ionicHistory.currentStateName();
+						console.log($ionicHistory.currentStateName());
+						if($scope.prevPage === 'app.patient_summary'){
+
+							$state.go('app.patient_home');
+
+						}
+						else{
+							window.history.back();
+							}
 		}
 
 		$scope.viewDoc2=function(docPhone){
@@ -141,7 +166,6 @@ console.log($scope.deviceAndroid );
 							}
 							else
 							{
-
 								$scope.gender = "Female";
 
 							}
@@ -388,9 +412,8 @@ $scope.ratingsObject = {
 	$interval(callReqInterval, 60000);
 
 	function callReqInterval() {
-		console.log($localStorage.user);
-		medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
-				console.log('successfull data', response);
+	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+				// console.log('successfull data', response);
 				$scope.calledDetails=response;
 				// console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable

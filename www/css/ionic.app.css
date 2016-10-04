@@ -9825,6 +9825,25 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.toggle-small .toggle-calm input:checked + .track .handle {
+  background-color: #e2e2e2; }
+
+.notification-txt-cls {
+  position: absolute;
+  top: 3vh;
+  color: #fff !important;
+  left: 24vw;
+  margin-left: 10vw;
+  margin-top: .5vh;
+  z-index: 100;
+  font-size: 2.5vw; }
+
+.toggle.toggle-assertive input:checked + .track .notification-txt-cls {
+  left: 4vw !important; }
+
+.toggle-small .toggle-calm input:checked + .track {
+  background-color: #527c30; }
+
 .title .title-center .header-item {
   color: red;
   left: 0 !important;
@@ -10358,7 +10377,7 @@ img-crop {
 
 .walkthrough-view .form-cls {
   height: auto;
-  margin-top: 17vh !important; }
+  margin-top: 14vh !important; }
 
 .walkthrough-view .form-cls-ios {
   height: auto;
@@ -10373,7 +10392,7 @@ img-crop {
   height: 20%; }
   .walkthrough-view .logoContainer img {
     width: 75%;
-    margin-top: 2vh; }
+    margin-top: 0vh !important; }
 
 .walkthrough-view input[type="number"] {
   font-size: 4vw;
@@ -11933,6 +11952,9 @@ ion-side-menu .heading-item .message {
       font-size: 4vw; }
     .doctorscreen-view .toggle-item .toggle.toggle-assertive input:checked + .track .status-txt-cls {
       left: 4vw !important; }
+    .doctorscreen-view .toggle-item .OnlineStatus {
+      background-color: transparent !important;
+      height: 18vh !important; }
 
 .doctor-acc-view {
   background-color: #e2e2e2 !important;

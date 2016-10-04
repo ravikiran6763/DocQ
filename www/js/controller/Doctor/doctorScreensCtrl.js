@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$localStorage, $ionicConfig, $ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$localStorage, $ionicConfig, $state, $ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -7,6 +7,17 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 		$rootScope.showDocStatus=false;
     // $scope.notificationValue=true;
     $ionicLoading.show();
+
+    console.log($state.$current.name);
+
+    $("#modeLocation").change(function () {
+
+
+        type = $("#modeLocation").val();
+
+        $('#togshow').text(type.toString());
+    });
+
     $rootScope.changeNotification = function (e)
     {
 
@@ -27,7 +38,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
     $scope.checkedValue=true;
   }
 
+$rootScope.changeNotification = function (e)
+{
 
+}
 
 	$rootScope.changeStatus = function (e)
 	{

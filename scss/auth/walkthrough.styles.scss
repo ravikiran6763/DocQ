@@ -27,7 +27,7 @@
 
 	.form-cls {
 		height: auto;
-		margin-top:17vh !important;
+		margin-top:14vh !important;
 		// margin-top:22vh !important; //for ios
 
 	}
@@ -47,7 +47,7 @@
     	height: 20%;
 			img{
 							width: 75%;
-							margin-top: 2vh;
+							margin-top: 0vh !important;
 				}
 		}
 		input[type="number"]{

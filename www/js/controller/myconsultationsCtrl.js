@@ -8,12 +8,16 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1dac1ddc3e443e908a1b67a01abd23e14a95da01
 	$ionicLoading.show();
 
 
 
 console.log('called');
+<<<<<<< HEAD
 
 
 $ionicLoading.show();
@@ -21,6 +25,11 @@ $ionicLoading.show();
 
 $ionicLoading.show();
 // console.log($localStorage.user);
+=======
+$ionicLoading.show();
+// console.log($localStorage.user);
+
+>>>>>>> 1dac1ddc3e443e908a1b67a01abd23e14a95da01
 
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
@@ -31,11 +40,16 @@ $ionicLoading.show();
 $scope.consultationDetails=function(consultedDoc)
 {
 
+<<<<<<< HEAD
 
 
 	console.log(consultedDoc);
 
 	console.log(consultedDoc);
+=======
+	console.log(consultedDoc);
+
+>>>>>>> 1dac1ddc3e443e908a1b67a01abd23e14a95da01
 	$rootScope.consultedDoc=consultedDoc;
 	$localStorage.consultedDoctor=$scope.consultedDoc;
 		$ionicLoading.hide();
@@ -46,9 +60,7 @@ $scope.consultationDetails=function(consultedDoc)
 // for doctors consultationDetails
 $ionicLoading.show();
 myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
-
 	$scope.myPatients=response;//store the response array in doctor details
-
 	console.log($scope.myPatients);
 	$ionicLoading.hide();
 
@@ -56,111 +68,60 @@ myConsultationService.myConsultedPatients($localStorage.user).then(function(resp
 console.log('failure data', error);
 });
 
-
 $scope.clicktochat = function(pateientPhone)
 {
-
 		console.log(pateientPhone);
+		$scope.patientToChat=pateientPhone;
 		console.log($localStorage.user);
+		console.log('chat clicked');
+		var username = "greet+"+$localStorage.user;
+		console.log(username);
+
+<<<<<<< HEAD
+	console.log(username);
+
+=======
+				// myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
+				// $scope.myDoctor=response;//store the response array in doctor details
+				// $ionicLoading.hide();
+				// $state.go('app.patient_summary');
+				// }).catch(function(error){
+				// console.log('failure data', error);
+				// });
+
+//CHAT FUNCTIONALITY INVOCATION
+>>>>>>> 1dac1ddc3e443e908a1b67a01abd23e14a95da01
 
 
-
-console.log('chat clicked');
+// console.log($localStorage.consultedDoctor);
+console.log($localStorage.user);
 
 
 		var username = "greet+"+$localStorage.user;
+		var password = "DQ_doctor";
 
-	console.log(username);
+			// var persontocall = "greet+" + $localStorage.consultedDoctor;
 
+	 var persontocall = "greet+" + $scope.patientToChat;
+	 console.log(persontocall);
+			var success = function(message)
+			{
+				alert(message);
+			}
 
+			var failure = function()
+			{
+				alert("Error calling Hello Plugin");
+			}
 
-
-	myConsultationService.docSummaryDetails(consultedDoc).then(function(response){
-
-		$scope.myDoctor=response;//store the response array in doctor details
-
-		$ionicLoading.hide();
-
-$state.go('app.patient_summary');
-
-}).catch(function(error){
-
-	console.log('failure data', error);
-
-});
+			hello.chat(username,password,persontocall,success, failure);
 
 
 
-
-	// $scope.consultedDoc=consultedDoc;
-	// // console.log($scope.consultedDoc);
-	// $localStorage.consultedDoctor=$scope.consultedDoc;
-	// 	//$ionicLoading.hide();
-	//
-	// 		//$state.go('app.patient_summary');
-	//
 
 }
 
-// // for doctors consultationDetails
-// $ionicLoading.show();
-// myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
-//
-// 	$scope.myPatients=response;//store the response array in doctor details
-//
-// 	console.log($scope.myPatients);
-// 	$ionicLoading.hide();
-//
-// }).catch(function(error){
-// console.log('failure data', error);
-// });
 
-//
-// $scope.clicktochat = function(pateientPhone)
-// {
-//
-// 		console.log(pateientPhone);
-// 		console.log($localStorage.user);
-//
-//
-//
-// console.log('chat clicked');
-//
-//
-// 		var username = "greet+"+$localStorage.user;
-//
-// 	console.log(username);
-//
-//
-// 			//var username = "greet+9686684485";
-// 			var password = "DQ_doctor";
-//
-//
-// 			var persontocall = "greet+" + pateientPhone;
-//
-// 			console.log(persontocall);
-//
-// 				var success = function(message)
-// 				{
-// 					alert(message);
-// 				}
-//
-// 				var failure = function()
-// 				{
-//
-// 					alert("Error calling Hello Plugin");
-//
-// 				}
-//
-// 				hello.chat(username,password,persontocall,success, failure);
-//
-//
-// 				//hello.chat(persontocall,success, failure);
-//
-//
-//
-//
-// }
 
 
 })

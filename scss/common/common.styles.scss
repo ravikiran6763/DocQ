@@ -4,6 +4,34 @@
 // .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
 //   height: auto  !important;
 // }
+
+
+
+
+.toggle-small .toggle-calm input:checked + .track .handle {
+    background-color: #e2e2e2;
+}
+
+.notification-txt-cls {
+
+  position: absolute;
+  top: 3vh;
+  color: #fff !important;
+  left: 24vw;
+  margin-left: 10vw;
+    margin-top: .5vh;
+    z-index: 100;
+    font-size: 2.5vw;
+  }
+
+.toggle.toggle-assertive input:checked + .track .notification-txt-cls {
+  left: 4vw !important;
+}
+
+.toggle-small .toggle-calm input:checked + .track {
+    background-color: rgb(82, 124, 48);
+}
+
  .title .title-center .header-item{
    color: red;
   left: 0 !important;
