@@ -11,12 +11,13 @@
   </div>
   <div class="refund-amount">
       <h6>(You can always get a refund of your leftover balance)</h6>
-    <label class="item item-input" name="refund_amt">
-        <input type="number" placeholder="00.00" ng-model="payment.topUp" value=250 >
+        
+    <label class="item item-input" name="refund_amt" id="label" >
+        <input type="number" placeholder="00.00" ng-model="payment.topUp"  required>
     </label>
   </div>
   <div class="button-container">
-    <button class="button button-balanced button-block" ng-click="payToDq();">Topup</button>
+    <button id="update-css" class="button button-balanced button-block" ng-click="payToDq();">Topup</button>
 <!-- <div class="pm-button"><a href="https://www.payumoney.com/paybypayumoney/#/131409"><img src="https://www.payumoney.com//media/images/payby_payumoney/buttons/212.png" /></a></div> -->
   </div>
 

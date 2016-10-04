@@ -8,10 +8,13 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 	$scope.paymentid= "";
 
-	if (StatusBar.isVisible) {
-	    // do something
-			alert('statusbar shown');
-	}
+	// if (StatusBar.isVisible) {
+	//     // do something
+	// 		alert('statusbar shown');
+	// }
+
+
+
 
   $scope.payment={};
 	$scope.payu_params = {};
@@ -49,10 +52,18 @@ $scope.patient_details=[];
  })
 
 				$scope.payToDq=function(){
+
 					$scope.payment.topUpAmt=($scope.payment.topUp*100);
 					console.log($scope.payment.topUp);
 					if(!$scope.payment.topUp){
+						console.log('clickd');
+						// var updateCSSBtn = document.getElementById('update-css');
+						// var styleEl = document.getElementById("css")
+						// styleEl.innerHTML = ".label { border:1px solid red;}";
+						// console.log(styleEl.innerHTML);
 						// alert('amount must be entered ');
+
+
 						$cordovaToast.showLongCenter('amount must be entered.', 'short', 'center').then(function(success) {
 						// success
 						}, function (error) {

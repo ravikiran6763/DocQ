@@ -423,10 +423,11 @@ $stateProvider
 
 //doctore screens
   .state('app.specialityDetailsNew', {
-    url: "/specialityDetailsNew",
+    url: "/specialityDetailsNew/:specialId",
     views: {
       'menuContent': {
-        templateUrl: "views/app/specialityDetailsNew.html"
+        templateUrl: "views/app/specialityDetailsNew.html",
+        controller:'specilityDetailsCtrl'
 
       }
     }
