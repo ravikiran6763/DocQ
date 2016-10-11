@@ -33,9 +33,9 @@
           </div>
           <div class="row">
             <div class="col-75">Add Doctor to favorites</div>
-            <div class="col ">
-            <i class="icon  ion-android-favorite-outline" on-icon="ion-android-favorite-outline" off-icon="ion-android-favorite" icon-switcher></i>
-             <!-- <i class="icon ion-information-circled" on-icon="ion-information-circled" off-icon="ion-information"  /> -->
+            <div class="col " >
+            <!-- <i class="icon  ion-android-favorite-outline"    on-icon="ion-android-favorite-outline" off-icon="ion-android-favorite" ng-click="addToFavorite();" icon-switcher></i> -->
+            <i id="like" ng-class="{'icon ion-android-favorite': liked, 'icon ion-android-favorite-outline': !liked}" ng-click="addToFavorite(liked=!liked);"></i>
             </div>
           </div>
           <div class="row">

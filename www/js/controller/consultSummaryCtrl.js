@@ -1,8 +1,9 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $window, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
+<<<<<<< HEAD
 
 
 console.log($localStorage.Doctocall);
@@ -10,9 +11,15 @@ console.log($localStorage.Doctocall);
 //console.log($localStorage.consultedDoctor);
 console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
+=======
+var key = this;
+console.log($localStorage.consultedDoctor);
+console.log($localStorage.Doctocall);
+>>>>>>> 8357a1304a390ae67d85268adfa73f008af827f9
 
+$ionicLoading.show();
 
-myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
+myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();
@@ -20,17 +27,17 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 	console.log('failure data', error);
 });
 
-		$scope.ratingsObject = {
-        iconOn: 'ion-ios-star',    //Optional
-        iconOff: 'ion-ios-star-outline',   //Optional
-        iconOnColor: 'rgb(200, 200, 100)',  //Optional
-        iconOffColor:  'rgb(200, 100, 100)',    //Optional
-        // minRating:0,    //Optional
-        readOnly: false, //Optional
-        callback: function(rating) {    //Mandatory
-          $scope.ratingsCallback(rating);
-        }
-      };
+$scope.ratingsObject = {
+		iconOn: 'ion-ios-star',    //Optional
+		iconOff: 'ion-ios-star-outline',   //Optional
+		iconOnColor: 'rgb(200, 200, 100)',  //Optional
+		iconOffColor:  'rgb(200, 100, 100)',    //Optional
+		minRating:0,    //Optional
+		readOnly: false, //Optional
+		callback: function(rating) {    //Mandatory
+			$scope.ratingsCallback(rating);
+		}
+	};
 
       $scope.ratingsCallback = function(rating) {
         console.log('Selected rating is : ', rating);
@@ -70,8 +77,7 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 					var ratedValues={
 						rates:$rootScope.ratingValue,
 						ratedBy:$localStorage.user,
-				 ratedTo:$localStorage.Doctocall,
-
+				 		ratedTo:$localStorage.Doctocall,
 						// ratedTo:$localStorage.consultedDoctor,
 						ratingComments:$scope.ratingComments.comment
 					};
@@ -90,7 +96,7 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 
 		var myDocratedValues={
 		ratedBy:$localStorage.user,
-		ratedTo:$localStorage.Doctocall
+		ratedTo:$localStorage.consultedDoctor
 		// ratedTo:$localStorage.consultedDoctor
 		};
 
@@ -104,8 +110,7 @@ myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(func
 
 		//to fetch the overall Rating o0f a doctor
 
-rateDoctorServices.getDocRatingsByAll($localStorage.Doctocall).then(function(response){
-
+rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
 		// rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
@@ -144,12 +149,45 @@ rateDoctorServices.getDocRatingsByAll($localStorage.Doctocall).then(function(res
 							}
 
 							hello.chat(username,password,persontocall,success, failure);
-
-
 		}
 
 
+$scope.addToFavorite=function(fav){
+	$scope.favorite=fav;
+if($scope.favorite == true){
+	$scope.favorite=1;
+	console.log($scope.favorite);
+	}
+	else{
+		$scope.favorite=2;
+		console.log($scope.favorite);
+	}
 
+	var favoriteDoc={
+		ratedBy:$localStorage.user,
+		ratedTo:$localStorage.consultedDoctor,
+		favorite:$scope.favorite
+	};
+$scope.added={};
+   // Do whatever you want here
+	 rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
+		 $scope.added=response;
+		 if($scope.added.favorite == 1){
+			 console.log($scope.added.favorite);
+			 window.plugins.toast.showShortCenter(
+			 "Doctor Added to favorites",function(a){},function(b){}
+			 );
+		 }
+		 else{
+			 window.plugins.toast.showShortCenter(
+			 "Doctor removed from favorite list",function(a){},function(b){}
+			 );
+		 }
+	 }).catch(function(error){
+		 console.log('failure data', error);
+	 });
+
+}
 
 
 })

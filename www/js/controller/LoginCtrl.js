@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
 {
 
 		$scope.user = {};
@@ -49,22 +49,45 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 					password : $scope.loginData.pin
 				};
 				// console.log(userDetails);
+
+
+
+
 				LoginService.loginprocess(userDetails).then(function(response){
+					// console.log(navigator.connection.type);
+					if(window.Connection) {
+					//you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
+
+							// if(navigator.connection.type == Connection.NONE) {
+							// $ionicPopup.confirm({
+							// title: 'Network Problem',
+							// content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
+							// }).then(function(){
+							// ionic.Platform.exitApp();
+							// })
+							// //or you can simply navigate it to a page with the no internet connection html.
+							// }
+					}
 					 console.log(response);
 						if(response === "patient")
 						{
+<<<<<<< HEAD
 //								var uname1 = "greet+"+$scope.loginData.phone;
 							var uname1 = "greet+"+$scope.loginData.phone;
 
 
+=======
+>>>>>>> 8357a1304a390ae67d85268adfa73f008af827f9
 								var uname1 = "greet+"+$scope.loginData.phone;
-
 								var pw1 = "DQ_patient";
+<<<<<<< HEAD
 
 
 
 
 							var pw1 = "DQ_patient";
+=======
+>>>>>>> 8357a1304a390ae67d85268adfa73f008af827f9
 								var success = function(message)
 								{
 									alert(message);
@@ -73,6 +96,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
 								{
 									alert("Error calling Hello Plugin");
 								}
+<<<<<<< HEAD
 
 							 //hello.login(uname1,pw1,success, failure);
 
@@ -85,14 +109,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,  $q, $rootScope,
                                 //hello.login(uname1,pw1,success, failure);
                 //hello.login(uname1,pw1,success, failure);
 								$state.go('app.patient_home');
+=======
+
+>>>>>>> 8357a1304a390ae67d85268adfa73f008af827f9
 
                 //hello.login(uname1,pw1,success, failure);
 								$state.go('app.patient_home');
-            hello.login(uname1,pw1,success, failure);
-            // hello.login(uname1,pw1,success, failure);
 
-						//$state.go('app.patient_home');
-						$state.go('app.patient_home');
+								hello.login(uname1,pw1,success, failure);
 
 						}
 

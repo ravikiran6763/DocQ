@@ -10381,7 +10381,7 @@ img-crop {
 
 .walkthrough-view .form-cls-ios {
   height: auto;
-  margin-top: 25vh !important; }
+  margin-top: 18vh !important; }
 
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
@@ -11410,6 +11410,19 @@ ion-side-menu .heading-item .message {
 .patient-topup-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-topup-view .submitted input.ng-invalid:not(:focus) {
+    border: 1px solid red; }
+  .patient-topup-view .submitted label.item.has-error {
+    border-bottom: 1px solid red; }
+  .patient-topup-view label.item.has-error-lr {
+    border: 1px solid red; }
+  .patient-topup-view label.item.valid-lr {
+    border: none; }
+  .patient-topup-view .form-errors {
+    margin: 5px 0; }
+  .patient-topup-view .form-error {
+    padding: 2px 0 2px 16px;
+    color: red; }
   .patient-topup-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }
@@ -13267,12 +13280,18 @@ ion-side-menu .heading-item .message {
 .patientprofile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patientprofile-view .row {
+    margin-right: 0 !important;
+    margin-left: 0 !important; }
   .patientprofile-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }
   .patientprofile-view .ratingContainer {
     position: relative;
     margin-left: 29vw; }
+  .patientprofile-view .rating {
+    float: left;
+    margin-left: 0px !important; }
   .patientprofile-view .col {
     margin: 1vw 0 0 5vw; }
   .patientprofile-view .profile-info {
@@ -13293,9 +13312,9 @@ ion-side-menu .heading-item .message {
         margin-left: 4vw; }
     .patientprofile-view .profile-info .profileName {
       width: 80%;
+      font-size: 5vw;
       float: right;
-      /* margin-left: -11vw; */
-      padding: 20px 0 0 20px; }
+      padding: 22px 0 0 37px; }
       .patientprofile-view .profile-info .profileName h4 {
         font-size: 5vw;
         margin-left: -5vw;

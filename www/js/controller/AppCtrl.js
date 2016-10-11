@@ -327,20 +327,7 @@ console.log($scope.deviceAndroid );
  }
 
 
-	$scope.getSpecialityDetail=function(specialId){
 
-		console.log(specialId);
-
-		$localStorage.SpecilityId=specialId;
-		medicalSpecialityService.getMedicalSpeciality(specialId)
-		 .then(function(response){
-				console.log('Details', response);
-				$scope.specialityDetails = response;
-				$state.go('app.specialityDetailsNew');
-		 }).catch(function(error){
-				 console.log('failure data', error);
-		 });
-	};
 
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');
