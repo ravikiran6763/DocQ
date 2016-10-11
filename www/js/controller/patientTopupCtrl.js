@@ -13,7 +13,84 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	// 		alert('statusbar shown');
 	// }
 
+	$scope.validateTopup=function(isDocTopUpValid){
+	  console.log('isDocTopUpValid ', isDocTopUpValid)
+	  console.log('clicked');
 
+	  $scope.submitted = true;
+	  if(isDocTopUpValid) {
+	    // console.log('isDocFormValid ', isDocFormValid)
+
+
+								$scope.payment.topUpAmt=($scope.payment.topUp*100);
+								console.log($scope.payment.topUp);
+							 if($scope.payment.topUp < 250){
+									// alert('amount must be ₹250 or higher');
+									$cordovaToast.showLongCenter('amount must be ₹250 or higher.', 'short', 'center').then(function(success) {
+									// success
+									}, function (error) {
+									// error
+									});
+								}
+
+								else{
+									var options = {
+											description: 'Consult A Doctor Now',
+											currency: 'INR',
+											key: 'rzp_test_mzUbTyUmUd2dyE',
+											amount:$scope.payment.topUpAmt ,
+											name: 'DoctorQuick',
+											method:{
+												wallet:false
+											},
+											prefill: {
+												email: $scope.patientEmail,
+												contact: $localStorage.user,
+												name: $scope.patientFname
+											},
+											// theme: {color: '#6aa13e'}
+									}
+									// console.log(options);
+									RazorPayService.topUpOptions(options);
+									var successCallback = function(payment_id) {
+									// alert('payment_id: ' + payment_id);
+
+									$scope.paymentid = payment_id;
+										RazorPayService.topUp($scope.paymentid).then(function(response){
+									   $rootScope.patientWalletUpdate=response;
+										//  alert($rootScope.patientWalletUpdate);
+										 if($rootScope.patientWalletUpdate=='TransactionSuccessful'){
+											  // $state.go('app.patient_topup');
+												$state.go($state.current, $stateParams, {reload: true, inherit: false});
+										 }
+										 if($rootScope.patientWalletUpdate=='ERROR'){
+											  alert('Error While Initiating Payment');
+										 }
+										 $scope.payment.topUpAmt="";
+										 $window.location.reload(true);
+
+										// $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
+									 console.log($rootScope.patientWalletUpdate);
+									   }).catch(function(error){
+									     console.log('failure data', error);
+									   });
+									}
+
+									var cancelCallback = function(error) {
+									alert(error.description + ' (Error '+error.code+')');
+									}
+									RazorpayCheckout.open(options, successCallback, cancelCallback);
+
+								}
+	  }
+		else{
+			$cordovaToast.showLongCenter('amount must be ₹250 or higher.', 'short', 'center').then(function(success) {
+			// success
+			}, function (error) {
+			// error
+			});
+		}
+	}
 
 
   $scope.payment={};
@@ -53,81 +130,6 @@ $scope.patient_details=[];
 
 				$scope.payToDq=function(){
 
-					$scope.payment.topUpAmt=($scope.payment.topUp*100);
-					console.log($scope.payment.topUp);
-					if(!$scope.payment.topUp){
-						console.log('clickd');
-						// var updateCSSBtn = document.getElementById('update-css');
-						// var styleEl = document.getElementById("css")
-						// styleEl.innerHTML = ".label { border:1px solid red;}";
-						// console.log(styleEl.innerHTML);
-						// alert('amount must be entered ');
-
-
-						$cordovaToast.showLongCenter('amount must be entered.', 'short', 'center').then(function(success) {
-						// success
-						}, function (error) {
-						// error
-						});
-					}
-					else if($scope.payment.topUp < 250){
-						// alert('amount must be ₹250 or higher');
-						$cordovaToast.showLongCenter('amount must be ₹250 or higher.', 'short', 'center').then(function(success) {
-						// success
-						}, function (error) {
-						// error
-						});
-					}
-
-					else{
-						var options = {
-								description: 'Consult A Doctor Now',
-								currency: 'INR',
-								key: 'rzp_test_mzUbTyUmUd2dyE',
-								amount:$scope.payment.topUpAmt ,
-								name: 'DoctorQuick',
-								method:{
-									wallet:false
-								},
-								prefill: {
-									email: $scope.patientEmail,
-									contact: $localStorage.user,
-									name: $scope.patientFname
-								},
-								// theme: {color: '#6aa13e'}
-						}
-						// console.log(options);
-						RazorPayService.topUpOptions(options);
-						var successCallback = function(payment_id) {
-						// alert('payment_id: ' + payment_id);
-
-						$scope.paymentid = payment_id;
-							RazorPayService.topUp($scope.paymentid).then(function(response){
-						   $rootScope.patientWalletUpdate=response;
-							//  alert($rootScope.patientWalletUpdate);
-							 if($rootScope.patientWalletUpdate=='TransactionSuccessful'){
-								  // $state.go('app.patient_topup');
-									$state.go($state.current, $stateParams, {reload: true, inherit: false});
-							 }
-							 if($rootScope.patientWalletUpdate=='ERROR'){
-								  alert('Error While Initiating Payment');
-							 }
-							 $scope.payment.topUpAmt="";
-							 $window.location.reload(true);
-
-							// $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
-						 console.log($rootScope.patientWalletUpdate);
-						   }).catch(function(error){
-						     console.log('failure data', error);
-						   });
-						}
-
-						var cancelCallback = function(error) {
-						alert(error.description + ' (Error '+error.code+')');
-						}
-						RazorpayCheckout.open(options, successCallback, cancelCallback);
-
-					}
 
 				}
 })

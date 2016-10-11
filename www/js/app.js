@@ -158,15 +158,18 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       if(window.Connection) {
       //you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
           console.log(navigator.connection.type);
-          if(navigator.connection.type == Connection.NONE) {
-          $ionicPopup.confirm({
-          title: 'Network Problem',
-          content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
-          }).then(function(){
-          ionic.Platform.exitApp();
-          })
-          //or you can simply navigate it to a page with the no internet connection html.
-          }
+          // if(navigator.connection.type == Connection.NONE) {
+          // $ionicPopup.confirm({
+          // title: 'Network Problem',
+          // content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
+          // }).then(function(){
+          // ionic.Platform.exitApp();
+          // })
+          // //or you can simply navigate it to a page with the no internet connection html.
+          // }
+      }
+      else{
+        
       }
 
   })
@@ -311,14 +314,14 @@ $stateProvider
   })
 
   //FEEDS searchDoctors
-  .state('app.testcall', {
-    url: "/testcall",
-    views: {
-      'menuContent': {
-        templateUrl: "views/app/testcall.html"
-      }
-    }
-  })
+  // .state('app.testcall', {
+  //   url: "/testcall",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/app/testcall.html"
+  //     }
+  //   }
+  // })
 
   .state('app.patient_profile', {
     url: "/patient_profile",

@@ -1,28 +1,24 @@
 <ion-view class="medical-speciality-view" cache-view="false" ng-controller="medicalSpecialityController">
   <ion-content >
-  <!-- <ion-refresher on-refresh="doRefresh()">
-
-  </ion-refresher> -->
-    <!-- <ion-alpha-scroll ng-model="model" key="keyName">
-      <div>Name: {{item.special}}</div>
-      <div>Address: {{item.content}}</div>
-    </ion-alpha-scroll> -->
-
-  <!-- <ul class="bottom-content" overflow-scroll="true" >
-      <li ng-click="getSpecialityDetail({{item.id}});"  ng-repeat="item in specialitiesList">
-        <div class="name-content">
-          <h2 >{{item.special}}</h2>
-          <div class="sub-content"><p>{{item.content}} </p></div>
-        </div>
-      </li>
-  </ul> -->
-
-
   <ion-list >
-  <ion-item ui-sref="app.specialityDetailsNew({specialId:item.id})" collection-repeat="item in specialitiesList">
-  {{item.special}}
-  <div class="sub-content"><p>{{item.content}} </p></div>
-  </ion-item>
+    <ion-item ui-sref="app.specialityDetailsNew({specialId:item.id})" collection-repeat="item in specialitiesList">
+    {{item.special}}
+      <div class="sub-content"><p>{{item.content}} </p></div>
+    </ion-item>
   </ion-list>
   </ion-content>
 </ion-view>
+
+  <!-- <ion-alpha-scroll ng-model="model" key="keyName">
+    <div>Name: {{item.special}}</div>
+    <div>Address: {{item.content}}</div>
+  </ion-alpha-scroll> -->
+
+<!-- <ul class="bottom-content" overflow-scroll="true" >
+    <li ng-click="getSpecialityDetail({{item.id}});"  ng-repeat="item in specialitiesList">
+      <div class="name-content">
+        <h2 >{{item.special}}</h2>
+        <div class="sub-content"><p>{{item.content}} </p></div>
+      </div>
+    </li>
+</ul> -->

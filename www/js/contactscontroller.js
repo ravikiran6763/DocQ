@@ -1,9 +1,18 @@
-DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaContacts,$state,invitereviews){
+DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaContacts, $state, $ionicLoading, $timeout, invitereviews){
   $scope.toggle = true;
 	$rootScope.headerTxt="Invite Reviews";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+
+  $ionicLoading.show({
+        template: '<p>Fetching all your contacts...</p><ion-spinner></ion-spinner>'
+      });
+
+      $timeout(function () {
+        console.log('timeout');
+       $ionicLoading.hide();
+     }, 5000);
 
 
       $scope.phoneContacts = [];
@@ -12,6 +21,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
           var contact = contacts[i];
           $scope.phoneContacts.push(contact);
           }
+
       };
       function onError(contactError) {
           alert(contactError);
@@ -24,38 +34,15 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
       $scope.selectedlist = "";
       $scope.phones = {};
 
-
-
       var count = 0;
-
-
-
-
-
-      var count = 0;
-
-
       var uniquevalues = [];
       $scope.selectedcontacts = function(contactno)
       {
             if($scope.phones[contactno])
             {
-
-
-
                 count++;
-
-
-
                 console.log(contactno);
-
-    count++;
-
-
-                console.log(contactno);
-
-
-              $scope.selectedlist = contactno.split(' ').join('');
+                $scope.selectedlist = contactno.split(' ').join('');
               if($scope.selectedlist.length > 10)
               {
                 $scope.selectedlist = $scope.selectedlist.substring(3);
@@ -69,9 +56,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
             if(count === 3)
             {
-
-            $state.go('templates.inviteresult',{'countofselected':count});
-
+              $state.go('templates.inviteresult',{'countofselected':count});
             }
 
             }
@@ -79,26 +64,10 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
             {
 
               count--;
-
               //do noting
-
             $state.go('templates.inviteresult');
-
             }
 
-            // else
-            // {
-            // //do noting
-            //
-            //   console.log('not selected');
-            // }
-
-            // else
-            // {
-            // //do noting
-            //
-            //   console.log('not selected');
-            // }
-
+            $ionicLoading.hide();
       }
 })

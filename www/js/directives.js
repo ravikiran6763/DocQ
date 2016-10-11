@@ -419,10 +419,9 @@ angular.module('DoctorQuick.directives', [])
 
   return {
     restrict : 'A',
+		scope: currentState=true,
 
     link : function(scope, elem, attrs) {
-
-      var currentState = true;
 
       elem.on('click', function() {
         console.log('You clicked me!');
@@ -436,13 +435,12 @@ angular.module('DoctorQuick.directives', [])
           angular.element(elem).removeClass(attrs.offIcon);
           angular.element(elem).addClass(attrs.onIcon);
         }
-
+				console.log(currentState);
         currentState = !currentState
-
+				// $rootScope.$broadcast('currentState', currentState);
       });
+  	}
 
-
-    }
   };
 })
 // the following directive is to link the buttons
@@ -455,22 +453,6 @@ angular.module('DoctorQuick.directives', [])
     };
 })
 
-// .directive('navClear', ['$ionicViewService', function($ionicViewService,$state) {
-//   return {
-//     restrict: 'AC',
-// 		link: function ($scope, $element, $attr) {
-// 	    var uiSref = $attr.uiSref;
-// 	    $element.bind('click', function () {
-// 	        if(!$state.is(uiSref)) {
-// 	            $ionicViewService.nextViewOptions({
-// 	                disableAnimate: true,
-// 	                disableBack: true
-// 	            });
-// 	        }
-// 	    });
-// 	}
-//   };
-// }])
 
 .directive('autoNext', function() {
     return {
@@ -566,5 +548,11 @@ return {
         });
     }
 });
+
+//search  directive
+
+
+
+
 
 ;
