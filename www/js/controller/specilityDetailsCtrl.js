@@ -38,9 +38,11 @@ console.log($rootScope.specialId);
        // console.log('successfull data', response);
          if(response)
          {
+
            $scope.requestSent = response;
+           console.log('Request Sent');
+           console.log($scope.requestSent);
            // $state.go('app.callAccepted');
-           alert('Request Sent');
            $ionicLoading.hide();
          }
          else {
