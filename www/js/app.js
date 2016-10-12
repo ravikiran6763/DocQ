@@ -169,7 +169,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
           // }
       }
       else{
-        
+
       }
 
   })
@@ -426,7 +426,7 @@ $stateProvider
 
 //doctore screens
   .state('app.specialityDetailsNew', {
-    url: "/specialityDetailsNew/:specialId",
+    url: "/specialityDetailsNew/:specialId/:special/:content/",
     views: {
       'menuContent': {
         templateUrl: "views/app/specialityDetailsNew.html",

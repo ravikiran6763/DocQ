@@ -31,8 +31,10 @@ console.log($rootScope.specialId);
      showDelay: 500,
    });
      console.log('buttonclicked');
+console.log($rootScope.specialId);
 
      medicalSpecialityService.sendrequesttodoctor($rootScope.specialId).then(function(response){
+       console.log($rootScope.specialId);
        // console.log('successfull data', response);
          if(response)
          {
@@ -54,13 +56,14 @@ console.log($rootScope.specialId);
      $localStorage.SpecilityId=$rootScope.specialId;
    medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
     .then(function(response){
+      // console.log($localStorage.SpecilityId);
       // console.log('Details', response);
       $scope.specialityDetails = response;
-      // $state.go('app.specialityDetailsNew');
     }).catch(function(error){
        console.log('failure data', error);
     });
    }
+
    $interval(CheckOnlineDocs, 5000);
 
 

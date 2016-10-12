@@ -1,7 +1,7 @@
 <ion-view class="medical-speciality-view" cache-view="false" ng-controller="medicalSpecialityController">
   <ion-content >
   <ion-list >
-    <ion-item ui-sref="app.specialityDetailsNew({specialId:item.id})" collection-repeat="item in specialitiesList">
+    <ion-item ui-sref="app.specialityDetailsNew({specialId:item.id,special:item.special,content:item.content})" collection-repeat="item in specialitiesList">
     {{item.special}}
       <div class="sub-content"><p>{{item.content}} </p></div>
     </ion-item>

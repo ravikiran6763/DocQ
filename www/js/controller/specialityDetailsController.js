@@ -20,8 +20,4 @@ DoctorQuickApp.controller('specialityDetailsController', function($rootScope,$sc
 		})
 	}();
 
-
-
-
-
 })
