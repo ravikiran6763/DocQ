@@ -7,6 +7,13 @@ DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
+	$rootScope.specialId = $stateParams.specialId;
+  $rootScope.special = $stateParams.special;
+  $rootScope.content1 = $stateParams.content1;
+  $rootScope.descrpt = $stateParams.descrpt;
+  console.log($rootScope.descrpt);
+
+
 
 $rootScope.specialId = $stateParams.specialId;
 
@@ -31,7 +38,7 @@ console.log($rootScope.specialId);
      showDelay: 500,
    });
      console.log('buttonclicked');
-console.log($rootScope.specialId);
+     console.log($rootScope.specialId);
 
      medicalSpecialityService.sendrequesttodoctor($rootScope.specialId).then(function(response){
        console.log($rootScope.specialId);
