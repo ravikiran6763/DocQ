@@ -6,7 +6,6 @@ console.log('appCtrl');
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
-	$rootScope.doclist = {};
 	$scope.myDocDetail = {};
 //
 // var model = $cordovaDevice.getModel();
@@ -51,20 +50,14 @@ console.log($scope.deviceAndroid );
 						$scope.prevPage=$ionicHistory.currentStateName();
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
-
 							$state.go('app.patient_home');
-
 						}
 						else if($scope.prevPage === 'templates.notesForPatient'){
-
 							$state.go('templates.doctor_home');
-
 						}
 						else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
-
 							// $state.go('templates.doctor_home');
 							console.log('donothing');
-
 						}
 						else{
 							window.history.back();
@@ -196,7 +189,53 @@ console.log($scope.deviceAndroid );
 					$scope.statusdata =  searchbyspecialities.getgenderData();
 					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
 			}
+			$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
+			{
+					$scope.doclist = {};
+						if(specialitywise == null && catwise == null && genderwise == null && languagewise == null)
+						{
+							alert('Please Select Atlease One Search Criteria');
+						}
+						else
+						{
+							/* Patients Selected One of the Search Criteria */
+								var searchdoctor = {
+									byspecial:specialitywise,
+									bygender:catwise,
+									bystatus:genderwise,
+									bylanguage:languagewise
+								};
+								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
+									if(Object.keys(response).length)
+									{
+										$state.go('app.doctorsearch');
+										$ionicLoading.show();
+										console.log('result fetched');
+											 $scope.doclist = response;
+											 console.log($scope.doclist);
+											 $ionicLoading.hide();
+									}
+									else if(Object.keys(response).length == 0)
+									{
+										console.log('empty');
+										$ionicPopup.alert({
+										title: 'Sorry',
+										template:' no doctors are available right now!!'
+										})
+										return true;
 
+									}
+									else {
+										$scope.doclist = response;
+											console.log(response);
+											$state.go('app.doctorsearch');
+
+										$rootScope.doclist = "no doctors found";
+									}
+								}).catch(function (response, data, status, header) {
+								});
+						}
+			}
 
 
 	//signout
