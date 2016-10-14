@@ -15,7 +15,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 						current: 1,
 						max: 5
 				}, ];
-			console.log($scope.myConsultedDoctors);
+			// console.log($scope.myConsultedDoctors);
 			$ionicLoading.hide();
 		}).catch(function(error){
 		console.log('failure data', error);

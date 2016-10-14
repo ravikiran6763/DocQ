@@ -58,6 +58,17 @@ console.log($scope.deviceAndroid );
 							$state.go('app.patient_home');
 
 						}
+						else if($scope.prevPage === 'templates.notesForPatient'){
+
+							$state.go('templates.doctor_home');
+
+						}
+						else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
+
+							// $state.go('templates.doctor_home');
+							console.log('donothing');
+
+						}
 						else{
 							window.history.back();
 							}

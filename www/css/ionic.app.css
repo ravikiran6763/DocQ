@@ -12195,13 +12195,13 @@ ion-side-menu .heading-item .message {
       box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
       font-family: Ubuntu,bold,sans-serif !important; }
     .patient-request-view .bottom-content .deny-btn {
-      background-image: url(/img/dq_request_decline_up_540x960.png);
+      background-image: url(../img/dq_request_decline_up_540x960.png);
       background-size: 80px 60px;
       background-position: center;
       background-repeat: no-repeat;
       padding-top: 21vh; }
     .patient-request-view .bottom-content .accpt-btn {
-      background-image: url(/img/dq_request_accept_up_540x960.png);
+      background-image: url(../img/dq_request_accept_up_540x960.png);
       background-size: 80px 60px;
       background-position: center;
       background-repeat: no-repeat;

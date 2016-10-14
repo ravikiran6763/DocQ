@@ -79,11 +79,12 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       $ionicPlatform.registerBackButtonAction(function (event) {
-        if ( ($state.$current.name=="templates.doctor_home")){
+        if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.doctor_home")){
+          console.log('back button disabled');
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
-                navigator.app.exitAspp();
+                // navigator.app.exitAspp();
             } else {
                 // For all other states, the H/W BACK button is enabled
                 navigator.app.backHistory();
@@ -180,7 +181,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
-      //$ionicConfig.views.transition('platform');
+      $ionicConfig.views.transition('platform');
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
@@ -201,21 +202,32 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
   //press again to exit
 
   $ionicPlatform.registerBackButtonAction(function(e){
-      if ($rootScope.backButtonPressedOnceToExit) {
-      ionic.Platform.exitApp();
-      }
+    $scope.currState=$ionicHistory.currentStateName();
+    if($scope.currState === 'templates.doctor_home' || $scope.currState ==='app.patient_home'){
+      // $ionicHistory.clearHistory();
+      $ionicHistory.removeBackView();
+
+
+    }
+      // if ($rootScope.backButtonPressedOnceToExit) {
+      // ionic.Platform.exitApp();
+      // }
 
       else if ($ionicHistory.backView()) {
       $ionicHistory.goBack();
+      console.log('cameback');
+
+
       }
       else {
-      $rootScope.backButtonPressedOnceToExit = true;
-      window.plugins.toast.showShortCenter(
-      "Press back button again to exit",function(a){},function(b){}
-      );
-      setTimeout(function(){
-      $rootScope.backButtonPressedOnceToExit = false;
-      },2000);
+      // $rootScope.backButtonPressedOnceToExit = true;
+      // window.plugins.toast.showShortCenter(
+      // "Press back button again to exit",function(a){},function(b){}
+      // );
+      // setTimeout(function(){
+      // $rootScope.backButtonPressedOnceToExit = false;
+      // },2000);
+      console.log('doNOthing');
       }
       e.preventDefault();
       return false;
@@ -344,7 +356,7 @@ $stateProvider
   })
   //my_doctors
   .state('app.my_doctors', {
-    url: "/my_doctors/:test/",
+    url: "/my_doctors",
     views: {
       'menuContent': {
         templateUrl: "views/app/my_doctors.html",

@@ -78,10 +78,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								var uname1 = "greet+"+$scope.loginData.phone;
 								var pw1 = "DQ_patient";
 
-
-
-
-							var pw1 = "DQ_patient";
 								var success = function(message)
 								{
 									alert(message);
@@ -90,18 +86,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								{
 									alert("Error calling Hello Plugin");
 								}
-
-							 //hello.login(uname1,pw1,success, failure);
-
-
-                                //hello.login(uname1,pw1,success, failure);
-
-
-								$state.go('app.patient_home');
-
-                                //hello.login(uname1,pw1,success, failure);
-                //hello.login(uname1,pw1,success, failure);
-								$state.go('app.patient_home');
 
 
                 //hello.login(uname1,pw1,success, failure);
