@@ -453,9 +453,8 @@ $stateProvider
   url: "/searchDoctors",
   views: {
     'menuContent': {
-      templateUrl: "views/app/searchDoctorNew.html"
-
-
+      templateUrl: "views/app/searchDoctorNew.html",
+      controller:"searchDoctorsController"
 
     }
   }

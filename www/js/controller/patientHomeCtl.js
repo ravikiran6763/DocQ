@@ -63,4 +63,11 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 				$state.go('app.medical_speciality');
 				$ionicLoading.hide();
 			}
+
+
+			$scope.searchDoctors=function()
+			{
+				console.log('searc clkd');
+					$state.go('app.searchDoctors');
+			}
 })

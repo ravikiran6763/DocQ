@@ -6,6 +6,13 @@
     left: 0px !important;
     right: 0px !important;
   }
+  .item-input-inset .item-input-wrapper input {
+    padding-left: 4px;
+    height: 29px;
+    background: transparent;
+    line-height: 18px;
+    width: 100% !important;
+}
   .top-content
   {
     position: relative;

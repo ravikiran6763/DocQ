@@ -11649,6 +11649,12 @@ ion-side-menu .heading-item .message {
   .search-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }
+  .search-view .item-input-inset .item-input-wrapper input {
+    padding-left: 4px;
+    height: 29px;
+    background: transparent;
+    line-height: 18px;
+    width: 100% !important; }
   .search-view .top-content {
     position: relative;
     height: 30vh;
