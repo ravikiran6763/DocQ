@@ -1,28 +1,17 @@
-<ion-view class="search-view" ng-controller="searchDoctorsController">
+<ion-view class="search-view" cache-view="false">
 
   <ion-content class="padding " >
     <div class="item   item-input-inset">
       <label class="item-input-wrapper">
-        <input type="text" placeholder={{specialdata}}{{genderdata}}{{statusdata}}{{languagedataselected}} >
+        <input type="text" value="{{specialdata}} {{genderdata}} {{statusdata}} {{languagedataselected}}"  >
       </label>
         <button class="button button-small" ng-click="searchdoctorbydifferentscenario(specialdata,genderdata,statusdata,languagedataselected);">
           OK
         </button>
     </div>
 
-
-      <!-- <button class="button button-small" ng-click="ok();">
-        OK
-      </button> -->
-
-
-
-    <!-- <tags-input ng-model="tags" add-on-paste="true">
-      <auto-complete source="loadTags($query)"></auto-complete>
-    </tags-input> -->
-      <!-- <p>Model: {{tags}}</p> -->
   <div class="top-content">
-    <div class="list dark ">
+    <div class="list calm ">
       <div class="search_content">
         <ul class="">
           <li >

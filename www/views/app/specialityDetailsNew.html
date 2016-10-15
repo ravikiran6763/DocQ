@@ -3,15 +3,15 @@
   <ion-content scroll="false" ng-repeat="desc in specialityDetails">
     <a class="item dark item-avatar item-icon-right"><!--ui-sref="app.doctorprofile"-->
         <img src="img/dq_icon_specialities_medium_540x960.png">
-        <div><h2>{{desc.special}}</h2>
-        <p>{{desc.description}}</p>
+        <div><h2>{{special}}</h2>
+        <p>{{content1}}</p>
         </div>
         <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == 0}}"></i>
         <i class="icon ion-android-add-circle" ng-show="{{desc.noofonlinedoctors >= 1}}"></i>
 
     </a>
 
-    <p class="description"> {{desc.description}} </p>
+    <p class="description"> {{descrpt}} </p>
     <div>
       <div class="card ">
         <div class="row">
@@ -22,7 +22,7 @@
 
     </div>
 
-    <p class="sendRequest">Send request for a consultation to all {{desc.special}} Specialists who are online</p>
+    <p class="sendRequest">Send request for a consultation to all {{special}} Specialists who are online</p>
 
     <a class="login button button-block button-stable" ng-click="sendrequesttoonlinedoctors(desc.id)">
       send Request

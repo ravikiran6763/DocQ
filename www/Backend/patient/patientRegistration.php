@@ -76,6 +76,16 @@
 								 echo "ERROR";
 							}
 
+							$sqlTopup = "INSERT INTO patientWallet(patientPhone,transactionId,amountCredited,creditedDateTime) values('$pateientPhone','registration_bonus',250,now())";
+							$retvalTopUp = mysql_query( $sqlTopup, $dbhandle );
+
+								if(mysql_error())
+								// if(!$retval)
+								{
+								// die('Could not enter data: ' . mysql_error());
+									 echo "ERROR";
+								}
+
 						//PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
 						$password = "DQ_patient";
 						//CREATE USERS IN VSEE FROM THE BELOW URL

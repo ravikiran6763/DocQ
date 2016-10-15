@@ -93,7 +93,7 @@ $scope.validateUser=function(isFormValid){
       if($scope.firstNum < 7){
         console.log($scope.firstNum);
 
-        $cordovaToast.showLongCenter('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
+        $cordovaToast.showLongBottom('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
         // success
         }, function (error) {
         // error
@@ -289,8 +289,24 @@ console.log($rootScope.Doctor);
 
             }
             else{
-              $state.go('app.patient_home');
-              $scope.PatientDetail =  {};
+              // $state.go('app.patient_home');
+              // $scope.PatientDetail =  {};
+              /*
+              showShortTop(message)
+              showShortCenter(message)
+              showShortBottom(message)
+              showLongTop(message)
+              showLongCenter(message)
+              showLongBottom(message)
+              showWithOptions(options)
+              */
+
+              $cordovaToast.showLongBottom('Successfully registered.', 'short', 'center').then(function(success) {
+              // success
+              $state.go('auth.loginNew');
+              }, function (error) {
+              // error
+              });
             }
 
           })
@@ -302,7 +318,7 @@ console.log($rootScope.Doctor);
         else
         {
               // alert('Incorrect OTP');
-              $cordovaToast.showLongCenter('Valid code must be entered tap on Resend to receive a code again.', 'short', 'center').then(function(success) {
+              $cordovaToast.showLongBottom('Valid code must be entered tap on Resend to receive a code again.', 'short', 'center').then(function(success) {
               // success
               }, function (error) {
               // error
@@ -318,7 +334,7 @@ console.log($rootScope.Doctor);
       if(isFormValid) {
         if($scope.PatientDetail.patient_age<18){
           // alert('You Should be 18+ to use this app')
-          $cordovaToast.showLongCenter('You must be 18 over to register', 'short', 'center').then(function(success) {
+          $cordovaToast.showLongBottom('You must be 18 over to register', 'short', 'center').then(function(success) {
           // success
           }, function (error) {
           // error

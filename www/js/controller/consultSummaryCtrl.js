@@ -3,14 +3,20 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $wi
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 777f183e7bb07de9ebbe36bf724e138d4136de17
 
 console.log($localStorage.Doctocall);
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
 console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 777f183e7bb07de9ebbe36bf724e138d4136de17
 var key = this;
 console.log($localStorage.consultedDoctor);
 console.log($localStorage.Doctocall);
