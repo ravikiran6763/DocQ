@@ -398,7 +398,7 @@ $stateProvider
 })
 //refund
 .state('app.refund_patient', {
-  url: "/refund_patient",
+  url: "/refund_patient/:credit/:debit",
   views: {
     'menuContent': {
       templateUrl: "views/app/refund_patient.html",

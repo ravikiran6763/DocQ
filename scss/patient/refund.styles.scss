@@ -1,5 +1,33 @@
 .patient-refund-view
 {
+
+
+    .submitted input.ng-invalid:not(:focus) {
+      border:1px solid red;
+    }
+    // background-color: red;
+      .submitted label.item.has-error {
+      border-bottom: 1px solid red;
+    }
+
+    label.item.has-error-lr {
+      border: 1px solid red;
+      // border-right: 2px solid red;
+    }
+
+    label.item.valid-lr {
+      border: none ;
+      // border-right: 2px solid green;
+    }
+
+    .form-errors {
+      margin: 5px 0
+    }
+
+    .form-error {
+      padding: 2px 0 2px 16px;
+      color: red;
+    }
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important;
   .title .title-left .header-item{

@@ -49,15 +49,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					password : $scope.loginData.pin
 				};
 				// console.log(userDetails);
-
-
-
-
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 					if(window.Connection) {
 					//you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
-
 							// if(navigator.connection.type == Connection.NONE) {
 							// $ionicPopup.confirm({
 							// title: 'Network Problem',
@@ -71,12 +66,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					 console.log(response);
 						if(response === "patient")
 						{
-//								var uname1 = "greet+"+$scope.loginData.phone;
+
 							var uname1 = "greet+"+$scope.loginData.phone;
-
-
-								var uname1 = "greet+"+$scope.loginData.phone;
-								var pw1 = "DQ_patient";
+							var pw1 = "DQ_patient";
 
 								var success = function(message)
 								{
@@ -97,7 +89,22 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						else if(response === "doctor")
 						{
+							var uname1 = "greet+"+$scope.loginData.phone;
+							var pw1 = "DQ_doctor";
+
+								var success = function(message)
+								{
+									alert(message);
+								}
+								var failure = function()
+								{
+									alert("Error calling Hello Plugin");
+								}
+
 						$state.go('templates.doctor_home');
+						hello.login(uname1,pw1,success, failure);
+						$localStorage.onOff=1;
+
 						}
 						else{
 

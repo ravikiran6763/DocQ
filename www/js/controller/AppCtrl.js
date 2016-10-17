@@ -437,18 +437,5 @@ $scope.ratingsObject = {
 	  console.log('decline clicked');
 	}
 
-	// $ionicModal.fromTemplate('<ion-modal-view><ion-header-bar class="bar-energized"><h1 class="title">ion-modal-view</h1><a class="button" ng-click="closeModal();">关闭</a></ion-header-bar><ion-content>Hello!</ion-content></ion-modal-view>', {
-  //        scope: $scope,
-  //        animation: "slide-in-up"
-  //    },function(modal) {
-  //        $scope.modal = modal;
-  //    });
-  //    $scope.openModal = function() {
-  //        $scope.modal.show();
-  //    };
-  //    $scope.closeModal = function() {
-  //        $scope.modal.hide();
-  //    };
-
 
 });

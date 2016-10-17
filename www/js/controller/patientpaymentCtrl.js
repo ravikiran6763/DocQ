@@ -9,7 +9,7 @@ console.log($localStorage.user);
 
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
    $rootScope.patientWalletdetails=response;
-   //
+   console.log($rootScope.patientWalletdetails);
    }).catch(function(error){
      console.log('failure data', error);
    });
