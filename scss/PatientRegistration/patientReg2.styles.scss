@@ -67,6 +67,7 @@
 		height: 40px !important;
 		padding-left: 10px;
 		margin-bottom: 2vh;
+		width: 100% !important;
 	// height: 100%;
 }
 input[type="password"]{
@@ -74,6 +75,8 @@ input[type="password"]{
 	height: 40px !important;
 	padding-left: 10px;
 	margin-bottom: 2vh;
+	width: 100% !important;
+
 // height: 100%;
 }
 input[type="email"]{
@@ -81,12 +84,16 @@ input[type="email"]{
 	height: 40px !important;
 	padding-left: 10px;
 	margin-bottom: 2vh;
+	width: 100% !important;
+
 // height: 100%;
 }
 input[type="tel"]{
 	margin-top: 12vh !important;
 	height: 40px !important;
 	padding-left: 10px;
+	width: 100% !important;
+
 // height: 100%;
 }
 
@@ -110,7 +117,7 @@ input[type="tel"]{
 			color: #ffffff;
 		}
 		h2{
-			margin: 8vh 0 0 10vw;
+			margin: 9vh 0 0 10vw;
 			width: 80%;
 		}
 

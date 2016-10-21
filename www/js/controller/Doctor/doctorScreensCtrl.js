@@ -10,13 +10,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
 
     console.log($state.$current.name);
 
-    $("#modeLocation").change(function () {
 
-
-        type = $("#modeLocation").val();
-
-        $('#togshow').text(type.toString());
-    });
 
     $rootScope.changeNotification = function (e)
     {

@@ -10884,7 +10884,8 @@ ion-side-menu .heading-item .message {
       position: absolute;
       padding-left: 88px;
       /* padding-top: 0; */
-      margin-top: -15vh; }
+      margin-top: -88px;
+      margin-left: -9px; }
   .doctor-profile-view .profile-info {
     margin: 0 auto;
     width: 90%;
@@ -10931,6 +10932,79 @@ ion-side-menu .heading-item .message {
   .doctor-profile-view .buttonPosition {
     margin-top: 5vh; }
   .doctor-profile-view .rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+    font-size: 5vw; }
+
+.searchDoctor-profile-view {
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .searchDoctor-profile-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
+  .searchDoctor-profile-view .profile-img {
+    width: 30%;
+    height: 25% !important;
+    margin: 0 auto; }
+    .searchDoctor-profile-view .profile-img img {
+      width: 30vw;
+      border-radius: 60%;
+      padding: 5px;
+      background-color: #dedad7 !important;
+      margin-top: 4vh; }
+    .searchDoctor-profile-view .profile-img i {
+      position: absolute;
+      padding-left: 88px;
+      /* padding-top: 0; */
+      margin-top: 25px;
+      margin-left: -13px; }
+  .searchDoctor-profile-view .profile-info {
+    margin: 0 auto;
+    width: 90%;
+    height: 15%; }
+    .searchDoctor-profile-view .profile-info h1, .searchDoctor-profile-view .profile-info h2, .searchDoctor-profile-view .profile-info h3 {
+      font-family: Ubuntu,bold,sans-serif !important;
+      text-align: center; }
+    .searchDoctor-profile-view .profile-info h1 {
+      font-size: 5vw; }
+    .searchDoctor-profile-view .profile-info h2 {
+      font-size: 4vw;
+      line-height: 0vh;
+      color: #666666 !important; }
+    .searchDoctor-profile-view .profile-info h3 {
+      font-size: 3vw;
+      color: #666666 !important; }
+  .searchDoctor-profile-view .rating-field {
+    height: 10%; }
+    .searchDoctor-profile-view .rating-field .card {
+      width: 90% !important;
+      margin: 0 auto; }
+  .searchDoctor-profile-view .bottom-content {
+    height: 52%; }
+    .searchDoctor-profile-view .bottom-content h4 {
+      font-size: 4vw;
+      line-height: 0vh;
+      text-align: center;
+      margin-top: 6vh;
+      font-family: Ubuntu,bold,sans-serif !important; }
+    .searchDoctor-profile-view .bottom-content h5 {
+      font-size: 3vw;
+      line-height: 0vh;
+      text-align: center;
+      margin-top: 3vh;
+      font-family: Ubuntu,bold,sans-serif !important; }
+    .searchDoctor-profile-view .bottom-content .button-content {
+      margin: 0 auto;
+      height: 50%;
+      width: 80%; }
+      .searchDoctor-profile-view .bottom-content .button-content .button {
+        background-color: #6aa13e;
+        font-family: Ubuntu,bold,sans-serif !important;
+        color: #fff; }
+  .searchDoctor-profile-view .buttonPosition {
+    margin-top: 5vh; }
+  .searchDoctor-profile-view .rating {
     color: #a9a9a9;
     margin: 0;
     padding: 0;
@@ -12910,11 +12984,13 @@ ion-side-menu .heading-item .message {
   .patient-reg-1-view input[type="text"] {
     margin-top: 2vh !important;
     height: 40px !important;
-    padding-left: 10px; }
+    padding-left: 10px;
+    width: 100% !important; }
   .patient-reg-1-view input[type="number"] {
     margin-top: 2vh !important;
     height: 40px !important;
-    padding-left: 10px; }
+    padding-left: 10px;
+    width: 100% !important; }
   .patient-reg-1-view .bar {
     height: 16%;
     width: 100%; }
@@ -12931,7 +13007,7 @@ ion-side-menu .heading-item .message {
       text-align: center;
       color: #ffffff; }
     .patient-reg-1-view .bar h2 {
-      margin: 8vh 0 0 10vw;
+      margin: 9vh 0 0 10vw;
       width: 80%; }
   .patient-reg-1-view .login_button {
     background-color: #6aa13e;
@@ -13134,21 +13210,25 @@ ion-side-menu .heading-item .message {
     margin-top: 2vh !important;
     height: 40px !important;
     padding-left: 10px;
-    margin-bottom: 2vh; }
+    margin-bottom: 2vh;
+    width: 100% !important; }
   .patient-reg-2-view input[type="password"] {
     margin-top: 2vh !important;
     height: 40px !important;
     padding-left: 10px;
-    margin-bottom: 2vh; }
+    margin-bottom: 2vh;
+    width: 100% !important; }
   .patient-reg-2-view input[type="email"] {
     margin-top: 0vh !important;
     height: 40px !important;
     padding-left: 10px;
-    margin-bottom: 2vh; }
+    margin-bottom: 2vh;
+    width: 100% !important; }
   .patient-reg-2-view input[type="tel"] {
     margin-top: 12vh !important;
     height: 40px !important;
-    padding-left: 10px; }
+    padding-left: 10px;
+    width: 100% !important; }
   .patient-reg-2-view .bar {
     height: 20%;
     width: 100%; }
@@ -13165,7 +13245,7 @@ ion-side-menu .heading-item .message {
       text-align: center;
       color: #ffffff; }
     .patient-reg-2-view .bar h2 {
-      margin: 8vh 0 0 10vw;
+      margin: 9vh 0 0 10vw;
       width: 80%; }
   .patient-reg-2-view .login_button {
     background-color: #6aa13e;

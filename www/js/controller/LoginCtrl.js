@@ -32,15 +32,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 			$scope.loginData.pin = $cookies.get('password');
 
 
-			$scope.doLogIn = function()
-			{
-
-
+	$scope.doLogIn = function()
+	{
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
-
-
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
 				$ionicLoading.show();
@@ -51,26 +47,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				// console.log(userDetails);
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
-					if(window.Connection) {
-					//you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
-							// if(navigator.connection.type == Connection.NONE) {
-							// $ionicPopup.confirm({
-							// title: 'Network Problem',
-							// content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
-							// }).then(function(){
-							// ionic.Platform.exitApp();
-							// })
-							// //or you can simply navigate it to a page with the no internet connection html.
-							// }
-					}
-					 console.log(response);
-						if(response === "patient")
-						{
-
+				 console.log(response);
+					if(response === "patient")
+					{
 							var uname1 = "greet+"+$scope.loginData.phone;
 							var pw1 = "DQ_patient";
-
-								var success = function(message)
+							var success = function(message)
 								{
 									alert(message);
 								}
@@ -79,17 +61,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 									alert("Error calling Hello Plugin");
 								}
 								$state.go('app.patient_home');
-
 								hello.login(uname1,pw1,success, failure);
-
 						}
-
 						else if(response === "doctor")
 						{
 							var uname1 = "greet+"+$scope.loginData.phone;
 							var pw1 = "DQ_doctor";
-
-								var success = function(message)
+							var success = function(message)
 								{
 									alert(message);
 								}
@@ -97,7 +75,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								{
 									alert("Error calling Hello Plugin");
 								}
-
 						$state.go('templates.doctor_home');
 						hello.login(uname1,pw1,success, failure);
 						$localStorage.onOff=1;

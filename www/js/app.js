@@ -11,9 +11,6 @@ angular.module('underscore', [])
   return window._; // assumes underscore has already been loaded on the page
 });
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
 
 var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic','ionic.service.core',
@@ -142,7 +139,6 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
           {
           console.log(value);
           }
-
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
@@ -200,38 +196,38 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
   });
 
   //press again to exit
-
-  $ionicPlatform.registerBackButtonAction(function(e){
-    $scope.currState=$ionicHistory.currentStateName();
-    if($scope.currState === 'templates.doctor_home' || $scope.currState ==='app.patient_home'){
-      // $ionicHistory.clearHistory();
-      $ionicHistory.removeBackView();
-
-
-    }
-      // if ($rootScope.backButtonPressedOnceToExit) {
-      // ionic.Platform.exitApp();
-      // }
-
-      else if ($ionicHistory.backView()) {
-      $ionicHistory.goBack();
-      console.log('cameback');
-
-
-      }
-      else {
-      // $rootScope.backButtonPressedOnceToExit = true;
-      // window.plugins.toast.showShortCenter(
-      // "Press back button again to exit",function(a){},function(b){}
-      // );
-      // setTimeout(function(){
-      // $rootScope.backButtonPressedOnceToExit = false;
-      // },2000);
-      console.log('doNOthing');
-      }
-      e.preventDefault();
-      return false;
-  },101);
+  //
+  // $ionicPlatform.registerBackButtonAction(function(e){
+  //   $scope.currState=$ionicHistory.currentStateName();
+  //   if($scope.currState === 'templates.doctor_home' || $scope.currState ==='app.patient_home'){
+  //     // $ionicHistory.clearHistory();
+  //     $ionicHistory.removeBackView();
+  //
+  //
+  //   }
+  //     // if ($rootScope.backButtonPressedOnceToExit) {
+  //     // ionic.Platform.exitApp();
+  //     // }
+  //
+  //     else if ($ionicHistory.backView()) {
+  //     $ionicHistory.goBack();
+  //     console.log('cameback');
+  //
+  //
+  //     }
+  //     else {
+  //     // $rootScope.backButtonPressedOnceToExit = true;
+  //     // window.plugins.toast.showShortCenter(
+  //     // "Press back button again to exit",function(a){},function(b){}
+  //     // );
+  //     // setTimeout(function(){
+  //     // $rootScope.backButtonPressedOnceToExit = false;
+  //     // },2000);
+  //     console.log('doNOthing');
+  //     }
+  //     e.preventDefault();
+  //     return false;
+  // },101);
 
   })
 
@@ -249,7 +245,6 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 });
 
 DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
-
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
   $stateProvider
