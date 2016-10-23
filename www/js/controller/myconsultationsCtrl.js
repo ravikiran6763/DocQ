@@ -5,7 +5,6 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
-<<<<<<< HEAD
 
 	$ionicLoading.show();
 
@@ -20,11 +19,9 @@ $ionicLoading.show();
 
 
 
-=======
 	$ionicLoading.show();
 
 console.log('called');
->>>>>>> 777f183e7bb07de9ebbe36bf724e138d4136de17
 $ionicLoading.show();
 
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
@@ -35,7 +32,6 @@ $ionicLoading.show();
 });
 $scope.consultationDetails=function(consultedDoc)
 {
-<<<<<<< HEAD
 
 
 
@@ -45,10 +41,8 @@ $scope.consultationDetails=function(consultedDoc)
 	console.log(consultedDoc);
 
 	console.log(consultedDoc);
-=======
 	console.log(consultedDoc);
 
->>>>>>> 777f183e7bb07de9ebbe36bf724e138d4136de17
 	$rootScope.consultedDoc=consultedDoc;
 	$localStorage.consultedDoctor=$scope.consultedDoc;
 		$ionicLoading.hide();
@@ -76,10 +70,7 @@ $scope.clicktochat = function(pateientPhone)
 		var username = "greet+"+$localStorage.user;
 		console.log(username);
 
-<<<<<<< HEAD
 	console.log(username);
-=======
->>>>>>> 777f183e7bb07de9ebbe36bf724e138d4136de17
 
 				// myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 				// $scope.myDoctor=response;//store the response array in doctor details
@@ -92,10 +83,7 @@ $scope.clicktochat = function(pateientPhone)
 //CHAT FUNCTIONALITY INVOCATION
 
 
-<<<<<<< HEAD
 //CHAT FUNCTIONALITY INVOCATION
-=======
->>>>>>> 777f183e7bb07de9ebbe36bf724e138d4136de17
 // console.log($localStorage.consultedDoctor);
 
 		var username = "greet+"+$localStorage.user;
