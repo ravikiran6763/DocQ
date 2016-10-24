@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,testresultbydoctor,$cordovaFile) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaCamera,testresultbydoctor,$cordovaFile) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -116,7 +116,27 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 											};
 
 									//test jpeg image response
-									testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
+								testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
+                    console.log(response);
+                      $scope.pic=response
+                      $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
+                    var options = {
+                      quality: 75,
+                      destinationType: Camera.DestinationType.FILE_URI,
+                      sourceType: $scope.prescription,
+                      allowEdit: flase,
+                      encodingType: Camera.EncodingType.JPEG,
+                      targetWidth: 300,
+                      targetHeight: 300,
+                      popoverOptions: CameraPopoverOptions,
+                      saveToPhotoAlbum: true
+                    };
+console.log(options);
+                    // console.log(cordova.file.externalRootDirectory);
+
+
+
+
 								}).catch(function(error){
 									console.log('failure data', error);
 								});

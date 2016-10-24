@@ -76,12 +76,11 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     $http.post(BASE_URL.url + API.testjpegimage,options)
     .success(function (data, status, headers, config){
       deferred.resolve(data);
-      console.log(data);
+      // console.log(data);
       if(status == 200)
       {
         //create folder in SD card ad DQIMAGES  Directory
-        console.log(cordova.file.externalRootDirectory);
-        $cordovaFile.createDir(cordova.file.externalRootDirectory, "DQIMAGES", true)
+        $cordovaFile.createDir(cordova.file.externalRootDirectory, "DoctorQuick", true)
         .then(function (success) {
         console.log("Folder created" + success);
         }, function (error) {
@@ -91,7 +90,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
         var url = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
         var filename = url.split("/").pop();
 
-         var targetPath = cordova.file.externalRootDirectory + "DQIMAGES/" + filename;
+         var targetPath = cordova.file.externalRootDirectory + "DoctorQuick/" + filename;
             $cordovaFileTransfer.download(url, targetPath, {}, true).then(function (result) {
                 console.log('Success');
                 console.log(result);

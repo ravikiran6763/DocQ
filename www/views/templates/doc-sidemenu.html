@@ -6,8 +6,10 @@
             <!-- <button class="button button-icon icon ion-ios-chatbubble-outline" blink blink-class="energized" menu-toggle="left" ng-show="showNotification" >
             </button> -->
             <i class="back-btn-cls ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="templates.consulted_patient"></i>
-            <span class="notify-badge " ng-show="showBadge" ui-sref="templates.consulted_patient" >{{2}}</span>
-            <!-- <i class="back-btn-cls ion-ios-arrow-back" ng-click='goBack()' ng-show="showBackBtn"></i> -->
+            <span ng-class="{ 'notify-badge': deviceAndroid === true, 'notify-badge-ios': deviceAndroid === false}" ng-show="showBadge" ui-sref="templates.consulted_patient" >{{2}}</span>
+            <!-- <i class="back-btn-cls ion-ios-arrow-back" ng-click='goBack()' ng-show="showBackBtn"></i>
+
+          class="notify-badge "-->
 
             <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
               <i class="back-btn-cls ion-ios-arrow-back" style="float:left;" ></i>

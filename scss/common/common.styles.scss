@@ -489,6 +489,20 @@ ion-spinner.spinner-on-load
 	  position: absolute;
 		border-radius: 50%;
 		z-index: 999;
+    margin-left: 5vw;
+}
+
+.notify-badge-ios{
+      background-color: #b8272e;
+      padding: 1px 6px;
+      color: #fff;
+      border: none;
+      position: relative;
+      border-radius: 50%;
+      z-index: 999;
+      /* width: 100%; */
+      height: 50%;
+      margin-left: -4vw
 }
 .bar .buttons-left span {
     margin-right: 5px;
