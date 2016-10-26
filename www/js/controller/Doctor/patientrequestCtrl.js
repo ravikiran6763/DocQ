@@ -32,7 +32,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 						 $scope.toggleText = "Accepted";
 						 patientrequesttodoctor.accpetedbydoctor(docpatphno);
-						 $state.go('templates.notesForPatient');
+
+						  $state.go('templates.notesForPatient');
 
 				 }
 				 $scope.decline = function()

@@ -10394,7 +10394,7 @@ img-crop {
 
 .walkthrough-view .form-cls-ios {
   height: auto;
-  margin-top: 18vh !important; }
+  margin-top: 22vh !important; }
 
 .walkthrough-view .form-group {
   margin-bottom: 2vh; }
@@ -10897,8 +10897,8 @@ ion-side-menu .heading-item .message {
       position: absolute;
       padding-left: 88px;
       /* padding-top: 0; */
-      margin-top: -88px;
-      margin-left: -9px; }
+      margin-top: 6vh;
+      margin-left: -26vw; }
   .doctor-profile-view .profile-info {
     margin: 0 auto;
     width: 90%;
@@ -12371,11 +12371,13 @@ ion-side-menu .heading-item .message {
     width: 90vmin;
     margin-left: 5vw;
     margin-top: 2vh; }
+    .patient-notes-view .card .row {
+      height: 8%; }
     .patient-notes-view .card i {
       font-size: 5vw; }
     .patient-notes-view .card .checkbox {
       position: relative;
-      margin: -4px -2px 0 1px !important; }
+      margin: -2px 0px 0 1px !important; }
     .patient-notes-view .card .checkbox label:after {
       content: 'hello';
       width: 14px;
@@ -12402,21 +12404,22 @@ ion-side-menu .heading-item .message {
       padding-right: 16px; }
   .patient-notes-view .description {
     width: 80vmin;
-    height: 15%;
-    margin-top: 0 !important;
+    height: 20%;
+    margin-top: 5vh !important;
     padding: 10px auto;
     margin-left: 10vw;
     text-align: center;
     font-size: 4vw; }
   .patient-notes-view .button {
-    margin-left: 13vw !important;
+    margin-left: 8vw !important;
     margin-top: 2vh;
     border: none;
     color: #FFFFFF;
     font-weight: bolder;
-    font-size: 4vw;
+    font-size: 4.5vw;
     max-width: 100%;
-    width: 75vmin; }
+    width: 85vmin;
+    height: 10%; }
   .patient-notes-view .top-content {
     height: 75%;
     text-align: center; }

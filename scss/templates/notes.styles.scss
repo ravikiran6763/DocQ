@@ -69,6 +69,9 @@
   margin-bottom:80px !important;
   }
   .card {
+    .row{
+      height: 8%;
+    }
     font-size: 4vw;
     max-width: 100%;
     width: 90vmin;
@@ -85,7 +88,7 @@
     // /* margin-top: -3px; */
     // padding: 10px auto;
     position: relative;
-    margin: -4px -2px 0 1px !important;
+    margin: -2px 0px 0 1px !important;
     }
     .checkbox label:after {
       content: 'hello';
@@ -123,8 +126,8 @@
   .description{
 
     width: 80vmin;
-    height: 15%;
-    margin-top:0 !important;
+    height: 20%;
+    margin-top:5vh !important;
     padding: 10px auto;
     margin-left: 10vw;
     text-align: center;
@@ -132,14 +135,24 @@
   }
   .button
   {
-    margin-left: 13vw !important;
+    // margin-left: 13vw !important;
+    // margin-top: 2vh;
+    // border: none;
+    // color: $auth-color;
+    // font-weight: bolder;
+    // font-size: 4vw;
+    // max-width: 100%;
+    // width: 75vmin;
+
+    margin-left: 8vw !important;
     margin-top: 2vh;
     border: none;
-    color: $auth-color;
+    color: #FFFFFF;
     font-weight: bolder;
-    font-size: 4vw;
+    font-size: 4.5vw;
     max-width: 100%;
-    width: 75vmin;
+    width: 85vmin;
+    height: 10%
   }
 
 	.top-content

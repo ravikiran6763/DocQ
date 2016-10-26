@@ -77,29 +77,29 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     .success(function (data, status, headers, config){
       deferred.resolve(data);
       // console.log(data);
-      if(status == 200)
-      {
-        //create folder in SD card ad DQIMAGES  Directory
-        $cordovaFile.createDir(cordova.file.externalRootDirectory, "DoctorQuick", true)
-        .then(function (success) {
-        console.log("Folder created" + success);
-        }, function (error) {
-        console.log("Folder not created." + error);
-        });
-      //Download jpeg file as patient name from this url and store it in DQIMAGES Folder
-        var url = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-        var filename = url.split("/").pop();
-
-         var targetPath = cordova.file.externalRootDirectory + "DoctorQuick/" + filename;
-            $cordovaFileTransfer.download(url, targetPath, {}, true).then(function (result) {
-                console.log('Success');
-                console.log(result);
-            }, function (error) {
-                console.log('Error');
-            }, function (progress) {
-                // PROGRESS HANDLING GOES HERE
-            });
-      }
+      // if(status == 200)
+      // {
+      //   //create folder in SD card ad DQIMAGES  Directory
+      //   $cordovaFile.createDir(cordova.file.externalRootDirectory, "DoctorQuick", true)
+      //   .then(function (success) {
+      //   console.log("Folder created" + success);
+      //   }, function (error) {
+      //   console.log("Folder not created." + error);
+      //   });
+      // //Download jpeg file as patient name from this url and store it in DQIMAGES Folder
+      //   var url = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
+      //   var filename = url.split("/").pop();
+      //
+      //    var targetPath = cordova.file.externalRootDirectory + "DoctorQuick/" + filename;
+      //       $cordovaFileTransfer.download(url, targetPath, {}, true).then(function (result) {
+      //           console.log('Success');
+      //           console.log(result);
+      //       }, function (error) {
+      //           console.log('Error');
+      //       }, function (progress) {
+      //           // PROGRESS HANDLING GOES HERE
+      //       });
+      // }
     })
     .error(function (){
       deferred.reject('Error while getting data');
