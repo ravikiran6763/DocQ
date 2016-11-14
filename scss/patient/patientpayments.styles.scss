@@ -66,6 +66,9 @@
               background-color: #a1a1a1 !important;
               border-color: #a1a1a1;
             }
+            .button-calm.activated{
+      				background-color: #808080 !important;
+      			}
         }
         .topup{
             //background-color: green;
@@ -75,8 +78,10 @@
             .button{
               width: 90%;
               background-color: #6aa13e !important;
-
             }
+            .button-stable.activated{
+      				background-color: #517b2f !important;
+      			}
         }
       }
   }

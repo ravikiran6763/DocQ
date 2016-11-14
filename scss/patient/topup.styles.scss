@@ -1,7 +1,6 @@
+
 .patient-topup-view
 {
-
-
   // .submitted input.ng-invalid:not(:focus) {
   //   border:2px solid red;
   // }
@@ -38,6 +37,19 @@
     left: 0px !important;
     right: 0px !important;
   }
+
+input[type="number"]{
+  display: block;
+    padding-top: 2px;
+    padding-left: 0;
+    height: 40px;
+    color: #111;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
+    margin: 0 auto;
+}
   .top-content{
 
     height: 25%;
@@ -80,12 +92,29 @@
     }
   }
   .button-container{
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    .button{
-      background-color: #6aa13e !important;
-      width: 100%;
-      margin-top: 2vh;
+    button{
+      width: 80%;
+      text-align: center;
+      margin-left: 10vw !important;
+      border: none;
+    }
+
+    .button-stable{
+      background-color: #6aa13e;
+    }
+    .button-stable.activated{
+      background-color: #557a23 !important;
+    }
+
+    .button-assertive.activated{
+      background-color:#517b2f  !important;
+    }
+    .login_button {
+        background-color: #6aa13e;
+        color: #ffffff;
+        height: 40px;
     }
   }
   .item-divider{

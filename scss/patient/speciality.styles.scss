@@ -10,6 +10,11 @@
     overflow: scroll !important;
     overflow-x: hidden;
   }
+  a:hover, a:focus {
+      color: #444;
+       text-decoration: none !important;
+  }
+
   .bottom-content
   {
       // height: 100%;

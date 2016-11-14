@@ -21,7 +21,6 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	  if(isDocTopUpValid) {
 	    // console.log('isDocFormValid ', isDocFormValid)
 
-
 								$scope.payment.topUpAmt=($scope.payment.topUp*100);
 								console.log($scope.payment.topUp);
 							 if($scope.payment.topUp < 250){

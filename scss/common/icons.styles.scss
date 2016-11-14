@@ -40,6 +40,16 @@
     width: 2vmin;
 }
 
+.ion-ios-chatbubble-outline::before{
+    content: "";
+    color: #fff;
+    font-size: 10vw;
+    position: absolute;
+    z-index: -1;
+    /* float: right; */
+    margin: 2px 0 0 8px;
+}
+
 //first page icon images
 .ion-android-happy::before {
     content: url('../img/dq_icon_speciality_540x960.png') ;

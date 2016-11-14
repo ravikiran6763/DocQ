@@ -14,7 +14,7 @@
 	.top-content
 	{
 			width: 80%;
-			height: 25%;
+			height: 30%;
 			margin: 0 auto;
 			text-align: center;
 			p{
@@ -85,29 +85,7 @@
 			font-size: 1em;
 			text-align: center;
 		}
-		.button-bar
-		{
-			width: 80%;
-    	margin: 0 auto;
-			height: 26% !important;
 
-				.button{
-					background-color: #6aa13e;
-					border: none;
-					padding: 10px auto;
-				}
-				.resend{
-					float: left;
-					width: 80%;
-					height: 44px;
-					margin-right: 2vw;
-				}
-				.confirm{
-						float: right;
-						margin-left: 2vw;
-						height: 44px;
-				}
-		}
 	}
 
 	.register-back-btn {
@@ -123,17 +101,14 @@
 	.row{
 		margin: 0 !important;
 	}
-
-	.bar{
-		height: 40%;
+.bar{
+		height: 37%;
 		width: 100%;
 		.button-bar
 		{
-		position: absolute !important;
-    width: 80%;
-    height: 26%;
-    /* margin: 0 auto; */
-    margin-left: 8vw;
+			position: absolute !important;
+	    width: 70%;
+	    margin-left: 14vw;
 
 				.button{
 					background-color: #6aa13e;
@@ -150,6 +125,9 @@
 						float: right;
 						margin-left: 2vw;
 						    padding: 6px;
+				}
+				.button-assertive.activated{
+					background-color:#517b2f !important;
 				}
 				a,h2,h3{
 					font-size: 1em;
@@ -174,13 +152,7 @@
 		.button-stable{
 			background-color: #6aa13e;
 		}
-		.button-stable.activated{
-			background-color: #557a23 !important;
-		}
 
-		.button-calm.activated{
-			background-color:#026451!important;
-		}
 	}
 	.login_button {
 				background-color: #6aa13e;

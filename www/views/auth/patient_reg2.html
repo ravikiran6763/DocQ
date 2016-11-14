@@ -3,9 +3,12 @@
   <ion-content>
 
     <div class="bar-header bar-light">
+      <div class="back_button icon-left">
+        <i class="register-back-btn icon ion-ios-arrow-back" ng-click="goBack();"></i>
+        <p class="back-txt-cls">Back</p>
+      </div>
       <div class="top-content">
 
-             <p>Patient Registration</p>
              <img src="./img/iOS-Assets-v01_patient_registration_progress2.png" >
              <p class="reg_message"> Age, gender, email and password. </p>
 
@@ -41,9 +44,6 @@
         </div>
 
         <button class="login_button button button-block button-assertive" id="link" ng-hide="true" type="submit" ng-click="validateUser1(PatientReg2.$valid)" >Next</button>
-
-    <!-- <button class="login button button-block" id="link" ng-hide="true" type="submit" ng-click="validateUser(PatientReg1.$valid)" >Next</button> -->
-    <!-- <button class="login button button-block" ng-click="goToNextView(PatientDetail.patient_mob)" type="submit" >Next</button> -->
 
     </form>
 

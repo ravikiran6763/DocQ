@@ -1,10 +1,3 @@
-/*
-  *
-  *
-  *
-*/
-
-
 DoctorQuickApp.controller('specialityDetailsController', function($rootScope,$scope,$stateParams,medicalSpecialityService)
 {
 

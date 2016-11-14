@@ -9,6 +9,20 @@
 		overflow: scroll !important;
 
 	}
+	.back_button{
+		margin: 0 auto;
+		margin-left: 5vw !important;
+    margin-top: 5vh !important;
+	}
+	.register-back-btn {
+		    float: left;
+				font-size: 10vw;
+	}
+	.back-txt-cls {
+		margin: 0 0 0 4vh;
+		font-size: 3vh;
+		line-height: 6vh;
+	}
 	.submitted input.ng-invalid:not(:focus) {
 	  border:2px solid red;
 
@@ -89,7 +103,7 @@ input[type="email"]{
 // height: 100%;
 }
 input[type="tel"]{
-	margin-top: 12vh !important;
+	// margin-top: 12vh !important;
 	height: 40px !important;
 	padding-left: 10px;
 	width: 100% !important;

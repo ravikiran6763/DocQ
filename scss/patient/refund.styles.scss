@@ -34,6 +34,19 @@
     left: 0px !important;
     right: 0px !important;
   }
+
+  input[type="number"]{
+    display: block;
+      padding-top: 2px;
+      padding-left: 0;
+      height: 40px;
+      color: #111;
+      vertical-align: middle;
+      font-size: 14px;
+      line-height: 16px;
+      width: 100%;
+      margin: 0 auto;
+  }
     .top-content{
 
       height: 30%;
@@ -75,6 +88,9 @@
         width: 100%;
         margin-top: 2vh;
       }
+      .button-stable.activated{
+				background-color: #517b2f !important;
+			}
     }
     .item-divider{
       text-align: center;

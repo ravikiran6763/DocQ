@@ -1,7 +1,7 @@
 <ion-view class="mypatient-profile-view" cache-view="false" >
 
   <ion-content >
-    <a class="item item-avatar item-icon-right"  ng-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" >
+    <a class="item item-avatar item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" >
     <!-- <a class="item item-avatar item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" > -->
 
       <!--ui-sref="app.doctorprofile"-->

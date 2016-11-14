@@ -4,10 +4,38 @@
 // .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
 //   height: auto  !important;
 // }
+.badge.badge-stable {
+    background-color: red;
+    color: #fff;
+}
 
-
-
-
+.item-radio {
+    padding: 0;
+    border: none;
+    font-family: Ubuntu,bold,sans-serif !important;
+}
+.icon-badge{
+  margin: 3px 0 0 18px ;
+}
+.assertive {
+    background-color: #a1483e;
+    color: #fff;
+}
+.SearchHeader{
+    border-bottom: 2px solid #e2e2e2 !important;
+    margin-top: -4vh;
+    h4{
+      font-family: Ubuntu,bold,sans-serif !important;
+      text-align: center !important;
+    }
+}
+.OnlineStatus{
+  border-color: #0e1015 !important;
+    border-bottom: none !important;
+}
+ion-side-menu ion-item.item {
+    border-color: #0e1015 !important;
+}
 .toggle-small .toggle-calm input:checked + .track .handle {
     background-color: #e2e2e2;
 }
@@ -31,7 +59,16 @@
 .toggle-small .toggle-calm input:checked + .track {
     background-color: rgb(82, 124, 48);
 }
-
+.platform-android .bar .title {
+    color: red !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+.platform-ios .bar .title {
+    color: red !important;
+    left: 0 !important;
+    right: 0 !important;
+}
  .title .title-center .header-item{
    color: red;
   left: 0 !important;
@@ -71,6 +108,11 @@ ion-side-menu.menu-left.menu {
 
 .bar.app-top-bar .title * {
     color: #FFFFFF !important;
+    font-family: Ubuntu,bold,sans-serif !important;
+    font-size: 5vw;
+    text-align: center;
+    left: 0 !important;
+    right: 0 !important;
 
 }
 .buttons .buttons-left .header-item{
@@ -439,7 +481,6 @@ ion-spinner.spinner-on-load
   .multi-bg
   {
     display: none;
-
   }
 }
 
@@ -454,8 +495,14 @@ ion-spinner.spinner-on-load
 }
 
 .back-btn-cls {
-		font-size: 2.5em;
-		padding: 0 0 0 8px;
+		font-size: 12vw !important;
+		padding: 0 0 0 5px;
+		color: #fff;
+}
+
+.back-btn-cls-ios {
+		font-size: 10vw !important;
+		padding: 0 0 0 5px;
 		color: #fff;
 }
 
@@ -489,7 +536,8 @@ ion-spinner.spinner-on-load
 	  position: absolute;
 		border-radius: 50%;
 		z-index: 999;
-    margin-left: 5vw;
+    // margin-left: 5vw;
+    // margin-left: -7px;
 }
 
 .notify-badge-ios{
@@ -500,9 +548,9 @@ ion-spinner.spinner-on-load
       position: relative;
       border-radius: 50%;
       z-index: 999;
-      /* width: 100%; */
       height: 50%;
-      margin-left: -4vw
+      // margin-left: 5vw;
+      // margin-left: -7px;
 }
 .bar .buttons-left span {
     margin-right: 5px;
@@ -554,23 +602,7 @@ ion-spinner.spinner-on-load
 	color: inherit;
 }
 //favorite Css
-img-crop {
-  width:100%;
-  height:100%;
-  display:block;
-  position:relative;
-  overflow:hidden;
-  canvas {
-    display:block;
-    position:absolute;
-    top:50%;
-    left:50%;
 
-    // Disable Outline
-    outline: none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0); /* mobile webkit */
-  }
-}
 .toggle-position{
 	width: 23%;
 	position: relative;
@@ -615,4 +647,5 @@ img-crop {
 		width: 100%;
 		// height: 100%;
 	}
+
 }

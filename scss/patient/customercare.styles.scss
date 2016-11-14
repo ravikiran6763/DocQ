@@ -12,6 +12,11 @@
 	.cc-form{
 		height: 100%;
 	}
+	.button-stable{
+		background-color: #6aa13e;
+	}
+
+
 	.platform-ios{
 
 	}
@@ -43,6 +48,9 @@
 				margin-top: calc(100%-30vh);
 				background-color: #69a33d !important;
 				color: #fff;
+			}
+			.button-stable.activated{
+				background-color: #517b2f !important;
 			}
 		}
 
@@ -89,6 +97,9 @@
 				margin-left: 9vw;
     		margin-top: 4vh;
 				margin-top: 4%;
+			}
+			.button-stable.activated{
+				background-color: #517b2f !important;
 			}
 		}
 

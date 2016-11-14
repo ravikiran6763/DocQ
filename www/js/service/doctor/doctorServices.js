@@ -16,7 +16,7 @@ this.doctorDetails = function (docPhone) {
 }
 
 //mydoctors function
-this.myDoctorsFetched = function (userPhone) {
+this.myDoctorsFetched = function (userPhone){
 //console.log(userPhone);
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.fetchMyDoctors,userPhone)

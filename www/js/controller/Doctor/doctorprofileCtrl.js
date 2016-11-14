@@ -22,16 +22,13 @@ console.log('doc',$scope.myDocDetails1);
 console.log('failure data', error);
 });
 
-function checkDocStatus() {
-
+function checkDocStatus(){
   doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
   $scope.myDocDetails1=response;
   console.log('doc',$scope.myDocDetails1);
-
   }).catch(function(error){
   console.log('failure data', error);
   });
-
 }
 console.log(window.connection);
 
@@ -53,10 +50,9 @@ console.log('failure data', error);
           	var uname = "greet+"+$localStorage.user;
              var pw = "DQ_patient";
 
-             //var persontocall = "greet+" + $localStorage.docPhone;
+             var persontocall = "greet+" + $localStorage.docPhone;
 
-
-             var persontocall = "greet+" + $localStorage.consultedDoctor;
+            //  var persontocall = "greet+" + $localStorage.consultedDoctor;
 
 
              console.log(uname);

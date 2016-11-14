@@ -24,11 +24,18 @@
     // max-width: 100;
     width: 80vmin;
     height: 8%;
-    margin-top:4vh;
+    margin:0 auto !important;
     padding: 10px auto;
-    margin-left: 10vw;
     text-align: center;
     font-size: 4vw;
+  }
+  .login_button {
+      background-color: #6aa13e;
+      color: #ffffff;
+      height: 40px;
+      width: 80%;
+      margin: 0 auto !important;
+      top: 11vh !important;
   }
   .description{
     // max-width: 100;
@@ -89,24 +96,24 @@
   position: absolute;
   margin-bottom:80px !important;
   }
-  .button
-   {
-   border: none;
-   border-radius: 3px;
-   box-shadow: 1px 1px 1px 0px #888888;
+
+   button{
+     width: 80%;
+     text-align: center;
+     margin-left: 10vw !important;
+     border: none;
    }
 
-  .login.button
-  {
-  background-color: #6aa13e;
-  margin-top: 8vh;
-  font-size: 4vw;
-  width: 80vmin;
-   margin-left: 10vw !important;
-   font-weight:  400;
-   color: white;
-  //  text-shadow: 1px 1px black !important;
-  }
+   .button-stable{
+     background-color: #6aa13e;
+   }
+   .button-stable.activated{
+     background-color: #557a23 !important;
+   }
+
+   .button-calm.activated{
+     background-color:#026451!important;
+   }
 	.top-content
 	{
 		height: 75%;
@@ -123,19 +130,6 @@
 		height: 25%;
 		padding-top: 5px;
 		margin-top: 0px;
-
-		.button
-		{
-			border: none;
-			color: $auth-color;
-			font-weight: bolder;
-			font-size: 20px;
-		}
-
-		.login.button
-		{
-			background-color: $auth-login-btn-bg;
-		}
 
 		.sign-up.button
 		{

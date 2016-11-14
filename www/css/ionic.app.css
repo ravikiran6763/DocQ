@@ -3936,7 +3936,7 @@ a.subdued {
       background-image: linear-gradient(180deg, #ddd, #ddd 50%, transparent 50%); }
   .bar.bar-stable {
     border-color: #b2b2b2;
-    background-color: #f8f8f8;
+    background-color: red;
     background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
     color: #444; }
     .bar.bar-stable .title {
@@ -4127,7 +4127,7 @@ a.subdued {
 
 .bar-stable .button {
   border-color: #b2b2b2;
-  background-color: #f8f8f8;
+  background-color: red;
   color: #444; }
   .bar-stable .button:hover {
     color: #444;
@@ -4366,7 +4366,7 @@ a.subdued {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   border-color: #b2b2b2;
-  background-color: #f8f8f8;
+  background-color: red;
   background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
   color: #444;
   position: absolute;
@@ -4380,7 +4380,7 @@ a.subdued {
   line-height: 49px; }
   .tabs .tab-item .badge {
     background-color: #444;
-    color: #f8f8f8; }
+    color: red; }
   @media (min--moz-device-pixel-ratio: 1.5), (-webkit-min-device-pixel-ratio: 1.5), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     .tabs {
       padding-top: 2px;
@@ -4405,13 +4405,13 @@ a.subdued {
 .tabs-stable > .tabs,
 .tabs.tabs-stable {
   border-color: #b2b2b2;
-  background-color: #f8f8f8;
+  background-color: red;
   background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
   color: #444; }
   .tabs-stable > .tabs .tab-item .badge,
   .tabs.tabs-stable .tab-item .badge {
     background-color: #444;
-    color: #f8f8f8; }
+    color: red; }
 
 .tabs-positive > .tabs,
 .tabs.tabs-positive {
@@ -4525,7 +4525,7 @@ a.subdued {
   top: 4%; }
 
 .tabs-striped.tabs-stable .tabs {
-  background-color: #f8f8f8; }
+  background-color: red; }
 
 .tabs-striped.tabs-stable .tab-item {
   color: rgba(32, 36, 44, 0.4);
@@ -4673,7 +4673,7 @@ a.subdued {
   background-image: none; }
 
 .tabs-striped.tabs-background-stable .tabs {
-  background-color: #f8f8f8;
+  background-color: red;
   background-image: none; }
 
 .tabs-striped.tabs-background-positive .tabs {
@@ -4719,14 +4719,14 @@ a.subdued {
       opacity: 1; }
 
 .tabs-striped.tabs-color-stable .tab-item {
-  color: rgba(248, 248, 248, 0.4);
+  color: rgba(255, 0, 0, 0.4);
   opacity: 1; }
   .tabs-striped.tabs-color-stable .tab-item .badge {
     opacity: 0.4; }
   .tabs-striped.tabs-color-stable .tab-item.tab-item-active, .tabs-striped.tabs-color-stable .tab-item.active, .tabs-striped.tabs-color-stable .tab-item.activated {
     margin-top: -2px;
-    color: #f8f8f8;
-    border: 0 solid #f8f8f8;
+    color: red;
+    border: 0 solid red;
     border-top-width: 2px; }
     .tabs-striped.tabs-color-stable .tab-item.tab-item-active .badge, .tabs-striped.tabs-color-stable .tab-item.active .badge, .tabs-striped.tabs-color-stable .tab-item.activated .badge {
       top: 2px;
@@ -4838,7 +4838,7 @@ a.subdued {
 
 .tabs-background-stable .tabs,
 .tabs-background-stable > .tabs {
-  background-color: #f8f8f8;
+  background-color: red;
   background-image: linear-gradient(0deg, #b2b2b2, #b2b2b2 50%, transparent 50%);
   border-color: #b2b2b2; }
 
@@ -4896,13 +4896,13 @@ a.subdued {
       opacity: 1; }
 
 .tabs-color-stable .tab-item {
-  color: rgba(248, 248, 248, 0.4);
+  color: rgba(255, 0, 0, 0.4);
   opacity: 1; }
   .tabs-color-stable .tab-item .badge {
     opacity: 0.4; }
   .tabs-color-stable .tab-item.tab-item-active, .tabs-color-stable .tab-item.active, .tabs-color-stable .tab-item.activated {
-    color: #f8f8f8;
-    border: 0 solid #f8f8f8; }
+    color: red;
+    border: 0 solid red; }
     .tabs-color-stable .tab-item.tab-item-active .badge, .tabs-color-stable .tab-item.active .badge, .tabs-color-stable .tab-item.activated .badge {
       opacity: 1; }
 
@@ -4995,11 +4995,11 @@ ion-tabs.tabs-striped.tabs-color-active-light .tab-item.tab-item-active, ion-tab
 ion-tabs.tabs-color-active-stable .tab-item {
   color: #20242c; }
   ion-tabs.tabs-color-active-stable .tab-item.tab-item-active, ion-tabs.tabs-color-active-stable .tab-item.active, ion-tabs.tabs-color-active-stable .tab-item.activated {
-    color: #f8f8f8; }
+    color: red; }
 
 ion-tabs.tabs-striped.tabs-color-active-stable .tab-item.tab-item-active, ion-tabs.tabs-striped.tabs-color-active-stable .tab-item.active, ion-tabs.tabs-striped.tabs-color-active-stable .tab-item.activated {
-  border-color: #f8f8f8;
-  color: #f8f8f8; }
+  border-color: red;
+  color: red; }
 
 ion-tabs.tabs-color-active-positive .tab-item {
   color: #20242c; }
@@ -5216,7 +5216,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   .tab-item.tab-item-active.tab-item-stable,
   .tab-item.active.tab-item-stable,
   .tab-item.activated.tab-item-stable {
-    color: #f8f8f8; }
+    color: red; }
   .tab-item.tab-item-active.tab-item-positive,
   .tab-item.active.tab-item-positive,
   .tab-item.activated.tab-item-positive {
@@ -5764,7 +5764,7 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
     color: #444; }
   .item.item-stable {
     border-color: #b2b2b2;
-    background-color: #f8f8f8;
+    background-color: red;
     color: #444; }
   .item.item-positive {
     border-color: #004d4d;
@@ -6060,7 +6060,7 @@ a.item-content {
 
 .item-complex.item-stable > .item-content {
   border-color: #b2b2b2;
-  background-color: #f8f8f8;
+  background-color: red;
   color: #444; }
   .item-complex.item-stable > .item-content.active, .item-complex.item-stable > .item-content:active {
     border-color: #a2a2a2;
@@ -6745,7 +6745,7 @@ button.item.item-button-right {
 
 .tabs .tab-item .badge.badge-stable,
 .badge.badge-stable {
-  background-color: #f8f8f8;
+  background-color: red;
   color: #444; }
 
 .tabs .tab-item .badge.badge-positive,
@@ -7461,8 +7461,8 @@ ion-slides {
     stroke: #fff;
     fill: #fff; }
   .spinner.spinner-stable {
-    stroke: #f8f8f8;
-    fill: #f8f8f8; }
+    stroke: red;
+    fill: red; }
   .spinner.spinner-positive {
     stroke: teal;
     fill: teal; }
@@ -7503,7 +7503,7 @@ ion-slides {
   stop-color: #fff; }
 
 .spinner-spiral.spinner-stable .stop2 {
-  stop-color: #f8f8f8; }
+  stop-color: red; }
 
 .spinner-spiral.spinner-positive .stop2 {
   stop-color: teal; }
@@ -7543,7 +7543,7 @@ legend {
   font-size: 21px;
   line-height: 2.85714; }
   legend small {
-    color: #f8f8f8;
+    color: red;
     font-size: 1.07143; }
 
 label,
@@ -7844,7 +7844,7 @@ textarea[disabled],
 input[readonly]:not(.cloned-text-input),
 textarea[readonly]:not(.cloned-text-input),
 select[readonly] {
-  background-color: #f8f8f8;
+  background-color: red;
   cursor: not-allowed; }
 
 input[type="radio"][disabled],
@@ -8526,7 +8526,7 @@ input:checked + .checkbox-icon:after {
     background: #fff;
     color: #444; }
   .item-select.item-stable select {
-    background: #f8f8f8;
+    background: red;
     color: #444; }
   .item-select.item-stable:after, .item-select.item-stable .input-label {
     color: #666666; }
@@ -8584,7 +8584,7 @@ progress {
  */
 .button {
   border-color: transparent;
-  background-color: #f8f8f8;
+  background-color: red;
   color: #444;
   position: relative;
   display: inline-block;
@@ -8663,7 +8663,7 @@ progress {
         color: #fff; }
   .button.button-stable {
     border-color: transparent;
-    background-color: #f8f8f8;
+    background-color: red;
     color: #444; }
     .button.button-stable:hover {
       color: #444;
@@ -9509,10 +9509,10 @@ a.button {
   border-color: #ddd; }
 
 .stable, a.stable {
-  color: #f8f8f8; }
+  color: red; }
 
 .stable-bg {
-  background-color: #f8f8f8; }
+  background-color: red; }
 
 .stable-border {
   border-color: #b2b2b2; }
@@ -9825,6 +9825,36 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.badge.badge-stable {
+  background-color: red;
+  color: #fff; }
+
+.item-radio {
+  padding: 0;
+  border: none;
+  font-family: Ubuntu,bold,sans-serif !important; }
+
+.icon-badge {
+  margin: 3px 0 0 18px; }
+
+.assertive {
+  background-color: #a1483e;
+  color: #fff; }
+
+.SearchHeader {
+  border-bottom: 2px solid #e2e2e2 !important;
+  margin-top: -4vh; }
+  .SearchHeader h4 {
+    font-family: Ubuntu,bold,sans-serif !important;
+    text-align: center !important; }
+
+.OnlineStatus {
+  border-color: #0e1015 !important;
+  border-bottom: none !important; }
+
+ion-side-menu ion-item.item {
+  border-color: #0e1015 !important; }
+
 .toggle-small .toggle-calm input:checked + .track .handle {
   background-color: #e2e2e2; }
 
@@ -9843,6 +9873,16 @@ a.button {
 
 .toggle-small .toggle-calm input:checked + .track {
   background-color: #527c30; }
+
+.platform-android .bar .title {
+  color: red !important;
+  left: 0 !important;
+  right: 0 !important; }
+
+.platform-ios .bar .title {
+  color: red !important;
+  left: 0 !important;
+  right: 0 !important; }
 
 .title .title-center .header-item {
   color: red;
@@ -9878,7 +9918,12 @@ ion-side-menu.menu-left.menu {
   padding-top: 40px; }
 
 .bar.app-top-bar .title * {
-  color: #FFFFFF !important; }
+  color: #FFFFFF !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  font-size: 5vw;
+  text-align: center;
+  left: 0 !important;
+  right: 0 !important; }
 
 .buttons .buttons-left .header-item {
   width: 12% !important;
@@ -10198,8 +10243,13 @@ ion-spinner.spinner-on-load {
     font-weight: 500; }
 
 .back-btn-cls {
-  font-size: 2.5em;
-  padding: 0 0 0 8px;
+  font-size: 12vw !important;
+  padding: 0 0 0 5px;
+  color: #fff; }
+
+.back-btn-cls-ios {
+  font-size: 10vw !important;
+  padding: 0 0 0 5px;
   color: #fff; }
 
 .action-sheet .button {
@@ -10227,8 +10277,7 @@ ion-spinner.spinner-on-load {
   border: none;
   position: absolute;
   border-radius: 50%;
-  z-index: 999;
-  margin-left: 5vw; }
+  z-index: 999; }
 
 .notify-badge-ios {
   background-color: #b8272e;
@@ -10238,9 +10287,7 @@ ion-spinner.spinner-on-load {
   position: relative;
   border-radius: 50%;
   z-index: 999;
-  /* width: 100%; */
-  height: 50%;
-  margin-left: -4vw; }
+  height: 50%; }
 
 .bar .buttons-left span {
   margin-right: 5px;
@@ -10279,21 +10326,6 @@ ion-spinner.spinner-on-load {
 .ionic_rating_icon_off {
   font-size: 15px;
   color: inherit; }
-
-img-crop {
-  width: 100%;
-  height: 100%;
-  display: block;
-  position: relative;
-  overflow: hidden; }
-  img-crop canvas {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    outline: none;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    /* mobile webkit */ }
 
 .toggle-position {
   width: 23%;
@@ -10457,15 +10489,15 @@ img-crop {
 .walkthrough-view .button-calm.activated {
   background-color: #026451 !important; }
 
-.walkthrough-view .conditions {
-  width: 80%;
-  margin: 0 auto;
-  font-size: 0.8em; }
-
 .walkthrough-view .login_button {
   background-color: #6aa13e;
   color: #ffffff;
   height: 40px; }
+
+.walkthrough-view .conditions {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 0.8em; }
 
 .walkthrough-view .remember-forgot {
   width: 80%;
@@ -10583,6 +10615,11 @@ img-crop {
 
 .forgot-password-view .forgot-password-container {
   margin-bottom: 0px; }
+
+.forgot-password-view .row {
+  /* margin-right: -15px; */
+  margin-left: 30px;
+  /* margin: 0 auto; */ }
 
 ion-side-menu ion-content {
   background-color: #23262a; }
@@ -10720,6 +10757,15 @@ ion-side-menu .heading-item .message {
   max-width: 100%;
   height: auto;
   width: 2vmin; }
+
+.ion-ios-chatbubble-outline::before {
+  content: "";
+  color: #fff;
+  font-size: 10vw;
+  position: absolute;
+  z-index: -1;
+  /* float: right; */
+  margin: 2px 0 0 8px; }
 
 .ion-android-happy::before {
   content: url("../img/dq_icon_speciality_540x960.png");
@@ -10942,6 +10988,8 @@ ion-side-menu .heading-item .message {
         background-color: #6aa13e;
         font-family: Ubuntu,bold,sans-serif !important;
         color: #fff; }
+      .doctor-profile-view .bottom-content .button-content .button-stable.activated {
+        background-color: #517b2f !important; }
   .doctor-profile-view .buttonPosition {
     margin-top: 5vh; }
   .doctor-profile-view .rating {
@@ -11163,12 +11211,16 @@ ion-side-menu .heading-item .message {
           width: 90%;
           background-color: #a1a1a1 !important;
           border-color: #a1a1a1; }
+        .patient-payment-view .pay-content .button-content .refund .button-calm.activated {
+          background-color: #808080 !important; }
       .patient-payment-view .pay-content .button-content .topup {
         width: 50%;
         float: left; }
         .patient-payment-view .pay-content .button-content .topup .button {
           width: 90%;
           background-color: #6aa13e !important; }
+        .patient-payment-view .pay-content .button-content .topup .button-stable.activated {
+          background-color: #517b2f !important; }
   .patient-payment-view .item-divider {
     text-align: center;
     height: 7vh;
@@ -11245,11 +11297,17 @@ ion-side-menu .heading-item .message {
   .sepecility-details-view .sendRequest {
     width: 80vmin;
     height: 8%;
-    margin-top: 4vh;
+    margin: 0 auto !important;
     padding: 10px auto;
-    margin-left: 10vw;
     text-align: center;
     font-size: 4vw; }
+  .sepecility-details-view .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 40px;
+    width: 80%;
+    margin: 0 auto !important;
+    top: 11vh !important; }
   .sepecility-details-view .description {
     width: 80vmin;
     height: 20%;
@@ -11296,18 +11354,17 @@ ion-side-menu .heading-item .message {
     display: block;
     position: absolute;
     margin-bottom: 80px !important; }
-  .sepecility-details-view .button {
-    border: none;
-    border-radius: 3px;
-    box-shadow: 1px 1px 1px 0px #888888; }
-  .sepecility-details-view .login.button {
-    background-color: #6aa13e;
-    margin-top: 8vh;
-    font-size: 4vw;
-    width: 80vmin;
+  .sepecility-details-view button {
+    width: 80%;
+    text-align: center;
     margin-left: 10vw !important;
-    font-weight: 400;
-    color: white; }
+    border: none; }
+  .sepecility-details-view .button-stable {
+    background-color: #6aa13e; }
+  .sepecility-details-view .button-stable.activated {
+    background-color: #557a23 !important; }
+  .sepecility-details-view .button-calm.activated {
+    background-color: #026451 !important; }
   .sepecility-details-view .top-content {
     height: 75%;
     text-align: center; }
@@ -11317,13 +11374,6 @@ ion-side-menu .heading-item .message {
     height: 25%;
     padding-top: 5px;
     margin-top: 0px; }
-    .sepecility-details-view .bottom-content .button {
-      border: none;
-      color: #FFFFFF;
-      font-weight: bolder;
-      font-size: 20px; }
-    .sepecility-details-view .bottom-content .login.button {
-      background-color: rgba(56, 126, 245, 0.8); }
     .sepecility-details-view .bottom-content .sign-up.button {
       background-color: rgba(255, 76, 76, 0.8); }
 
@@ -11337,6 +11387,8 @@ ion-side-menu .heading-item .message {
     right: 0px !important; }
   .customercare-view .cc-form {
     height: 100%; }
+  .customercare-view .button-stable {
+    background-color: #6aa13e; }
   .customercare-view .top-content {
     height: 60%;
     width: 85%;
@@ -11360,6 +11412,8 @@ ion-side-menu .heading-item .message {
         margin-top: calc(100%-30vh);
         background-color: #69a33d !important;
         color: #fff; }
+      .customercare-view .top-content .button-content .button-stable.activated {
+        background-color: #517b2f !important; }
   .customercare-view .bottom-content {
     background-color: #dbdbdb;
     height: 40%;
@@ -11397,6 +11451,8 @@ ion-side-menu .heading-item .message {
         margin-left: 9vw;
         margin-top: 4vh;
         margin-top: 4%; }
+      .customercare-view .bottom-content .button-content .button-stable.activated {
+        background-color: #517b2f !important; }
 
 .patient-refund-view {
   background-color: #e2e2e2 !important;
@@ -11417,6 +11473,17 @@ ion-side-menu .heading-item .message {
   .patient-refund-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }
+  .patient-refund-view input[type="number"] {
+    display: block;
+    padding-top: 2px;
+    padding-left: 0;
+    height: 40px;
+    color: #111;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
+    margin: 0 auto; }
   .patient-refund-view .top-content {
     height: 30%;
     height: 30vh; }
@@ -11447,6 +11514,8 @@ ion-side-menu .heading-item .message {
       background-color: #6aa13e !important;
       width: 100%;
       margin-top: 2vh; }
+    .patient-refund-view .button-container .button-stable.activated {
+      background-color: #517b2f !important; }
   .patient-refund-view .item-divider {
     text-align: center;
     height: 7vh;
@@ -11526,6 +11595,17 @@ ion-side-menu .heading-item .message {
   .patient-topup-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }
+  .patient-topup-view input[type="number"] {
+    display: block;
+    padding-top: 2px;
+    padding-left: 0;
+    height: 40px;
+    color: #111;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 16px;
+    width: 100%;
+    margin: 0 auto; }
   .patient-topup-view .top-content {
     height: 25%;
     height: 25vh; }
@@ -11558,12 +11638,23 @@ ion-side-menu .heading-item .message {
       font-weight: lighter;
       font-size: 3.2vw; }
   .patient-topup-view .button-container {
-    width: 80%;
+    width: 100%;
     margin: 0 auto; }
-    .patient-topup-view .button-container .button {
-      background-color: #6aa13e !important;
-      width: 100%;
-      margin-top: 2vh; }
+    .patient-topup-view .button-container button {
+      width: 80%;
+      text-align: center;
+      margin-left: 10vw !important;
+      border: none; }
+    .patient-topup-view .button-container .button-stable {
+      background-color: #6aa13e; }
+    .patient-topup-view .button-container .button-stable.activated {
+      background-color: #557a23 !important; }
+    .patient-topup-view .button-container .button-assertive.activated {
+      background-color: #517b2f  !important; }
+    .patient-topup-view .button-container .login_button {
+      background-color: #6aa13e;
+      color: #ffffff;
+      height: 40px; }
   .patient-topup-view .item-divider {
     text-align: center;
     height: 7vh;
@@ -11870,6 +11961,9 @@ ion-side-menu .heading-item .message {
   .medical-speciality-view ion-content {
     overflow: scroll !important;
     overflow-x: hidden; }
+  .medical-speciality-view a:hover, .medical-speciality-view a:focus {
+    color: #444;
+    text-decoration: none !important; }
   .medical-speciality-view .bottom-content {
     width: 100%;
     overflow: scroll !important; }
@@ -12289,6 +12383,8 @@ ion-side-menu .heading-item .message {
     margin-left: 0; }
   .patient-request-view .bottom-content {
     padding-top: 5px; }
+    .patient-request-view .bottom-content .active {
+      background-color: green !important; }
     .patient-request-view .bottom-content .button-bar {
       width: 100% !important; }
     .patient-request-view .bottom-content .button {
@@ -12305,13 +12401,13 @@ ion-side-menu .heading-item .message {
       background-size: 80px 60px;
       background-position: center;
       background-repeat: no-repeat;
-      padding-top: 21vh; }
+      padding-top: 25vh; }
     .patient-request-view .bottom-content .accpt-btn {
       background-image: url(../img/dq_request_accept_up_540x960.png);
       background-size: 80px 60px;
       background-position: center;
       background-repeat: no-repeat;
-      padding-top: 21vh; }
+      padding-top: 25vh; }
 
 .patient-notes-view {
   background-color: #e2e2e2 !important;
@@ -13052,7 +13148,7 @@ ion-side-menu .heading-item .message {
     margin-top: 5vh !important; }
   .patient-reg-3-view .top-content {
     width: 80%;
-    height: 25%;
+    height: 30%;
     margin: 0 auto;
     text-align: center; }
     .patient-reg-3-view .top-content p {
@@ -13104,23 +13200,6 @@ ion-side-menu .heading-item .message {
       color: #111;
       font-size: 1em;
       text-align: center; }
-    .patient-reg-3-view .bottom-content .button-bar {
-      width: 80%;
-      margin: 0 auto;
-      height: 26% !important; }
-      .patient-reg-3-view .bottom-content .button-bar .button {
-        background-color: #6aa13e;
-        border: none;
-        padding: 10px auto; }
-      .patient-reg-3-view .bottom-content .button-bar .resend {
-        float: left;
-        width: 80%;
-        height: 44px;
-        margin-right: 2vw; }
-      .patient-reg-3-view .bottom-content .button-bar .confirm {
-        float: right;
-        margin-left: 2vw;
-        height: 44px; }
   .patient-reg-3-view .register-back-btn {
     float: left;
     font-size: 10vw; }
@@ -13131,14 +13210,12 @@ ion-side-menu .heading-item .message {
   .patient-reg-3-view .row {
     margin: 0 !important; }
   .patient-reg-3-view .bar {
-    height: 40%;
+    height: 37%;
     width: 100%; }
     .patient-reg-3-view .bar .button-bar {
       position: absolute !important;
-      width: 80%;
-      height: 26%;
-      /* margin: 0 auto; */
-      margin-left: 8vw; }
+      width: 70%;
+      margin-left: 14vw; }
       .patient-reg-3-view .bar .button-bar .button {
         background-color: #6aa13e;
         border: none;
@@ -13152,6 +13229,8 @@ ion-side-menu .heading-item .message {
         float: right;
         margin-left: 2vw;
         padding: 6px; }
+      .patient-reg-3-view .bar .button-bar .button-assertive.activated {
+        background-color: #517b2f !important; }
       .patient-reg-3-view .bar .button-bar a, .patient-reg-3-view .bar .button-bar h2, .patient-reg-3-view .bar .button-bar h3 {
         font-size: 1em;
         text-align: center;
@@ -13169,10 +13248,6 @@ ion-side-menu .heading-item .message {
         padding-top: 6vh; }
     .patient-reg-3-view .bar .button-stable {
       background-color: #6aa13e; }
-    .patient-reg-3-view .bar .button-stable.activated {
-      background-color: #557a23 !important; }
-    .patient-reg-3-view .bar .button-calm.activated {
-      background-color: #026451 !important; }
   .patient-reg-3-view .login_button {
     background-color: #6aa13e;
     color: #ffffff;
@@ -13190,6 +13265,17 @@ ion-side-menu .heading-item .message {
     width: auto;
     height: 100%;
     overflow: scroll !important; }
+  .patient-reg-2-view .back_button {
+    margin: 0 auto;
+    margin-left: 5vw !important;
+    margin-top: 5vh !important; }
+  .patient-reg-2-view .register-back-btn {
+    float: left;
+    font-size: 10vw; }
+  .patient-reg-2-view .back-txt-cls {
+    margin: 0 0 0 4vh;
+    font-size: 3vh;
+    line-height: 6vh; }
   .patient-reg-2-view .submitted input.ng-invalid:not(:focus) {
     border: 2px solid red; }
   .patient-reg-2-view .top-content {
@@ -13241,7 +13327,6 @@ ion-side-menu .heading-item .message {
     margin-bottom: 2vh;
     width: 100% !important; }
   .patient-reg-2-view input[type="tel"] {
-    margin-top: 12vh !important;
     height: 40px !important;
     padding-left: 10px;
     width: 100% !important; }
@@ -13282,9 +13367,6 @@ ion-side-menu .heading-item .message {
 
 .patientscreen-view {
   font-family: Ubuntu,bold,sans-serif !important; }
-  .patientscreen-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
   .patientscreen-view ion-content {
     overflow: hidden !important; }
   .patientscreen-view .slider-content {
