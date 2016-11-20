@@ -12,15 +12,12 @@
   </div>
   <div class="refund-amount">
 
-    <label class="item item-input" name="refund_amt"
-           ng-class="{ 'has-error-lr' : patientRefund.refund.$invalid  && patientRefund.$submitted, 'valid-lr' : patientRefund.refund.$valid  && patientTopUp.$submitted}">
-      <input type="number" placeholder="00.00" ng-model="payment.refund"  required>
+      <input type="number" placeholder="00.00" ng-model="payment.refund" ng-class="{ 'has-error-lr' : patientRefund.refund.$invalid  && patientRefund.$submitted, 'valid-lr' : patientRefund.refund.$valid  && patientTopUp.$submitted}" required>
 
-    </label>
 
   </div>
   <div class="button-container">
-    <button class="button button-balanced button-block" ng-click="refundReq(patientRefund.$valid);">Refund</button>
+    <button class="button button-balanced button-block button-stable" ng-click="refundReq(patientRefund.$valid);">Refund</button>
   </div>
 
 </form>

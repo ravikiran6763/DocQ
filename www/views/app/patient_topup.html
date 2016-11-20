@@ -17,17 +17,16 @@
     <!-- <label class="item item-input" name="refund_amt" id="label" >
         <input type="number" placeholder="00.00" ng-model="payment.topUp"  required>
     </label> -->
+<!-- 
+    <label class="item item-input">
 
-    <label class="item item-input"
-           ng-class="{ 'has-error-lr' : patientTopUp.topUp.$invalid  && patientTopUp.$submitted, 'valid-lr' : patientTopUp.topUp.$valid  && patientTopUp.$submitted}">
-      <input type="number" placeholder="00.00" ng-model="payment.topUp"  required>
+    </label> -->
+    <input type="number" placeholder="00.00" ng-model="payment.topUp"  ng-class="{ 'has-error-lr' : patientTopUp.topUp.$invalid  && patientTopUp.$submitted, 'valid-lr' : patientTopUp.topUp.$valid  && patientTopUp.$submitted}" required>
 
-      <!-- <input type="text" name="topUp"  ng-model="doctor.topUp" required> -->
-    </label>
 
   </div>
   <div class="button-container">
-    <button id="update-css" class="button button-balanced button-block"  ng-click="validateTopup(patientTopUp.$valid)" >Topup</button>
+    <button class="login_button button button-block button-assertive"  ng-click="validateTopup(patientTopUp.$valid)" >Topup</button>
 <!-- <div class="pm-button"><a href="https://www.payumoney.com/paybypayumoney/#/131409"><img src="https://www.payumoney.com//media/images/payby_payumoney/buttons/212.png" /></a></div> -->
   </div>
 </form>

@@ -37,7 +37,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-datepicker',
   'ngMessages',
   'ion-alpha-scroll',
-  // 'intlpnIonic',
+  'angular-circular-progress',
   'ionic-letter-avatar'
 ])
 
@@ -52,7 +52,7 @@ DoctorQuickApp.run(function($cordovaSplashscreen) {
 DoctorQuickApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
-
+    window.plugin.backgroundMode.enable();
     function successFunction() {
       console.log("It worked!");
     }
@@ -111,9 +111,12 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       PushNotificationsService.register();
 
       // Android customization
-      cordova.plugins.backgroundMode.setDefaults({ text:'Doing heavy tasks.'});
+      cordova.plugins.backgroundMode.setDefaults({ text:'Keeps you Awailable on DQ.'});
       // Enable background mode
       cordova.plugins.backgroundMode.enable();
+      if(cordova.plugins.backgroundMode.isEnabled()){
+           console.log('Hi, I am enabled. Signed : backgroundMode.');
+         }
 
       // Called when background mode has been activated
       cordova.plugins.backgroundMode.onactivate = function () {
@@ -129,12 +132,10 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
           {
           console.info("It worked!");
           }
-
           function errorFunction(error)
           {
           console.error(error);
           }
-
           function trace(value)
           {
           console.log(value);
@@ -185,6 +186,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
         }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
+      console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
       }
@@ -242,6 +244,8 @@ DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
 
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
+       $ionicConfigProvider.views.transition('platform');
+
 });
 
 DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
@@ -307,8 +311,6 @@ $stateProvider
 
   })
 
-
-  //FEEDS searchDoctors
   .state('app.patient_home', {
     url: "/patientScreens",
     views: {
@@ -320,15 +322,6 @@ $stateProvider
     }
   })
 
-  //FEEDS searchDoctors
-  // .state('app.testcall', {
-  //   url: "/testcall",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/app/testcall.html"
-  //     }
-  //   }
-  // })
 
   .state('app.patient_profile', {
     url: "/patient_profile",

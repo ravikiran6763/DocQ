@@ -1,19 +1,17 @@
 <ion-side-menus enable-menu-with-back-views="true">
   <ion-side-menu-content class="post-size-14px" >
-
-    <ion-nav-bar class="bar app-top-bar" >
+    <ion-nav-bar class="bar app-top-bar" align-title="center" >
 
       <ion-nav-buttons side="left">
-        <!-- <button class="button button-icon icon ion-ios-chatbubble-outline" blink blink-class="energized" menu-toggle="left" ng-show="showNotification" >
-        </button> -->
-        <i class="back-btn-cls ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="app.my_consultations"></i>
-        <span class="notify-badge " ng-show="showBadge" ui-sref="app.my_consultations">{{2}}</span>
+        <button class="button-clear"  style="margin: -11px 0 0 -11px;">
+          <i class="icon ion-ios7-telephone-outline ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="app.my_consultations"><span class="badge badge-stable icon-badge" ng-show="showBadge">11</span></i>
+        </button>
         <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
           <i class="back-btn-cls ion-ios-arrow-back" style="float:left; margin: -5px 0 0 -3px;" ></i>
        </button>
       </ion-nav-buttons>
 
-      <ion-nav-title >
+      <ion-nav-title>
         {{headerTxt}}
       </ion-nav-title>
 
@@ -30,9 +28,9 @@
   </ion-side-menu-content>
 
   <ion-side-menu  side="right" class="main-menu" expose-aside-when="large">
-    <ion-content class="doc-sidemenu sidemenu-padding" ng-class="{'search-side-menu' : sideMenuForSearch}">
-      <ion-list ng-hide="sideMenuForSearch">
+    <ion-content class="sidemenu-padding" ng-class="{'search-side-menu' : sideMenuForSearch}">
 
+      <ion-list ng-hide="sideMenuForSearch">
         <ion-item class="item-icon-left" ng-click="getPatientDetails();"  ui-sref="app.patient_profile" menu-close>
           <i class="icon ion-android-bookmark"></i>
           <h2 class="menu-text">Profile</h2>
@@ -41,7 +39,7 @@
           <i class="icon ion-radio-waves"></i>
           <h2 class="menu-text">My Doctors</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.my_consultations" ng-click="myConsultations();">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.my_consultations" >
           <i class="icon ion-social-wordpress"></i>
           <h2 class="menu-text">My Consultations</h2>
         </ion-item>
@@ -54,7 +52,7 @@
           <h2 class="menu-text" >Review App</h2>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
-          <i class="icon ion-android-wifi"></i>
+          <i class="icon ion-document"></i>
           <h2 class="menu-text">Notifications</h2>
         </ion-item>
         <div class="toggle-position">
@@ -64,43 +62,35 @@
             <div class="track">
                 <div class="handle"></div>
             <p class="notificationOn">{{notificationValue ? 'ON' : 'OFF'}}</p>
-
-
             </div>
-
           </label>
         </div>
-        <!-- <ul >
-          <li class="test-view">
-            <i class="icon ion-android-wifi"></i>
 
-            Notifications<md-toggle></md-toggle>
-          </li>
-        </ul> -->
-        <!-- <ion-toggle
-                           ng-model="item.checked"
-                           ng-checked="item.checked">
-                 test<p>on</p>
-               </ion-toggle> -->
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_customercare">
           <i class="icon ion-gear-a"></i>
           <h2 class="menu-text">Customer Care</h2>
         </ion-item>
-
-
-        <!-- <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.testcall">
-          <i class="icon ion-gear-a"></i>
-          <h2 class="menu-text">test call</h2>
-        </ion-item> -->
-
-
-
       </ion-list>
 
-    <ion-list class="side-menu-search" ng-show="sideMenuForSearch" ng-repeat="item in specialityList" >
-      <div class="radio_bg">
-          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="h1(item.special);" menu-close><h2 >{{item.special}}</h2></ion-radio>
+    <ion-list class="side-menu-search" ng-show="sideMenuForSearch"  >
+      <div class="SearchHeader"><h4>{{SearchHeader}}</h4></div>
+
+
+      <div class="radio_bg" ng-repeat="item in specialityList1">
+          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="h1(item.special);" ng-show="showSPecialities" menu-close ><h2 >{{item.special}} </h2></ion-radio>
+          <!-- selected:indexOf({{specialityList.search}}) -->
       </div>
+
+      <div class="radio_bg" ng-repeat="type in sexList">
+          <ion-radio  ng-model="specialityList.sex" ng-value=type.sex ng-click="h1(type.sex);" ng-show="showSex" menu-close><h2 >{{type.sex}} </h2></ion-radio>
+      </div>
+      <div class="radio_bg" ng-repeat="st in statusList">
+          <ion-radio  ng-model="specialityList.stat" ng-value=st.stat ng-click="h1(st.stat);" ng-show="showStatus" menu-close><h2 >{{st.stat}} </h2></ion-radio>
+      </div>
+      <div class="radio_bg" ng-repeat="ln in LanguageList">
+          <ion-radio  ng-model="specialityList.lang" ng-value=ln.lang ng-click="h1(ln.lang);" ng-show="showLanguage"  menu-close><h2 >{{ln.lang}} </h2></ion-radio>
+      </div>
+
     </ion-list>
 
     </ion-content>

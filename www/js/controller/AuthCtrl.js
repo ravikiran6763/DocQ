@@ -14,8 +14,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
 
-
-
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
@@ -44,12 +42,36 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
         $scope.LoginStatus=response;
         if(response === "patient")
         {
+          var uname1 = "greet+"+$localStorage.user;
+          var pw1 = "DQ_patient";
+          var success = function(message)
+            {
+              alert(message);
+            }
+            var failure = function()
+            {
+              alert("Error calling Hello Plugin");
+            }
+              // hello.login(uname1,pw1,success, failure);
         //$state.go('app.patient_home');
         }
 
         else if(response === "doctor")
         {
-        // $state.go('templates.doctor_home');
+
+        var uname1 = "greet+"+$localStorage.user;
+        var pw1 = "DQ_doctor";
+        var success = function(message)
+          {
+            alert(message);
+          }
+          var failure = function()
+          {
+            alert("Error calling Hello Plugin");
+          }
+      //$state.go('templates.doctor_home');
+      // hello.login(uname1,pw1,success, failure);
+        $localStorage.onOff=1;
         }
          console.log($scope.LoginStatus);
          $ionicLoading.hide();
@@ -66,20 +88,7 @@ $scope.sendForm = function($event,form)
      $scope.submitted = true
 
 };
-$scope.validateUser=function(isFormValid){
-  console.log('isFormValid ', isFormValid)
 
-  console.log('clicked');
-
-  $scope.submitted = true;
-  if(isFormValid) {
-    console.log($scope.PatientDetail.patient_age);
-    $state.go('auth.patient_reg2');
-  }
-  // console.log($rootScope.PatientDetail);
-
-  // $state.go('auth.patient_reg2');
-}
 
     $scope.validateUser1=function(isForm1Valid){
     // console.log('isForm1Valid ', isForm1Valid)
@@ -235,10 +244,9 @@ console.log($rootScope.Doctor);
 
     $scope.otpentered = {};
 
-    $scope.patientRegistration = function()
-    {
-
-      console.log('reg clicked');
+$scope.patientRegistration = function()
+{
+        console.log('reg clicked');
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
             alert('Please Enter OTP');
@@ -325,7 +333,7 @@ console.log($rootScope.Doctor);
               });
         }
 
-    }
+}
 
 
     $scope.validateUser=function(isFormValid){
@@ -346,9 +354,7 @@ console.log($rootScope.Doctor);
 
         }
       }
-      // console.log($rootScope.PatientDetail);
 
-      // $state.go('auth.patient_reg2');
     }
 
 
@@ -386,13 +392,13 @@ console.log('isDocForm1Valid ', isDocForm1Valid)
 
       }
       else{
+
+        $scope.regDoc=doctorDetails;
+        console.log($scope.regDoc);
         var showDoc= $ionicPopup.show({
           scope: $scope,
-          // template:'<div class="row list-inset" ng-repeat= "(key, data) in '+$scope.myData+'" >'+
-          //          '<div class="col font_type2" >{{key}}</div>'+
-          //          '<div class="col font_type2" >{{data}}</div>'+
-          //          '</div>',
-          template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style><body><p >Thank you for registering Dr. {{doc.doctorFname}} Middlename,Lastname someone from DoctorQuick will call you soon to help you with the signup.<p/></body>",
+          template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
+                      "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}.<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
           title: 'Thank You',
 
           buttons: [

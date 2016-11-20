@@ -2,127 +2,127 @@ angular.module('DoctorQuick.directives', [])
 
 
 .directive('mdToggle', function($ionicGesture, $timeout,$state) {
-	return {
-		restrict: 'E',
-    replace: 'true',
-    require: '?ngModel',
-    transclude: true,
-		template:
-    '<div class="flip-toggle">' +
-    '<div ng-transclude></div>' +
-    '<label class="toggle">' +
-    '<input type="checkbox">' +
-    '<div class="track">' +
-    '<div class="handle"><span class="handle-label handle-label-a">ON</span><span class="handle-label handle-label-b">OFF</span></div>' +
-    '</div>' +
-    '</label>' +
-    '</div>',
-		compile: function(element, attr) {
-      var input = element.find('input');
-      angular.forEach({
-        'name': attr.name,
-        'ng-value': attr.ngValue,
-        'ng-model': attr.ngModel,
-        'ng-checked': attr.ngChecked,
-        'ng-disabled': attr.ngDisabled,
-        'ng-true-value': attr.ngTrueValue,
-        'ng-false-value': attr.ngFalseValue,
-        'ng-change': attr.ngChange
-      }, function(value, name) {
-        if (angular.isDefined(value)) {
-          input.attr(name, value);
-        }
-      });
+		return {
+			restrict: 'E',
+	    replace: 'true',
+	    require: '?ngModel',
+	    transclude: true,
+			template:
+	    '<div class="flip-toggle">' +
+	    '<div ng-transclude></div>' +
+	    '<label class="toggle">' +
+	    '<input type="checkbox">' +
+	    '<div class="track">' +
+	    '<div class="handle"><span class="handle-label handle-label-a">ON</span><span class="handle-label handle-label-b">OFF</span></div>' +
+	    '</div>' +
+	    '</label>' +
+	    '</div>',
+			compile: function(element, attr) {
+	      var input = element.find('input');
+	      angular.forEach({
+	        'name': attr.name,
+	        'ng-value': attr.ngValue,
+	        'ng-model': attr.ngModel,
+	        'ng-checked': attr.ngChecked,
+	        'ng-disabled': attr.ngDisabled,
+	        'ng-true-value': attr.ngTrueValue,
+	        'ng-false-value': attr.ngFalseValue,
+	        'ng-change': attr.ngChange
+	      }, function(value, name) {
+	        if (angular.isDefined(value)) {
+	          input.attr(name, value);
+	        }
+	      });
 
 
-      if(attr.toggleClass) {
-        element[0].getElementsByTagName('label')[0].classList.add(attr.toggleClass);
-      }
+	      if(attr.toggleClass) {
+	        element[0].getElementsByTagName('label')[0].classList.add(attr.toggleClass);
+	      }
 
-      return function($scope, $element, $attr) {
-        var el, checkbox, track, handle;
+	      return function($scope, $element, $attr) {
+	        var el, checkbox, track, handle;
 
-        el = $element[0].getElementsByTagName('label')[0];
-        checkbox = el.children[0];
-        track = el.children[1];
-        handle = track.children[0];
+	        el = $element[0].getElementsByTagName('label')[0];
+	        checkbox = el.children[0];
+	        track = el.children[1];
+	        handle = track.children[0];
 
-        var ngModelController = angular.element(checkbox).controller('ngModel');
+	        var ngModelController = angular.element(checkbox).controller('ngModel');
 
-        $scope.toggle = new ionic.views.Toggle({
-          el: el,
-          track: track,
-          checkbox: checkbox,
-          handle: handle,
-          onChange: function() {
-            if(checkbox.checked) {
-              ngModelController.$setViewValue(true);
-            } else {
-              ngModelController.$setViewValue(false);
-            }
-            $scope.$apply();
-          }
-        });
+	        $scope.toggle = new ionic.views.Toggle({
+	          el: el,
+	          track: track,
+	          checkbox: checkbox,
+	          handle: handle,
+	          onChange: function() {
+	            if(checkbox.checked) {
+	              ngModelController.$setViewValue(true);
+	            } else {
+	              ngModelController.$setViewValue(false);
+	            }
+	            $scope.$apply();
+	          }
+	        });
 
-        $scope.$on('$destroy', function() {
-          $scope.toggle.destroy();
-        });
-      };
-    }
-	}
+	        $scope.$on('$destroy', function() {
+	          $scope.toggle.destroy();
+	        });
+	      };
+	    }
+		}
 })
 
 .directive('showHideContainer', function(){
-	return {
-		scope: {
-		},
-		controller: function($scope, $element, $attrs) {
-			$scope.show = false;
+		return {
+			scope: {
+			},
+			controller: function($scope, $element, $attrs) {
+				$scope.show = false;
 
-			$scope.toggleType = function($event){
-				$event.stopPropagation();
-				$event.preventDefault();
+				$scope.toggleType = function($event){
+					$event.stopPropagation();
+					$event.preventDefault();
 
-				$scope.show = !$scope.show;
+					$scope.show = !$scope.show;
 
-				// Emit event
-				$scope.$broadcast("toggle-type", $scope.show);
-			};
-		},
-		templateUrl: 'views/common/show-hide-password.html',
-		restrict: 'A',
-		replace: false,
-		transclude: true
-	};
+					// Emit event
+					$scope.$broadcast("toggle-type", $scope.show);
+				};
+			},
+			templateUrl: 'views/common/show-hide-password.html',
+			restrict: 'A',
+			replace: false,
+			transclude: true
+		};
 })
 
 
 .directive('showHideInput', function(){
-	return {
-		scope: {
-		},
-		link: function(scope, element, attrs) {
-			// listen to event
-			scope.$on("toggle-type", function(event, show){
-				var password_input = element[0],
-						input_type = password_input.getAttribute('type');
+		return {
+			scope: {
+			},
+			link: function(scope, element, attrs) {
+				// listen to event
+				scope.$on("toggle-type", function(event, show){
+					var password_input = element[0],
+							input_type = password_input.getAttribute('type');
 
-				if(!show)
-				{
-					password_input.setAttribute('type', 'password');
-				}
+					if(!show)
+					{
+						password_input.setAttribute('type', 'password');
+					}
 
-				if(show)
-				{
-					password_input.setAttribute('type', 'text');
-				}
-			});
-		},
-		require: '^showHideContainer',
-		restrict: 'A',
-		replace: false,
-		transclude: false
-	};
+					if(show)
+					{
+						password_input.setAttribute('type', 'text');
+					}
+				});
+			},
+			require: '^showHideContainer',
+			restrict: 'A',
+			replace: false,
+			transclude: false
+		};
 })
 
 //Use this directive to open external links using inAppBrowser cordova plugin
@@ -338,7 +338,7 @@ angular.module('DoctorQuick.directives', [])
 
 //directive for change password
 
-.directive('nxEqual', function() {
+.directive('nxEqual', function(){
     return {
         require: 'ngModel',
         link: function (scope, elem, attrs, model) {
@@ -357,9 +357,9 @@ angular.module('DoctorQuick.directives', [])
         }
     };
 })
-//
-//favorite  Directive
-.directive('buttonStar', function() {
+
+	//favorite  Directive
+.directive('buttonStar', function(){
   return {
     scope: true,
     restrict: 'E',
@@ -373,7 +373,6 @@ angular.module('DoctorQuick.directives', [])
     }
   };
 })
-
 
 .directive('accessibleForm', function () {
     return {
@@ -392,7 +391,7 @@ angular.module('DoctorQuick.directives', [])
     };
 })
 
-.directive('starRating', function () {
+.directive('starRating', function (){
     return {
         restrict: 'A',
         template: '<ul class="rating">' +
@@ -415,8 +414,7 @@ angular.module('DoctorQuick.directives', [])
     }
 })
 
-.directive('iconSwitcher', function() {
-
+.directive('iconSwitcher', function(){
   return {
     restrict : 'A',
 		scope: currentState=true,
@@ -453,7 +451,6 @@ angular.module('DoctorQuick.directives', [])
     };
 })
 
-
 .directive('autoNext', function() {
     return {
        restrict: 'A',
@@ -478,7 +475,6 @@ angular.module('DoctorQuick.directives', [])
     }
 })
 
-
 .directive("moveNextOnMaxlength", function() {
     return {
         restrict: "A",
@@ -495,29 +491,30 @@ angular.module('DoctorQuick.directives', [])
     }
 })
 
-.directive('autofocusWhen1', function () {
-    return function (scope, element, attrs) {
-        scope.$watch('otpentered.OTP1', function(newValue){
-					// scope.$watch('maxLengthReach', function(newValue){
+.directive('autofocusWhen1', function (){
+	    return function (scope, element, attrs) {
+	        scope.$watch('otpentered.OTP1', function(newValue){
+						// scope.$watch('maxLengthReach', function(newValue){
 
-            if (newValue.length >= 1 ) {
-                element[0].focus();
-            }
-        });
-    }
-})
+	            if (newValue.length >= 1 ) {
+	                element[0].focus();
+	            }
+	        });
+	    }
+	})
 
 .directive('autofocusWhen2', function () {
-    return function (scope, element, attrs) {
-        scope.$watch('otpentered.OTP2', function(newValue){
-					// scope.$watch('maxLengthReach', function(newValue){
+	    return function (scope, element, attrs) {
+	        scope.$watch('otpentered.OTP2', function(newValue){
+						// scope.$watch('maxLengthReach', function(newValue){
 
-            if (newValue.length >= 1 ) {
-                element[0].focus();
-            }
-        });
-    }
-})
+	            if (newValue.length >= 1 ) {
+	                element[0].focus();
+	            }
+	        });
+	    }
+	})
+
 
 .directive('noSpecialChar', function() {
 return {
@@ -537,8 +534,6 @@ return {
   }
 } })
 
-
-
 .directive('autofocusWhen3', function () {
     return function (scope, element, attrs) {
         scope.$watch('otpentered.OTP3', function(newValue){
@@ -552,9 +547,4 @@ return {
 });
 
 //search  directive
-
-
-
-
-
 ;

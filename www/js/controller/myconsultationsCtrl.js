@@ -24,8 +24,6 @@ $ionicLoading.show();
 console.log('called');
 $ionicLoading.show();
 	$ionicLoading.show();
-
-
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		$ionicLoading.hide();

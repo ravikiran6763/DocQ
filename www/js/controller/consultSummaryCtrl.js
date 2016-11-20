@@ -29,7 +29,7 @@ $scope.ratingsObject = {
 		iconOff: 'ion-ios-star-outline',   //Optional
 		iconOnColor: 'rgb(200, 200, 100)',  //Optional
 		iconOffColor:  'rgb(200, 100, 100)',    //Optional
-		minRating:0,    //Optional
+		// minRating:,    //Optional
 		readOnly: false, //Optional
 		callback: function(rating) {    //Mandatory
 			$scope.ratingsCallback(rating);

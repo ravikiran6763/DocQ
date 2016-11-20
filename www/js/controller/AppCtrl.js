@@ -7,6 +7,12 @@ console.log('appCtrl');
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 	$scope.myDocDetail = {};
+
+	$rootScope.showSPecialities=false;
+	$rootScope.showSex=false;
+	$rootScope.showStatus=false;
+	$rootScope.showLanguage=false;
+
 //
 // var model = $cordovaDevice.getModel();
 // console.log(model);
@@ -55,6 +61,9 @@ console.log($scope.deviceAndroid );
 						else if($scope.prevPage === 'templates.notesForPatient'){
 							$state.go('templates.doctor_home');
 						}
+						else if($scope.prevPage === 'templates.requestAccepted'){
+							$state.go('templates.doctor_home');
+						}
 						else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
 							// $state.go('templates.doctor_home');
 							console.log('donothing');
@@ -62,7 +71,24 @@ console.log($scope.deviceAndroid );
 						else if($scope.prevPage === 'app.results'){
 							$state.go('app.searchDoctors');
 						}
+						else if($scope.prevPage === 'app.specialityDetailsNew'){
 
+							$localStorage.reqSent=0;
+							console.log($localStorage.reqSent);
+							window.history.back();
+
+						}
+						else if($scope.prevPage === 'app.doctorsearch'){
+							console.log('clear search values here');
+							$scope.specialdata='';
+							$scope.genderdata='';
+							$scope.statusdata='';
+							$scope.languagedataselected='';
+
+console.log($scope.specialdata);
+							window.history.back();
+
+						}
 						else{
 							window.history.back();
 							}
@@ -96,41 +122,77 @@ console.log($scope.deviceAndroid );
 
 
 			$rootScope.specialityList = {};
+			$rootScope.sexList = {};
+			$rootScope.LanguageList = {};
+			$rootScope.statusList = {};
+
 
 			$scope.showSideMenu = function (selectedSearch){
+				console.log(selectedSearch);
 					if (selectedSearch == "gender")
 					{
-							$rootScope.specialityList = [
-								{'special': 'Male'},
-								{'special': 'Female'}
+
+							$rootScope.sexList = [
+								{'sex': 'Male'},
+								{'sex': 'Female'}
 							]
+							$rootScope.SearchHeader='Gender';
+							$rootScope.showSPecialities=false;
+							$rootScope.showSex=true;
+							$rootScope.showStatus=false;
+							$rootScope.showLanguage=false;
+
+								console.log($rootScope.sexList);
 				};
 				if (selectedSearch == "language") {
 
-					$rootScope.specialityList = [
-								{'special': 'English'},
-								{'special': 'Kannada'},
-								{'special': 'Hindi'},
-								{'special': 'Tamil'},
-								{'special': 'Telugu'}
+					$rootScope.LanguageList = [
+								{'lang': 'English'},
+								{'lang': 'Kannada'},
+								{'lang': 'Hindi'},
+								{'lang': 'Tamil'},
+								{'lang': 'Telugu'}
 					]
-
+					$rootScope.SearchHeader='Language';
+					$rootScope.showSPecialities=false;
+					$rootScope.showSex=false;
+					$rootScope.showStatus=false;
+					$rootScope.showLanguage=true;
+						console.log($rootScope.LanguageList);
 				};
 
 				if (selectedSearch == "onlineOffline") {
+					$rootScope.showSearchOption=true;
 
-					$rootScope.specialityList = [
+					$rootScope.statusList = [
 
-							{'special': 'Online'},
-							{'special': 'Offline'}
+							{'stat': 'Online'},
+							{'stat': 'Offline'}
 					]
+					$rootScope.SearchHeader='Online/Offline';
+					$rootScope.showSPecialities=false;
+					$rootScope.showSex=false;
+					$rootScope.showStatus=true;
+					$rootScope.showLanguage=false;
 
 				};
 				//Make API request and get the data
+				$rootScope.specialityList1={};
 				if (selectedSearch == "speciality")
 				{
+					$rootScope.SearchHeader='Speciality';
+					$rootScope.showSPecialities=true;
+					$rootScope.showSex=false;
+					$rootScope.showStatus=false;
+					$rootScope.showLanguage=false;
+					$ionicLoading.show();
+
 							searchDoctorServices.specialitySearch().then(function(response){
-							$rootScope.specialityList=response;
+							$rootScope.specialityList1=response;
+							if($rootScope.specialityList1){
+								$ionicLoading.hide();
+							}
+
 
 					}).catch(function(error){
 						console.log('failure data', error);
@@ -144,13 +206,14 @@ console.log($scope.deviceAndroid );
 
 
 			$scope.sidemenu = {};
-
+			$scope.choice='';
 			$scope.h1 = function(val)	{
 					if(val === "Asthma Specialist " || val === "Ayurvedic Doctor " || val === "Cardiologist" || val === "Dentist " || val == "Dermatologist" || val === "Dietician/Nutritionist" || val === "Ear-nose-throat specialist" || val === "Gastroenterologist" || val === "General Physician " || val === "Gynecologist" || val === "Homeopathy" || val === "Lactation Consultant " || val === "Neurologist" || val === "Obstetrician/Gynecologist " || val === "Orthopaedic Surgeon" || val === "Pediatrician" || val === "Psychiatrist" || val === "Veterinarian")
 					{
 						$scope.specfic = val;
+						$scope.choice= val;
+						console.log($scope.specfic);
 					}
-
 					if(val == "Female" || val == "Male")
 					{
 							if(val === "Male")
@@ -163,24 +226,24 @@ console.log($scope.deviceAndroid );
 							}
 					}
 
-				if(val == "Offline" || val == "Online")
-				{
-					if(val === "Online")
+					if(val == "Offline" || val == "Online")
 					{
-						$scope.onoff = 1;
+						if(val === "Online")
+						{
+							$scope.onoff = 1;
+						}
+						else
+						{
+							$scope.onoff = 2;
+						}
 					}
-					else
+
+					if(val == "Kannada" ||  val == "English" || val == "Hindi" ||  val == "Telugu" || val == "Tamil")
 					{
-						$scope.onoff = 2;
+
+						$scope.languagedata = val;
+						console.log($scope.languagedata );
 					}
-				}
-
-				if(val == "Kannada" ||  val == "English" || val == "Hindi" ||  val == "Telugu" || val == "Tamil")
-				{
-
-					$scope.languagedata = val;
-
-				}
 
 
 					searchbyspecialities.specialitywisesearch($scope.specfic);
@@ -198,10 +261,11 @@ console.log($scope.deviceAndroid );
 					$scope.doclist = {};
 						if(specialitywise == null && catwise == null && genderwise == null && languagewise == null)
 						{
-							alert('Please Select Atlease One Search Criteria');
+							console.log('Please Select Atlease One Search Criteria');
 						}
 						else
 						{
+							console.log(specialitywise);
 							/* Patients Selected One of the Search Criteria */
 								var searchdoctor = {
 									byspecial:specialitywise,
@@ -209,6 +273,7 @@ console.log($scope.deviceAndroid );
 									bystatus:genderwise,
 									bylanguage:languagewise
 								};
+								console.log(searchdoctor);
 								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
 									if(Object.keys(response).length)
 									{
@@ -249,53 +314,45 @@ console.log($scope.deviceAndroid );
 
 
 		var unametologout = "greet+"+$localStorage.user;
-
 		var pwtologout = "DQ_patient";
-
 
 		console.log(unametologout);
 		console.log(pwtologout);
-
-
 
 		var success = function(message)
 		{
 			alert(message);
 		}
-
 		var failure = function()
 		{
 			alert("Error calling Hello Plugin");
 		}
 
-
 		hello.logout(unametologout,pwtologout,success, failure);
-		// hello.logout(unametologout,pwtologout,success, failure);
-		//hello.logout(unametologout,pwtologout,success, failure);
 
-   var confirmPopup = $ionicPopup.confirm({
-					title: 'DoctorQuick',
-					template: 'Are you sure you want to Signout?',
-					cssClass: 'videoPopup',
-					scope: $scope,
-					buttons: [
-					{
-					text: 'Cancel',
-					type: 'button-royal',
-					},
-					{
-					text: 'Ok',
-					type: 'button-positive',
-					onTap: function(e) {
-					console.log('ok');
+   	var confirmPopup = $ionicPopup.confirm({
+						title: 'DoctorQuick',
+						template: 'Are you sure you want to Signout?',
+						cssClass: 'videoPopup',
+						scope: $scope,
+						buttons: [
+						{
+						text: 'Cancel',
+						type: 'button-royal',
+						},
+						{
+							text: 'Ok',
+							type: 'button-positive',
+							onTap: function(e) {
+							console.log('ok');
 
-					$ionicHistory.clearCache();
-					$ionicHistory.clearHistory();
-					$window.localStorage.clear();
-						$state.go('auth.loginNew');
-					// }, 100)
+							$ionicHistory.clearCache();
+							$ionicHistory.clearHistory();
+							$window.localStorage.clear();
+								$state.go('auth.loginNew');
+							// }, 100)
 
-					}
+						}
 					},
 					]
 					});
@@ -454,10 +511,8 @@ $scope.checkWalletBalance=function()
 				var uname = "greet+"+$localStorage.user;
 				 var pw = "DQ_patient";
 
-				 //var persontocall = "greet+" + $localStorage.docPhone;
-
-
-				 var persontocall = "greet+" + $localStorage.consultedDoctor;
+				 var persontocall = "greet+" + $localStorage.docPhone;
+				//  var persontocall = "greet+" + $localStorage.consultedDoctor;
 
 
 				 console.log(uname);
@@ -541,8 +596,8 @@ $scope.BalanceForVoiceCall=function()
     var uname = "greet+"+$localStorage.user;
      var pw = "DQ_patient";
 
-     //var persontocall = "greet+" + $localStorage.docPhone;
-     var persontocall = "greet+" + $localStorage.consultedDoctor;
+     var persontocall = "greet+" + $localStorage.docPhone;
+    //  var persontocall = "greet+" + $localStorage.consultedDoctor;
      console.log(uname);
      console.log(persontocall);
 
