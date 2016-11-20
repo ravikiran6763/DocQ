@@ -1,4 +1,5 @@
 <ion-view class="patient-refund-view" cache-view="false">
+<form name="patientRefund" ng-submit="submitForm($event)" ng-class={submitted:submitted} novalidate >
 
   <div class="top-content ">
       <div class="logo-content">
@@ -7,16 +8,22 @@
         </pre-img>
       </div>
       <h1>DoctorQuick Wallet</h1>
-      <h2 ng-repeat="refund in patientWalletdetails">Balance:₹{{refund.credit-refund.debit}}</h2>
+      <h2  >Balance:₹{{balanceAmt}}</h2>
   </div>
   <div class="refund-amount">
-    <label class="item item-input" name="refund_amt" ng-repeat="refund in patientWalletdetails">
-        <input type="number" placeholder="0.0">
+
+    <label class="item item-input" name="refund_amt"
+           ng-class="{ 'has-error-lr' : patientRefund.refund.$invalid  && patientRefund.$submitted, 'valid-lr' : patientRefund.refund.$valid  && patientTopUp.$submitted}">
+      <input type="number" placeholder="00.00" ng-model="payment.refund"  required>
+
     </label>
+
   </div>
   <div class="button-container">
-    <button class="button button-balanced button-block" >Refund</button>
+    <button class="button button-balanced button-block" ng-click="refundReq(patientRefund.$valid);">Refund</button>
   </div>
+
+</form>
   <ion-item class="item-divider">Transaction History</ion-item>
   <div class="bottom-content">
     <ul >

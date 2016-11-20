@@ -274,19 +274,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ion
 })
 
 
-DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$ionicConfig, $http) {
-	$rootScope.headerTxt="Refund";
-	$rootScope.showBackBtn=true;
-	$rootScope.checkedValue = false;
-	$scope.refundReq = function() {
-	     var confirmPopup = $ionicPopup.confirm({
-	      // title: '<h4>Thank You</h4>',
-	       template: 'Your request for refund is processed and it will be added to your account number within 7 business days..'
-	     });
 
-	   };
-
-})
 
 DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicConfig, $http) {
 	$rootScope.headerTxt="Customer Care";

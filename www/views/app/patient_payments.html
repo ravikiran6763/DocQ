@@ -1,6 +1,6 @@
 <ion-view class="patient-payment-view" cache-view="false" >
 
-  <div class="pay-content">
+  <div class="pay-content" ng-repeat="bal in patientWalletdetails">
       <div class="payment-logo">
         <pre-img ratio="_1_1" helper-class="rounded-image">
              <img ng-src="img/dq_icon_payments_large_540x960.png" spinner-on-load>
@@ -9,14 +9,14 @@
       <div class="top-content" >
           <h1>DoctorQuick Wallet</h1>
           <div class="bal-info">
-            <div class="balance-content" ng-repeat="bal in patientWalletdetails">
+            <div class="balance-content" >
               <p>Balance <span>₹{{bal.credit-bal.debit}}</span></p>
             </div>
           </div>
       </div>
       <div class="button-content">
         <div class="refund">
-          <button  type="submit" class="button button-balanced" ui-sref="app.refund_patient">
+          <button  type="submit" class="button button-balanced" ui-sref="app.refund_patient({credit:bal.credit,debit:bal.debit})">
              Refund
             </button>
         </div>
@@ -30,7 +30,7 @@
 <ion-item class="item-divider">Transaction History</ion-item>
 
 <div class="bottom-content">
-  
+
   <ul >
 
 

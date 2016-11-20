@@ -23,6 +23,8 @@ $ionicLoading.show();
 
 console.log('called');
 $ionicLoading.show();
+	$ionicLoading.show();
+
 
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
@@ -43,6 +45,7 @@ $scope.consultationDetails=function(consultedDoc)
 	console.log(consultedDoc);
 	console.log(consultedDoc);
 
+	console.log(consultedDoc);
 	$rootScope.consultedDoc=consultedDoc;
 	$localStorage.consultedDoctor=$scope.consultedDoc;
 		$ionicLoading.hide();
@@ -89,7 +92,6 @@ $scope.clicktochat = function(pateientPhone)
 		var username = "greet+"+$localStorage.user;
 		var password = "DQ_doctor";
 
-			// var persontocall = "greet+" + $localStorage.consultedDoctor;
 
 	 var persontocall = "greet+" + $scope.patientToChat;
 	 console.log(persontocall);

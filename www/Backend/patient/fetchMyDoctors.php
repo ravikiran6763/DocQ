@@ -21,7 +21,7 @@
 					/*
 					 $sql1="select sum(rating) as totalRating,count(*) as totalCount,onoff,ratingTo,doctorFname,doctorMname,doctorLname,doctorDegrees,practicingSince from doctor_onoff,doctorRatings,doctorDetails where doctorDetails.doctorPhone=doctorRatings.ratingTo and doctor_onoff.doctor_phno=doctorRatings.ratingTo and doctorRatings.ratingTo=$row[doctorPhone]";
 					 */
-					 echo $row['ratingTo'];
+					//  echo $row['ratingTo'];
   			 	 $sql1="select sum(rating) as totalRating,count(*) as totalCount,onoff,ratingTo,dd.doctorFname,dd.doctorMname,dd.doctorLname,dd.doctorDegrees,dd.practicingSince from doctor_onoff,doctorRatings,doctorDetails as dd where dd.doctorPhone=doctorRatings.ratingTo or doctor_onoff.doctor_phno=doctorRatings.ratingTo or dd.doctorPhone=$row[ratingTo]";
 					 $retval1 = mysql_query( $sql1, $dbhandle );
 	         while($row1 = mysql_fetch_array($retval1))

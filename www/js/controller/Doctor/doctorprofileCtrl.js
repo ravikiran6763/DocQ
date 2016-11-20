@@ -131,23 +131,15 @@ console.log('failure data', error);
 //for voice call
 $scope.BalanceForVoiceCall=function()
 {
-
-
-
   $ionicLoading.show();
   doctorServices.checkMyBalance($localStorage.user).then(function(response){
     // console.log(response[0][0]);
     $scope.myBalance=response[0][0];
-
-
     var uname = "greet+"+$localStorage.user;
      var pw = "DQ_patient";
 
      //var persontocall = "greet+" + $localStorage.docPhone;
-
      var persontocall = "greet+" + $localStorage.consultedDoctor;
-
-
      console.log(uname);
      console.log(persontocall);
 
@@ -164,10 +156,7 @@ $scope.BalanceForVoiceCall=function()
 
     if($scope.myBalance >= 250)
     {
-
-          hello.audiocallvsee(uname,pw,persontocall,success, failure);
-
-
+      hello.audiocallvsee(uname,pw,persontocall,success, failure);
       var confirmPopup = $ionicPopup.confirm({
         template: '<b>Request for Voice call has been sent <br><center>00:02</center></b>',
         cssClass: 'videoPopup',
@@ -184,12 +173,9 @@ $scope.BalanceForVoiceCall=function()
          ]
         //templateUrl: "views/app/viewdoctor_profile.html",
       });
-
-
     }
     else
     {
-
       var confirmPopup = $ionicPopup.confirm({
         template: '<b>Your DoctorQuick Balance is too low.</b>',
         cssClass: 'videoPopup',
@@ -199,20 +185,15 @@ $scope.BalanceForVoiceCall=function()
             text: 'Cancel',
             type: 'button-royal', },
           {
-
           text: 'Topup',
           type: 'button-positive',
            onTap: function(e) {
-
               $state.go('app.patient_topup');
-
            }
-
           },
          ]
         //templateUrl: "views/app/viewdoctor_profile.html",
       });
-
     }
       $ionicLoading.hide();
     }).catch(function(error){

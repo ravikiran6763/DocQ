@@ -12,11 +12,11 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 $scope.pfname = $stateParams.pfname;
 				 $scope.plname = $stateParams.plname;
 
-				 $scope.page = $stateParams.page;
-				 $scope.psex = $stateParams.psex;
+				 $rootScope.page = $stateParams.page;
+				 $rootScope.psex = $stateParams.psex;
 
-				 $scope.pphno = $stateParams.pphno;
-				 $scope.image = $stateParams.image;
+				 $rootScope.pphno = $stateParams.pphno;
+				 $rootScope.image = $stateParams.image;
 
 
 
@@ -32,27 +32,17 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 						 $scope.toggleText = "Accepted";
 						 patientrequesttodoctor.accpetedbydoctor(docpatphno);
-
-
 						 $state.go('templates.notesForPatient');
-
-
 
 				 }
 				 $scope.decline = function()
 				 {
-
 							 var docpatphno = {
 							 accpetcode : "2",
 							 doctorphno : $localStorage.user,
 							 patientphno : $stateParams.pphno
 						 }
-
 							patientrequesttodoctor.declinedbydoctor(docpatphno);
-
-
 				 }
-
-
 
 })

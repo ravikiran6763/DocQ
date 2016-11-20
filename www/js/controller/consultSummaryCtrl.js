@@ -4,7 +4,6 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $wi
 	$rootScope.checkedValue = false;
 
 
-
 console.log($localStorage.Doctocall);
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);

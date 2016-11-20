@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.docq984878" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>DoctoQuick</name>
+    <name>DoctorQuick</name>
     <description>
         An Ionic Framework and Cordova project.
     </description>
@@ -8,7 +8,7 @@
       Ravikiran and Veeresh
     </author>
 
-  <content src="index.html"/>
+<!--  <content src="index.html"/>-->
   <access origin="*"/>
   <access origin="tel:*" launch-external="yes"/>
 
@@ -21,7 +21,7 @@
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
-  <preference name="SplashScreenDelay" value="1000"/>
+  <preference name="SplashScreenDelay" value="500"/>
   <preference name="FadeSplashScreenDuration" value="1000"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
@@ -30,12 +30,16 @@
   <preference name="orientation" value="portrait" />
   <preference name="Fullscreen" value="true" />
   <preference name="SYSTEM_UI_FLAG_IMMERSIVE" value="true" />
-  <preference name="StatusBarOverlaysWebView" value="false" />
-  <preference name="StatusBarStyle" value="styleBlackTranslucent" />
+  <preference name="StatusBarOverlaysWebView" value="true" />
+  <!-- <preference name="StatusBarStyle" value="styleBlackTranslucent" /> -->
+<!-- file storing in devices -->
+  <!-- <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+  <preference name="iosPersistentFileLocation" value="Compatibility" /> -->
+
+  <preference name="AndroidPersistentFileLocation" value="Internal" />
+  <preference name="iosPersistentFileLocation" value="Library" />
 
   <plugin name="cordova-plugin-whitelist" version="1.2.0" />
-
-
 
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
