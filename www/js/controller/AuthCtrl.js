@@ -23,64 +23,64 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
 
       });
 
-
-   if($localStorage.user && $localStorage.pass){
-     console.log('user already logged in')
-     $ionicLoading.show();
-     // $scope.doLogIn();
-     console.log('userNum' , $localStorage.user);
-     console.log('password' , $localStorage.pass);
-     var preLoginDetails={
-       userNum : $localStorage.user,
-       password : $localStorage.pass
-     };
-     console.log(preLoginDetails);
-     var message="loading";
-     $timeout(function() {
-       $ionicLoading.show();
-       LoginService.loginprocess(preLoginDetails).then(function(response){
-        $scope.LoginStatus=response;
-        if(response === "patient")
-        {
-          var uname1 = "greet+"+$localStorage.user;
-          var pw1 = "DQ_patient";
-          var success = function(message)
-            {
-              alert(message);
-            }
-            var failure = function()
-            {
-              alert("Error calling Hello Plugin");
-            }
-              // hello.login(uname1,pw1,success, failure);
-        //$state.go('app.patient_home');
-        }
-
-        else if(response === "doctor")
-        {
-
-        var uname1 = "greet+"+$localStorage.user;
-        var pw1 = "DQ_doctor";
-        var success = function(message)
-          {
-            alert(message);
-          }
-          var failure = function()
-          {
-            alert("Error calling Hello Plugin");
-          }
-      //$state.go('templates.doctor_home');
-      // hello.login(uname1,pw1,success, failure);
-        $localStorage.onOff=1;
-        }
-         console.log($scope.LoginStatus);
-         $ionicLoading.hide();
-       }).catch(function(error){
-       console.log('failure data', error);
-       });
-   }, 1000);
-
-   }
+   //
+  //  if($localStorage.user && $localStorage.pass){
+  //    console.log('user already logged in')
+  //    $ionicLoading.show();
+  //    // $scope.doLogIn();
+  //    console.log('userNum' , $localStorage.user);
+  //    console.log('password' , $localStorage.pass);
+  //    var preLoginDetails={
+  //      userNum : $localStorage.user,
+  //      password : $localStorage.pass
+  //    };
+  //    console.log(preLoginDetails);
+  //    var message="loading";
+  //    $timeout(function() {
+  //      $ionicLoading.show();
+  //      LoginService.loginprocess(preLoginDetails).then(function(response){
+  //       $scope.LoginStatus=response;
+  //       if(response === "patient")
+  //       {
+  //         var uname1 = "greet+"+$localStorage.user;
+  //         var pw1 = "DQ_patient";
+  //         var success = function(message)
+  //           {
+  //             alert(message);
+  //           }
+  //           var failure = function()
+  //           {
+  //             alert("Error calling Hello Plugin");
+  //           }
+  //           hello.login(uname1,pw1,success, failure);
+  //       //$state.go('app.patient_home');
+  //       }
+   //
+  //       else if(response === "doctor")
+  //       {
+   //
+  //       var uname1 = "greet+"+$localStorage.user;
+  //       var pw1 = "DQ_doctor";
+  //       var success = function(message)
+  //         {
+  //           alert(message);
+  //         }
+  //         var failure = function()
+  //         {
+  //           alert("Error calling Hello Plugin");
+  //         }
+  //     //$state.go('templates.doctor_home');
+  //      hello.login(uname1,pw1,success, failure);
+  //       $localStorage.onOff=1;
+  //       }
+  //        console.log($scope.LoginStatus);
+  //        $ionicLoading.hide();
+  //      }).catch(function(error){
+  //      console.log('failure data', error);
+  //      });
+  //  }, 1000);
+   //
+  //  }
 
 $scope.sendForm = function($event,form)
 {

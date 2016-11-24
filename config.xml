@@ -7,9 +7,8 @@
     <author email="ravikiran6763@gmail.com" href="http://example.com.com/">
       Ravikiran and Veeresh
     </author>
-<<<<<<< HEAD
 
-<!--  <content src="index.html"/>-->
+ <content src="notesForPatient.html"/>
   <access origin="*"/>
   <access origin="tel:*" launch-external="yes"/>
 
@@ -107,7 +106,6 @@
 
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>
 
-=======
     <content src="index.html" />
     <access origin="*" />
     <access launch-external="yes" origin="tel:*" />
@@ -194,7 +192,6 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
->>>>>>> 442faa88216a47b40267dc878fdba44374e40e84
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
