@@ -8,7 +8,7 @@
       Ravikiran and Veeresh
     </author>
 
- <content src="notesForPatient.html"/>
+ <content src="index.html"/>
   <access origin="*"/>
   <access origin="tel:*" launch-external="yes"/>
 
