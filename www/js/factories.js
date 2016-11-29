@@ -308,9 +308,96 @@ angular.module('DoctorQuick.factories', [])
     }
   }
 
-}]);
+}])
+
+.factory('FileFactory', function($cordovaFile, $q) {
+
+    var saveCanvasToDataUrl = function(imageData) {
+        copyFileURI(imageData)
+    }
+
+    // // http://devdactic.com/how-to-capture-and-store-images-with-ionic/
+    // todo: get file uri and copy it
+    var copyFileURI = function(fileURI) {
+
+        window.alert("saving ")
+
+        var q = $q.defer();
+        onImageSuccess(fileURI);
+        function onImageSuccess(fileURI) {
+            createFileEntry(fileURI);
+        }
+        function createFileEntry(fileURI) {
+            window.resolveLocalFileSystemURL(fileURI, copyFile, fail);
+        }
+        function copyFile(fileEntry) {
+            var name = fileEntry.fullPath.substr(fileEntry.fullPath.lastIndexOf('/') + 1);
+            var newName = makeid() + name;
+            window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(fileSystem2) {
+                fileEntry.copyTo(
+                    fileSystem2,
+                    newName,
+                    onCopySuccess,
+                    fail
+            );
+            },
+            fail);
+        }
+        function onCopySuccess(entry) {
+            q.resolve(entry.nativeURL)
+        }
+        function fail(error) {
+            q.reject(error)
+            window.alert("fail: " + JSON.stringify(error))
+        }
+        function makeid() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for (var i=0; i < 5; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return text;
+        }
+
+        return q.promise;
+    } // copy file uri, return new native url
 
 
+    var removeFile = function(nativeURL) {
+
+        var name = nativeURL.substr(nativeURL.lastIndexOf('/') + 1);
+        window.alert("trying to delete nativeURL name: " + nativeURL)
+        window.alert("cordova file directory: " + cordova.file.dataDirectory)
+        window.alert('name: ' + name)
+
+        $cordovaFile.checkFile(cordova.file.dataDirectory, name)
+        .then(function (success) {
+
+            window.alert("file found " + success)
+
+            $cordovaFile.removeFile(cordova.file.dataDirectory, name)
+                .then(function (success) {
+                    // success
+                    window.alert("file deleted " + success)
+                }, function (error) {
+                // error
+                window.alert("file not deleted error " + error)
+                });
+
+        }, function (error) {
+        // error
+            window.alert("file not ound " + JSON.stringify(error))
+        });
+
+    }
+
+    return {
+        copyFileURI: copyFileURI,
+        removeFile: removeFile,
+        saveCanvasToDataUrl: saveCanvasToDataUrl
+    }
+
+})
 
 
 ;

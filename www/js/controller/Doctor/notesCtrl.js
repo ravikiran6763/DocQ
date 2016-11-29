@@ -1,6 +1,4 @@
-
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,$cordovaFile) {
-
+DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaCamera,testresultbydoctor,$cordovaDevice,$cordovaFileTransfer,$cordovaFile) {
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
 	$rootScope.showBackBtn=true;
@@ -23,9 +21,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
 $scope.sendprescription = function()
 {
-    $scope.diagnosis = testresultbydoctor.getdiagnosis();
-    $scope.tests = testresultbydoctor.gettests();
-    $scope.medication = testresultbydoctor.getmedication();
+        $scope.diagnosis = testresultbydoctor.getdiagnosis();
+        $scope.tests = testresultbydoctor.gettests();
+        $scope.medication = testresultbydoctor.getmedication();
 
     if($scope.notes.checkedDiagnosis && $scope.notes.checkedMedication && $scope.notes.checkedTests)
     {
@@ -116,51 +114,36 @@ $scope.sendprescription = function()
         };
 
         //test jpeg image response
-        testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
-        // console.log(response);
-        $scope.pic=response
+      testresultbydoctor.jpegtest(prescriptiondetails).then(function(response,data){
+      $scope.img = response;
+        if($scope.img){
+          console.log($scope.img);
+          var unametosend = "greet+"+$localStorage.user;
+          var pwtosend = "DQ_doctor";
+          var persontosend = "greet+" + 8792618138;
+          var success = function(message)
+          {
+              alert(message);
+          }
 
-        if($scope.pic){
-          console.log('start download here');
-          var remoteFile = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-          var localFileName = remoteFile.substring(remoteFile.lastIndexOf('/')+1);
+          var failure = function()
+          {
+              alert("Error calling Hello Plugin");
+          }
+          hello.automatic(unametosend,pwtosend,persontosend,success, failure);
 
-          console.log(remoteFile);
-          console.log(localFileName);
+            $scope.deviceAndroid = ionic.Platform.isAndroid();
+            $scope.devicePlatform = ionic.Platform.isIOS();
 
-//
-//create folder in SD card ad DQIMAGES  Directory
-        $cordovaFile.createDir(cordova.file.externalRootDirectory, "DoctorQuick", true)
-        .then(function (success) {
-        console.log("Folder created" + success);
-        }, function (error) {
-        console.log("Folder not created." + error);
-        });
-        //Download jpeg file as patient name from this url and store it in DQIMAGES Folder
-        var url = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-        var filename = url.split("/").pop();
 
-        var targetPath = cordova.file.externalRootDirectory + "DoctorQuick/" + filename;
-        $cordovaFileTransfer.download(url, targetPath, {}, true).then(function (result) {
-            console.log('Success');
-            console.log(result);
-        }, function (error) {
-            console.log('Error');
-        }, function (progress) {
-            // PROGRESS HANDLING GOES HERE
-        });
-//
-
-    }
-        $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
-        var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-        // console.log(cordova.file.externalRootDirectory);
-        }).catch(function(error){
+        }
+              // var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
+              // console.log(cordova.file.externalRootDirectory);
+            }).catch(function(error){
         console.log('failure data', error);
         });
 
     }
-    console.log(URL);
 }
 
 })

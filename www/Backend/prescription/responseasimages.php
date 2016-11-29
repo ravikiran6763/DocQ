@@ -117,10 +117,10 @@
    			 $red   = imagecolorallocate($my_img, 0,   255,   0);
   	     $black = imagecolorallocate($my_img, 0, 0, 0);
 
-				 imagefilledrectangle($my_img, 0, 200, 1024, 250, $black);
-   				 imagefilledrectangle($my_img, 0, 400, 1024, 450, $black);
-   				 imagefilledrectangle($my_img, 0, 600, 1024, 650, $black);
-  				  imagefilledrectangle($my_img, 0, 800, 1024, 850, $black);
+				imagefilledrectangle($my_img, 0, 200, 1024, 250, $black);
+				imagefilledrectangle($my_img, 0, 400, 1024, 450, $black);
+				imagefilledrectangle($my_img, 0, 600, 1024, 650, $black);
+				imagefilledrectangle($my_img, 0, 800, 1024, 850, $black);
 				imagestring( $my_img, 4, 800, 25, "Dr.$doctor_fullname", $text_colour );
 
 				//DOCTOR INFORMATION LIKE NAME,ADDRESS,CITY,PIN AND DATE
@@ -132,7 +132,7 @@
 
 				//PATIENT INFORMATION LIKE NAME,AGE AND SEX
 				imagestring( $my_img, 4, 400, 215, "Patient Details", $text_colour_for_lined );
-  				imagestring( $my_img, 4, 400, 275, "$patient_fullname", $text_colour);
+  			imagestring( $my_img, 4, 400, 275, "$patient_fullname", $text_colour);
 				imagestring( $my_img, 4, 400, 295, "$patient_age", $text_colour);
 				imagestring( $my_img, 4, 400, 315, "$patient_sex", $text_colour);
 
@@ -177,8 +177,13 @@ imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
 imagecopyresampled($out, $png, 30, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
 
 
-$prescription=imagejpeg($out, 'out.jpeg');
-$imagedata = file_get_contents("out.jpeg");
+$numbers = rand(10000, 99999);
+$prefix = "DQ";
+$preImg = $prefix.$numbers;
+
+$prescription=imagejpeg($out, 'preImg.jpeg');
+$imagedata = file_get_contents("preImg.jpeg");
+
 $base64Prescription = base64_encode($imagedata);
 
 echo $base64Prescription;
