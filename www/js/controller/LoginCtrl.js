@@ -73,7 +73,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 
 								$state.go('app.patient_home');
-								hello.login(uname1,pw1,success, failure);
+								// hello.login(uname1,pw1,success, failure);
 						}
 						else if(response === "doctor")
 						{
@@ -88,7 +88,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 									alert("Error calling Hello Plugin");
 								}
 						$state.go('templates.doctor_home');
+<<<<<<< HEAD
 					 hello.login(uname1,pw1,success, failure);
+=======
+						// hello.login(uname1,pw1,success, failure);
+>>>>>>> parent of 856fa7d... automatic image sharing done
 						$localStorage.onOff=1;
 
 						}

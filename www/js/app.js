@@ -68,7 +68,6 @@ DoctorQuickApp.run(function($ionicPlatform) {
     if (window.StatusBar) {
       StatusBar.styleBlackOpaque();
     }
-
   });
 })
 
@@ -170,16 +169,6 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       else{
 
       }
-
-        window.canvas2ImagePlugin.saveImageDataToLibrary(
-            function(msg){
-                console.log(msg);
-            },
-            function(err){
-                console.log(err);
-            },
-            document.getElementById('myCanvas')
-        );
 
   })
 
