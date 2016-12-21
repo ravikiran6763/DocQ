@@ -6,14 +6,24 @@
 // }
 
 //!!!!!!!!!!!!!!!!!!!!!!!!SLIDING TOGGLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-.onlineImg{
-  width: 29% !important;
-  height: 7% !important;
+.statusDiv{
+  background-color: #007460;
+    width: 100%;
+    
+    position: relative;
+    .onlineImg{
+      width: 29% !important;
+      height: 7% !important;
+      position: relative !important;
+    }
+    .offlineImg{
+      width: 29% !important;
+      height: 7% !important;
+      position: relative !important;
+    }
 }
-.offlineImg{
-  width: 29% !important;
-  height: 7% !important;
-}
+
+
 .toggle-small .toggle-assertive input:checked + .track {
     background-color: rgb(106, 164, 51) !important;
     width: !important;

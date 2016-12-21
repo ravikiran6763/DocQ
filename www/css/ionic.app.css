@@ -9825,13 +9825,18 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
-.onlineImg {
-  width: 29% !important;
-  height: 7% !important; }
-
-.offlineImg {
-  width: 29% !important;
-  height: 7% !important; }
+.statusDiv {
+  background-color: #007460;
+  width: 100%;
+  position: relative; }
+  .statusDiv .onlineImg {
+    width: 29% !important;
+    height: 7% !important;
+    position: relative !important; }
+  .statusDiv .offlineImg {
+    width: 29% !important;
+    height: 7% !important;
+    position: relative !important; }
 
 .toggle-small .toggle-assertive input:checked + .track {
   background-color: #6aa433 !important;
