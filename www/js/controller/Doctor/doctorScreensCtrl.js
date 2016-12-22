@@ -9,6 +9,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
+    $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
+
       $ionicLoading.show();
 
     console.log($state.$current.name);
@@ -35,17 +37,17 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
               console.log(pw1);
               var success = function(message)
               {
-                alert(message);
+                console.log(message);
               }
               var failure = function()
               {
-                alert("Error calling Hello Plugin");
+                console.log("An Error occured kindly check your Interner Connection");
               }
               hello.login(uname1,pw1,success, failure);
 
 
         };
-    $scope.Offline = function (message) {
+        $scope.Offline = function (message) {
           console.log(message);
           $scope.docAvailable=false;
           $scope.docNotAvailable=true;
@@ -61,21 +63,19 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
         var unametologout = "greet+"+$localStorage.user;
         var pwtologout = "DQ_doctor";
 
-          alert(unametologout);
-        var success = function(message)
-        {
-          alert(message);
-        }
-        var failure = function()
-        {
-          alert("Error calling Hello Plugin");
-        }
+          // alert(unametologout);
+          var success = function(message)
+          {
+            console.log(message);
+          }
+          var failure = function()
+          {
+            console.log("An Error occured kindly check your Interner Connection");
+          }
         hello.logout(unametologout,pwtologout,success, failure);
 
         };
 
-
-$ionicSideMenuDelegate.canDragContent(false)
 ///////////////////////////////////////////////
     $rootScope.changeNotification = function (e)
     {

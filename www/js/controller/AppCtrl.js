@@ -13,6 +13,9 @@ console.log('appCtrl');
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 
+
+	$scope.accptNotifications=false;
+	$scope.rejectNotifications=true;
 //
 // var model = $cordovaDevice.getModel();
 // console.log(model);
@@ -85,7 +88,7 @@ console.log($scope.deviceAndroid );
 							$scope.statusdata='';
 							$scope.languagedataselected='';
 
-console.log($scope.specialdata);
+							console.log($scope.specialdata);
 							window.history.back();
 
 						}
@@ -94,7 +97,7 @@ console.log($scope.specialdata);
 							}
 		}
 
-		$scope.viewDoc2=function(docPhone){
+			$scope.viewDoc2=function(docPhone){
 
 			doctorServices.myDoctorsDetails(docPhone).then(function(response){
 						$scope.myDocDetail=response;
@@ -117,7 +120,7 @@ console.log($scope.specialdata);
 				  console.log('failure data', error);
 				  });
 
-		}
+				}
 
 
 
@@ -659,4 +662,19 @@ $scope.BalanceForVoiceCall=function()
   });
 
 }
+
+/////////////Show and hide notification////////////////////////////////////////
+
+		$scope.hideNotifications = function (message) {
+			console.log(message);
+			$scope.accptNotifications=true;
+			$scope.rejectNotifications=false;
+
+		};
+		$scope.showNotifications = function (message) {
+					console.log(message);
+					$scope.accptNotifications=false;
+					$scope.rejectNotifications=true;
+
+				};
 });

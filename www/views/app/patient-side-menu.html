@@ -51,25 +51,21 @@
           <i class="icon ion-asterisk"></i>
           <h2 class="menu-text" >Review App</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
-          <i class="icon ion-document"></i>
-          <h2 class="menu-text">Notifications</h2>
-        </ion-item>
-        <div class="toggle-position">
-            <!-- <md-toggle></md-toggle> -->
-          <label class="toggle toggle-assertive">
-            <input type="checkbox" ng-model="notificationValue" ng-change="changeStatus(notificationValue)">
-            <div class="track">
-                <div class="handle"></div>
-            <p class="notificationOn">{{notificationValue ? 'ON' : 'OFF'}}</p>
-            </div>
-          </label>
-        </div>
 
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_customercare">
           <i class="icon ion-gear-a"></i>
           <h2 class="menu-text">Customer Care</h2>
         </ion-item>
+
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
+          <i class="icon ion-document"></i>
+          <h2 class="menu-text">Notifications</h2>
+        </ion-item>
+
+        <div class="sideMenuToggle">
+          <img  src="img/on.png"  width="100%" height="100%"  ng-hide="accptNotifications" ng-click="hideNotifications('show')" on-drag-left="hideNotifications('hide')">
+          <img  src="img/off.png" width="100%" height="100%" ng-hide="rejectNotifications" ng-click="showNotifications('hide')" on-drag-right="showNotifications('show')">
+        </div>
       </ion-list>
 
     <ion-list class="side-menu-search" ng-show="sideMenuForSearch"  >

@@ -11,7 +11,7 @@
     width: 100%;
     position: relative;
     margin-top: 7vh !important;
-    margin-left: 33vw !important; 
+    margin-left: 33vw !important;
     .onlineImg{
       width: 38% !important;
       height: 9% !important;
@@ -24,7 +24,15 @@
     }
 }
 
+.sideMenuToggle{
+    width: 24% !important;
+    height: 8% !important;
+    position: relative !important;
+    margin: -8vh 0 0 57vw !important;
+    z-index: 2 !important;
+}
 
+////////////////////////////////////////////////////////////////////////////////
 .toggle-small .toggle-assertive input:checked + .track {
     background-color: rgb(106, 164, 51) !important;
     width: !important;
