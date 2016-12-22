@@ -4,7 +4,12 @@
 // .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
 //   height: auto  !important;
 // }
-
+.menu.menu-right{
+	width: calc(100% - 58px) !important;
+}
+.menu-open .menu-content{
+	transform: translate3d(-82%, 0px, 0px) !important;
+}
 //!!!!!!!!!!!!!!!!!!!!!!!!SLIDING TOGGLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .statusDiv{
   //background-color: #007460;

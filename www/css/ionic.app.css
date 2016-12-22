@@ -9825,6 +9825,12 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.menu.menu-right {
+  width: calc(100% - 58px) !important; }
+
+.menu-open .menu-content {
+  transform: translate3d(-82%, 0px, 0px) !important; }
+
 .statusDiv {
   width: 100%;
   position: relative;
