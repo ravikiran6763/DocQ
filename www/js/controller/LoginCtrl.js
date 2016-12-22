@@ -50,8 +50,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				 console.log(response);
 					if(response === "patient")
 					{
-							var uname1 = "greet+"+$scope.loginData.phone;
-
 
 								var uname1 = "greet+"+$scope.loginData.phone;
 								var pw1 = "DQ_patient";
@@ -73,7 +71,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 
 								$state.go('app.patient_home');
-								// hello.login(uname1,pw1,success, failure);
+							hello.login(uname1,pw1,success, failure);
 						}
 						else if(response === "doctor")
 						{

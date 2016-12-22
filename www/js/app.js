@@ -172,16 +172,13 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
         if ('cordova' in window) {
         // Create a sticky event for handling the app being opened via a custom URL
         cordova.addStickyDocumentEventHandler('handleopenurl');
-        
+
         }
 
-<<<<<<< HEAD
         function handleOpenURL (url) {
         cordova.fireDocumentEvent('handleopenurl', { url: url });
         };
 
-=======
->>>>>>> 9f092d06871e192d238cb29f253882420aadb5fd
   })
 
   // This fixes transitions for transparent background views

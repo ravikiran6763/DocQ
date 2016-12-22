@@ -133,11 +133,7 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 9f092d06871e192d238cb29f253882420aadb5fd
     <plugin name="cordova-plugin-whitelist" version="1.2.0" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
@@ -259,7 +255,7 @@
         <variable name="MY_VARIABLE" value="my_variable_value" />
     </plugin>
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
-<<<<<<< HEAD
+
 
     <config-file platform="ios" target="*-Info.plist" parent="NSAppTransportSecurity">
      <dict>
@@ -278,6 +274,5 @@
     </universal-links>
     </widget>
     </config-file>
-=======
->>>>>>> 9f092d06871e192d238cb29f253882420aadb5fd
+
 </widget>
