@@ -7,18 +7,19 @@
 
 //!!!!!!!!!!!!!!!!!!!!!!!!SLIDING TOGGLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .statusDiv{
-  background-color: #007460;
+  //background-color: #007460;
     width: 100%;
-    
     position: relative;
+    margin-top: 7vh !important;
+    margin-left: 33vw !important; 
     .onlineImg{
-      width: 29% !important;
-      height: 7% !important;
+      width: 38% !important;
+      height: 9% !important;
       position: relative !important;
     }
     .offlineImg{
-      width: 29% !important;
-      height: 7% !important;
+      width: 38% !important;
+      height: 9% !important;
       position: relative !important;
     }
 }

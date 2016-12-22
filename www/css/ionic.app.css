@@ -9826,16 +9826,17 @@ a.button {
 
 /* for Rting Stars*/
 .statusDiv {
-  background-color: #007460;
   width: 100%;
-  position: relative; }
+  position: relative;
+  margin-top: 7vh !important;
+  margin-left: 33vw !important; }
   .statusDiv .onlineImg {
-    width: 29% !important;
-    height: 7% !important;
+    width: 38% !important;
+    height: 9% !important;
     position: relative !important; }
   .statusDiv .offlineImg {
-    width: 29% !important;
-    height: 7% !important;
+    width: 38% !important;
+    height: 9% !important;
     position: relative !important; }
 
 .toggle-small .toggle-assertive input:checked + .track {
