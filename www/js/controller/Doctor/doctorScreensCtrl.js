@@ -20,8 +20,28 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
           console.log(message);
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
-          console.log($scope.docAvailable);
-          console.log($scope.docNotAvailable);
+
+          $localStorage.onOff=1
+          var whichdoctoronoff = {
+            doctorphno : $localStorage.user,
+            onoff : $localStorage.onOff
+          }
+          doctoronoffdetails.doctoronoff(whichdoctoronoff);
+
+            var uname1 = "greet+"+$localStorage.user;
+            var pw1 = "DQ_doctor";
+
+              console.log(uname1);
+              console.log(pw1);
+              var success = function(message)
+              {
+                alert(message);
+              }
+              var failure = function()
+              {
+                alert("Error calling Hello Plugin");
+              }
+              hello.login(uname1,pw1,success, failure);
 
 
         };
@@ -30,23 +50,31 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $rootScope,$loca
           $scope.docAvailable=false;
           $scope.docNotAvailable=true;
 
+          $localStorage.onOff=2
+          var whichdoctoronoff = {
+              doctorphno : $localStorage.user,
+              onoff : $localStorage.onOff
+        }
+        doctoronoffdetails.doctoronoff(whichdoctoronoff);
+
+
+        var unametologout = "greet+"+$localStorage.user;
+        var pwtologout = "DQ_doctor";
+
+          alert(unametologout);
+        var success = function(message)
+        {
+          alert(message);
+        }
+        var failure = function()
+        {
+          alert("Error calling Hello Plugin");
+        }
+        hello.logout(unametologout,pwtologout,success, failure);
+
         };
 
-        $scope.clickToOnline = function (message) {
-              console.log(message);
-              $scope.docAvailable=true;
-              $scope.docNotAvailable=false;
-              console.log($scope.docAvailable);
-              console.log($scope.docNotAvailable);
 
-
-            };
-        $scope.clickToOffline = function (message) {
-              console.log(message);
-              $scope.docAvailable=false;
-              $scope.docNotAvailable=true;
-
-            };
 $ionicSideMenuDelegate.canDragContent(false)
 ///////////////////////////////////////////////
     $rootScope.changeNotification = function (e)
@@ -65,13 +93,9 @@ $ionicSideMenuDelegate.canDragContent(false)
     $scope.checkedValue=true;
     }
 
-  $rootScope.changeNotification = function (e)
-  {
-
-  }
-
 	$rootScope.changeStatus = function (e)
 	{
+    console.log(e);
 		$scope.checkedValue = true;
 				if(e)
 				{

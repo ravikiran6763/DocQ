@@ -65,8 +65,8 @@
    </ion-item>
    <div class="statusDiv">
 
-     <img class="offlineImg" src="img/Offline.png" width="100%" height="100%" ng-hide="docAvailable" ng-click="clickToOnline()" on-drag-right="Online('switchto Online')">
-     <img class="onlineImg"  src="img/online.png"  width="100%" height="100%"  ng-hide="docNotAvailable" ng-click="clickToOffline()" on-drag-left="Offline('switchto offline')">
+     <img class="offlineImg" src="img/Offline.png" width="100%" height="100%" ng-hide="docAvailable"  on-drag-right="Online('available')">
+     <img class="onlineImg"  src="img/online.png"  width="100%" height="100%"  ng-hide="docNotAvailable"  on-drag-left="Offline('away')">
 
    </div>
 
