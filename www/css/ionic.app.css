@@ -9825,8 +9825,82 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+.statusDiv {
+  background-color: #007460;
+  width: 100%;
+  position: relative; }
+  .statusDiv .onlineImg {
+    width: 29% !important;
+    height: 7% !important;
+    position: relative !important; }
+  .statusDiv .offlineImg {
+    width: 29% !important;
+    height: 7% !important;
+    position: relative !important; }
+
+.toggle-small .toggle-assertive input:checked + .track {
+  background-color: #6aa433 !important;
+  width: !important; }
+
+.toggle-small .track {
+  border: 0;
+  width: 34px;
+  height: 15px;
+  background: #ff0000;
+  width: 25vw !important;
+  height: 5vh !important; }
+
+.toggle-small .handle {
+  top: 2px;
+  left: 4px;
+  width: 21px;
+  height: 21px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  width: 11vw !important;
+  height: 6vh !important; }
+
+.toggle-small input:checked + .track .handle {
+  -webkit-transform: translate3d(16px, 0, 0);
+  transform: translate3d(19vw, 0, 0);
+  background-color: #ffffff !important; }
+
+.toggle-small input:checked + .track .handle {
+  -webkit-transform: translate3d(16px, 0, 0);
+  transform: translate3d(15vw, 0, 0);
+  background: #009689; }
+
+.slidingToggle {
+  background-color: transparent !important;
+  border: none !important;
+  height: 10vh !important; }
+
+.togglePosition {
+  top: 6vh !important;
+  right: 30vw !important; }
+
+.docAvailable {
+  width: 16vw !important;
+  font-size: 3.5vw !important;
+  font-weight: bold !important;
+  color: white !important;
+  position: relative;
+  margin: 0.5vh 0 0 41vw !important;
+  z-index: 2; }
+
+.docNotAvailable {
+  width: 16vw !important;
+  font-size: 3.5vw !important;
+  font-weight: bold !important;
+  color: white !important;
+  position: relative;
+  margin: 0.5vh 0 0 51vw !important;
+  z-index: 2; }
+
+.item-toggle .toggle {
+  z-index: -1 !important; }
+
 .badge.badge-stable {
-  background-color: red;
+  background-color: t;
   color: #fff; }
 
 .item-radio {
@@ -13479,7 +13553,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patientprofile-view .row {
     margin-right: 0 !important;
-    margin-left: 0 !important; }
+    margin-left: 0 !important;
+    padding: 5 .5px !important; }
   .patientprofile-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }

@@ -27,7 +27,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 		if($scope.type === 'Decline' && $localStorage.accpt === 1){
 
 				console.log('cant Decline now');
-				$localStorage.accpt='';
 		}
 		else if($scope.type === 'Accept'){
 			$localStorage.accpt=1;
@@ -64,7 +63,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			}
 
 			// $state.go('templates.doctor_home');
-			 $state.go('templates.notesForPatient');
+
 		}
 		else{
 		//do nothing

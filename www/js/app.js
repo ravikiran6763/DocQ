@@ -68,7 +68,6 @@ DoctorQuickApp.run(function($ionicPlatform) {
     if (window.StatusBar) {
       StatusBar.styleBlackOpaque();
     }
-
   });
 })
 
@@ -176,10 +175,13 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
         
         }
 
+<<<<<<< HEAD
         function handleOpenURL (url) {
         cordova.fireDocumentEvent('handleopenurl', { url: url });
         };
 
+=======
+>>>>>>> 9f092d06871e192d238cb29f253882420aadb5fd
   })
 
   // This fixes transitions for transparent background views

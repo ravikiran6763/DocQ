@@ -73,7 +73,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 
 								$state.go('app.patient_home');
-								hello.login(uname1,pw1,success, failure);
+								// hello.login(uname1,pw1,success, failure);
 						}
 						else if(response === "doctor")
 						{
@@ -89,6 +89,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								}
 						$state.go('templates.doctor_home');
 					 hello.login(uname1,pw1,success, failure);
+						// hello.login(uname1,pw1,success, failure);
 						$localStorage.onOff=1;
 
 						}

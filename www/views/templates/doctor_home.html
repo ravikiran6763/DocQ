@@ -19,6 +19,7 @@
 
       </ion-slide-box>
     </div>
+    <!-- <button on-swipe-left="onSwipeLeft()" class="button">Test</button> -->
 
       <ion-item class="item-divider">Requests Pending </ion-item>
 
@@ -29,9 +30,10 @@
           <div class="profile-img">
 
 
-            <img  ng-hide="r.image == null "ng-src="{{r.image}}"  ng-click="changePhoto();" >
-            <img  ng-show="r.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();" >
+            <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+            <img  ng-show="r.image == null " ng-src="img/patientAvatar.png"  >
             <!-- <img src="img/patient.jpg">
+            ng-click="changePhoto();"
             <img src="img/patient.jpg"> -->
 
           </div>
@@ -46,7 +48,6 @@
         <li ng-show="!res.length" style="margin-top: 8vh;"><center><b style="color:#417611;">No Requests Pending</b></center></li>
 
       </ul>
-
   </ion-content>
 
 
@@ -56,17 +57,46 @@
        <input type="checkbox" ng-model="checkedValue" ng-change="changeStatus(checkedValue)">
        <div class="track">
          <div class="handle"></div>
-         <p class="status-txt-cls">{{checkedValue ? 'ONLINE' : 'OFFLINE'}}</p>
+          <p class="status-txt-cls">{{checkedValue ? 'ONLINE' : 'OFFLINE'}}</p>
        </div>
      </label>
 
- <!-- <p class="noRequests">No Pending Requests<p> -->
+
    </ion-item>
-   <!-- <ion-item class="OnlineStatus" >
-     <ion-toggle   ng-model="notificationValue" toggle-class="toggle-royal" ng-change="changeNotification(notificationValue)">
-       <p class="notification-txt-cls">{{notificationValue ? 'ON' : 'OFF'}}</p>
-     </ion-toggle>
-   </ion-item> -->
+   <div class="statusDiv">
+
+     <img class="offlineImg" src="img/Offline.png" width="100%" height="100%" ng-hide="docAvailable" ng-click="clickToOnline()" on-drag-right="Online('switchto Online')">
+     <img class="onlineImg"  src="img/online.png"  width="100%" height="100%"  ng-hide="docNotAvailable" ng-click="clickToOffline()" on-drag-left="Offline('switchto offline')">
+
+   </div>
+
+
+<!--
+   <ion-slide-box does-continue="true"  class="slides"  >
+
+     <ion-slide on-swipe-left="onSwipeLeft()">
+       <img class="onlineImg" src="img/Offline.png" width="100%" height="100%" >
+     </ion-slide>
+     <ion-slide>
+       <img class="offlineImg"  src="img/online.png"  width="100%" height="100%">
+     </ion-slide>
+
+
+
+   </ion-slide-box>s -->
+
+
+   <!-- <ion-toggle class="slidingToggle togglePosition"  toggle-class="toggle-assertive" ng-model="docStatus.checked" ng-true-value="'online'" ng-false-value="'offline'"  ng-change="pushNotificationChange()">
+
+       </ion-toggle>
+       <p class="docAvailable" ng-show="docAvailable">ONLINE</p>
+       <p class="docNotAvailable" ng-show="docNotAvailable">OFFLINE</p> -->
+
+   <!-- <ion-toggle class="slidingToggle togglePosition"  toggle-class="toggle-assertive" ng-model="docStatus.checked" ng-true-value="'online'" ng-false-value="'offline'"  ng-change="pushNotificationChange()">
+
+       </ion-toggle>
+       <p class="docAvailable" ng-show="docAvailable">ONLINE</p>
+       <p class="docNotAvailable" ng-show="docNotAvailable">OFFLINE</p> -->
 
 
 </ion-view>
