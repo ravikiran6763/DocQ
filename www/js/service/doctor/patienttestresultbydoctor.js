@@ -1,5 +1,5 @@
 DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, $cordovaFileTransfer,$cordovaFile) {
-    var diagnosisbydoctor = "";
+    // var diagnosisbydoctor = "";
     var testsbydoctor = "";
     var medicationbydoctor = "";
     var diagnosis = "";
@@ -9,7 +9,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
   this.diagnosisdone = function(diagnosis)
   {
     console.log(diagnosis);
-      diagnosisbydoctor = diagnosis;
+      var diagnosisbydoctor = diagnosis;
   }
 
   this.testrecommended = function(tests)
@@ -72,7 +72,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
   this.jpegtest = function(options)
   {
-    
+
     var deferred = $q.defer();
     $http.post(BASE_URL.url + API.testjpegimage,options)
     .success(function (data, status, headers, config){

@@ -9825,11 +9825,8 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
-.menu.menu-right {
-  width: calc(100% - 58px) !important; }
-
-.menu-open .menu-content {
-  transform: translate3d(-82%, 0px, 0px) !important; }
+.spinner-android {
+  stroke: #489808 !important; }
 
 .statusDiv {
   width: 100%;

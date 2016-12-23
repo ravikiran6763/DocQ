@@ -15,15 +15,17 @@
         <button class="done button button-clear button-positive" ng-click="done();">
           Done
         </button>
+
+
         <div class="textform">
           <label class="item item-input">
-           <textarea placeholder=" " ng-model="diagnosis.diagnosisforpatient" value=diagnosis.diagnosisforpatient></textarea>
+           <textarea placeholder=" " ng-value="val" ng-model="diagnosis.diagnosisforpatient" ng-bind></textarea>
          </label>
         </div>
       </div>
 
     </div>
-    <pre>{{diagnosis.diagnosisforpatient}}</pre>
+    <pre>{{val}}</pre>
     <div class="bottom-content row">
       <div class="col col-center">
 

@@ -18,7 +18,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 $rootScope.pphno = $stateParams.pphno;
 				 $rootScope.image = $stateParams.image;
 
-				
+
 
 
 				 $scope.type = '';

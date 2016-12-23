@@ -7,6 +7,11 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
+
+  
+
+console.log($rootScope.chekMedi);
+
 	$rootScope.notes = {
 			checkedDiagnosis : false,
 			checkedTests : false,

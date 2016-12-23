@@ -13,6 +13,10 @@ console.log('appCtrl');
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 
+	$rootScope.chekDiag=false;
+	$rootScope.chekTests=false;
+	$rootScope.chekMedi=false;
+	console.log($rootScope.chekDiag);
 
 	$scope.accptNotifications=false;
 	$scope.rejectNotifications=true;

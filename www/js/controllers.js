@@ -67,25 +67,18 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 		$scope.patientlname = $rootScope.plname;
 
 
+
+
 		$scope.done=function()
 		{
-
 				if($scope.notes.checkedTests)
 				{
-
-
-
-						testresultbydoctor.testrecommended($scope.notes.checkedTests);
-
-
-
+											testresultbydoctor.testrecommended($scope.notes.checkedTests);
 				}
 				else
 				{
 							alert('Please Enter Something')
-
 				}
-
 		}
 
 
@@ -103,7 +96,7 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 })
 
 
-DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConfig,testresultbydoctor) {
+DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$ionicConfig,$localStorage,testresultbydoctor) {
 
 		$scope.diagnosis={};
 		$scope.toggle = true;
@@ -116,20 +109,24 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConf
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
 
+
+	// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
 		$scope.done=function()
 		{
 
-
-				if($scope.diagnosis.diagnosisforpatient)
+				if($scope.diagnosis.diagnosisforpatient || $rootScope.val)
 				{
 
-
-
-						testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
-						console.log('oldValue = ' + $scope.oldValue);
-						console.log('newValue = ' + $scope.diagnosis.diagnosisforpatient);
+					testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
+						$rootScope.chekDiag=true;
+						$rootScope.val=$scope.diagnosis.diagnosisforpatient;
+						$state.go("templates.notesForPatient");
 
 				}
+				else if ($scope.diagnosis.diagnosisforpatient === '') {
+					alert('kindly Modify the diag');
+				}
+
 				else
 				{
 							alert('Please Enter Something')
