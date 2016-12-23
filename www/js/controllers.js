@@ -126,7 +126,8 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConf
 
 
 						testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
-
+						console.log('oldValue = ' + $scope.oldValue);
+						console.log('newValue = ' + $scope.diagnosis.diagnosisforpatient);
 
 				}
 				else
@@ -137,6 +138,12 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$rootScope,$ionicConf
 
 
 		}
+
+
+		$scope.showValues = function () {
+												console.log('oldValue = ' + $scope.oldValue);
+												console.log('newValue = ' + $scope.diagnosis.diagnosisforpatient);
+										}
 
 
 		$scope.clear=function()

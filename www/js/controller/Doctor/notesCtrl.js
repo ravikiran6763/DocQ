@@ -119,39 +119,31 @@ $scope.sendprescription = function()
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
         // console.log(response);
         $scope.pic=response
+        console.log(prescriptiondetails);
 
         if($scope.pic){
-          console.log('start download here');
-          var remoteFile = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-          var localFileName = remoteFile.substring(remoteFile.lastIndexOf('/')+1);
+          var auname =  "greet+"+$localStorage.user;
+          var apw = "DQ_doctor";
+          var ato = "greet+" + $rootScope.pphno;
 
-          console.log(remoteFile);
-          console.log(localFileName);
+          console.log(auname);
+          console.log(ato);
+          var prescImg=$scope.pic;
 
-//
-//create folder in SD card ad DQIMAGES  Directory
-        $cordovaFile.createDir(cordova.file.externalRootDirectory, "DoctorQuick", true)
-        .then(function (success) {
-        console.log("Folder created" + success);
-        }, function (error) {
-        console.log("Folder not created." + error);
-        });
-        //Download jpeg file as patient name from this url and store it in DQIMAGES Folder
-        var url = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-        var filename = url.split("/").pop();
+            var success = function(message)
+            {
+              console.log(message);
+            }
 
-        var targetPath = cordova.file.externalRootDirectory + "DoctorQuick/" + filename;
-        $cordovaFileTransfer.download(url, targetPath, {}, true).then(function (result) {
-            console.log('Success');
-            console.log(result);
-        }, function (error) {
-            console.log('Error');
-        }, function (progress) {
-            // PROGRESS HANDLING GOES HERE
-        });
-//
+            var failure = function()
+            {
+              console.log("Error calling Hello Plugin");
+            }
 
-    }
+            hello.automatic(auname,apw,ato,prescImg,success, failure);
+
+
+          }
         $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
         var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
         // console.log(cordova.file.externalRootDirectory);
@@ -160,7 +152,7 @@ $scope.sendprescription = function()
         });
 
     }
-    console.log(URL);
+    // console.log(URL);
 }
 
 })

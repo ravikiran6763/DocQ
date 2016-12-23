@@ -18,6 +18,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 $rootScope.pphno = $stateParams.pphno;
 				 $rootScope.image = $stateParams.image;
 
+				
+
 
 				 $scope.type = '';
 				 $scope.setType = function(event){
@@ -39,6 +41,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			}
 			console.log(docpatphno);
 			patientrequesttodoctor.accpetedbydoctor(docpatphno);
+			$state.go('templates.notesForPatient');
 
 		}
 		else if($scope.type === 'Accepted'){
