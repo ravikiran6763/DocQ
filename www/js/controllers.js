@@ -51,7 +51,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$loca
 
 
 
-DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
+DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope, $ionicConfig,testresultbydoctor) {
 
 		$rootScope.user={};
 		$scope.notes = {};
@@ -61,19 +61,21 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 		$rootScope.headerTxt="Tests";
 		$rootScope.showBackBtn=true;
 
-
-
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
 
 
-
-
 		$scope.done=function()
 		{
-				if($scope.notes.checkedTests)
+				if($scope.notes.checkedTests || $rootScope.testVal)
 				{
-											testresultbydoctor.testrecommended($scope.notes.checkedTests);
+						testresultbydoctor.testrecommended($scope.notes.checkedTests);
+						$rootScope.chekTests=true;
+						$rootScope.testVal=$scope.notes.checkedTests;
+						$state.go("templates.notesForPatient");
+				}
+				else if ($scope.diagnosis.diagnosisforpatient === '') {
+					alert('kindly Modify the diag');
 				}
 				else
 				{
@@ -81,18 +83,12 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$rootScope, $ionic
 				}
 		}
 
-
 		$scope.clear=function()
 		{
-
-
 			$scope.notes.checkedTests="";
-
+			$rootScope.chekTests=false;
 
 		}
-
-
-
 })
 
 
@@ -113,55 +109,30 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$io
 	// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
 		$scope.done=function()
 		{
-
 				if($scope.diagnosis.diagnosisforpatient || $rootScope.val)
 				{
-
-					testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
+						testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
 						$rootScope.chekDiag=true;
 						$rootScope.val=$scope.diagnosis.diagnosisforpatient;
 						$state.go("templates.notesForPatient");
-
 				}
 				else if ($scope.diagnosis.diagnosisforpatient === '') {
 					alert('kindly Modify the diag');
 				}
-
 				else
 				{
 							alert('Please Enter Something')
-
 				}
-
-
 		}
-
-
-		$scope.showValues = function () {
-												console.log('oldValue = ' + $scope.oldValue);
-												console.log('newValue = ' + $scope.diagnosis.diagnosisforpatient);
-										}
-
-
 		$scope.clear=function()
 		{
-
-
 				$scope.diagnosis.diagnosisforpatient="";
-
-
+				$rootScope.chekDiag=false;
 		}
-
-
-
 
 })
 
-
-
-DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $ionicConfig,testresultbydoctor) {
-
-
+DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $state,$ionicConfig,testresultbydoctor) {
 
 		$scope.toggle = true;
 		$rootScope.headerTxt="Medication";
@@ -170,44 +141,35 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $ionicCo
 		$rootScope.showBadge=false;
 		$scope.medication={};
 
-
-
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
 
-
 		$scope.done=function()
 		{
-
-				if($scope.medication.medicationforpatient)
+				if($scope.medication.medicationforpatient || $rootScope.testVal)
 				{
-
 						testresultbydoctor.medicationdone($scope.medication.medicationforpatient);
-
+						$rootScope.chekMedi=true;
+						$rootScope.mediVal=$scope.medication.medicationforpatient;
+						$state.go("templates.notesForPatient");
+				}
+				else if ($scope.diagnosis.diagnosisforpatient === '') {
+					alert('kindly Modify the Test');
 				}
 				else
 				{
 							alert('Please Enter Something')
-
 				}
-
 		}
-
-
 
 		$scope.clear=function()
 		{
 
 			$scope.medication.medicationforpatient="";
+			$rootScope.chekMedi=false;
 
 		}
-
-
-
-
 })
-
-
 
 DoctorQuickApp.controller('doc_customercareCtrl', function($scope,$rootScope, $ionicConfig) {
   $scope.toggle = true;
@@ -255,20 +217,20 @@ DoctorQuickApp.controller('reviewCtrl', function($scope,$rootScope, $ionicConfig
 
 
 })
-
-DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig, $http) {
-
-		$scope.toggle = true;
-	 	$rootScope.headerTxt="Video";
-		$rootScope.showBackBtn=true;
-		$rootScope.checkedValue = false;
-		$rootScope.showNotification=false;
-	// $rootScope.headerTxt="Customer Care";
-	// $rootScope.showBackBtn=true;termsCtrl
-
-
-})
-
+//
+// DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig, $http) {
+//
+// 		$scope.toggle = true;
+// 	 	$rootScope.headerTxt="Video";
+// 		$rootScope.showBackBtn=true;
+// 		$rootScope.checkedValue = false;
+// 		$rootScope.showNotification=false;
+// 	// $rootScope.headerTxt="Customer Care";
+// 	// $rootScope.showBackBtn=true;termsCtrl
+//
+//
+// })
+//
 
 DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ionicConfig, $http) {
 	$rootScope.headerTxt="My Consultations";

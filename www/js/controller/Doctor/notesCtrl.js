@@ -8,7 +8,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 	$rootScope.showBadge=false;
 
 
-  
+
 
 console.log($rootScope.chekMedi);
 
@@ -107,7 +107,7 @@ $scope.sendprescription = function()
     }
     else
     {
-      alert('Please Select Atleast One Tests')
+      console.log('Please Select Atleast One Tests')
     }
 
     if($scope.notes.checkedDiagnosis || $scope.notes.checkedTests || $scope.notes.checkedMedication)
@@ -119,6 +119,7 @@ $scope.sendprescription = function()
           tests : $scope.tests,
           medication : $scope.medication
         };
+
 
         //test jpeg image response
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
@@ -149,8 +150,8 @@ $scope.sendprescription = function()
 
 
           }
-        $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
-        var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
+        // $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
+        // var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
         // console.log(cordova.file.externalRootDirectory);
         }).catch(function(error){
         console.log('failure data', error);

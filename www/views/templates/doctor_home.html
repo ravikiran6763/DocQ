@@ -24,7 +24,7 @@
       <ion-item class="item-divider">Requests Pending </ion-item>
 
       <ul class="bottom-content">
-<timer interval="1000">{{hours}} hour{{hoursS}}, {{minutes}} minute{{minutesS}}, {{seconds}} second{{secondsS}}.</timer>
+
         <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno,image:r.image})">
 
           <div class="profile-img">
@@ -52,7 +52,7 @@
   <div class="statusDiv">
 
     <img class="offlineImg" src="img/Offline.png" width="100%" height="100%" ng-hide="docAvailable" ng-click="Online('available')" on-drag-right="Online('available')">
-    <img class="onlineImg"  src="img/online.png"  width="100%" height="100%"  ng-hide="docNotAvailable" ng-click="Offline('away')" on-drag-left="Offline('away')">
+    <img class="offlineImg"  src="img/online.png"  width="100%" height="100%"  ng-hide="docNotAvailable" ng-click="Offline('away')" on-drag-left="Offline('away')">
 
   </div>
 </ion-view>

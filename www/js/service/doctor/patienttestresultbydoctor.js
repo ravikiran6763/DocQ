@@ -1,5 +1,5 @@
 DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, $cordovaFileTransfer,$cordovaFile) {
-    // var diagnosisbydoctor = "";
+    var diagnosisbydoctor = "";
     var testsbydoctor = "";
     var medicationbydoctor = "";
     var diagnosis = "";

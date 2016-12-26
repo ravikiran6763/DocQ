@@ -9,8 +9,14 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
-
-
+    // $scope.data.dataLoading = true;
+    //
+    // return someService.getData().then(function (results) {
+    //
+    // }).finally(function () {
+    //     $scope.data.dataLoading = false;
+    // });
+    //
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
 
       $ionicLoading.show();
@@ -21,13 +27,14 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
 
 
     $scope.Online = function (message) {
-            $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 20
-            });
+            // $ionicLoading.show({
+            // content: 'Loading',
+            // animation: 'fade-in',
+            // showBackdrop: true,
+            // maxWidth: 200,
+            // showDelay: 20
+            // });
+
           console.log(message);
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
@@ -47,14 +54,14 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
               var success = function(message)
               {
                 console.log(message);
-                $ionicLoading.hide();
+
               }
               var failure = function()
               {
                 console.log("An Error occured kindly check your Interner Connection");
               }
               hello.login(uname1,pw1,success, failure);
-
+              $ionicLoading.hide();
 
 
         };
