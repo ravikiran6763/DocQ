@@ -65,30 +65,30 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$scope.patientlname = $rootScope.plname;
 
 
-		$scope.done=function()
-		{
-				if($scope.notes.checkedTests || $rootScope.testVal)
-				{
-						testresultbydoctor.testrecommended($scope.notes.checkedTests);
-						$rootScope.chekTests=true;
-						$rootScope.testVal=$scope.notes.checkedTests;
-						$state.go("templates.notesForPatient");
-				}
-				else if ($scope.diagnosis.diagnosisforpatient === '') {
-					alert('kindly Modify the diag');
-				}
-				else
-				{
-							alert('Please Enter Something')
-				}
-		}
-
-		$scope.clear=function()
-		{
-			$scope.notes.checkedTests="";
-			$rootScope.chekTests=false;
-
-		}
+		// $scope.done=function()
+		// {
+		// 		if($scope.notes.checkedTests || $rootScope.testVal)
+		// 		{
+		// 				testresultbydoctor.testrecommended($scope.notes.checkedTests);
+		// 				$rootScope.chekTests=true;
+		// 				$rootScope.testVal=$scope.notes.checkedTests;
+		// 				$state.go("templates.notesForPatient");
+		// 		}
+		// 		else if ($scope.diagnosis.diagnosisforpatient === '') {
+		// 			alert('kindly Modify the diag');
+		// 		}
+		// 		else
+		// 		{
+		// 					alert('Please Enter Something')
+		// 		}
+		// }
+		//
+		// $scope.clear=function()
+		// {
+		// 	$scope.notes.checkedTests="";
+		// 	$rootScope.chekTests=false;
+		//
+		// }
 })
 
 
@@ -107,28 +107,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$io
 
 
 	// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
-		$scope.done=function()
-		{
-				if($scope.diagnosis.diagnosisforpatient || $rootScope.val)
-				{
-						testresultbydoctor.diagnosisdone($scope.diagnosis.diagnosisforpatient);
-						$rootScope.chekDiag=true;
-						$rootScope.val=$scope.diagnosis.diagnosisforpatient;
-						$state.go("templates.notesForPatient");
-				}
-				else if ($scope.diagnosis.diagnosisforpatient === '') {
-					alert('kindly Modify the diag');
-				}
-				else
-				{
-							alert('Please Enter Something')
-				}
-		}
-		$scope.clear=function()
-		{
-				$scope.diagnosis.diagnosisforpatient="";
-				$rootScope.chekDiag=false;
-		}
+
 
 })
 
@@ -144,23 +123,23 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $state,$
 		$scope.patientfname = $rootScope.pfname;
 		$scope.patientlname = $rootScope.plname;
 
-		$scope.done=function()
-		{
-				if($scope.medication.medicationforpatient || $rootScope.testVal)
-				{
-						testresultbydoctor.medicationdone($scope.medication.medicationforpatient);
-						$rootScope.chekMedi=true;
-						$rootScope.mediVal=$scope.medication.medicationforpatient;
-						$state.go("templates.notesForPatient");
-				}
-				else if ($scope.diagnosis.diagnosisforpatient === '') {
-					alert('kindly Modify the Test');
-				}
-				else
-				{
-							alert('Please Enter Something')
-				}
-		}
+		// $scope.done=function()
+		// {
+		// 		if($scope.medication.medicationforpatient || $rootScope.testVal)
+		// 		{
+		// 				testresultbydoctor.medicationdone($scope.medication.medicationforpatient);
+		// 				$rootScope.chekMedi=true;
+		// 				$rootScope.mediVal=$scope.medication.medicationforpatient;
+		// 				$state.go("templates.notesForPatient");
+		// 		}
+		// 		else if ($scope.diagnosis.diagnosisforpatient === '') {
+		// 			alert('kindly Modify the Test');
+		// 		}
+		// 		else
+		// 		{
+		// 					alert('Please Enter Something')
+		// 		}
+		// }
 
 		$scope.clear=function()
 		{

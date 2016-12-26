@@ -9,7 +9,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
   this.diagnosisdone = function(diagnosis)
   {
     console.log(diagnosis);
-      var diagnosisbydoctor = diagnosis;
+       diagnosisbydoctor = diagnosis;
   }
 
   this.testrecommended = function(tests)

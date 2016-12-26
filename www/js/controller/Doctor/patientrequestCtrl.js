@@ -41,6 +41,9 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			}
 			console.log(docpatphno);
 			patientrequesttodoctor.accpetedbydoctor(docpatphno);
+			$rootScope.chekDiag=false;
+			$rootScope.chekTests=false;
+			$rootScope.chekMedi=false;
 			$state.go('templates.notesForPatient');
 
 		}

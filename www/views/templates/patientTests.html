@@ -13,12 +13,12 @@
         <button class="clear-field button button-clear button-positive" ng-click="clear();">
           Clear
         </button>
-        <button class="done button button-clear button-positive" ng-click="done();">
+        <button class="done button button-clear button-positive" ng-click="done(prescription.checkedTests,2);">
           Done
         </button>
         <div class="textform">
           <label class="item item-input">
-           <textarea placeholder=" " ng-value="testVal" ng-model="notes.checkedTests"></textarea>
+           <textarea placeholder=" " ng-value="testVal" ng-model="prescription.checkedTests"  maxlines="8" maxlines-prevent-enter="true"></textarea>
          </label>
         </div>
       </div>
