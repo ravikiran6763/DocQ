@@ -12429,28 +12429,6 @@ ion-side-menu .heading-item .message {
       text-align: center;
       font-weight: lighter;
       font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content h4 {
-      position: absolute;
-      width: 100%;
-      font-size: 6vw;
-      margin-left: -8vw;
-      margin-top: 12vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
-      text-align: center;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content h5 {
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: 17vh !important;
-      padding-bottom: 2% !important;
-      word-spacing: 1px;
-      line-height: -4px;
-      text-align: center;
-      font-weight: lighter;
-      font-family: Ubuntu,bold,sans-serif !important; }
     .patient-request-view .top-content .user-image {
       padding: 5px;
       background-color: #dedad7 !important;
@@ -12469,6 +12447,35 @@ ion-side-menu .heading-item .message {
       margin-left: 30vw;
       margin-top: -5vh;
       font-family: Ubuntu,bold,sans-serif !important; }
+    .patient-request-view .top-content i {
+      position: absolute;
+      font-size: 12vw;
+      /* margin: 0 auto; */
+      margin-top: 34vh;
+      margin-left: 46vw; }
+    .patient-request-view .top-content .callRequest {
+      position: absolute !important;
+      margin: 0 auto !important;
+      width: 100% !important; }
+      .patient-request-view .top-content .callRequest h4 {
+        margin-top: 42vh !important; }
+      .patient-request-view .top-content .callRequest i {
+        position: absolute !important;
+        margin: -11vw 0 0 33vw !important;
+        font-size: 9vw !important;
+        color: #28a54c !important; }
+    .patient-request-view .top-content .callRequestAccepted {
+      position: absolute !important;
+      margin: 0 auto !important;
+      width: 100% !important; }
+      .patient-request-view .top-content .callRequestAccepted h4 {
+        margin-top: 42vh !important;
+        margin-left: 18vw !important; }
+      .patient-request-view .top-content .callRequestAccepted i {
+        position: absolute !important;
+        margin: -11vw 0 0 33vw !important;
+        font-size: 9vw !important;
+        color: #28a54c !important; }
   .patient-request-view .row {
     margin-right: 0;
     margin-left: 0; }
