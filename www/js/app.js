@@ -550,7 +550,7 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno/:image",
+    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno/:image/:dateAndTime",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",

@@ -17,13 +17,44 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				 $rootScope.pphno = $stateParams.pphno;
 				 $rootScope.image = $stateParams.image;
+				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
+				 console.log($rootScope.dateAndTime);
+
+			 	$scope.CurrentDate = new Date();
+				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
+
+				console.log($rootScope.dateDiff);
+
+
+////// calculate datedifference////
+var timestamp = new Date($rootScope.dateAndTime).getTime();
+var currentTimestamp = new Date($scope.CurrentDate).getTime();
+
+var diffMs = (currentTimestamp - timestamp);
+var diffDays = Math.round(diffMs / 86400000); // days
+var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+$rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
+// $rootScope.requestedDUration= diffDays + " day " + "ago";
+
+
+console.log($rootScope.requestedDUration);
+
+var diff = currentTimestamp-timestamp;
+console.log(diffMs);
+
+
+
+
+//////
 
 
 
 				 $scope.type = '';
-				 $scope.setType = function(event){
-					 $scope.isDisabled = false;
+ $scope.setType = function(event){
+	 $scope.isDisabled = false;
 		$scope.type = angular.element(event.target).text();
 		console.log($scope.type);
 		if($scope.type === 'Decline' && $localStorage.accpt === 1){

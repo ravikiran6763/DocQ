@@ -9828,6 +9828,12 @@ a.button {
 .spinner-android {
   stroke: #489808 !important; }
 
+.timer {
+  margin: 20vh 0 0 33vw !important;
+  font-family: inherit !important;
+  font-size: 5vw !important;
+  position: relative !important; }
+
 .statusDiv {
   width: 100%;
   position: relative;
