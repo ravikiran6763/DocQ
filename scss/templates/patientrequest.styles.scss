@@ -61,32 +61,32 @@
       font-weight: lighter;
         font-family: Ubuntu,bold,sans-serif !important;
     }
-    // h4{
-    //   position: absolute;
-    //   width: 100%;
-    //   font-size: 6vw;
-    //   margin-left: -8vw;
-    //   margin-top: 12vh !important;
-    //   padding-bottom: 2%;
-    //   //margin-left: 16vw;
-    //   word-spacing: 1px;
-    //   text-align: center;
-    //     font-family: Ubuntu,bold,sans-serif !important;
-    // }
-    // h5{
-    //   position: absolute;
-    //   width: 100%;
-    //   font-size: 4vw;
-    //   margin-left: -6vw;
-    //   margin-top: 17vh !important;
-    //   padding-bottom: 2% !important;
-    //   //margin-left: 16vw;
-    //   word-spacing: 1px;
-    //   line-height: -4px;
-    //   text-align: center;
-    //   font-weight: lighter;
-    //     font-family: Ubuntu,bold,sans-serif !important;
-    // }
+    h4{
+      position: absolute;
+      width: 100%;
+      font-size: 6vw;
+      margin-left: -8vw;
+      margin-top: 12vh !important;
+      padding-bottom: 2%;
+      //margin-left: 16vw;
+      word-spacing: 1px;
+      text-align: center;
+        font-family: Ubuntu,bold,sans-serif !important;
+    }
+    h5{
+      position: absolute;
+      width: 100%;
+      font-size: 4vw;
+      margin-left: -6vw;
+      margin-top: 17vh !important;
+      padding-bottom: 2% !important;
+      //margin-left: 16vw;
+      word-spacing: 1px;
+      line-height: -4px;
+      text-align: center;
+      font-weight: lighter;
+        font-family: Ubuntu,bold,sans-serif !important;
+    }
     .user-image
       {
         //border-top: 1px solid $content-color;
@@ -115,53 +115,14 @@
        margin-top: -5vh;
          font-family: Ubuntu,bold,sans-serif !important;
      }
-     i{
-          position: absolute;
-          font-size: 12vw;
-          /* margin: 0 auto; */
-          margin-top: 34vh;
-          margin-left: 46vw;
-     }
-     .callRequest{
-      //  background-color: red;
-       position: absolute !important;
-        margin: 0 auto !important;
-        width: 100% !important;
 
-        h4{
-          margin-top: 42vh !important;
-          // ssssmargin-left: 18vw !important;
-        }
-        i{
-          position: absolute !important;
-          margin: -11vw 0 0 33vw !important;
-          font-size: 9vw !important;
-          color: #28a54c !important;
-        }
-     }
-     .callRequestAccepted{
-      //  background-color: red;
-       position: absolute !important;
-        margin: 0 auto !important;
-        width: 100% !important;
 
-        h4{
-          margin-top: 42vh !important;
-          margin-left: 18vw !important;
-        }
-        i{
-          position: absolute !important;
-          margin: -11vw 0 0 33vw !important;
-          font-size: 9vw !important;
-          color: #28a54c !important;
-        }
-     }
 
 	}
-      .row {
-      margin-right: 0;
-      margin-left: 0;
-    }
+  .row {
+  margin-right: 0;
+  margin-left: 0;
+}
 
 	.bottom-content
 	{
@@ -209,6 +170,4 @@
         }
 
 	}
-
-
 }

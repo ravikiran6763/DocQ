@@ -133,9 +133,10 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
+
     <plugin name="cordova-plugin-whitelist" version="1.2.0" />
     <feature name="StatusBar">
-        <param name="ios-package" onload="true" value="CDVStatusBar" />
+        <param name="ios-package" onload="false" value="CDVStatusBar" />
     </feature>
     <mime-mapping>
         <extension>js</extension>
@@ -254,4 +255,24 @@
         <variable name="MY_VARIABLE" value="my_variable_value" />
     </plugin>
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
+
+
+    <config-file platform="ios" target="*-Info.plist" parent="NSAppTransportSecurity">
+     <dict>
+           <key>NSAllowsArbitraryLoads</key><true/>
+      </dict>
+
+    <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+    <!-- some other cordova preferences -->
+
+    <universal-links>
+      <ios-team-id value="R6422J88GD" />
+      <host name="doctorquick.com" >
+      <path url="/www/templates/*" />
+      </host>
+    </universal-links>
+    </widget>
+    </config-file>
+
 </widget>
