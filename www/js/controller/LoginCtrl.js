@@ -34,6 +34,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 	$scope.doLogIn = function()
 	{
+
+				console.log('called');
+
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
@@ -44,7 +47,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					userNum : $scope.loginData.phone,
 					password : $scope.loginData.pin
 				};
-				// console.log(userDetails);
+
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 				 console.log(response);
@@ -56,7 +59,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 
 
-							var pw1 = "DQ_patient";
+							//var pw1 = "DQ_patient";
 
 
 							var success = function(message)
