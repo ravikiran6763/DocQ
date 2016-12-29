@@ -136,7 +136,7 @@
 
     <plugin name="cordova-plugin-whitelist" version="1.2.0" />
     <feature name="StatusBar">
-        <param name="ios-package" onload="true" value="CDVStatusBar" />
+        <param name="ios-package" onload="false" value="CDVStatusBar" />
     </feature>
     <mime-mapping>
         <extension>js</extension>

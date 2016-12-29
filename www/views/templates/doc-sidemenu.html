@@ -73,25 +73,23 @@
       <i class="icon ion-android-cloud-done"></i>
       <h2 class="menu-text">Terms Of Use</h2>
     </ion-item>
-<!--
-    <ion-item  nav-clear  ui-sref="">
-    </ion-item> -->
-    <ion-toggle  class=" OnlineStatus item-icon-left" style="background-color:#20242c;"  ng-model="notificationValue" toggle-class="toggle-calm" ng-change="changeNotification(notificationValue)">
+
+    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+      <i class="icon ion-android-cloud-done"></i>
+      <h2 class="menu-text">Notifications</h2>
+    </ion-item>
+
+    <!-- <ion-toggle  class=" OnlineStatus item-icon-left" style="background-color:#20242c;"  ng-model="notificationValue" toggle-class="toggle-calm" ng-change="changeNotification(notificationValue)">
       <span style="color:#cccccc; font-weight:100">Notifications</span>
       <i class="icon ion-document"></i>
-      <!-- <p class="notification-txt-cls">{{notificationValue ? 'ON' : 'OFF'}}</p> -->
+      <p class="notification-txt-cls">{{notificationValue ? 'ON' : 'OFF'}}</p>
 
-    </ion-toggle>
-<!--
-    <div class="toggle-position">
-        <label class="toggle toggle-assertive">
-         <input type="checkbox" ng-model="notificationValue" ng-change="changeNotification(notificationValue)">
-         <div class="track">
-           <div class="handle"></div>
-           <p  style="color: #fff; font-size: 4vw; margin-top: 1vh;">ON</p>
-         </div>
-       </label>
-    </div> -->
+    </ion-toggle> -->
+    <div class="sideMenuToggle">
+      <img  src="img/on.png"  width="100%" height="100%"  ng-hide="accptNotifications" ng-click="hideNotifications('show')" on-drag-left="hideNotifications('hide')">
+      <img  src="img/off.png" width="100%" height="100%" ng-hide="rejectNotifications" ng-click="showNotifications('hide')" on-drag-right="showNotifications('show')">
+    </div>
+
 
 
     </ion-content>
