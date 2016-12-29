@@ -559,7 +559,7 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno/:image",
+    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno/:image/:dateAndTime",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -601,10 +601,11 @@ $stateProvider
 
 
   .state('templates.requestAccepted', {
-    url: "/requestAccepted/:pfname/:plname/:psex/:page/:pphno",
+    url: "/requestAccepted/:ptPhone",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/requestAccepted.html"
+        templateUrl: "views/templates/requestAccepted.html",
+        controller :"requestAcceptedCtrl"
       }
     }
   })

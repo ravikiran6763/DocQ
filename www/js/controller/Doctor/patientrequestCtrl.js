@@ -5,6 +5,12 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				$rootScope.showNotification=false;
 				$rootScope.showBadge=false;
 
+				$rootScope.callRequest=true;
+				$rootScope.readyForCall=false;
+				$rootScope.timer=false;
+
+
+
 				$scope.toggleText = "Accept";
 
 				$rootScope.pfname = $stateParams.pfname;
@@ -17,11 +23,33 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				 $rootScope.pphno = $stateParams.pphno;
 				 $rootScope.image = $stateParams.image;
+				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
+				 console.log($rootScope.dateAndTime);
 
-				 $scope.type = '';
-				 $scope.setType = function(event){
-					 $scope.isDisabled = false;
+			 	$scope.CurrentDate = new Date();
+
+				// $scope.CurrentDate.setHours($scope.CurrentDate.getMinutes() - 6);
+				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
+
+					////// calculate datedifference////
+					var timestamp = new Date($rootScope.dateAndTime).getTime();
+					var currentTimestamp = new Date($scope.CurrentDate).getTime();
+
+					var timeDifference = (currentTimestamp - timestamp);
+					var daysDiffrence = Math.round(timeDifference / 86400000); // days
+					var hoursDiffrence = Math.round((timeDifference % 86400000) / 3600000); // hours
+					var minutesDiffrence = Math.round(((timeDifference % 86400000) % 3600000) / 60000); // minutes
+
+					$rootScope.requestedDUration= daysDiffrence + " days, " + hoursDiffrence + " Hours, " + minutesDiffrence+ " Minutes"+" ago";
+					// $rootScope.requestedDUration= daysDiffrence + " day " + "ago";
+					var diff = currentTimestamp-timestamp;
+					console.log(timeDifference);
+
+					//////
+	$scope.type = '';
+ $scope.setType = function(event){
+	 $scope.isDisabled = false;
 		$scope.type = angular.element(event.target).text();
 		console.log($scope.type);
 		if($scope.type === 'Decline' && $localStorage.accpt === 1){
@@ -39,6 +67,16 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			}
 			console.log(docpatphno);
 			patientrequesttodoctor.accpetedbydoctor(docpatphno);
+			$rootScope.chekDiag=false;
+			$rootScope.chekTests=false;
+			$rootScope.chekMedi=false;
+
+			$rootScope.callRequest=false;
+			$rootScope.readyForCall=true;
+			$rootScope.timer=true;
+
+			$localStorage.consltdPatient=$rootScope.pphno;
+			$state.go('templates.requestAccepted');
 
 		}
 		else if($scope.type === 'Accepted'){

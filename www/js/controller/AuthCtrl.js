@@ -92,7 +92,7 @@ $scope.sendForm = function($event,form)
 
     $scope.validateUser1=function(isForm1Valid){
     // console.log('isForm1Valid ', isForm1Valid)
-    console.log($scope.PatientDetail.patientAvatar);
+    // console.log($scope.PatientDetail.patientAvatar);
     console.log('clicked');
 
     $scope.submitted = true;

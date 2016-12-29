@@ -4,7 +4,23 @@
 // .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
 //   height: auto  !important;
 // }
+// .menu.menu-right{
+// 	width: calc(100% - 58px) !important;
+// }
+// .menu-open .menu-content{
+// 	transform: translate3d(-82%, 0px, 0px) !important;
+// }
 
+.spinner-android {
+    stroke: #489808 !important;
+}
+
+.timer{
+    margin: 20vh 0 0 33vw !important;
+    font-family: inherit !important;
+    font-size: 5vw !important;
+    position: relative !important;
+}
 //!!!!!!!!!!!!!!!!!!!!!!!!SLIDING TOGGLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 .statusDiv{
   //background-color: #007460;
@@ -16,6 +32,8 @@
       width: 38% !important;
       height: 9% !important;
       position: relative !important;
+      margin-left: -39vw !important;
+
     }
     .offlineImg{
       width: 38% !important;

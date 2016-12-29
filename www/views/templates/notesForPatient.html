@@ -13,7 +13,7 @@
     <div class="row">
           <div class="col col-75"  ui-sref="templates.diagnosisForPatient" >Diagnosis</div>
   <label class="checkbox">
-             <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" >
+             <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
 
   </label>
 
@@ -22,15 +22,15 @@
     <div class="  row">
           <div class="col col-75"  ui-sref="templates.patientTests">Tests Recomended</div>
           <label class="checkbox">
-             <input class="checkbox"  type="checkbox" ng-model="notes.checkedTests"  >
+             <input class="checkbox"  type="checkbox" ng-model="notes.checkedTests" ng-checked="chekTests" >
           </label>
 
           <div class="col" ui-sref="templates.patientTests"><i class="icon ion-chevron-right icon-accessory"></i></div>
     </div>
     <div class="  row">
           <div class="col col-75"  ui-sref="templates.medicationForPatient" >Medication</div>
-          <label class="checkbox">
-             <input class="checkbox"  type="checkbox" ng-model="notes.checkedMedication" >
+          <label class="checkbox" >
+             <input class="checkbox"  type="checkbox" ng-model="notes.checkedMedication" ng-checked="chekMedi">
           </label>
 
           <div class="col" ui-sref="templates.medicationForPatient"><i class="icon ion-chevron-right icon-accessory"></i></div>

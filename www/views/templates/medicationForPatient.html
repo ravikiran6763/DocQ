@@ -14,12 +14,12 @@
         <button class="clear-field button button-clear button-positive" ng-click="clear();">
           Clear
         </button>
-        <button class="done button button-clear button-positive" ng-click="done();">
+        <button class="done button button-clear button-positive" ng-click="done(prescription.medicationforpatient,3);">
           Done
         </button>
         <div class="textform">
           <label class="item item-input">
-           <textarea placeholder=" "ng-model="medication.medicationforpatient"></textarea>
+           <textarea placeholder=" " ng-value="mediVal"  ng-model="prescription.medicationforpatient" maxlines="8" maxlines-prevent-enter="true"></textarea>
          </label>
         </div>
       </div>

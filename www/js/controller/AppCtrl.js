@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor) {
 
 console.log('appCtrl');
 	$rootScope.headerTxt='';
@@ -13,10 +13,14 @@ console.log('appCtrl');
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 
+	$rootScope.chekDiag=false;
+	$rootScope.chekTests=false;
+	$rootScope.chekMedi=false;
+	console.log($rootScope.chekDiag);
 
 	$scope.accptNotifications=false;
 	$scope.rejectNotifications=true;
-//
+
 // var model = $cordovaDevice.getModel();
 // console.log(model);
 
@@ -677,4 +681,207 @@ $scope.BalanceForVoiceCall=function()
 					$scope.rejectNotifications=true;
 
 				};
+
+///prescription par
+$rootScope.prescription={};
+
+
+//
+// $scope.done=function()
+// {
+// 	console.log($rootScope.prescription.diagnosisforpatient);
+// 		if($rootScope.prescription.diagnosisforpatient)
+// 		{
+// 				testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
+// 				$rootScope.chekDiag=true;
+// 				$rootScope.val=$rootScope.prescription.diagnosisforpatient;
+// 				$state.go("templates.notesForPatient");
+// 		}
+//
+// 		if($rootScope.prescription.checkedTests)
+// 		{
+// 				testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
+// 				$rootScope.chekDiag=true;
+// 				$rootScope.val=$rootScope.prescription.checkedTests;
+// 				$state.go("templates.notesForPatient");
+// 		}
+//
+//
+//
+// 		else
+// 		{
+// 					alert('Please Enter Something')
+// 		}
+// }
+
+$scope.done = function (prescType,sno) {
+
+        switch(sno){
+            case 1://for diagnosis
+											testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
+											$rootScope.chekDiag=true;
+											$rootScope.val=$rootScope.prescription.diagnosisforpatient;
+											$state.go("templates.notesForPatient");
+                // console.log("1. Selected Name: "+ prescType);
+                break;
+            case 2://for tests
+											testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
+											$rootScope.chekTests=true;
+											$rootScope.val=$rootScope.prescription.checkedTests;
+											$state.go("templates.notesForPatient");
+                console.log("2. Selected Name: " + prescType );
+                break;
+						case 3://for medications
+											testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
+											$rootScope.chekMedi=true;
+											$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
+											$state.go("templates.notesForPatient");
+
+                console.log("3. Selected Name: " + prescType );
+                break;
+            default:console.log('default');
+
+        }
+    }
+		console.log($rootScope.prescription);
+$scope.clear=function()
+{
+		$scope.diagnosis.diagnosisforpatient="";
+		$rootScope.chekDiag=false;
+}
+
+
+$scope.sendprescription = function()
+{
+  console.log($rootScope.prescription.checkedTests);
+    $scope.diagnosis = testresultbydoctor.getdiagnosis();
+    $scope.tests = testresultbydoctor.gettests();
+    $scope.medication = testresultbydoctor.getmedication();
+
+    if($rootScope.chekDiag && $rootScope.chekMedi && $rootScope.chekTests)
+    {
+      $scope.diagnosis = testresultbydoctor.getdiagnosis();
+      $scope.tests = testresultbydoctor.gettests();
+      $scope.medication = testresultbydoctor.getmedication();
+
+
+    }
+    else if($rootScope.chekDiag && $rootScope.chekTests)
+    {
+        alert('You Missed Medication');
+        $scope.diagnosis = testresultbydoctor.getdiagnosis();
+        $scope.tests = testresultbydoctor.gettests();
+        var diagandtests = {
+          diagnosis : $scope.diagnosis,
+          tests : $scope.tests
+        }
+        console.log(diagandtests);
+    }
+    else if($rootScope.chekDiag && $rootScope.chekMedi)
+    {
+      alert('You Missed Tests');
+      $scope.diagnosis = testresultbydoctor.getdiagnosis();
+      $scope.medication = testresultbydoctor.getmedication();
+      var diagandmedication = {
+      diagnosis : $scope.diagnosis,
+      medication : $scope.medication
+      }
+      console.log(diagandmedication);
+    }
+    else if($rootScope.chekTests && $rootScope.chekMedi)
+    {
+      alert('You Missed Diagnosis');
+      $scope.tests = testresultbydoctor.gettests();
+      $scope.medication = testresultbydoctor.getmedication();
+      var testsandmedication = {
+      tests : $scope.tests,
+      medication : $scope.medication
+      }
+      console.log(testsandmedication);
+    }
+    else if($rootScope.chekDiag)
+    {
+      alert('You have Missed tests and Medication');
+      $scope.diagnosis = testresultbydoctor.getdiagnosis();
+      var onlydiagnosis = {
+      diagnosis : $scope.diagnosis
+      }
+      console.log(onlydiagnosis);
+    }
+    else if($rootScope.chekTests)
+    {
+      alert('You have Missed Diagnosis and Medication');
+      $scope.tests = testresultbydoctor.gettests();
+      var onlytests = {
+      tests : $scope.tests
+      }
+      console.log(onlytests);
+    }
+    else if($rootScope.chekMedi)
+    {
+      alert('You have Missed Diagnosis and Tests');
+      $scope.medication = testresultbydoctor.getmedication();
+      var onlymedication = {
+      medication : $scope.medication
+      }
+      console.log(onlymedication);
+    }
+    else
+    {
+      console.log('Please Select Atleast One Tests')
+    }
+
+    if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
+    {
+        var prescriptiondetails = {
+          docphno : $localStorage.user,
+          patientphno : $rootScope.pphno,
+          diagnosis : $scope.diagnosis ,
+          tests : $scope.tests ,
+          medication : $scope.medication
+        };
+
+console.log($rootScope.chekDiag);
+
+        //test jpeg image response
+        testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
+        // console.log(response);
+        $scope.pic=response
+        console.log(prescriptiondetails);
+
+        if($scope.pic){
+          var auname =  "greet+"+$localStorage.user;
+          var apw = "DQ_doctor";
+          var ato = "greet+" + $rootScope.pphno;
+
+          console.log(auname);
+          console.log(ato);
+          var prescImg=$scope.pic;
+
+            var success = function(message)
+            {
+              console.log(message);
+            }
+
+            var failure = function()
+            {
+              console.log("Error calling Hello Plugin");
+            }
+
+            hello.automatic(auname,apw,ato,prescImg,success, failure);
+
+
+          }
+        // $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
+        // var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
+        // console.log(cordova.file.externalRootDirectory);
+        }).catch(function(error){
+        console.log('failure data', error);
+        });
+
+    }
+    // console.log(URL);
+}
+
+
 });
