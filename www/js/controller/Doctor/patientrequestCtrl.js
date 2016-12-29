@@ -5,12 +5,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				$rootScope.showNotification=false;
 				$rootScope.showBadge=false;
 
-				$rootScope.callRequest=true;
-				$rootScope.readyForCall=false;
-				$rootScope.timer=false;
-
-
-
 				$scope.toggleText = "Accept";
 
 				$rootScope.pfname = $stateParams.pfname;
@@ -28,25 +22,33 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 console.log($rootScope.dateAndTime);
 
 			 	$scope.CurrentDate = new Date();
-
-				// $scope.CurrentDate.setHours($scope.CurrentDate.getMinutes() - 6);
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
 
-					////// calculate datedifference////
-					var timestamp = new Date($rootScope.dateAndTime).getTime();
-					var currentTimestamp = new Date($scope.CurrentDate).getTime();
+				console.log($rootScope.dateDiff);
 
-					var timeDifference = (currentTimestamp - timestamp);
-					var daysDiffrence = Math.round(timeDifference / 86400000); // days
-					var hoursDiffrence = Math.round((timeDifference % 86400000) / 3600000); // hours
-					var minutesDiffrence = Math.round(((timeDifference % 86400000) % 3600000) / 60000); // minutes
 
-					$rootScope.requestedDUration= daysDiffrence + " days, " + hoursDiffrence + " Hours, " + minutesDiffrence+ " Minutes"+" ago";
-					// $rootScope.requestedDUration= daysDiffrence + " day " + "ago";
-					var diff = currentTimestamp-timestamp;
-					console.log(timeDifference);
+////// calculate datedifference////
+var timestamp = new Date($rootScope.dateAndTime).getTime();
+var currentTimestamp = new Date($scope.CurrentDate).getTime();
 
-					//////
+var diffMs = (currentTimestamp - timestamp);
+var diffDays = Math.round(diffMs / 86400000); // days
+var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
+var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+$rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
+// $rootScope.requestedDUration= diffDays + " day " + "ago";
+
+
+console.log($rootScope.requestedDUration);
+
+var diff = currentTimestamp-timestamp;
+console.log(diffMs);
+
+
+
+
+//////
 
 
 
@@ -73,12 +75,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
-
-			$rootScope.callRequest=false;
-			$rootScope.readyForCall=true;
-			$rootScope.timer=true;
-
-			// $state.go('templates.notesForPatient');
+			$state.go('templates.notesForPatient');
 
 		}
 		else if($scope.type === 'Accepted'){
