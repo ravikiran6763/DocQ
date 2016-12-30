@@ -1,12 +1,5 @@
 DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, doctoronoffdetails) {
 
-
-
-
-console.log('controller called');
-
-
-
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
 			$rootScope.showDocStatus=false;
@@ -25,7 +18,7 @@ console.log('controller called');
 					// $ionicHistory.clearHistory();
 					$ionicHistory.removeBackView();
 
-				
+
 				}
 					else if ($ionicHistory.backView()) {
 					$ionicHistory.goBack();
@@ -77,12 +70,4 @@ console.log('controller called');
 				console.log('searc clkd');
 					$state.go('app.searchDoctors');
 			}
-
-
-
-
-
-
-
-
 })

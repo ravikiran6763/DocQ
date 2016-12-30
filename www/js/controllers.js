@@ -2,24 +2,9 @@
 
 
 
-DoctorQuickApp.controller('requestAcceptedCtrl', function($scope,$rootScope, $ionicConfig,$stateParams,$localStorage,$ionicLoading,patientProfileDetailsService) {
+DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicConfig) {
 	//console.log('sidemenu');
 	$rootScope.docAvailable = false;
-	console.log('reqcontroller called');
-	console.log($localStorage.consltdPatient);
-
-	$rootScope.ptPhone=$stateParams.ptPhone;
-	console.log($rootScope.ptPhone);
-
-	patientProfileDetailsService.fetchPatient($localStorage.consltdPatient).then(function(response){
-		$scope.patient_details=response;
-		$ionicLoading.hide();
-		console.log($scope.patient_details);
-
-}).catch(function(error){
-console.log('failure data', error);
-})
-
 
 })
 

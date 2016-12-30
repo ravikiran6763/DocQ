@@ -1,26 +1,5 @@
 DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http, LoginService, patientCareService, doctorServices,myConsultationService) {
 
-
-	var unametogetcounts = "greet+"+$localStorage.user;
-	var pwtogetcounts = "DQ_doctor";
-
-
-
- console.log(unametogetcounts);
-
-		var success = function(message)
-		{
-			alert(message);
-		}
-
-		var failure = function()
-		{
-			alert("Error calling Hello Plugin");
-		}
-
-		hello.chatcounts(unametogetcounts,pwtogetcounts,success, failure);
-
-
 	$rootScope.headerTxt="My Consultaions";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -29,7 +8,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 
 	$ionicLoading.show();
 
-console.log('changes');
+console.log('called');
 $ionicLoading.show();
 // console.log($localStorage.user);
 
@@ -42,7 +21,7 @@ $ionicLoading.show();
 
 	$ionicLoading.show();
 
-
+console.log('called');
 $ionicLoading.show();
 	$ionicLoading.show();
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){

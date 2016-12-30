@@ -90,10 +90,10 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
 
       if (ionic.Platform.isAndroid()) {
-        window.addEventListener("native.hidekeyboard", function () {
-      StatusBar.hide();
-        window.AndroidFullScreen.immersiveMode(false, false);
-      });}
+         window.addEventListener("native.hidekeyboard", function () {
+         StatusBar.hide();
+         window.AndroidFullScreen.immersiveMode(false, false);
+           });}
 
       if(window.StatusBar)
       {
@@ -130,15 +130,15 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
           function successFunction()
           {
-            console.info("It worked!");
+          console.info("It worked!");
           }
           function errorFunction(error)
           {
-            console.error(error);
+          console.error(error);
           }
           function trace(value)
           {
-            console.log(value);
+          console.log(value);
           }
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
@@ -169,15 +169,6 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       else{
 
       }
-        if ('cordova' in window) {
-        // Create a sticky event for handling the app being opened via a custom URL
-        cordova.addStickyDocumentEventHandler('handleopenurl');
-
-        }
-
-        function handleOpenURL (url) {
-        cordova.fireDocumentEvent('handleopenurl', { url: url });
-        };
 
   })
 
@@ -601,11 +592,10 @@ $stateProvider
 
 
   .state('templates.requestAccepted', {
-    url: "/requestAccepted/:ptPhone",
+    url: "/requestAccepted/:pfname/:plname/:psex/:page/:pphno",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/requestAccepted.html",
-        controller :"requestAcceptedCtrl"
+        templateUrl: "views/templates/requestAccepted.html"
       }
     }
   })
