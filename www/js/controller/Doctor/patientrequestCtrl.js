@@ -75,7 +75,7 @@ console.log(diffMs);
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
-			$state.go('templates.notesForPatient');
+			$state.go('templates.requestAccepted');
 
 		}
 		else if($scope.type === 'Accepted'){
@@ -107,28 +107,5 @@ console.log(diffMs);
 		}
 
 	};
-				//  $scope.acceptclicked = function()
-				//  {
-				 //
-				// 	 	var docpatphno = {
-				// 			accpetcode : "1",
-				// 			doctorphno : $localStorage.user,
-				// 			patientphno : $stateParams.pphno
-				// 		}
-				 //
-				 //
-				// 		 patientrequesttodoctor.accpetedbydoctor(docpatphno);
-				// 		  $state.go('templates.notesForPatient');
-				 //
-				//  }
-				//  $scope.decline = function()
-				//  {
-				// 			 var docpatphno = {
-				// 			 accpetcode : "2",
-				// 			 doctorphno : $localStorage.user,
-				// 			 patientphno : $stateParams.pphno
-				// 		 }
-				// 			patientrequesttodoctor.declinedbydoctor(docpatphno);
-				//  }
 
 })
