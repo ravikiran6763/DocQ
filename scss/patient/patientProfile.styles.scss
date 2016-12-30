@@ -1,0 +1,87 @@
+.patientprofile-view
+{
+
+  background-color:#e2e2e2 !important;// $profile-bg !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  .row {
+   margin-right: 0 !important;
+   margin-left: 0 !important;
+   padding: 5 .5px !important;
+}
+  .title .title-left .header-item{
+    left: 0px !important;
+    right: 0px !important;
+  }
+  .ratingContainer{
+    position: relative;
+    margin-left: 29vw;
+  }
+  .rating{
+    float: left;
+    margin-left: 0px !important;
+  }
+.col{
+  margin: 1vw 0 0 5vw;
+}
+  .profile-info{
+    height: 14vh;
+    // background-color: teal;
+    width: 100% !important;
+    // margin-left: 3vw;
+    // margin-top: 2vh;
+    .imageContainer{
+    width: 30% !important;
+    background-color: blue;
+    float: left;
+      img{
+        width:21vw !important;
+        height: 11vh !important;
+        border-radius: 60%;
+        padding: 5px;
+        float: left;
+        background-color: #dedbd6 !important;
+        margin-top: 1vh;
+        margin-left: 4vw;
+      }
+    }
+    .profileName{
+      width: 80%;
+      font-size: 5vw;
+      float: right;
+      padding: 22px 0 0 37px;
+
+      h4{
+        font-size: 5vw;
+        // margin-left: 4vw;
+        margin-left: -5vw;
+        text-align: center;
+        padding-top: 3vh;
+        font-family: inherit;
+        font-weight: 500;
+        width: 100%;
+      }
+    }
+
+
+
+  }
+
+  .profile-details{
+    height: 60vh;
+    width: 99%;
+    margin: 0 auto;
+    .card{
+        min-height: 2vh;
+        margin: 2vw;
+        font-size: 4vw;
+      &:first-child{
+
+      }
+    }
+  }
+  h3{
+    text-align: center;
+    font-family: inherit;
+    font-size: 3vw;
+  }
+}
