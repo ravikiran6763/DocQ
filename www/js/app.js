@@ -76,6 +76,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       $ionicPlatform.registerBackButtonAction(function (event) {
+
         if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.doctor_home")){
           console.log('back button disabled');
                 // H/W BACK button is disabled for these states (these views)
@@ -592,16 +593,17 @@ $stateProvider
 
 
   .state('templates.requestAccepted', {
-    url: "/requestAccepted/:pfname/:plname/:psex/:page/:pphno",
+    url: "/requestAccepted",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/requestAccepted.html"
+        templateUrl: "views/templates/requestAccepted.html",
+        controller:"patientrequestCtrl"
       }
     }
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient",
+    url: "/notesForPatient/:calPtFname/:calPtLname/:calPtPh/:calPtImage",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",

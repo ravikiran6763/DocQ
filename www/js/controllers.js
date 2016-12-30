@@ -10,44 +10,7 @@ DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicC
 
 
 
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$localStorage,$stateParams,$ionicConfig,patientrequesttodoctor) {
 
-			  $scope.toggle = true;
-				$rootScope.headerTxt="Request";
-				$rootScope.showBackBtn=true;
-				$rootScope.showNotification=false;
-				$rootScope.showBadge=false;
-
-				$scope.toggleText = "Accept";
-
-
-	//  $scope.$watch('toggle', function(){
-	// 		 $scope.toggleText = $scope.toggle ? 'Accept' : 'Accepted';
-	 //
-	// 		 console.log('accpet clicked');
-	 //
-	 //
-	//  });
-
-				$rootScope.pfname = $stateParams.pfname;
-				$rootScope.plname = $stateParams.plname;
-				$rootScope.pphno = $stateParams.pphno;
-				console.log($rootScope.pphno);
-
-				 $scope.pfname = $stateParams.pfname;
-				 $scope.plname = $stateParams.plname;
-
-				 $scope.page = $stateParams.page;
-				 $scope.psex = $stateParams.psex;
-
-				 $scope.pphno = $stateParams.pphno;
-
-
-				 $scope.acceptclicked = function()
-				 {}
-
-
-});
 
 
 

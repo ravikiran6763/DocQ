@@ -23,6 +23,8 @@ console.log('appCtrl');
 
 // var model = $cordovaDevice.getModel();
 // console.log(model);
+$localStorage.reqSent="";
+console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
@@ -38,6 +40,7 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 
 console.log($ionicHistory.currentStateName());
 if($ionicHistory.currentStateName() === 'app.patient_home'){
+	$localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
 	$ionicHistory.nextViewOptions({
 					disableBack: true
@@ -51,6 +54,7 @@ console.log($scope.deviceAndroid );
 		}, 1000);
 
 	};
+
 	$scope.ratings = [{
  				current: $scope.myDoctorRatings,
  				max: 5
@@ -96,8 +100,12 @@ console.log($scope.deviceAndroid );
 							window.history.back();
 
 						}
+						else if($scope.prevPage === 'templates.notesForPatient'){
+							$state.go('templates.doctor_home');
+						}
 						else{
 							window.history.back();
+							$localStorage.reqSent=0;
 							}
 		}
 
@@ -317,9 +325,6 @@ console.log($scope.deviceAndroid );
 	//signout
 
 	$scope.confirmSignout = function() {
-
-
-
 		var unametologout = "greet+"+$localStorage.user;
 		var pwtologout = "DQ_patient";
 
@@ -369,9 +374,6 @@ console.log($scope.deviceAndroid );
 	 $rootScope.sideMenuForSearch = false;
 	 $ionicSideMenuDelegate.toggleRight();
  }
-
-
-
 
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');

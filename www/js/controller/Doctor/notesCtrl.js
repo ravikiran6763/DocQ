@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,$cordovaFile) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,$cordovaFile) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -9,16 +9,12 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
   $rootScope.prescription={};
 
-	// $rootScope.notes = {
-	// 		chekMedi : false,
-	// 		chekDiag : false,
-	// 		chekTests : false
-	// 	};
-    console.log($rootScope.pphno);
-		$scope.patientfname = $rootScope.pfname;
-		$scope.patientlname = $rootScope.plname;
-    $scope.prequestedtime = $rootScope.requesteddatetime;
-    $scope.paphno = $rootScope.pphno;
+		$scope.patientfname = $stateParams.calPtFname;
+		$scope.patientlname = $stateParams.calPtLname;
+    $scope.patientImage = $stateParams.calPtImage;
+
+    // $scope.prequestedtime = $rootScope.requesteddatetime;
+    $scope.paphno = $stateParams.clPtPh;
 
     console.log($scope.patientfname);
 		// console.log($scope.paphno);

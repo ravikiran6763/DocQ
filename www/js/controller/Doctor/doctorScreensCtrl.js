@@ -9,6 +9,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
+    
     // $scope.data.dataLoading = true;
     //
     // return someService.getData().then(function (results) {
