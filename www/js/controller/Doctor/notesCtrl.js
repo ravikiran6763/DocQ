@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,$cordovaFile) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -8,6 +8,16 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 	$rootScope.showBadge=false;
 
   $rootScope.prescription={};
+console.log($localStorage.reqPat);
+  patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){
+    console.log($localStorage.reqPat);
+    $scope.patient_details=response;
+    $ionicLoading.hide();
+    console.log($scope.patient_details);
+
+  }).catch(function(error){
+    console.log('failure data', error);
+  })
 
 		$scope.patientfname = $stateParams.calPtFname;
 		$scope.patientlname = $stateParams.calPtLname;

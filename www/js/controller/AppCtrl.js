@@ -837,7 +837,7 @@ $scope.sendprescription = function()
     {
         var prescriptiondetails = {
           docphno : $localStorage.user,
-          patientphno : $rootScope.pphno,
+          patientphno : $localStorage.reqPat,
           diagnosis : $scope.diagnosis ,
           tests : $scope.tests ,
           medication : $scope.medication
@@ -854,7 +854,7 @@ console.log($rootScope.chekDiag);
         if($scope.pic){
           var auname =  "greet+"+$localStorage.user;
           var apw = "DQ_doctor";
-          var ato = "greet+" + $rootScope.pphno;
+          var ato = "greet+" + $localStorage.reqPat;
 
           console.log(auname);
           console.log(ato);

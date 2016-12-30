@@ -9,12 +9,32 @@ DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicC
 })
 
 
+DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,$localStorage,testresultbydoctor) {
+
+		$scope.diagnosis={};
+		$scope.toggle = true;
+		$rootScope.headerTxt="Diagnosis";
+		$rootScope.showBackBtn=true;
+		$rootScope.showNotification=false;
+		$rootScope.showBadge=false;
+
+
+		$scope.patientfname = $stateParams.ptFname;
+		$scope.patientlname = $stateParams.ptLname;
+		$scope.patientImage = $stateParams.ptImage;
+		$scope.patientPhone = $stateParams.ptPh;
+
+
+
+	// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
+
+
+})
 
 
 
 
-
-DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope, $ionicConfig,testresultbydoctor) {
+DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,testresultbydoctor) {
 
 		$rootScope.user={};
 		$scope.notes = {};
@@ -24,8 +44,10 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$rootScope.headerTxt="Tests";
 		$rootScope.showBackBtn=true;
 
-		$scope.patientfname = $rootScope.pfname;
-		$scope.patientlname = $rootScope.plname;
+		$scope.patientfname = $stateParams.ptFname;
+		$scope.patientlname = $stateParams.ptLname;
+		$scope.patientImage = $stateParams.ptImage;
+		$scope.patientPhone = $stateParams.ptPh;
 
 
 		// $scope.done=function()
@@ -55,26 +77,9 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 })
 
 
-DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$ionicConfig,$localStorage,testresultbydoctor) {
-
-		$scope.diagnosis={};
-		$scope.toggle = true;
-		$rootScope.headerTxt="Diagnosis";
-		$rootScope.showBackBtn=true;
-		$rootScope.showNotification=false;
-		$rootScope.showBadge=false;
 
 
-		$scope.patientfname = $rootScope.pfname;
-		$scope.patientlname = $rootScope.plname;
-
-
-	// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
-
-
-})
-
-DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $state,$ionicConfig,testresultbydoctor) {
+DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $stateParams,$state,$ionicConfig,testresultbydoctor) {
 
 		$scope.toggle = true;
 		$rootScope.headerTxt="Medication";
@@ -83,8 +88,10 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $state,$
 		$rootScope.showBadge=false;
 		$scope.medication={};
 
-		$scope.patientfname = $rootScope.pfname;
-		$scope.patientlname = $rootScope.plname;
+		$scope.patientfname = $stateParams.ptFname;
+		$scope.patientlname = $stateParams.ptLname;
+		$scope.patientImage = $stateParams.ptImage;
+		$scope.patientPhone = $stateParams.ptPh;
 
 		// $scope.done=function()
 		// {

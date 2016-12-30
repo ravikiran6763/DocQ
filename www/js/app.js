@@ -603,7 +603,7 @@ $stateProvider
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient/:calPtFname/:calPtLname/:calPtPh/:calPtImage",
+    url: "/notesForPatient",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",
@@ -613,7 +613,7 @@ $stateProvider
   })
 
   .state('templates.diagnosisForPatient', {
-    url: "/diagnosisForPatient",
+    url: "/diagnosisForPatient/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
       'menuContent': {
         templateUrl: "views/templates/diagnosisForPatient.html",
@@ -624,7 +624,7 @@ $stateProvider
   })
 
   .state('templates.medicationForPatient', {
-    url: "/medicationForPatient",
+    url: "/medicationForPatient/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
       'menuContent': {
         templateUrl: "views/templates/medicationForPatient.html",
@@ -634,7 +634,7 @@ $stateProvider
   })
 
   .state('templates.patientTests', {
-    url: "/patientTests",
+    url: "/patientTests/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientTests.html",
