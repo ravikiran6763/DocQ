@@ -24,9 +24,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
 
-
-
-	// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
+		// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
 
 
 })

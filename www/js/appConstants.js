@@ -67,6 +67,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
         'docAccountsBalance' : 'doctor/docAccountsBalance.php',
         'docAccDetails' : 'doctor/docAccDetails.php',
+        'reqPatientDetails' : 'doctor/reqPatientDetails.php',
+
 
         'testjpegimage' :'prescription/responseasimages.php',
 

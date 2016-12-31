@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$ionicConfig,$ionicLoading,patientrequesttodoctor,patientProfileDetailsService) {
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -17,6 +17,12 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				 $rootScope.pphno = $stateParams.pphno;
 				 $rootScope.image = $stateParams.image;
+				 $rootScope.reqId = $stateParams.reqId;
+
+				 $localStorage.reqId= $rootScope.reqId;
+				 console.log($localStorage.reqId);
+				 $localStorage.reqPat=$rootScope.pphno;
+				 console.log($localStorage.reqPat);
 				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
 
@@ -40,16 +46,14 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					$rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
 					// $rootScope.requestedDUration= diffDays + " day " + "ago";
 
-
 					console.log($rootScope.requestedDUration);
-
 					var diff = currentTimestamp-timestamp;
 					console.log(diffMs);
 				//////
 
-				$rootScope.callReq=false;
-				$rootScope.callAcc=true;
-				$rootScope.timer=true;
+					$rootScope.callReq=false;
+					$rootScope.callAcc=true;
+					$rootScope.timer=true;
 
 
 
@@ -70,10 +74,18 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			var docpatphno = {
 			accpetcode : "1",
 			doctorphno : $localStorage.user,
-			patientphno : $stateParams.pphno
+			patientphno : $stateParams.pphno,
+			reqId:$localStorage.reqId
 			}
 			console.log(docpatphno);
-			patientrequesttodoctor.accpetedbydoctor(docpatphno);
+			patientrequesttodoctor.accpetedbydoctor(docpatphno).then(function(response){
+				$scope.reqAccpt=response;
+				$ionicLoading.hide();
+				console.log($scope.reqAccpt);
+
+			}).catch(function(error){
+				console.log('failure data', error);
+			});
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
@@ -82,9 +94,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$rootScope.callAcc=false;
 			$rootScope.timer=false;
 
-			$localStorage.reqPat=$rootScope.pphno;
-			console.log($localStorage.reqPat);
-			
+
+
 			$state.go('templates.requestAccepted');
 
 		}
@@ -118,8 +129,13 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 	};
 
-	patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){
-		console.log($localStorage.reqPat);
+	var reqPatient={
+		reqId:$localStorage.reqId,
+		reqPatNum:$localStorage.reqPat
+	}
+	// console.log(reqPatient);
+	doctorServices.fetchReqPatientDetails(reqPatient).then(function(response){
+
 		$scope.patient_details=response;
 		$ionicLoading.hide();
 		console.log($scope.patient_details);

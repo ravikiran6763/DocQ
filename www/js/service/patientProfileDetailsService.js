@@ -16,6 +16,9 @@ DoctorQuickApp.service('patientProfileDetailsService', function($http, $q, BASE_
 		return deferred.promise;
   }
 
+  
+
+
   //password change
   this.changePwd2 = function(newPwd){
 

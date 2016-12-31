@@ -448,7 +448,7 @@ $scope.ratingsObject = {
 	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 				// console.log('successfull data', response);
 				$scope.calledDetails=response;
-				// console.log($scope.calledDetails);
+				console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable
 				 var totList=[];
 						for(var i=0; i<data.length; i++){

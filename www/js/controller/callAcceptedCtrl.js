@@ -34,11 +34,8 @@ $scope.checkWalletBalance = function()
 
 			 	 var success = function(message)
 				{
-
 						alert(message);
-
 						$scope.enddate = new Date();
-
 							console.log($localStorage.user);
 							console.log($localStorage.Doctocall);
 

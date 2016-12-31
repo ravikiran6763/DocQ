@@ -15,6 +15,21 @@ this.doctorDetails = function (docPhone) {
 
 }
 
+this.fetchReqPatientDetails = function(detail){
+  // console.log(detail);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.reqPatientDetails);
+  $http.post(BASE_URL.url + API.reqPatientDetails,detail)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+
+  return deferred.promise;
+}
+
 //mydoctors function
 this.myDoctorsFetched = function (userPhone){
 //console.log(userPhone);
@@ -60,9 +75,6 @@ this.myConsultedPatients = function (meDoc) {
 
 
 this.checkMyBalance = function (myNumber) {
-
-
-
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.myWalletBalance,myNumber)
   .success(function (data, status, headers, config){
