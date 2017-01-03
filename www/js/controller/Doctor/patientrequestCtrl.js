@@ -9,13 +9,12 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				$rootScope.pfname = $stateParams.pfname;
 				$rootScope.plname = $stateParams.plname;
-				 $scope.pfname = $stateParams.pfname;
-				 $scope.plname = $stateParams.plname;
 
 				 $rootScope.page = $stateParams.page;
 				 $rootScope.psex = $stateParams.psex;
 
 				 $rootScope.pphno = $stateParams.pphno;
+				 console.log($rootScope.pphno);
 				 $rootScope.image = $stateParams.image;
 				 $rootScope.reqId = $stateParams.reqId;
 
@@ -71,21 +70,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$localStorage.accpt=1;
 			$scope.isDisabled = true;
 			$scope.toggleText ='Accepted'
-			var docpatphno = {
-			accpetcode : "1",
-			doctorphno : $localStorage.user,
-			patientphno : $stateParams.pphno,
-			reqId:$localStorage.reqId
-			}
-			console.log(docpatphno);
-			patientrequesttodoctor.accpetedbydoctor(docpatphno).then(function(response){
-				$scope.reqAccpt=response;
-				$ionicLoading.hide();
-				console.log($scope.reqAccpt);
-
-			}).catch(function(error){
-				console.log('failure data', error);
-			});
+			
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
@@ -93,7 +78,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$rootScope.callReq=true;
 			$rootScope.callAcc=false;
 			$rootScope.timer=false;
-
 
 
 			$state.go('templates.requestAccepted');
@@ -129,19 +113,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 	};
 
-	var reqPatient={
-		reqId:$localStorage.reqId,
-		reqPatNum:$localStorage.reqPat
-	}
-	// console.log(reqPatient);
-	doctorServices.fetchReqPatientDetails(reqPatient).then(function(response){
 
-		$scope.patient_details=response;
-		$ionicLoading.hide();
-		console.log($scope.patient_details);
-
-	}).catch(function(error){
-		console.log('failure data', error);
-	})
 
 })

@@ -10,21 +10,21 @@
 			$acceptcode = $requesteddata->accpetcode;
 			$doctorphno = $requesteddata->doctorphno;
 			$patientphno = $requesteddata->patientphno;
-		echo	$reqId = $requesteddata->reqId;
+			$reqId = $requesteddata->reqId;
 
 
 			if($acceptcode ==1)
 			{
 					//UPDATE FOR THIS PATIENT AR_FLAG IN DATABASE AS 3 AND TIME AS NOW
 					$accpteddoctor = "update patientrequesteddoctor set ar_flag=3,ar_time=now() where patientphno='$patientphno'";
-					echo $accpteddoctor;
+					// echo $accpteddoctor;
 					$retval = mysql_query($accpteddoctor,$dbhandle);
 					if(! $retval )
 					{
 						die('Could not update data: ' . mysql_error());
 					}
 					//INSERT INTO DOCTORACCEPTED TABLE
-				echo	$accpetedtable = "INSERT INTO acceptedpatients(id,patientphno,doctorphno,acceptedtime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
+					$accpetedtable = "INSERT INTO acceptedpatients(id,patientphno,doctorphno,acceptedtime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
 					$retval1 = mysql_query( $accpetedtable, $dbhandle );
 					if(!$retval1 )
 					{
@@ -33,7 +33,21 @@
 					}
 					else
 					{
-						echo "Query Submitted";
+						$patientDetails = array();
+						$sql = "select req.id,pt.patientFname,pt.patientMname,pt.patientLname,pt.patientAge,pt.patientSex,pt.patientPhone,pt.patientEmail,pt.patientPwd,im.image from patientDetails as pt,patientImages as im, patientrequesteddoctor as req where pt.patientPhone=im.patientphone and pt.patientPhone='$patientphno' and  req.id='$reqId'";
+						$retval = mysql_query( $sql, $dbhandle );
+
+						while($row = mysql_fetch_array($retval))
+						{
+							$patientDetails[] = $row;
+
+						}
+
+						if(! $retval )
+						{
+							die('Could not get data: ' . mysql_error());
+						}
+						 echo json_encode($patientDetails);
 					}
 			}
 			else
@@ -47,6 +61,8 @@
 				  die('Could not update data: ' . mysql_error());
 				}
 			}
+
+
 	}
 
 

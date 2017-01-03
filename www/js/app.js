@@ -597,7 +597,7 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/templates/requestAccepted.html",
-        controller:"patientrequestCtrl"
+        controller:"callAccptCtrl"
       }
     }
   })

@@ -8,7 +8,6 @@ DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicC
 
 })
 
-
 DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,$localStorage,testresultbydoctor) {
 
 		$scope.diagnosis={};
@@ -28,9 +27,6 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 
 
 })
-
-
-
 
 DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,testresultbydoctor) {
 
@@ -73,9 +69,6 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		//
 		// }
 })
-
-
-
 
 DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $stateParams,$state,$ionicConfig,testresultbydoctor) {
 
@@ -134,11 +127,7 @@ DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 		$state.go('app.patient_home');
 	};
 })
-
-
 //newly added for DQ
-
-
 DoctorQuickApp.controller('DocRegController', function($scope,$rootScope, $state,data) {
 			//alert('hello');
 			$scope.doc={};
@@ -151,8 +140,6 @@ DoctorQuickApp.controller('DocRegController', function($scope,$rootScope, $state
 
 })
 
-
-
 DoctorQuickApp.controller('reviewCtrl', function($scope,$rootScope, $ionicConfig) {
 
 		$scope.toggle = false;
@@ -164,20 +151,6 @@ DoctorQuickApp.controller('reviewCtrl', function($scope,$rootScope, $ionicConfig
 
 
 })
-//
-// DoctorQuickApp.controller('videoCtrl', function($scope,$rootScope, $ionicConfig, $http) {
-//
-// 		$scope.toggle = true;
-// 	 	$rootScope.headerTxt="Video";
-// 		$rootScope.showBackBtn=true;
-// 		$rootScope.checkedValue = false;
-// 		$rootScope.showNotification=false;
-// 	// $rootScope.headerTxt="Customer Care";
-// 	// $rootScope.showBackBtn=true;termsCtrl
-//
-//
-// })
-//
 
 DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ionicConfig, $http) {
 	$rootScope.headerTxt="My Consultations";
@@ -186,17 +159,12 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ion
 
 })
 
-
-
-
 DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicConfig, $http) {
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
 })
-
-
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
    	$scope.toggle = true;
@@ -206,5 +174,30 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 		$rootScope.showNotification=false;
 
 
+})
+
+
+DoctorQuickApp.controller('callAccptCtrl', function($scope,$rootScope, $stateParams,$ionicConfig,$localStorage,$ionicLoading,patientrequesttodoctor) {
+   	$scope.toggle = true;
+	 	$rootScope.headerTxt="Call";
+		$rootScope.showBackBtn=true;
+		$rootScope.checkedValue = false;
+		$rootScope.showNotification=false;
+
+		var docpatphno = {
+		accpetcode : "1",
+		doctorphno : $localStorage.user,
+		patientphno : $localStorage.reqPat,
+		reqId:$localStorage.reqId
+		}
+		console.log(docpatphno);
+		patientrequesttodoctor.accpetedbydoctor(docpatphno).then(function(response){
+			$scope.reqAccpt=response;
+			$ionicLoading.hide();
+			console.log($scope.reqAccpt);
+
+		}).catch(function(error){
+			console.log('failure data', error);
+		});
 })
 ;
