@@ -90,42 +90,6 @@ $scope.sendForm = function($event,form)
 };
 
 //Validate  Doctor
-$scope.validateDoctor=function(isDocFormValid){
-  console.log('isDocFormValid ', isDocFormValid)
-console.log($rootScope.Doctor);
-  console.log('clicked');
-
-
-  if(!$scope.Doctor.doc_fname){
-    // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
-    $scope.submitted = true;
-
-    $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
-    // success
-    }, function (error) {
-    // error
-    });
-  }
-  if(!$scope.Doctor.doc_lname){
-    // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
-    $scope.submittedLname = true;
-
-    $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
-    // success
-    }, function (error) {
-    // error
-    });
-  }
-
-  if(isDocFormValid) {
-    console.log($scope.Doctor);
-    // console.log('isDocFormValid ', isDocFormValid)
-    $state.go('auth.doctorRegistration2');
-  }
-  // console.log($rootScope.PatientDetail);
-
-  // $state.go('auth.patient_reg2');
-}
 
 //patient Registration forms.
 
@@ -278,41 +242,38 @@ $scope.patientRegistration = function()
 
 }
 
-$rootScope.validInput=true;
+    $rootScope.validInput=true;
     $scope.validateUser=function(isFormValid){
       $rootScope.validInput=false;
       $scope.validForm =isFormValid;
       if(!$scope.PatientDetail.patient_fname){
         $scope.submitted = true;
-        console.log($scope.PatientDetail.patient_fname);
-        console.log('enter fname');
         $cordovaToast.showLongCenter('Valid name must be entered', 'short', 'center').then(function(success){
         // success
         }, function (error) {
         // error
         });
       }
-      if(!$scope.PatientDetail.patient_lname){
+      else if(!$scope.PatientDetail.patient_lname){
         $scope.submittedLname = true;
-        console.log($scope.PatientDetail.patient_fname);
-        console.log('enter fname');
         $cordovaToast.showLongCenter('Valid name must be entered', 'short', 'center').then(function(success){
         // success
         }, function (error) {
         // error
         });
       }
-      if(!$scope.PatientDetail.patient_age){
+      else if(!$scope.PatientDetail.patient_age){
         $scope.submittedAge = true;
-        console.log($scope.PatientDetail.patient_age);
-        console.log('enter fname');
         $cordovaToast.showLongCenter('Age must be entered', 'short', 'center').then(function(success){
         // success
         }, function (error) {
         // error
         });
       }
-      console.log($scope.PatientDetail);
+      else{
+        console.log('checked');
+      }
+      // console.log($scope.PatientDetail);
       if(isFormValid) {
         console.log(isFormValid);
         if($scope.PatientDetail.patient_age<18){
@@ -334,17 +295,15 @@ $rootScope.validInput=true;
 
     $rootScope.validInput=true;
     $scope.validateUser1=function(isForm1Valid){
-    // console.log('isForm1Valid ', isForm1Valid)
-    // console.log($scope.PatientDetail.patientAvatar);
+      // console.log('isForm1Valid ', isForm1Valid)
+      // console.log($scope.PatientDetail.patientAvatar);
     console.log('clicked');
     $rootScope.validInput=false;
 
-    $scope.submitted = true;
     // console.log($scope.PatientDetail.patient_mob);
 
     if(!$scope.PatientDetail.patient_mob){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
-
       $scope.submittedMob = true;
       console.log($scope.PatientDetail.patient_mob);
 
@@ -354,7 +313,7 @@ $rootScope.validInput=true;
       // error
       });
     }
-    if(!$scope.PatientDetail.gender){
+    else if(!$scope.PatientDetail.gender){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
 
       $scope.submittedSex = true;
@@ -365,25 +324,26 @@ $rootScope.validInput=true;
       // error
       });
     }
-    if(!$scope.PatientDetail.pat_email){
+    else if(!$scope.PatientDetail.pat_email){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedMail = true;
-      console.log($scope.PatientDetail.pat_email);
       $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
       // success
       }, function (error) {
       // error
       });
     }
-    if(!$scope.PatientDetail.pat_password){
+    else if(!$scope.PatientDetail.pat_password){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedPwd = true;
-
       $cordovaToast.showLongCenter('Valid password be entered', 'short', 'center').then(function(success){
       // success
       }, function (error) {
       // error
       });
+    }
+    else{
+      console.log('validated');
     }
 
     if(isForm1Valid) {
@@ -399,7 +359,6 @@ $rootScope.validInput=true;
         });
       }
       else{
-
         //check for existing patient
           patientRegistrationService.existingPatient($scope.PatientDetail.patient_mob).then(function(response)
           {
@@ -450,9 +409,50 @@ $rootScope.validInput=true;
           });
 
         }
-    }
+      }
 
     }
+
+    $scope.validateDoctor=function(isDocFormValid){
+      console.log('isDocFormValid ', isDocFormValid)
+    console.log($rootScope.Doctor);
+      console.log('clicked');
+
+
+      if(!$scope.Doctor.doc_fname){
+        // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+        $scope.submitted = true;
+
+        $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else if(!$scope.Doctor.doc_lname){
+        // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+        $scope.submittedLname = true;
+
+        $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else{
+        console.log('validated');
+      }
+
+      if(isDocFormValid) {
+        console.log($scope.Doctor);
+        // console.log('isDocFormValid ', isDocFormValid)
+        $state.go('auth.doctorRegistration2');
+      }
+      // console.log($rootScope.PatientDetail);
+
+      // $state.go('auth.patient_reg2');
+    }
+
   $scope.doctorRegistration = function(isDocForm1Valid)
   {
     console.log('clicked');
@@ -469,19 +469,21 @@ $rootScope.validInput=true;
       // error
       });
     }
-    if(!$scope.Doctor.doc_phone){
+    else if(!$scope.Doctor.doc_phone){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
       console.log('enter mail');
       $scope.submittedMob = true;
       console.log($scope.Doctor.doc_phone);
-      $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
+      $cordovaToast.showLongCenter('Valid phone number must be entered', 'short', 'center').then(function(success){
       // success
       }, function (error) {
       // error
       });
     }
 
-    $scope.submitted = true;
+    else{
+      console.log('2nd form validated');
+    }
     var doctorDetails={
       doctorFname : $scope.Doctor.doc_fname,
       doctorMname : $scope.Doctor.doc_mname,
@@ -573,14 +575,14 @@ $rootScope.validInput=true;
     {
     $scope.termsPopup.close();
     };
-$ionicLoading.hide();
+      $ionicLoading.hide();
   }
 
   //video popoverOptions
 
   $scope.clipSrc = 'https://www.youtube.com/watch?v=L83qMnbJ198';
 
-$scope.playVideo = function() {
+  $scope.playVideo = function() {
   $ionicLoading.show();
   $scope.videoPlayerPopup = $ionicPopup.show({
     title: 'DoctorQuick',
