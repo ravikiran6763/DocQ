@@ -224,6 +224,19 @@ ion-side-menu.menu-left.menu {
 .submittedAge input.ng-invalid:not(:focus) {
   border:2px solid red;
 }
+.submittedMob input.ng-invalid:not(:focus) {
+  border:2px solid red;
+}
+.submittedSex input.ng-invalid:not(:focus) {
+  border:2px solid red;
+}
+.submittedMail input.ng-invalid:not(:focus) {
+  border:2px solid red;
+}
+.submittedPwd input.ng-invalid:not(:focus) {
+  border:2px solid red;
+}
+
 .platform-android.has-translucent-status-bar .header-title{
     height: 80px;
     padding-top: 40px;
