@@ -3,17 +3,19 @@
     <div class="top-content">
       <img src="./img/progress2.png">
     </div>
-  <form name="DocReg1" ng-submit="submitForm($event)" ng-class={submitted:submitted} >
+  <form name="DocReg1" ng-submit="submitForm($event)" >
     <div class="form-content" >
-      <!-- <label class="item item-input" >
-      </label> -->
-      <input type="email" placeholder="Email Address" name="doc_email" ng-model="Doctor.doc_email" validate-email required>
+
+      <div class="form-group" ng-class={submittedMail:submittedMail}>
+        <input type="email" placeholder="Email Address" name="doc_email" ng-model="Doctor.doc_email" validate-email required>
+      </div>
+      <div class="form-group" ng-class={submittedMob:submittedMob}>
+        <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='Doctor.doc_phone' mask='9999999999' restrict="reject" clean="true" required/>
+      </div>
       <!-- <span class="input-label">+91</span> -->
-      <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='Doctor.doc_phone' mask='9999999999' restrict="reject" clean="true" required/>
 
     </div>
     <div class="bottom-content">
-      <!-- <button class="button button-block" type="submit" ng-click="doctorRegistration();" ng-disabled="!DocReg1.$valid">Submit</button> -->
 
       <button class="login_button button button-block button-assertive" type="submit" ng-click="doctorRegistration(DocReg1.$valid);" >Submit</button>
     </div>

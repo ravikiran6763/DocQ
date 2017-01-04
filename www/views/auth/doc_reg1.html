@@ -9,13 +9,22 @@
    </div>
   </div>
 
-<form name="DocReg" ng-submit="submitForm($event)" ng-class={submitted:submitted} >
+<form name="DocReg" ng-submit="submitForm($event)" >
    <div class="form-content">
      <div class="input-types">
 
-       <input type="text" class="form-control" placeholder="First Name" name="doc_fname" ng-model="Doctor.doc_fname" no-special-char required>
-       <input type="text" class="form-control" placeholder="Middle Name" name="doc_mname" ng-model="Doctor.doc_mname" no-special-char >
-       <input type="text" class="form-control" placeholder="Last Name" name="doc_lname" ng-model="Doctor.doc_lname" no-special-char required>
+       <div class="form-group" ng-class={submitted:submitted}>
+         <input type="text" class="form-control" placeholder="First Name" name="doc_fname" ng-model="Doctor.doc_fname" no-special-char required>
+       </div>
+
+       <div class="form-group" >
+         <input type="text" class="form-control" placeholder="Middle Name" name="doc_mname" ng-model="Doctor.doc_mname" no-special-char >
+       </div>
+
+       <div class="form-group" ng-class={submittedLname:submittedLname}>
+         <input type="text" class="form-control" placeholder="Last Name" name="doc_lname" ng-model="Doctor.doc_lname" no-special-char required>
+       </div>
+
 
      </div>
 

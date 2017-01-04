@@ -95,7 +95,28 @@ $scope.validateDoctor=function(isDocFormValid){
 console.log($rootScope.Doctor);
   console.log('clicked');
 
-  $scope.submitted = true;
+
+  if(!$scope.Doctor.doc_fname){
+    // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+    $scope.submitted = true;
+
+    $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+    // success
+    }, function (error) {
+    // error
+    });
+  }
+  if(!$scope.Doctor.doc_lname){
+    // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+    $scope.submittedLname = true;
+
+    $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+    // success
+    }, function (error) {
+    // error
+    });
+  }
+
   if(isDocFormValid) {
     console.log($scope.Doctor);
     // console.log('isDocFormValid ', isDocFormValid)
@@ -367,6 +388,7 @@ $rootScope.validInput=true;
 
     if(isForm1Valid) {
       // console.log($scope.PatientDetail.pat_password.length());
+
       if($scope.firstNum < 7){
         console.log($scope.firstNum);
 
@@ -428,15 +450,37 @@ $rootScope.validInput=true;
           });
 
         }
-
-
     }
 
     }
   $scope.doctorRegistration = function(isDocForm1Valid)
   {
     console.log('clicked');
-console.log('isDocForm1Valid ', isDocForm1Valid)
+    console.log('isDocForm1Valid ', isDocForm1Valid)
+
+    if(!$scope.Doctor.doc_email){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      console.log('enter mail');
+      $scope.submittedMail = true;
+      console.log($scope.Doctor.doc_email);
+      $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+    if(!$scope.Doctor.doc_phone){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      console.log('enter mail');
+      $scope.submittedMob = true;
+      console.log($scope.Doctor.doc_phone);
+      $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+
     $scope.submitted = true;
     var doctorDetails={
       doctorFname : $scope.Doctor.doc_fname,
