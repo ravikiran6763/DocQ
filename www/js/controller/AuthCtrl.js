@@ -90,10 +90,12 @@ $scope.sendForm = function($event,form)
 };
 
 
+    $rootScope.validInput=true;
     $scope.validateUser1=function(isForm1Valid){
     // console.log('isForm1Valid ', isForm1Valid)
     // console.log($scope.PatientDetail.patientAvatar);
     console.log('clicked');
+    $rootScope.validInput=false;
 
     $scope.submitted = true;
     $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
@@ -335,11 +337,44 @@ $scope.patientRegistration = function()
 
 }
 
-
+$rootScope.validInput=true;
     $scope.validateUser=function(isFormValid){
-      console.log('clicked');
-      $scope.submitted = true;
+      $rootScope.validInput=false;
+      $scope.validForm =isFormValid;
+      if(!$scope.PatientDetail.patient_fname){
+        $scope.submitted = true;
+        console.log($scope.PatientDetail.patient_fname);
+        console.log('enter fname');
+        $cordovaToast.showLongCenter('Valid name must be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      if(!$scope.PatientDetail.patient_lname){
+        $scope.submittedLname = true;
+        console.log($scope.PatientDetail.patient_fname);
+        console.log('enter fname');
+        $cordovaToast.showLongCenter('Valid name must be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      if(!$scope.PatientDetail.patient_age){
+        $scope.submittedAge = true;
+        console.log($scope.PatientDetail.patient_age);
+        console.log('enter fname');
+        $cordovaToast.showLongCenter('Age must be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      console.log($scope.PatientDetail);
       if(isFormValid) {
+        console.log(isFormValid);
+
         if($scope.PatientDetail.patient_age<18){
           // alert('You Should be 18+ to use this app')
           $cordovaToast.showLongBottom('You must be 18 over to register', 'short', 'center').then(function(success) {

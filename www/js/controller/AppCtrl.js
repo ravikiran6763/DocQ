@@ -340,35 +340,65 @@ console.log($scope.deviceAndroid );
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.logout(unametologout,pwtologout,success, failure);
+		// hello.logout(unametologout,pwtologout,success, failure);
 
-   	var confirmPopup = $ionicPopup.confirm({
-						title: 'DoctorQuick',
-						template: 'Are you sure you want to Signout?',
-						cssClass: 'videoPopup',
-						scope: $scope,
-						buttons: [
-						{
-						text: 'Cancel',
-						type: 'button-royal',
-						},
-						{
-							text: 'Ok',
-							type: 'button-positive',
-							onTap: function(e) {
-							console.log('ok');
+   // 	var confirmPopup = $ionicPopup.confirm({
+		// 				title: 'DoctorQuick',
+		// 				template: 'Are you sure you want to Signout?',
+		// 				cssClass: 'videoPopup',
+		// 				scope: $scope,
+		// 				buttons: [
+		// 				{
+		// 				text: 'Cancel',
+		// 				type: 'button-royal',
+		// 				},
+		// 				{
+		// 					text: 'Ok',
+		// 					type: 'button-positive',
+		// 					onTap: function(e) {
+		// 					console.log('ok');
+		//
+		// 					$ionicHistory.clearCache();
+		// 					$ionicHistory.clearHistory();
+		// 					$window.localStorage.clear();
+		// 						$state.go('auth.loginNew');
+		// 					// }, 100)
+		//
+		// 				}
+		// 			},
+		// 			]
+		// 			});
 
-							$ionicHistory.clearCache();
-							$ionicHistory.clearHistory();
-							$window.localStorage.clear();
-								$state.go('auth.loginNew');
-							// }, 100)
+//popup modification
 
-						}
-					},
-					]
-					});
- 		};
+var confirmPopup = $ionicPopup.confirm({
+			 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
+			 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
+			 cssClass: 'videoPopup',
+			 scope: $scope,
+			 buttons: [
+								 {
+								 text: 'Decline',
+								 type: 'button-royal',
+								 },
+								 {
+									 text: 'View',
+									 type: 'button-positive',
+									 onTap: function(e) {
+											 console.log('ok');
+
+											 $ionicHistory.clearCache();
+											 $ionicHistory.clearHistory();
+											 $window.localStorage.clear();
+												 $state.go('auth.loginNew');
+
+								 }
+		 },
+		 ]
+	 })
+
+
+ }
 
  $rootScope.toggleLeftSideMenu = function () {
 	 $rootScope.sideMenuForSearch = false;
@@ -464,6 +494,9 @@ $scope.ratingsObject = {
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
 						if($rootScope.cal_flag === '4'){
 							// alert('readyforcall');
+
+
+
 							$ionicPopup.alert({
 							title: 'Call Request Accepted',
 							template:' A Doctor has accepted your call request',
@@ -716,7 +749,7 @@ $rootScope.prescription={};
 // 		}
 // }
 
-$scope.done = function (prescType,sno) {
+$scope.done = function (prescType,sno){
 
         switch(sno){
             case 1://for diagnosis

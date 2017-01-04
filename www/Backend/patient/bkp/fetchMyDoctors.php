@@ -12,7 +12,7 @@
         $doctorDetails = array();
 				// $sql = "select doctor_onoff.onoff,doctorFname,doctorMname,doctorLname,doctorEmail,doctorDetails.doctorPhone,doctorPwd,doctorDegrees,practicingSince,doctorAge,doctorSex,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode,doctorLanguage1,doctorLanguage2,doctorBankName,doctorAccountNum,doctorBankIfsc,doctorFee,doctorSpecialityId,doctorMedFlag,doctorMedNum from doctor_onoff,doctorDetails,myConsultations where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and myConsultations.doctorPhone=doctorDetails.doctorPhone and myConsultations.patientPhone=$loginphno";
 				//
-				 $sql = "select ratingTo from doctorRatings where ratedBy =$loginphno and favorite='1'";
+				 $sql = "select ratingTo from doctorRatings where ratedBy =$loginphno and favorite='1' group by ratingTo";
 				// $sql = "select doctorPhone from myConsultations where patientPhone =$loginphno order by consultationId desc limit 1";
 
 				$retval = mysql_query( $sql, $dbhandle );
