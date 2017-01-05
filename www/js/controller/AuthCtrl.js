@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -13,7 +13,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
     $scope.deviceAndroid = ionic.Platform.isAndroid();
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
-
+    console.log($ionicHistory.currentStateName());
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){

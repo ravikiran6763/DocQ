@@ -1,19 +1,45 @@
 <ion-view class="mypatient-profile-view" cache-view="false" >
 
   <ion-content >
-    <a class="item item-avatar item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" >
-    <!-- <a class="item item-avatar item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" > -->
+    <div>
 
-      <!--ui-sref="app.doctorprofile"-->
+      <ul class="bottom-content">
 
-      <img src="img/doc.jpg">
-      <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
-      <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
-    </a>
-    <ul>
-      <li ng-show="!myDoctor.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
+        <li class="" ng-repeat="r in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});">
 
-    </ul>
+          <div class="profile-img">
+            <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+            <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+
+          </div>
+          <div class="name-content">
+            <h2>Dr.{{r.doctorFname | capitalize }} {{r.doctorLname | capitalize}} <span>{{r.consultDate | date:'yyyy-MM-dd'}}</span> </h2>
+            <!-- <span>{{r.consultDate | capitalize}}</span> -->
+            <p class="msgContent"><font size=2>Lastsent/receivedmsgLastsent/receivedmsg Last sent/received msg</font></p>
+            <p class="badge badge-assertive chatCount">{{ 1 }}</p>
+
+          </div>
+          <div class="next-icon">
+             <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </li>
+
+      </ul>
+
+
+
+      <!-- <a class="item item-avatar item-icon-left item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" >
+      <span class="badge badge-assertive">{{ 1 }}</span>
+        <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
+        <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
+      </a> -->
+      <ul>
+        <li ng-show="!myDoctor.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
+
+      </ul>
+
+    </div>
+
 
   </ion-content>
 </ion-view>

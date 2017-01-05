@@ -9825,6 +9825,9 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
+a {
+  text-decoration: none !important; }
+
 .spinner-android {
   stroke: #489808 !important; }
 
@@ -12061,6 +12064,71 @@ ion-side-menu .heading-item .message {
     .mypatient-profile-view h2 span {
       position: absolute !important;
       margin-left: 1vw; }
+  .mypatient-profile-view .bottom-content {
+    width: 100%;
+    height: 100%;
+    overflow: scroll !important;
+    position: absolute;
+    margin-bottom: 10px !important;
+    z-index: 1; }
+    .mypatient-profile-view .bottom-content li {
+      height: 14%;
+      border-bottom: 1px solid #fff;
+      *zoom: 1; }
+      .mypatient-profile-view .bottom-content li:before, .mypatient-profile-view .bottom-content li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .mypatient-profile-view .bottom-content li:after {
+        clear: both; }
+      .mypatient-profile-view .bottom-content li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .mypatient-profile-view .bottom-content li .profile-img {
+        width: 15vw;
+        float: left;
+        margin: 2vh 0px 0px 2vh; }
+        .mypatient-profile-view .bottom-content li .profile-img img {
+          width: 100%;
+          border-radius: 55%;
+          max-height: 14vw; }
+      .mypatient-profile-view .bottom-content li .next-icon {
+        text-align: center;
+        line-height: 14vh;
+        margin-top: 6vh; }
+        .mypatient-profile-view .bottom-content li .next-icon .ion-chevron-right:before {
+          font-size: 1.8em; }
+      .mypatient-profile-view .bottom-content li .name-content {
+        float: left;
+        padding: 2vh 2vh;
+        height: 100%;
+        width: 70%;
+        position: relative; }
+        .mypatient-profile-view .bottom-content li .name-content .chatCount {
+          float: left !important;
+          margin: -9vh 0 0 -20vw !important; }
+        .mypatient-profile-view .bottom-content li .name-content .msgContent {
+          display: inline-block;
+          overflow: hidden !important;
+          height: 3vh;
+          width: 100% !important;
+          text-overflow: ellipsis !important; }
+        .mypatient-profile-view .bottom-content li .name-content p {
+          font-size: 3.2vw;
+          line-height: 2.8vh;
+          margin: 0px; }
+        .mypatient-profile-view .bottom-content li .name-content h2 {
+          margin: 0 0 0 0;
+          font-size: 5vw;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 5vh; }
+          .mypatient-profile-view .bottom-content li .name-content h2 span {
+            font-size: 4vw;
+            position: absolute;
+            width: 100%;
+            word-wrap: break-word; }
+  .mypatient-profile-view ul {
+    margin-bottom: 10px !important; }
 
 .medical-speciality-view {
   background-color: #e2e2e2 !important;
@@ -12144,6 +12212,81 @@ ion-side-menu .heading-item .message {
     color: #ffffff;
     height: 40px;
     width: 100%; }
+
+.ViewDoctorProfile-view {
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .ViewDoctorProfile-view .title .title-left .header-item {
+    left: 0px !important;
+    right: 0px !important; }
+  .ViewDoctorProfile-view .profile-img {
+    width: 30%;
+    height: 25% !important;
+    margin: 0 auto; }
+    .ViewDoctorProfile-view .profile-img img {
+      width: 30vw;
+      border-radius: 60%;
+      padding: 5px;
+      background-color: #dedad7 !important;
+      margin-top: 4vh; }
+    .ViewDoctorProfile-view .profile-img i {
+      position: absolute;
+      padding-left: 88px;
+      padding-top: 0;
+      margin-top: -88px;
+      margin-left: -9px; }
+  .ViewDoctorProfile-view .profile-info {
+    margin: 0 auto;
+    width: 90%;
+    height: 15%; }
+    .ViewDoctorProfile-view .profile-info h1, .ViewDoctorProfile-view .profile-info h2, .ViewDoctorProfile-view .profile-info h3 {
+      font-family: Ubuntu,bold,sans-serif !important;
+      text-align: center; }
+    .ViewDoctorProfile-view .profile-info h1 {
+      font-size: 5vw; }
+    .ViewDoctorProfile-view .profile-info h2 {
+      font-size: 4vw;
+      line-height: 0vh;
+      color: #666666 !important; }
+    .ViewDoctorProfile-view .profile-info h3 {
+      font-size: 3vw;
+      color: #666666 !important; }
+  .ViewDoctorProfile-view .rating-field {
+    height: 10%; }
+    .ViewDoctorProfile-view .rating-field .card {
+      width: 90% !important;
+      margin: 0 auto; }
+  .ViewDoctorProfile-view .bottom-content {
+    height: 52%; }
+    .ViewDoctorProfile-view .bottom-content h4 {
+      font-size: 4vw;
+      line-height: 0vh;
+      text-align: center;
+      margin-top: 6vh;
+      font-family: Ubuntu,bold,sans-serif !important; }
+    .ViewDoctorProfile-view .bottom-content h5 {
+      font-size: 3vw;
+      line-height: 0vh;
+      text-align: center;
+      margin-top: 3vh;
+      font-family: Ubuntu,bold,sans-serif !important; }
+    .ViewDoctorProfile-view .bottom-content .button-content {
+      margin: 0 auto;
+      height: 50%;
+      width: 80%; }
+      .ViewDoctorProfile-view .bottom-content .button-content .button {
+        background-color: #6aa13e;
+        font-family: Ubuntu,bold,sans-serif !important;
+        color: #fff; }
+      .ViewDoctorProfile-view .bottom-content .button-content .button-stable.activated {
+        background-color: #517b2f !important; }
+  .ViewDoctorProfile-view .buttonPosition {
+    margin-top: 5vh; }
+  .ViewDoctorProfile-view .rating {
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+    font-size: 5vw; }
 
 .doctorscreen-view {
   font-family: Ubuntu,bold,sans-serif !important;

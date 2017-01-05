@@ -12,18 +12,6 @@ console.log('called');
 $ionicLoading.show();
 // console.log($localStorage.user);
 
-$ionicLoading.show();
-// console.log($localStorage.user);
-$ionicLoading.show();
-// console.log($localStorage.user);
-
-
-
-	$ionicLoading.show();
-
-console.log('called');
-$ionicLoading.show();
-	$ionicLoading.show();
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		$ionicLoading.hide();
@@ -32,18 +20,8 @@ $ionicLoading.show();
 });
 $scope.consultationDetails=function(consultedDoc)
 {
-
-
-
 	console.log(consultedDoc);
 
-	console.log(consultedDoc);
-	console.log(consultedDoc);
-
-	console.log(consultedDoc);
-	console.log(consultedDoc);
-
-	console.log(consultedDoc);
 	$rootScope.consultedDoc=consultedDoc;
 	$localStorage.consultedDoctor=$scope.consultedDoc;
 		$ionicLoading.hide();
@@ -52,7 +30,7 @@ $scope.consultationDetails=function(consultedDoc)
 
 }
 // for doctors consultationDetails
-$ionicLoading.show();
+
 myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
 	console.log($scope.myPatients);

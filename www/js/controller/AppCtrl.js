@@ -36,7 +36,7 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 // console.log(type);
 // console.log(isOnline);
 // console.log(isOffline);
-
+//
 
 console.log($ionicHistory.currentStateName());
 if($ionicHistory.currentStateName() === 'app.patient_home'){
@@ -342,60 +342,36 @@ console.log($scope.deviceAndroid );
 
 		// hello.logout(unametologout,pwtologout,success, failure);
 
-   // 	var confirmPopup = $ionicPopup.confirm({
-		// 				title: 'DoctorQuick',
-		// 				template: 'Are you sure you want to Signout?',
-		// 				cssClass: 'videoPopup',
-		// 				scope: $scope,
-		// 				buttons: [
-		// 				{
-		// 				text: 'Cancel',
-		// 				type: 'button-royal',
-		// 				},
-		// 				{
-		// 					text: 'Ok',
-		// 					type: 'button-positive',
-		// 					onTap: function(e) {
-		// 					console.log('ok');
-		//
-		// 					$ionicHistory.clearCache();
-		// 					$ionicHistory.clearHistory();
-		// 					$window.localStorage.clear();
-		// 						$state.go('auth.loginNew');
-		// 					// }, 100)
-		//
-		// 				}
-		// 			},
-		// 			]
-		// 			});
+   	var confirmPopup = $ionicPopup.confirm({
+						title: 'DoctorQuick',
+						template: 'Are you sure you want to Signout?',
+						cssClass: 'videoPopup',
+						scope: $scope,
+						buttons: [
+						{
+						text: 'Cancel',
+						type: 'button-royal',
+						},
+						{
+							text: 'Ok',
+							type: 'button-positive',
+							onTap: function(e) {
+							console.log('ok');
+
+							$ionicHistory.clearCache();
+							$ionicHistory.clearHistory();
+							$window.localStorage.clear();
+								$state.go('auth.loginNew');
+							// }, 100)
+
+						}
+					},
+					]
+					});
 
 //popup modification
 
-var confirmPopup = $ionicPopup.confirm({
-			 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
-			 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
-			 cssClass: 'videoPopup',
-			 scope: $scope,
-			 buttons: [
-								 {
-								 text: 'Decline',
-								 type: 'button-royal',
-								 },
-								 {
-									 text: 'View',
-									 type: 'button-positive',
-									 onTap: function(e) {
-											 console.log('ok');
 
-											 $ionicHistory.clearCache();
-											 $ionicHistory.clearHistory();
-											 $window.localStorage.clear();
-												 $state.go('auth.loginNew');
-
-								 }
-		 },
-		 ]
-	 })
 
 
  }
@@ -471,6 +447,7 @@ $scope.ratingsObject = {
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
 
+	 console.log($localStorage.seen);
 
 	$interval(callReqInterval, 60000);
 
@@ -488,30 +465,55 @@ $scope.ratingsObject = {
 								$rootScope.onoff=data[i].onoff,
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
-								$scope.callFlag='4';
+						$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
 
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
 						if($rootScope.cal_flag === '4'){
 							// alert('readyforcall');
 
+							$ionicPopup.confirm({
+										 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
+										 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
+										 cssClass: 'videoPopup',
+										 scope: $scope,
+										 buttons: [
+															 {
+															 text: 'Decline',
+															 type: 'button-royal',
+															 onTap: function(e) {
+																 				console.log('Decline');
+															 				}
+															 },
+															 {
+																 text: 'View',
+																 type: 'button-positive',
+																 onTap: function(e) {
+																		 console.log('ok');
+																		 $localStorage.seen=1;
+																		 console.log($localStorage.seen);
+																		 $state.go('app.callAccepted');
 
+															 }
+									 },
+									 ]
+								 })
 
-							$ionicPopup.alert({
-							title: 'Call Request Accepted',
-							template:' A Doctor has accepted your call request',
-							cssClass: 'videoPopup',
-							buttons: [
-								{
-								text: 'Ok',
-								type: 'button-assertive',
-								onTap: function(e) {
-
-									$state.go('app.callAccepted');
-								}
-								},
-							]
-							})
+							// $ionicPopup.alert({
+							// title: 'Call Request Accepted',
+							// template:' A Doctor has accepted your call request',
+							// cssClass: 'videoPopup',
+							// buttons: [
+							// 	{
+							// 	text: 'Ok',
+							// 	type: 'button-assertive',
+							// 	onTap: function(e) {
+							//
+							// 		$state.go('app.callAccepted');
+							// 	}
+							// 	},
+							// ]
+							// })
 						}
 						}
 

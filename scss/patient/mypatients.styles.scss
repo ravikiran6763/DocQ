@@ -52,6 +52,98 @@ h2{
     margin-left: 1vw;
   }
 }
+.bottom-content
+{
+    width: 100%;
+    height: 100%;
+    overflow: scroll !important;
+    position: absolute;
+    margin-bottom: 10px !important;
+    z-index: 1;
 
 
+  li {
+    height: 14%;
+    border-bottom: 1px solid #fff;
+
+    @include clearfix();
+
+    &:first-child {
+      //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+    }
+
+    &:last-child {
+      border-bottom: none !important;
+      margin-bottom: 10px auto;
+    }
+
+    .profile-img {
+      width: 15vw;
+      float: left;
+      margin: 2vh 0px 0px 2vh;
+
+      img {
+        width: 100%;
+        border-radius: 55%;
+        max-height: 14vw;
+      }
+    }
+
+    .next-icon {
+
+        text-align: center;
+        // margin-right: 10px;
+        // height: 100%;
+        line-height: 14vh;
+        margin-top: 6vh;
+
+      .ion-chevron-right:before {
+        font-size: 1.8em;
+      }
+    }
+
+    .name-content {
+      float: left;
+      padding: 2vh 2vh;
+      height: 100%;
+      width: 70%;
+      position: relative;
+
+      .chatCount{
+        float: left !important;
+        margin: -9vh 0 0 -20vw !important;
+      }
+      .msgContent{
+        display: inline-block;
+        overflow: hidden !important;
+        height: 3vh;
+        width: 100% !important;
+        text-overflow: ellipsis !important;
+      }
+
+      p{
+          font-size: 3.2vw;
+          line-height: 2.8vh;
+          margin: 0px;
+        }
+
+      h2{
+          margin: 0 0 0 0;
+          font-size: 5vw;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 5vh;
+          span{
+            font-size: 4vw;
+            position: absolute;
+            width: 100%;
+            word-wrap: break-word;
+          }
+        }
+    }
+
+  }
+}
+ul{
+  margin-bottom: 10px !important;
+}
 }

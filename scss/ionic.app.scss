@@ -24,7 +24,7 @@ $royal:                           #181b22 !default;
 $calm:                            #e2e2e2 !default;
 $assertive:                      #6aa13e !default;
 $energized:                       #a1a1a1 !default;
-$stable:                          red !default;      
+$stable:                          red !default;
 
 /*-------------------------------------------------
  MIXIN :: CLEARFIX
@@ -91,6 +91,8 @@ $stable:                          red !default;
 @import "scss/patient/mypatients.styles";
 @import "scss/patient/speciality.styles";
 @import "scss/patient/change_pwd.styles";
+@import "scss/patient/viewDoc.styles";
+
 
 //doctor screens
 @import "scss/templates/doctorscreen.styles";
