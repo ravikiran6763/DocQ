@@ -18,7 +18,7 @@
               </div>
               <div class="form-group" >
 <!-- show-hide-container
-show-hide-input 
+show-hide-input
  -->
                 <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required  >
 
@@ -33,7 +33,7 @@ show-hide-input
                 Login
               </button>
               <div class="conditions" >
-                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();"><span class="underLine">Terms&Conditions</span></a></p>
+                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();"><span class="underLine">terms & conditions</span></a></p>
               </div>
 
               <div class="row remember-forgot">
@@ -41,8 +41,8 @@ show-hide-input
                      <input type="checkbox" name="rememberMe" ng-model="user.rememberMe" ng-click="rememberme();">
                      <p class="rememberMe" >Remember me</p>
                    </label>
-                   <a  class="col-50 "  ui-sref="auth.forgotPassword">
-                     <p class="forgotPass" >Forgot Password</p>
+                   <a  class="col-50 " style="text-decoration: underline !important; color:#444 !important;" ui-sref="auth.forgotPassword">
+                     <span class="forgotPass" >Forgot Password</span>
                    </a>
 
              </div>
