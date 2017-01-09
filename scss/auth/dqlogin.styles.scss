@@ -1,127 +1,154 @@
-.dqlogin-view
+.dqLogin-view
 {
-
-	ion-content {
-		height: 83%;
-	}
-
-	ion-body{
-
-		width: 320px !important;
-	}
-
-		.logo_container{
+	.top-content{
+		width: 100% !important;
+		height: 30% !important;
+		.logoContainer{
 			position: relative;
+			width: 70% !important;
+			margin: 0 auto;
+			.logo{
+				width: 100% !important;
+				height: 100% !important;
+				margin: 0 auto;
+				img{
+					width: 100% !important;
+					height: 80% !important;
+					margin-top: 10% !important
+				}
+			}
+		}
+
+	}
+	.login-content{
+		width: 100% !important;
+		height: 55% !important;
+
+		.form-group{
+			width: 80% !important;
 			margin: 0 auto;
 
-			text-align: center;
-			img{
-							width: 60%;
-				}
+			input[type="tel"]{
+			margin-top: 4% !important;
+			height: 17% !important;
+			padding-left: 10px;
+			width: 100% !important;
+			border: 1px solid #cdcdcf;
+			// height: 100%;
+			}
+			input[type="password"]{
+			margin-top: 4% !important;
+			height: 17% !important;
+			padding-left: 10px;
+			width: 100% !important;
+			border: 1px solid #cdcdcf;
+			// height: 100%;
+			}
 		}
-		input[type="text"]{
-		//	color: green;
-			font-size: 4vw;
-			padding-top: 0px;
-			margin-top: 1vh;
-			font-family: Ubuntu,bold,sans-serif !important;
-			height: 25px;
-
-		}
-		input[type="password"]{
-		//	color: green;
-			font-size: 4vw;
-			padding-top: 0px;
-			margin-top: 1vh;
-			height: 25px;
-			font-family: Ubuntu,bold,sans-serif !important;
-		}
-
-			.phone_field{
-				width: 80%;
-				text-align: center;
-				margin: 0 auto;
-				margin-bottom: 5%;
-				margin-left: 10vw !important;
-				margin-bottom: 3vh;
-
-			}
-			.password_field{
-				width: 80%;
-				text-align: center;
-				margin-left: 10vw !important;
-				margin-bottom: 3vh;
-			}
-			button{
-				width: 80%;
-				text-align: center;
-				margin-left: 10vw !important;
-				border: none;
-			}
-
-			.button-stable{
-				background-color: #6aa13e;
-			}
-			.button-stable.activated{
-				background-color: #557a23 !important;
-			}
-
-			.button-calm.activated{
-				background-color:#026451!important;
-			}
-			.bottom{
-					height: 17%;
-					background-color: transparent;
-					border: 0px;
-					background-image: none;
-				  height: 17%;
-				 //overflow: hidden !important;
-
-				 a {
-					 text-align: center;
-					 text-decoration: none !important;
-
-					 p {
-							margin: 0px;
-							color: #ffffff;
-					 }
-				 }
-
-				}
-
-			.conditions{
-				width: 80%;
-				margin: 0 auto;
-				font-size: 0.8em;
-			}
-			.login_button {
+		.login_button {
 					background-color: #6aa13e;
 					color: #ffffff;
-					height: 40px;
+					height: 9% !important;
+					width: 80%;
+					margin: 4% 0 0 10%;
+					border: 1px solid #5c9944;
+					//position: absolute;
+				span{
+					color:#dbe5d3 ;
+					font-size: 100% !important;
+				}
 			}
-
-			.remember-forgot {
-				width: 80%;
+			.tAndC{
+				width: 100% !important;
+				height: 10% !important;
 				margin: 0 auto;
-
-				span {
-					font-weight: bolder;
-					text-decoration: none;
-					font-size: 0.9em;
+				.terms{
+					width: 80% !important;
+					margin: 0 auto;
+					h2{
+						font-size: 78%;
+						color: #7b736d;
+						text-align: center;
+						margin-top: 3%;
+						line-height: 1.5;
+						a{
+							color: inherit !important;
+							text-decoration: underline !important;
+						}
+					}
 				}
 
-				a {
-					text-decoration: none;
-					font-weight: bolder;
-					text-decoration: none;
-					font-size: 0.9em;
+			}
+		.rememberMe{
+
+			width: 80%;
+			margin: 0 auto;
+			.remember{
+				width: 50% !important;
+				position: absolute;
+				input[type="checkbox"]{
+				zoom: 1.5;
+				margin-top: -3px ;
+				}
+				p{
+					position: absolute;
+    			margin: -13% 0 0 19%;
+				}
+			}
+			.forgot{
+				width: 40% !important;
+				position: absolute;
+				/* margin: 0 auto; */
+				margin: -1% 0 0 45%;
+				a{
+					color: inherit;
+					text-decoration: underline;
+					font-size: 98%;
 				}
 			}
 
-			.register_button {
-				background-color: #00745f;
-				color: #ffffff;
-				height: 40px;
+		}
+		.register_button {
+			background-color: #00745f;
+	    color: #ffffff;
+	    /* height: 40px; */
+	    margin-top: 8%;
+	    position: absolute;
+	    width: 80%;
+		}
+	}
+	.bottom-content{
+		width: 100% !important;
+		height: 15% !important;
+		// background-color: teal;
+		.leftbuttons{
+			float: left;
+			width: 50%;
+			margin: 0 auto;
+			p {
+					// margin: 0 0 10px;
+					color: aliceblue;
+					margin-left: 36%;
 			}
-
+			img {
+				border: 0;
+				/* margin: 0 auto; */
+				margin-left: 50%;
+			}
+		}
+		.rightbuttons{
+			float: left;
+			width: 50%;
+			margin: 0 auto;
+			p {
+					margin: 0 0 10px;
+					color: aliceblue;
+			}
+			img {
+				border: 0;
+				/* margin: 0 auto; */
+				margin-left: 30%;
+			}
+		}
+	}
 }

@@ -65,7 +65,7 @@ $stable:                          red !default;
 @import "scss/common/common.styles";
 @import "scss/auth/auth.styles";
 @import "scss/auth/walkthrough.styles";
-//@import "scss/auth/dqlogin.styles";
+@import "scss/auth/dqlogin.styles";
 @import "scss/auth/login.styles";
 @import "scss/auth/signup.styles";
 @import "scss/auth/forgot-password.styles";

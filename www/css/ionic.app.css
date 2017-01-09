@@ -9825,8 +9825,9 @@ a.button {
   transition-duration: 0s; }
 
 /* for Rting Stars*/
-a {
-  text-decoration: none !important; }
+ion-content.scroll-content.ionic-scroll {
+  height: auto !important;
+  overflow: visible; }
 
 .spinner-android {
   stroke: #489808 !important; }
@@ -10681,6 +10682,121 @@ ion-spinner.spinner-on-load {
   width: 20px;
   position: relative;
   margin: 11px 0 2px 8px; }
+
+.dqLogin-view .top-content {
+  width: 100% !important;
+  height: 30% !important; }
+  .dqLogin-view .top-content .logoContainer {
+    position: relative;
+    width: 70% !important;
+    margin: 0 auto; }
+    .dqLogin-view .top-content .logoContainer .logo {
+      width: 100% !important;
+      height: 100% !important;
+      margin: 0 auto; }
+      .dqLogin-view .top-content .logoContainer .logo img {
+        width: 100% !important;
+        height: 80% !important;
+        margin-top: 10% !important; }
+
+.dqLogin-view .login-content {
+  width: 100% !important;
+  height: 55% !important; }
+  .dqLogin-view .login-content .form-group {
+    width: 80% !important;
+    margin: 0 auto; }
+    .dqLogin-view .login-content .form-group input[type="tel"] {
+      margin-top: 4% !important;
+      height: 17% !important;
+      padding-left: 10px;
+      width: 100% !important;
+      border: 1px solid #cdcdcf; }
+    .dqLogin-view .login-content .form-group input[type="password"] {
+      margin-top: 4% !important;
+      height: 17% !important;
+      padding-left: 10px;
+      width: 100% !important;
+      border: 1px solid #cdcdcf; }
+  .dqLogin-view .login-content .login_button {
+    background-color: #6aa13e;
+    color: #ffffff;
+    height: 9% !important;
+    width: 80%;
+    margin: 4% 0 0 10%;
+    border: 1px solid #5c9944; }
+    .dqLogin-view .login-content .login_button span {
+      color: #dbe5d3;
+      font-size: 100% !important; }
+  .dqLogin-view .login-content .tAndC {
+    width: 100% !important;
+    height: 10% !important;
+    margin: 0 auto; }
+    .dqLogin-view .login-content .tAndC .terms {
+      width: 80% !important;
+      margin: 0 auto; }
+      .dqLogin-view .login-content .tAndC .terms h2 {
+        font-size: 78%;
+        color: #7b736d;
+        text-align: center;
+        margin-top: 3%;
+        line-height: 1.5; }
+        .dqLogin-view .login-content .tAndC .terms h2 a {
+          color: inherit !important;
+          text-decoration: underline !important; }
+  .dqLogin-view .login-content .rememberMe {
+    width: 80%;
+    margin: 0 auto; }
+    .dqLogin-view .login-content .rememberMe .remember {
+      width: 50% !important;
+      position: absolute; }
+      .dqLogin-view .login-content .rememberMe .remember input[type="checkbox"] {
+        zoom: 1.5;
+        margin-top: -3px; }
+      .dqLogin-view .login-content .rememberMe .remember p {
+        position: absolute;
+        margin: -13% 0 0 19%; }
+    .dqLogin-view .login-content .rememberMe .forgot {
+      width: 40% !important;
+      position: absolute;
+      /* margin: 0 auto; */
+      margin: -1% 0 0 45%; }
+      .dqLogin-view .login-content .rememberMe .forgot a {
+        color: inherit;
+        text-decoration: underline;
+        font-size: 98%; }
+  .dqLogin-view .login-content .register_button {
+    background-color: #00745f;
+    color: #ffffff;
+    /* height: 40px; */
+    margin-top: 8%;
+    position: absolute;
+    width: 80%; }
+
+.dqLogin-view .bottom-content {
+  width: 100% !important;
+  height: 15% !important; }
+  .dqLogin-view .bottom-content .leftbuttons {
+    float: left;
+    width: 50%;
+    margin: 0 auto; }
+    .dqLogin-view .bottom-content .leftbuttons p {
+      color: aliceblue;
+      margin-left: 36%; }
+    .dqLogin-view .bottom-content .leftbuttons img {
+      border: 0;
+      /* margin: 0 auto; */
+      margin-left: 50%; }
+  .dqLogin-view .bottom-content .rightbuttons {
+    float: left;
+    width: 50%;
+    margin: 0 auto; }
+    .dqLogin-view .bottom-content .rightbuttons p {
+      margin: 0 0 10px;
+      color: aliceblue; }
+    .dqLogin-view .bottom-content .rightbuttons img {
+      border: 0;
+      /* margin: 0 auto; */
+      margin-left: 30%; }
 
 .login-view [ng\:cloak], .login-view [ng-cloak], .login-view [data-ng-cloak], .login-view [x-ng-cloak], .login-view .ng-cloak, .login-view .x-ng-cloak {
   display: none !important; }
@@ -13178,92 +13294,94 @@ ion-side-menu .heading-item .message {
     height: 100%; }
 
 .doc-reg-1-view {
-  font-family: Ubuntu,bold,sans-serif !important; }
+  width: 100% !important;
+  height: 100% !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  overflow: hidden !important; }
   .doc-reg-1-view ion-content {
     width: auto;
     height: 100%;
-    overflow: scroll !important; }
+    overflow: hidden !important; }
+  .doc-reg-1-view .bar-header .bar-light {
+    background: transparent !important; }
   .doc-reg-1-view .top-content {
-    width: 80%;
-    height: 15%;
-    margin: 0 auto;
-    text-align: center; }
-    .doc-reg-1-view .top-content p {
-      text-align: center;
-      padding-top: 20px;
-      font-size: 1.2em;
-      font-weight: 500; }
-    .doc-reg-1-view .top-content img {
-      width: 45%;
-      margin-top: 3vh; }
-    .doc-reg-1-view .top-content .reg_message {
-      text-align: center;
-      font-size: 0.9em;
-      font-weight: 600; }
-    .doc-reg-1-view .top-content .button {
-      height: 34px;
-      margin-bottom: 1vh;
-      background-color: red; }
+    height: 44% !important; }
+    .doc-reg-1-view .top-content .regTitle {
+      width: 80% !important;
+      height: 100% !important;
+      margin: 0 auto !important; }
+      .doc-reg-1-view .top-content .regTitle .regHeader {
+        position: absolute !important;
+        width: 80% !important;
+        margin: 0 auto !important; }
+        .doc-reg-1-view .top-content .regTitle .regHeader p {
+          margin-top: 9%;
+          font-size: 145%;
+          text-align: center; }
+        .doc-reg-1-view .top-content .regTitle .regHeader .regFlowImg {
+          width: 50% !important;
+          margin: 0 auto; }
+          .doc-reg-1-view .top-content .regTitle .regHeader .regFlowImg img {
+            width: 100%;
+            margin-top: 2vh; }
+        .doc-reg-1-view .top-content .regTitle .regHeader .regMsg {
+          width: 100% !important;
+          margin: 0 auto !important; }
+          .doc-reg-1-view .top-content .regTitle .regHeader .regMsg p {
+            font-size: 92%;
+            color: black; }
   .doc-reg-1-view .form-content {
-    width: 80%;
-    height: 36%;
-    margin: 0 auto; }
-    .doc-reg-1-view .form-content .item-input {
-      margin-bottom: 2vh !important; }
-    .doc-reg-1-view .form-content .input-types {
-      margin-top: 30vh; }
+    height: 35% !important;
+    margin-top: 0 !important; }
+    .doc-reg-1-view .form-content .form-group {
+      width: 80% !important;
+      margin: 0 auto; }
+      .doc-reg-1-view .form-content .form-group input[type="text"] {
+        margin-top: 4% !important;
+        height: 22% !important;
+        padding-left: 10px;
+        width: 100% !important;
+        border: 1px solid #cdcdcf; }
+    .doc-reg-1-view .form-content input[type="number"] {
+      margin-top: 4% !important;
+      height: 22% !important;
+      padding-left: 10px;
+      width: 100% !important;
+      border: 1px solid #cdcdcf; }
   .doc-reg-1-view .bottom-content {
-    width: 80%;
-    height: 35%;
-    margin: 0 auto; }
-    .doc-reg-1-view .bottom-content .login {
+    height: 25% !important; }
+    .doc-reg-1-view .bottom-content .login_button {
       background-color: #6aa13e;
-      border: none;
-      color: #ffffff; }
-    .doc-reg-1-view .bottom-content a, .doc-reg-1-view .bottom-content h2, .doc-reg-1-view .bottom-content h3 {
-      font-size: 1em;
-      text-align: center;
-      color: #ffffff; }
-    .doc-reg-1-view .bottom-content .bottomSpacing {
-      margin-top: 10vh; }
-  .doc-reg-1-view input[type="text"] {
-    margin-top: 2vh !important;
-    height: 40px !important;
-    padding-left: 10px;
-    width: 100%; }
-  .doc-reg-1-view .bar {
-    height: 20%;
-    width: 100%; }
-    .doc-reg-1-view .bar .login {
-      background-color: #6aa13e;
-      border: none;
       color: #ffffff;
-      position: absolute;
-      width: 81%;
-      height: 38%;
-      margin: 0 0 0 25px; }
-    .doc-reg-1-view .bar a, .doc-reg-1-view .bar h2, .doc-reg-1-view .bar h3 {
-      font-size: 1em;
-      text-align: center;
-      color: #ffffff; }
-    .doc-reg-1-view .bar h2 {
-      margin: 8vh 0 0 10vw;
-      width: 80%; }
-  .doc-reg-1-view .login_button {
-    background-color: #6aa13e;
-    color: #ffffff;
-    height: 48px;
-    width: 80%;
-    margin: 0 auto; }
-    .doc-reg-1-view .login_button span {
-      color: #fff;
-      font-size: 4.5vw !important; }
-  .doc-reg-1-view .button-stable {
-    background-color: #6aa13e; }
-  .doc-reg-1-view .button-stable.activated {
-    background-color: #557a23 !important; }
-  .doc-reg-1-view .button-calm.activated {
-    background-color: #026451 !important; }
+      height: 9% !important;
+      width: 80%;
+      margin: 0 0 0 10%; }
+      .doc-reg-1-view .bottom-content .login_button span {
+        color: #dbe5d3;
+        font-size: 100% !important; }
+    .doc-reg-1-view .bottom-content .tAndC {
+      width: 80% !important;
+      height: 20% !important;
+      margin: 0 auto; }
+      .doc-reg-1-view .bottom-content .tAndC .terms {
+        width: 80% !important;
+        height: 100%;
+        margin: 0 auto; }
+        .doc-reg-1-view .bottom-content .tAndC .terms h2 {
+          font-size: 80%;
+          color: #fff;
+          text-align: center;
+          margin-top: 3%;
+          line-height: 1.5; }
+          .doc-reg-1-view .bottom-content .tAndC .terms h2 a {
+            color: inherit !important;
+            text-decoration: underline !important; }
+    .doc-reg-1-view .bottom-content .button-stable {
+      background-color: #6aa13e; }
+    .doc-reg-1-view .bottom-content .button-stable.activated {
+      background-color: #557a23 !important; }
+    .doc-reg-1-view .bottom-content .button-calm.activated {
+      background-color: #026451 !important; }
 
 .doc-reg2-view {
   font-family: Ubuntu,bold,sans-serif !important; }
@@ -13424,7 +13542,9 @@ ion-side-menu .heading-item .message {
   .patient-reg-3-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-3-view .top-content {
-    height: 35% !important; }
+    height: 40% !important; }
+    .patient-reg-3-view .top-content .item-icon-left {
+      padding-left: 0 !important; }
     .patient-reg-3-view .top-content .regTitle {
       width: 80% !important;
       height: 100% !important;
@@ -13433,10 +13553,13 @@ ion-side-menu .heading-item .message {
         position: absolute !important;
         width: 80% !important;
         margin: 0 auto !important; }
-        .patient-reg-3-view .top-content .regTitle .regHeader p {
+        .patient-reg-3-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 10vw; }
+        .patient-reg-3-view .top-content .regTitle .regHeader .backButton p {
           margin-top: 9%;
           font-size: 145%;
-          text-align: center; }
+          margin-left: 6vw; }
         .patient-reg-3-view .top-content .regTitle .regHeader .regFlowImg {
           width: 80% !important;
           margin: 0 auto; }
@@ -13447,16 +13570,22 @@ ion-side-menu .heading-item .message {
           width: 90% !important;
           margin: 0 auto !important; }
           .patient-reg-3-view .top-content .regTitle .regHeader .regMsg p {
-            font-size: 100%; }
+            font-size: 103%;
+            color: black; }
+          .patient-reg-3-view .top-content .regTitle .regHeader .regMsg .numClass {
+            font-size: 130%;
+            color: black;
+            text-align: center;
+            margin: 0 auto; }
   .patient-reg-3-view .form-content {
-    height: 25% !important;
+    height: 20% !important;
     margin-top: 0 !important; }
     .patient-reg-3-view .form-content .otp {
       width: 80% !important;
       margin: 0 auto; }
     .patient-reg-3-view .form-content input[type="number"] {
       margin-top: 30% !important;
-      height: 30% !important;
+      height: 40% !important;
       padding-left: 18px;
       width: 100% !important;
       border: 1px solid #cdcdcf; }
@@ -13472,12 +13601,24 @@ ion-side-menu .heading-item .message {
         width: 100% !important; }
       .patient-reg-3-view .bottom-content .buttonContent .resend {
         float: left;
-        margin-right: 2vw;
-        padding: 6px; }
+        margin-right: 2vw; }
     .patient-reg-3-view .bottom-content .tAndC {
       width: 80% !important;
       height: 20% !important;
       margin: 0 auto; }
+      .patient-reg-3-view .bottom-content .tAndC .otpTap {
+        width: 80% !important;
+        height: 100%;
+        margin: 0 auto; }
+        .patient-reg-3-view .bottom-content .tAndC .otpTap h2 {
+          font-size: 80%;
+          color: #fff;
+          text-align: center;
+          margin-top: 8%;
+          line-height: 1.5; }
+          .patient-reg-3-view .bottom-content .tAndC .otpTap h2 a {
+            color: inherit !important;
+            text-decoration: underline !important; }
       .patient-reg-3-view .bottom-content .tAndC .terms {
         width: 80% !important;
         height: 100%;
@@ -13486,14 +13627,14 @@ ion-side-menu .heading-item .message {
           font-size: 80%;
           color: #fff;
           text-align: center;
-          margin-top: 3%;
+          margin-top: 30%;
           line-height: 1.5; }
           .patient-reg-3-view .bottom-content .tAndC .terms h2 a {
             color: inherit !important;
             text-decoration: underline !important; }
     .patient-reg-3-view .bottom-content .button-stable {
       background-color: #6aa13e; }
-    .patient-reg-3-view .bottom-content .button-stable.activated {
+    .patient-reg-3-view .bottom-content .button-assertive.activated {
       background-color: #557a23 !important; }
     .patient-reg-3-view .bottom-content .button-calm.activated {
       background-color: #026451 !important; }
@@ -13519,10 +13660,13 @@ ion-side-menu .heading-item .message {
         position: absolute !important;
         width: 80% !important;
         margin: 0 auto !important; }
-        .patient-reg-2-view .top-content .regTitle .regHeader p {
+        .patient-reg-2-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 10vw; }
+        .patient-reg-2-view .top-content .regTitle .regHeader .backButton p {
           margin-top: 9%;
           font-size: 145%;
-          text-align: center; }
+          margin-left: 6vw; }
         .patient-reg-2-view .top-content .regTitle .regHeader .regFlowImg {
           width: 80% !important;
           margin: 0 auto; }

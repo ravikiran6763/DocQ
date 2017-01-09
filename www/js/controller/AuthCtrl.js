@@ -244,6 +244,7 @@ $scope.patientRegistration = function()
 
     $rootScope.validInput=true;
     $scope.validateUser=function(isFormValid){
+    
       $rootScope.validInput=false;
       $scope.validForm =isFormValid;
       if(!$scope.PatientDetail.patient_fname){

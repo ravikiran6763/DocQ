@@ -15,7 +15,10 @@
 	}
 	.top-content{
 
-			height: 35% !important;
+			height: 40% !important;
+			.item-icon-left {
+				padding-left: 0 !important;
+			}
 			.regTitle{
 				width: 80% !important;
 				height: 100% !important;
@@ -27,11 +30,19 @@
 					width: 80% !important;
 					margin: 0 auto !important;
     			// margin-top: 7vh !important;
-					p{
-						margin-top: 9%;
-    				font-size: 145%;
-						text-align: center;
+					.backButton{
+						i{
+							position: absolute;
+							font-size: 10vw;
+						}
+						p{
+							margin-top: 9%;
+							font-size: 145%;
+							margin-left: 6vw;
+							// text-align: center;
+						}
 					}
+
 					.regFlowImg{
 						width: 80% !important;
 						margin: 0 auto;;
@@ -45,7 +56,14 @@
 						width: 90% !important;
 						margin: 0 auto !important;
 						p{
-							font-size: 100%;
+							font-size: 103%;
+							color: black;
+						}
+						.numClass{
+							font-size: 130% ;
+							color: black ;
+							text-align: center;
+    					margin: 0 auto;
 						}
 
 					}
@@ -53,7 +71,7 @@
 			}
 	}
 	.form-content{
-		height: 25% !important;
+		height: 20% !important;
 		margin-top: 0 !important;
 		// background-color: blue !important;
 
@@ -64,7 +82,7 @@
 
 				input[type="number"]{
 					margin-top: 30% !important;
-			    height: 30% !important;
+			    height: 40% !important;
 			    padding-left: 18px;
 			    width: 100% !important;
 			    border: 1px solid #cdcdcf;
@@ -86,14 +104,30 @@
 			.resend{
 				float: left;
 				margin-right: 2vw;
-						padding: 6px;
+
 			}
 		}
-		
+
 		.tAndC{
 			width: 80% !important;
 			height: 20% !important;
 			margin: 0 auto;
+			.otpTap{
+				width: 80% !important;
+				height: 100% ;
+				margin: 0 auto;
+				h2{
+					font-size: 80%;
+					color: #fff;
+					text-align: center;
+					margin-top: 8%;
+    			line-height: 1.5;
+					a{
+						color: inherit !important;
+						text-decoration: underline !important;
+					}
+				}
+			}
 			.terms{
 				width: 80% !important;
 				height: 100% ;
@@ -102,7 +136,7 @@
 					font-size: 80%;
 					color: #fff;
 					text-align: center;
-					margin-top: 3%;
+					margin-top: 30%;
     			line-height: 1.5;
 					a{
 						color: inherit !important;
@@ -116,12 +150,13 @@
 		.button-stable{
 			background-color: #6aa13e;
 		}
-		.button-stable.activated{
+		.button-assertive.activated{
 			background-color: #557a23 !important;
 		}
 		.button-calm.activated{
 			background-color:#026451!important;
 		}
+
 	}
 
 }

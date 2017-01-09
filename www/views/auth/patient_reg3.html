@@ -6,12 +6,17 @@
   <div class="top-content ">
       <div class="regTitle">
           <div class="regHeader">
-                <p >Patient Registration</p>
+            <div class="backButton ">
+              <i class="icon ion-ios-arrow-back" ng-click="goBack();"></i>
+              <p>Back</p>
+
+            </div>
                 <div class="regFlowImg">
                   <img  src="./img/iOS-Assets-v01_patient_registration_progress3.png">
                 </div>
                 <div class="regMsg">
-                  <p class="reg_message"> Please enter the 4 digit verification code in the text message sent to<br>+91 {{phoneno}} </p>
+                  <p class="reg_message"> Please enter the 4 digit verification code in the text message sent to<br> </p>
+                  <p class="numClass">+91 {{phoneno}}</p>
                 </div>
           </div>
       </div>
@@ -48,6 +53,9 @@
 
     <!-- <button class="login_button button button-block button-assertive"  type="submit" ng-click="validateUser(PatientReg1.$valid)" linked="link"  ><span>Next</span></button> -->
     <div class="tAndC">
+      <div class="otpTap">
+        <h2 > Didn't receive a text from DoctroQuick? <br/><a ng-click="termsAndCond();">Tap Resend</a>  </h2>
+      </div>
       <div class="terms">
         <h2 > By Signing in, I agree to DoctorQuick's <br/><a ng-click="termsAndCond();">terms and conditions</a>  </h2>
       </div>

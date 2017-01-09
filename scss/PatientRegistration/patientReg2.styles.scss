@@ -27,10 +27,17 @@
 					width: 80% !important;
 					margin: 0 auto !important;
     			// margin-top: 7vh !important;
-					p{
-						margin-top: 9%;
-    				font-size: 145%;
-						text-align: center;
+					.backButton{
+						i{
+							position: absolute;
+							font-size: 10vw;
+						}
+						p{
+							margin-top: 9%;
+							font-size: 145%;
+							margin-left: 6vw;
+							// text-align: center;
+						}
 					}
 					.regFlowImg{
 						width: 80% !important;

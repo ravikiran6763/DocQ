@@ -10,8 +10,10 @@
 // .menu-open .menu-content{
 // 	transform: translate3d(-82%, 0px, 0px) !important;
 // }
-a{
-  text-decoration: none !important;
+
+ion-content.scroll-content.ionic-scroll{
+  height: auto !important;
+  overflow: visible;
 }
 .spinner-android {
     stroke: #489808 !important;

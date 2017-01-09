@@ -19,8 +19,8 @@
 
 
   <div class="form-content">
-    <form name="PatientReg1" ng-submit="submitForm($event)" >
-        <div class="form-group" ng-class={submitted:submitted}>
+    <form name="PatientReg1" ng-submit="submitForm($event)" ng-class={submitted:submitted}>
+        <div class="form-group" >
           <input  type="text" class=" form-control" placeholder="First Name" name="patient_fname"  ng-model="PatientDetail.patient_fname" no-special-char required>
         </div>
         <div class="form-group" >
