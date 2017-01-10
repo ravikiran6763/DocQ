@@ -13314,6 +13314,13 @@ ion-side-menu .heading-item .message {
         position: absolute !important;
         width: 80% !important;
         margin: 0 auto !important; }
+        .doc-reg-1-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 10vw; }
+        .doc-reg-1-view .top-content .regTitle .regHeader .backButton p {
+          margin-top: 9%;
+          font-size: 145%;
+          margin-left: 6vw; }
         .doc-reg-1-view .top-content .regTitle .regHeader p {
           margin-top: 9%;
           font-size: 145%;
@@ -13343,6 +13350,12 @@ ion-side-menu .heading-item .message {
         width: 100% !important;
         border: 1px solid #cdcdcf; }
     .doc-reg-1-view .form-content input[type="number"] {
+      margin-top: 4% !important;
+      height: 22% !important;
+      padding-left: 10px;
+      width: 100% !important;
+      border: 1px solid #cdcdcf; }
+    .doc-reg-1-view .form-content input[type="email"] {
       margin-top: 4% !important;
       height: 22% !important;
       padding-left: 10px;
@@ -13383,63 +13396,106 @@ ion-side-menu .heading-item .message {
     .doc-reg-1-view .bottom-content .button-calm.activated {
       background-color: #026451 !important; }
 
-.doc-reg2-view {
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .doc-reg2-view ion-content {
-    overflow: scroll !important; }
-  .doc-reg2-view .top-content {
-    height: 40%;
-    width: 80%;
-    margin: 0 auto;
-    text-align: center; }
-    .doc-reg2-view .top-content img {
-      width: 42%;
-      padding-top: 55px; }
-  .doc-reg2-view .form-content {
-    height: 40%;
-    width: 80%;
-    margin: 0 auto; }
-    .doc-reg2-view .form-content .item-input {
-      margin-top: 2vh; }
-      .doc-reg2-view .form-content .item-input select {
-        border: none;
-        font-family: inherit;
-        background-color: #fff; }
-  .doc-reg2-view .bottom-content {
-    height: 20%;
-    width: 80%;
-    margin: 0 auto; }
-    .doc-reg2-view .bottom-content .button {
+.doc-reg-2-view {
+  width: 100% !important;
+  height: 100% !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  overflow: hidden !important; }
+  .doc-reg-2-view ion-content {
+    width: auto;
+    height: 100%;
+    overflow: hidden !important; }
+  .doc-reg-2-view .top-content {
+    height: 44% !important; }
+    .doc-reg-2-view .top-content .regTitle {
+      width: 80% !important;
+      height: 100% !important;
+      margin: 0 auto !important; }
+      .doc-reg-2-view .top-content .regTitle .regHeader {
+        position: absolute !important;
+        width: 80% !important;
+        margin: 0 auto !important; }
+        .doc-reg-2-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 210%; }
+        .doc-reg-2-view .top-content .regTitle .regHeader .backButton p {
+          margin-top: 9%;
+          font-size: 145%;
+          margin-left: -70%; }
+        .doc-reg-2-view .top-content .regTitle .regHeader p {
+          margin-top: 9%;
+          font-size: 145%;
+          text-align: center; }
+        .doc-reg-2-view .top-content .regTitle .regHeader .regFlowImg {
+          width: 50% !important;
+          margin: 0 auto; }
+          .doc-reg-2-view .top-content .regTitle .regHeader .regFlowImg img {
+            width: 100%;
+            margin-top: 2vh; }
+        .doc-reg-2-view .top-content .regTitle .regHeader .regMsg {
+          width: 100% !important;
+          margin: 0 auto !important; }
+          .doc-reg-2-view .top-content .regTitle .regHeader .regMsg p {
+            font-size: 92%;
+            color: black; }
+  .doc-reg-2-view .form-content {
+    height: 35% !important;
+    margin-top: 0 !important; }
+    .doc-reg-2-view .form-content .form-group {
+      width: 80% !important;
+      margin: 0 auto; }
+      .doc-reg-2-view .form-content .form-group input[type="text"] {
+        margin-top: 4% !important;
+        height: 22% !important;
+        padding-left: 10px;
+        width: 100% !important;
+        border: 1px solid #cdcdcf; }
+    .doc-reg-2-view .form-content input[type="number"] {
+      margin-top: 4% !important;
+      height: 22% !important;
+      padding-left: 10px;
+      width: 100% !important;
+      border: 1px solid #cdcdcf; }
+    .doc-reg-2-view .form-content input[type="email"] {
+      margin-top: 4% !important;
+      height: 22% !important;
+      padding-left: 10px;
+      width: 100% !important;
+      border: 1px solid #cdcdcf; }
+  .doc-reg-2-view .bottom-content {
+    height: 25% !important; }
+    .doc-reg-2-view .bottom-content .login_button {
       background-color: #6aa13e;
-      border: none;
-      color: #fff; }
-  .doc-reg2-view .popup-body {
-    font-family: Ubuntu,bold,sans-serif !important; }
-  .doc-reg2-view input[type="email"] {
-    margin-top: 2vh !important;
-    height: 40px !important;
-    padding-left: 10px;
-    width: 100%; }
-  .doc-reg2-view input[type="number"] {
-    margin-top: 2vh !important;
-    height: 40px !important;
-    padding-left: 10px;
-    width: 100%; }
-  .doc-reg2-view .login_button {
-    background-color: #6aa13e;
-    color: #ffffff;
-    height: 48px;
-    width: 100%;
-    margin: 0 auto; }
-    .doc-reg2-view .login_button span {
-      color: #fff;
-      font-size: 4.5vw !important; }
-  .doc-reg2-view .button-stable {
-    background-color: #6aa13e; }
-  .doc-reg2-view .button-stable.activated {
-    background-color: #557a23 !important; }
-  .doc-reg2-view .button-calm.activated {
-    background-color: #026451 !important; }
+      color: #ffffff;
+      height: 9% !important;
+      width: 80%;
+      margin: 0 0 0 10%; }
+      .doc-reg-2-view .bottom-content .login_button span {
+        color: #dbe5d3;
+        font-size: 100% !important; }
+    .doc-reg-2-view .bottom-content .tAndC {
+      width: 80% !important;
+      height: 20% !important;
+      margin: 0 auto; }
+      .doc-reg-2-view .bottom-content .tAndC .terms {
+        width: 80% !important;
+        height: 100%;
+        margin: 0 auto; }
+        .doc-reg-2-view .bottom-content .tAndC .terms h2 {
+          font-size: 80%;
+          color: #fff;
+          text-align: center;
+          margin-top: 3%;
+          line-height: 1.5; }
+          .doc-reg-2-view .bottom-content .tAndC .terms h2 a {
+            color: inherit !important;
+            text-decoration: underline !important; }
+    .doc-reg-2-view .bottom-content .button-stable {
+      background-color: #6aa13e; }
+    .doc-reg-2-view .bottom-content .button-stable.activated {
+      background-color: #557a23 !important; }
+    .doc-reg-2-view .bottom-content .button-calm.activated {
+      background-color: #026451 !important; }
 
 .patient-reg-1-view {
   width: 100% !important;
@@ -13555,11 +13611,11 @@ ion-side-menu .heading-item .message {
         margin: 0 auto !important; }
         .patient-reg-3-view .top-content .regTitle .regHeader .backButton i {
           position: absolute;
-          font-size: 10vw; }
+          font-size: 210%; }
         .patient-reg-3-view .top-content .regTitle .regHeader .backButton p {
           margin-top: 9%;
           font-size: 145%;
-          margin-left: 6vw; }
+          margin-left: 6%; }
         .patient-reg-3-view .top-content .regTitle .regHeader .regFlowImg {
           width: 80% !important;
           margin: 0 auto; }
@@ -13662,11 +13718,11 @@ ion-side-menu .heading-item .message {
         margin: 0 auto !important; }
         .patient-reg-2-view .top-content .regTitle .regHeader .backButton i {
           position: absolute;
-          font-size: 10vw; }
+          font-size: 210%; }
         .patient-reg-2-view .top-content .regTitle .regHeader .backButton p {
           margin-top: 9%;
           font-size: 145%;
-          margin-left: 6vw; }
+          margin-left: 6%; }
         .patient-reg-2-view .top-content .regTitle .regHeader .regFlowImg {
           width: 80% !important;
           margin: 0 auto; }
@@ -13677,6 +13733,7 @@ ion-side-menu .heading-item .message {
           width: 85% !important;
           margin: 0 auto !important; }
           .patient-reg-2-view .top-content .regTitle .regHeader .regMsg p {
+            margin-top: 14%;
             font-size: 100%; }
   .patient-reg-2-view .form-content {
     height: 45% !important;
@@ -13688,8 +13745,12 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .form-content .form-group {
       width: 80% !important;
       margin: 0 auto; }
+      .patient-reg-2-view .form-content .form-group .form-control {
+        height: 17% !important;
+        width: 50% !important;
+        padding: 2% 0 !important; }
       .patient-reg-2-view .form-content .form-group input[type="email"] {
-        margin-top: 1% !important;
+        margin-top: 5% !important;
         height: 18% !important;
         padding-left: 10px;
         width: 100% !important;
@@ -13713,7 +13774,8 @@ ion-side-menu .heading-item .message {
         width: 100% !important;
         border: 1px solid #cdcdcf; }
       .patient-reg-2-view .form-content .form-group .item-radio .item-content {
-        padding: 4vh 0 0 28vw; }
+        padding-top: 5% !important;
+        padding-right: 0% !important; }
   .patient-reg-2-view .bottom-content {
     height: 40% !important; }
     .patient-reg-2-view .bottom-content .login_button {

@@ -1,25 +1,53 @@
-<ion-view class="doc-reg2-view" cache-view="false" >
-  <ion-content scroll="false" class= "padding-top">
-    <div class="top-content">
-      <img src="./img/progress2.png">
-    </div>
-  <form name="DocReg1" ng-submit="submitForm($event)" >
-    <div class="form-content" >
+<ion-view class="doc-reg-2-view" cache-view="false">
+  <!-- <ion-header-bar class="bar-header bar-light">
 
-      <div class="form-group" ng-class={submittedMail:submittedMail}>
-        <input type="email" placeholder="Email Address" name="doc_email" ng-model="Doctor.doc_email" validate-email required>
+  </ion-header-bar> -->
+<ion-content >
+  <div class="top-content ">
+      <div class="regTitle">
+          <div class="regHeader">
+            <div class="backButton ">
+              <i class="icon ion-ios-arrow-back" ng-click="goBack();"></i>
+              <p>Back</p>
+
+            </div>
+                <div class="regFlowImg">
+                <img  src="./img/progress1.png" >
+                </div>
+
+          </div>
       </div>
-      <div class="form-group" ng-class={submittedMob:submittedMob}>
-        <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='Doctor.doc_phone' mask='9999999999' restrict="reject" clean="true" required/>
+  </div>
+
+
+  <div class="form-content">
+    <form name="DocReg1" ng-submit="submitForm($event)" ng-class={submitted:submitted}>
+        <div class="form-group" >
+          <input type="email" placeholder="Email Address" name="doc_email" ng-model="Doctor.doc_email" validate-email required>
+        </div>
+        <div class="form-group" >
+          <input type='number' mask-clean='true' placeholder="Mobile Number" ng-model='Doctor.doc_phone' mask='9999999999' restrict="reject" clean="true" required/>
+        </div>
+
+    </form>
+  </div>
+
+  <div class="bottom-content">
+    <button class="login_button button button-block button-assertive"  type="submit" ng-click="validateDoctor(DocReg.$valid)" linked="link"  ><span>Next</span></button>
+    <!-- <div class="tAndC">
+      <div class="terms">
+        <h2 > By Signing in, I agree to DoctorQuick's <br/><a ng-click="termsAndCond();">terms and conditions</a>  </h2>
       </div>
-      <!-- <span class="input-label">+91</span> -->
 
-    </div>
-    <div class="bottom-content">
+    </div> -->
 
-      <button class="login_button button button-block button-assertive" type="submit" ng-click="doctorRegistration(DocReg1.$valid);" >Submit</button>
-    </div>
-  </form>
-  </ion-content>
+  </div>
 
+</ion-content>
+<!-- <ion-footer-bar  >
+
+          <button class="bottom-content login_button button button-block button-assertive"  type="submit" ng-click="validateUser(DocReg.$valid)" linked="link"  ><span>Next</span></button>
+          <h2 > By Signing in, I agree to DoctorQuicks <br/><a ng-click="termsAndCond();">Terms and Conditions</a>  </h2>
+
+</ion-footer-bar> -->
 </ion-view>

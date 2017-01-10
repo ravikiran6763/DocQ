@@ -27,6 +27,18 @@
 					width: 80% !important;
 					margin: 0 auto !important;
     			// margin-top: 7vh !important;
+					.backButton{
+						i{
+							position: absolute;
+							font-size: 10vw;
+						}
+						p{
+							margin-top: 9%;
+							font-size: 145%;
+							margin-left: 6vw;
+							// text-align: center;
+						}
+					}
 					p{
 						margin-top: 9%;
     				font-size: 145%;
@@ -73,6 +85,14 @@
 			}
 
 				input[type="number"]{
+					margin-top: 4% !important;
+					height: 22% !important;
+					padding-left: 10px;
+					width: 100% !important;
+					border: 1px solid #cdcdcf;
+					// height: 100%;
+				}
+				input[type="email"]{
 					margin-top: 4% !important;
 					height: 22% !important;
 					padding-left: 10px;

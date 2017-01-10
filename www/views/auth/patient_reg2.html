@@ -32,8 +32,8 @@
           <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}></input>
         </div>
         <div class="form-group button-bar" >
-          <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" style="height:40px; border:none; margin-bottom: 2vh; margin-right:2vw;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Male</span></ion-radio>
-          <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'F'" style="height:40px; border:none; margin-bottom: 2vh;" required><span style="position: fixed; margin-left: -19vw; margin-top: -3vh;">Female</span></ion-radio>
+          <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" required><span >Male</span></ion-radio>
+          <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'F'" required><span >Female</span></ion-radio>
         </div>
 
         <div class="form-group" ng-class={submittedLname:submittedLname}>
