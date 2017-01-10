@@ -3,7 +3,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
-	$rootScope.headerTxt="Patient Profile";
+	$rootScope.headerTxt="Profile";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;

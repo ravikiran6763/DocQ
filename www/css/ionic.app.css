@@ -11510,101 +11510,87 @@ ion-side-menu .heading-item .message {
 .sepecility-details-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
-  .sepecility-details-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .sepecility-details-view .card {
-    font-size: 4vw;
-    margin-top: 8vh;
-    max-width: 100%;
-    width: 90vmin;
-    margin-left: 6vw; }
-  .sepecility-details-view .right-side {
-    text-align: right; }
-  .sepecility-details-view .col {
-    margin: 0 0 0 4vw; }
-  .sepecility-details-view .sendRequest {
-    width: 80vmin;
-    height: 8%;
-    margin: 0 auto !important;
-    padding: 10px auto;
-    text-align: center;
-    font-size: 4vw; }
-  .sepecility-details-view .login_button {
-    background-color: #6aa13e;
-    color: #ffffff;
-    height: 40px;
-    width: 80%;
-    margin: 0 auto !important;
-    top: 11vh !important; }
-  .sepecility-details-view .description {
-    width: 80vmin;
-    height: 20%;
-    margin-top: 3vh;
-    padding: 10px auto;
-    overflow-y: scroll;
-    margin-left: 10vw;
-    text-align: center;
-    font-size: 4vw; }
-  .sepecility-details-view .item-avatar {
-    background-color: #e2e2e2;
-    width: 100%;
-    width: 100vmin;
-    text-align: left;
-    margin-top: 0vh;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    border-width: auto;
-    padding-bottom: 2px; }
-    .sepecility-details-view .item-avatar img {
-      margin-top: -1vh !important;
-      margin-left: -1vw !important;
-      padding: 2px;
-      background-color: #dedad7 !important;
-      max-width: 100%;
-      max-height: 100%;
-      height: 14vmin;
-      width: 15vmin !important; }
-    .sepecility-details-view .item-avatar h2 {
-      font-size: 5vw;
-      margin-left: 1vw; }
-    .sepecility-details-view .item-avatar p {
-      font-size: 4vw;
-      margin-left: 1vw; }
-    .sepecility-details-view .item-avatar .icon {
-      margin-left: 2vw;
-      padding-right: 0px;
-      padding-top: 0px; }
-  .sepecility-details-view .item-avatar:first-child {
-    border-top: none; }
-  .sepecility-details-view .item-avatar:last-child {
-    border-bottom: none;
-    display: block;
-    position: absolute;
-    margin-bottom: 80px !important; }
-  .sepecility-details-view button {
-    width: 80%;
-    text-align: center;
-    margin-left: 10vw !important;
-    border: none; }
-  .sepecility-details-view .button-stable {
-    background-color: #6aa13e; }
-  .sepecility-details-view .button-stable.activated {
-    background-color: #557a23 !important; }
-  .sepecility-details-view .button-calm.activated {
-    background-color: #026451 !important; }
   .sepecility-details-view .top-content {
-    height: 75%;
-    text-align: center; }
-    .sepecility-details-view .top-content h1 {
-      color: #FFFFFF; }
-  .sepecility-details-view .bottom-content {
-    height: 25%;
-    padding-top: 5px;
-    margin-top: 0px; }
-    .sepecility-details-view .bottom-content .sign-up.button {
-      background-color: rgba(255, 76, 76, 0.8); }
+    width: 90% !important;
+    height: 35% !important;
+    margin: 0 auto; }
+    .sepecility-details-view .top-content .specDetail {
+      width: 90%;
+      margin-top: 4%;
+      position: absolute; }
+    .sepecility-details-view .top-content .profile-img {
+      width: 18%;
+      float: left;
+      margin: 1% 0 0 2%; }
+      .sepecility-details-view .top-content .profile-img img {
+        margin-left: 3%;
+        margin-top: -5%;
+        width: 95%; }
+    .sepecility-details-view .top-content .next-icon {
+      width: 5%;
+      float: right;
+      padding-top: 6%;
+      padding-right: 8%;
+      position: relative; }
+      .sepecility-details-view .top-content .next-icon .ion-chevron-right:before {
+        color: black;
+        font-size: 1.8em; }
+    .sepecility-details-view .top-content .name-content {
+      float: left;
+      padding: 5% 5%;
+      width: 72%; }
+      .sepecility-details-view .top-content .name-content h2 {
+        margin-top: 4%;
+        font-size: 106%;
+        color: black;
+        font-family: Ubuntu,bold,sans-serif !important;
+        line-height: 50%; }
+    .sepecility-details-view .top-content .specDescription {
+      width: 90%;
+      height: 30%;
+      position: absolute;
+      margin-top: 22%;
+      margin-top: 5%; }
+      .sepecility-details-view .top-content .specDescription .description {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden; }
+        .sepecility-details-view .top-content .specDescription .description p {
+          font-size: 90%;
+          margin-top: 23%;
+          text-align: center; }
+  .sepecility-details-view .onlineDocs {
+    width: 100% !important;
+    height: 20% !important; }
+    .sepecility-details-view .onlineDocs .card {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .sepecility-details-view .onlineDocs .card .col {
+        padding: 4% !important;
+        margin-left: 4%; }
+      .sepecility-details-view .onlineDocs .card .col-30 {
+        margin-top: 4%; }
+  .sepecility-details-view .sendRequest {
+    width: 100% !important;
+    height: 40% !important; }
+    .sepecility-details-view .sendRequest .reqMsg {
+      width: 76% !important;
+      height: 15% !important;
+      margin: 0 auto; }
+      .sepecility-details-view .sendRequest .reqMsg p {
+        text-align: center; }
+    .sepecility-details-view .sendRequest .login_button {
+      background-color: #6aa13e;
+      color: #ffffff;
+      height: 9% !important;
+      width: 80%;
+      margin: 20% 0 0 10%;
+      border: 1px solid #5c9944; }
+      .sepecility-details-view .sendRequest .login_button span {
+        color: #dbe5d3;
+        font-size: 100% !important; }
 
 .customercare-view {
   background-color: #e2e2e2 !important;
@@ -13883,7 +13869,7 @@ ion-side-menu .heading-item .message {
           font-size: 1.8em; }
       .patientscreen-view .bottom-content li .name-content {
         float: left;
-        padding: 1% 3%;
+        padding: 3% 3%;
         height: 100%; }
         .patientscreen-view .bottom-content li .name-content p {
           font-size: 80%;
@@ -13919,65 +13905,42 @@ ion-side-menu .heading-item .message {
       background-color: #6aa13e;
       /* left: 9vw; */ }
 
-.patientprofile-view {
+.profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
-  .patientprofile-view .row {
-    margin-right: 0 !important;
-    margin-left: 0 !important;
-    padding: 5 .5px !important; }
-  .patientprofile-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .patientprofile-view .ratingContainer {
-    position: relative;
-    margin-left: 29vw; }
-  .patientprofile-view .rating {
-    float: left;
-    margin-left: 0px !important; }
-  .patientprofile-view .col {
-    margin: 1vw 0 0 5vw; }
-  .patientprofile-view .profile-info {
-    height: 14vh;
-    width: 100% !important; }
-    .patientprofile-view .profile-info .imageContainer {
-      width: 30% !important;
-      background-color: blue;
-      float: left; }
-      .patientprofile-view .profile-info .imageContainer img {
-        width: 21vw !important;
-        height: 11vh !important;
-        border-radius: 60%;
-        padding: 5px;
-        float: left;
-        background-color: #dedbd6 !important;
-        margin-top: 1vh;
-        margin-left: 4vw; }
-    .patientprofile-view .profile-info .profileName {
-      width: 80%;
-      font-size: 5vw;
-      float: right;
-      padding: 22px 0 0 37px; }
-      .patientprofile-view .profile-info .profileName h4 {
-        font-size: 5vw;
-        margin-left: -5vw;
-        text-align: center;
-        padding-top: 3vh;
-        font-family: inherit;
-        font-weight: 500;
-        width: 100%; }
-  .patientprofile-view .profile-details {
-    height: 60vh;
-    width: 99%;
+  .profile-view .top-content {
+    width: 100% !important;
+    height: 15% !important;
     margin: 0 auto; }
-    .patientprofile-view .profile-details .card {
-      min-height: 2vh;
-      margin: 2vw;
-      font-size: 4vw; }
-  .patientprofile-view h3 {
-    text-align: center;
-    font-family: inherit;
-    font-size: 3vw; }
+    .profile-view .top-content .details {
+      width: 90% !important;
+      margin: 0 auto !important; }
+      .profile-view .top-content .details .profileImage {
+        width: 25%;
+        margin-top: 4%; }
+        .profile-view .top-content .details .profileImage img {
+          border-radius: 100%;
+          width: 100%;
+          border: 5% solid #dedae9; }
+      .profile-view .top-content .details .name-content {
+        width: 75%;
+        margin-left: 27%; }
+        .profile-view .top-content .details .name-content h2 {
+          margin-top: -20%;
+          font-size: 104%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important; }
+  .profile-view .profileDetails {
+    height: 50%;
+    margin-top: 6%; }
+    .profile-view .profileDetails .card {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2% 2% !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .profile-view .profileDetails .card .col {
+        padding: 2%;
+        margin-left: 6%; }
 
 .flip-toggle .toggle .track {
   width: 60px;

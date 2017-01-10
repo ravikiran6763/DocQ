@@ -1,48 +1,47 @@
-<ion-view class="patientprofile-view" cache-view="false" >
+<ion-view class="profile-view" cache-view="false" >
   <ion-content ng-repeat="patient in patient_details" scrollbar-y="false">
-
-    <div class="profile-info">
-
-      <div class="imageContainer">
-        <pre-img >
-          <img  ng-hide="patient.image == null "ng-src="{{patient.image}}"  ng-click="changePhoto();" spinner-on-load>
-          <img  ng-show="patient.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();" spinner-on-load>
-
-
-        </pre-img>
-
-      </div>
-      <div class="profileName">
-        <p >{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}}</p>
-      </div>
-
-    </div>
-
-    <div class="profile-details">
-        <div class="card ">
-            <div class="row">
-              <div class="col">Age</div>
-              <div class="col">{{patient.patientAge}}</div>
-            </div>
-            <div class="row">
-              <div class="col">Gender</div>
-              <div class="col">{{patient.patientSex}}</div>
-            </div>
+    <div class="top-content">
+      <div class="details">
+        <div class="profileImage">
+            <img  ng-hide="patient.image == null "ng-src="{{patient.image}}"  ng-click="changePhoto();" >
+            <img  ng-show="patient.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();">
         </div>
-        <div class="card">
+        <div class="name-content">
+          <h2>{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}} </h2>
+        </div>
+      </div>
+    </div>
+    <div class="profileDetails">
+      <div class="card ">
           <div class="row">
-                <div class="col">Email</div>
-                <div class="col col-67">{{patient.patientEmail}}</div>
+            <div class="col">Age</div>
+            <div class="col">{{patient.patientAge}}</div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col">Gender</div>
+            <div class="col">{{patient.patientSex}}</div>
+          </div>
+      </div>
 
-        <div class="card" ng-click="changePwd();">
-            <div class="row">
-                  <div class="col">change password</div>
-            </div>
-         </div>
+      <div class="card">
+        <div class="row">
+              <div class="col">Email</div>
+              <div class="col col-67">{{patient.patientEmail}}</div>
+        </div>
+      </div>
+
+      <div class="card" ng-click="changePwd();">
+          <div class="row">
+                <div class="col">change password</div>
+          </div>
+       </div>
+       <div class="card" >
+           <div class="row">
+             <div class="col">Mobile Number</div>
+             <div class="col">{{patient.patientPhone}}</div>
+           </div>
+        </div>
     </div>
-    <h3><a  ng-click="termsAndCond()">Terms of use</a></h3>
 
 
   </ion-content>
