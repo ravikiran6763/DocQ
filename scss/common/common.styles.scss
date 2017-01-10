@@ -249,7 +249,7 @@ ion-side-menu.menu-left.menu {
 .bar.app-top-bar .title * {
     color: #FFFFFF !important;
     font-family: Ubuntu,bold,sans-serif !important;
-    font-size: 5vw;
+    font-size: 100%;
     text-align: center;
     left: 0 !important;
     right: 0 !important;
@@ -635,7 +635,7 @@ ion-spinner.spinner-on-load
 }
 
 .back-btn-cls {
-		font-size: 12vw !important;
+		font-size: 210% !important;
 		padding: 0 0 0 5px;
 		color: #fff;
 }

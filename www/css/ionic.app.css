@@ -10034,7 +10034,7 @@ ion-side-menu.menu-left.menu {
 .bar.app-top-bar .title * {
   color: #FFFFFF !important;
   font-family: Ubuntu,bold,sans-serif !important;
-  font-size: 5vw;
+  font-size: 100%;
   text-align: center;
   left: 0 !important;
   right: 0 !important; }
@@ -10357,7 +10357,7 @@ ion-spinner.spinner-on-load {
     font-weight: 500; }
 
 .back-btn-cls {
-  font-size: 12vw !important;
+  font-size: 210% !important;
   padding: 0 0 0 5px;
   color: #fff; }
 
@@ -13853,6 +13853,7 @@ ion-side-menu .heading-item .message {
     .patientscreen-view .bottom-content li {
       height: 31.3%;
       border-bottom: 1px solid #fff;
+      padding-top: 5%;
       *zoom: 1; }
       .patientscreen-view .bottom-content li:before, .patientscreen-view .bottom-content li:after {
         display: table;
@@ -13864,38 +13865,36 @@ ion-side-menu .heading-item .message {
         border-bottom: none !important;
         margin-bottom: 10px auto; }
       .patientscreen-view .bottom-content li .profile-img {
-        width: 15vw;
+        width: 13%;
         float: left;
-        margin: 2vh 0px 0px 2vh; }
+        margin: 1% 0 0 2%; }
         .patientscreen-view .bottom-content li .profile-img img {
-          margin-left: 3vw;
-          margin-top: 2vh; }
+          margin-left: 3%;
+          margin-top: -5%;
+          width: 95%; }
       .patientscreen-view .bottom-content li .next-icon {
-        width: 4vw;
+        width: 5%;
         float: right;
-        text-align: center;
-        margin-right: 10px;
-        height: 100%;
-        line-height: 14vh;
-        padding-top: 22px !important; }
+        padding-top: 2%;
+        padding-right: 8%;
+        position: relative; }
         .patientscreen-view .bottom-content li .next-icon .ion-chevron-right:before {
           color: #ffffff;
           font-size: 1.8em; }
       .patientscreen-view .bottom-content li .name-content {
         float: left;
-        padding: 2vh 2vh;
+        padding: 1% 3%;
         height: 100%; }
         .patientscreen-view .bottom-content li .name-content p {
-          font-size: 3.2vw;
-          line-height: 0.3vh;
+          font-size: 80%;
           margin: 0px;
           color: #fff; }
         .patientscreen-view .bottom-content li .name-content h2 {
-          margin-top: 1vh;
-          font-size: 5vw;
+          margin-top: 0;
+          font-size: 125%;
           color: #fff;
           font-family: Ubuntu,bold,sans-serif !important;
-          line-height: 6vw; }
+          line-height: 50%; }
   .patientscreen-view .toggle-item {
     background-color: transparent;
     border: none; }
