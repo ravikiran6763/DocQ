@@ -13941,6 +13941,18 @@ ion-side-menu .heading-item .message {
       .profile-view .profileDetails .card .col {
         padding: 2%;
         margin-left: 6%; }
+  .profile-view .docProfileDetails {
+    height: 80%;
+    margin-top: 5%;
+    overflow: scroll !important; }
+    .profile-view .docProfileDetails .card {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2% 2% !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .profile-view .docProfileDetails .card .col {
+        padding: 2%;
+        margin-left: 6%; }
 
 .flip-toggle .toggle .track {
   width: 60px;
