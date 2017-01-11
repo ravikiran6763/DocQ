@@ -9841,13 +9841,13 @@ ion-content.scroll-content.ionic-scroll {
 .statusDiv {
   width: 100%;
   position: relative;
-  margin-top: 7vh !important;
-  margin-left: 33vw !important; }
+  margin-top: 15% !important;
+  margin-left: 33% !important; }
   .statusDiv .onlineImg {
     width: 38% !important;
     height: 9% !important;
     position: relative !important;
-    margin-left: -39vw !important; }
+    margin-left: -39% !important; }
   .statusDiv .offlineImg {
     width: 38% !important;
     height: 9% !important;
@@ -11062,6 +11062,214 @@ ion-side-menu .heading-item .message {
   content: "\f306";
   margin: -5vh 11vw 0 0; }
 
+.patientscreen-view {
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .patientscreen-view ion-content {
+    overflow: hidden !important; }
+  .patientscreen-view .slider-content {
+    width: 100%;
+    height: 50%; }
+  .patientscreen-view .slides.slider, .patientscreen-view .slider-slides {
+    height: 100%; }
+  .patientscreen-view .slider-slide img {
+    height: 100%; }
+  .patientscreen-view .slider-pager-page i {
+    color: #0D0F10; }
+  .patientscreen-view .slider-pager-page.active i {
+    color: #6aa433 !important; }
+  .patientscreen-view .item-divider {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: #dbdbdb;
+    color: #222;
+    font-weight: 600;
+    height: 8%;
+    line-height: 7vh;
+    text-align: center; }
+  .patientscreen-view .item-complex .item-content {
+    background-color: #6aa433;
+    border-bottom: 11px; }
+  .patientscreen-view .item-content {
+    border: 1px solid #86b553; }
+  .patientscreen-view .item-avatar:last-child {
+    border-bottom: none; }
+  .patientscreen-view .devider {
+    height: 5%; }
+  .patientscreen-view .patientScreen-bottom-content {
+    background-color: #6aa433;
+    width: 100%;
+    height: 45%;
+    box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
+    overflow: scroll !important; }
+    .patientscreen-view .patientScreen-bottom-content li {
+      height: 31.3%;
+      border-bottom: 2px solid #678929;
+      padding-top: 5%;
+      *zoom: 1; }
+      .patientscreen-view .patientScreen-bottom-content li:before, .patientscreen-view .patientScreen-bottom-content li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .patientscreen-view .patientScreen-bottom-content li:after {
+        clear: both; }
+      .patientscreen-view .patientScreen-bottom-content li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .patientscreen-view .patientScreen-bottom-content li .profile-img {
+        width: 13%;
+        float: left;
+        margin: 1% 0 0 2%; }
+        .patientscreen-view .patientScreen-bottom-content li .profile-img img {
+          margin-left: 3%;
+          margin-top: -5%;
+          width: 95%; }
+      .patientscreen-view .patientScreen-bottom-content li .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 2%;
+        padding-right: 8%;
+        position: relative; }
+        .patientscreen-view .patientScreen-bottom-content li .next-icon .ion-chevron-right:before {
+          color: #ffffff;
+          font-size: 1.8em; }
+      .patientscreen-view .patientScreen-bottom-content li .name-content {
+        float: left;
+        padding: 3% 3%;
+        height: 100%; }
+        .patientscreen-view .patientScreen-bottom-content li .name-content p {
+          font-size: 80%;
+          margin: 0px;
+          color: #fff; }
+        .patientscreen-view .patientScreen-bottom-content li .name-content h2 {
+          margin-top: 0;
+          font-size: 125%;
+          color: #fff;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%; }
+  .patientscreen-view .doctorScreen-bottom-content {
+    background-color: #6aa433;
+    width: 100%;
+    height: 45%;
+    box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
+    overflow: scroll !important; }
+    .patientscreen-view .doctorScreen-bottom-content li {
+      height: 31.3%;
+      border-bottom: 2px solid #678929;
+      padding-top: 5%;
+      *zoom: 1; }
+      .patientscreen-view .doctorScreen-bottom-content li:before, .patientscreen-view .doctorScreen-bottom-content li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .patientscreen-view .doctorScreen-bottom-content li:after {
+        clear: both; }
+      .patientscreen-view .doctorScreen-bottom-content li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .patientscreen-view .doctorScreen-bottom-content li .profile-img {
+        width: 13%;
+        float: left;
+        margin: 1% 0 0 2%; }
+        .patientscreen-view .doctorScreen-bottom-content li .profile-img img {
+          margin-left: 3%;
+          margin-top: -5%;
+          width: 95%; }
+      .patientscreen-view .doctorScreen-bottom-content li .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 2%;
+        padding-right: 8%;
+        position: relative; }
+        .patientscreen-view .doctorScreen-bottom-content li .next-icon .ion-chevron-right:before {
+          color: #ffffff;
+          font-size: 1.8em; }
+      .patientscreen-view .doctorScreen-bottom-content li .name-content {
+        float: left;
+        padding: 3% 3%;
+        height: 100%; }
+        .patientscreen-view .doctorScreen-bottom-content li .name-content p {
+          font-size: 80%;
+          margin: 0px;
+          color: #fff; }
+        .patientscreen-view .doctorScreen-bottom-content li .name-content h2 {
+          margin-top: 0;
+          font-size: 125%;
+          color: #fff;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%; }
+  .patientscreen-view .toggle-item {
+    background-color: transparent;
+    border: none; }
+    .patientscreen-view .toggle-item .toggle {
+      margin-top: 7vh;
+      margin-left: 40vw; }
+    .patientscreen-view .toggle-item .toggle .track {
+      width: 30vw;
+      height: 6vh;
+      margin-top: 1vh; }
+      .patientscreen-view .toggle-item .toggle .track:after {
+        right: 14vw; }
+    .patientscreen-view .toggle-item .toggle .handle {
+      width: 13vw;
+      height: 7vh;
+      margin-top: 0vh;
+      left: 1vw; }
+      .patientscreen-view .toggle-item .toggle .handle:after {
+        right: 14vw; }
+    .patientscreen-view .toggle-item .toggle.toggle-assertive input:checked + .handle {
+      border-color: #6aa13e;
+      background-color: #6aa13e;
+      /* left: 9vw; */ }
+
+.profile-view {
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .profile-view .top-content {
+    width: 100% !important;
+    height: 15% !important;
+    margin: 0 auto; }
+    .profile-view .top-content .details {
+      width: 90% !important;
+      margin: 0 auto !important; }
+      .profile-view .top-content .details .profileImage {
+        width: 25%;
+        margin-top: 4%; }
+        .profile-view .top-content .details .profileImage img {
+          border-radius: 100%;
+          width: 100%;
+          border: 5% solid #dedae9; }
+      .profile-view .top-content .details .name-content {
+        width: 75%;
+        margin-left: 27%; }
+        .profile-view .top-content .details .name-content h2 {
+          margin-top: -20%;
+          font-size: 104%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important; }
+  .profile-view .profileDetails {
+    height: 50%;
+    margin-top: 6%; }
+    .profile-view .profileDetails .card {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2% 2% !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .profile-view .profileDetails .card .col {
+        padding: 2%;
+        margin-left: 6%; }
+  .profile-view .docProfileDetails {
+    height: 80%;
+    margin-top: 5%;
+    overflow: scroll !important; }
+    .profile-view .docProfileDetails .card {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2% 2% !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .profile-view .docProfileDetails .card .col {
+        padding: 2%;
+        margin-left: 6%; }
+
 .pateint-view .top-content {
   height: 40%;
   padding-top: 10px;
@@ -11091,66 +11299,62 @@ ion-side-menu .heading-item .message {
 .mydoctor-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
-  .mydoctor-profile-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .mydoctor-profile-view .item-icon-right .icon {
-    right: 20px; }
-  .mydoctor-profile-view .item-avatar {
-    background-color: #e7e7e7;
+  .mydoctor-profile-view .myDoctor-list {
     width: 100%;
-    width: 100vmin;
-    text-align: left;
-    margin-top: 0vh;
-    border-left: none;
-    border-right: none;
-    border-width: auto; }
-    .mydoctor-profile-view .item-avatar img {
-      margin-top: -1vh !important;
-      padding: 2px;
-      background-color: #dedad7 !important;
-      position: absolute;
-      top: 18px;
-      left: 16px;
-      max-width: 50px;
-      max-height: 50px;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%; }
-  .mydoctor-profile-view .item-avatar:first-child {
-    border-top: none; }
-  .mydoctor-profile-view .item-avatar:last-child {
-    border-bottom: none;
-    display: block;
-    position: absolute;
-    margin-bottom: 80px !important; }
-  .mydoctor-profile-view h2 {
-    font-size: 5vw;
-    font-weight: 400;
-    color: #4b4b4b;
-    margin-top: -1vh !important;
-    line-height: 4vh; }
-  .mydoctor-profile-view p {
-    font-size: 3.6vw !important;
-    margin-top: 0px !important;
-    line-height: 2.5vh; }
-    .mydoctor-profile-view p span {
-      margin-left: 2vw;
-      font-size: 3vw; }
-  .mydoctor-profile-view .ratingContainer {
-    position: absolute;
-    margin-top: -8px !important;
-    margin-left: 39vw !important; }
-  .mydoctor-profile-view .totalReview {
-    font-size: 3vw;
-    float: right;
-    margin: -17px -44px 0 0; }
-  .mydoctor-profile-view .item-icon-left .icon:before, .mydoctor-profile-view .item-icon-right .icon:before {
-    display: block;
-    width: 32px;
-    /* text-align: center; */
-    padding: 15px;
-    margin-top: -6vh; }
+    height: 100%;
+    overflow: scroll !important; }
+    .mydoctor-profile-view .myDoctor-list li {
+      height: 15%;
+      border-bottom: 2px solid #dadada;
+      *zoom: 1; }
+      .mydoctor-profile-view .myDoctor-list li:before, .mydoctor-profile-view .myDoctor-list li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .mydoctor-profile-view .myDoctor-list li:after {
+        clear: both; }
+      .mydoctor-profile-view .myDoctor-list li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .mydoctor-profile-view .myDoctor-list li .profile-img {
+        width: 18%;
+        float: left;
+        margin: 3% 0 0 2%; }
+        .mydoctor-profile-view .myDoctor-list li .profile-img img {
+          width: 95%; }
+      .mydoctor-profile-view .myDoctor-list li .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 4%;
+        padding-right: 10%;
+        position: relative; }
+        .mydoctor-profile-view .myDoctor-list li .next-icon .ion-chevron-right:before {
+          color: black;
+          font-size: 1.8em; }
+      .mydoctor-profile-view .myDoctor-list li .name-content {
+        float: left;
+        padding: 5% 0%;
+        height: 100%;
+        width: 70%; }
+        .mydoctor-profile-view .myDoctor-list li .name-content p {
+          font-size: 74%;
+          margin: 0% 2%;
+          color: black; }
+        .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
+          position: absolute;
+          position: absolute;
+          margin-left: 57%;
+          margin-top: -3%;
+          text-overflow: ellipsis; }
+        .mydoctor-profile-view .myDoctor-list li .name-content h2 {
+          margin: 2%;
+          font-size: 125%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%; }
+        .mydoctor-profile-view .myDoctor-list li .name-content .ratingStars {
+          margin-left: 53%;
+          margin-top: -2%; }
 
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
@@ -13796,163 +14000,6 @@ ion-side-menu .heading-item .message {
       background-color: #557a23 !important; }
     .patient-reg-2-view .bottom-content .button-calm.activated {
       background-color: #026451 !important; }
-
-.patientscreen-view {
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .patientscreen-view ion-content {
-    overflow: hidden !important; }
-  .patientscreen-view .slider-content {
-    width: 100%;
-    height: 50%; }
-  .patientscreen-view .slides.slider, .patientscreen-view .slider-slides {
-    height: 100%; }
-  .patientscreen-view .slider-slide img {
-    height: 100%; }
-  .patientscreen-view .slider-pager-page i {
-    color: #0D0F10; }
-  .patientscreen-view .slider-pager-page.active i {
-    color: #6aa433 !important; }
-  .patientscreen-view .item-divider {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    background-color: #dbdbdb;
-    color: #222;
-    font-weight: 600;
-    height: 8%;
-    line-height: 7vh;
-    text-align: center; }
-  .patientscreen-view .item-complex .item-content {
-    background-color: #6aa433;
-    border-bottom: 11px; }
-  .patientscreen-view .item-content {
-    border: 1px solid #86b553; }
-  .patientscreen-view .item-avatar:last-child {
-    border-bottom: none; }
-  .patientscreen-view .devider {
-    height: 5%; }
-  .patientscreen-view .bottom-content {
-    background-color: #6aa433;
-    width: 100%;
-    height: 45%;
-    box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
-    overflow: scroll !important; }
-    .patientscreen-view .bottom-content li {
-      height: 31.3%;
-      border-bottom: 1px solid #fff;
-      padding-top: 5%;
-      *zoom: 1; }
-      .patientscreen-view .bottom-content li:before, .patientscreen-view .bottom-content li:after {
-        display: table;
-        content: "";
-        line-height: 0; }
-      .patientscreen-view .bottom-content li:after {
-        clear: both; }
-      .patientscreen-view .bottom-content li:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto; }
-      .patientscreen-view .bottom-content li .profile-img {
-        width: 13%;
-        float: left;
-        margin: 1% 0 0 2%; }
-        .patientscreen-view .bottom-content li .profile-img img {
-          margin-left: 3%;
-          margin-top: -5%;
-          width: 95%; }
-      .patientscreen-view .bottom-content li .next-icon {
-        width: 5%;
-        float: right;
-        padding-top: 2%;
-        padding-right: 8%;
-        position: relative; }
-        .patientscreen-view .bottom-content li .next-icon .ion-chevron-right:before {
-          color: #ffffff;
-          font-size: 1.8em; }
-      .patientscreen-view .bottom-content li .name-content {
-        float: left;
-        padding: 3% 3%;
-        height: 100%; }
-        .patientscreen-view .bottom-content li .name-content p {
-          font-size: 80%;
-          margin: 0px;
-          color: #fff; }
-        .patientscreen-view .bottom-content li .name-content h2 {
-          margin-top: 0;
-          font-size: 125%;
-          color: #fff;
-          font-family: Ubuntu,bold,sans-serif !important;
-          line-height: 50%; }
-  .patientscreen-view .toggle-item {
-    background-color: transparent;
-    border: none; }
-    .patientscreen-view .toggle-item .toggle {
-      margin-top: 7vh;
-      margin-left: 40vw; }
-    .patientscreen-view .toggle-item .toggle .track {
-      width: 30vw;
-      height: 6vh;
-      margin-top: 1vh; }
-      .patientscreen-view .toggle-item .toggle .track:after {
-        right: 14vw; }
-    .patientscreen-view .toggle-item .toggle .handle {
-      width: 13vw;
-      height: 7vh;
-      margin-top: 0vh;
-      left: 1vw; }
-      .patientscreen-view .toggle-item .toggle .handle:after {
-        right: 14vw; }
-    .patientscreen-view .toggle-item .toggle.toggle-assertive input:checked + .handle {
-      border-color: #6aa13e;
-      background-color: #6aa13e;
-      /* left: 9vw; */ }
-
-.profile-view {
-  background-color: #e2e2e2 !important;
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .profile-view .top-content {
-    width: 100% !important;
-    height: 15% !important;
-    margin: 0 auto; }
-    .profile-view .top-content .details {
-      width: 90% !important;
-      margin: 0 auto !important; }
-      .profile-view .top-content .details .profileImage {
-        width: 25%;
-        margin-top: 4%; }
-        .profile-view .top-content .details .profileImage img {
-          border-radius: 100%;
-          width: 100%;
-          border: 5% solid #dedae9; }
-      .profile-view .top-content .details .name-content {
-        width: 75%;
-        margin-left: 27%; }
-        .profile-view .top-content .details .name-content h2 {
-          margin-top: -20%;
-          font-size: 104%;
-          color: black;
-          font-family: Ubuntu,bold,sans-serif !important; }
-  .profile-view .profileDetails {
-    height: 50%;
-    margin-top: 6%; }
-    .profile-view .profileDetails .card {
-      padding-top: 0;
-      padding-bottom: 0;
-      margin: 2% 2% !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
-      .profile-view .profileDetails .card .col {
-        padding: 2%;
-        margin-left: 6%; }
-  .profile-view .docProfileDetails {
-    height: 80%;
-    margin-top: 5%;
-    overflow: scroll !important; }
-    .profile-view .docProfileDetails .card {
-      padding-top: 0;
-      padding-bottom: 0;
-      margin: 2% 2% !important;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
-      .profile-view .docProfileDetails .card .col {
-        padding: 2%;
-        margin-left: 6%; }
 
 .flip-toggle .toggle .track {
   width: 60px;

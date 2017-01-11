@@ -73,6 +73,10 @@ $stable:                          red !default;
 @import "scss/profile/profile.styles";
 //newly added by rk
 @import "scss/common/icons.styles";
+@import "scss/common/homeScreens.styles";
+@import "scss/common/profile.styles";
+
+
 @import "scss/doctorquick/dqcommon.styles";
 @import "scss/auth/patent.styles";
 //mydoctors css
@@ -115,8 +119,6 @@ $stable:                          red !default;
 @import "scss/PatientRegistration/patientReg3.styles";
 @import "scss/PatientRegistration/patientReg2.styles";
 @import "scss/patient/patientSidemenu.styles";
-@import "scss/patient/patientScreens.styles";
-@import "scss/patient/patientProfile.styles";
 //test-view
 @import "scss/test/test.styles";
 @import "scss/test/test1.styles";

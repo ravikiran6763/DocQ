@@ -6,7 +6,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
- $interval(callAtInterval, 5000);
+ // $interval(callAtInterval, 5000);
 
 	function callAtInterval() {
 		doctorServices.myDoctorsFetched($localStorage.user).then(function(response){

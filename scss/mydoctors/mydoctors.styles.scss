@@ -1,89 +1,86 @@
 .mydoctor-profile-view
 {
   background-color:#e2e2e2 !important;// $profile-bg !important;
-font-family: Ubuntu,bold,sans-serif !important;
-.title .title-left .header-item{
-  left: 0px !important;
-  right: 0px !important;
-}
-  .item-icon-right .icon {
-     right: 20px;
- }
-.item-avatar{
- background-color: #e7e7e7;
- width: 100%;
- width: 100vmin;
- text-align: left;
- margin-top: 0vh;
- border-left: none;
- border-right: none;
- border-width:   auto;
-
- img{
-  margin-top: -1vh !important;
-  padding: 2px;
-  background-color: #dedad7 !important;
-
-  position: absolute;
-    top: 18px;
-    left: 16px;
-    max-width: 50px;
-    max-height: 50px;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
- }
+  font-family: Ubuntu,bold,sans-serif !important;
+  .myDoctor-list
+  {
+      width: 100%;
+      height: 100%;
+      // box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+      overflow: scroll !important;
 
 
-}
-.item-avatar:first-child {
-border-top: none;
-}
-.item-avatar:last-child {
-border-bottom: none;
-display: block;
-position: absolute;
-margin-bottom:80px !important;
-}
-h2{
-  font-size: 5vw;
-  font-weight: 400;
-  color: #4b4b4b;
-  margin-top: -1vh !important;
-  line-height: 4vh;
+    li {
+      height: 15%;
+      border-bottom: 2px solid #dadada;
+      @include clearfix();
 
-}
-p{
-  // background-color: red;
-  font-size: 3.6vw !important;
-    margin-top: 0px !important;
-    line-height: 2.5vh;
-  span{
-    //background-color: red;
-    margin-left: 2vw;
-    font-size: 3vw;
+      &:first-child {
+        //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+      }
+
+      &:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto;
+      }
+
+      .profile-img {
+        width: 18%;
+        float: left;
+        margin: 3% 0 0 2%;
+
+        img {
+
+          width: 95%;
+        }
+      }
+
+      .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 4%;
+        padding-right: 10%;
+        position: relative;
+
+        .ion-chevron-right:before {
+          color: black;
+          font-size: 1.8em;
+        }
+      }
+
+      .name-content {
+        float: left;
+        padding: 5% 0%;
+        height: 100%;
+        width: 70%;
+
+        p{
+            font-size: 74%;
+            margin: 0% 2%;
+            color: black;
+          }
+          .totalReview{
+            position: absolute;
+            position: absolute;
+            margin-left: 57%;
+            margin-top: -3%;
+            text-overflow: ellipsis;
+          }
+        h2{
+            margin: 2%;
+            font-size: 125%;
+            color: black;
+            font-family: Ubuntu,bold,sans-serif !important;
+            line-height: 50%;
+          }
+          .ratingStars{
+            margin-left: 53%;
+            margin-top: -2%;
+
+          }
+      }
+
+    }
   }
-
-}
-.ratingContainer{
-  position: absolute;
-  margin-top: -8px !important;
-  margin-left: 39vw !important;
-}
-.totalReview{
-  font-size: 3vw;
-    float: right;
-    // margin: -21px -29px 0 0;
-        margin: -17px -44px 0 0;
-}
-.item-icon-left .icon:before, .item-icon-right .icon:before {
-  display: block;
-    width: 32px;
-    /* text-align: center; */
-    padding: 15px;
-    margin-top: -6vh;
-}
-
-
 
 }
