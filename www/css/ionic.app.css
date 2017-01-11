@@ -11270,6 +11270,75 @@ ion-side-menu .heading-item .message {
         padding: 2%;
         margin-left: 6%; }
 
+.consultationList-view {
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .consultationList-view .myDoctor-list {
+    width: 100%;
+    height: 100%;
+    overflow: scroll !important; }
+    .consultationList-view .myDoctor-list li {
+      height: 15%;
+      border-bottom: 2px solid #dadada;
+      *zoom: 1; }
+      .consultationList-view .myDoctor-list li:before, .consultationList-view .myDoctor-list li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .consultationList-view .myDoctor-list li:after {
+        clear: both; }
+      .consultationList-view .myDoctor-list li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .consultationList-view .myDoctor-list li .profile-img {
+        width: 16%;
+        float: left;
+        margin: 3% 0 0 2%; }
+        .consultationList-view .myDoctor-list li .profile-img img {
+          width: 100%;
+          border-radius: 50%;
+          width: 95%; }
+      .consultationList-view .myDoctor-list li .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 9%;
+        padding-right: 5%;
+        position: relative; }
+        .consultationList-view .myDoctor-list li .next-icon .ion-chevron-right:before {
+          color: black;
+          font-size: 1.8em; }
+      .consultationList-view .myDoctor-list li .name-content {
+        float: left;
+        padding: 5% 0%;
+        height: 100%;
+        width: 75%; }
+        .consultationList-view .myDoctor-list li .name-content .name {
+          width: 70%; }
+        .consultationList-view .myDoctor-list li .name-content .date {
+          position: absolute;
+          width: 20%;
+          margin-left: 55%;
+          margin-top: -4%; }
+        .consultationList-view .myDoctor-list li .name-content .msgContent {
+          display: inline-block;
+          overflow: hidden !important;
+          height: 3vh;
+          width: 100% !important;
+          text-overflow: ellipsis !important; }
+        .consultationList-view .myDoctor-list li .name-content .chatCount {
+          float: left !important;
+          margin: -9vh 0 0 -20vw !important; }
+        .consultationList-view .myDoctor-list li .name-content p {
+          font-size: 74%;
+          margin: 0% 2%;
+          color: black; }
+        .consultationList-view .myDoctor-list li .name-content h2 {
+          margin: 2%;
+          font-size: 125%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%; }
+
 .pateint-view .top-content {
   height: 40%;
   padding-top: 10px;
@@ -12333,108 +12402,6 @@ ion-side-menu .heading-item .message {
     min-height: 0vh;
     position: float;
     font-family: Ubuntu,bold,sans-serif !important; }
-
-.mypatient-profile-view {
-  background-color: #e2e2e2 !important;
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .mypatient-profile-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .mypatient-profile-view .top-content {
-    position: relative;
-    width: 100%;
-    margin-bottom: 1vh; }
-  .mypatient-profile-view .item-avatar {
-    background-color: #e7e7e7;
-    width: 100%;
-    width: 100vmin;
-    text-align: left;
-    margin-top: 0vh;
-    border-left: none;
-    border-right: none;
-    border-bottom: 1px solid #e7e7e7;
-    border-width: auto;
-    padding-bottom: -30px; }
-    .mypatient-profile-view .item-avatar img {
-      padding: 2px;
-      background-color: #dedad7 !important; }
-  .mypatient-profile-view .item-avatar:first-child {
-    border-top: none; }
-  .mypatient-profile-view .item-avatar:last-child {
-    border-bottom: none;
-    display: block;
-    position: absolute;
-    margin-bottom: 80px !important; }
-  .mypatient-profile-view h2 {
-    font-size: 4vw; }
-    .mypatient-profile-view h2 span {
-      position: absolute !important;
-      margin-left: 1vw; }
-  .mypatient-profile-view .bottom-content {
-    width: 100%;
-    height: 100%;
-    overflow: scroll !important;
-    position: absolute;
-    margin-bottom: 10px !important;
-    z-index: 1; }
-    .mypatient-profile-view .bottom-content li {
-      height: 14%;
-      border-bottom: 1px solid #fff;
-      *zoom: 1; }
-      .mypatient-profile-view .bottom-content li:before, .mypatient-profile-view .bottom-content li:after {
-        display: table;
-        content: "";
-        line-height: 0; }
-      .mypatient-profile-view .bottom-content li:after {
-        clear: both; }
-      .mypatient-profile-view .bottom-content li:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto; }
-      .mypatient-profile-view .bottom-content li .profile-img {
-        width: 15vw;
-        float: left;
-        margin: 2vh 0px 0px 2vh; }
-        .mypatient-profile-view .bottom-content li .profile-img img {
-          width: 100%;
-          border-radius: 55%;
-          max-height: 14vw; }
-      .mypatient-profile-view .bottom-content li .next-icon {
-        text-align: center;
-        line-height: 14vh;
-        margin-top: 6vh; }
-        .mypatient-profile-view .bottom-content li .next-icon .ion-chevron-right:before {
-          font-size: 1.8em; }
-      .mypatient-profile-view .bottom-content li .name-content {
-        float: left;
-        padding: 2vh 2vh;
-        height: 100%;
-        width: 70%;
-        position: relative; }
-        .mypatient-profile-view .bottom-content li .name-content .chatCount {
-          float: left !important;
-          margin: -9vh 0 0 -20vw !important; }
-        .mypatient-profile-view .bottom-content li .name-content .msgContent {
-          display: inline-block;
-          overflow: hidden !important;
-          height: 3vh;
-          width: 100% !important;
-          text-overflow: ellipsis !important; }
-        .mypatient-profile-view .bottom-content li .name-content p {
-          font-size: 3.2vw;
-          line-height: 2.8vh;
-          margin: 0px; }
-        .mypatient-profile-view .bottom-content li .name-content h2 {
-          margin: 0 0 0 0;
-          font-size: 5vw;
-          font-family: Ubuntu,bold,sans-serif !important;
-          line-height: 5vh; }
-          .mypatient-profile-view .bottom-content li .name-content h2 span {
-            font-size: 4vw;
-            position: absolute;
-            width: 100%;
-            word-wrap: break-word; }
-  .mypatient-profile-view ul {
-    margin-bottom: 10px !important; }
 
 .medical-speciality-view {
   background-color: #e2e2e2 !important;

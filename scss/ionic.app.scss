@@ -72,9 +72,12 @@ $stable:                          red !default;
 @import "scss/sidemenu/side-menu.styles";
 @import "scss/profile/profile.styles";
 //newly added by rk
+//!!!!!!!!!!!!!!common for both patient & Doctors!!!!!!!!!!!!!!!!!!
 @import "scss/common/icons.styles";
 @import "scss/common/homeScreens.styles";
 @import "scss/common/profile.styles";
+@import "scss/common/myConsultations.styles";
+
 
 
 @import "scss/doctorquick/dqcommon.styles";
@@ -92,7 +95,6 @@ $stable:                          red !default;
 @import "scss/patient/topup.styles";
 @import "scss/patient/summary.styles";
 @import "scss/patient/search.styles";
-@import "scss/patient/mypatients.styles";
 @import "scss/patient/speciality.styles";
 @import "scss/patient/change_pwd.styles";
 @import "scss/patient/viewDoc.styles";
