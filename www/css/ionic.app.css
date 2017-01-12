@@ -12130,6 +12130,10 @@ ion-side-menu .heading-item .message {
     height: 40%;
     box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, 0.8);
     overflow: scroll !important; }
+    .topUp-refund-view .bottom-content .ng-animate .scroll-bar {
+      visibility: visible !important; }
+    .topUp-refund-view .bottom-content .scroll-bar-fade-out {
+      opacity: 1 !important; }
     .topUp-refund-view .bottom-content li {
       height: 33%;
       border-bottom: 2px solid #dadada;

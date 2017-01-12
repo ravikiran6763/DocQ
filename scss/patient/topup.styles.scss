@@ -78,7 +78,12 @@
     height: 40%;
     box-shadow: inset 0px 10px 10px -10px rgba(0,0,0,0.8);
     overflow: scroll !important;
-
+      .ng-animate .scroll-bar {
+        visibility: visible !important;
+      }
+      .scroll-bar-fade-out{
+        opacity:1 !important
+      }
 
   li {
     height: 33%;
