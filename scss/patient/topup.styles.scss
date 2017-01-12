@@ -1,206 +1,167 @@
-
-.patient-topup-view
+.topUp-refund-view
 {
-  // .submitted input.ng-invalid:not(:focus) {
-  //   border:2px solid red;
-  // }
-
-  .submitted input.ng-invalid:not(:focus) {
-    border:1px solid red;
-  }
-  // background-color: red;
-    .submitted label.item.has-error {
-    border-bottom: 1px solid red;
-  }
-
-  label.item.has-error-lr {
-    border: 1px solid red;
-    // border-right: 2px solid red;
-  }
-
-  label.item.valid-lr {
-    border: none ;
-    // border-right: 2px solid green;
-  }
-
-  .form-errors {
-    margin: 5px 0
-  }
-
-  .form-error {
-    padding: 2px 0 2px 16px;
-    color: red;
-  }
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important;
-  .title .title-left .header-item{
-    left: 0px !important;
-    right: 0px !important;
-  }
-
-input[type="number"]{
-  display: block;
-    padding-top: 2px;
-    padding-left: 0;
-    height: 40px;
-    color: #111;
-    vertical-align: middle;
-    font-size: 14px;
-    line-height: 16px;
-    width: 100%;
-    margin: 0 auto;
-}
   .top-content{
-
-    height: 25%;
-    height: 25vh;
-    .logo-content{
-      height: 30%;
-      width: 20%;
-      padding-top: 12%;
-      padding-top: 12vh;
+    width: 100%;
+    height: 50%;
+    // background-color: yellow;
+    .accDetails{
+      width: 90%;
+      height: 100%;
       margin: 0 auto;
-      img{
-            margin-left: 3vw;
+      // background-color: green;
+      .walletDetails{
+        width: 100%;
+        height: 37%;
+        // background-color: red;
+        .walletLogo{
+            width: 15%;
+            height: 50%;
+            margin: 0 auto;
+            padding-top: 4%;
+            // background-color: white;
+        }
+        h1{
+          font-family: inherit;
+          font-family: inherit;
+          font-size: 150%;
+          text-align: center;
+        }
+      }
+
+      .balanceAmt{
+        width: 100%;
+        height: 38%;
+        h2{
+          font-size: 100%;
+          text-align: center;
+        }
+        h6{
+          font-size: 81%;
+          text-align: center;
+        }
+        input[type="number"]{
+					margin-top: 4% !important;
+					height: 55% !important;
+					padding-left: 10px;
+					width: 100% !important;
+					// height: 100%;
+				}
+
+      }
+      .buttons{
+        width: 100%;
+        height: 20%;
+        .button{
+          width: 85%;
+          margin-left: 8%;
+        }
+
       }
     }
-    h1{
-      font-size: 5vw;
-      font-family: inherit;
-      text-align: center;
-      padding-top: 6vh;
-    }
-    h2{
-      font-size: 4vw;
-      font-family: inherit;
-      text-align: center;
-      line-height: 0;
-    }
-
 
   }
-  .refund-amount{
-    width: 90%;
-    margin: 0 auto;
+  .item-divider {
     padding-top: 2%;
-    padding-top: 2vh;
-    h6{
-      text-align: center;
-      font-family: inherit;
-      font-weight: lighter;
-      font-size: 3.2vw;
-    }
-  }
-  .button-container{
-    width: 100%;
-    margin: 0 auto;
-    button{
-      width: 80%;
-      text-align: center;
-      margin-left: 10vw !important;
-      border: none;
-    }
-
-    .button-stable{
-      background-color: #6aa13e;
-    }
-    .button-stable.activated{
-      background-color: #557a23 !important;
-    }
-
-    .button-assertive.activated{
-      background-color:#517b2f  !important;
-    }
-    .login_button {
-        background-color: #6aa13e;
-        color: #ffffff;
-        height: 40px;
-    }
-  }
-  .item-divider{
-    text-align: center;
-    height: 7vh;
+    padding-bottom: 0%;
     background-color: #dbdbdb;
-    border-top: 1px solid #fff;
-    padding-top: 2vh;
+    color: #222;
+    font-weight: 600;
+    height: 8%;
+    line-height: 7vh;
+    text-align: center;
+    border-top: 2px solid white;
   }
   .bottom-content{
-    height: 57vh;
-    padding-bottom: 10px auto;
-    background-color: #dbdbdb;
     width: 100%;
-    box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+    height: 40%;
+    box-shadow: inset 0px 10px 10px -10px rgba(0,0,0,0.8);
     overflow: scroll !important;
-    li {
-      height: 19% !important;
-      border-bottom: 1px solid #fff;
 
-      @include clearfix();
 
-      &:first-child {
-        //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+  li {
+    height: 33%;
+    border-bottom: 2px solid #dadada;
+    margin-top: 1%;
+    @include clearfix();
+
+    &:first-child {
+      //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+    }
+
+    &:last-child {
+      border-bottom: none !important;
+      margin-bottom: 10px auto;
+    }
+
+    .profile-img {
+      width: 16%;
+      float: left;
+      margin: 3% 0 0 2%;
+
+      img {
+        width: 100%;
+        border-radius: 50%;
+        width: 95%;
       }
+    }
 
-      &:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto;
+    .next-icon {
+      width: 16%;
+      float: right;
+      padding-top: 6%;
+      padding-right: 0;
+      position: relative;
+
+      .ion-chevron-right:before {
+        color: black;
+        font-size: 1.8em;
       }
+    }
 
-      .profile-img {
-        width: 15vw;
-        float: left;
-        margin: 2vh 0px 0px 2vh;
-
-        img {
-            width: 12vw;
-          border-radius: 55%;
-
+    .name-content {
+      float: left;
+      padding: 5% 0%;
+      height: 100%;
+      width: 65%;
+        .name{
+          width: 70%;
         }
-      }
-
-      .next-icon {
-          width: 4vw;
-          float: right;
-          text-align: center;
-          margin-right: 10px;
-          height: 100%;
-          line-height: 14vh;
-
-      p {
-
-          font-size: 1.8em;
+        .date{
+          position: absolute;
+          width: 20%;
+          margin-left: 55%;
+          margin-top: -4%;
         }
-      }
+        .msgContent{
+          display: inline-block;
+          overflow: hidden !important;
+          height: 3vh;
+          width: 100% !important;
+          text-overflow: ellipsis !important;
+        }
+        .chatCount{
+          float: left !important;
+          margin: -9vh 0 0 -20vw !important;
+        }
+      p{
+          font-size: 74%;
+          margin: 0% 2%;
+          color: black;
+        }
 
-      .name-content {
-        // float: left;
-        padding: 2vh 2vh;
-        height: 100%;
-
-        p{
-            font-size: 3.2vw;
-            line-height: 2.8vh;
-            margin: 0px;
-            float: left !important;
-          }
-
-        h2{
-            margin: 0px;
-            font-size: 5vw;
-            float: left;
-            font-family: Ubuntu,bold,sans-serif !important;
-            line-height: 6vw;
-            span{
-              margin-left: 22%;
-              margin-left: 22vw;
-
-
-            }
-          }
-      }
+      h2{
+          margin: 2%;
+          font-size: 125%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%;
+        }
 
     }
 
   }
 
+  }
 }

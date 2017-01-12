@@ -10,7 +10,13 @@
 // .menu-open .menu-content{
 // 	transform: translate3d(-82%, 0px, 0px) !important;
 // }
+.ng-animate .scroll-bar {
+  visibility: visible !important;
+}
 
+.scroll-bar-fade-out{
+  opacity:1 !important
+}
 ion-content.scroll-content.ionic-scroll{
   height: auto !important;
   overflow: visible;
