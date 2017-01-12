@@ -11339,6 +11339,71 @@ ion-side-menu .heading-item .message {
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 50%; }
 
+.customercare-view {
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .customercare-view ion-content {
+    overflow: scroll !important; }
+  .customercare-view .top-content {
+    width: 100%;
+    height: 60%; }
+    .customercare-view .top-content .queryContent {
+      width: 85%;
+      height: 100%;
+      margin: 0 auto; }
+      .customercare-view .top-content .queryContent .msg {
+        width: 100%;
+        height: 20%; }
+        .customercare-view .top-content .queryContent .msg h2 {
+          font-family: inherit;
+          font-family: inherit;
+          font-size: 108%;
+          padding-top: 5%; }
+      .customercare-view .top-content .queryContent .textBox {
+        height: 60%;
+        width: 100%; }
+        .customercare-view .top-content .queryContent .textBox textarea {
+          width: 100% !important;
+          height: 94% !important;
+          font-family: inherit; }
+      .customercare-view .top-content .queryContent .sendButton {
+        height: 26%;
+        width: 100%; }
+        .customercare-view .top-content .queryContent .sendButton .button {
+          width: 30%;
+          float: right;
+          background-color: #69a33d !important;
+          color: #fff; }
+  .customercare-view .bottom-content {
+    width: 100%;
+    height: 40%;
+    box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, 0.8); }
+    .customercare-view .bottom-content .callBack {
+      width: 85%;
+      height: 100%;
+      margin: 0 auto; }
+      .customercare-view .bottom-content .callBack .workingHrs {
+        width: 80%;
+        height: 60%;
+        margin: 0 auto; }
+        .customercare-view .bottom-content .callBack .workingHrs .timerLogo {
+          width: 20%;
+          margin: 0 auto;
+          padding-top: 8%; }
+        .customercare-view .bottom-content .callBack .workingHrs h3 {
+          font-family: inherit;
+          font-family: inherit;
+          font-size: 100%;
+          text-align: center; }
+      .customercare-view .bottom-content .callBack .callBackButton {
+        width: 100%;
+        text-align: center;
+        margin: 0 auto; }
+        .customercare-view .bottom-content .callBack .callBackButton .button {
+          background-color: #69a33d !important;
+          color: #fff;
+          width: 100%; }
+
 .pateint-view .top-content {
   height: 40%;
   padding-top: 10px;
@@ -11864,83 +11929,6 @@ ion-side-menu .heading-item .message {
       .sepecility-details-view .sendRequest .login_button span {
         color: #dbe5d3;
         font-size: 100% !important; }
-
-.customercare-view {
-  background-color: #e2e2e2 !important;
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .customercare-view ion-content {
-    overflow: scroll !important; }
-  .customercare-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .customercare-view .cc-form {
-    height: 100%; }
-  .customercare-view .button-stable {
-    background-color: #6aa13e; }
-  .customercare-view .top-content {
-    height: 60%;
-    width: 85%;
-    margin: 0 auto;
-    padding-top: 3vh;
-    padding-top: 3%; }
-    .customercare-view .top-content h1 {
-      font-size: 4vw;
-      font-family: inherit; }
-    .customercare-view .top-content .text-area-content {
-      height: 60%;
-      padding-top: 1vh; }
-      .customercare-view .top-content .text-area-content textarea {
-        height: 25vh !important;
-        height: 25%;
-        font-family: inherit; }
-    .customercare-view .top-content .button-content {
-      float: right; }
-      .customercare-view .top-content .button-content .button {
-        width: 24vw;
-        margin-top: calc(100%-30vh);
-        background-color: #69a33d !important;
-        color: #fff; }
-      .customercare-view .top-content .button-content .button-stable.activated {
-        background-color: #517b2f !important; }
-  .customercare-view .bottom-content {
-    background-color: #dbdbdb;
-    height: 40%;
-    box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, 0.8); }
-    .customercare-view .bottom-content .image-content {
-      width: 10%;
-      height: 13%;
-      margin: 0 auto;
-      padding-top: 4vh;
-      padding-top: 4%;
-      text-align: center; }
-      .customercare-view .bottom-content .image-content img {
-        width: 11vw; }
-    .customercare-view .bottom-content h2 {
-      font-size: 4vw;
-      text-align: center;
-      margin-top: 8vh;
-      margin-top: 10%;
-      /* font-size: inherit; */
-      font-family: inherit; }
-    .customercare-view .bottom-content h3 {
-      font-size: 4vw;
-      text-align: center;
-      /* margin-top: -2vh; */
-      line-height: 1;
-      font-family: inherit; }
-    .customercare-view .bottom-content .button-content {
-      width: 90%;
-      text-align: center;
-      margin: 0 auto; }
-      .customercare-view .bottom-content .button-content .button {
-        background-color: #69a33d !important;
-        color: #fff;
-        width: 80%;
-        margin-left: 9vw;
-        margin-top: 4vh;
-        margin-top: 4%; }
-      .customercare-view .bottom-content .button-content .button-stable.activated {
-        background-color: #517b2f !important; }
 
 .patient-refund-view {
   background-color: #e2e2e2 !important;

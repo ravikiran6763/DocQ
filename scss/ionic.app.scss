@@ -77,6 +77,8 @@ $stable:                          red !default;
 @import "scss/common/homeScreens.styles";
 @import "scss/common/profile.styles";
 @import "scss/common/myConsultations.styles";
+@import "scss/common/customercare.styles";
+
 
 
 
@@ -90,7 +92,6 @@ $stable:                          red !default;
 @import "scss/mydoctors/callAccepted.styles";
 @import "scss/patient/patientpayments.styles";
 @import "scss/patient/specialityDetails.styles";
-@import "scss/patient/customercare.styles";
 @import "scss/patient/refund.styles";
 @import "scss/patient/topup.styles";
 @import "scss/patient/summary.styles";
