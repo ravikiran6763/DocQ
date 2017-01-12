@@ -10854,6 +10854,89 @@ ion-spinner.spinner-on-load {
   margin-left: 30px;
   /* margin: 0 auto; */ }
 
+.forgotPassword-view {
+  width: 100% !important;
+  height: 100% !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  overflow: hidden !important; }
+  .forgotPassword-view ion-content {
+    width: auto;
+    height: 100%;
+    overflow: hidden !important; }
+  .forgotPassword-view .top-content {
+    height: 35% !important; }
+    .forgotPassword-view .top-content .regTitle {
+      width: 80% !important;
+      height: 100% !important;
+      margin: 0 auto !important; }
+      .forgotPassword-view .top-content .regTitle .regHeader {
+        position: absolute !important;
+        width: 80% !important;
+        margin: 0 auto !important; }
+        .forgotPassword-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 210%; }
+        .forgotPassword-view .top-content .regTitle .regHeader .backButton p {
+          margin-top: 9%;
+          font-size: 145%;
+          margin-left: -70%; }
+        .forgotPassword-view .top-content .regTitle .regHeader p {
+          margin-top: 9%;
+          font-size: 145%;
+          text-align: center; }
+        .forgotPassword-view .top-content .regTitle .regHeader .regFlowImg {
+          width: 50% !important;
+          margin: 0 auto; }
+          .forgotPassword-view .top-content .regTitle .regHeader .regFlowImg img {
+            width: 100%;
+            margin-top: 2vh; }
+        .forgotPassword-view .top-content .regTitle .regHeader .regMsg {
+          width: 100% !important;
+          margin: 0 auto !important; }
+          .forgotPassword-view .top-content .regTitle .regHeader .regMsg p {
+            font-size: 92%;
+            color: black; }
+  .forgotPassword-view .form-content {
+    height: 35% !important;
+    margin-top: 0 !important; }
+    .forgotPassword-view .form-content .form-group {
+      width: 80% !important;
+      margin: 0 auto; }
+      .forgotPassword-view .form-content .form-group input[type="number"] {
+        margin-top: 8% !important;
+        height: 25% !important;
+        padding-left: 7%;
+        width: 100% !important; }
+  .forgotPassword-view .bottom-content {
+    height: 30% !important;
+    width: 90%;
+    margin: 0 auto; }
+    .forgotPassword-view .bottom-content .button {
+      width: 100% !important; }
+    .forgotPassword-view .bottom-content .tAndC {
+      width: 80% !important;
+      height: 20% !important;
+      margin: 0 auto; }
+      .forgotPassword-view .bottom-content .tAndC .terms {
+        width: 80% !important;
+        height: 100%;
+        margin: 0 auto; }
+        .forgotPassword-view .bottom-content .tAndC .terms h2 {
+          font-size: 80%;
+          color: #fff;
+          text-align: center;
+          margin-top: 3%;
+          line-height: 1.5; }
+          .forgotPassword-view .bottom-content .tAndC .terms h2 a {
+            color: inherit !important;
+            text-decoration: underline !important; }
+    .forgotPassword-view .bottom-content .button-stable {
+      background-color: #6aa13e; }
+    .forgotPassword-view .bottom-content .button-stable.activated {
+      background-color: #557a23 !important; }
+    .forgotPassword-view .bottom-content .button-calm.activated {
+      background-color: #026451 !important; }
+
 ion-side-menu ion-content {
   background-color: #23262a; }
 

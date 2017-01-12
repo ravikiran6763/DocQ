@@ -266,9 +266,9 @@ DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigP
     controller : 'LoginCtrl'
   })
 
-  .state('auth.forgotPassword', {
-    url: "/forgotPassword",
-    templateUrl: "views/auth/forgotPassword.html",
+  .state('auth.getPassword', {
+    url: "/getPassword",
+    templateUrl: "views/auth/getPassword.html",
     controller: 'ForgotPasswordCtrl'
   })
 
