@@ -15,6 +15,28 @@ DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $
 
 $rootScope.specialId = $stateParams.specialId;
 
+  //var username = "greet+"+$localStorage.user;
+
+  var username = "greet+8792618138,ravikiran6763@gmail.com";
+
+
+  var password = "DQ_patient";
+
+
+  var success = function(message)
+  {
+    alert(message);
+  }
+
+  var failure = function()
+  {
+    alert("Error calling Hello Plugin");
+  }
+
+  hello.logininformation(username,password,success, failure);
+
+
+
 console.log($rootScope.specialId);
 
   medicalSpecialityService.getMedicalSpeciality($rootScope.specialId)

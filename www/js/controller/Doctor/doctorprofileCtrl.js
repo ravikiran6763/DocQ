@@ -10,6 +10,8 @@ console.log('docprofileview');
 
 $ionicLoading.show();
 
+console.log('called');
+
 // $interval(checkDocStatus, 6000);
 
 // $interval(checkConnection, 6000);
@@ -47,6 +49,9 @@ console.log('failure data', error);
       $scope.myBalance=response[0][0];
       $localStorage.patientWalletBalance=$scope.myBalance;
           console.log('pop up page clicked');
+
+
+
           	var uname = "greet+"+$localStorage.user;
              var pw = "DQ_patient";
 
