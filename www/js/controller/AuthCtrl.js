@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -13,7 +13,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig, $bas
     $scope.deviceAndroid = ionic.Platform.isAndroid();
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
-
+    console.log($ionicHistory.currentStateName());
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
@@ -89,100 +89,7 @@ $scope.sendForm = function($event,form)
 
 };
 
-
-    $scope.validateUser1=function(isForm1Valid){
-    // console.log('isForm1Valid ', isForm1Valid)
-    // console.log($scope.PatientDetail.patientAvatar);
-    console.log('clicked');
-
-    $scope.submitted = true;
-    $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
-
-    if(isForm1Valid) {
-      if($scope.firstNum < 7){
-        console.log($scope.firstNum);
-
-        $cordovaToast.showLongBottom('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
-        // success
-        }, function (error) {
-        // error
-        });
-      }
-      else{
-
-        //check for existing patient
-          patientRegistrationService.existingPatient($scope.PatientDetail.patient_mob).then(function(response)
-          {
-            $scope.patientExist=response;
-            console.log($scope.patientExist);
-            if($scope.patientExist === 'patient'){
-              $scope.myPopup=$ionicPopup.show({
-                title: 'Patient Already Exist',
-                template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="color:#fff; margin-top: -7px; ">X</p></div>',
-                cssClass: 'loginPopup',
-                scope: $scope,
-                // buttons: [
-                // 	{ text: 'Cancel' },
-                // 	{
-                // 	text: '<b>Agree</b>',
-                // 	type: 'button-positive',
-                //
-                // 	},
-                // ]
-              });
-              $scope.closethis = function()
-              {
-              $scope.myPopup.close();
-              $window.localStorage.clear();
-              // $state.go('auth.loginNew');
-
-              };
-            }
-              else{
-                $scope.phoneno = $scope.PatientDetail.patient_mob;
-                $rootScope.imageData=$base64.encode('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHkDSrh4dvgrpmNFkYQOOmumy9dIBRAuKZmuuAm4V-DNeti04O');
-                console.log($rootScope.imageData);
-                patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
-                {
-                  $scope.otp=response;
-                  console.log($scope.otp);
-                })
-                .catch(function(error)
-                {
-                  console.log('failure data', error);
-                });
-                $state.go('auth.patient_reg3');
-              }
-          })
-          .catch(function(error)
-          {
-            console.log('failure data', error);
-          });
-
-        }
-
-
-    }
-
-    }
-
-
 //Validate  Doctor
-$scope.validateDoctor=function(isDocFormValid){
-  console.log('isDocFormValid ', isDocFormValid)
-console.log($rootScope.Doctor);
-  console.log('clicked');
-
-  $scope.submitted = true;
-  if(isDocFormValid) {
-    console.log($scope.Doctor);
-    // console.log('isDocFormValid ', isDocFormValid)
-    $state.go('auth.doctorRegistration2');
-  }
-  // console.log($rootScope.PatientDetail);
-
-  // $state.go('auth.patient_reg2');
-}
 
 //patient Registration forms.
 
@@ -335,11 +242,41 @@ $scope.patientRegistration = function()
 
 }
 
-
+    $rootScope.validInput=true;
     $scope.validateUser=function(isFormValid){
-      console.log('clicked');
-      $scope.submitted = true;
+    
+      $rootScope.validInput=false;
+      $scope.validForm =isFormValid;
+      if(!$scope.PatientDetail.patient_fname){
+        $scope.submitted = true;
+        $cordovaToast.showLongCenter('Valid name must be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else if(!$scope.PatientDetail.patient_lname){
+        $scope.submittedLname = true;
+        $cordovaToast.showLongCenter('Valid name must be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else if(!$scope.PatientDetail.patient_age){
+        $scope.submittedAge = true;
+        $cordovaToast.showLongCenter('Age must be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else{
+        console.log('checked');
+      }
+      // console.log($scope.PatientDetail);
       if(isFormValid) {
+        console.log(isFormValid);
         if($scope.PatientDetail.patient_age<18){
           // alert('You Should be 18+ to use this app')
           $cordovaToast.showLongBottom('You must be 18 over to register', 'short', 'center').then(function(success) {
@@ -357,12 +294,197 @@ $scope.patientRegistration = function()
 
     }
 
+    $rootScope.validInput=true;
+    $scope.validateUser1=function(isForm1Valid){
+      // console.log('isForm1Valid ', isForm1Valid)
+      // console.log($scope.PatientDetail.patientAvatar);
+    console.log('clicked');
+    $rootScope.validInput=false;
+
+    // console.log($scope.PatientDetail.patient_mob);
+
+    if(!$scope.PatientDetail.patient_mob){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      $scope.submittedMob = true;
+      console.log($scope.PatientDetail.patient_mob);
+
+      $cordovaToast.showLongCenter('Valid mobile number must be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+    else if(!$scope.PatientDetail.gender){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+
+      $scope.submittedSex = true;
+      console.log($scope.PatientDetail.gender);
+      $cordovaToast.showLongCenter('Please check your gender', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+    else if(!$scope.PatientDetail.pat_email){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      $scope.submittedMail = true;
+      $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+    else if(!$scope.PatientDetail.pat_password){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      $scope.submittedPwd = true;
+      $cordovaToast.showLongCenter('Valid password be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+    else{
+      console.log('validated');
+    }
+
+    if(isForm1Valid) {
+      // console.log($scope.PatientDetail.pat_password.length());
+
+      if($scope.firstNum < 7){
+        console.log($scope.firstNum);
+
+        $cordovaToast.showLongBottom('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else{
+        //check for existing patient
+          patientRegistrationService.existingPatient($scope.PatientDetail.patient_mob).then(function(response)
+          {
+            $scope.patientExist=response;
+            console.log($scope.patientExist);
+            if($scope.patientExist === 'patient'){
+              $scope.myPopup=$ionicPopup.show({
+                title: 'Patient Already Exist',
+                template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="color:#fff; margin-top: -7px; ">X</p></div>',
+                cssClass: 'loginPopup',
+                scope: $scope,
+                // buttons: [
+                // 	{ text: 'Cancel' },
+                // 	{
+                // 	text: '<b>Agree</b>',
+                // 	type: 'button-positive',
+                //
+                // 	},
+                // ]
+              });
+              $scope.closethis = function()
+              {
+              $scope.myPopup.close();
+              $window.localStorage.clear();
+              // $state.go('auth.loginNew');
+
+              };
+            }
+              else{
+                $scope.phoneno = $scope.PatientDetail.patient_mob;
+                $rootScope.imageData=$base64.encode('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHkDSrh4dvgrpmNFkYQOOmumy9dIBRAuKZmuuAm4V-DNeti04O');
+                console.log($rootScope.imageData);
+                patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+                {
+                  $scope.otp=response;
+                  console.log($scope.otp);
+                })
+                .catch(function(error)
+                {
+                  console.log('failure data', error);
+                });
+                $state.go('auth.patient_reg3');
+              }
+          })
+          .catch(function(error)
+          {
+            console.log('failure data', error);
+          });
+
+        }
+      }
+
+    }
+
+    $scope.validateDoctor=function(isDocFormValid){
+      console.log('isDocFormValid ', isDocFormValid)
+    console.log($rootScope.Doctor);
+      console.log('clicked');
+
+
+      if(!$scope.Doctor.doc_fname){
+        // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+        $scope.submitted = true;
+
+        $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else if(!$scope.Doctor.doc_lname){
+        // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+        $scope.submittedLname = true;
+
+        $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+        // success
+        }, function (error) {
+        // error
+        });
+      }
+      else{
+        console.log('validated');
+      }
+
+      if(isDocFormValid) {
+        console.log($scope.Doctor);
+        // console.log('isDocFormValid ', isDocFormValid)
+        $state.go('auth.doctorRegistration2');
+      }
+      // console.log($rootScope.PatientDetail);
+
+      // $state.go('auth.patient_reg2');
+    }
 
   $scope.doctorRegistration = function(isDocForm1Valid)
   {
     console.log('clicked');
-console.log('isDocForm1Valid ', isDocForm1Valid)
-    $scope.submitted = true;
+    console.log('isDocForm1Valid ', isDocForm1Valid)
+
+    if(!$scope.Doctor.doc_email){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      console.log('enter mail');
+      $scope.submittedMail = true;
+      console.log($scope.Doctor.doc_email);
+      $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+    else if(!$scope.Doctor.doc_phone){
+      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      console.log('enter mail');
+      $scope.submittedMob = true;
+      console.log($scope.Doctor.doc_phone);
+      $cordovaToast.showLongCenter('Valid phone number must be entered', 'short', 'center').then(function(success){
+      // success
+      }, function (error) {
+      // error
+      });
+    }
+
+    else{
+      console.log('2nd form validated');
+    }
     var doctorDetails={
       doctorFname : $scope.Doctor.doc_fname,
       doctorMname : $scope.Doctor.doc_mname,
@@ -454,14 +576,14 @@ console.log('isDocForm1Valid ', isDocForm1Valid)
     {
     $scope.termsPopup.close();
     };
-$ionicLoading.hide();
+      $ionicLoading.hide();
   }
 
   //video popoverOptions
 
   $scope.clipSrc = 'https://www.youtube.com/watch?v=L83qMnbJ198';
 
-$scope.playVideo = function() {
+  $scope.playVideo = function() {
   $ionicLoading.show();
   $scope.videoPlayerPopup = $ionicPopup.show({
     title: 'DoctorQuick',

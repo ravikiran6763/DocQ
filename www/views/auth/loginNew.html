@@ -1,76 +1,81 @@
-<ion-view class="walkthrough-view" cache-view="false" hide-nav-bar="true">
-        <ion-content scroll="false">
+<ion-view class="dqLogin-view" cache-view="false">
+  <!-- <ion-header-bar class="bar-header bar-light">
 
-          <div class="bar-header bar-light">
-            <div class="logoContainer">
-              <img class="logo " ng-src="img/dq_login_logo.png" >
-            </div>
-          </div>
-          <form  novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
-            <div  ng-class="{ 'form-cls': deviceAndroid === true, 'form-cls-ios': deviceAndroid === false}">
-              <!-- class="form-cls" -->
+  </ion-header-bar> -->
+<ion-content >
+  <div class="top-content ">
+    <div class="logoContainer">
+      <div class="logo ">
+        <img  ng-src="img/dq_login_logo.png" >
+      </div>
+    </div>
 
-              <div class="form-group">
-
-                <input class="form-control" type="number" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
-
-                <!-- <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  > -->
-              </div>
-              <div class="form-group" >
-<!-- show-hide-container
-show-hide-input 
- -->
-                <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required  >
-
-                <!-- <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required show-hide-input  > -->
-              </div>
+  </div>
 
 
-              <!-- <p class="login-error-msg" ng-show="errorMsg" ng-bind="errTxt"></p> -->
+  <div class="login-content">
+    <form  novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
+      <div class="form-group">
+        <input class="form-control" type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
+      </div>
+
+      <div class="form-group">
+        <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin" required  >
+      </div>
+
+      <button class="login_button button button-block button-assertive" ng-click="doLogIn(loginData);" >
+        Login
+      </button>
+
+      <div class="tAndC">
+        <div class="terms">
+          <h2 > By Logging in you agree to our <a ng-click="termsAndCond();"> terms & conditions</a>  </h2>
+        </div>
+      </div>
+      <div class="rememberMe">
+        <div class="remember">
+          <input type="checkbox" name="rememberMe" ng-model="user.rememberMe" ng-click="rememberme();">
+            <p >Remember me</p>
+        </div>
+        <div class="forgot">
+
+          <a ui-sref="auth.getPassword">
+          Forgot Password
+          </a>
+        </div>
+
+        <button class="register_button button button-positive button-block" ng-click="registerPatient();" >
+          Register
+        </button>
+      </div>
 
 
-              <button class="login_button button button-block button-assertive" ng-click="doLogIn(loginData);" >
-                Login
-              </button>
-              <div class="conditions" >
-                    <p class="login-fonts text-center">By Logging in you agree to our <a ng-click="termsAndCond();"><span class="underLine">Terms&Conditions</span></a></p>
-              </div>
+    </form>
+  </div>
 
-              <div class="row remember-forgot">
-                   <label  class="col-50 "   >
-                     <input type="checkbox" name="rememberMe" ng-model="user.rememberMe" ng-click="rememberme();">
-                     <p class="rememberMe" >Remember me</p>
-                   </label>
-                   <a  class="col-50 "  ui-sref="auth.forgotPassword">
-                     <p class="forgotPass" >Forgot Password</p>
-                   </a>
+  <div class="bottom-content">
+    <div class="leftbuttons">
+      <!-- <button class="button">Left Button</button> -->
+      <a>
+        <img class="img2"  ng-src="img/button_change.png" ng-click="playVideo()"><br>
+        <p class="doc_reg">Learn More</p>
+      </a>
+    </div>
 
-             </div>
+    <div class="rightbuttons" >
+      <!-- <button class="button">Right Button</button> -->
+      <a  ui-sref="auth.doctorRegistration">
+        <img class="img2" class="modal transparent fullscreen-player"  ng-src="img/doc_symbol.png"><br><p class="doc_reg" >Register as a Doctor</p>
+      </a>
+    </div>
 
-              <button class="register_button button button-block button-calm" ng-click="registerPatient();" >
-                Register
-              </button>
-            </div>
+  </div>
 
-          </form>
+</ion-content>
+<!-- <ion-footer-bar  >
 
-        </ion-content>
-        <ion-footer-bar  >
-          <div class="leftbuttons">
-            <!-- <button class="button">Left Button</button> -->
-            <a>
+          <button class="bottom-content login_button button button-block button-assertive"  type="submit" ng-click="validateUser(PatientReg1.$valid)" linked="link"  ><span>Next</span></button>
+          <h2 > By Signing in, I agree to DoctorQuicks <br/><a ng-click="termsAndCond();">Terms and Conditions</a>  </h2>
 
-              <img class="img2"  ng-src="img/button_change.png" ng-click="playVideo()"><br>
-              <p class="doc_reg" style="text-align: center">Learn More</p>
-            </a>
-          </div>
-
-          <div class="rightbuttons" >
-            <!-- <button class="button">Right Button</button> -->
-            <a  ui-sref="auth.doctorRegistration">
-              <img class="img2" class="modal transparent fullscreen-player"  ng-src="img/doc_symbol.png"><br><p class="doc_reg" style="text-align: center">Register as a Doctor</p>
-            </a>
-          </div>
-        </ion-footer-bar>
-
+</ion-footer-bar> -->
 </ion-view>

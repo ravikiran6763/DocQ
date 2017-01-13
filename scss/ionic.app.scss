@@ -24,7 +24,7 @@ $royal:                           #181b22 !default;
 $calm:                            #e2e2e2 !default;
 $assertive:                      #6aa13e !default;
 $energized:                       #a1a1a1 !default;
-$stable:                          red !default;      
+$stable:                          red !default;
 
 /*-------------------------------------------------
  MIXIN :: CLEARFIX
@@ -65,14 +65,25 @@ $stable:                          red !default;
 @import "scss/common/common.styles";
 @import "scss/auth/auth.styles";
 @import "scss/auth/walkthrough.styles";
-//@import "scss/auth/dqlogin.styles";
+@import "scss/auth/dqlogin.styles";
 @import "scss/auth/login.styles";
 @import "scss/auth/signup.styles";
 @import "scss/auth/forgot-password.styles";
+@import "scss/auth/forgotPassword.styles";
+
 @import "scss/sidemenu/side-menu.styles";
 @import "scss/profile/profile.styles";
 //newly added by rk
+//!!!!!!!!!!!!!!common for both patient & Doctors!!!!!!!!!!!!!!!!!!
 @import "scss/common/icons.styles";
+@import "scss/common/homeScreens.styles";
+@import "scss/common/profile.styles";
+@import "scss/common/myConsultations.styles";
+@import "scss/common/customercare.styles";
+
+
+
+
 @import "scss/doctorquick/dqcommon.styles";
 @import "scss/auth/patent.styles";
 //mydoctors css
@@ -83,14 +94,14 @@ $stable:                          red !default;
 @import "scss/mydoctors/callAccepted.styles";
 @import "scss/patient/patientpayments.styles";
 @import "scss/patient/specialityDetails.styles";
-@import "scss/patient/customercare.styles";
 @import "scss/patient/refund.styles";
 @import "scss/patient/topup.styles";
 @import "scss/patient/summary.styles";
 @import "scss/patient/search.styles";
-@import "scss/patient/mypatients.styles";
 @import "scss/patient/speciality.styles";
 @import "scss/patient/change_pwd.styles";
+@import "scss/patient/viewDoc.styles";
+
 
 //doctor screens
 @import "scss/templates/doctorscreen.styles";
@@ -113,8 +124,6 @@ $stable:                          red !default;
 @import "scss/PatientRegistration/patientReg3.styles";
 @import "scss/PatientRegistration/patientReg2.styles";
 @import "scss/patient/patientSidemenu.styles";
-@import "scss/patient/patientScreens.styles";
-@import "scss/patient/patientProfile.styles";
 //test-view
 @import "scss/test/test.styles";
 @import "scss/test/test1.styles";

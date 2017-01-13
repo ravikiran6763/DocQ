@@ -1,19 +1,38 @@
-<ion-view class="mypatient-profile-view" cache-view="false" >
+<ion-view class="consultationList-view" cache-view="false" >
 
   <ion-content >
-    <a class="item item-avatar item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" >
-    <!-- <a class="item item-avatar item-icon-right"  collection-repeat="consult in myDoctor" ng-click="consultationDetails({{consult.doctorPhone}});" > -->
+      <div class="myDoctor-list" ng-repeat="r in myDoctor">
+        <ul>
+        <li  ng-click="consultationDetails({{consult.doctorPhone}});">
+          <div class="profile-img">
+            <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+            <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+          </div>
+          <div class="name-content">
+            <div class="name">
+              <h2>Dr.{{r.doctorFname | capitalize }} {{r.doctorLname | capitalize}}</h2>
+            </div>
+            <div class="date">
+              <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+              <p>11/01/2017</p>
+            </div>
 
-      <!--ui-sref="app.doctorprofile"-->
+            <p class="msgContent"><font size=2>Lastsent/receivedmsgLastsent/receivedmsg Last sent/received msg</font></p>
+            <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
 
-      <img src="img/doc.jpg">
-      <h2>Dr.{{consult.doctorFname | capitalize }} {{consult.doctorLname | capitalize}} <span>{{consult.consultDate | capitalize}}</span></h2>
-      <p><font size=2>Last sent/received msg</font></p>  <i class="icon ion-ios-arrow-right"></i>
-    </a>
-    <ul>
-      <li ng-show="!myDoctor.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
+          </div>
+          <div class="next-icon">
+            <i class="icon ion-ios-arrow-right"></i>
+          </div>
+        </li>
 
-    </ul>
 
+
+      </ul>
+      <ul>
+        <li ng-show="!myDoctor.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
+
+      </ul>
+      </div>
   </ion-content>
 </ion-view>

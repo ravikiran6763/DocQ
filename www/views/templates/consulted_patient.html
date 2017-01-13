@@ -1,11 +1,41 @@
-<ion-view class="mypatient-profile-view" cache-view="false">
+<ion-view class="consultationList-view" cache-view="false">
 
   <ion-content >
-          <a class="item item-avatar item-icon-right" ng-repeat="patient in myPatients" ng-click="clicktochat(patient.patientPhone);"><!--ui-sref="app.doctorprofile"-->
+    <div class="myDoctor-list" ng-repeat="patient in myPatients">
+      <ul>
+      <li  ng-click="clicktochat(patient.patientPhone);">
+        <div class="profile-img">
+          <img src="{{patient.image}}">
+        </div>
+        <div class="name-content">
+          <div class="name">
+            <h2>{{patient.patientFname}}  {{patient.patientLname}}</h2>
+          </div>
+          <div class="date">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+            <p>11/01/2017</p>
+          </div>
+
+          <p class="msgContent"><font size=2>Lastsent/receivedmsgLastsent/receivedmsg Last sent/received msg</font></p>
+          <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
+        </div>
+        <div class="next-icon">
+          <i class="icon ion-ios-arrow-right"></i>
+        </div>
+      </li>
+    </ul>
+
+      <ul>
+        <li ng-show="!myPatients.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
+      </ul>
+    </div>
+          <!-- <a class="item item-avatar item-icon-right" ng-repeat="patient in myPatients" ng-click="clicktochat(patient.patientPhone);">
             <img src="{{patient.image}}">
             <h2>{{patient.patientFname}}  {{patient.patientLname}}</h2>
             <p>Last sent/received msg</p>  <i class="icon ion-ios-arrow-right"></i>
-          </a>
+          </a> -->
+
+          <!--ui-sref="app.doctorprofile"-->
           <!-- <span>{{patient.consultDate}}</span> -->
   </ion-content>
 </ion-view>

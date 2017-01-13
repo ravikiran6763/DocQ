@@ -21,7 +21,9 @@
       </ion-slide-box>
     </div>
       <ion-item class="item-divider">Find a Doctor</ion-item>
-      <ul class="bottom-content">
+
+      <div class="patientScreen-bottom-content">
+        <ul>
         <li  ng-click="medicalSpeciality();">
           <div class="profile-img">
             <img src="./img/dq_icon_speciality_540x960.png">
@@ -46,6 +48,7 @@
             <i class="icon ion-chevron-right icon-accessory"></i>
           </div>
         </li>
+
         <li  ng-click="myDoctors();"><!-- ui-sref="app.my_doctors"-->
           <div class="profile-img">
             <img src="img/dq_icon_doctor_540x960.png">
@@ -58,13 +61,10 @@
             <i class="icon ion-chevron-right icon-accessory"></i>
           </div>
         </li>
-
-
       </ul>
+      </div>
+
 
 
   </ion-content>
-
-
-
 </ion-view>

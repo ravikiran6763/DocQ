@@ -1,149 +1,150 @@
-<ion-view class="patientprofile-view" cache-view="false">
+<ion-view class="profile-view" cache-view="false">
 
-  <ion-content >
-    <div class="list card" collection-repeat="doctor in doctor_details">
+  <ion-content ng-repeat="doctor in doctor_details">
+    <div class="top-content"  >
+      <div class="details">
+        <div class="profileImage">
+          <img  ng-hide="doctor.image == null " ng-src="{{doctor.image}}"  >
+          <img  ng-show="doctor.image == null " ng-src="img/patientAvatar.png"  >
+        </div>
+        <div class="name-content">
+          <h2>Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h2>
+          <!-- <div star-rating rating-value="rating.current" max="rating.max" ></div> -->
 
-  <!-- <div class="item item-avatar">
-    <img src="{{doctor.image}}">
-    <h2>Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h2>
-        <span ng-repeat="rating in ratings">
-          <div star-rating rating-value="rating.current" max="rating.max" ></div>
-        </span>
-  </div> -->
-  <div class="profile-info">
-
-    <div class="imageContainer">
-      <pre-img >
-        <!-- <img ng-src="img/doc.jpg" spinner-on-load> -->
-        <img  ng-hide="doctor.image == null " ng-src="{{doctor.image}}"  spinner-on-load>
-        <img  ng-show="doctor.image == null " ng-src="img/patientAvatar.png"  spinner-on-load>
-
-      </pre-img>
-
-    </div>
-    <div class="profileName">
-      <p >Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </p>
-    </div>
-    <div class="ratingContainer"  >
-        <span ng-repeat="rating in ratings" >
-          <div star-rating rating-value="rating.current" max="rating.max" ></div>
-        </span>
+        </div>
+      </div>
     </div>
 
+    <div class="docProfileDetails">
+      <div class="card ">
+          <div class="row">
+            <div class="col">First Name</div>
+            <div class="col">{{doctor.doctorFname | capitalize}}</div>
+          </div>
+          <div class="row">
+            <div class="col">Middle Name</div>
+            <div class="col">{{doctor.doctorMname | capitalize}}</div>
+          </div>
+          <div class="row">
+            <div class="col">Last Name</div>
+            <div class="col">{{doctor.doctorLname | capitalize}}</div>
+          </div>
+      </div>
 
-  </div>
-  <!-- <div class="item item-body">
-  </div> -->
-  <div class="row" style="border-top: 3px solid #e2e2e2;">
-        <div class="col">First Name</div>
-        <div class="col">{{doctor.doctorFname | capitalize}}</div>
-  </div>
-  <div class="row">
-        <div class="col">Middle Name</div>
-        <div class="col">{{doctor.doctorMname | capitalize}}</div>
-  </div>
-  <div class="row">
-        <div class="col">Last Name</div>
-        <div class="col">{{doctor.doctorLname | capitalize}}</div>
-  </div>
+      <div class="card ">
+        <div class="row" >
+              <div class="col">Degrees</div>
+              <div class="col">{{doctor.doctorDegrees}}</div>
+        </div>
+        <div class="row">
+              <div class="col">Practicing Since</div>
+              <div class="col">{{doctor.practicingSince}}</div>
+        </div>
+      </div>
 
-  <div class="row" style="border-top: 3px solid #e2e2e2;">
-        <div class="col">Degrees</div>
-        <div class="col">{{doctor.doctorDegrees}}</div>
-  </div>
-  <div class="row">
-        <div class="col">Practicing Since</div>
-        <div class="col">{{doctor.practicingSince}}</div>
-  </div>
+      <div class="card ">
+        <div class="row" >
+          <div class="col">Age</div>
+          <div class="col">{{doctor.doctorAge}}</div>
+        </div>
+        <div class="row">
+          <div class="col">Gender</div>
+          <div class="col">{{doctor.doctorSex}}</div>
+        </div>
+      </div>
 
-  <div class="row" style="border-top: 3px solid #e2e2e2;">
-        <div class="col">Age</div>
-        <div class="col">{{doctor.doctorAge}}</div>
-  </div>
-  <div class="row">
-        <div class="col">Gender</div>
-        <div class="col">{{doctor.doctorSex}}</div>
-  </div>
-
-    <div class="row">
+      <div class="card ">
+        <div class="row" >
           <div class="col">Country</div>
           <div class="col">{{doctor.doctorCountry}}</div>
-    </div>
-    <div class="row">
+        </div>
+        <div class="row">
           <div class="col">City</div>
           <div class="col">{{doctor.doctorCity | capitalize}}</div>
-    </div>
-    <div class="row">
+        </div>
+        <div class="row" >
           <div class="col">Address Line1</div>
           <div class="col">{{doctor.doctorAddress1}}</div>
-    </div>
-    <div class="row">
+        </div>
+        <div class="row">
           <div class="col">Address Line2</div>
           <div class="col">{{doctor.doctorAddress2}}</div>
-    </div>
-    <div class="row">
-          <div class="col">Pincode</div>
-          <div class="col">{{doctor.doctorPincode}}</div>
-    </div>
+        </div>
+        <div class="row">
+              <div class="col">Pincode</div>
+              <div class="col">{{doctor.doctorPincode}}</div>
+        </div>
+      </div>
 
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
+      <div class="card ">
+        <div class="row" >
           <div class="col">Email</div>
           <div class="col col-67">{{doctor.doctorEmail}}</div>
+        </div>
+      </div>
 
-    </div>
+      <div class="card ">
+        <div class="row">
+              <div class="col">Language 1</div>
+              <div class="col">{{doctor.doctorLanguage1 | capitalize}}</div>
+        </div>
+        <div class="row">
+              <div class="col">Language 2</div>
+              <div class="col">{{doctor.doctorLanguage2 | capitalize}}</div>
+        </div>
+      </div>
+      <div class="card ">
+        <div class="row">
+              <div class="col">Change Password {{doctor.dpass}}</div>
+        </div>
+      </div>
 
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
-          <div class="col">Language 1</div>
-          <div class="col">{{doctor.doctorLanguage1 | capitalize}}</div>
-
-    </div>
-    <div class="row">
-          <div class="col">Language 2</div>
-          <div class="col">{{doctor.doctorLanguage2 | capitalize}}</div>
-
-    </div>
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
-          <div class="col">Change Password {{doctor.dpass}}</div>
-    </div>
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
+      <div class="card ">
+        <div class="row">
           <div class="col">Mobile Number</div>
           <div class="col">{{doctor.doctorPhone}}</div>
-    </div>
+        </div>
+      </div>
 
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
-          <div class="col">Bank Details</div>
-          <div class="col">{{doctor.doctorBankName | capitalize}}</div>
-    </div>
-    <div class="row">
-          <div class="col">A/C No</div>
-          <div class="col">{{doctor.doctorAccountNum}}</div>
-    </div>
-    <div class="row">
-          <div class="col">IFSC Code</div>
-          <div class="col">{{doctor.doctorBankIfsc}}</div>
-    </div>
+      <div class="card ">
+        <div class="row">
+              <div class="col">Bank Details</div>
+              <div class="col">{{doctor.doctorBankName | capitalize}}</div>
+        </div>
+        <div class="row">
+              <div class="col">A/C No</div>
+              <div class="col">{{doctor.doctorAccountNum}}</div>
+        </div>
+        <div class="row">
+              <div class="col">IFSC Code</div>
+              <div class="col">{{doctor.doctorBankIfsc}}</div>
+        </div>
+      </div>
 
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
+      <div class="card ">
+        <div class="row">
           <div class="col">Consulting Fee</div>
           <div class="col">{{doctor.doctorFee}}</div>
-    </div>
+        </div>
+      </div>
 
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
+      <div class="card ">
+        <div class="row">
           <div class="col">Specialities</div>
           <div class="col">{{doctor.doctorSpecialityId }}</div>
+        </div>
+      </div>
+
+      <div class="card ">
+        <div class="row">
+              <div class="col">MCI Registered</div>
+              <div class="col">{{doctor.doctorMedFlag}}</div>
+        </div>
+        <div class="row ">
+              <div class="col">MCI Num</div>
+              <div class="col">{{doctor.doctorMedNum}}</div>
+        </div>
+      </div>
     </div>
-
-    <div class="row" style="border-top: 3px solid #e2e2e2;">
-          <div class="col">MCI Registered</div>
-          <div class="col">{{doctor.doctorMedFlag}}</div>
-    </div>
-    <div class="row ">
-          <div class="col">MCI Num</div>
-          <div class="col">{{doctor.doctorMedNum}}</div>
-    </div>
-
-</div>
-
-
   </ion-content>
 </ion-view>

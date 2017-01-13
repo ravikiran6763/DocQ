@@ -76,6 +76,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       $ionicPlatform.registerBackButtonAction(function (event) {
+
         if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.doctor_home")){
           console.log('back button disabled');
                 // H/W BACK button is disabled for these states (these views)
@@ -265,9 +266,9 @@ DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigP
     controller : 'LoginCtrl'
   })
 
-  .state('auth.forgotPassword', {
-    url: "/forgotPassword",
-    templateUrl: "views/auth/forgotPassword.html",
+  .state('auth.getPassword', {
+    url: "/getPassword",
+    templateUrl: "views/auth/getPassword.html",
     controller: 'ForgotPasswordCtrl'
   })
 
@@ -550,7 +551,7 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest/:pfname/:plname/:psex/:page/:pphno/:image/:dateAndTime",
+    url: "/patientRequest/:reqId/:pfname/:plname/:psex/:page/:pphno/:image/:dateAndTime",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -592,10 +593,11 @@ $stateProvider
 
 
   .state('templates.requestAccepted', {
-    url: "/requestAccepted/:pfname/:plname/:psex/:page/:pphno",
+    url: "/requestAccepted",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/requestAccepted.html"
+        templateUrl: "views/templates/requestAccepted.html",
+        controller:"callAccptCtrl"
       }
     }
   })
@@ -611,7 +613,7 @@ $stateProvider
   })
 
   .state('templates.diagnosisForPatient', {
-    url: "/diagnosisForPatient",
+    url: "/diagnosisForPatient/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
       'menuContent': {
         templateUrl: "views/templates/diagnosisForPatient.html",
@@ -622,7 +624,7 @@ $stateProvider
   })
 
   .state('templates.medicationForPatient', {
-    url: "/medicationForPatient",
+    url: "/medicationForPatient/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
       'menuContent': {
         templateUrl: "views/templates/medicationForPatient.html",
@@ -632,7 +634,7 @@ $stateProvider
   })
 
   .state('templates.patientTests', {
-    url: "/patientTests",
+    url: "/patientTests/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientTests.html",

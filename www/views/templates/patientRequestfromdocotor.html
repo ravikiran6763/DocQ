@@ -13,33 +13,32 @@
         <h1>{{pfname}} {{plname}}</h1>
         <h2>{{psex}},Age:{{page}}</h2>
         <h3>Bangalore,India</h3>
-        <h4>Requested a Voice call</h4><!--Consultation accepted-->
-        <h5>{{requestedDUration}}</h5><!--Please wait for the call-->
-
-<!--
-        <p class="timer">{{CurrentDate | date:'yyyy-MM-dd HH:mm:ss '}}</p>
-        <h5>{{dateDiff}}</h5> -->
 
       </div>
-
-
+    </div>
+     <i class="icon ion-ios-clock-outline " ng-hide="timer"></i>
+    <div class="callReq" ng-hide="callReq">
+      <h4>Requested a Voice call</h4><!--Consultation accepted ion-android-time-->
+      <h5>{{requestedDUration}}</h5><!--Please wait for the call-->
+    </div>
+    <div class="callAcc" ng-hide="callAcc">
+      <h4 class="item-icon-right">Consultation Accepted</h4>  <i class="icon ion-checkmark"></i><!--Consultation accepted-->
+      <h5>Please wait for the call</h5><!--Please wait for the call ion-ios-checkmark-empty -->
     </div>
   </ion-content>
   <ion-footer-bar class="row row-bottom bottom">
   <div class="bottom-content row">
 
-      <div class="button-bar" >
-        <!-- <button class="button deny-btn" ng-click="decline();" ui-sref="templates.requestAccepted"><span class="btn-title">Decline</span></button>
-         <button class="button accpt-btn"  ng-click="acceptclicked();" >{{toggleText}}</button> -->
-         <!-- <button class="button button-primary" ng-model="button" ng-click="button.clicked=!button.clicked" ng-class="button.clicked?'button-positive':'button-energized'">
-              Confirm
-        </button> -->
-
+      <div class="button-bar">
         <a class="deny-btn button-calm button {{(type == 'Decline') &&  'active' || ''}}" ng-click="setType($event)" ng-disabled="isDisabled" >Decline</a>
         <a class="accpt-btn button-calm button {{(type == 'Accept' || type == 'Accepted')  &&  'active' || ''}}" ng-click="setType($event)" >{{toggleText}}</a>
-
       </div>
 
   </div>
  </ion-footer-bar>
 </ion-view>
+
+
+<!--
+        <p class="timer">{{CurrentDate | date:'yyyy-MM-dd HH:mm:ss '}}</p>
+        <h5>{{dateDiff}}</h5> -->

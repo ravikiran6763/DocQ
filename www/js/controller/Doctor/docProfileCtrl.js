@@ -1,26 +1,17 @@
 DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope, $ionicConfig, $timeout, $window, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
 
   $scope.toggle = true;
-	$rootScope.headerTxt="Doctor Profile";
+	$rootScope.headerTxt="Profile";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
 
-  doctorServices.doctorDetails($localStorage.user).then(function(response){
-    $scope.doctor_details=response;//store the response array in doctor details
-        if($scope.doctor_details){
-          $ionicLoading.show({
-              template: '<p>Fetching Details...</p><ion-spinner></ion-spinner>'
-            });
-              $timeout(function (){
-                // alert('hello');
-                console.log('fetched');
-                // $window.location.reload();
-             }, 3000);
-             $ionicLoading.hide();
-        }
 
+  doctorServices.doctorDetails($localStorage.user).then(function(response){
+    console.log($localStorage.user);
+    $rootScope.doctor_details=response;//store the response array in doctor details
+    console.log($rootScope.doctor_details);
   }).catch(function(error){
     console.log('failure data', error);
   });

@@ -1,6 +1,7 @@
-<ion-view class="doctorscreen-view" cache-view="false">
+<ion-view class="patientscreen-view" cache-view="false" >
 
-  <ion-content scroll="false"  >
+  <ion-content scroll="false" navClear>
+
     <div class="slider-content">
       <ion-slide-box does-continue="true" auto-play="true" class="slides" show-pager="true" class="with-my-pager">
 
@@ -19,36 +20,30 @@
 
       </ion-slide-box>
     </div>
-    <!-- <button on-swipe-left="onSwipeLeft()" class="button">Test</button> -->
+      <ion-item class="item-divider">Requests Pending</ion-item>
 
-      <ion-item class="item-divider">Requests Pending </ion-item>
-
-      <ul class="bottom-content">
-
-        <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno,image:r.image,dateAndTime:r.requesteddatetime})">
-
+      <div class="doctorScreen-bottom-content">
+        <ul>
+          <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({reqId:r.id,pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno,image:r.image,dateAndTime:r.requesteddatetime})">
           <div class="profile-img">
-
-
             <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
             <img  ng-show="r.image == null " ng-src="img/patientAvatar.png"  >
-            <!-- <img src="img/patient.jpg">
-            ng-click="changePhoto();"
-            <img src="img/patient.jpg"> -->
-
           </div>
           <div class="name-content">
             <h2>{{r.patientFname}} {{r.patientLname}} {{date2}}</h2>
-            <p>{{r.patientSex}},Age {{r.patientAge}}</p>
+            <p> {{r.patientSex}}, Age {{r.patientAge}}</p>
           </div>
           <div class="next-icon">
             <i class="icon ion-chevron-right icon-accessory"></i>
           </div>
         </li>
+
         <li ng-show="!res.length" style="margin-top: 8vh;"><center><b style="color:#417611;">No Requests Pending</b></center></li>
 
-      </ul>
+      </div>
+    </ul>
   </ion-content>
+
   <div class="statusDiv">
 
     <img class="offlineImg" src="img/Offline.png" width="100%" height="100%" ng-hide="docAvailable" ng-click="Online('available')" on-drag-right="Online('available')">
@@ -56,48 +51,3 @@
 
   </div>
 </ion-view>
-
-
-
-  <!-- <ion-item class="toggle-item">
-
-    <label class="toggle toggle-assertive">
-       <input type="checkbox" ng-model="checkedValue" ng-change="changeStatus(checkedValue)">
-       <div class="track">
-         <div class="handle"></div>
-          <p class="status-txt-cls">{{checkedValue ? 'ONLINE' : 'OFFLINE'}}</p>
-       </div>
-     </label>
-
-
-   </ion-item> -->
-
-
-
-
-<!--
-   <ion-slide-box does-continue="true"  class="slides"  >
-
-     <ion-slide on-swipe-left="onSwipeLeft()">
-       <img class="onlineImg" src="img/Offline.png" width="100%" height="100%" >
-     </ion-slide>
-     <ion-slide>
-       <img class="offlineImg"  src="img/online.png"  width="100%" height="100%">
-     </ion-slide>
-
-
-
-   </ion-slide-box>s -->
-
-
-   <!-- <ion-toggle class="slidingToggle togglePosition"  toggle-class="toggle-assertive" ng-model="docStatus.checked" ng-true-value="'online'" ng-false-value="'offline'"  ng-change="pushNotificationChange()">
-
-       </ion-toggle>
-       <p class="docAvailable" ng-show="docAvailable">ONLINE</p>
-       <p class="docNotAvailable" ng-show="docNotAvailable">OFFLINE</p> -->
-
-   <!-- <ion-toggle class="slidingToggle togglePosition"  toggle-class="toggle-assertive" ng-model="docStatus.checked" ng-true-value="'online'" ng-false-value="'offline'"  ng-change="pushNotificationChange()">
-
-       </ion-toggle>
-       <p class="docAvailable" ng-show="docAvailable">ONLINE</p>
-       <p class="docNotAvailable" ng-show="docNotAvailable">OFFLINE</p> -->

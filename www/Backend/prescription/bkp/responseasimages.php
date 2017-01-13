@@ -1,44 +1,28 @@
 <?php
 
 	require "headers.php";
-
-
-	//require "mergejpegimage.php";
-
-
-
+	require "mergejpegimage.php";
 	header('Content-type: text/html; charset=utf-8');
+ $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
 
-   $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
-	
 
 	if(isset($postdata))
 	{
 
-	   	
 	      $request = json_decode($postdata);
 	      $doctorphoneno = $request->docphno; //DOCTOR PHONE NO
 	      $patientphoneno = $request->patientphno;//PATIENT PHONE NO
 	      $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
-  	      $tests = $request->tests;//TESTSBY DOCTOR
+	      $tests = $request->tests;//TESTSBY DOCTOR
 	      $medication = $request->medication;//MEDICATION BY DOCTOR
-		
-				                                 
 
 
-
-	
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE
 	     $doctorinformation = "select doctorFname,doctorMname,doctorLname,doctorDegrees,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode from doctorDetails where  doctorPhone='$doctorphoneno'";
-             
 	     $retvaldoctorinformation = mysql_query( $doctorinformation, $dbhandle );
-      
-
-	
-		while($row = mysql_fetch_array($retvaldoctorinformation))
-       	        {
-         	
-	            //GET DOCTOR INFORMATION FROM doctorDetails  TABLE 	
+      	while($row = mysql_fetch_array($retvaldoctorinformation))
+        {
+        //GET DOCTOR INFORMATION FROM doctorDetails  TABLE
 		     $doctor_fname = $row['doctorFname'];
 		     $doctor_mname = $row['doctorMname'];
 		     $doctor_lname = $row['doctorLname'];
@@ -48,240 +32,198 @@
 		     $doctor_address1 = $row['doctorAddress1'];
 		     $doctor_address2 = $row['doctorAddress2'];
 		     $doctor_pincode = $row['doctorPincode'];
-		    
-       				
+
 		     $doctor_fullname = $doctor_fname." ".$doctor_mname." ".$doctor_lname;
-	
 		     $doctor_fulladdress = $doctor_address1." ".$doctor_address2;
-		
 		     $doctor_citypin = $doctor_country." ".$doctor_city." ".$doctor_pincode;
+       	}
 
-
-	
-	       	}
-	
-
-       		 if(! $retvaldoctorinformation)
-        	 {
-       			
-		   die('Could not get data: ' . mysql_error());
-	        
-
-		}
-
-
-         	
-
-		//GET PATIENTINFORMATION FROM PATIENTDETAILS TABLE
+   		 if(! $retvaldoctorinformation)
+    	 {
+	   		die('Could not get data: ' . mysql_error());
+	    	}
+				//GET PATIENTINFORMATION FROM PATIENTDETAILS TABLE
              $patientinformation = "select patientFname,patientMname,patientLname,patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
-
              $retvalpatientinformation = mysql_query( $patientinformation, $dbhandle );
-
-
-
                 while($row = mysql_fetch_array($retvalpatientinformation))
                 {
-
-		     //GET PATIENT INFORMATION FROM patientDetails TABLE
-
+	     						//GET PATIENT INFORMATION FROM patientDetails TABLE
                      $patient_fname = $row['patientFname'];
                      $patient_mname = $row['patientMname'];
                      $patient_lname = $row['patientLname'];
                      $patient_age = $row['patientAge'];
                      $patient_sex = $row['patientSex'];
-                     
-
                      $patient_fullname = $patient_fname." ".$patient_mname." ".$patient_lname;
-
-                    
-
-
                 }
-
-
                  if(! $retvalpatientinformation)
                  {
-
                    die('Could not get data: ' . mysql_error());
-
-
                 }
 
-
-				
-		//IF DIAGNOSIS IS MENTIONED BY THE DOCTOR ENTER INTO LOOP
+								//IF DIAGNOSIS IS MENTIONED BY THE DOCTOR ENTER INTO LOOP
 		if($diagnosis)
 		{
-
  			//IF TESTS AND MEDICATION SPECIFIED
 			if($tests && $medication)
 			{
-				
-			  
-	
 			  $mentionedtests = $tests;
-		          $mentioneddiagnosis = $diagnosis;
+        $mentioneddiagnosis = $diagnosis;
 			  $mentionedmedication = $medication;
-
-
-
-			} 
-			
+			}
 			if($tests)//ONLY TESTS SPECIFIED
 			{
-
-			   $mentionedtests = $tests;
-                           $mentioneddiagnosis = $diagnosis;
-				
-
+		   $mentionedtests = $tests;
+       $mentioneddiagnosis = $diagnosis;
 			}
 			else
 			{
-
 				$mentioneddiagnosis = $diagnosis;
 				$mentionedtests = "No Tests Recommended";
-
-
-
 			}
-			
+
 			if($medication) //ONLY MEDICATION IS SPECIED
 			{
-
-			
 			  $mentioneddiagnosis = $diagnosis;
-                          $mentionedmedication = $medication;
-
-
+        $mentionedmedication = $medication;
 			}
 			else
 			{
-
-			   //DIAGNOSIS IS MANDATORY	
+			   //DIAGNOSIS IS MANDATORY
 			   $mentioneddiagnosis = $diagnosis;
-			    $mentionedmedication = "No Medication Recommended";
-
-			}   
-		
+		    	$mentionedmedication = "No Medication Recommended";
+			}
 			if($diagnosis)
 			{
-
-			    $mentioneddiagnosis = $diagnosis;
-
-
-
+		    $mentioneddiagnosis = $diagnosis;
 			}
 
 			//INSERT INTO DOCTORPRESCRIPTIONMENTIONED TABLE FOR FUTURE REFERENCES
-			
+
 			$prescriptionbydoctor = "INSERT INTO prescriptionbydoctor(doctorphone,patientphone,diagnosis,tests,medication,mentioneddatetime) VALUES ('$doctorphoneno', '$patientphoneno', '$mentioneddiagnosis','$mentionedtests','$mentionedmedication',now())";
+      $retvalbyprescription = mysql_query( $prescriptionbydoctor, $dbhandle );
+	 		if(!$retvalbyprescription )
+      {
+          die('Could not enter data: ' . mysql_error());
+           echo "ERROR";
+      }
+      else
+      {
+			    //CREATE JPEG FOR THE PATIENT PRESCRIPTIOM MENTIONED BY THE DOCTOR
 
-                        $retvalbyprescription = mysql_query( $prescriptionbydoctor, $dbhandle );
-                      
-			 if(!$retvalbyprescription )
-                        {
-                                die('Could not enter data: ' . mysql_error());
-                                 echo "ERROR";
-                        }
-                        else
-                        {
-                              
-			    //CREATE JPEG FOR THE PATIENT PRESCRIPTIOM MENTIONED BY THE DOCTOR                        
-			
-			
-			
-				 $my_img = imagecreate(1024,1024);	
-    				 $background = imagecolorallocate( $my_img, 255, 255, 255 );
+					$preCount = "select max(id) as preCount from prescriptionbydoctor;";
+ 					$prscrption = mysql_query( $preCount, $dbhandle );
+		       while($row = mysql_fetch_array($prscrption))
+		       {
+		         $preCount=$row['preCount'];
 
+		       }
+				 $my_img = imagecreate(920,1080);
+    		 $background = imagecolorallocate( $my_img, 255, 255, 255 );
+  			 $text_colour = imagecolorallocate( $my_img, 0, 0, 0 );
+   			 $text_colour_for_lined = imagecolorallocate( $my_img, 255, 255, 255 );
+				 $line_colour = imagecolorallocate( $my_img, 106, 145, 54 );
+   			 $red   = imagecolorallocate($my_img, 0,   255,   0);
+  	     $black = imagecolorallocate($my_img, 0, 0, 0);
 
-  				 $text_colour = imagecolorallocate( $my_img, 0, 0, 0 );
-   				 $text_colour_for_lined = imagecolorallocate( $my_img, 255, 255, 255 );
-   				 $red   = imagecolorallocate($my_img, 0,   255,   0);
-  			         $black = imagecolorallocate($my_img, 0, 0, 0);
-
-	
-				 imagefilledrectangle($my_img, 0, 200, 1024, 250, $black);
-   				 imagefilledrectangle($my_img, 0, 400, 1024, 450, $black);
-   				 imagefilledrectangle($my_img, 0, 600, 1024, 650, $black);
-  				  imagefilledrectangle($my_img, 0, 800, 1024, 850, $black);
-
-	
-				imagestring( $my_img, 4, 800, 25, "Dr.$doctor_fullname", $text_colour );
+				imagestring( $my_img, 20, 20, 20, "Dr.$doctor_fullname",$text_colour );
+				// imagestring( $my_img, 4, 800, 25, "Dr.$doctor_fullname", $text_colour );
 
 				//DOCTOR INFORMATION LIKE NAME,ADDRESS,CITY,PIN AND DATE
 
-				imagestring( $my_img, 4, 800, 60, "$doctor_degrees", $text_colour );
-				imagestring( $my_img, 4, 600, 90, "$doctor_fulladdress", $text_colour );
-				imagestring( $my_img, 4, 800, 120, "$doctor_citypin", $text_colour );
-				imagestring( $my_img, 4, 800, 155, "2016-07-08", $text_colour );
+				imagestring( $my_img, 40, 20, 40, "$doctor_degrees", $text_colour );
+				imagestring( $my_img, 60, 20, 60, "$doctor_fulladdress", $text_colour );
+				imagestring( $my_img, 80, 20, 80, "$doctor_citypin", $text_colour );
 
+				imagerectangle($my_img, 0, 0, 920, 1080, $line_colour1);
+				$thickness = 18;
+				imageline( $my_img, 0, 115, 920, 115, $line_colour );
+
+				$thickness = 18;
+				imageline( $my_img, 0, 115, 920, 115, $line_colour );
 				//PATIENT INFORMATION LIKE NAME,AGE AND SEX
-				imagestring( $my_img, 4, 400, 215, "Patient Details", $text_colour_for_lined );
-  				imagestring( $my_img, 4, 400, 275, "$patient_fullname", $text_colour);
-				imagestring( $my_img, 4, 400, 295, "$patient_age", $text_colour);
-				imagestring( $my_img, 4, 400, 315, "$patient_sex", $text_colour);
+				imagerectangle($my_img, 0, 0, 920, 1080, $line_colour1);
+				imagestring( $my_img, 145, 20, 145, "Patient Name: $patient_fullname", $text_colour );
+				imagestring( $my_img, 175, 20, 175, "Age: $patient_age ", $text_colour );
+				imagestring( $my_img, 175, 250, 175, "Gender:$patient_sex", $text_colour );
+				$date= date("Y/m/d") ;
+				imagestring( $my_img, 145, 750, 145, "Date:$date", $text_colour );
+
 
 				//DIAGNOSIS SPECIFIED BY DOCTOR
-				imagestring( $my_img, 4, 400, 415, "Diagnosis", $text_colour_for_lined );
-				imagestring( $my_img, 4, 400, 480, "$mentioneddiagnosis", $text_colour);
+				imagestring( $my_img, 50, 20, 220, "Diagnosis", $text_colour );
+				imageline( $my_img, 20, 245, 100, 245, $line_colour );
 
-				//TESTS SPECIFIED BY DOCTOR
-				imagestring( $my_img, 4, 350, 615, "Tests Recommended and Other Remarks", $text_colour_for_lined );	
-				imagestring( $my_img, 4, 400, 680, "$mentionedtests", $text_colour);
+				$diagnosis="$mentioneddiagnosis";
+				$diagnosisText=explode("\n",wordwrap($diagnosis,90,"\n"));
+				$x=265;
+				foreach($diagnosisText as $arr)
+				{
+				  $white=imagecolorallocate($my_img,0,0,0); //sets text color
+				  imagestring($my_img,10,50,$x,trim($arr),$white); //create the text string for image,added trim() to remove unwanted chars
+				  $x=$x+18;
 
-				//MEDICATION SPECIFIED BY THE DOCTOR
-				imagestring( $my_img, 4, 400, 815, "Medication", $text_colour_for_lined );
-				imagestring( $my_img, 4, 400, 870, "$mentionedmedication", $text_colour);
+				}
 
-				imagestring( $my_img, 4, 50, 950, "-sd-", $text_colour );
-				imagestring( $my_img, 4, 50, 970, "$doctor_fullname", $text_colour );
+				imagestring( $my_img, 50, 20, 475, "Tests Recomended", $text_colour );
+				imageline( $my_img, 20, 500, 170, 500, $line_colour );
+
+				$tests="$mentionedtests";
+				$testsText=explode("\n",wordwrap($tests,90,"\n"));
+				$y=520;
+				foreach($testsText as $arr)
+				{
+				  $white=imagecolorallocate($my_img,0,0,0); //sets text color
+				  imagestring($my_img,10,50,$y,trim($arr),$white); //create the text string for image,added trim() to remove unwanted chars
+				  $y=$y+18;
+
+				}
+				imagestring( $my_img, 60, 20, 700, "Medications", $text_colour );
+				imageline( $my_img, 20, 720, 120, 720, $line_colour );
+
+				$medication="$mentionedmedication";
+				$medicationText=explode("\n",wordwrap($medication,90,"\n"));
+				$z=750;
+				foreach($medicationText as $arr)
+				{
+				  $white=imagecolorallocate($my_img,0,0,0); //sets text color
+				  imagestring($my_img,10,50,$z,trim($arr),$white); //create the text string for image,added trim() to remove unwanted chars
+				  $z=$z+18;
+
+				}
+
+				imagestring( $my_img, 100, 60, 990, "-SD-", $text_colour );
+				imagestring( $my_img, 1020, 60, 1020, "Dr.$doctor_fullname",$text_colour );
+				imagestring( $my_img, 1050, 60, 1050, "$doctor_degrees", $text_colour );
 
 
  				 header( "Content-type: image/jpeg" );
-
 				//GENERATE JPEG FORMAT IMAGE BASED ON CONSULTATION ID BY THE PATIENT
-				imagejpeg( $my_img,"fromionic.jpeg");
+				imagejpeg( $my_img,"DocQuik$preCount.jpeg");
 				imagedestroy( $my_img );
 
-
-
 			}
-	
-
-		}	
+		}
 		else
 		{
-
 		   echo "Please Mention Diagnosis as it is Mandatory";
-
-
-
-		}		
-
-
-
-
+		}
 	}
+
+
+
 
 
 mysql_close($dbhandle);
 
-  
 $png= imagecreatefrompng('dq_loginlogo.png');
-$jpeg = imagecreatefromjpeg('fromionic.jpeg');
-
-
-
-list($width, $height) = getimagesize('fromionic.jpeg');
 list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
 
-
-$out = imagecreatetruecolor($width, $height);
-imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
-imagecopyresampled($out, $png, 30, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
-imagejpeg($out, 'out.jpeg');
+$count = imagecreatetruecolor($width, $height);
+imagecopyresampled($count, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
+imagecopyresampled($count, $png, 30, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
 
 
+// $base64Prescription = base64_encode($imagedata);
 
-
+ echo "DocQuik$preCount";
 ?>

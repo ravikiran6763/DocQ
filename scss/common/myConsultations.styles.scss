@@ -1,0 +1,96 @@
+.consultationList-view
+{
+  background-color:#e2e2e2 !important;// $profile-bg !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  .myDoctor-list
+  {
+      width: 100%;
+      height: 100%;
+      // box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+      overflow: scroll !important;
+
+
+    li {
+      height: 15%;
+      border-bottom: 2px solid #dadada;
+      @include clearfix();
+
+      &:first-child {
+        //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+      }
+
+      &:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto;
+      }
+
+      .profile-img {
+        width: 16%;
+        float: left;
+        margin: 3% 0 0 2%;
+
+        img {
+          width: 100%;
+          border-radius: 50%;
+          width: 95%;
+        }
+      }
+
+      .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 9%;
+        padding-right: 5%;
+        position: relative;
+
+        .ion-chevron-right:before {
+          color: black;
+          font-size: 1.8em;
+        }
+      }
+
+      .name-content {
+        float: left;
+        padding: 5% 0%;
+        height: 100%;
+        width: 75%;
+          .name{
+            width: 70%;
+          }
+          .date{
+            position: absolute;
+            width: 20%;
+            margin-left: 55%;
+            margin-top: -4%;
+          }
+          .msgContent{
+            display: inline-block;
+            overflow: hidden !important;
+            height: 3vh;
+            width: 100% !important;
+            text-overflow: ellipsis !important;
+          }
+          .chatCount{
+            float: left !important;
+            margin: -9vh 0 0 -20vw !important;
+          }
+        p{
+            font-size: 74%;
+            margin: 0% 2%;
+            color: black;
+          }
+
+        h2{
+            margin: 2%;
+            font-size: 125%;
+            color: black;
+            font-family: Ubuntu,bold,sans-serif !important;
+            line-height: 50%;
+          }
+
+      }
+
+    }
+  }
+
+}

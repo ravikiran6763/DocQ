@@ -1,55 +1,129 @@
-<ion-view class="patient-topup-view" cache-view="false">
-  <div class="top-content ">
-      <div class="logo-content">
-        <pre-img ratio="_1_1" helper-class="rounded-image">
-           <img ng-src="img/dq_icon_payments_large_540x960.png" spinner-on-load>
-        </pre-img>
+<ion-view class="topUp-refund-view" cache-view="false" >
+  <ion-content >
+    <form name="patientTopUp" ng-submit="submitForm($event)" ng-class={submitted:submitted} novalidate >
+    <div class="top-content">
+      <div class="accDetails">
+        <div class="walletDetails">
+          <div class="walletLogo">
+            <img ng-src="img/dq_icon_payments_large_540x960.png" >
+          </div>
+          <h1>DoctorQuick Wallet</h1>
+        </div>
+        <div class="balanceAmt ">
+
+            <h2  ng-repeat="mybal in patientWalletdetails">Balance:₹{{mybal.credit-mybal.debit}}</h2>
+            <h6>(You can always get a refund of your leftover balance)</h6>
+
+          <input type="number" placeholder="00.00" ng-model="payment.topUp"  ng-class="{ 'has-error-lr' : patientTopUp.topUp.$invalid  && patientTopUp.$submitted, 'valid-lr' : patientTopUp.topUp.$valid  && patientTopUp.$submitted}" required>
+
+        </div>
+        <div class="buttons">
+          <button class=" button button-block button-assertive"  ng-click="refundReq(patientTopUp.$valid)" >Topup</button>
+        </div>
+
       </div>
-      <h1>DoctorQuick Wallet</h1>
-      <h2  ng-repeat="mybal in patientWalletdetails">Balance:₹{{mybal.credit-mybal.debit}}</h2>
 
-  </div>
-  <form name="patientTopUp" ng-submit="submitForm($event)" ng-class={submitted:submitted} novalidate >
+    </div>
+    </form>
+    <ion-item class="item-divider">Transaction History</ion-item>
 
-  <div class="refund-amount">
-      <h6>(You can always get a refund of your leftover balance)</h6>
+    <div class="bottom-content">
 
-    <!-- <label class="item item-input" name="refund_amt" id="label" >
-        <input type="number" placeholder="00.00" ng-model="payment.topUp"  required>
-    </label> -->
-<!-- 
-    <label class="item item-input">
-
-    </label> -->
-    <input type="number" placeholder="00.00" ng-model="payment.topUp"  ng-class="{ 'has-error-lr' : patientTopUp.topUp.$invalid  && patientTopUp.$submitted, 'valid-lr' : patientTopUp.topUp.$valid  && patientTopUp.$submitted}" required>
-
-
-  </div>
-  <div class="button-container">
-    <button class="login_button button button-block button-assertive"  ng-click="validateTopup(patientTopUp.$valid)" >Topup</button>
-<!-- <div class="pm-button"><a href="https://www.payumoney.com/paybypayumoney/#/131409"><img src="https://www.payumoney.com//media/images/payby_payumoney/buttons/212.png" /></a></div> -->
-  </div>
-</form>
-
-<!-- <div class="pm-button"><a href="https://www.payumoney.com/paybypayumoney/#/0E622D6D7C6AAFE63E2F4C6849198F3B"><img src="https://www.payumoney.com//media/images/payby_payumoney/buttons/212.png" /></a></div> -->
-<ion-item class="item-divider">Transaction History</ion-item>
-  <div class="bottom-content">
-    <ul >
-
-      <li class="">
+      <ul>
+      <li  >
         <div class="profile-img">
-          <img src="img/doc.jpg">
+          <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+          <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
         </div>
         <div class="name-content">
-          <h2>Dr LastName <span>₹150.00</span></h2>
-          <p>23 dec 2015</p>
+          <div class="name">
+            <h2>Dr. test</h2>
+          </div>
+          <div class="date">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+
+          </div>
+
+          <p class="msgContent"><font size=2>12 January 2017</font></p>
+          <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
+
         </div>
         <div class="next-icon">
+          <p>₹120</p>
+        </div>
+      </li>
+      <li  >
+        <div class="profile-img">
+          <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+          <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+        </div>
+        <div class="name-content">
+          <div class="name">
+            <h2>Dr. test</h2>
+          </div>
+          <div class="date">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
 
+          </div>
+
+          <p class="msgContent"><font size=2>12 January 2017</font></p>
+          <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
+
+        </div>
+        <div class="next-icon">
+          <p>₹120</p>
+        </div>
+      </li>
+      <li  >
+        <div class="profile-img">
+          <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+          <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+        </div>
+        <div class="name-content">
+          <div class="name">
+            <h2>Dr. test</h2>
+          </div>
+          <div class="date">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+
+          </div>
+
+          <p class="msgContent"><font size=2>12 January 2017</font></p>
+          <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
+
+        </div>
+        <div class="next-icon">
+          <p>₹120</p>
         </div>
       </li>
 
+      <li  >
+        <div class="profile-img">
+          <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
+          <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+        </div>
+        <div class="name-content">
+          <div class="name">
+            <h2>Dr. test</h2>
+          </div>
+          <div class="date">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+
+          </div>
+
+          <p class="msgContent"><font size=2>12 January 2017</font></p>
+          <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
+
+        </div>
+        <div class="next-icon">
+          <p>₹120</p>
+        </div>
+      </li>
+
+
     </ul>
-  </div>
+
+    </div>
+  </ion-content>
 
 </ion-view>

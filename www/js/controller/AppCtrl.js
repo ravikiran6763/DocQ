@@ -23,6 +23,8 @@ console.log('appCtrl');
 
 // var model = $cordovaDevice.getModel();
 // console.log(model);
+$localStorage.reqSent="";
+console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
@@ -34,10 +36,11 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 // console.log(type);
 // console.log(isOnline);
 // console.log(isOffline);
-
+//
 
 console.log($ionicHistory.currentStateName());
 if($ionicHistory.currentStateName() === 'app.patient_home'){
+	$localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
 	$ionicHistory.nextViewOptions({
 					disableBack: true
@@ -51,6 +54,7 @@ console.log($scope.deviceAndroid );
 		}, 1000);
 
 	};
+
 	$scope.ratings = [{
  				current: $scope.myDoctorRatings,
  				max: 5
@@ -96,8 +100,12 @@ console.log($scope.deviceAndroid );
 							window.history.back();
 
 						}
+						else if($scope.prevPage === 'templates.notesForPatient'){
+							$state.go('templates.doctor_home');
+						}
 						else{
 							window.history.back();
+							$localStorage.reqSent=0;
 							}
 		}
 
@@ -317,9 +325,6 @@ console.log($scope.deviceAndroid );
 	//signout
 
 	$scope.confirmSignout = function() {
-
-
-
 		var unametologout = "greet+"+$localStorage.user;
 		var pwtologout = "DQ_patient";
 
@@ -335,7 +340,7 @@ console.log($scope.deviceAndroid );
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.logout(unametologout,pwtologout,success, failure);
+		// hello.logout(unametologout,pwtologout,success, failure);
 
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -363,15 +368,18 @@ console.log($scope.deviceAndroid );
 					},
 					]
 					});
- 		};
+
+//popup modification
+
+
+
+
+ }
 
  $rootScope.toggleLeftSideMenu = function () {
 	 $rootScope.sideMenuForSearch = false;
 	 $ionicSideMenuDelegate.toggleRight();
  }
-
-
-
 
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');
@@ -439,6 +447,7 @@ $scope.ratingsObject = {
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
 
+	 console.log($localStorage.seen);
 
 	$interval(callReqInterval, 60000);
 
@@ -446,7 +455,7 @@ $scope.ratingsObject = {
 	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 				// console.log('successfull data', response);
 				$scope.calledDetails=response;
-				// console.log($scope.calledDetails);
+				console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable
 				 var totList=[];
 						for(var i=0; i<data.length; i++){
@@ -456,27 +465,55 @@ $scope.ratingsObject = {
 								$rootScope.onoff=data[i].onoff,
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
-								$scope.callFlag='4';
+						$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
 
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
 						if($rootScope.cal_flag === '4'){
 							// alert('readyforcall');
-							$ionicPopup.alert({
-							title: 'Call Request Accepted',
-							template:' A Doctor has accepted your call request',
-							cssClass: 'videoPopup',
-							buttons: [
-								{
-								text: 'Ok',
-								type: 'button-assertive',
-								onTap: function(e) {
 
-									$state.go('app.callAccepted');
-								}
-								},
-							]
-							})
+							$ionicPopup.confirm({
+										 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
+										 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
+										 cssClass: 'videoPopup',
+										 scope: $scope,
+										 buttons: [
+															 {
+															 text: 'Decline',
+															 type: 'button-royal',
+															 onTap: function(e) {
+																 				console.log('Decline');
+															 				}
+															 },
+															 {
+																 text: 'View',
+																 type: 'button-positive',
+																 onTap: function(e) {
+																		 console.log('ok');
+																		 $localStorage.seen=1;
+																		 console.log($localStorage.seen);
+																		 $state.go('app.callAccepted');
+
+															 }
+									 },
+									 ]
+								 })
+
+							// $ionicPopup.alert({
+							// title: 'Call Request Accepted',
+							// template:' A Doctor has accepted your call request',
+							// cssClass: 'videoPopup',
+							// buttons: [
+							// 	{
+							// 	text: 'Ok',
+							// 	type: 'button-assertive',
+							// 	onTap: function(e) {
+							//
+							// 		$state.go('app.callAccepted');
+							// 	}
+							// 	},
+							// ]
+							// })
 						}
 						}
 
@@ -714,7 +751,7 @@ $rootScope.prescription={};
 // 		}
 // }
 
-$scope.done = function (prescType,sno) {
+$scope.done = function (prescType,sno){
 
         switch(sno){
             case 1://for diagnosis
@@ -835,7 +872,7 @@ $scope.sendprescription = function()
     {
         var prescriptiondetails = {
           docphno : $localStorage.user,
-          patientphno : $rootScope.pphno,
+          patientphno : $localStorage.reqPat,
           diagnosis : $scope.diagnosis ,
           tests : $scope.tests ,
           medication : $scope.medication
@@ -852,7 +889,7 @@ console.log($rootScope.chekDiag);
         if($scope.pic){
           var auname =  "greet+"+$localStorage.user;
           var apw = "DQ_doctor";
-          var ato = "greet+" + $rootScope.pphno;
+          var ato = "greet+" + $localStorage.reqPat;
 
           console.log(auname);
           console.log(ato);

@@ -1,33 +1,43 @@
 <ion-view class="sepecility-details-view"  cache-view="false"  >
 
   <ion-content scroll="false" ng-repeat="desc in specialityDetails">
-    <a class="item dark item-avatar item-icon-right"><!--ui-sref="app.doctorprofile"-->
-        <img src="img/dq_icon_specialities_medium_540x960.png">
-        <div><h2>{{special}}</h2>
-        <p>{{content1}}</p>
+    <div class="top-content">
+      <div class="specDetail">
+        <div class="profile-img">
+          <img src="img/dq_icon_specialities_medium_540x960.png">
         </div>
-        <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == 0}}"></i>
-        <i class="icon ion-android-add-circle" ng-show="{{desc.noofonlinedoctors >= 1}}"></i>
-
-    </a>
-
-    <p class="description"> {{descrpt}} </p>
-    <div>
+        <div class="name-content">
+          <h2>{{special}}</h2>
+        </div>
+        <div class="next-icon">
+          <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == 0}}"></i>
+          <i class="icon ion-android-add-circle" ng-show="{{desc.noofonlinedoctors >= 1}}"></i>
+        </div>
+      </div>
+      <div class="specDescription">
+        <div class="description">
+          <p> {{descrpt}} </p>
+        </div>
+      </div>
+  </div>
+    <div class="onlineDocs">
       <div class="card ">
         <div class="row">
               <div class="col">Online Doctors</div>
-              <div class="col right-side">{{desc.noofonlinedoctors}}</div>
+              <div class="col-30">{{desc.noofonlinedoctors}}</div>
         </div>
       </div>
-
     </div>
 
-    <p class="sendRequest">Send request for a consultation to all {{special}} Specialists who are online</p>
+    <div class="sendRequest">
+      <div class="reqMsg">
+          <p class="sendRequest">Send request for a consultation to all {{special}}s who are online</p>
+      </div>
 
-    <a class="login_button button button-block button-assertive" ng-click="sendrequesttoonlinedoctors(desc.id)">
-      send Request
-    </a>
-
+      <button class="login_button button button-block button-assertive" ng-click="sendrequesttoonlinedoctors(desc.id)">
+        Send Request
+      </button>
+    </div>
 
   </ion-content>
 
