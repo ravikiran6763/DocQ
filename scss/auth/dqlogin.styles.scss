@@ -1,5 +1,8 @@
 .dqLogin-view
 {
+	ion-content{
+		overflow:  hidden !important;
+	}
 	.top-content{
 		width: 100% !important;
 		height: 30% !important;

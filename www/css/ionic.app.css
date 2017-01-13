@@ -10692,6 +10692,9 @@ ion-spinner.spinner-on-load {
   position: relative;
   margin: 11px 0 2px 8px; }
 
+.dqLogin-view ion-content {
+  overflow: hidden !important; }
+
 .dqLogin-view .top-content {
   width: 100% !important;
   height: 30% !important; }
@@ -12597,8 +12600,16 @@ ion-side-menu .heading-item .message {
       text-align: center; }
   .ViewDoctorProfile-view .middle-content {
     width: 100%;
-    height: 15%;
-    background-color: red; }
+    height: 15%; }
+    .ViewDoctorProfile-view .middle-content .card {
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .ViewDoctorProfile-view .middle-content .card .col {
+        padding: 4% !important;
+        margin-left: 4%; }
+      .ViewDoctorProfile-view .middle-content .card .col-30 {
+        margin-top: 4%; }
   .ViewDoctorProfile-view .bottom-content {
     width: 100%;
     height: 45%;
