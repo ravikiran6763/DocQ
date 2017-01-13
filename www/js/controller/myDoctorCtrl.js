@@ -6,7 +6,29 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
+
+
  $interval(callAtInterval, 5000);
+
+
+ var username = "greet+"+$localStorage.user;
+ var password = "DQ_patient";
+
+
+  var success = function(message)
+  {
+ 	 alert(message);
+  }
+
+  var failure = function()
+  {
+ 	 alert("Error calling Hello Plugin");
+  }
+
+  hello.unreadchatfromusers(username,password,success, failure);
+
+
+
 
 	function callAtInterval() {
 		doctorServices.myDoctorsFetched($localStorage.user).then(function(response){

@@ -18,6 +18,28 @@ $ionicLoading.show();
 // console.log($localStorage.user);
 
 
+var username = "greet+"+$localStorage.user;
+var password = "DQ_patient";
+
+
+console.log(username);
+
+
+	var success = function(message)
+	{
+
+		alert(message);
+
+	}
+
+	var failure = function()
+	{
+		alert("Error calling Hello Plugin");
+	}
+
+	hello.chatcounts(username,password,success, failure);
+
+
 
 	$ionicLoading.show();
 
