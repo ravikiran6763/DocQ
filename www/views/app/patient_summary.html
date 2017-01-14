@@ -1,64 +1,68 @@
-<ion-view class="summary-view" cache-view="false">
-
-  <ion-content>
-    <!-- &#9734; prints star character-->
-    <ul class="top-content" ng-repeat="consult in myDoctor">
-      <li>
-        <div class="profile-img">
+<ion-view class="summary-view" cache-view="false" >
+  <ion-content  scrollbar-y="false" ng-repeat="consult in myDoctor">
+    <div class="top-content">
+      <div class="details">
+        <div class="profileImage">
           <img src="./img/doc.jpg">
+
         </div>
         <div class="name-content">
           <h2>Dr.{{consult.doctorFname | capitalize}} {{consult.doctorMname | capitalize}} {{consult.doctorLname | capitalize}}</h2>
-          <p>{{consult.doc_degrees}}</p>
-          <p >Practicing since {{consult.practicingSince}}
-        <div class="ratingContainer">
-            <span ng-repeat="rating in ratings">
+          <p>{{consult.doctorDegrees}}<br>Practising since {{consult.practicingSince}} </p>
+          <div class="ratingContainer">
+            <span ng-repeat="rating in ratingss">
               <div star-rating rating-value="rating.current" max="rating.max" ></div>
             </span>
-              <!-- <i class="icon ion-chevron-right icon-accessory"></i> -->
-        </div>
-          </p>
+          </div>
+          <!-- <a href="javascript:" ng-repeat="r in ratedArr" style="text-decoration:none; font-size: 150%; margin-left:1.5%">
+            <i class="icon {{r.icon}}"ng-click="rates(r.ratings,r.value)"></i>
+          </a> -->
+          <!-- <div class="ratingContainer">
+              <span ng-repeat="rating in ratings">
+                <div star-rating rating-value="rating.current" max="rating.max" ></div>
+              </span>
+          </div> -->
 
         </div>
-        <!-- <div class="next-icon">
+        <div class="next-icon">
+          <i class="icon ion-android-add-circle" ></i>
+          <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doctor.onoff == 2}}"></i>
+        </div>
+      </div>
+    </div>
+    <div class="rateClass">
+      <div class="card ">
+          <div class="row">
+            <div class="col">Messages</div>
+            <div class="col"><span class="badge badge-positive " style="float:right;">{{1}}</span></div>
 
-        </div> -->
-      </li>
-    </ul>
-    <div class="card ">
-
-          <div class="row" ng-click="chatclicked();">
-            <div class="col-75">Messeges</div>
-            <div class="col"><span class="badge badge-positive ">{{1}}</span></div>
           </div>
           <div class="row">
-            <div class="col-75">Add Doctor to favorites</div>
+            <div class="col-75">Add doctor to favorites</div>
             <div class="col " >
             <!-- <i class="icon  ion-android-favorite-outline"    on-icon="ion-android-favorite-outline" off-icon="ion-android-favorite" ng-click="addToFavorite();" icon-switcher></i> -->
             <i id="like" ng-class="{'icon ion-android-favorite': liked, 'icon ion-android-favorite-outline': !liked}" ng-click="addToFavorite(liked=!liked);"></i>
             </div>
           </div>
           <div class="row">
-            <div class="col-75">Ratings</div>
-            <div class=" right-side " ><ionic-ratings ratingsobj='ratingsObject'></ionic-ratings></div>
+            <div class="col">Rate doctor</div>
+            <div class="col">
+              <a href="javascript:" ng-repeat="r in ratingArr" style="text-decoration:none; font-size: 150%; margin-left:1.5%">
+                <i class="icon {{r.icon}}" ng-click="setRating(r.ratings,r.value)"></i>
+              </a>
+            </div>
           </div>
+      </div>
 
     </div>
-  <div class="suggestion" >
-     <p ng-show="unhappy"> Please Share detials with us why you were unhappy with the consultation so that we can improve our service.</p>
-     <p ng-show="happy"> Please Share detials with us why you were happy with the consultation so that we can improve our service.</p>
-
-    <div class="query-text">
-      <label for="ratingComments" >
-
-      </label>
-      <textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment">
-      </textarea>
+    <div class="lowRatesComment" ng-show="unhappy">
+        <p>Please share details with us why you were<br>unhappy with the consultation so that we <br>can improve our services.</p>
+        <textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment">
+        </textarea>
+        <div class="btn-content">
+          <button class="button button-block" ng-click="sendRatings();">Send</button>
+        </div>
     </div>
-    <div class="btn-content">
-      <button class="button button-block" ng-click="sendRatings();">Send</button>
-    </div>
-  </div>
 
 
   </ion-content>

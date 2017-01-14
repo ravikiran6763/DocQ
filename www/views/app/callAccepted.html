@@ -1,39 +1,26 @@
 <ion-view class="callAccpted-view" cache-view="false">
 
-  <ion-content scroll="false" ng-repeat="mydocs in calledDetails">
-        <div class="profile-img ">
-        <pre-img ratio="_1_1" helper-class="rounded-image">
-            <img class="item-icon-right" ng-src="img/doc.jpg" spinner-on-load>
-            <!-- <i class="icon ion-android-add-circle" ></i> -->
+  <ion-content scroll="false" >
 
-            <i class="icon ion-android-add-circle" ng-show="{{mydocs.onoff == 1}}"></i>
-            <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{mydocs.onoff == 2}}"></i>
-              <!-- <img class="doctor-online " ng-src="" spinner-on-load> -->
-        </pre-img>
+    <div class="top-content"  ng-repeat="mydocs in calledDetails">
+      <div class="imageContainer">
+        <i class="icon ion-android-add-circle" ng-show="{{mydocs.onoff == 1}}"></i>
+        <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{mydocs.onoff == 2}}"></i>
+        <img class="item-icon-right" ng-src="img/doc.jpg" >
       </div>
-      <div class="profile-info" >
-        <h1>Dr. {{mydocs.doctorFname|capitalize}} {{ mydocs.doctorLname|capitalize}} </h1>
-        <h2>{{mydocs.doctorDegrees}}</h2>
-        <h3>practicing since {{mydocs.practicingSince}}</h3>
-      </div>
+      <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname|capitalize}} {{ mydocs.doctorLname|capitalize}} </h1>
+      <h2>{{mydocs.doctorDegrees}}, Degrees<br>practicing since {{mydocs.practicingSince}}</h2>
+      <h2></h2>
+
+    </div>
+
       <div class="rating-field ">
         <h4>
           Your Invitation for consultation has been accepted. Please start the consultation or decline.
         </h4>
-        <!-- <div class="card row">
-              <div class="  col">
-                Rating
-              </div>
-              <div class=" col">
-                4.9/23
-              </div>
-              <div class=" col">
-                *****
-              </div>
-        </div> -->
 
       </div>
-      <div class="bottom-content">
+      <div class="bottom-content" ng-repeat="mydocs in calledDetails">
 
           <div class="button-content">
             <div class="buttonPosition">

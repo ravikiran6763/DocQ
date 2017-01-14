@@ -32,7 +32,7 @@ angular.module('ion-alpha-scroll', [])
 				angular.element(template.find('ion-item')[1]).append(children);
 				tElement.html('');
       			tElement.append(template);
-
+				
       			tElement.find('ion-scroll').css({"height": contentHeight + 'px'});
 
 				return function (scope, element, attrs, ngModel) {
@@ -43,8 +43,9 @@ angular.module('ion-alpha-scroll', [])
 
 	                // do nothing if the model is not set
 	                if (!ngModel) return;
+
 	                ngModel.$render = function(){
-										scope.items = [];
+						scope.items = [];                	
 	                	scope.items = ngModel.$viewValue;
 	                	scope.alphabet = iterateAlphabet();
 		                var tmp={};

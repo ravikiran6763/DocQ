@@ -449,9 +449,10 @@ $scope.ratingsObject = {
 
 	 console.log($localStorage.seen);
 
-	$interval(callReqInterval, 60000);
-
+	$interval(callReqInterval, 10000);
+$localStorage.ViewDoc=0;
 	function callReqInterval() {
+
 	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 				// console.log('successfull data', response);
 				$scope.calledDetails=response;
@@ -465,11 +466,10 @@ $scope.ratingsObject = {
 								$rootScope.onoff=data[i].onoff,
 								$rootScope.doctorPhone=data[i].doctorPhone,
 
-						$scope.callFlag='4';
 						console.log($rootScope.cal_flag);
 
 						$localStorage.Doctocall =  $rootScope.doctorPhone;
-						if($rootScope.cal_flag === '4'){
+						if($rootScope.cal_flag === '4' && $localStorage.ViewDoc === 0){
 							// alert('readyforcall');
 
 							$ionicPopup.confirm({
@@ -490,6 +490,7 @@ $scope.ratingsObject = {
 																 type: 'button-positive',
 																 onTap: function(e) {
 																		 console.log('ok');
+																		 $localStorage.ViewDoc=1;
 																		 $localStorage.seen=1;
 																		 console.log($localStorage.seen);
 																		 $state.go('app.callAccepted');
@@ -524,22 +525,21 @@ $scope.ratingsObject = {
 	}
 
 	$scope.declineCall=function(){
-		var calldecline={
+			var calldecline={
 			patient:$localStorage.user,
 			doctor:$rootScope.doctorPhone,
 			callId:$rootScope.callId
 
-		}
-
-		callAcceptedService.callDeclined(calldecline).then(function(response){
-		$scope.declineStatus=response;
-		 console.log($scope.declineStatus);
-	}).catch(function(error){
-	console.log('failure data', error);
-	});
-	$state.go('app.patient_home')
-
-	  console.log('decline clicked');
+			}
+			$localStorage.ViewDoc=0;
+			callAcceptedService.callDeclined(calldecline).then(function(response){
+				$scope.declineStatus=response;
+				console.log($scope.declineStatus);
+			}).catch(function(error){
+			console.log('failure data', error);
+			});
+				$state.go('app.patient_home')
+				console.log('decline clicked');
 	}
 
 //video call in search

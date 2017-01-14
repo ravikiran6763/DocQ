@@ -1,169 +1,100 @@
 .summary-view
 {
-
-  background-color: #e2e2e2 !important;
+  background-color:#e2e2e2 !important;// $profile-bg !important;
   font-family: Ubuntu,bold,sans-serif !important;
-  .title .title-left .header-item{
-    left: 0px !important;
-    right: 0px !important;
-  }
-  ion-content{
-    overflow: scroll !important;
-  }
-  .row{
-    padding: 6px !important;
-    margin: 0 !important;
-  }
-  .card{
-
-    height: 22%;
-    width: 94%;
+  .top-content{
+    width: 100% !important;
+    height: 15% !important;
     margin: 0 auto;
-  }
-    .badge.badge-positive {
-      background-color: #e81616;
-      color: #fff;
-      margin: -2px;
-      float: right;
 
-    }
-  .badge{
-    background-color: transparent;
-    color: #AAAAAA;
-    z-index: 1;
-    /* display: inline-block; */
-    padding: 1px 5px;
-    /* min-width: 10px; */
-    border-radius: 10px;
-    vertical-align: baseline;
-    /* text-align: center; */
-    white-space: nowrap;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px;
-  }
-  .ratingContainer{
-    position: relative;
-    /* margin-top: -2vh; */
-    // float: right;
-    /* margin-right: -23px; */
-    margin-left: 36vw;
-  }
-  .top-content
-  {
-      width: 100%;
-      height: 20%;
-      // margin-top: 9vh ;
-    li {
-      height: 31.3%;
-      border-bottom: 1px solid #fff;
-
-      @include clearfix();
-
-      &:first-child {
-        //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
-      }
-
-      &:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto;
-      }
-
-      .profile-img {
-        width: 15vw;
-        float: left;
-        margin: 2vh 0px 0px 2vh;
-
+    .details{
+      width: 90% !important;
+      margin: 0 auto !important;
+      .profileImage{
+        width: 20%;
+        margin-top: 4%;
         img {
-          border-radius: 50%;
-          width: 20vw;
-          padding: 5px;
+          border-radius: 100%;
+          width: 100%;
+          border: 5% solid #dedae9;
         }
       }
-
-      .next-icon {
-          width: 4vw;
-          float: right;
-          text-align: center;
-          margin-right: 10px;
-          height: 100%;
-          line-height: 14vh;
-
-        .ion-chevron-right:before {
-          color: #ffffff;
-          font-size: 1.8em;
-          padding: 25px 0 0 0;
-        }
-      }
-
       .name-content {
-        float: left;
-        padding: 5vh 0 3vh 4vh;
-        height: 100%;
-
-        p{
-            font-size: 3.2vw;
-            line-height: 0.3vh;
-            margin: 0px;
-
-          }
+        width: 75%;
+        margin-top: -15%;
+        margin-left: 22%;
 
         h2{
-
-            font-size: 5vw;
-            font-family: Ubuntu,bold,sans-serif !important;
-            line-height: 6vw;
+          line-height: 0 !important;
+          font-size: 104%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important;
           }
+          p{
+            font-size: 85%;
+          }
+          .ratingContainer{
+            margin-top: -14.5%;
+            margin-left: 60%;
+            width: 38%;
+          }
+      }
+      .next-icon {
+        width: 5%;
+        float: right;
+        margin-top: -13%;
+
+        .ion-chevron-right:before {
+          color: black;
+        }
       }
 
     }
+
+
   }
-  .right-side{
-    float: right;
+
+  .rateClass{
+    height: 30%;
+    margin-top: 6%;
+    .row{
+      padding: 0 !important;
+    }
+    .card{
+        padding-top: 0;
+        padding-bottom: 0;
+        margin: 2% 2% !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      .col{
+        padding: 2%;
+        margin-left: 6%;
+      }
+      .col-75{
+        padding: 8% !important;
+      }
+    }
+
   }
-  .suggestion{
+
+  .lowRatesComment{
     width: 90%;
+    height: 45%;
     margin: 0 auto;
-    h2{
-      font-size: 4vw;
-      font-family: inherit;
+    p{
       text-align: center;
+      font-size: 100%;
     }
-    p {
-    margin: 12px 11px 12px;
+    textarea {
+        width: 100% !important;
+        height: 38% !important;
+        font-family: inherit;
     }
-  }
-  .query-text{
-    width: 92%;
-    margin: 0 auto;
-    textarea{
-      width: 100%;
-      height: 20%;
-      height: 20vh;
-      font-family: inherit;
-      font-size: 4vw;
-    }
-  }
-  .btn-content{
-    width: 92%;
-    margin: 0 auto;
     .button{
-      width: 27%;
-      height: 7vh;
+      width: 30%;
       float: right;
-      background-color: #69a33d;
-      color:#fff;
-      font-family: inherit;
+      background-color: #69a33d !important;
+      color: #fff;
     }
   }
 
-
-
-.alignright {
-  float:left;
-}
-
-
-
-// favorite consultedDocDetails
 }

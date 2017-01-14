@@ -10,7 +10,7 @@
 				$loginphno = json_decode($postdata);
         $doctorDetails = array();
 
- 				$sql = "select doctorfname,doctorMname,doctorLname,doctorEmail,doctorPhone,doctorPwd,doctorDegrees,practicingSince,doctorAge,doctorSex,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode,doctorLanguage1,doctorLanguage2,doctorBankName,doctorAccountNum,doctorBankIfsc,doctorFee,doctorSpecialityId,doctorMedFlag,doctorMedNum,onoff from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorPhone='$loginphno'";
+ 				$sql = "select doctorfname,doctorMname,doctorLname,doctorEmail,doctorPhone,doctorPwd,doctorDegrees,practicingSince,doctorAge,doctorSex,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode,doctorLanguage1,doctorLanguage2,doctorBankName,doctorAccountNum,doctorBankIfsc,doctorFee,doctorSpecialityId,doctorMedFlag,doctorMedNum,onoff,sum(rating) as totalRating,count(*) as totalCount from doctorRatings,doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorPhone='$loginphno' and doctorDetails.doctorPhone=doctorRatings.ratingTo";
 				$retval = mysql_query( $sql, $dbhandle );
         while($row = mysql_fetch_array($retval))
         {

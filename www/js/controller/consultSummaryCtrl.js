@@ -3,20 +3,20 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $wi
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 
+	$scope.rating = {};
+	  $scope.rating.rate = 3;
+	  $scope.rating.max = 5;
 
 console.log($localStorage.Doctocall);
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
-console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
 
 var key = this;
-console.log($localStorage.consultedDoctor);
-console.log($localStorage.Doctocall);
 
 $ionicLoading.show();
 
-myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
+myConsultationService.docSummaryDetails($localStorage.docPhone).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();
@@ -40,7 +40,7 @@ $scope.ratingsObject = {
         console.log('Selected rating is : ', rating);
       };
 
-			$scope.unhappy = true;
+
 			var rating={};
 			$rootScope.ratingValue;
 			$scope.ratingsCallback = function(rating) {
@@ -59,7 +59,7 @@ $scope.ratingsObject = {
 								}
 								else
 								{
-										$scope.unhappy = true;
+										$scope.unhappy = false;
 										$scope.happy = false;
 								}
 			};
@@ -74,11 +74,11 @@ $scope.ratingsObject = {
 					var ratedValues={
 						rates:$rootScope.ratingValue,
 						ratedBy:$localStorage.user,
-				 		ratedTo:$localStorage.Doctocall,
+				 		ratedTo:$localStorage.docPhone,
 						// ratedTo:$localStorage.consultedDoctor,
 						ratingComments:$scope.ratingComments.comment
 					};
-
+					console.log(ratedValues);
 					rateDoctorServices.rateDoctor(ratedValues).then(function(response){
 						// console.log(ratedValues);
 						$scope.rated=response;
@@ -134,7 +134,7 @@ rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(functi
 							// var persontocall = "greet+" + $localStorage.consultedDoctor;
 
 					 var persontocall = "greet+" + $localStorage.Doctocall;
-
+					 console.log(persontocall);
 							var success = function(message)
 							{
 								alert(message);
@@ -185,6 +185,60 @@ $scope.added={};
 	 });
 
 }
+$scope.ratingArr = [{
+    value: 1,
+    icon: 'ion-ios-star-outline',
+    ratings: 1
+  }, {
+    value: 2,
+    icon: 'ion-ios-star-outline',
+    ratings: 2
+  }, {
+    value: 3,
+    icon: 'ion-ios-star-outline',
+    ratings: 3
+  }, {
+    value: 4,
+    icon: 'ion-ios-star-outline',
+    ratings: 4
+  }, {
+    value: 5,
+    icon: 'ion-ios-star-outline',
+    ratings: 5
+  }];
+
+  $scope.setRating = function(ratings,val) {
+    var rtgs = $scope.ratingArr;
+    for (var i = 0; i < rtgs.length; i++) {
+      if (i < val) {
+        rtgs[i].icon = 'ion-ios-star';
+      } else {
+        rtgs[i].icon = 'ion-ios-star-outline';
+      }
+    };
+    console.log(ratings);
+		if(ratings <= 3)
+		{
+				$scope.unhappy = true;
+				$scope.happy = false;
+				console.log($scope.unhappy);
+		}
+		else if (ratings >= 4)
+		{
+				$scope.happy = true;
+				$scope.unhappy = false;
+		}
+		else
+		{
+				$scope.unhappy = true;
+				$scope.happy = false;
+		}
+  }
+
+		$scope.ratingss = [{
+			 current: 4,
+			 max: 5
+	 }];
 
 
 })

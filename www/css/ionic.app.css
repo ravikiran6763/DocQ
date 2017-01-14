@@ -10120,27 +10120,23 @@ ion-side-menu.menu-left.menu {
 
 .rating {
   color: #a9a9a9;
-  margin: -13px;
-  padding: 0;
-  font-size: 5vw; }
-
-ul.rating {
-  display: inline-block; }
+  margin: -15%;
+  padding: 0; }
 
 .rating li {
   list-style-type: none;
   display: inline-block;
-  padding: 1px;
+  padding: 1%;
   text-align: center;
   font-weight: bold;
   cursor: pointer;
   border: none !important;
-  font-size: 4vw; }
+  font-size: 100%; }
 
 .rating .filled {
   color: #ffb14c;
   border: none !important;
-  font-size: 4vw; }
+  font-size: 100%; }
 
 /* for Rting Stars*/
 .bar .buttons-left span {
@@ -11135,17 +11131,19 @@ ion-side-menu .heading-item .message {
 
 .ion-android-favorite-outline:before {
   content: "";
-  font-size: 6vw;
-  margin: -1px;
+  font-size: 190%;
+  /* margin: -1px; */
   color: teal;
-  float: right; }
+  float: right;
+  margin-top: 36%; }
 
 .ion-android-favorite:before {
   content: "";
-  font-size: 6vw;
-  margin: -1px;
+  font-size: 190%;
+  /* margin: -1px; */
   color: teal;
-  float: right; }
+  float: right;
+  margin-top: 36%; }
 
 .ion-eye:before {
   content: "";
@@ -11266,7 +11264,8 @@ ion-side-menu .heading-item .message {
         .patientscreen-view .doctorScreen-bottom-content li .profile-img img {
           margin-left: 3%;
           margin-top: -5%;
-          width: 95%; }
+          width: 100%;
+          border-radius: 100%; }
       .patientscreen-view .doctorScreen-bottom-content li .next-icon {
         width: 5%;
         float: right;
@@ -11570,8 +11569,8 @@ ion-side-menu .heading-item .message {
         .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
           position: absolute;
           position: absolute;
-          margin-left: 57%;
-          margin-top: -3%;
+          margin-left: 59%;
+          margin-top: 3.5%;
           text-overflow: ellipsis; }
         .mydoctor-profile-view .myDoctor-list li .name-content h2 {
           margin: 2%;
@@ -11579,9 +11578,10 @@ ion-side-menu .heading-item .message {
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 50%; }
-        .mydoctor-profile-view .myDoctor-list li .name-content .ratingStars {
+        .mydoctor-profile-view .myDoctor-list li .name-content .ratingContainer {
+          margin-top: -8.5%;
           margin-left: 53%;
-          margin-top: -2%; }
+          width: 38%; }
 
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
@@ -11734,61 +11734,47 @@ ion-side-menu .heading-item .message {
 .callAccpted-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
-  .callAccpted-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .callAccpted-view .profile-img {
-    width: 30%;
-    height: 25% !important;
-    margin: 0 auto; }
-    .callAccpted-view .profile-img img {
-      width: 30vw;
-      border-radius: 60%;
-      padding: 5px;
-      background-color: #dedad7 !important;
-      margin-top: 4vh; }
-    .callAccpted-view .profile-img i {
-      position: absolute;
-      padding-left: 72px;
-      padding-top: 24px; }
-  .callAccpted-view .profile-info {
-    margin: 0 auto;
-    width: 90%;
-    height: 15%; }
-    .callAccpted-view .profile-info h1, .callAccpted-view .profile-info h2, .callAccpted-view .profile-info h3 {
-      font-family: Ubuntu,bold,sans-serif !important;
+  .callAccpted-view .top-content {
+    width: 100%;
+    height: 40%; }
+    .callAccpted-view .top-content .imageContainer {
+      width: 30%;
+      height: 25% !important;
+      margin: 0 auto; }
+      .callAccpted-view .top-content .imageContainer img {
+        width: 100%;
+        border-radius: 60%;
+        padding: 6%;
+        background-color: #dedad7 !important;
+        margin-top: 14%; }
+      .callAccpted-view .top-content .imageContainer i {
+        position: absolute;
+        padding-left: 23%;
+        padding-top: 0;
+        margin-top: 5%; }
+    .callAccpted-view .top-content h1 {
+      font-size: 130%;
+      text-align: center;
+      margin-top: 24%;
+      line-height: 20%; }
+    .callAccpted-view .top-content h2 {
+      font-size: 85%;
       text-align: center; }
-    .callAccpted-view .profile-info h1 {
-      font-size: 5vw; }
-    .callAccpted-view .profile-info h2 {
-      font-size: 4vw;
-      line-height: 0vh;
-      color: #666666 !important; }
-    .callAccpted-view .profile-info h3 {
-      font-size: 3vw;
-      color: #666666 !important; }
-  .callAccpted-view h4 {
-    font-size: 18px;
-    width: 81%;
-    margin: 0 auto;
-    font-size: 5vw;
-    text-align: center;
-    color: #6fa02d; }
   .callAccpted-view .rating-field {
     height: 10%; }
+    .callAccpted-view .rating-field h4 {
+      text-align: center;
+      width: 90%;
+      margin: 0 auto;
+      color: #4b9a0c;
+      font-size: 112%; }
   .callAccpted-view .bottom-content {
     height: 52%; }
-    .callAccpted-view .bottom-content h4 {
-      font-size: 4vw;
-      line-height: 0vh;
-      text-align: center;
-      margin-top: 6vh;
-      font-family: Ubuntu,bold,sans-serif !important; }
     .callAccpted-view .bottom-content h5 {
-      font-size: 3vw;
-      line-height: 0vh;
+      font-size: 88%;
+      line-height: 0%;
       text-align: center;
-      margin-top: 3vh;
+      margin-top: 8%;
       font-family: Ubuntu,bold,sans-serif !important; }
     .callAccpted-view .bottom-content .button-content {
       margin: 0 auto;
@@ -12289,121 +12275,72 @@ ion-side-menu .heading-item .message {
 .summary-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
-  .summary-view .title .title-left .header-item {
-    left: 0px !important;
-    right: 0px !important; }
-  .summary-view ion-content {
-    overflow: scroll !important; }
-  .summary-view .row {
-    padding: 6px !important;
-    margin: 0 !important; }
-  .summary-view .card {
-    height: 22%;
-    width: 94%;
-    margin: 0 auto; }
-  .summary-view .badge.badge-positive {
-    background-color: #e81616;
-    color: #fff;
-    margin: -2px;
-    float: right; }
-  .summary-view .badge {
-    background-color: transparent;
-    color: #AAAAAA;
-    z-index: 1;
-    /* display: inline-block; */
-    padding: 1px 5px;
-    /* min-width: 10px; */
-    border-radius: 10px;
-    vertical-align: baseline;
-    /* text-align: center; */
-    white-space: nowrap;
-    font-weight: bold;
-    font-size: 14px;
-    line-height: 16px; }
-  .summary-view .ratingContainer {
-    position: relative;
-    /* margin-top: -2vh; */
-    /* margin-right: -23px; */
-    margin-left: 36vw; }
   .summary-view .top-content {
-    width: 100%;
-    height: 20%; }
-    .summary-view .top-content li {
-      height: 31.3%;
-      border-bottom: 1px solid #fff;
-      *zoom: 1; }
-      .summary-view .top-content li:before, .summary-view .top-content li:after {
-        display: table;
-        content: "";
-        line-height: 0; }
-      .summary-view .top-content li:after {
-        clear: both; }
-      .summary-view .top-content li:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto; }
-      .summary-view .top-content li .profile-img {
-        width: 15vw;
-        float: left;
-        margin: 2vh 0px 0px 2vh; }
-        .summary-view .top-content li .profile-img img {
-          border-radius: 50%;
-          width: 20vw;
-          padding: 5px; }
-      .summary-view .top-content li .next-icon {
-        width: 4vw;
+    width: 100% !important;
+    height: 15% !important;
+    margin: 0 auto; }
+    .summary-view .top-content .details {
+      width: 90% !important;
+      margin: 0 auto !important; }
+      .summary-view .top-content .details .profileImage {
+        width: 20%;
+        margin-top: 4%; }
+        .summary-view .top-content .details .profileImage img {
+          border-radius: 100%;
+          width: 100%;
+          border: 5% solid #dedae9; }
+      .summary-view .top-content .details .name-content {
+        width: 75%;
+        margin-top: -15%;
+        margin-left: 22%; }
+        .summary-view .top-content .details .name-content h2 {
+          line-height: 0 !important;
+          font-size: 104%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important; }
+        .summary-view .top-content .details .name-content p {
+          font-size: 85%; }
+        .summary-view .top-content .details .name-content .ratingContainer {
+          margin-top: -14.5%;
+          margin-left: 60%;
+          width: 38%; }
+      .summary-view .top-content .details .next-icon {
+        width: 5%;
         float: right;
-        text-align: center;
-        margin-right: 10px;
-        height: 100%;
-        line-height: 14vh; }
-        .summary-view .top-content li .next-icon .ion-chevron-right:before {
-          color: #ffffff;
-          font-size: 1.8em;
-          padding: 25px 0 0 0; }
-      .summary-view .top-content li .name-content {
-        float: left;
-        padding: 5vh 0 3vh 4vh;
-        height: 100%; }
-        .summary-view .top-content li .name-content p {
-          font-size: 3.2vw;
-          line-height: 0.3vh;
-          margin: 0px; }
-        .summary-view .top-content li .name-content h2 {
-          font-size: 5vw;
-          font-family: Ubuntu,bold,sans-serif !important;
-          line-height: 6vw; }
-  .summary-view .right-side {
-    float: right; }
-  .summary-view .suggestion {
+        margin-top: -13%; }
+        .summary-view .top-content .details .next-icon .ion-chevron-right:before {
+          color: black; }
+  .summary-view .rateClass {
+    height: 30%;
+    margin-top: 6%; }
+    .summary-view .rateClass .row {
+      padding: 0 !important; }
+    .summary-view .rateClass .card {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin: 2% 2% !important;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
+      .summary-view .rateClass .card .col {
+        padding: 2%;
+        margin-left: 6%; }
+      .summary-view .rateClass .card .col-75 {
+        padding: 8% !important; }
+  .summary-view .lowRatesComment {
     width: 90%;
+    height: 45%;
     margin: 0 auto; }
-    .summary-view .suggestion h2 {
-      font-size: 4vw;
-      font-family: inherit;
-      text-align: center; }
-    .summary-view .suggestion p {
-      margin: 12px 11px 12px; }
-  .summary-view .query-text {
-    width: 92%;
-    margin: 0 auto; }
-    .summary-view .query-text textarea {
-      width: 100%;
-      height: 20%;
-      height: 20vh;
-      font-family: inherit;
-      font-size: 4vw; }
-  .summary-view .btn-content {
-    width: 92%;
-    margin: 0 auto; }
-    .summary-view .btn-content .button {
-      width: 27%;
-      height: 7vh;
-      float: right;
-      background-color: #69a33d;
-      color: #fff;
+    .summary-view .lowRatesComment p {
+      text-align: center;
+      font-size: 100%; }
+    .summary-view .lowRatesComment textarea {
+      width: 100% !important;
+      height: 38% !important;
       font-family: inherit; }
-  .summary-view .alignright {
-    float: left; }
+    .summary-view .lowRatesComment .button {
+      width: 30%;
+      float: right;
+      background-color: #69a33d !important;
+      color: #fff; }
 
 .search-view {
   background-color: #e2e2e2;
@@ -12612,8 +12549,28 @@ ion-side-menu .heading-item .message {
         margin-top: 4%; }
   .ViewDoctorProfile-view .bottom-content {
     width: 100%;
+    height: 45%; }
+    .ViewDoctorProfile-view .bottom-content h4 {
+      font-size: 130%;
+      text-align: center;
+      line-height: 5%; }
+    .ViewDoctorProfile-view .bottom-content .buttons {
+      margin-top: 10%; }
+      .ViewDoctorProfile-view .bottom-content .buttons .button {
+        width: 85%;
+        margin-left: 8%; }
+  .ViewDoctorProfile-view .offline-content {
+    width: 100%;
     height: 45%;
     background-color: green; }
+    .ViewDoctorProfile-view .offline-content h4 {
+      font-size: 130%;
+      text-align: center; }
+    .ViewDoctorProfile-view .offline-content .buttons {
+      margin-top: 10%; }
+      .ViewDoctorProfile-view .offline-content .buttons .button {
+        width: 85%;
+        margin-left: 8%; }
 
 .doctorscreen-view {
   font-family: Ubuntu,bold,sans-serif !important;

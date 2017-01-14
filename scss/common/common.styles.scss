@@ -337,27 +337,25 @@ height: 100%;
 }
 .rating {
     color: #a9a9a9;
-    margin: -13px;
+    margin: -15%;
     padding: 0;
-    font-size: 5vw
+
 }
-ul.rating {
-    display: inline-block;
-}
+
 .rating li {
   list-style-type: none;
   display: inline-block;
-  padding: 1px;
+  padding: 1%;
   text-align: center;
   font-weight: bold;
   cursor: pointer;
   border: none !important;
-  font-size: 4vw;
+  font-size: 100%;
 }
 .rating .filled {
     color: #ffb14c;
     border: none !important;
-    font-size: 4vw;
+    font-size: 100%;
 }
 
 /* for Rting Stars*/
