@@ -12831,97 +12831,38 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-request-view .top-content {
     width: 100%;
-    height: auto;
-    text-align: center; }
-    .patient-request-view .top-content img {
-      position: relative;
-      width: 25vmin;
-      height: 25vmin;
-      margin-top: 2vh;
-      margin-left: -2vw;
-      border-radius: 60%; }
+    height: 40%; }
+    .patient-request-view .top-content .imageContainer {
+      width: 30%;
+      height: 25% !important;
+      margin: 0 auto; }
+      .patient-request-view .top-content .imageContainer img {
+        width: 100%;
+        border-radius: 60%;
+        padding: 6%;
+        background-color: #dedad7 !important;
+        margin-top: 14%; }
+      .patient-request-view .top-content .imageContainer i {
+        position: absolute;
+        padding-left: 23%;
+        padding-top: 0;
+        margin-top: 5%; }
     .patient-request-view .top-content h1 {
-      position: absolute;
-      width: 100%;
-      font-size: 6vw;
-      margin-left: -6vw;
-      margin-top: 1vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
+      font-size: 130%;
       text-align: center;
-      font-family: Ubuntu,bold,sans-serif !important; }
+      margin-top: 24%;
+      line-height: 20%; }
     .patient-request-view .top-content h2 {
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: 5vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
-      line-height: -2px;
-      text-align: center;
-      font-weight: lighter;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content h3 {
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: 8vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
-      line-height: -2px;
-      text-align: center;
-      font-weight: lighter;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content h4 {
-      position: absolute;
-      width: 100%;
-      font-size: 6vw;
-      margin-left: -8vw;
-      margin-top: 12vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
-      text-align: center;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content h5 {
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: 17vh !important;
-      padding-bottom: 2% !important;
-      word-spacing: 1px;
-      line-height: -4px;
-      text-align: center;
-      font-weight: lighter;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content .user-image {
-      padding: 5px;
-      background-color: #dedad7 !important;
-      margin-left: -4vw; }
-    .patient-request-view .top-content .profile-container {
-      margin-top: 1vh;
-      margin-bottom: 1vh;
-      margin-left: 1vh;
-      margin-right: 100px;
-      text-align: center;
-      padding: 20px;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .patient-request-view .top-content .user-image-container {
-      width: 60% !important;
-      height: auto;
-      margin-left: 30vw;
-      margin-top: -5vh;
-      font-family: Ubuntu,bold,sans-serif !important; }
+      font-size: 85%;
+      text-align: center; }
   .patient-request-view .callReq {
     width: 100%;
-    margin-top: 23vh !important; }
+    margin-top: 17% !important; }
     .patient-request-view .callReq h4, .patient-request-view .callReq h5 {
       text-align: center !important; }
   .patient-request-view .callAcc {
     width: 100%;
-    margin-top: 23vh !important; }
+    margin-top: 17% !important; }
     .patient-request-view .callAcc h4, .patient-request-view .callAcc h5 {
       text-align: center !important; }
     .patient-request-view .callAcc h4 {
@@ -12935,7 +12876,6 @@ ion-side-menu .heading-item .message {
   .patient-request-view i {
     position: inherit !important;
     margin-left: 46vw !important;
-    margin-top: 12vh !important;
     font-size: 15vw !important; }
   .patient-request-view .row {
     margin-right: 0;
@@ -12949,24 +12889,21 @@ ion-side-menu .heading-item .message {
     .patient-request-view .bottom-content .button {
       color: #100;
       font-weight: medium;
-      font-size: 6vw;
+      font-size: 145%;
       width: 100%;
-      height: 35vh;
       background-color: #e2e2e2;
       box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
       font-family: Ubuntu,bold,sans-serif !important; }
     .patient-request-view .bottom-content .deny-btn {
       background-image: url(../img/dq_request_decline_up_540x960.png);
-      background-size: 80px 60px;
       background-position: center;
       background-repeat: no-repeat;
-      padding-top: 25vh; }
+      padding-top: 45%; }
     .patient-request-view .bottom-content .accpt-btn {
       background-image: url(../img/dq_request_accept_up_540x960.png);
-      background-size: 80px 60px;
       background-position: center;
       background-repeat: no-repeat;
-      padding-top: 25vh; }
+      padding-top: 45%; }
 
 .patient-notes-view {
   background-color: #e2e2e2 !important;
