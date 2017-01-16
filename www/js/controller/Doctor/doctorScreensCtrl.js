@@ -193,7 +193,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     })
 
 
-    // $interval(callAtInterval, 5000);
+    $interval(callAtInterval, 6000);
     //$interval(lookForPrescription, 1000);
 
    	function callAtInterval() {

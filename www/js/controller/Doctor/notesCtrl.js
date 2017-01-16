@@ -19,6 +19,7 @@ console.log($localStorage.reqPat);
     console.log('failure data', error);
   })
 
+  $ionicLoading.show();
 		$scope.patientfname = $stateParams.calPtFname;
 		$scope.patientlname = $stateParams.calPtLname;
     $scope.patientImage = $stateParams.calPtImage;

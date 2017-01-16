@@ -7,24 +7,11 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
-    
-
     medicalSpecialityService.getMedicalSpecialist().then(function(response){
+      $ionicLoading.show();
         console.log('successfull data', response);
         $scope.specialitiesList = response;
-        if($scope.specialitiesList){
-          $ionicLoading.show({
-                template: '<p>Fetching Specialities...</p><ion-spinner></ion-spinner>'
-              });
-
-              $timeout(function () {
-                console.log('timeout');
-               $ionicLoading.hide();
-             }, 10000);
-        }
-
-
-        $ionicLoading.hide();
+          $ionicLoading.hide();
      }).catch(function(error){
          console.log('failure data', error);
      });

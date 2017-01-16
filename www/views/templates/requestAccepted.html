@@ -2,31 +2,24 @@
   <ion-nav-title>
    <span>Call</span>
  </ion-nav-title>
-  <ion-content scroll="false" ng-repeat="pt in reqAccpt">
-    <div class="top-content row">
+  <ion-content scroll="false" >
 
-      <div class="profile-container">
-        <div class="user-image-container">
-          <pre-img ratio="_1_1" helper-class="rounded-image">
-            <!--<img class="user-image" ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" spinner-on-load>-->
-            <img class="user-image " ng-src="img/patient.jpg" spinner-on-load>
-          </pre-img>
-        </div>
-        <h1>{{pt.patientFname}} {{pt.patientLname}}</h1>
-        <h2>{{pt.patientSex}},Age:{{pt.patientAge}}</h2>
-        <!-- <h3>Bangalore,India</h3> -->
-        <h4>Call Ended</h4><!--Consultation accepted-->
-        <h5>If call ended unexpectedly please wait for the callback</h5><!--Please wait for the call-->
+    <div class="top-content"  >
+      <div class="imageContainer">
+        <img class="item-icon-right" ng-src="img/doc.jpg" >
       </div>
-
+      <h1>{{pfname}} {{plname}}</h1>
+      <h2>{{psex}},Age:{{page}}</h2>
 
     </div>
-    <div class="bottom-content row">
-      <div class="col col-center">
-        <a class="login button button-block button-stable" ui-sref="templates.notesForPatient({calPtFname:pt.patientFname,calPtLname:pt.patientLname,calPtPh:pt.patientPhone,calPtImage:pt.image})">
-          End Consultation
-        </a>
-      </div>
+    <div class="middle-content">
+      <h2>Call Ended</h2><!--Consultation accepted-->
+      <h3>If call ended unexpectedly<br> please wait for the callback</h5><!--Please wait for the call-->
     </div>
+
+    <div class="bottom-content">
+      <button class=" button button-block button-assertive"  ui-sref="templates.notesForPatient({calPtFname:pt.patientFname,calPtLname:pt.patientLname,calPtPh:pt.patientPhone,calPtImage:pt.image})">End Consultation</button>
+    </div>
+  
   </ion-content>
 </ion-view>

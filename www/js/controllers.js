@@ -22,7 +22,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$scope.patientlname = $stateParams.ptLname;
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
-
+		console.log($scope.patientfname);
 		// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
 
 
@@ -192,9 +192,9 @@ DoctorQuickApp.controller('callAccptCtrl', function($scope,$rootScope, $statePar
 		}
 		console.log(docpatphno);
 		patientrequesttodoctor.accpetedbydoctor(docpatphno).then(function(response){
-			$scope.reqAccpt=response;
+			$scope.reqAccpted=response;
 			$ionicLoading.hide();
-			console.log($scope.reqAccpt);
+			console.log($scope.reqAccpted);
 
 		}).catch(function(error){
 			console.log('failure data', error);

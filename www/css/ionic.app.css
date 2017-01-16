@@ -10161,14 +10161,14 @@ ion-side-menu.menu-left.menu {
   margin-top: 1vh; }
 
 .loginPopup .popup {
-  position: relative;
-  width: 100%;
   background-color: #6fa02d;
-  top: 42vh;
-  bottom: 0; }
+  position: absolute;
+  width: 100%;
+  height: 25%;
+  margin-top: 62%; }
 
 .loginPopup .popup-head {
-  padding: 15px 10px;
+  padding: 3%;
   border-bottom: 0px;
   text-align: center; }
 
@@ -10723,16 +10723,11 @@ ion-spinner.spinner-on-load {
       height: 17% !important;
       padding-left: 10px;
       width: 100% !important; }
-  .dqLogin-view .login-content .login_button {
-    background-color: #6aa13e;
+  .dqLogin-view .login-content .button {
     color: #ffffff;
     height: 9% !important;
     width: 80%;
-    margin: 4% 0 0 10%;
-    border: 1px solid #5c9944; }
-    .dqLogin-view .login-content .login_button span {
-      color: #dbe5d3;
-      font-size: 100% !important; }
+    margin: 4% 0 0 10%; }
   .dqLogin-view .login-content .tAndC {
     width: 100% !important;
     height: 10% !important;
@@ -10776,7 +10771,8 @@ ion-spinner.spinner-on-load {
     /* height: 40px; */
     margin-top: 8%;
     position: absolute;
-    width: 80%; }
+    width: 80%;
+    margin-left: 0%; }
 
 .dqLogin-view .bottom-content {
   width: 100% !important;
@@ -12911,69 +12907,30 @@ ion-side-menu .heading-item .message {
   .patient-notes-view ion-content {
     overflow-y: scroll !important; }
   .patient-notes-view .buttons {
-    margin-top: 5vh; }
-  .patient-notes-view .col {
-    display: block;
-    padding: 4px;
-    width: 100%;
-    margin: 4px 2px 0 11px; }
-  .patient-notes-view .item-avatar {
-    background-color: #e2e2e2;
-    width: 100%;
-    width: 100vmin;
-    text-align: left;
-    margin-top: 0vh;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    border-width: auto;
-    padding-bottom: 2px; }
-    .patient-notes-view .item-avatar img {
-      margin-top: -1vh !important;
-      margin-left: -1vw !important;
-      padding: 5px;
-      background-color: #dedad7 !important;
-      max-width: 100%;
-      max-height: 100%;
-      height: 16vmin;
-      width: 16vmin !important; }
-    .patient-notes-view .item-avatar h2 {
-      font-size: 5vw;
-      margin-left: 5vw;
-      margin-top: 2vh; }
-    .patient-notes-view .item-avatar p {
-      font-size: 4vw;
-      margin-top: 1vh;
-      margin-left: 5vw;
-      font-weight: 300; }
-    .patient-notes-view .item-avatar .icon {
-      margin-left: 2vw;
-      padding-right: 20px;
-      padding-top: 18px; }
-  .patient-notes-view .item-avatar:first-child {
-    border-top: none; }
-  .patient-notes-view .item-avatar:last-child {
-    border-bottom: none;
-    display: block;
-    position: absolute;
-    margin-bottom: 80px !important; }
+    margin-top: 5vh;
+    width: 85%;
+    margin: 0 auto; }
   .patient-notes-view .card {
     font-size: 4vw;
-    max-width: 100%;
-    width: 90vmin;
-    margin-left: 5vw;
-    margin-top: 2vh; }
+    max-width: 100%; }
     .patient-notes-view .card .row {
-      height: 8%; }
-    .patient-notes-view .card i {
-      font-size: 5vw; }
+      height: 8%;
+      margin: 0;
+      padding: 0; }
     .patient-notes-view .card .checkbox {
-      position: relative;
-      margin: -2px 0px 0 1px !important; }
+      position: absolute;
+      margin: 0 0 0 66%;
+      padding-left: 6%;
+      padding-top: 2%; }
+    .patient-notes-view .card i {
+      font-size: 140%;
+      position: absolute;
+      margin-left: 17%;
+      margin-top: 2%; }
     .patient-notes-view .card .checkbox label:after {
       content: 'hello';
-      width: 14px;
-      height: 7px;
+      width: 50%;
+      height: 20%;
       position: relative;
       top: 1px;
       left: -1px;
@@ -12984,16 +12941,6 @@ ion-side-menu .heading-item .message {
       opacity: 0;
       -webkit-transform: rotate(-45deg);
       transform: rotate(-45deg); }
-    .patient-notes-view .card button-small {
-      background-color: red; }
-    .patient-notes-view .card .item {
-      max-width: 100%;
-      width: 15vmin;
-      margin-left: 0vw;
-      padding-left: 16px;
-      border: none;
-      position: absolute;
-      padding-right: 16px; }
   .patient-notes-view .description {
     width: 80vmin;
     height: 20%;
@@ -13003,138 +12950,84 @@ ion-side-menu .heading-item .message {
     text-align: center;
     font-size: 4vw; }
   .patient-notes-view .button {
-    margin-left: 8vw !important;
-    margin-top: 2vh;
     border: none;
     color: #FFFFFF;
     font-weight: bolder;
-    font-size: 4.5vw;
-    max-width: 100%;
-    width: 85vmin;
-    height: 10%; }
+    font-size: 4.5vw; }
   .patient-notes-view .top-content {
-    height: 75%;
-    text-align: center; }
-  .patient-notes-view .bottom-content {
-    height: 25%;
-    padding-top: 5px;
-    margin-top: 0px; }
-    .patient-notes-view .bottom-content .login.button {
-      background-color: rgba(56, 126, 245, 0.8); }
-    .patient-notes-view .bottom-content .sign-up.button {
-      background-color: rgba(255, 76, 76, 0.8); }
+    width: 100% !important;
+    height: 15% !important;
+    margin: 0 auto; }
+    .patient-notes-view .top-content .details {
+      width: 90% !important;
+      margin: 0 auto !important; }
+      .patient-notes-view .top-content .details .profileImage {
+        width: 25%;
+        margin-top: 4%; }
+        .patient-notes-view .top-content .details .profileImage img {
+          border-radius: 100%;
+          width: 85%;
+          border: 5% solid #dedae9; }
+      .patient-notes-view .top-content .details .name-content {
+        width: 75%;
+        margin-left: 27%; }
+        .patient-notes-view .top-content .details .name-content h2 {
+          margin-top: -18%;
+          font-size: 104%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-notes-view .notesDescription {
+    width: 80%;
+    margin: 0 auto; }
+    .patient-notes-view .notesDescription p {
+      text-align: center;
+      font-size: 100%; }
 
 .call-view {
-  font-family: Ubuntu,bold,sans-serif !important;
-  background-color: #858583 !important; }
-  .call-view body {
-    width: 100;
-    height: auto;
-    min-width: 320px;
-    background-color: red; }
+  background-color: #aaaaaa !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
   .call-view .top-content {
     width: 100%;
-    height: auto;
-    text-align: center; }
-    .call-view .top-content img {
-      position: relative;
-      width: 25vmin;
-      height: 25vmin;
-      margin-top: 2vh;
-      margin-left: -2vw;
-      border-radius: 60%; }
+    height: 40%; }
+    .call-view .top-content .imageContainer {
+      width: 30%;
+      height: 25% !important;
+      margin: 0 auto; }
+      .call-view .top-content .imageContainer img {
+        width: 100%;
+        border-radius: 60%;
+        padding: 6%;
+        background-color: #dedad7 !important;
+        margin-top: 14%; }
+      .call-view .top-content .imageContainer i {
+        position: absolute;
+        padding-left: 23%;
+        padding-top: 0;
+        margin-top: 5%; }
     .call-view .top-content h1 {
-      position: absolute;
-      width: 100%;
-      font-size: 5vw;
-      margin-left: -6vw;
-      margin-top: 0vh !important;
-      padding-bottom: 2%;
-      /* word-spacing: 1px; */
+      font-size: 130%;
       text-align: center;
-      color: white;
-      font-weight: 400;
-      /* text-shadow: 2px 0px black !important; */ }
+      margin-top: 24%;
+      line-height: 20%;
+      color: #ffffff; }
     .call-view .top-content h2 {
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: 3vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
-      line-height: -2px;
+      font-size: 85%;
       text-align: center;
-      font-weight: 300;
-      color: white; }
-    .call-view .top-content h3 {
-      position: absolute;
-      width: 100%;
-      font-size: 4vw;
-      margin-left: -6vw;
-      margin-top: 5vh !important;
-      padding-bottom: 2%;
-      word-spacing: 1px;
-      line-height: -2px;
-      text-align: center;
-      font-weight: 300;
-      color: white; }
-    .call-view .top-content h4 {
-      position: absolute;
-      width: 100%;
-      font-size: 12vw;
-      margin-left: -6vw;
-      margin-top: 17vh !important;
-      padding-bottom: 2%;
-      /* word-spacing: 1px; */
-      text-align: center;
-      color: white;
-      text-shadow: 2px 0px black !important; }
-    .call-view .top-content h5 {
-      position: absolute;
-      /* width: 100%; */
-      font-size: 5vw;
-      margin-left: -10vw;
-      margin-top: 29vh !important;
-      padding-left: 63px;
-      padding-right: 50px;
-      word-spacing: 1px;
-      line-height: -4px;
-      text-align: center;
-      color: white; }
-    .call-view .top-content .user-image {
-      padding: 5px;
-      background-color: #dedad7 !important;
-      margin-left: -4vw; }
-    .call-view .top-content .profile-container {
-      margin-top: 1vh;
-      margin-bottom: 1vh;
-      margin-left: 1vh;
-      margin-right: 100px;
-      text-align: center;
-      padding: 20px; }
-    .call-view .top-content .user-image-container {
-      width: 60% !important;
-      height: auto;
-      margin-left: 30vw;
-      margin-top: -5vh; }
+      color: #ffffff; }
+  .call-view .middle-content {
+    height: 30%;
+    width: 100%; }
+    .call-view .middle-content h2 {
+      font-size: 250%;
+      color: #fff;
+      text-align: center; }
+    .call-view .middle-content h3 {
+      font-size: 135%;
+      color: #fff;
+      text-align: center; }
   .call-view .bottom-content {
-    height: 40%;
-    padding-top: 5px;
-    margin-top: 35vh; }
-    .call-view .bottom-content .button-bar {
-      width: 100% !important; }
-    .call-view .bottom-content .button {
-      border: none;
-      border-radius: 3px;
-      box-shadow: 1px 1px 1px 0px #888888; }
-    .call-view .bottom-content .login.button {
-      background-color: #6aa13e;
-      font-size: 4vw;
-      width: 80vmin;
-      margin-left: 10vw !important;
-      font-weight: 500;
-      color: white; }
+    width: 80%;
+    margin: 0 auto; }
 
 .doc-sidemenu {
   background-color: #20242c !important; }
@@ -13190,87 +13083,48 @@ ion-side-menu .heading-item .message {
 .prescription-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
-  .prescription-view .item-avatar {
-    background-color: #e2e2e2;
-    width: 100%;
-    width: 100vmin;
-    text-align: left;
-    margin-top: -35vh;
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    border-width: auto;
-    padding-bottom: 2px; }
-    .prescription-view .item-avatar img {
-      margin-top: -1vh !important;
-      margin-left: -1vw !important;
-      padding: 5px;
-      background-color: #dedad7 !important;
-      max-width: 100%;
-      max-height: 100%;
-      height: 16vmin;
-      width: 16vmin !important; }
-    .prescription-view .item-avatar h2 {
-      font-size: 5vw;
-      margin-left: 5vw; }
-    .prescription-view .item-avatar p {
-      font-size: 4vw;
-      margin-top: 1vh;
-      margin-left: 5vw;
-      font-weight: 300; }
-    .prescription-view .item-avatar .icon {
-      margin-left: 2vw;
-      padding-right: 20px;
-      padding-top: 18px; }
   .prescription-view .top-content {
-    height: 75%;
-    text-align: center; }
-    .prescription-view .top-content .clear-field {
+    width: 100% !important;
+    height: 12% !important;
+    margin: 0 auto; }
+    .prescription-view .top-content .details {
+      width: 90% !important;
+      margin: 0 auto !important; }
+      .prescription-view .top-content .details .profileImage {
+        width: 25%;
+        margin-top: 2%; }
+        .prescription-view .top-content .details .profileImage img {
+          border-radius: 100%;
+          width: 85%;
+          border: 5% solid #dedae9; }
+      .prescription-view .top-content .details .name-content {
+        width: 75%;
+        margin-left: 26%; }
+        .prescription-view .top-content .details .name-content h2 {
+          margin-top: -18%;
+          font-size: 104%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important; }
+  .prescription-view .buttons {
+    width: 90%;
+    margin: 0 auto; }
+    .prescription-view .buttons .clear-field {
       color: #343434;
       margin-top: 4vh;
       margin-left: 0vw;
-      font-size: 4vw;
       float: left;
       font-weight: 300; }
-    .prescription-view .top-content .done {
+    .prescription-view .buttons .done {
       color: #343434;
       margin-top: 4vh;
       /* margin-left: 60vw; */
       float: right;
-      font-size: 4vw;
       font-weight: 300; }
-    .prescription-view .top-content .textform {
-      max-width: 100%;
-      width: 100%;
-      height: 45vh;
-      margin-top: 24vh;
-      margin-left: -3vw;
-      position: absolute;
-      box-shadow: 0px -5px 10px rgba(50, 50, 50, 0.75);
-      top: 5; }
-      .prescription-view .top-content .textform textarea {
-        position: relative;
-        width: 100%;
-        margin-left: -2vw;
-        padding: 2px auto;
-        margin-top: 0vh !important;
-        height: 45vh !important;
-        font-size: 5vw; }
-  .prescription-view .bottom-content {
-    height: 25%;
-    padding-top: 5px;
-    margin-top: 0px; }
-    .prescription-view .bottom-content .button {
-      border: none;
-      color: #FFFFFF;
-      font-weight: bolder;
-      font-size: 20px; }
-    .prescription-view .bottom-content .login.button {
-      background-color: rgba(56, 126, 245, 0.8); }
-    .prescription-view .bottom-content .sign-up.button {
-      background-color: rgba(255, 76, 76, 0.8); }
-  .prescription-view .row {
-    margin: 0 !important; }
+  .prescription-view .prescText textarea {
+    width: 100% !important;
+    height: 50% !important;
+    font-family: inherit;
+    padding: 5%; }
 
 .patient-chat-view {
   background-color: #e7e7e7 !important;
