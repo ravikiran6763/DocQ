@@ -10160,6 +10160,15 @@ ion-side-menu.menu-left.menu {
 .notificationOn {
   margin-top: 1vh; }
 
+.dqAlerts .popup {
+  border-radius: 2%; }
+
+.dqAlerts .popup-head {
+  padding: 0% !important; }
+
+.dqAlerts .popup-body {
+  text-align: center; }
+
 .loginPopup .popup {
   background-color: #6fa02d;
   position: absolute;
@@ -10880,7 +10889,7 @@ ion-spinner.spinner-on-load {
           margin-left: -70%; }
         .forgotPassword-view .top-content .regTitle .regHeader p {
           margin-top: 9%;
-          font-size: 145%;
+          font-size: 100%;
           text-align: center; }
         .forgotPassword-view .top-content .regTitle .regHeader .regFlowImg {
           width: 50% !important;
@@ -10894,23 +10903,27 @@ ion-spinner.spinner-on-load {
           .forgotPassword-view .top-content .regTitle .regHeader .regMsg p {
             font-size: 92%;
             color: black; }
+        .forgotPassword-view .top-content .regTitle .regHeader h3 {
+          text-align: center;
+          font-size: 130%;
+          color: black; }
   .forgotPassword-view .form-content {
-    height: 35% !important;
+    height: 20% !important;
     margin-top: 0 !important; }
     .forgotPassword-view .form-content .form-group {
       width: 80% !important;
       margin: 0 auto; }
       .forgotPassword-view .form-content .form-group input[type="number"] {
         margin-top: 8% !important;
-        height: 25% !important;
+        height: 50% !important;
         padding-left: 7%;
         width: 100% !important; }
   .forgotPassword-view .bottom-content {
-    height: 30% !important;
     width: 90%;
     margin: 0 auto; }
     .forgotPassword-view .bottom-content .button {
-      width: 100% !important; }
+      width: 90% !important;
+      margin: 0 auto; }
     .forgotPassword-view .bottom-content .tAndC {
       width: 80% !important;
       height: 20% !important;
@@ -11345,6 +11358,8 @@ ion-side-menu .heading-item .message {
       .profile-view .profileDetails .card .col {
         padding: 2%;
         margin-left: 6%; }
+    .profile-view .profileDetails i {
+      margin-top: 3%; }
   .profile-view .docProfileDetails {
     height: 80%;
     margin-top: 5%;
@@ -11357,6 +11372,8 @@ ion-side-menu .heading-item .message {
       .profile-view .docProfileDetails .card .col {
         padding: 2%;
         margin-left: 6%; }
+      .profile-view .docProfileDetails .card i {
+        margin-top: 3%; }
 
 .consultationList-view {
   background-color: #e2e2e2 !important;
@@ -11460,7 +11477,6 @@ ion-side-menu .heading-item .message {
         .customercare-view .top-content .queryContent .sendButton .button {
           width: 30%;
           float: right;
-          background-color: #69a33d !important;
           color: #fff; }
   .customercare-view .bottom-content {
     width: 100%;
@@ -11488,7 +11504,6 @@ ion-side-menu .heading-item .message {
         text-align: center;
         margin: 0 auto; }
         .customercare-view .bottom-content .callBack .callBackButton .button {
-          background-color: #69a33d !important;
           color: #fff;
           width: 100%; }
 
@@ -12010,16 +12025,13 @@ ion-side-menu .heading-item .message {
       margin: 0 auto; }
       .sepecility-details-view .sendRequest .reqMsg p {
         text-align: center; }
-    .sepecility-details-view .sendRequest .login_button {
-      background-color: #6aa13e;
-      color: #ffffff;
-      height: 9% !important;
-      width: 80%;
-      margin: 20% 0 0 10%;
-      border: 1px solid #5c9944; }
-      .sepecility-details-view .sendRequest .login_button span {
-        color: #dbe5d3;
-        font-size: 100% !important; }
+    .sepecility-details-view .sendRequest .buttons {
+      width: 100%;
+      height: 20%;
+      margin-top: 15%; }
+      .sepecility-details-view .sendRequest .buttons .button {
+        width: 85%;
+        margin-left: 8%; }
 
 .patient-refund-view {
   background-color: #e2e2e2 !important;
@@ -12350,6 +12362,8 @@ ion-side-menu .heading-item .message {
     background: transparent;
     line-height: 18px;
     width: 100% !important; }
+  .search-view .button .button-small {
+    background-color: white !important; }
   .search-view .top-content {
     position: relative;
     height: 30vh;
@@ -12405,8 +12419,7 @@ ion-side-menu .heading-item .message {
       float: left;
       background-color: blue; }
     .search-view .top-content .rightText {
-      float: right;
-      background-color: red; }
+      float: right; }
   .search-view h2 {
     font-family: Ubuntu,bold,sans-serif !important; }
   .search-view .bottom-content {
@@ -12468,39 +12481,96 @@ ion-side-menu .heading-item .message {
         overflow: visible; }
 
 .change_pwd-view {
-  background-color: #e2e2e2; }
+  width: 100% !important;
+  height: 100% !important;
+  font-family: Ubuntu,bold,sans-serif !important;
+  background-color: #e2e2e2 !important;
+  overflow: hidden !important; }
   .change_pwd-view ion-content {
-    width: 80%;
-    margin: 0 auto; }
-  .change_pwd-view * {
-    margin: 0;
-    padding: 0; }
-  .change_pwd-view body {
-    padding: 10px; }
-  .change_pwd-view label {
-    display: block;
-    font-size: 14px;
-    margin: 10px 0 2px; }
-  .change_pwd-view input {
-    padding: 1px 3px;
-    width: 100%;
-    margin-top: 3vh; }
-  .change_pwd-view h3 {
-    text-align: center; }
-  .change_pwd-view .msg-block {
-    margin-top: 2px;
-    margin: 0 auto; }
-  .change_pwd-view .error {
-    color: #F00;
-    font-size: 14px;
-    margin: 0 auto;
-    float: left;
-    margin-top: -3vh !important; }
-  .change_pwd-view .pwd_button {
-    background-color: #6aa13e;
-    color: #ffffff;
-    height: 40px;
-    width: 100%; }
+    width: auto;
+    height: 100%;
+    overflow: hidden !important; }
+  .change_pwd-view .top-content {
+    height: 25% !important; }
+    .change_pwd-view .top-content .regTitle {
+      width: 80% !important;
+      height: 100% !important;
+      margin: 0 auto !important; }
+      .change_pwd-view .top-content .regTitle .regHeader {
+        position: absolute !important;
+        width: 80% !important;
+        margin: 0 auto !important; }
+        .change_pwd-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 210%; }
+        .change_pwd-view .top-content .regTitle .regHeader .backButton p {
+          margin-top: 9%;
+          font-size: 145%;
+          margin-left: -70%; }
+        .change_pwd-view .top-content .regTitle .regHeader p {
+          margin-top: 9%;
+          font-size: 145%;
+          text-align: center; }
+        .change_pwd-view .top-content .regTitle .regHeader .regFlowImg {
+          width: 50% !important;
+          margin: 0 auto; }
+          .change_pwd-view .top-content .regTitle .regHeader .regFlowImg img {
+            width: 100%;
+            margin-top: 2vh; }
+        .change_pwd-view .top-content .regTitle .regHeader .regMsg {
+          width: 100% !important;
+          margin: 0 auto !important; }
+          .change_pwd-view .top-content .regTitle .regHeader .regMsg p {
+            font-size: 92%;
+            color: black; }
+  .change_pwd-view .form-content {
+    height: 35% !important;
+    margin-top: 0 !important; }
+    .change_pwd-view .form-content .form-group {
+      width: 80% !important;
+      margin: 0 auto; }
+      .change_pwd-view .form-content .form-group input[type="password"] {
+        margin-top: 4% !important;
+        height: 22% !important;
+        padding-left: 10px;
+        width: 100% !important; }
+    .change_pwd-view .form-content .error {
+      margin-left: 12%;
+      color: red; }
+  .change_pwd-view .bottom-content {
+    height: 25% !important; }
+    .change_pwd-view .bottom-content .login_button {
+      background-color: #6aa13e;
+      color: #ffffff;
+      height: 9% !important;
+      width: 80%;
+      margin: 0 0 0 10%; }
+      .change_pwd-view .bottom-content .login_button span {
+        color: #dbe5d3;
+        font-size: 100% !important; }
+    .change_pwd-view .bottom-content .tAndC {
+      width: 80% !important;
+      height: 20% !important;
+      margin: 0 auto; }
+      .change_pwd-view .bottom-content .tAndC .terms {
+        width: 80% !important;
+        height: 100%;
+        margin: 0 auto; }
+        .change_pwd-view .bottom-content .tAndC .terms h2 {
+          font-size: 80%;
+          color: #fff;
+          text-align: center;
+          margin-top: 3%;
+          line-height: 1.5; }
+          .change_pwd-view .bottom-content .tAndC .terms h2 a {
+            color: inherit !important;
+            text-decoration: underline !important; }
+    .change_pwd-view .bottom-content .button-stable {
+      background-color: #6aa13e; }
+    .change_pwd-view .bottom-content .button-stable.activated {
+      background-color: #557a23 !important; }
+    .change_pwd-view .bottom-content .button-calm.activated {
+      background-color: #026451 !important; }
 
 .ViewDoctorProfile-view {
   background-color: #e2e2e2 !important;
@@ -12557,13 +12627,12 @@ ion-side-menu .heading-item .message {
         margin-left: 8%; }
   .ViewDoctorProfile-view .offline-content {
     width: 100%;
-    height: 45%;
-    background-color: green; }
+    height: 45%; }
     .ViewDoctorProfile-view .offline-content h4 {
-      font-size: 130%;
+      font-size: 100%;
       text-align: center; }
     .ViewDoctorProfile-view .offline-content .buttons {
-      margin-top: 10%; }
+      margin-top: 8%; }
       .ViewDoctorProfile-view .offline-content .buttons .button {
         width: 85%;
         margin-left: 8%; }

@@ -90,4 +90,20 @@ this.checkMyBalance = function (myNumber) {
 }
 
 
+this.changeDocPwd = function(newPwd){
+
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.updateDocPassword);
+  $http.post(BASE_URL.url + API.updateDocPassword,newPwd)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+
+}
+
 });

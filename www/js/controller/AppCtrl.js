@@ -389,6 +389,9 @@ console.log($scope.deviceAndroid );
 	$scope.changePwd=function(){
 		$state.go('app.changePassword_patient');
 	}
+	$scope.changeDocPwd=function(){
+		$state.go('templates.updatePassword');
+	}
 
 	$rootScope.login={};
 	$rootScope.ratedBy;
@@ -409,7 +412,23 @@ console.log($scope.deviceAndroid );
 			});
 
 		}
+		$scope.updateDocPwd=function(){
+			$rootScope.ratedBy=$scope.login.userPhone;
+			console.log('dddd');
+			var newPwd={
+			newPwd1:$scope.login.password,
+			userPhone:$localStorage.user
+			};
+			console.log(newPwd);
+			doctorServices.changeDocPwd(newPwd)
+			.then(function(response){
+			console.log(response);
 
+			}).catch(function(error){
+			console.log('failure data', error);
+			});
+
+		}
 	$scope.myDoctors=function(){
 		$state.go('app.my_doctors');
 	}

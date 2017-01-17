@@ -228,6 +228,22 @@ $scope.BalanceForVoiceCall=function()
     console.log('failure data', error);
     });
 
+    $scope.updateDocPwd=function(){
+      $rootScope.ratedBy=$scope.login.userPhone;
+      console.log('dddd');
+      // var newPwd={
+      // newPwd1:$scope.login.password,
+      // userPhone:$localStorage.user
+      // };
+      // console.log(newPwd);
+      // patientProfileDetailsService.changePwd2(newPwd)
+      // .then(function(response){
+      // console.log(response);
+      //
+      // }).catch(function(error){
+      // console.log('failure data', error);
+      // });
 
+    }
 
 })

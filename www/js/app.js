@@ -677,6 +677,16 @@ $stateProvider
       }
     }
   })
+
+  .state('templates.updatePassword', {
+    url: "/updatePassword",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/updatePassword.html"
+
+      }
+    }
+  })
 ;
 
   //Patient signup

@@ -384,6 +384,23 @@ height: 100%;
 .notificationOn{
 	margin-top: 1vh;
 }
+.dqAlerts{
+  .popup{
+    border-radius: 2%;
+  }
+  .popup-head {
+    padding: 0% !important;
+  }
+  .popup-title {
+
+  }
+  .popup-body{
+      text-align: center;
+    span{
+
+    }
+  }
+}
 .loginPopup {
 			.popup{
 
