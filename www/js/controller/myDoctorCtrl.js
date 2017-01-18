@@ -25,7 +25,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
  	 alert("Error calling Hello Plugin");
   }
 
-  hello.unreadchatfromusers(username,password,success, failure);
+  // hello.unreadchatfromusers(username,password,success, failure);
 
 
 

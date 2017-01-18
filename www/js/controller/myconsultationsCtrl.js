@@ -12,7 +12,6 @@ console.log('called');
 $ionicLoading.show();
 // console.log($localStorage.user);
 
-<<<<<<< HEAD
 $ionicLoading.show();
 // console.log($localStorage.user);
 $ionicLoading.show();
@@ -38,7 +37,7 @@ console.log(username);
 		alert("Error calling Hello Plugin");
 	}
 
-	hello.chatcounts(username,password,success, failure);
+	// hello.chatcounts(username,password,success, failure);
 
 
 
@@ -47,8 +46,6 @@ console.log(username);
 console.log('called');
 $ionicLoading.show();
 	$ionicLoading.show();
-=======
->>>>>>> 0eb38be3c5a89082b3f5922d3c9fda1c20ac4c99
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		$ionicLoading.hide();
@@ -118,7 +115,7 @@ $scope.clicktochat = function(pateientPhone)
 				alert("Error calling Hello Plugin");
 			}
 
-			hello.chat(username,password,persontocall,success, failure);
+			// hello.chat(username,password,persontocall,success, failure);
 
 }
 
