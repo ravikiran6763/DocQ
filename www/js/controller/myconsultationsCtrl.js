@@ -9,13 +9,6 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$ionicLoading.show();
 
 console.log('called');
-$ionicLoading.show();
-// console.log($localStorage.user);
-
-$ionicLoading.show();
-// console.log($localStorage.user);
-$ionicLoading.show();
-// console.log($localStorage.user);
 
 
 var username = "greet+"+$localStorage.user;
@@ -37,7 +30,7 @@ console.log(username);
 		alert("Error calling Hello Plugin");
 	}
 
-	// hello.chatcounts(username,password,success, failure);
+hello.chatcounts(username,password,success, failure);
 
 
 
@@ -78,12 +71,7 @@ $scope.clicktochat = function(pateientPhone)
 {
 		console.log(pateientPhone);
 		$scope.patientToChat=pateientPhone;
-		console.log($localStorage.user);
-		console.log('chat clicked');
-		var username = "greet+"+$localStorage.user;
-		console.log(username);
 
-	console.log(username);
 
 				// myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 				// $scope.myDoctor=response;//store the response array in doctor details
@@ -115,7 +103,7 @@ $scope.clicktochat = function(pateientPhone)
 				alert("Error calling Hello Plugin");
 			}
 
-			// hello.chat(username,password,persontocall,success, failure);
+		hello.chat(username,password,persontocall,success, failure);
 
 }
 

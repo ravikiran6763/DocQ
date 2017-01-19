@@ -9,7 +9,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
-    
+
     // $scope.data.dataLoading = true;
     //
     // return someService.getData().then(function (results) {
@@ -77,7 +77,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
               onoff : $localStorage.onOff
         }
         doctoronoffdetails.doctoronoff(whichdoctoronoff);
-
 
         var unametologout = "greet+"+$localStorage.user;
         var pwtologout = "DQ_doctor";
@@ -194,13 +193,13 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     })
 
 
-    $interval(callAtInterval, 5000);
+    $interval(callAtInterval, 6000);
     //$interval(lookForPrescription, 1000);
 
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-      // console.log($scope.res);
+      console.log($scope.res);
       }).catch(function(error){
       console.log('failure data', error);
       })

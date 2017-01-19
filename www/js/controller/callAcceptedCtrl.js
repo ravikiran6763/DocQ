@@ -16,14 +16,10 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 
 $scope.checkWalletBalance = function()
 {
-
-
 	var videocallflag = 2;
-
 	$scope.startdate = new Date();
-
 	$scope.callid = $rootScope.callId;
-
+	$localStorage.ViewDoc=0;
 
 			var uname = "greet+"+$localStorage.user;
 			 var pw = "DQ_patient";
@@ -36,9 +32,8 @@ $scope.checkWalletBalance = function()
 				{
 						alert(message);
 						$scope.enddate = new Date();
-							console.log($localStorage.user);
-							console.log($localStorage.Doctocall);
-
+						console.log($localStorage.user);
+						console.log($localStorage.Doctocall);
 						callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 						$state.go('app.patient_summary');
 

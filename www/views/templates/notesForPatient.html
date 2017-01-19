@@ -1,47 +1,54 @@
 <ion-view class="patient-notes-view" cache-view="false">
 
   <ion-content scroll="false" ng-repeat="pt in patient_details">
-    <a class="item dark item-avatar item-icon-right"  ><!--ui-sref="app.doctorprofile"-->
-        <img ng-src="{{pt.image}}">
-        <div><h2>{{pt.patientFname}}  {{pt.patientLname}} </h2>
-        <p>{{prequestedtime}}</p>
-        </div>
 
-    </a>
-    <p class="description">After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
+    <div class="top-content"  >
+      <div class="details">
+        <div class="profileImage">
+          <img ng-src="{{pt.image}}">
+        </div>
+        <div class="name-content">
+          <h2>{{pt.patientFname}}  {{pt.patientLname}} </h2>
+          <p>{{prequestedtime}}</p>
+          <!-- <div star-rating rating-value="rating.current" max="rating.max" ></div> -->
+
+        </div>
+      </div>
+    </div>
+    <div class="notesDescription">
+      <p >After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
+    </div >
     <div class="card ">
     <div class="row">
           <div class="col col-75"  ui-sref="templates.diagnosisForPatient({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})" >Diagnosis</div>
-  <label class="checkbox">
-             <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
 
-  </label>
+          <label class="checkbox">
+            <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
+          </label>
 
           <div class="col" ui-sref="templates.diagnosisForPatient({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})"><i class="icon ion-chevron-right icon-accessory" ></i></div>
     </div>
     <div class="  row">
           <div class="col col-75"  ui-sref="templates.patientTests({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})">Tests Recomended</div>
+
           <label class="checkbox">
-             <input class="checkbox"  type="checkbox" ng-model="notes.checkedTests" ng-checked="chekTests" >
+            <input class="checkbox"  type="checkbox" ng-model="notes.checkedTests" ng-checked="chekTests" >
           </label>
 
           <div class="col" ui-sref="templates.patientTests({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})"><i class="icon ion-chevron-right icon-accessory"></i></div>
     </div>
     <div class="  row">
           <div class="col col-75"  ui-sref="templates.medicationForPatient({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})" >Medication</div>
+
           <label class="checkbox" >
-             <input class="checkbox"  type="checkbox" ng-model="notes.checkedMedication" ng-checked="chekMedi">
+            <input class="checkbox"  type="checkbox" ng-model="notes.checkedMedication" ng-checked="chekMedi">
           </label>
 
           <div class="col" ui-sref="templates.medicationForPatient({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})"><i class="icon ion-chevron-right icon-accessory"></i></div>
     </div>
   </div>
-    <!-- <tt>Diagnosis = {{notes.checkedDiagnosis}}</tt>
-     <tt>Tests = {{notes.checkedTests}}</tt>
-      <tt>Medication = {{notes.checkedMedication}}</tt>
-        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}"> -->
+
   <div class="buttons">
-   <!-- <button  class="button button-block button-assertive" ng-click="sendprescription();">Send prescription</button> -->
    <button  class="button button-block button-assertive" ng-click="sendprescription();">Complete & charge</button>
    <button  class="button button-block button-energized" >Complete without charge</button>
  </div>

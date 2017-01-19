@@ -8,6 +8,13 @@ $rootScope.docPhone = $localStorage.docPhone;
 console.log($rootScope.docPhone);
 console.log('docprofileview');
 
+$rootScope.docRates=$stateParams.rates;
+$rootScope.docTotalRates=$stateParams.totalRates;
+
+$rootScope.devideRates=$rootScope.docRates/$rootScope.docTotalRates;
+$rootScope.ratingsToDoc=$rootScope.devideRates.toFixed(1)
+console.log($rootScope.ratingsToDoc);
+
 $ionicLoading.show();
 
 console.log('called');
@@ -17,7 +24,22 @@ console.log('called');
 // $interval(checkConnection, 6000);
 
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+  console.log(response[1]);
 $scope.myDocDetails1=response;
+
+$scope.items =
+[
+{'id':'1','name':'item1'},
+{'id':'2','name':'item2'}
+];
+var index = $scope.items.map(function (item) {
+            return item.id;
+        }).indexOf(2);
+console.log(index);
+$scope.ratings = [{
+      current: 5,
+      max: 5
+  }, ];
 console.log('doc',$scope.myDocDetails1);
 
 }).catch(function(error){
@@ -50,11 +72,8 @@ console.log('failure data', error);
       $localStorage.patientWalletBalance=$scope.myBalance;
           console.log('pop up page clicked');
 
-
-
           	var uname = "greet+"+$localStorage.user;
              var pw = "DQ_patient";
-
              var persontocall = "greet+" + $localStorage.docPhone;
 
             //  var persontocall = "greet+" + $localStorage.consultedDoctor;
@@ -209,6 +228,22 @@ $scope.BalanceForVoiceCall=function()
     console.log('failure data', error);
     });
 
+    $scope.updateDocPwd=function(){
+      $rootScope.ratedBy=$scope.login.userPhone;
+      console.log('dddd');
+      // var newPwd={
+      // newPwd1:$scope.login.password,
+      // userPhone:$localStorage.user
+      // };
+      // console.log(newPwd);
+      // patientProfileDetailsService.changePwd2(newPwd)
+      // .then(function(response){
+      // console.log(response);
+      //
+      // }).catch(function(error){
+      // console.log('failure data', error);
+      // });
 
+    }
 
 })

@@ -13,6 +13,9 @@
     line-height: 18px;
     width: 100% !important;
 }
+  .button .button-small{
+    background-color: white !important;
+  }
   .top-content
   {
     position: relative;
@@ -91,7 +94,6 @@
     }
     .rightText{
       float:right;
-      background-color: red;
     }
   }
   h2{

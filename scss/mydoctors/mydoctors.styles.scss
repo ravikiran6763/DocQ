@@ -62,8 +62,8 @@
           .totalReview{
             position: absolute;
             position: absolute;
-            margin-left: 57%;
-            margin-top: -3%;
+            margin-left: 59%;
+            margin-top: 3.5%;
             text-overflow: ellipsis;
           }
         h2{
@@ -73,10 +73,10 @@
             font-family: Ubuntu,bold,sans-serif !important;
             line-height: 50%;
           }
-          .ratingStars{
+          .ratingContainer{
+            margin-top: -8.5%;
             margin-left: 53%;
-            margin-top: -2%;
-
+            width: 38%;
           }
       }
 

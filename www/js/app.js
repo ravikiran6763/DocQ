@@ -476,7 +476,7 @@ $stateProvider
 
 //doctor profile
   .state('app.viewdoctor_profile', {
-    url: "/viewdoctor_profile/",
+    url: "/viewdoctor_profile",
     views: {
       'menuContent': {
         templateUrl: "views/app/viewdoctor_profile.html",
@@ -674,6 +674,16 @@ $stateProvider
       'menuContent': {
         templateUrl: "views/templates/video.html",
         controller:'videoCtrl'
+      }
+    }
+  })
+
+  .state('templates.updatePassword', {
+    url: "/updatePassword",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/updatePassword.html"
+
       }
     }
   })

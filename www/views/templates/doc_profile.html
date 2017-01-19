@@ -44,7 +44,7 @@
 
       <div class="card ">
         <div class="row" >
-          <div class="col">Age</div>
+          <div class="col">DOB</div>
           <div class="col">{{doctor.doctorAge}}</div>
         </div>
         <div class="row">
@@ -93,9 +93,11 @@
               <div class="col">{{doctor.doctorLanguage2 | capitalize}}</div>
         </div>
       </div>
-      <div class="card ">
+      <div class="card " ng-click="changeDocPwd();">
         <div class="row">
               <div class="col">Change Password {{doctor.dpass}}</div>
+              <div class="col"></div><i class="icon ion-chevron-right icon-accessory" ></i>
+
         </div>
       </div>
 

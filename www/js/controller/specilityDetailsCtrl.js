@@ -33,7 +33,7 @@ $rootScope.specialId = $stateParams.specialId;
     alert("Error calling Hello Plugin");
   }
 
-  hello.logininformation(username,password,success, failure);
+  // hello.logininformation(username,password,success, failure);
 
 
 

@@ -118,18 +118,20 @@
 }
 
 .ion-android-favorite-outline:before {
-    content: "";
-    font-size: 6vw;
-    margin: -1px;
-    color: teal;
-    float: right;
+  content: "";
+  font-size: 190%;
+  /* margin: -1px; */
+  color: teal;
+  float: right;
+  margin-top: 36%;
 }
 .ion-android-favorite:before {
     content: "";
-    font-size: 6vw;
-    margin: -1px;
+    font-size: 190%;
+    /* margin: -1px; */
     color: teal;
     float: right;
+    margin-top: 36%;
 }
 .ion-eye:before  {
 content: "";
