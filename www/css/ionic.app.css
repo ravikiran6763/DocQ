@@ -9824,12 +9824,19 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-/* for Rting Stars*/
+ion-side-menu ion-item.item .menu-text {
+  font-family: Ubuntu,bold,sans-serif !important;
+  font-size: 100%; }
+
 .button .button-block .button-assertive .activated {
   background-color: red !important; }
 
 .ng-animate .scroll-bar {
   visibility: visible !important; }
+
+scroll-bar-indicator {
+  height: 6%;
+  width: 300%; }
 
 .scroll-bar-fade-out {
   opacity: 1 !important; }
@@ -9863,11 +9870,11 @@ ion-content.scroll-content.ionic-scroll {
     position: relative !important; }
 
 .sideMenuToggle {
-  width: 24% !important;
-  height: 8% !important;
-  position: relative !important;
-  margin: -8vh 0 0 57vw !important;
-  z-index: 2 !important; }
+  position: absolute;
+  margin-top: -18%;
+  margin-left: 70%;
+  height: 14%;
+  z-index: 2; }
 
 .toggle-small .toggle-assertive input:checked + .track {
   background-color: #6aa433 !important;
@@ -10048,10 +10055,6 @@ ion-side-menu.menu-left.menu {
   left: 0 !important;
   right: 0 !important; }
 
-.buttons .buttons-left .header-item {
-  width: 12% !important;
-  background-color: red; }
-
 .checkbox input:before, .checkbox-icon:before {
   display: table;
   width: 100%;
@@ -10139,9 +10142,6 @@ ion-side-menu.menu-left.menu {
   font-size: 100%; }
 
 /* for Rting Stars*/
-.bar .buttons-left span {
-  margin-right: 35px !important; }
-
 .bar-footer {
   bottom: 0;
   border-top-width: 1px;
@@ -10171,10 +10171,9 @@ ion-side-menu.menu-left.menu {
 
 .loginPopup .popup {
   background-color: #6fa02d;
-  position: absolute;
   width: 100%;
   height: 25%;
-  margin-top: 62%; }
+  margin-top: 132%; }
 
 .loginPopup .popup-head {
   padding: 3%;
@@ -10416,10 +10415,6 @@ ion-spinner.spinner-on-load {
   border-radius: 50%;
   z-index: 999;
   height: 50%; }
-
-.bar .buttons-left span {
-  margin-right: 5px;
-  display: inherit; }
 
 .platform-ios .toggle-item.item {
   top: 20px; }
@@ -10705,7 +10700,7 @@ ion-spinner.spinner-on-load {
   height: 30% !important; }
   .dqLogin-view .top-content .logoContainer {
     position: relative;
-    width: 70% !important;
+    width: 65% !important;
     margin: 0 auto; }
     .dqLogin-view .top-content .logoContainer .logo {
       width: 100% !important;
@@ -10724,19 +10719,20 @@ ion-spinner.spinner-on-load {
     margin: 0 auto; }
     .dqLogin-view .login-content .form-group input[type="tel"] {
       margin-top: 4% !important;
-      height: 17% !important;
+      height: 16% !important;
       padding-left: 10px;
       width: 100% !important; }
     .dqLogin-view .login-content .form-group input[type="password"] {
       margin-top: 4% !important;
-      height: 17% !important;
+      height: 16% !important;
       padding-left: 10px;
       width: 100% !important; }
   .dqLogin-view .login-content .button {
     color: #ffffff;
-    height: 9% !important;
+    height: 14% !important;
     width: 80%;
-    margin: 4% 0 0 10%; }
+    margin: 4% 0 0 10%;
+    font-size: 115%; }
   .dqLogin-view .login-content .tAndC {
     width: 100% !important;
     height: 10% !important;
@@ -10760,11 +10756,12 @@ ion-spinner.spinner-on-load {
       width: 50% !important;
       position: absolute; }
       .dqLogin-view .login-content .rememberMe .remember input[type="checkbox"] {
-        zoom: 1.5;
-        margin-top: -3px; }
+        zoom: 2;
+        margin-top: -5%;
+        position: absolute; }
       .dqLogin-view .login-content .rememberMe .remember p {
         position: absolute;
-        margin: -13% 0 0 19%; }
+        margin: -2% 0 0 17%; }
     .dqLogin-view .login-content .rememberMe .forgot {
       width: 40% !important;
       position: absolute;
@@ -10774,14 +10771,14 @@ ion-spinner.spinner-on-load {
         color: inherit;
         text-decoration: underline;
         font-size: 98%; }
-  .dqLogin-view .login-content .register_button {
-    background-color: #00745f;
-    color: #ffffff;
-    /* height: 40px; */
-    margin-top: 8%;
-    position: absolute;
-    width: 80%;
-    margin-left: 0%; }
+
+.dqLogin-view .regButton {
+  margin-top: 5%;
+  width: 80%;
+  margin: 0 auto; }
+  .dqLogin-view .regButton .button {
+    width: 100%;
+    margin: 10% 0 0 0; }
 
 .dqLogin-view .bottom-content {
   width: 100% !important;
@@ -10791,23 +10788,23 @@ ion-spinner.spinner-on-load {
     width: 50%;
     margin: 0 auto; }
     .dqLogin-view .bottom-content .leftbuttons p {
-      color: aliceblue;
+      color: #ffffff;
       margin-left: 36%; }
     .dqLogin-view .bottom-content .leftbuttons img {
       border: 0;
       /* margin: 0 auto; */
-      margin-left: 50%; }
+      margin-left: 46%; }
   .dqLogin-view .bottom-content .rightbuttons {
     float: left;
     width: 50%;
     margin: 0 auto; }
     .dqLogin-view .bottom-content .rightbuttons p {
-      margin: 0 0 10px;
-      color: aliceblue; }
+      color: #ffffff;
+      margin-left: 0%; }
     .dqLogin-view .bottom-content .rightbuttons img {
       border: 0;
       /* margin: 0 auto; */
-      margin-left: 30%; }
+      margin-left: 23%; }
 
 .login-view [ng\:cloak], .login-view [ng-cloak], .login-view [data-ng-cloak], .login-view [x-ng-cloak], .login-view .ng-cloak, .login-view .x-ng-cloak {
   display: none !important; }
@@ -11330,8 +11327,9 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .profile-view .top-content {
     width: 100% !important;
-    height: 15% !important;
-    margin: 0 auto; }
+    height: 17% !important;
+    margin: 0 auto;
+    overflow: hidden; }
     .profile-view .top-content .details {
       width: 90% !important;
       margin: 0 auto !important; }
@@ -11541,7 +11539,7 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .mydoctor-profile-view .myDoctor-list {
     width: 100%;
-    height: 100%;
+    height: 90%;
     overflow: scroll !important; }
     .mydoctor-profile-view .myDoctor-list li {
       height: 15%;
@@ -11561,6 +11559,7 @@ ion-side-menu .heading-item .message {
         float: left;
         margin: 3% 0 0 2%; }
         .mydoctor-profile-view .myDoctor-list li .profile-img img {
+          border-radius: 100% !important;
           width: 95%; }
       .mydoctor-profile-view .myDoctor-list li .next-icon {
         width: 5%;
@@ -13390,7 +13389,7 @@ ion-side-menu .heading-item .message {
       padding-left: 10px;
       width: 100% !important; }
   .doc-reg-1-view .bottom-content {
-    height: 25% !important; }
+    height: 19% !important; }
     .doc-reg-1-view .bottom-content .login_button {
       background-color: #6aa13e;
       color: #ffffff;
@@ -13488,7 +13487,7 @@ ion-side-menu .heading-item .message {
       padding-left: 10px;
       width: 100% !important; }
   .doc-reg-2-view .bottom-content {
-    height: 25% !important; }
+    height: 19% !important; }
     .doc-reg-2-view .bottom-content .login_button {
       background-color: #6aa13e;
       color: #ffffff;
@@ -13650,7 +13649,9 @@ ion-side-menu .heading-item .message {
           margin: 0 auto !important; }
           .patient-reg-3-view .top-content .regTitle .regHeader .regMsg p {
             font-size: 103%;
-            color: black; }
+            color: black;
+            margin-top: 10%;
+            text-align: center; }
           .patient-reg-3-view .top-content .regTitle .regHeader .regMsg .numClass {
             font-size: 130%;
             color: black;
@@ -13774,27 +13775,31 @@ ion-side-menu .heading-item .message {
       .patient-reg-2-view .form-content .form-group input[type="email"] {
         margin-top: 5% !important;
         height: 18% !important;
-        padding-left: 10px;
+        padding: 4% !important;
         width: 100% !important; }
       .patient-reg-2-view .form-content .form-group input[type="number"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding-left: 10px;
+        padding: 4% !important;
         width: 100% !important;
         border: 1px solid #cdcdcf; }
       .patient-reg-2-view .form-content .form-group input[type="tel"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding-left: 10px;
+        padding: 4% !important;
         width: 100% !important; }
       .patient-reg-2-view .form-content .form-group input[type="password"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding-left: 10px;
+        padding: 4% !important;
         width: 100% !important; }
       .patient-reg-2-view .form-content .form-group .item-radio .item-content {
         padding-top: 5% !important;
         padding-right: 0% !important; }
+    .patient-reg-2-view .form-content p {
+      color: #fff;
+      text-align: center;
+      font-size: 70%; }
   .patient-reg-2-view .bottom-content {
     height: 40% !important; }
     .patient-reg-2-view .bottom-content .login_button {
