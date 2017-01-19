@@ -82,7 +82,7 @@
 				input[type="email"]{
 				margin-top: 5% !important;
 				height: 18% !important;
-				padding-left: 10px;
+				padding: 4% !important;
 				width: 100% !important;
 				// border: 1px solid #cdcdcf;
 				// height: 100%;
@@ -91,7 +91,7 @@
 				input[type="number"]{
 					margin-top: 4% !important;
 					height: 18% !important;
-					padding-left: 10px;
+					padding: 4% !important;
 					width: 100% !important;
 					border: 1px solid #cdcdcf;
 					// height: 100%;
@@ -99,7 +99,7 @@
 				input[type="tel"]{
 					margin-top: 4% !important;
 					height: 18% !important;
-					padding-left: 10px;
+					padding: 4% !important;
 					width: 100% !important;
 					// border: 1px solid #cdcdcf;
 					// height: 100%;
@@ -107,7 +107,7 @@
 				input[type="password"]{
 					margin-top: 4% !important;
 					height: 18% !important;
-					padding-left: 10px;
+					padding: 4% !important;
 					width: 100% !important;
 					// border: 1px solid #cdcdcf;
 					// height: 100%;
@@ -117,7 +117,11 @@
 				padding-right: 0% !important;
 			}
 			}
-
+			p{
+				color: #fff;
+		    text-align: center;
+		    font-size: 70%;
+			}
 
 	}
 	.bottom-content{

@@ -9,14 +9,14 @@
 
 	   $medicalspecialityId = $postdata; // GET THE CLICKED MEDICAL SPLECIALITY VALUES FROM APP
 
-						$sql = "select special from  speciality where id='$medicalspecialityId';";
-						$dretval = mysql_query( $sql, $dbhandle );
-						while($row = mysql_fetch_assoc($dretval)) {
-						//  echo "special :{$row['special']}  ";
-						$sp=$row['special'];
-						// echo $sp;
+		  $sql = "select special from  speciality where id='$medicalspecialityId';";
+		 $dretval = mysql_query( $sql, $dbhandle );
+		 while($row = mysql_fetch_assoc($dretval)) {
+      //  echo "special :{$row['special']}  ";
+			$sp=$row['special'];
+			// echo $sp;
 
-						}
+    }
 			// 	if(! $retval )
 			// 	{
 			// 	 die('Could not get data: ' . mysql_error());

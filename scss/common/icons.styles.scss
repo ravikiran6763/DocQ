@@ -25,7 +25,9 @@
 .ion-gear-a::before {
     content: url('../img/dq_icon_small_customer-care_540x960.png');
 }
-
+.ion-ios-chatbubble-outline::before {
+      margin: -2% 0 0 0% !important;
+}
 .ion-android-cloud-circle::before {
     content: url('../img/rsz_invite1.png');
     max-width: 100%;
