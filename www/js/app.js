@@ -77,8 +77,9 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       // for form inputs)
       $ionicPlatform.registerBackButtonAction(function (event) {
 
-        if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.doctor_home")){
-          console.log('back button disabled');
+        if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.patient_home")){
+            console.log('back button disabled');
+              
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.

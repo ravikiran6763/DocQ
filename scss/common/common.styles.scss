@@ -1,15 +1,10 @@
 // General reset styles
 
-/* for Rting Stars*/
-// .platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader){
-//   height: auto  !important;
-// }
-// .menu.menu-right{
-// 	width: calc(100% - 58px) !important;
-// }
-// .menu-open .menu-content{
-// 	transform: translate3d(-82%, 0px, 0px) !important;
-// }
+
+    ion-side-menu ion-item.item .menu-text {
+        font-family: Ubuntu,bold,sans-serif !important;
+        font-size: 100%;
+    }
 .button .button-block .button-assertive .activated{
   background-color: red !important;
 }
@@ -17,8 +12,13 @@
   visibility: visible !important;
 }
 
+scroll-bar-indicator{
+    height: 6%;
+    width: 300%;
+}
 .scroll-bar-fade-out{
   opacity:1 !important
+
 }
 ion-content.scroll-content.ionic-scroll{
   height: auto !important;
@@ -56,11 +56,14 @@ ion-content.scroll-content.ionic-scroll{
 }
 
 .sideMenuToggle{
-    width: 24% !important;
-    height: 8% !important;
-    position: relative !important;
-    margin: -8vh 0 0 57vw !important;
-    z-index: 2 !important;
+
+      position: absolute;
+      margin-top: -18%;
+      margin-left: 70%;
+      height: 14%;
+      // background-color: red;
+      z-index: 2;
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -264,10 +267,7 @@ ion-side-menu.menu-left.menu {
     right: 0 !important;
 
 }
-.buttons .buttons-left .header-item{
-  width: 12% !important;
-  background-color: red;
-}
+
 .checkbox input:before, .checkbox-icon:before {
     display: table;
     width: 100%;
@@ -360,9 +360,7 @@ height: 100%;
 
 /* for Rting Stars*/
 
-.bar .buttons-left span{
-  margin-right: 35px !important;
-}
+
 .bar-footer {
     bottom: 0;
     border-top-width: 1px;
@@ -405,10 +403,9 @@ height: 100%;
 			.popup{
 
 				background-color: #6fa02d;
-        position: absolute;
         width: 100%;
         height: 25%;
-        margin-top: 62%;
+        margin-top: 132%;
 			}
 			.popup-head {
 				padding: 3%;
@@ -716,10 +713,6 @@ ion-spinner.spinner-on-load
       height: 50%;
       // margin-left: 5vw;
       // margin-left: -7px;
-}
-.bar .buttons-left span {
-    margin-right: 5px;
-    display: inherit;
 }
 
 .platform-ios{

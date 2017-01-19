@@ -35,14 +35,31 @@ if(isset($postdata))
 		if($phnos)
 		{
 
-			$fiveMins="SELECT count(id) as count  FROM patientrequesteddoctor WHERE requesteddatetime > DATE_SUB(NOW(), INTERVAL 5 MINUTE) and patientphno='$patient_phno' and ar_flag = 0 ";
-			$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
-			while($row = mysql_fetch_array($fiveMinsRet))
+			 $check_time = "select now() as now_time";
+			$retval1 = mysql_query( $check_time, $dbhandle );
+			while($row = mysql_fetch_assoc($retval1))
 			{
-				 $count=$row['count'];
-				if($count === '0'){
-						$insertionvalues = "INSERT INTO patientrequesteddoctor(patientphno,doctorphnos,requesteddatetime) VALUES ('$patient_phno','$phnos',now())";
-						$retval1 = mysql_query( $insertionvalues, $dbhandle );
+			 	 $now_time=$row['now_time'];
+
+			}
+			 $check_last_time = "select requesteddatetime from patientrequesteddoctor where patientphno='$patient_phno' order by id desc limit 1";
+			$retval2 = mysql_query( $check_last_time, $dbhandle );
+			while($row = mysql_fetch_assoc($retval2))
+			{
+
+				$check_last_time2=$row['requesteddatetime'];
+				 $check_future_time = "select ('$check_last_time2'+ interval 5 minute) ";
+				$retval3 = mysql_query( $check_future_time, $dbhandle );
+				while($row = mysql_fetch_assoc($retval3))
+				{
+					$check_future_time2=$row['$check_future_time'];
+				}
+			}
+
+			if($now_time > $check_future_time2)
+			{
+				  	echo $insertionvalues = "INSERT INTO patientrequesteddoctor(patientphno,doctorphnos,requesteddatetime) VALUES ('$patient_phno','$phnos',now())";
+						$retval1 = mysql_query($insertionvalues, $dbhandle );
 			        if(!$retval1 )
 			        {
 			                die('Could not enter data: ' . mysql_error());
@@ -53,12 +70,11 @@ if(isset($postdata))
 			                echo "Query Submitted";
 			        }
 							sleep(5);
-				}
-				else{
-					echo "wait";
-				}
-			}
 
+			}
+			else {
+					echo "wait";
+			}
 		}
   }
 }

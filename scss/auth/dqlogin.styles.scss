@@ -3,12 +3,13 @@
 	ion-content{
 		overflow:  hidden !important;
 	}
+
 	.top-content{
 		width: 100% !important;
 		height: 30% !important;
 		.logoContainer{
 			position: relative;
-			width: 70% !important;
+			width: 65% !important;
 			margin: 0 auto;
 			.logo{
 				width: 100% !important;
@@ -33,14 +34,14 @@
 
 			input[type="tel"]{
 			margin-top: 4% !important;
-			height: 17% !important;
+			height: 16% !important;
 			padding-left: 10px;
 			width: 100% !important;
 			// height: 100%;
 			}
 			input[type="password"]{
 			margin-top: 4% !important;
-			height: 17% !important;
+			height: 16% !important;
 			padding-left: 10px;
 			width: 100% !important;
 			// height: 100%;
@@ -48,9 +49,10 @@
 		}
 		.button {
 					color: #ffffff;
-					height: 9% !important;
+					height: 14% !important;
 					width: 80%;
 					margin: 4% 0 0 10%;
+					font-size: 115%;
 					//position: absolute;
 
 			}
@@ -83,12 +85,13 @@
 				width: 50% !important;
 				position: absolute;
 				input[type="checkbox"]{
-				zoom: 1.5;
-				margin-top: -3px ;
+					zoom: 2;
+			    margin-top: -5%;
+			    position: absolute;
 				}
 				p{
 					position: absolute;
-    			margin: -13% 0 0 19%;
+    			margin: -2% 0 0 17%;
 				}
 			}
 			.forgot{
@@ -104,14 +107,17 @@
 			}
 
 		}
-		.register_button {
-			background-color: #00745f;
-	    color: #ffffff;
-	    /* height: 40px; */
-	    margin-top: 8%;
-	    position: absolute;
-	    width: 80%;
-			margin-left: 0%;
+
+	}
+	.regButton{
+		margin-top: 5%;
+		width: 80%;
+		margin: 0 auto;
+
+		.button{
+			width: 100%;
+			margin: 10% 0 0 0;
+
 		}
 	}
 	.bottom-content{
@@ -123,14 +129,13 @@
 			width: 50%;
 			margin: 0 auto;
 			p {
-					// margin: 0 0 10px;
-					color: aliceblue;
+					color: #ffffff;
 					margin-left: 36%;
 			}
 			img {
 				border: 0;
 				/* margin: 0 auto; */
-				margin-left: 50%;
+				margin-left: 46%;
 			}
 		}
 		.rightbuttons{
@@ -138,13 +143,13 @@
 			width: 50%;
 			margin: 0 auto;
 			p {
-					margin: 0 0 10px;
-					color: aliceblue;
+					color: #ffffff;
+					margin-left: 0%;
 			}
 			img {
 				border: 0;
 				/* margin: 0 auto; */
-				margin-left: 30%;
+				margin-left: 23%;
 			}
 		}
 	}

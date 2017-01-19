@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $scope, $interval, $localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading) {
+DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $scope, $interval, $ionicPopup ,$localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading) {
 
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
@@ -18,10 +18,7 @@ $rootScope.specialId = $stateParams.specialId;
   //var username = "greet+"+$localStorage.user;
 
   var username = "greet+8792618138,ravikiran6763@gmail.com";
-
-
   var password = "DQ_patient";
-
 
   var success = function(message)
   {
@@ -47,43 +44,66 @@ console.log($rootScope.specialId);
    }).catch(function(error){
        console.log('failure data', error);
    });
+
+   $scope.counter = 0;
+   $scope.stopped = false;
+   $scope.buttonText='Send Request';
+
+
+
    $scope.sendrequesttoonlinedoctors = function()
    {
-     if($localStorage.reqSent===1){
-       console.log('already sent');
-       $cordovaToast.showLongCenter('Request already Sent.', 'short', 'center').then(function(success) {
-       // success
+     //////////
+     $scope.buttonText='Request sent' ;
+     $scope.counter = 300;
+     $scope.onTimeout = function(){
+        $scope.counter--;
+        mytimeout = $timeout($scope.onTimeout,1000);
+        if($scope.counter == 0){
+          console.log('one minute over');
+          $scope.counter=300;
+          $scope.buttonText='Send Request';
+          $timeout.cancel(mytimeout);
 
-       }, function (error) {
-       // error
-       });
+        }
      }
-     else{
-       $ionicLoading.show();
+     var mytimeout = $timeout($scope.onTimeout,1000);
+     $scope.confirmPopup = $ionicPopup.show({
+           template: "Your request for a<br>video call has been sent.<br>{{counter | secondsToDateTime | date:'mm:ss'}}",
+           cssClass: 'videoPopup',
+           scope: $scope,
+           buttons: [
+           {
+           text: 'Cancel',
+           type: 'button-royal',
+           onTap:function(){
+             console.log('cancel');
+             console.log($scope.counter);
+
+           }
+           },
+
+         ]
+         });
+
+         //close popup automatically
+        //  $timeout(function() {
+   		 //     $scope.confirmPopup.close(); //close the popup after 3 seconds for some reason
+   		 //  }, 60000);
+
+          //////
+
+   ///////////
+   console.log('timer started');
+   console.log($scope.counter);
+
        console.log('buttonclicked');
        medicalSpecialityService.sendrequesttodoctor($rootScope.specialId).then(function(response){
          console.log('successfull data', response);
-           if(response)
-           {
-             $scope.requestSent = response;
-             $localStorage.reqSent=1;
-             console.log($localStorage.reqSent);
-             $cordovaToast.showLongCenter('Request Sent.', 'short', 'center').then(function(success) {
-             // success
 
-             }, function (error) {
-             // error
-             });
-             // $state.go('app.callAccepted');
-             $ionicLoading.hide();
-           }
-           else {
-             alert('error');
-           }
         }).catch(function(error){
             console.log('failure data', error);
         });
-     }
 
    }
 
@@ -97,7 +117,7 @@ console.log($rootScope.specialId);
     });
    }
 
-   $interval(CheckOnlineDocs, 5000);
+  //  $interval(CheckOnlineDocs, 5000);
 
 
 });
