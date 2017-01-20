@@ -27,15 +27,43 @@ $localStorage.reqSent="";
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
-
-
+$localStorage.chekedData =0;
+$localStorage.dataConnection=navigator.onLine;
 ////////////////////////////////////////////////////////////////////////////////
-
-$interval(checkForInternet, 1000);
+$interval(checkForInternet, 5000);
 function checkForInternet() {
-console.log('network',navigator.onLine);
 
+if(!navigator.onLine ){
+	$localStorage.dataConnection=navigator.onLine;
+	if($localStorage.dataConnection === false && $localStorage.chekedData == 0){
+		var confirmPopup = $ionicPopup.confirm({
+						title: 'DoctorQuick',
+						template: 'Seems you are disconnected from the internet',
+						cssClass: 'videoPopup',
+						scope: $scope,
+						buttons: [
+						{
+						text: 'Cancel',
+						type: 'button-royal',
+						},
+						{
+							text: 'Ok',
+							type: 'button-positive',
+							onTap: function(e) {
+							console.log('ok');
+								$localStorage.chekedData = 1;
+								$state.go('auth.loginNew');
+							// }, 100)
+
+						}
+					},
+					]
+					});
+	}
 }
+}
+console.log($localStorage.dataConnection);
+
 document.addEventListener("deviceready", function (){
     var type = $cordovaNetwork.getNetwork()
     var isOnline = $cordovaNetwork.isOnline()
@@ -496,81 +524,79 @@ $scope.ratingsObject = {
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
 		console.log($ionicHistory.currentStateName());
-		if($ionicHistory.currentStateName() === 'auth.loginNew'){
+		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 
+			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+						// console.log('successfull data', response);
+						$scope.calledDetails=response;
+						console.log($rootScope.online);
+						console.log($scope.calledDetails);
+						var data=$scope.calledDetails//take all json data into this variable
+						 var totList=[];
+								for(var i=0; i<data.length; i++){
+
+										$rootScope.cal_flag=data[i].cal_flag,
+										$rootScope.callId=data[i].callId,
+										$rootScope.onoff=data[i].onoff,
+										$rootScope.doctorPhone=data[i].doctorPhone,
+
+								console.log($rootScope.cal_flag);
+
+								$localStorage.Doctocall =  $rootScope.doctorPhone;
+								if($rootScope.cal_flag === '4' && $localStorage.ViewDoc === 0){
+									// alert('readyforcall');
+
+									$ionicPopup.confirm({
+												 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
+												 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
+												 cssClass: 'videoPopup',
+												 scope: $scope,
+												 buttons: [
+																	 {
+																	 text: 'Decline',
+																	 type: 'button-royal',
+																	 onTap: function(e) {
+																		 				console.log('Decline');
+																	 				}
+																	 },
+																	 {
+																		 text: 'View',
+																		 type: 'button-positive',
+																		 onTap: function(e) {
+																				 console.log('ok');
+																				 $localStorage.ViewDoc=1;
+																				 $localStorage.seen=1;
+																				 console.log($localStorage.seen);
+																				 $state.go('app.callAccepted');
+
+																	 }
+											 },
+											 ]
+										 })
+
+									// $ionicPopup.alert({
+									// title: 'Call Request Accepted',
+									// template:' A Doctor has accepted your call request',
+									// cssClass: 'videoPopup',
+									// buttons: [
+									// 	{
+									// 	text: 'Ok',
+									// 	type: 'button-assertive',
+									// 	onTap: function(e) {
+									//
+									// 		$state.go('app.callAccepted');
+									// 	}
+									// 	},
+									// ]
+									// })
+								}
+								}
+
+				 }).catch(function(error){
+						 console.log('failure data', error);
+				 });
 		}
-		else{
 
-		}
-	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
-				// console.log('successfull data', response);
-				$scope.calledDetails=response;
-				console.log($rootScope.online);
-				console.log($scope.calledDetails);
-				var data=$scope.calledDetails//take all json data into this variable
-				 var totList=[];
-						for(var i=0; i<data.length; i++){
-
-								$rootScope.cal_flag=data[i].cal_flag,
-								$rootScope.callId=data[i].callId,
-								$rootScope.onoff=data[i].onoff,
-								$rootScope.doctorPhone=data[i].doctorPhone,
-
-						console.log($rootScope.cal_flag);
-
-						$localStorage.Doctocall =  $rootScope.doctorPhone;
-						if($rootScope.cal_flag === '4' && $localStorage.ViewDoc === 0){
-							// alert('readyforcall');
-
-							$ionicPopup.confirm({
-										 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
-										 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
-										 cssClass: 'videoPopup',
-										 scope: $scope,
-										 buttons: [
-															 {
-															 text: 'Decline',
-															 type: 'button-royal',
-															 onTap: function(e) {
-																 				console.log('Decline');
-															 				}
-															 },
-															 {
-																 text: 'View',
-																 type: 'button-positive',
-																 onTap: function(e) {
-																		 console.log('ok');
-																		 $localStorage.ViewDoc=1;
-																		 $localStorage.seen=1;
-																		 console.log($localStorage.seen);
-																		 $state.go('app.callAccepted');
-
-															 }
-									 },
-									 ]
-								 })
-
-							// $ionicPopup.alert({
-							// title: 'Call Request Accepted',
-							// template:' A Doctor has accepted your call request',
-							// cssClass: 'videoPopup',
-							// buttons: [
-							// 	{
-							// 	text: 'Ok',
-							// 	type: 'button-assertive',
-							// 	onTap: function(e) {
-							//
-							// 		$state.go('app.callAccepted');
-							// 	}
-							// 	},
-							// ]
-							// })
-						}
-						}
-
-		 }).catch(function(error){
-				 console.log('failure data', error);
-		 });
 				// console.log('callAtInterval');
 	}
 

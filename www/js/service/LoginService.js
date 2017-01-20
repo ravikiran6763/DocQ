@@ -3,6 +3,16 @@ DoctorQuickApp.service('LoginService', function ($http,$q, BASE_URL, API) {
 
  var userPhone;
 
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
 	this.loginprocess = function (userDetails) {
 		userPhone = userDetails.userNum;
 		var deferred = $q.defer();
