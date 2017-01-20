@@ -79,7 +79,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
         if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.patient_home")){
             console.log('back button disabled');
-              
+
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
@@ -145,36 +145,41 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
-  document.addEventListener("deviceready", function () {
-      window.plugins.sim.getSimInfo(successCallback, errorCallback);
-      function successCallback(result) {
-      // alert(result.deviceId);
-      }
 
-      function errorCallback(error) {
-      // alert(error);
-      }
-      // Check for network connection
-      if(window.Connection) {
-      //you can log your connection as well, whether it is internet, wifi and so on.In this case you are checking for no connection
-          console.log(navigator.connection.type);
-          // if(navigator.connection.type == Connection.NONE) {
-          // $ionicPopup.confirm({
-          // title: 'Network Problem',
-          // content: 'Unable to reach the DoctorQuick servers. Please check your connection and try again later.'
-          // }).then(function(){
-          // ionic.Platform.exitApp();
-          // })
-          // //or you can simply navigate it to a page with the no internet connection html.
-          // }
-      }
-      else{
-
-      }
-
-  })
 
   // This fixes transitions for transparent background views
+
+  document.addEventListener("deviceready", onDeviceReady, false);
+
+      // Cordova is loaded and it is now safe to make calls Cordova methods
+      //
+      function onDeviceReady() {
+          checkConnection();
+          console.log('device ready for network check');
+      }
+
+      function checkConnection() {
+          var networkState = navigator.network.connection.type;
+
+          var states = {};
+          states[Connection.UNKNOWN]  = 'Unknown connection';
+          states[Connection.ETHERNET] = 'Ethernet connection';
+          states[Connection.WIFI]     = 'WiFi connection';
+          states[Connection.CELL_2G]  = 'Cell 2G connection';
+          states[Connection.CELL_3G]  = 'Cell 3G connection';
+          states[Connection.CELL_4G]  = 'Cell 4G connection';
+          states[Connection.NONE]     = 'No network connection';
+
+          alert('Connection type: ' + states[networkState]);
+      }
+
+      document.addEventListener("offline", onOffline, false);
+
+      function onOffline() {
+          // Handle the offline event
+          alert('offline');
+      }
+
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
       if(toState.name.indexOf('app.patient_home') > -1)
@@ -188,7 +193,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
         }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
-      console.log(toState.name);
+      // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
       }

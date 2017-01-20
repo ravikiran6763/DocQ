@@ -1,6 +1,5 @@
 DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor) {
 
-console.log('appCtrl');
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
@@ -16,7 +15,7 @@ console.log('appCtrl');
 	$rootScope.chekDiag=false;
 	$rootScope.chekTests=false;
 	$rootScope.chekMedi=false;
-	console.log($rootScope.chekDiag);
+	// console.log($rootScope.chekDiag);
 
 	$scope.accptNotifications=false;
 	$scope.rejectNotifications=true;
@@ -24,29 +23,48 @@ console.log('appCtrl');
 // var model = $cordovaDevice.getModel();
 // console.log(model);
 $localStorage.reqSent="";
-console.log($localStorage.reqSent);
+// console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
-// var type = $cordovaNetwork.getNetwork();
-// var isOnline = $cordovaNetwork.isOnline();
-// var isOffline = $cordovaNetwork.isOffline();
-//
-// console.log(type);
-// console.log(isOnline);
-// console.log(isOffline);
-//
+////////////////////////////////////////////////////////////////////////////////
+document.addEventListener("deviceready", function (){
+    var type = $cordovaNetwork.getNetwork()
+    var isOnline = $cordovaNetwork.isOnline()
+    var isOffline = $cordovaNetwork.isOffline()
+		console.log(type);
 
-console.log($ionicHistory.currentStateName());
+		if( type != 'WIFI' || type != '4g'){
+			console.log('wifi');
+		}
+    // listen for Online event
+    $rootScope.$on('networkOffline', function(event, networkState){
+      var onlineState = networkState;
+			console.log(onlineState);
+    })
+
+    // listen for Offline event
+    $rootScope.$on('networkOffline', function(event, networkState){
+      var offlineState = networkState;
+			console.log(offlineState);
+    })
+
+  }, false);
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// console.log($ionicHistory.currentStateName());
 if($ionicHistory.currentStateName() === 'app.patient_home'){
-	$localStorage.reqSent=0;
+	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
 	$ionicHistory.nextViewOptions({
 					disableBack: true
 			});
 }
-console.log($scope.deviceAndroid );
+// console.log($scope.deviceAndroid );
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
@@ -466,8 +484,7 @@ $scope.ratingsObject = {
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
 
-	 console.log($localStorage.seen);
-
+	//  console.log($localStorage.seen);
 	$interval(callReqInterval, 6000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
