@@ -31,7 +31,7 @@ console.log(username);
 		alert("Error calling Hello Plugin");
 	}
 
-	// hello.chatcounts(username,password,success, failure);
+hello.chatcounts(username,password,success, failure);
 
 
 
@@ -109,7 +109,7 @@ $scope.clicktochat = function(pateientPhone)
 				alert("Error calling Hello Plugin");
 			}
 
-			// hello.chat(username,password,persontocall,success, failure);
+	hello.chat(username,password,persontocall,success, failure);
 
 }
 
