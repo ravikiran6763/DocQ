@@ -28,7 +28,14 @@ $localStorage.reqSent="";
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
+
 ////////////////////////////////////////////////////////////////////////////////
+
+$interval(checkForInternet, 1000);
+function checkForInternet() {
+console.log('network',navigator.onLine);
+
+}
 document.addEventListener("deviceready", function (){
     var type = $cordovaNetwork.getNetwork()
     var isOnline = $cordovaNetwork.isOnline()
@@ -488,9 +495,17 @@ $scope.ratingsObject = {
 	$interval(callReqInterval, 6000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
+		console.log($ionicHistory.currentStateName());
+		if($ionicHistory.currentStateName() === 'auth.loginNew'){
+
+		}
+		else{
+
+		}
 	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 				// console.log('successfull data', response);
 				$scope.calledDetails=response;
+				console.log($rootScope.online);
 				console.log($scope.calledDetails);
 				var data=$scope.calledDetails//take all json data into this variable
 				 var totList=[];

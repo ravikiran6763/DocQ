@@ -41,12 +41,20 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-letter-avatar'
 ])
 
-
-
-DoctorQuickApp.run(function($cordovaSplashscreen) {
-  setTimeout(function() {
-    $cordovaSplashscreen.hide()
-  }, 5000)
+DoctorQuickApp.run(function($window, $rootScope) {
+  console.log(navigator.onLine);
+      $rootScope.online = navigator.onLine;
+      $window.addEventListener("offline", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      }, false);
+      $window.addEventListener("online", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = true;
+        });
+      }, false);
+      console.log($rootScope.online);
 })
 
 DoctorQuickApp.run(function($ionicPlatform) {
