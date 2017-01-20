@@ -468,7 +468,7 @@ $scope.ratingsObject = {
 
 	 console.log($localStorage.seen);
 
-	$interval(callReqInterval, 10000);
+	$interval(callReqInterval, 6000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
 	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){

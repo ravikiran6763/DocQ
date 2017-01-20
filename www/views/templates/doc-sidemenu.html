@@ -6,28 +6,17 @@
         <ion-nav-buttons side="left" >
 
           <button class="button-clear"  style="padding-left:0; margin-top:-14%;">
-            <i class="icon ion-ios7-telephone-outline ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="templates.consulted_patient"><span class="badge badge-stable icon-badge" ng-show="showBadge">10</span></i>
+          <i class="icon ion-ios7-telephone-outline ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="templates.consulted_patient"><span class="badge badge-stable icon-badge" ng-show="showBadge">10</span></i>
           </button>
 
           <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
-            <i class="back-btn-cls ion-ios-arrow-back" style="float:left; margin: -5px 0 0 -3px;" ></i>
-         </button>
+          <i class="back-btn-cls ion-ios-arrow-back" style="float:left; margin: -5px 0 0 -3px;" ></i>
+          </button>
         </ion-nav-buttons>
-
-        <!-- <ion-nav-buttons side="left">
-
-            <i class="back-btn-cls ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="templates.consulted_patient"></i>
-            <span ng-class="{ 'notify-badge': deviceAndroid === true, 'notify-badge-ios': deviceAndroid === false}" ng-show="showBadge" ui-sref="templates.consulted_patient" >{{2}}</span>
-
-
-            <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:14vw;">
-              <i class="back-btn-cls ion-ios-arrow-back" style="float:left;" ></i>
-           </button>
-        </ion-nav-buttons> -->
 
         <ion-nav-title>
           {{headerTxt}}
-            <!-- <img class="doctor-status " ng-src="" ng-show="showDocStatus"> its no more required-->
+          <!-- <img class="doctor-status " ng-src="" ng-show="showDocStatus"> its no more required-->
         </ion-nav-title>
 
         <ion-nav-buttons side="right">
@@ -38,64 +27,58 @@
       </ion-nav-bar>
 
       <ion-nav-view name="menuContent"></ion-nav-view>
-    </ion-side-menu-content>
+  </ion-side-menu-content>
 
-    <ion-side-menu side="right" class="main-menu" expose-aside-when="large"  >
+  <ion-side-menu side="right" class="main-menu" expose-aside-when="large"  >
   <ion-content class="doc-sidemenu sidemenu-padding" >
 
-    <ion-item class="item-icon-left" ng-click="getDocDetails();" menu-close ui-sref="templates.doc_profile"><!-- ui-sref="templates.doc_profile" -->
-      <i class="icon ion-android-bookmark"></i>
-      <h2 class="menu-text">Profile</h2>
-    </ion-item>
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.consulted_patient">
-      <i class="icon ion-social-wordpress"></i>
-      <h2 class="menu-text">My Consultations</h2>
-    </ion-item>
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_profile">
-      <i class="icon ion-asterisk"></i>
-      <h2 class="menu-text">Review App</h2>
-    </ion-item>
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc-customercare">
-      <i class="icon ion-gear-a"></i>
-      <h2 class="menu-text">Customer Care</h2>
-    </ion-item>
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_acc_statement">
-      <i class="icon ion-android-wifi"></i>
-      <h2 class="menu-text">Account Statements</h2>
-    </ion-item>
+        <!--  -->
+        <ion-list ng-hide="sideMenuForSearch">
+            <ion-item class="item-icon-left" ng-click="getPatientDetails();"  ui-sref="templates.consulted_patient" menu-close>
+              <i class="icon ion-android-bookmark"></i>
+              <h2 class="menu-text">Profile</h2>
+            </ion-item>
+            <ion-item class="item-icon-left" nav-clear menu-close  ui-sref="templates.consulted_patient">
+              <i class="icon ion-radio-waves"></i>
+              <h2 class="menu-text">My Consultations</h2>
+            </ion-item>
 
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.invite_reviews">
-      <i class="icon ion-android-cloud-circle"></i>
-      <h2 class="menu-text">Invite Reviews</h2>
-    </ion-item>
-
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
-      <i class="icon ion-android-cloud-done"></i>
-      <h2 class="menu-text">Terms Of Use</h2>
-    </ion-item>
-
-    <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
-      <i class="icon ion-android-cloud-done"></i>
-      <h2 class="menu-text">Notifications</h2>
-    </ion-item>
-
-    <!-- <ion-toggle  class=" OnlineStatus item-icon-left" style="background-color:#20242c;"  ng-model="notificationValue" toggle-class="toggle-calm" ng-change="changeNotification(notificationValue)">
-      <span style="color:#cccccc; font-weight:100">Notifications</span>
-      <i class="icon ion-document"></i>
-      <p class="notification-txt-cls">{{notificationValue ? 'ON' : 'OFF'}}</p>
-
-    </ion-toggle> -->
-    <div class="sideMenuToggle">
-      <img  src="img/on.png"  width="100%" height="100%"  ng-hide="accptNotifications" ng-click="hideNotifications('show')" on-drag-left="hideNotifications('hide')">
-      <img  src="img/off.png" width="100%" height="100%" ng-hide="rejectNotifications" ng-click="showNotifications('hide')" on-drag-right="showNotifications('show')">
-    </div>
+            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_profile">
+              <i class="icon ion-asterisk"></i>
+              <h2 class="menu-text">Review App</h2>
+            </ion-item>
 
 
+            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc-customercare">
+              <i class="icon ion-gear-a"></i>
+              <h2 class="menu-text">Customer Care</h2>
+            </ion-item>
+            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_acc_statement">
+              <i class="icon ion-android-wifi"></i>
+              <h2 class="menu-text">Account Statements</h2>
+            </ion-item>
 
-    </ion-content>
+            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.invite_reviews">
+              <i class="icon ion-android-cloud-circle"></i>
+              <h2 class="menu-text">Invite Reviews</h2>
+            </ion-item>
 
-    </ion-side-menu>
+            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+              <i class="icon ion-android-cloud-done"></i>
+              <h2 class="menu-text">Terms Of Use</h2>
+            </ion-item>
 
+            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+              <i class="icon ion-android-cloud-done"></i>
+              <h2 class="menu-text">Notifications</h2>
+            </ion-item>
 
-  </ion-side-menus>
+              <div class="sideMenuToggle">
+                <img  src="img/on.png"  width="100%" height="100%"  ng-hide="accptNotifications" ng-click="hideNotifications('show')" on-drag-left="hideNotifications('hide')">
+                <img  src="img/off.png" width="100%" height="100%" ng-hide="rejectNotifications" ng-click="showNotifications('hide')" on-drag-right="showNotifications('show')">
+              </div>
+        </ion-list>
+  </ion-content>
+  </ion-side-menu>
+</ion-side-menus>
 </ion-view>
