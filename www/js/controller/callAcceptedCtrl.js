@@ -19,7 +19,7 @@ $scope.checkWalletBalance = function()
 	var videocallflag = 2;
 	$scope.startdate = new Date();
 	$scope.callid = $rootScope.callId;
-	$localStorage.ViewDoc=0;
+	$localStorage.ViewDoc=1;
 
 			var uname = "greet+"+$localStorage.user;
 			 var pw = "DQ_patient";

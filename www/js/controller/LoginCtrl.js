@@ -18,12 +18,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						}
 
 			}
-
 		$scope.sendForm = function($event,form)
 		{
 	       $event.preventDefault()
 	       $scope.submitted = true
-				 console.log($scope.submitted);
+				//  console.log($scope.submitted);
 	  };
 
 		var special = {};
@@ -34,6 +33,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 	$scope.doLogIn = function()
 	{
+
+
 		$rootScope.submitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
@@ -46,6 +47,15 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					password : $scope.loginData.pin
 				};
 				// console.log(userDetails);
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!experiment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+				// LoginService.loginprocess(userDetails)
+				// .then(function(response) {
+				// 	console.log(response);
+				// 		$rootScope.$broadcast('authorized');
+				// 		$state.go('app.patient_home');
+				// });
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 				 console.log(response);

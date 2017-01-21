@@ -11,26 +11,26 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 console.log('called');
 
 
-var username = "greet+"+$localStorage.user;
-var password = "DQ_patient";
-
-
-console.log(username);
-
-
-	var success = function(message)
-	{
-
-		alert(message);
-
-	}
-
-	var failure = function()
-	{
-		alert("Error calling Hello Plugin");
-	}
-
-hello.chatcounts(username,password,success, failure);
+// var username = "greet+"+$localStorage.user;
+// var password = "DQ_patient";
+//
+//
+// console.log(username);
+//
+//
+// 	var success = function(message)
+// 	{
+//
+// 		alert(message);
+//
+// 	}
+//
+// 	var failure = function()
+// 	{
+// 		alert("Error calling Hello Plugin");
+// 	}
+//
+// hello.chatcounts(username,password,success, failure);
 
 
 
@@ -41,6 +41,9 @@ $ionicLoading.show();
 	$ionicLoading.show();
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
+
+		console.log($scope.myDoctor);
+		
 		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);

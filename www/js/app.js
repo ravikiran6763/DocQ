@@ -248,6 +248,10 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
 
   })
 
+
+
+
+
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
 
   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
@@ -263,7 +267,7 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 
 });
 
-DoctorQuickApp.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
+DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
   $stateProvider
@@ -706,5 +710,5 @@ $stateProvider
   //Patient signup
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/auth/loginNew');
-
+  $httpProvider.interceptors.push('APIInterceptor');
 });

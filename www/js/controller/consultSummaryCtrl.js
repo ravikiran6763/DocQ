@@ -7,7 +7,9 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $wi
 	  $scope.rating.rate = 3;
 	  $scope.rating.max = 5;
 
-console.log($localStorage.Doctocall);
+console.log($localStorage.consultedDoctor);
+
+
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
@@ -16,7 +18,7 @@ var key = this;
 
 $ionicLoading.show();
 
-myConsultationService.docSummaryDetails($localStorage.docPhone).then(function(response){
+myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();

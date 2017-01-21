@@ -121,12 +121,26 @@ angular.module('DoctorQuick.services', [])
 
 .factory('payu', function ($resource) {
        return $resource('http://localhost:8100/');
-   });
+   })
 
+	 .service('APIInterceptor', function($rootScope, checkInternet) {
+	     var service = this;
+	     service.request = function(config) {
 
+	         return config;
+	     };
+	     service.responseError = function(response) {
+	         if (response.status === 401) {
+	             $rootScope.$broadcast('unauthorized');
+	         }
+	         return response;
+	     };
+	 })
 
+.service('checkInternet', function($rootScope){
+	console.log('check');
+	console.log('network',navigator.onLine);
 
-
-
+})
 
 ;
