@@ -526,7 +526,7 @@ $scope.ratingsObject = {
 	 $rootScope.myBalance;
 
 	//  console.log($localStorage.seen);
-	$interval(callReqInterval, 6000);
+	$interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
 		console.log($ionicHistory.currentStateName());

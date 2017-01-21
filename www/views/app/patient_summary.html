@@ -34,19 +34,19 @@
       <div class="card ">
           <div class="row" ng-click="chatclicked()">
             <div class="col">Messages</div>
-            <div class="col"><span class="badge badge-positive " style="float:right;">{{1}}</span></div>
+            <div class="col-30 "><p class="badge badge-positive " >{{1}}</p></div>
 
           </div>
           <div class="row">
-            <div class="col-75">Add doctor to favorites</div>
-            <div class="col " >
+            <div class="col">Add doctor to favorites</div>
+            <div class="col-30 " >
             <!-- <i class="icon  ion-android-favorite-outline"    on-icon="ion-android-favorite-outline" off-icon="ion-android-favorite" ng-click="addToFavorite();" icon-switcher></i> -->
             <i id="like" ng-class="{'icon ion-android-favorite': liked, 'icon ion-android-favorite-outline': !liked}" ng-click="addToFavorite(liked=!liked);"></i>
             </div>
           </div>
           <div class="row">
             <div class="col">Rate doctor</div>
-            <div class="col">
+            <div class="col-30">
               <a href="javascript:" ng-repeat="r in ratingArr" style="text-decoration:none; font-size: 150%; margin-left:1.5%">
                 <i class="icon {{r.icon}}" ng-click="setRating(r.ratings,r.value)"></i>
               </a>
