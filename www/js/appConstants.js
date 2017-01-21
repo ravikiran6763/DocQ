@@ -47,6 +47,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'topMeup' : 'patient/topMeUp.php',
         'callAccepted' : 'patient/callAccepted.php',
         'callDecline' : 'patient/callDecline.php',
+        'popupSeen' : 'patient/popupSeen.php',
         'uploadImage' : 'patient/uploadImage.php',
         'changePatientPwd':'patient/changePatientPwd.php',
         'callaccepteddoctor':'patient/insertintomyconsultations.php',

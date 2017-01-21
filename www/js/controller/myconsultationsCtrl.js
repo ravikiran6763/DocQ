@@ -43,7 +43,7 @@ $ionicLoading.show();
 		$scope.myDoctor=response;//store the response array in doctor details
 
 		console.log($scope.myDoctor);
-		
+
 		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);

@@ -9876,6 +9876,13 @@ ion-content.scroll-content.ionic-scroll {
   height: 14%;
   z-index: 2; }
 
+.docSidemenuToggle {
+  position: absolute;
+  margin-top: -16%;
+  margin-left: 70%;
+  height: 10%;
+  z-index: 2; }
+
 .toggle-small .toggle-assertive input:checked + .track {
   background-color: #6aa433 !important;
   width: !important; }
@@ -10227,6 +10234,16 @@ ion-side-menu.menu-left.menu {
 .videoPopup .popup {
   width: 85%;
   border-radius: 10px; }
+
+.videoPopup .popup-head {
+  padding: 0%;
+  border-bottom: 1px solid #eee;
+  text-align: center; }
+
+.videoPopup .popup-title i {
+  font-size: 218%;
+  margin-top: 9%;
+  color: #6e9636; }
 
 .videoPopup .popup-buttons {
   padding: 0;

@@ -8,7 +8,7 @@
 
       $callDetails = array();
 
-      $sql = "select acceptedpatients.id as callId,onoff,doctorPhone,doctorFname,doctorMname,doctorLname,doctorDegrees,practicingSince,doctorFee,cal_flag from doctor_onoff,doctorDetails,acceptedpatients where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone=acceptedpatients.doctorphno and acceptedpatients.patientphno='$postdata' and cal_flag=4";
+      $sql = "select acceptedpatients.id as callId,acceptedpatients.seenFlag as popupSeen, onoff,doctorPhone,doctorFname,doctorMname,doctorLname,doctorDegrees,practicingSince,doctorFee,cal_flag from doctor_onoff,doctorDetails,acceptedpatients where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone=acceptedpatients.doctorphno and acceptedpatients.patientphno='$postdata' and cal_flag=4";
 
       $retval = mysql_query( $sql, $dbhandle );
 
