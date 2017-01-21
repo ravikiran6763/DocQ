@@ -16,7 +16,7 @@
 			if($acceptcode ==1)
 			{
 					//UPDATE FOR THIS PATIENT AR_FLAG IN DATABASE AS 3 AND TIME AS NOW
-					$accpteddoctor = "update patientrequesteddoctor set ar_flag=3,ar_time=now() where patientphno='$patientphno'";
+					echo $accpteddoctor = "update patientrequesteddoctor set ar_flag=3,ar_time=now() where patientphno='$patientphno' and id='$reqId'";
 					// echo $accpteddoctor;
 					$retval = mysql_query($accpteddoctor,$dbhandle);
 					if(! $retval )
