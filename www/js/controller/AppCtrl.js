@@ -27,19 +27,16 @@ $localStorage.reqSent="";
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
-<<<<<<< HEAD
 
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
 //console.log(networkState);
 $interval(checkForInternet, 1000);
 
-=======
 $localStorage.chekedData =0;
 $localStorage.dataConnection=navigator.onLine;
 ////////////////////////////////////////////////////////////////////////////////
 $interval(checkForInternet, 5000);
->>>>>>> e1f92afbb240fa3b5f8c64fec6f72d9ec7a40978
 function checkForInternet() {
 
 if(!navigator.onLine ){
@@ -605,7 +602,6 @@ $localStorage.ViewDoc=0;
 						 console.log('failure data', error);
 				 });
 		}
-<<<<<<< HEAD
 		else{
 			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 						// console.log('successfull data', response);
@@ -677,8 +673,6 @@ $localStorage.ViewDoc=0;
 						 console.log('failure data', error);
 				 });
 		}
-=======
->>>>>>> e1f92afbb240fa3b5f8c64fec6f72d9ec7a40978
 
 				// console.log('callAtInterval');
 	}
