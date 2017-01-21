@@ -13,7 +13,7 @@
     line-height: 18px;
     width: 100% !important;
 }
-  .button .button-small{
+  .button{
     background-color: white !important;
   }
   .top-content
@@ -38,8 +38,6 @@
         border-bottom: none !important;
         margin-bottom: 10px auto;
       }
-
-
       .next-icon {
           width: 4vw;
           float: right;
@@ -57,7 +55,6 @@
       .name-content {
 
         height: 100%;
-
         background-color: blue;
 
         p{

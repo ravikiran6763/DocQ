@@ -1,6 +1,5 @@
 DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor) {
 
-console.log('appCtrl');
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
@@ -16,7 +15,7 @@ console.log('appCtrl');
 	$rootScope.chekDiag=false;
 	$rootScope.chekTests=false;
 	$rootScope.chekMedi=false;
-	console.log($rootScope.chekDiag);
+	// console.log($rootScope.chekDiag);
 
 	$scope.accptNotifications=false;
 	$scope.rejectNotifications=true;
@@ -24,29 +23,56 @@ console.log('appCtrl');
 // var model = $cordovaDevice.getModel();
 // console.log(model);
 $localStorage.reqSent="";
-console.log($localStorage.reqSent);
+// console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
-// var type = $cordovaNetwork.getNetwork();
-// var isOnline = $cordovaNetwork.isOnline();
-// var isOffline = $cordovaNetwork.isOffline();
-//
-// console.log(type);
-// console.log(isOnline);
-// console.log(isOffline);
-//
+//var networkState= $cordovaNetwork.isOnline();
+////////////////////////////////////////////////////////////////////////////////
+//console.log(networkState);
+$interval(checkForInternet, 1000);
 
-console.log($ionicHistory.currentStateName());
+function checkForInternet() {
+console.log('network',navigator.onLine);
+
+}
+document.addEventListener("deviceready", function (){
+    var type = $cordovaNetwork.getNetwork()
+    var isOnline = $cordovaNetwork.isOnline()
+    var isOffline = $cordovaNetwork.isOffline()
+		console.log(type);
+
+		if( type != 'WIFI' || type != '4g'){
+			console.log('wifi');
+		}
+    // listen for Online event
+    $rootScope.$on('networkOffline', function(event, networkState){
+      var onlineState = networkState;
+			console.log(onlineState);
+    })
+
+    // listen for Offline event
+    $rootScope.$on('networkOffline', function(event, networkState){
+      var offlineState = networkState;
+			console.log(offlineState);
+    })
+
+  }, false);
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+// console.log($ionicHistory.currentStateName());
 if($ionicHistory.currentStateName() === 'app.patient_home'){
-	$localStorage.reqSent=0;
+	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
 	$ionicHistory.nextViewOptions({
 					disableBack: true
 			});
 }
-console.log($scope.deviceAndroid );
+// console.log($scope.deviceAndroid );
 	$scope.doRefresh = function() {
 		console.log('Refreshing!');
 		$timeout( function() {
@@ -466,79 +492,86 @@ $scope.ratingsObject = {
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
 
-	 console.log($localStorage.seen);
-
-	$interval(callReqInterval, 10000);
+	//  console.log($localStorage.seen);
+	$interval(callReqInterval, 6000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
-	medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
-				// console.log('successfull data', response);
-				$scope.calledDetails=response;
-				console.log($scope.calledDetails);
-				var data=$scope.calledDetails//take all json data into this variable
-				 var totList=[];
-						for(var i=0; i<data.length; i++){
+		console.log($ionicHistory.currentStateName());
+		if($ionicHistory.currentStateName() === 'auth.loginNew'){
 
-								$rootScope.cal_flag=data[i].cal_flag,
-								$rootScope.callId=data[i].callId,
-								$rootScope.onoff=data[i].onoff,
-								$rootScope.doctorPhone=data[i].doctorPhone,
+		}
+		else{
+			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+						// console.log('successfull data', response);
+						$scope.calledDetails=response;
+						console.log($rootScope.online);
+						console.log($scope.calledDetails);
+						var data=$scope.calledDetails//take all json data into this variable
+						 var totList=[];
+								for(var i=0; i<data.length; i++){
 
-						console.log($rootScope.cal_flag);
+										$rootScope.cal_flag=data[i].cal_flag,
+										$rootScope.callId=data[i].callId,
+										$rootScope.onoff=data[i].onoff,
+										$rootScope.doctorPhone=data[i].doctorPhone,
 
-						$localStorage.Doctocall =  $rootScope.doctorPhone;
-						if($rootScope.cal_flag === '4' && $localStorage.ViewDoc === 0){
-							// alert('readyforcall');
+								console.log($rootScope.cal_flag);
 
-							$ionicPopup.confirm({
-										 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
-										 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
-										 cssClass: 'videoPopup',
-										 scope: $scope,
-										 buttons: [
-															 {
-															 text: 'Decline',
-															 type: 'button-royal',
-															 onTap: function(e) {
-																 				console.log('Decline');
-															 				}
-															 },
-															 {
-																 text: 'View',
-																 type: 'button-positive',
-																 onTap: function(e) {
-																		 console.log('ok');
-																		 $localStorage.ViewDoc=1;
-																		 $localStorage.seen=1;
-																		 console.log($localStorage.seen);
-																		 $state.go('app.callAccepted');
+								$localStorage.Doctocall =  $rootScope.doctorPhone;
+								if($rootScope.cal_flag === '4' && $localStorage.ViewDoc === 0){
+									// alert('readyforcall');
 
-															 }
-									 },
-									 ]
-								 })
+									$ionicPopup.confirm({
+												 title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
+												 template: '<center><b>Dr ABCD</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
+												 cssClass: 'videoPopup',
+												 scope: $scope,
+												 buttons: [
+																	 {
+																	 text: 'Decline',
+																	 type: 'button-royal',
+																	 onTap: function(e) {
+																						console.log('Decline');
+																					}
+																	 },
+																	 {
+																		 text: 'View',
+																		 type: 'button-positive',
+																		 onTap: function(e) {
+																				 console.log('ok');
+																				 $localStorage.ViewDoc=1;
+																				 $localStorage.seen=1;
+																				 console.log($localStorage.seen);
+																				 $state.go('app.callAccepted');
 
-							// $ionicPopup.alert({
-							// title: 'Call Request Accepted',
-							// template:' A Doctor has accepted your call request',
-							// cssClass: 'videoPopup',
-							// buttons: [
-							// 	{
-							// 	text: 'Ok',
-							// 	type: 'button-assertive',
-							// 	onTap: function(e) {
-							//
-							// 		$state.go('app.callAccepted');
-							// 	}
-							// 	},
-							// ]
-							// })
-						}
-						}
+																	 }
+											 },
+											 ]
+										 })
 
-		 }).catch(function(error){
-				 console.log('failure data', error);
-		 });
+									// $ionicPopup.alert({
+									// title: 'Call Request Accepted',
+									// template:' A Doctor has accepted your call request',
+									// cssClass: 'videoPopup',
+									// buttons: [
+									// 	{
+									// 	text: 'Ok',
+									// 	type: 'button-assertive',
+									// 	onTap: function(e) {
+									//
+									// 		$state.go('app.callAccepted');
+									// 	}
+									// 	},
+									// ]
+									// })
+								}
+								}
+
+				 }).catch(function(error){
+						 console.log('failure data', error);
+				 });
+		}
+
 				// console.log('callAtInterval');
 	}
 

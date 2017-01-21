@@ -8,11 +8,18 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localS
 	$scope.doctorQuery=function(){
 
 		if(!$rootScope.cc.query){
-			console.log('$rootScope.cc.query');
+			console.log($rootScope.cc.query);
 			$cordovaToast.showLongCenter('Please Enter your Query', 'short', 'center').then(function(success) {
 			// success
+console.log('toast should display');
+
 			}, function (error) {
 			// error
+
+			console.log(error);
+			console.log('toast should display');
+
+
 			});
 
 		}

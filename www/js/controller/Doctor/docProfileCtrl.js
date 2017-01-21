@@ -6,7 +6,10 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope, $ionicCo
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
+console.log('doctor profile called');
 
+
+console.log($localStorage.user);
 
   doctorServices.doctorDetails($localStorage.user).then(function(response){
     console.log($localStorage.user);

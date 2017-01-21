@@ -18,8 +18,8 @@
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="SplashScreenDelay" value="500" />
-    <preference name="FadeSplashScreenDuration" value="1000" />
+    <preference name="SplashScreenDelay" value="200" />
+    <preference name="FadeSplashScreenDuration" value="200" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
@@ -187,6 +187,14 @@
     <feature name="Device">
         <param name="ios-package" value="CDVDevice" />
     </feature>
+
+    <feature name="NetworkStatus">
+      <param name="android-package" value="org.apache.cordova.NetworkManager" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="ios-package" value="CDVConnection" />
+    </feature>
+
     <mime-mapping>
         <extension>js</extension>
         <mime-type>application/javascript</mime-type>
