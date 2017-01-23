@@ -315,11 +315,10 @@ $scope.patientRegistration = function()
 
     $rootScope.validInput=true;
     $scope.validateUser1=function(isForm1Valid){
-      // console.log('isForm1Valid ', isForm1Valid)
-      // console.log($scope.PatientDetail.patientAvatar);
+
     console.log('clicked');
     $rootScope.validInput=false;
-
+    $scope.submitted2ndPage = true;
     // console.log($scope.PatientDetail.patient_mob);
 
     if(!$scope.PatientDetail.patient_mob){
@@ -327,22 +326,33 @@ $scope.patientRegistration = function()
       $scope.submittedMob = true;
       console.log($scope.PatientDetail.patient_mob);
 
-      $cordovaToast.showLongCenter('Valid mobile number must be entered', 'short', 'center').then(function(success){
-      // success
-      }, function (error) {
-      // error
+      $scope.myPopup = $ionicPopup.show({
+        // title: 'Invalid Credentials',
+
+        template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Mobile Number</p></div><div class="errorContent"><center><p>Please Enter a valid mobile number </p></center></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+        cssClass: 'loginPopup',
+        scope: $scope,
       });
+      $scope.closethis = function()
+      {
+      $scope.myPopup.close();
+      };
     }
     else if(!$scope.PatientDetail.gender){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
 
       $scope.submittedSex = true;
-      console.log($scope.PatientDetail.gender);
-      $cordovaToast.showLongCenter('Please check your gender', 'short', 'center').then(function(success){
-      // success
-      }, function (error) {
-      // error
+      $scope.myPopup = $ionicPopup.show({
+        // title: 'Invalid Credentials',
+
+        template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Mobile Number</p></div><div class="errorContent"><p>Please select gender</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+        cssClass: 'loginPopup',
+        scope: $scope,
       });
+      $scope.closethis = function()
+      {
+      $scope.myPopup.close();
+      };
     }
     else if(!$scope.PatientDetail.pat_email){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
