@@ -24,7 +24,11 @@ $rootScope.chatCount='';
  	 alert("Error calling Hello Plugin");
   }
 
+<<<<<<< HEAD
+hello.unreadchatfromusers(username,password,success, failure);
+=======
  hello.unreadchatfromusers(username,password,success, failure);
+>>>>>>> a26e485c6b0e5227aab26da7d0d177c62bd904f0
 
 	function callAtInterval() {
 		doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
