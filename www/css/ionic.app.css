@@ -13041,13 +13041,15 @@ ion-side-menu .heading-item .message {
   .patient-notes-view .card {
     font-size: 4vw;
     max-width: 100%; }
+    .patient-notes-view .card .col-75 {
+      padding: 3%; }
     .patient-notes-view .card .row {
       height: 8%;
       margin: 0;
       padding: 0; }
     .patient-notes-view .card .checkbox {
       position: absolute;
-      margin: 0 0 0 66%;
+      margin: -1% 0 0 2%;
       padding-left: 6%;
       padding-top: 2%; }
     .patient-notes-view .card i {

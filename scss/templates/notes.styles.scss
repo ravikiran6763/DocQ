@@ -14,6 +14,9 @@
     }
 
   .card {
+    .col-75{
+      padding: 3%;
+    }
     .row{
       height: 8%;
       margin: 0;
@@ -23,10 +26,10 @@
     max-width: 100%;
 
      .checkbox {
-        position: absolute;
-        margin: 0 0 0 66%;
-        padding-left: 6%;
-        padding-top: 2%;
+       position: absolute;
+       margin: -1% 0 0 2%;
+       padding-left: 6%;
+       padding-top: 2%;
       }
     i{
       font-size: 140%;
