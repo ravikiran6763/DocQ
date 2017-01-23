@@ -223,6 +223,7 @@ $scope.patientRegistration = function()
         	   	});
         			$timeout(function() {
         		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+                 $state.go('auth.loginNew');
         		  }, 1000);
             }
 
