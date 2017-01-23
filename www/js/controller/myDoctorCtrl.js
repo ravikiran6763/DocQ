@@ -12,10 +12,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
  var username = "greet+"+$localStorage.user;
  var password = "DQ_patient";
 
-
+$rootScope.chatCount='';
   var success = function(message)
   {
- 	 alert(message);
+		$rootScope.chatCount=message
+ 	 console.log($rootScope.chatCount);
   }
 
   var failure = function()
@@ -23,7 +24,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
  	 alert("Error calling Hello Plugin");
   }
 
+<<<<<<< HEAD
 hello.unreadchatfromusers(username,password,success, failure);
+=======
+ hello.unreadchatfromusers(username,password,success, failure);
+>>>>>>> a26e485c6b0e5227aab26da7d0d177c62bd904f0
 
 	function callAtInterval() {
 		doctorServices.myDoctorsFetched($localStorage.user).then(function(response){

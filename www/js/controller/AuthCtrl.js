@@ -156,7 +156,14 @@ $scope.patientRegistration = function()
         console.log('reg clicked');
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
-            alert('Please Enter OTP');
+          $scope.queryPopup =$ionicPopup.show({
+           template: 'Valid code must be entered tap on Resend to receive a code again',
+           cssClass: 'dqAlerts',
+           scope: $scope,
+          });
+          $timeout(function() {
+             $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+          }, 3000);
         }
         else if($scope.otpentered.OTP1 === $scope.otp[0] && $scope.otpentered.OTP2 ===  $scope.otp[1] && $scope.otpentered.OTP3 === $scope.otp[2] && $scope.otpentered.OTP4 === $scope.otp[3])
         {
@@ -223,6 +230,7 @@ $scope.patientRegistration = function()
         	   	});
         			$timeout(function() {
         		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+                 $state.go('auth.loginNew');
         		  }, 1000);
             }
 
@@ -235,11 +243,20 @@ $scope.patientRegistration = function()
         else
         {
               // alert('Incorrect OTP');
-              $cordovaToast.showLongBottom('Valid code must be entered tap on Resend to receive a code again.', 'short', 'center').then(function(success) {
-              // success
-              }, function (error) {
-              // error
-              });
+
+              $scope.queryPopup =$ionicPopup.show({
+        	     template: 'Valid code must be entered tap on Resend to receive a code again',
+        			 cssClass: 'dqAlerts',
+        			 scope: $scope,
+        	   	});
+        			$timeout(function() {
+        		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+        		  }, 1000);
+              // $cordovaToast.showLongBottom('Valid code must be entered tap on Resend to receive a code again.', 'short', 'center').then(function(success) {
+              // // success
+              // }, function (error) {
+              // // error
+              // });
         }
 
 }
@@ -451,7 +468,6 @@ $scope.patientRegistration = function()
         // console.log('isDocFormValid ', isDocFormValid)
         $state.go('auth.doctorRegistration2');
       }
-      // console.log($rootScope.PatientDetail);
 
       // $state.go('auth.patient_reg2');
     }
