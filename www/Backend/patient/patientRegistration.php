@@ -91,11 +91,11 @@
 						//CREATE USERS IN VSEE FROM THE BELOW URL
 						$USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
 						//SEND JSON DATA OF USERS TO VSEE API
-						$USER_JSON = '{"secretkey":'.$secretkey.',
-						"username":'.$pateientPhone.',
-						"password":'.$password.',
-						"fn": '.$pateientFname.',
-						"ln": '.$pateientLname.'}';
+						$USER_JSON = '{"secretkey":"'.$secretkey.'",
+						"username":"'.$pateientPhone.'",
+						"password":"'.$password.'",
+						"fn": "'.$pateientFname.'",
+						"ln": "'.$pateientLname.'"}';
 						curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
 						curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
 						$result = curl_exec($ch);
@@ -103,6 +103,7 @@
 						$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 						echo $http_status;
 
+echo $USER_JSON;
 
 			}
 	}

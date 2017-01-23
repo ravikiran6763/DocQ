@@ -12366,7 +12366,7 @@ ion-side-menu .heading-item .message {
         .summary-view .top-content .details .name-content p {
           font-size: 85%; }
         .summary-view .top-content .details .name-content .ratingContainer {
-          margin-top: -14.5%;
+          margin-top: -11%;
           margin-left: 60%;
           width: 38%; }
       .summary-view .top-content .details .next-icon {
@@ -12391,7 +12391,8 @@ ion-side-menu .heading-item .message {
       .summary-view .rateClass .card .col-75 {
         padding: 8% !important; }
       .summary-view .rateClass .card .col-30 p {
-        margin-top: 40%; }
+        margin-top: 40%;
+        margin-left: 1%; }
   .summary-view .lowRatesComment {
     width: 90%;
     height: 45%;
@@ -13633,7 +13634,7 @@ ion-side-menu .heading-item .message {
       padding-left: 10px;
       width: 100% !important; }
   .patient-reg-1-view .bottom-content {
-    height: 40% !important; }
+    height: 17% !important; }
     .patient-reg-1-view .bottom-content .login_button {
       background-color: #6aa13e;
       color: #ffffff;
@@ -13728,7 +13729,7 @@ ion-side-menu .heading-item .message {
       padding-left: 18px;
       width: 100% !important; }
   .patient-reg-3-view .bottom-content {
-    height: 40% !important; }
+    height: 38% !important; }
     .patient-reg-3-view .bottom-content .buttonContent {
       width: 80% !important;
       margin: 0 auto; }
@@ -13860,7 +13861,7 @@ ion-side-menu .heading-item .message {
       text-align: center;
       font-size: 70%; }
   .patient-reg-2-view .bottom-content {
-    height: 40% !important; }
+    height: 17% !important; }
     .patient-reg-2-view .bottom-content .login_button {
       background-color: #6aa13e;
       color: #ffffff;

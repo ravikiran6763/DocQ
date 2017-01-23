@@ -216,12 +216,14 @@ $scope.patientRegistration = function()
               showWithOptions(options)
               */
 
-              $cordovaToast.showLongBottom('Successfully registered.', 'short', 'center').then(function(success) {
-              // success
-              $state.go('auth.loginNew');
-              }, function (error) {
-              // error
-              });
+              $scope.queryPopup =$ionicPopup.show({
+        	     template: 'Successfully registered',
+        			 cssClass: 'dqAlerts',
+        			 scope: $scope,
+        	   	});
+        			$timeout(function() {
+        		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+        		  }, 1000);
             }
 
           })
@@ -244,7 +246,7 @@ $scope.patientRegistration = function()
 
     $rootScope.validInput=true;
     $scope.validateUser=function(isFormValid){
-    
+
       $rootScope.validInput=false;
       $scope.validForm =isFormValid;
       if(!$scope.PatientDetail.patient_fname){

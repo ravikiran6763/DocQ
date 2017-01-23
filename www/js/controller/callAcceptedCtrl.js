@@ -27,7 +27,6 @@ $scope.checkWalletBalance = function()
 			 var persontocall = "greet+" + $localStorage.Doctocall;
 			 console.log(uname);
 			 console.log(persontocall);
-	console.log($localStorage.Doctocall);
 			 	 var success = function(message)
 				{
 						alert(message);

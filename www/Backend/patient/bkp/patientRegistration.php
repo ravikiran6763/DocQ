@@ -76,6 +76,10 @@
 								 echo "ERROR";
 							}
 
+
+
+
+						$clienrNuym=$apiclientname+$pateientPhone;
 						//PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
 						$password = "DQ_patient";
 						//CREATE USERS IN VSEE FROM THE BELOW URL
@@ -93,6 +97,7 @@
 						$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 						echo $http_status;
 
+echo $USER_JSON;
 
 			}
 	}

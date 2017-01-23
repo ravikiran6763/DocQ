@@ -264,6 +264,8 @@ DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
        $ionicConfigProvider.views.transition('platform');
+       $ionicConfigProvider.views.transition('none')
+
 
 });
 
