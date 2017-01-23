@@ -975,14 +975,16 @@ console.log($rootScope.chekDiag);
           console.log(ato);
           var prescImg=$scope.pic;
 
+
+
             var success = function(message)
             {
-              console.log(message);
+              alert(message);
             }
 
             var failure = function()
             {
-              console.log("Error calling Hello Plugin");
+              alert("Error calling Hello Plugin");
             }
 
             hello.automatic(auname,apw,ato,prescImg,success, failure);
