@@ -11,26 +11,26 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 console.log('called');
 
 
-// var username = "greet+"+$localStorage.user;
-// var password = "DQ_patient";
-//
-//
-// console.log(username);
-//
-//
-// 	var success = function(message)
-// 	{
-//
-// 		alert(message);
-//
-// 	}
-//
-// 	var failure = function()
-// 	{
-// 		alert("Error calling Hello Plugin");
-// 	}
-//
-// hello.chatcounts(username,password,success, failure);
+var username = "greet+"+$localStorage.user;
+var password = "DQ_patient";
+
+
+console.log(username);
+
+
+	var success = function(message)
+	{
+
+		alert(message);
+
+	}
+
+	var failure = function()
+	{
+		alert("Error calling Hello Plugin");
+	}
+
+hello.chatcounts(username,password,success, failure);
 
 
 
