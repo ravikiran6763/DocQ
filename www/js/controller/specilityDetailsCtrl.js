@@ -69,8 +69,8 @@ console.log($rootScope.specialId);
      }
      var mytimeout = $timeout($scope.onTimeout,1000);
      $scope.confirmPopup = $ionicPopup.show({
-           template: "Your request for a<br>video call has been sent.<br>{{counter | secondsToDateTime | date:'mm:ss'}}",
-           cssClass: 'videoPopup',
+           template: "Your request for a<br>video call has been sent.<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b>",
+           cssClass: 'requestPopup',
            scope: $scope,
            buttons: [
            {

@@ -19,10 +19,11 @@
           <div class="name-content">
             <h2 >Dr.{{doctor.doctorFname | capitalize }} {{doctor.doctorLname | capitalize}} </h2>
             <p>{{doctor.doctorDegrees}} Degrees</p>
-              <p>Practicing since {{doctor.practicingSince}}</p>
+            <p>Practicing since {{doctor.practicingSince}}</p>
+
               <div class="ratingContainer">
                 <span ng-repeat="rating in ratings" >
-                  <div class="ratingStars" star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
+                  <div  star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
                   </div>
                 </span>
               </div>

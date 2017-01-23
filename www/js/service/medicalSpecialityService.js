@@ -62,4 +62,6 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
       		return deferred.promise;
       }
 
+      
+
 });
