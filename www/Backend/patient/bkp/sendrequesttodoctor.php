@@ -34,18 +34,31 @@ if(isset($postdata))
 
 		if($phnos)
 		{
-		  	$insertionvalues = "INSERT INTO patientrequesteddoctor(patientphno,doctorphnos,requesteddatetime) VALUES ('$patient_phno','$phnos',now())";
-				$retval1 = mysql_query( $insertionvalues, $dbhandle );
-	        if(!$retval1 )
-	        {
-	                die('Could not enter data: ' . mysql_error());
-	                 echo "ERROR";
-	        }
-	        else
-	        {
-	                echo "Query Submitted";
-	        }
-					sleep(5);
+
+			$fiveMins="SELECT count(id) as count  FROM patientrequesteddoctor WHERE requesteddatetime > DATE_SUB(NOW(), INTERVAL 5 MINUTE) and patientphno='$patient_phno' and ar_flag = 0 ";
+			$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
+			while($row = mysql_fetch_array($fiveMinsRet))
+			{
+				 $count=$row['count'];
+				if($count === '0'){
+						$insertionvalues = "INSERT INTO patientrequesteddoctor(patientphno,doctorphnos,requesteddatetime) VALUES ('$patient_phno','$phnos',now())";
+						$retval1 = mysql_query( $insertionvalues, $dbhandle );
+			        if(!$retval1 )
+			        {
+			                die('Could not enter data: ' . mysql_error());
+			                 echo "ERROR";
+			        }
+			        else
+			        {
+			                echo "Query Submitted";
+			        }
+							sleep(5);
+				}
+				else{
+					echo "wait";
+				}
+			}
+
 		}
   }
 }

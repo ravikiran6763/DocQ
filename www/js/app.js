@@ -516,7 +516,7 @@ $stateProvider
   })
 
   .state('app.callAccepted', {
-    url: "/callAccepted",
+    url: "/callAccepted/:accptdDoc/:callId/:callFlag",
     views: {
       'menuContent': {
         templateUrl: "views/app/callAccepted.html",

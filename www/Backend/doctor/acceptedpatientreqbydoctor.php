@@ -16,7 +16,7 @@
 			if($acceptcode ==1)
 			{
 					//UPDATE FOR THIS PATIENT AR_FLAG IN DATABASE AS 3 AND TIME AS NOW
-					echo $accpteddoctor = "update patientrequesteddoctor set ar_flag=3,ar_time=now() where patientphno='$patientphno' and id='$reqId'";
+					 $accpteddoctor = "update patientrequesteddoctor set ar_flag=3,ar_time=now() where patientphno='$patientphno' and id='$reqId'";
 					// echo $accpteddoctor;
 					$retval = mysql_query($accpteddoctor,$dbhandle);
 					if(! $retval )
@@ -24,6 +24,14 @@
 						die('Could not update data: ' . mysql_error());
 					}
 					//INSERT INTO DOCTORACCEPTED TABLE
+					 $delRemainingReq = "delete from patientrequesteddoctor where  ar_flag= 0 and patientphno='$patientphno' and id !='$reqId'";
+					// echo $accpteddoctor;
+					$retval = mysql_query($delRemainingReq,$dbhandle);
+					if(! $retval )
+					{
+						die('Could not update data: ' . mysql_error());
+					}
+
 					$accpetedtable = "INSERT INTO acceptedpatients(id,patientphno,doctorphno,acceptedtime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
 					$retval1 = mysql_query( $accpetedtable, $dbhandle );
 					if(!$retval1 )
@@ -40,7 +48,6 @@
 						while($row = mysql_fetch_array($retval))
 						{
 							$patientDetails[] = $row;
-
 						}
 
 						if(! $retval )

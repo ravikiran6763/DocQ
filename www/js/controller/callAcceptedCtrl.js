@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout, $interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
@@ -12,7 +12,12 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
  //
  // 	console.log('callAtInterval');
  // }
+ $rootScope.accptdDoc=$stateParams.accptdDoc;
+ $rootScope.callId=$stateParams.callId;
+ $rootScope.callFlag=$stateParams.callFlag;
 
+
+console.log($rootScope.accptdDoc);
 
 $scope.checkWalletBalance = function()
 {

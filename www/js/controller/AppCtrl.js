@@ -533,7 +533,7 @@ $scope.ratingsObject = {
 	 $rootScope.myBalance;
 
 	//  console.log($localStorage.seen);
-	$interval(callReqInterval, 15000);
+	// $interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
 		console.log($ionicHistory.currentStateName());
@@ -544,7 +544,7 @@ $localStorage.ViewDoc=0;
 						$scope.calledDetails=response;
 						console.log($rootScope.online);
 						console.log($scope.calledDetails);
-						var data=$scope.calledDetails//take all json data into this variable
+						var data=$scope.calledDetails;//take all json data into this variable
 						 var totList=[];
 								for(var i=0; i<data.length; i++){
 
@@ -580,9 +580,6 @@ $localStorage.ViewDoc=0;
 																								type: 'button-positive',
 																								onTap: function(e) {
 																									console.log($rootScope.callId);
-																									// callAcceptedService.acceptPopUpSeen($rootScope.callId).then(function(response){
-																									// // console.log('successfull data', response);
-																									// $scope.popUpSeen=response;
 																									callAcceptedService.acceptPopUpSeen($rootScope.callId).then(function(response){
 																										$scope.popupSTATUS=response;
 																										console.log($scope.popupSTATUS);
