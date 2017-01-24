@@ -20,12 +20,8 @@ console.log(username);
 
 	var success = function(message)
 	{
-
-<<<<<<< HEAD
 		alert(message);
-=======
 		console.log(message);
->>>>>>> a26e485c6b0e5227aab26da7d0d177c62bd904f0
 
 	}
 

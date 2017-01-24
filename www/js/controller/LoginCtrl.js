@@ -60,44 +60,55 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				 console.log(response);
 					if(response === "patient")
 					{
-
-								var uname1 = "greet+"+$scope.loginData.phone;
-								var pw1 = "DQ_patient";
-
-							var success = function(message)
-								{
-									alert(message);
-								}
-								var failure = function()
-								{
-									alert("Error calling Hello Plugin");
-								}
-								$state.go('app.patient_home');
-								 hello.login(uname1,pw1,success, failure);
-						}
-						else if(response === "doctor")
+						var uname1 = "greet+"+$scope.loginData.phone;
+						var pw1 = "DQ_patient";
+						var success = function(message)
 						{
-							var uname1 = "greet+"+$scope.loginData.phone;
-							var pw1 = "DQ_doctor";
-							var success = function(message)
-								{
-									console.log(message);
-								}
-								var failure = function()
-								{
-									alert("Error Occurred While Loggin in to DoctoQuick");
-								}
-						$state.go('templates.doctor_home');
-					 	hello.login(uname1,pw1,success, failure);
-						// hello.login(uname1,pw1,success, failure);
-						$localStorage.onOff=1;
+							alert(message);
 						}
+						var failure = function()
+						{
+						alert("Error calling Hello Plugin");
+						}
+					$state.go('app.patient_home');
+					hello.login(uname1,pw1,success, failure);
+					}
+					else if(response === "doctor")
+					{
+					var uname1 = "greet+"+$scope.loginData.phone;
+					var pw1 = "DQ_doctor";
+					var success = function(message)
+						{
+							console.log(message);
+						}
+						var failure = function()
+						{
+							alert("Error Occurred While Loggin in to DoctoQuick");
+						}
+					$state.go('templates.doctor_home');
+					hello.login(uname1,pw1,success, failure);
+					// hello.login(uname1,pw1,success, failure);
+					$localStorage.onOff=1;
+					}
+					else if(response === "alreadyLoggedIn"){
+						$scope.myPopup = $ionicPopup.show({
+							// title: 'Invalid Credentials',
+
+							template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Already Logged In</p></div><div class="errorContent"><p>The user is alreaady Logged in</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+							cssClass: 'loginPopup',
+							scope: $scope,
+						});
+						$scope.closethis = function()
+						{
+						$scope.myPopup.close();
+						};
+					}
 						else{
 
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 
-								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect Tap on <br>"Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 								cssClass: 'loginPopup',
 								scope: $scope,
 							});

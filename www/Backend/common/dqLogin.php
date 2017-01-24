@@ -31,6 +31,9 @@ if (isset($postdata))
             {
             }
       }
+      else if($count1 ==1 && $states == 2){
+        echo "alreadyLoggedIn";
+      }
 
       else
       {

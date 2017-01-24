@@ -416,12 +416,19 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							type: 'button-positive',
 							onTap: function(e) {
 							console.log('ok');
+							LoginService.logoutFromDq($localStorage.user).then(function(response){
+							$scope.loggedOut=response;
+								console.log($scope.loggedOut);
+								if($scope.loggedOut){
+									$ionicHistory.clearCache();
+									$ionicHistory.clearHistory();
+									$window.localStorage.clear();
+									$state.go('auth.loginNew');
+								}
+							}).catch(function(error){
+							console.log('failure data', error);
+							});
 
-							$ionicHistory.clearCache();
-							$ionicHistory.clearHistory();
-							$window.localStorage.clear();
-								$state.go('auth.loginNew');
-							// }, 100)
 
 						}
 					},
