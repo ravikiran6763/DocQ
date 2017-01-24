@@ -241,7 +241,7 @@ ion-side-menu.menu-left.menu {
 .submitted input.ng-invalid:not(:focus) {
   border:2px solid red;
 }
-.submittedLname input.ng-invalid:not(:focus){
+.submitted2ndPage input.ng-invalid:not(:focus){
   border:2px solid red;
 }
 .submittedAge input.ng-invalid:not(:focus){
@@ -406,13 +406,88 @@ height: 100%;
     }
   }
 }
-.loginPopup {
-			.popup{
+.loginPopupNew{
+  top: 60% !important;
+  position: absolute;
+  height: 100% !important;
 
-				background-color: #6fa02d;
-        width: 100%;
-        height: 25%;
-        margin-top: 132%;
+      .popup{
+        background-color: #af262d !important;
+        width: 100% !important;
+
+      }
+
+      .popup-head {
+            padding: 0 !important;
+            border-bottom: none;
+            text-align: center;
+            overflow: hidden !important;
+      }
+      .popup-body{
+        padding: 0% !important;
+        overflow: hidden !important;
+        height: 60% !important;
+        margin: 0 auto;
+        width: 80%;
+        .heading{
+          background-color: green !important;
+          p{
+            color: #fff !important;
+          }
+        }
+        .errorContent{
+          color: #fff !important;
+          width: 100% !important;
+        padding: 1% !important;
+          p{
+            font-size: smaller;
+            color: inherit;
+          }
+        }
+
+      }
+}
+.loginPopup {
+      .popup-body{
+        padding: 0% !important;
+        overflow: hidden !important;
+        margin: 0 auto;
+        width: 80%;
+        .heading{
+          margin-left: 10%;
+          margin-top: 1%;
+          p{
+            color: #fff !important;
+          }
+        }
+        .errorContent{
+          color: #fff !important;
+          width: 100% !important;
+        padding: 1% !important;
+          p{
+            font-size: smaller;
+            color: inherit;
+          }
+        }
+        .closeButton{
+          position: absolute;
+          margin-top: 0vh;
+          margin-bottom: 0;
+          top: -4%;left: 85%;
+          background: #af262d;
+          border-radius: 22px;
+          font-size: 8vw;
+          color: #fff;
+          text-align: end;
+          padding: 7px;
+        }
+      }
+			.popup{
+				background-color: #af262d;
+        top: 79%;
+        position: absolute;
+        height: 100%;
+        width: 100%
 			}
 			.popup-head {
 				padding: 3%;

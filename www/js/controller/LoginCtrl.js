@@ -34,8 +34,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 	$scope.doLogIn = function()
 	{
 
-
-		$rootScope.submitted=true;
+			$rootScope.submitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
@@ -96,9 +95,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						else{
 
 							$scope.myPopup = $ionicPopup.show({
-								title: 'Invalid Credentials',
+								// title: 'Invalid Credentials',
 
-								template: '<div ><p style="color:#fff; ">The Username or Password is incorrect Tap on "Forgot Password" to receive the same instantly</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -14%;left: 85%; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px;" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p></div>',
+								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect Tap on <br>"Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 								cssClass: 'loginPopup',
 								scope: $scope,
 							});
