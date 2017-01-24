@@ -20,6 +20,10 @@ console.log(username);
 
 	var success = function(message)
 	{
+<<<<<<< HEAD
+=======
+
+>>>>>>> c494285a395c6c070565faa4ac6bf3e663136c31
 		alert(message);
 		console.log(message);
 
