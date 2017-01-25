@@ -24,14 +24,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 console.log($localStorage.reqPat);
 				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
-
-				//  console.log($rootScope.dateAndTime);
-
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
-
-				// console.log($rootScope.dateDiff);
-
 
 				////// calculate datedifference////
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
@@ -41,10 +35,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					var diffDays = Math.round(diffMs / 86400000); // days
 					var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
 					var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
-
 					$rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
 					// $rootScope.requestedDUration= diffDays + " day " + "ago";
-
 					console.log($rootScope.requestedDUration);
 					var diff = currentTimestamp-timestamp;
 					console.log(diffMs);
@@ -70,7 +62,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$localStorage.accpt=1;
 			$scope.isDisabled = true;
 			$scope.toggleText ='Accepted'
-			
+
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
@@ -79,8 +71,18 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$rootScope.callAcc=false;
 			$rootScope.timer=false;
 
+			var accptdReq = {
+			accpetcode : "2",
+			doctorphno : $localStorage.user,
+			patientphno : $stateParams.pphno,
+			consultId:$rootScope.reqId
+			}
+			console.log(accptdReq);
+			patientrequesttodoctor.accpetedbydoctor(accptdReq);
 
-			$state.go('templates.requestAccepted');
+			// patientrequesttodoctor.acceptedbydoctor(accptdReq);
+
+			// $state.go('templates.requestAccepted');
 
 		}
 		else if($scope.type === 'Accepted'){
@@ -92,19 +94,18 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			console.log($localStorage.accpt);
 			if($localStorage.accpt === 1){
 				$scope.isDisabled = true;
-
 				console.log('donNothing');
 			}
 			else{
 				var docpatphno = {
 				accpetcode : "2",
 				doctorphno : $localStorage.user,
-				patientphno : $stateParams.pphno
+				patientphno : $stateParams.pphno,
+				consultId:$rootScope.reqId
 				}
 				patientrequesttodoctor.declinedbydoctor(docpatphno);
 			}
-
-			// $state.go('templates.doctor_home');
+			$state.go('templates.doctor_home');
 
 		}
 		else{

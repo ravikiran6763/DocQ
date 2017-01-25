@@ -9,7 +9,7 @@
       $patient = json_decode($postdata);
       // $callDetails = array();
 
-        $sql = "delete from  patientrequesteddoctor where patientphno='$patient' and ar_flag = 0" ;
+        $sql = "delete from  reqForConsultation where patientNum='$patient' and flag = 1" ;
         $retval = mysql_query( $sql, $dbhandle );
         while($row = mysql_fetch_array($retval))
         {

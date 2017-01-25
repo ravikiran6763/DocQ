@@ -28,6 +28,7 @@ $localStorage.reqSent="";
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
+
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
 //console.log(networkState);

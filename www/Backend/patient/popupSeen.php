@@ -7,10 +7,6 @@
 		{
 
     echo  $callId = json_decode($postdata);
-
-
-
-
       // $callDetails = array();
 
     echo   $sql = "update acceptedpatients set seenFlag=2 where id='$callId'";

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
@@ -15,9 +15,20 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
  $rootScope.accptdDoc=$stateParams.accptdDoc;
  $rootScope.callId=$stateParams.callId;
  $rootScope.callFlag=$stateParams.callFlag;
+console.log($rootScope.callFlag,$rootScope.callId);
+ callAcceptedService.updateseenView($rootScope.callId).then(function(response){
+ $scope.cancelledReq=response;
+ }).catch(function(error){
+ console.log('failure data', error);
+ });
 
 
-console.log($rootScope.accptdDoc);
+ doctorServices.doctorDetails($rootScope.accptdDoc).then(function(response){
+ $scope.calledDetails=response;
+ }).catch(function(error){
+ console.log('failure data', error);
+ });
+
 
 $scope.checkWalletBalance = function()
 {
