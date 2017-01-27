@@ -28,5 +28,19 @@ DoctorQuickApp.service('callAcceptedService', function ($http,$q, BASE_URL, API)
     return deferred.promise;
   }
 
+  this.updateseenView = function (callId) {
+    console.log(callId);
+    var deferred = $q.defer();
+    console.log(BASE_URL.url + API.updateseenView);
+    $http.post(BASE_URL.url + API.updateseenView,callId)
+    .success(function (data, status, headers, config){
+      deferred.resolve(data);
+    })
+    .error(function (){
+      deferred.reject('Error while getting data');
+    });
+    return deferred.promise;
+  }
+
 
 })

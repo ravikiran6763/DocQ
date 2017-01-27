@@ -10,8 +10,15 @@
 			$doctorphno = $postdata; // GET THE DOCTOR PHONE NO.
 			$requestedpatientlist = array();// TO STORE THE REQUESTED PATIENTS
 
-			//QUERY TO GET THE REQUESTED PATIENTS FOR PARTICULAR DOCTORS
-			echo $requestpatientquery = "select img.image,pr.id,pr.patientphno,pr.requesteddatetime,pd.patientFname,pd.patientMname,pd.patientLname,pd.patientLname,pd.patientAge,pd.patientSex from patientDetails as pd,patientrequesteddoctor as pr,patientImages as img where pr.patientphno=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.doctorphnos='$doctorphno' and pr.ar_flag=0";
+      $sql = "select doctorSpecialityId as special from  doctorDetails where doctorPhone='$doctorphno';";
+      $dretval = mysql_query( $sql, $dbhandle );
+      while($row = mysql_fetch_assoc($dretval)) {
+      //  echo "special :{$row['special']}  ";
+       $sp=$row['special'];
+      //  echo $sp;
+
+
+       $requestpatientquery = "select img.image,pr.id,pr.patientNum,pr.requestedTime,pd.patientFname,pd.patientMname,pd.patientLname,pd.patientAge,pd.patientSex from patientDetails as pd,reqForConsultation as pr,patientImages as img where pr.patientNum=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.speciality='$sp' and pr.flag=1 and pr.id not in(select reqId from declinedRequests where declinedDoctor='$doctorphno')";
 			$retvaltodoctor = mysql_query( $requestpatientquery, $dbhandle );
 			while($resultofrequestedpatient = mysql_fetch_array($retvaltodoctor))
 			{
@@ -21,6 +28,12 @@
 			{
 				die('Could not get data: ' . mysql_error());
 			}
+
+      }
+
+
+			//QUERY TO GET THE REQUESTED PATIENTS FOR PARTICULAR DOCTORS
+
 
 				echo json_encode($requestedpatientlist);//SEND THE ENCODED DATA TO APP
 

@@ -5,19 +5,16 @@
 
 		if (isset($postdata))
 		{
-
-    echo  $callId = json_decode($postdata);
+      // echo $postdata;
+      $patient = json_decode($postdata);
       // $callDetails = array();
 
-    echo   $sql = "update acceptedpatients set seenFlag=2 where id='$callId'";
-
-      $retval = mysql_query( $sql, $dbhandle );
-
-      while($row = mysql_fetch_array($retval))
-      {
-        echo $row;
-
-      }
+        $sql = "delete from  reqForConsultation where patientNum='$patient' and flag = 1" ;
+        $retval = mysql_query( $sql, $dbhandle );
+        while($row = mysql_fetch_array($retval))
+        {
+          echo $row;
+        }
 
       if(! $retval )
       {

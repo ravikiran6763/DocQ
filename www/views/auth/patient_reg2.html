@@ -9,12 +9,10 @@
             <div class="backButton ">
               <i class="icon ion-ios-arrow-back" ng-click="goBack();"></i>
               <p>Back</p>
-
             </div>
                 <div class="regFlowImg">
                   <!-- <img  src="./img/iOS-Assets-v01_patient_registration_progress1.png" > -->
                   <img src="./img/iOS-Assets-v01_patient_registration_progress2.png" >
-
 
                 </div>
                 <div class="regMsg">
@@ -26,8 +24,8 @@
 
 
   <div class="form-content">
-    <form name="PatientReg2" ng-submit="submitForm($event)" >
-        <div class="form-group" ng-class={submitted2ndPage:submitted2ndPage}>
+    <form name="PatientReg2" ng-submit="submitForm($event)" ng-class={submitted2ndPage:submitted2ndPage}>
+        <div class="form-group" >
           <img  ng-hide='true' ng-src="img/patientAvatar.png" ng-model='PatientDetail.patientAvatar' >
           <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}></input>
         </div>
@@ -36,12 +34,12 @@
           <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'F'" required><span >Female</span></ion-radio>
         </div>
 
-        <div class="form-group" ng-class={submittedLname:submittedLname}>
+        <div class="form-group" >
           <input type="email" class="form-control" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
 
         </div>
 
-        <div class="form-group" ng-class={submittedAge:submittedAge}>
+        <div class="form-group" >
           <input type="password" class="form-control" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password" ng-minlength=4  required ValidateAlphaNumeric>
         </div>
         <p> Prescription and consultation receipts will be<br>mailed to this email address.</p>

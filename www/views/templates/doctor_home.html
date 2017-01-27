@@ -24,7 +24,7 @@
 
       <div class="doctorScreen-bottom-content">
         <ul>
-          <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({reqId:r.id,pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientphno,image:r.image,dateAndTime:r.requesteddatetime})">
+          <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({reqId:r.id,pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientNum,image:r.image,dateAndTime:r.requestedTime})">
           <div class="profile-img">
             <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
             <img  ng-show="r.image == null " ng-src="img/patientAvatar.png"  >

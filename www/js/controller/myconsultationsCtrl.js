@@ -34,6 +34,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
+<<<<<<< HEAD
 
 
 
@@ -124,6 +125,9 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			//console.log($scope.name[2]);
 		//console.log($scope.name[3]);
 
+=======
+		console.log(message);
+>>>>>>> 1ac407a6512a2a5cf72d15660954cac67b82b05b
 
 	}
 

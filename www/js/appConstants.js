@@ -47,6 +47,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'topMeup' : 'patient/topMeUp.php',
         'callAccepted' : 'patient/callAccepted.php',
         'callDecline' : 'patient/callDecline.php',
+        'cancelCallReq' : 'patient/cancelCallReq.php',
         'popupSeen' : 'patient/popupSeen.php',
         'uploadImage' : 'patient/uploadImage.php',
         'changePatientPwd':'patient/changePatientPwd.php',
@@ -55,6 +56,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'sendotp' : 'textgurutest.php',
         'rateMyDoctor':'patient/rateMyDoctor.php',
         'addToFavorite':'patient/addToFavorite.php',
+        'checkForAccptedReq':'patient/checkForAccptedReq.php',
+        'updateseenView':'patient/updateseenView.php',
+
+
 
 
         /*DOCTOR APIS*/
@@ -65,7 +70,12 @@ DoctorQuickApp.constant('BASE_URL', {
         'changePassword': 'changePassword',
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
+        'consultationRequest' : 'doctor/consultationRequest.php',
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
+        'declinedbydoctor':'doctor/declinedbydoctor.php',
+        'acceptedbydoctor':'doctor/acceptedbydoctor.php',
+
+
         'docAccountsBalance' : 'doctor/docAccountsBalance.php',
         'docAccDetails' : 'doctor/docAccDetails.php',
         'reqPatientDetails' : 'doctor/reqPatientDetails.php',
