@@ -10178,8 +10178,7 @@ ion-side-menu.menu-left.menu {
 
 .loginPopupNew {
   top: 60% !important;
-  position: absolute;
-  height: 100% !important; }
+  height: 25% !important; }
   .loginPopupNew .popup {
     background-color: #af262d !important;
     width: 100% !important; }
@@ -10239,8 +10238,7 @@ ion-side-menu.menu-left.menu {
 .loginPopup .popup {
   background-color: #af262d;
   top: 79%;
-  position: absolute;
-  height: 100%;
+  height: 25%;
   width: 100%; }
 
 .loginPopup .popup-head {
@@ -13883,7 +13881,8 @@ ion-side-menu .heading-item .message {
           margin: 0 auto !important; }
           .patient-reg-2-view .top-content .regTitle .regHeader .regMsg p {
             margin-top: 14%;
-            font-size: 100%; }
+            font-size: 130%;
+            text-align: center; }
   .patient-reg-2-view .form-content {
     height: 45% !important;
     margin-top: 0 !important; }
@@ -13925,7 +13924,7 @@ ion-side-menu .heading-item .message {
     .patient-reg-2-view .form-content p {
       color: #fff;
       text-align: center;
-      font-size: 70%; }
+      font-size: 85%; }
   .patient-reg-2-view .bottom-content {
     height: 17% !important; }
     .patient-reg-2-view .bottom-content .login_button {

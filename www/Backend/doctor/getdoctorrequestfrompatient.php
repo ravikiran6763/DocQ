@@ -11,7 +11,7 @@
 			$requestedpatientlist = array();// TO STORE THE REQUESTED PATIENTS
 
 			//QUERY TO GET THE REQUESTED PATIENTS FOR PARTICULAR DOCTORS
-			$requestpatientquery = "select img.image,pr.id,pr.patientphno,pr.requesteddatetime,pd.patientFname,pd.patientMname,pd.patientLname,pd.patientLname,pd.patientAge,pd.patientSex from patientDetails as pd,patientrequesteddoctor as pr,patientImages as img where pr.patientphno=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.doctorphnos='$doctorphno' and pr.ar_flag=0";
+			echo $requestpatientquery = "select img.image,pr.id,pr.patientphno,pr.requesteddatetime,pd.patientFname,pd.patientMname,pd.patientLname,pd.patientLname,pd.patientAge,pd.patientSex from patientDetails as pd,patientrequesteddoctor as pr,patientImages as img where pr.patientphno=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.doctorphnos='$doctorphno' and pr.ar_flag=0";
 			$retvaltodoctor = mysql_query( $requestpatientquery, $dbhandle );
 			while($resultofrequestedpatient = mysql_fetch_array($retvaltodoctor))
 			{

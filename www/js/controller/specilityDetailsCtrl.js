@@ -108,59 +108,9 @@ $scope.sendrequesttoonlinedoctors = function()
            });
             $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
             console.log('closing this');
-         }, 120000);
+         }, 180000);
 
- $interval(checkAcceptedReq,120000,1);
-  function checkAcceptedReq(){
 
-    medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
-    $scope.accptdReq=response;
-      if($scope.accptdReq == ''){
-            console.log('check for accpted call');
-            $scope.callReqPopUp.close();
-            // $state.go("app.patient_home")
-            $scope.noResponsePopUp = $ionicPopup.show({
-                  template: "<div >None Of the Doctors have responded to your request</div>",
-                  cssClass: 'requestPopup',
-                  scope: $scope,
-                  buttons: [
-                  {
-                  text: 'Ok',
-                  type: 'button-positive',
-                  onTap:function(){
-                    medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
-                    $scope.cancelledReq=response;
-                      console.log($scope.cancelledReq);
-                      $state.go($state.current, {}, {reload: true});
-                    }).catch(function(error){
-                    console.log('failure data', error);
-                    });
-                     $scope.noResponsePopUp.close();
-                  }
-                  },
-                ]
-                });
-      }
-      else{
-        console.log($scope.accptdReq);
-
-        var accptDoc=$scope.accptdReq;
-        for(var i=0; i<accptDoc.length; i++){
-          $rootScope.doctorPhone=accptDoc[i].doctorPhone,
-          $rootScope.callId=accptDoc[i].callId,
-          $rootScope.cal_flag=accptDoc[i].flag
-
-        }
-
-        $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag});
-        $scope.callReqPopUp.close();
-        console.log('show accpted doc profile');
-      }
-    }).catch(function(error){
-    console.log('failure data', error);
-    });
-
-  }
    console.log($scope.counter);
    console.log('buttonclicked');
    }
@@ -176,6 +126,36 @@ $scope.sendrequesttoonlinedoctors = function()
    }
 
   //  $interval(CheckOnlineDocs, 5000);
+  $interval(checkAcceptedReq,1000);
+   function checkAcceptedReq(){
+     console.log($scope.accptdReq);
 
+     medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
+     $scope.accptdReq=response;
+       if($scope.accptdReq != ''){
+
+
+         var accptDoc=$scope.accptdReq;
+         for(var i=0; i<accptDoc.length; i++){
+           $rootScope.doctorPhone=accptDoc[i].doctorPhone,
+           $rootScope.callId=accptDoc[i].callId,
+           $rootScope.cal_flag=accptDoc[i].flag
+
+         }
+
+         $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag});
+         $scope.callReqPopUp.close();
+         console.log('show accpted doc profile');
+
+
+             // $state.go("app.patient_home")
+
+       }
+
+     }).catch(function(error){
+     console.log('failure data', error);
+     });
+
+   }
 
 });
