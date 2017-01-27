@@ -4,7 +4,7 @@
 
       <ion-nav-buttons side="left">
         <button class="button-clear">
-          <i class="icon ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="app.my_consultations"><span class="badge badge-stable icon-badge" ng-show="showBadge">11</span></i>
+          <i class="icon ion-ios-chatbubble-outline" ng-show="showNotification" ui-sref="app.my_consultations"><span class="badge badge-stable icon-badge" ng-show="showBadge">{{unreadchatforpatient}}</span></i>
         </button>
         <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" >
           <i class="back-btn-cls ion-ios-arrow-back"  ></i>

@@ -15,17 +15,115 @@ var username = "greet+"+$localStorage.user;
 var password = "DQ_patient";
 
 
-console.log(username);
+
+var msg;
+
+var msgdate;
+
+var indivisualusercounts;
+
+var lists =[];
+
+var dateformation =[];
+
+
+var datestring;
+
+$scope.deviceAndroid = ionic.Platform.isAndroid();
 
 
 	var success = function(message)
 	{
-<<<<<<< HEAD
-=======
 
->>>>>>> c494285a395c6c070565faa4ac6bf3e663136c31
-		alert(message);
-		console.log(message);
+
+
+			$scope.chatlist = message;
+
+
+			if($scope.deviceAndroid)
+			{
+
+				$scope.name = $scope.chatlist.split('{');
+
+				msg = $scope.name[2];
+
+				msg = msg.substring(0,msg.length-1);
+
+				$scope.msg = msg;
+
+				msgdate = $scope.name[3];
+
+				msgdate = msgdate.substring(0,msgdate.length-3)
+
+				msgdate = msgdate.split('=');
+
+					lists = msgdate;
+
+
+					console.log(lists[1]);
+
+				dateformation = lists[1].split(' ');
+
+			datestring = dateformation[1].concat(dateformation[2]);
+
+			datestring = datestring.concat(dateformation[5]);
+
+
+				$scope.datestring = datestring;
+
+
+				console.log(datestring);
+
+
+		}
+		else
+		{
+
+				//console.log($scope.chatlist);
+				//
+				// var data = JSON.parse(message);
+				//
+				// console.log(data);
+
+				// var result = {};
+				//
+				//
+				// for(i=0;i<data.names.length;i++)
+				// {
+				//
+				// 		result[data.names[i].name] = data.names[i];
+				//
+				//
+				//
+				// }
+				//
+				// console.log(result);
+
+
+		}
+
+
+
+		}
+
+			// lists = lists.split(' ');
+			//
+			//
+			// dateformation = lists[1]." ".lists[2]." ".lists[5];
+
+
+			//console.log(lists);
+
+			//console.log(dateformation);
+
+
+			//console.log(msg);
+
+
+
+			//console.log($scope.name[2]);
+		//console.log($scope.name[3]);
+
 
 	}
 

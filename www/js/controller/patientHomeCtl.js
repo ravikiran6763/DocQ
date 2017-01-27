@@ -11,6 +11,9 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			disableBack: true
 			});
 
+
+
+
 			$ionicPlatform.registerBackButtonAction(function(e){
 
 				$scope.currentState=$ionicHistory.currentStateName();
@@ -37,6 +40,10 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 					}
 
 			},101);
+
+
+		
+
 
 
 			$scope.medicalSpeciality = function(){
