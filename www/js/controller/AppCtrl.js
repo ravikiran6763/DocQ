@@ -23,6 +23,10 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 // var model = $cordovaDevice.getModel();
 // console.log(model);
 $localStorage.reqSent="";
+
+
+
+
 // console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
@@ -388,19 +392,20 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var unametologout = "greet+"+$localStorage.user;
 		var pwtologout = "DQ_patient";
 
-		console.log(unametologout);
-		console.log(pwtologout);
-
 		var success = function(message)
 		{
-			alert(message);
+
+				console.log('patient loggedOut');
+
 		}
 		var failure = function()
 		{
-			alert("Error calling Hello Plugin");
+
+				console.log('error in calling plugin');
+			//alert("Error calling Hello Plugin");
 		}
 
-		// hello.logout(unametologout,pwtologout,success, failure);
+	//hello.logout(unametologout,pwtologout,success, failure);
 
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -604,6 +609,58 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
+
+		if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.currentStateName() =='templates.doctor_home')
+		{
+
+
+					$scope.unreadchatforpatient = {};
+
+
+						var username = "greet+"+$localStorage.user;
+
+
+						if($ionicHistory.currentStateName() =='app.patient_home')
+						{
+
+								var password = "DQ_patient";
+
+						}
+						else
+						{
+
+
+								var password = "DQ_doctor";
+						}
+
+
+
+
+							var success = function(message)
+							{
+
+							 		$scope.unreadchatforpatient = message;
+
+
+							}
+
+							var failure = function()
+							{
+							 alert("Error calling Hello Plugin");
+							 //console.log('error');
+
+							}
+
+				hello.unreadchatfromusers(username,password,success, failure);
+
+
+		}
+
+
+
+
+
+
 
 
 				// console.log('callAtInterval');
@@ -1013,6 +1070,9 @@ console.log($rootScope.chekDiag);
     }
     // console.log(URL);
 }
+
+
+
 
 
 });
