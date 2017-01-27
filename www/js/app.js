@@ -42,7 +42,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
 ])
 
 DoctorQuickApp.run(function($window, $rootScope) {
-  console.log(navigator.onLine);
+  // console.log(navigator.onLine);
       $rootScope.online = navigator.onLine;
       $window.addEventListener("offline", function () {
         $rootScope.$apply(function() {
@@ -54,7 +54,7 @@ DoctorQuickApp.run(function($window, $rootScope) {
           $rootScope.online = true;
         });
       }, false);
-      console.log($rootScope.online);
+      // console.log($rootScope.online);
 })
 
 DoctorQuickApp.run(function($ionicPlatform) {

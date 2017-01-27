@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices) {
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -79,6 +79,65 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			}
 			console.log(accptdReq);
 			patientrequesttodoctor.accpetedbydoctor(accptdReq);
+
+			$scope.counter = 120;
+			$scope.onTimeout = function(){
+				$scope.counter--;
+				mytimeout = $timeout($scope.onTimeout,1000);
+				if($scope.counter == 0){
+				console.log('one minute over');
+				$scope.counter=120;
+				$rootScope.buttonText='Send Request';
+				$timeout.cancel(mytimeout);
+
+				}
+			}
+			 var mytimeout = $timeout($scope.onTimeout,1000);
+
+			 $scope.callReqPopUp = $ionicPopup.show({
+	           template: "<div ng-app='refresh_div' >Please wait for the call<b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+	           cssClass: 'requestPopup',
+	           scope: $scope,
+	           buttons: [
+	           {
+	           text: 'Cancel',
+	           type: 'button-royal',
+	           onTap:function(){
+	             console.log('cancel');
+	             console.log($scope.counter);
+	             console.log($localStorage.user);
+							 $state.go("templates.doctor_home");
+							 
+	            //  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+	            //  $scope.cancelledReq=response;
+	            //    $state.go($state.current, {}, {reload: true});
+	            //  }).catch(function(error){
+	            //  console.log('failure data', error);
+	            //  });
+	           }
+	           },
+	         ]
+	         });
+					 $timeout(function() {
+	           console.log('cancelCall here');
+
+	            $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
+	            $scope.noResponsePopup = $ionicPopup.show({
+	                  template: "<div ng-app='refresh_div' ><p>Patient did not respond .</p></div>",
+	                  cssClass: 'requestPopup',
+	                  scope: $scope,
+	                  buttons: [
+	                  {
+	                  text: 'OK',
+	                  type: 'button-positive',
+	                  onTap:function(){
+											$state.go("templates.doctor_home");
+	                  }
+	                  },
+
+	                ]
+	                });
+	         }, 120000);
 
 			// patientrequesttodoctor.acceptedbydoctor(accptdReq);
 

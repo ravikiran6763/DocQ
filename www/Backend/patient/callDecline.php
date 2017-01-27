@@ -6,22 +6,17 @@
 		if (isset($postdata))
 		{
 
-      $declineDetails = json_decode($postdata);
-  	  $patient = $declineDetails->patient;
-  	   $doctor= $declineDetails->doctor;
-       $callId= $declineDetails->callId;
-
+			$declineDetails = json_decode($postdata);
+			$patient = $declineDetails->patient;
+			$doctor= $declineDetails->doctor;
+			$callId= $declineDetails->callId;
 
       // $callDetails = array();
-
-       $sql = "update acceptedpatients set cal_flag=3 where patientphno='$patient' and doctorphno='$doctor' and id='$callId'";
-
+      $sql = "update reqForConsultation set flag=3 where patientNum='$patient' and id='$callId'";
       $retval = mysql_query( $sql, $dbhandle );
-
       while($row = mysql_fetch_array($retval))
       {
         echo $row;
-
       }
 
       if(! $retval )

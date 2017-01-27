@@ -32,12 +32,12 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
 //console.log(networkState);
-$interval(checkForInternet, 1000);
+// $interval(checkForInternet, 1000);
 
 $localStorage.chekedData =0;
 $localStorage.dataConnection=navigator.onLine;
 ////////////////////////////////////////////////////////////////////////////////
-$interval(checkForInternet, 5000);
+$interval(checkForInternet, 5000,1);
 function checkForInternet() {
 
 if(!navigator.onLine ){
@@ -616,6 +616,7 @@ $localStorage.ViewDoc=0;
 			callId:$rootScope.callId
 
 			}
+			console.log(calldecline);
 			$localStorage.ViewDoc=0;
 			callAcceptedService.callDeclined(calldecline).then(function(response){
 				$scope.declineStatus=response;
@@ -632,6 +633,12 @@ $localStorage.ViewDoc=0;
 $scope.checkWalletBalance=function()
 {
 	$ionicLoading.show();
+	var calldecline={
+	patient:$localStorage.user,
+	doctor:$rootScope.doctorPhone,
+	callId:$rootScope.callId
+	}
+	console.log(calldecline);
 	doctorServices.checkMyBalance($localStorage.user).then(function(response){
 		// console.log(response[0][0]);
 	$scope.myBalance=response[0][0];

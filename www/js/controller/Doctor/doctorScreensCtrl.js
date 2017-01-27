@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootScope,$localStorage, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$rootScope,$localStorage, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -19,13 +19,12 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     // });
     //
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
-
+    console.log($ionicHistory.currentStateName());
       $ionicLoading.show();
 
     console.log($state.$current.name);
     $scope.emailNotification = 'Subscribed';
     console.log($scope.emailNotification);
-
 
     $scope.Online = function (message) {
             // $ionicLoading.show({
@@ -199,7 +198,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-      console.log($scope.res);
       }).catch(function(error){
       console.log('failure data', error);
       })

@@ -102,13 +102,34 @@ $scope.sendrequesttoonlinedoctors = function()
            console.log('cancelCall here');
            medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
            $scope.cancelledReq=response;
+           $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
+
              console.log($scope.cancelledReq);
            }).catch(function(error){
            console.log('failure data', error);
            });
-            $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
-            console.log('closing this');
-         }, 180000);
+           
+            $scope.noResponsePopup = $ionicPopup.show({
+                  template: "<div ng-app='refresh_div' ><p>None of the available doctors have responded to your request.</p></div>",
+                  cssClass: 'requestPopup',
+                  scope: $scope,
+                  buttons: [
+                  {
+                  text: 'OK',
+                  type: 'button-positive',
+                  onTap:function(){
+                    medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+                    $scope.cancelledReq=response;
+                      $state.go($state.current, {}, {reload: true});
+                    }).catch(function(error){
+                    console.log('failure data', error);
+                    });
+                  }
+                  },
+
+                ]
+                });
+         }, 120000);
 
 
    console.log($scope.counter);
@@ -128,28 +149,20 @@ $scope.sendrequesttoonlinedoctors = function()
   //  $interval(CheckOnlineDocs, 5000);
   $interval(checkAcceptedReq,1000);
    function checkAcceptedReq(){
-     console.log($scope.accptdReq);
-
+    //  console.log($scope.accptdReq);
      medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
      $scope.accptdReq=response;
+     console.log('check');
        if($scope.accptdReq != ''){
-
-
          var accptDoc=$scope.accptdReq;
          for(var i=0; i<accptDoc.length; i++){
            $rootScope.doctorPhone=accptDoc[i].doctorPhone,
            $rootScope.callId=accptDoc[i].callId,
            $rootScope.cal_flag=accptDoc[i].flag
-
          }
-
          $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag});
          $scope.callReqPopUp.close();
          console.log('show accpted doc profile');
-
-
-             // $state.go("app.patient_home")
-
        }
 
      }).catch(function(error){

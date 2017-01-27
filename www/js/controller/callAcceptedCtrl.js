@@ -40,9 +40,9 @@ $scope.checkWalletBalance = function()
 			var uname = "greet+"+$localStorage.user;
 			 var pw = "DQ_patient";
 
-			 var persontocall = "greet+" + $localStorage.Doctocall;
+			 var persontocall = "greet+" + $rootScope.accptdDoc;
 			 console.log(uname);
-			 console.log(persontocall);
+			 console.log($scope.callid);
 			 	 var success = function(message)
 				{
 						alert(message);
@@ -95,5 +95,7 @@ $scope.BalanceForVoiceCall = function()
 				hello.audiocallvsee(unametoaudiocall,pwtoaudiocall,persontocallforaudio,success, failure);
 
 }
+
+
 
 });
