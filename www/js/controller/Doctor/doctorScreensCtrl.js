@@ -214,7 +214,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
       })
    		console.log('lookForPrescription');
    	}
-
+console.log($ionicHistory.currentStateName());
+console.log('kkkk');
 })
 
 // $scope.pushNotificationChange = function() {

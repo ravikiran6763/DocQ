@@ -17,11 +17,8 @@ var password = "DQ_patient";
 
 
 var msg;
-
 var msgdate;
-
 var indivisualusercounts;
-
 var lists =[];
 
 var dateformation =[];
@@ -34,51 +31,28 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
-<<<<<<< HEAD
-
-
-
 			$scope.chatlist = message;
-
-
 			if($scope.deviceAndroid)
 			{
-
 				$scope.name = $scope.chatlist.split('{');
-
 				msg = $scope.name[2];
-
 				msg = msg.substring(0,msg.length-1);
-
 				$scope.msg = msg;
-
 				msgdate = $scope.name[3];
-
 				msgdate = msgdate.substring(0,msgdate.length-3)
-
 				msgdate = msgdate.split('=');
+				lists = msgdate;
 
-					lists = msgdate;
 
-
-					console.log(lists[1]);
-
+				console.log(lists[1]);
 				dateformation = lists[1].split(' ');
-
-			datestring = dateformation[1].concat(dateformation[2]);
-
-			datestring = datestring.concat(dateformation[5]);
-
-
+				datestring = dateformation[1].concat(dateformation[2]);
+				datestring = datestring.concat(dateformation[5]);
 				$scope.datestring = datestring;
-
-
 				console.log(datestring);
-
-
-		}
-		else
-		{
+			}
+			else
+			{
 
 				//console.log($scope.chatlist);
 				//
@@ -101,10 +75,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 				// console.log(result);
 
 
-		}
-
-
-
+			}
 		}
 
 			// lists = lists.split(' ');
@@ -125,11 +96,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			//console.log($scope.name[2]);
 		//console.log($scope.name[3]);
 
-=======
 		console.log(message);
->>>>>>> 1ac407a6512a2a5cf72d15660954cac67b82b05b
-
-	}
 
 	var failure = function()
 	{

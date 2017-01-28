@@ -101,8 +101,8 @@ document.addEventListener("deviceready", function (){
 
 
 ////////////////////////////////////////////////////////////////////////////////
+console.log('jjjj');
 
-// console.log($ionicHistory.currentStateName());
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -542,9 +542,8 @@ $scope.ratingsObject = {
 	// $interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
-		console.log($ionicHistory.currentStateName());
-		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 
+		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 						// console.log('successfull data', response);
 						$scope.calledDetails=response;
@@ -609,60 +608,6 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
-
-		if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.currentStateName() =='templates.doctor_home')
-		{
-
-
-					$scope.unreadchatforpatient = {};
-
-
-						var username = "greet+"+$localStorage.user;
-
-
-						if($ionicHistory.currentStateName() =='app.patient_home')
-						{
-
-								var password = "DQ_patient";
-
-						}
-						else
-						{
-
-
-								var password = "DQ_doctor";
-						}
-
-
-
-
-							var success = function(message)
-							{
-
-							 		$scope.unreadchatforpatient = message;
-
-
-							}
-
-							var failure = function()
-							{
-							 alert("Error calling Hello Plugin");
-							 //console.log('error');
-
-							}
-
-				hello.unreadchatfromusers(username,password,success, failure);
-
-
-		}
-
-
-
-
-
-
-
-
 				// console.log('callAtInterval');
 	}
 
@@ -1070,7 +1015,35 @@ console.log($rootScope.chekDiag);
     }
     // console.log(URL);
 }
+if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.currentStateName() =='templates.doctor_home')
+{
 
+			$scope.unreadchatforpatient = {};
+				var username = "greet+"+$localStorage.user;
+				if($ionicHistory.currentStateName() =='app.patient_home')
+				{
+						var password = "DQ_patient";
+				}
+				else
+				{
+						var password = "DQ_doctor";
+				}
+					var success = function(message)
+					{
+							$scope.unreadchatforpatient = message;
+					}
+
+					var failure = function()
+					{
+					 alert("Error calling Hello Plugin");
+					 //console.log('error');
+
+					}
+
+		hello.unreadchatfromusers(username,password,success, failure);
+
+
+}
 
 
 
