@@ -74,6 +74,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
         'declinedbydoctor':'doctor/declinedbydoctor.php',
         'acceptedbydoctor':'doctor/acceptedbydoctor.php',
+        'cancelByDoc':'doctor/cancelByDoc.php',
+        'patientActivity':'doctor/patientActivity.php',
+        'videoOrAudio':'doctor/videoOrAudio.php',
+
 
 
         'docAccountsBalance' : 'doctor/docAccountsBalance.php',

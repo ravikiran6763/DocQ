@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootScope,$localStorage,$ionicHistory, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
+=======
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$rootScope,$localStorage, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -8,6 +12,33 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
 
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
+
+$rootScope.homePage=$ionicHistory.currentStateName();
+
+    if( $rootScope.homePage =='templates.doctor_home')
+    {
+      console.log($rootScope.homePage);
+
+    			$scope.unreadchatforpatient = {};
+    				var username = "greet+"+$localStorage.user;
+						var password = "DQ_doctor";
+
+    					var success = function(message)
+    					{
+    							$scope.unreadchatforpatient = message;
+    					}
+
+    					var failure = function()
+    					{
+    					 alert("Error calling Hello Plugin");
+    					 //console.log('error');
+
+    					}
+
+    		// hello.unreadchatfromusers(username,password,success, failure);
+
+
+    }
 
 
     $rootScope.statename = $ionicHistory.currentStateName();
@@ -64,13 +95,11 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
     // });
     //
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
-
+    console.log($ionicHistory.currentStateName());
       $ionicLoading.show();
 
-    console.log($state.$current.name);
     $scope.emailNotification = 'Subscribed';
     console.log($scope.emailNotification);
-
 
     $scope.Online = function (message) {
             // $ionicLoading.show({
@@ -244,7 +273,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
+<<<<<<< HEAD
       //console.log($scope.res);
+=======
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
       }).catch(function(error){
       console.log('failure data', error);
       })
@@ -261,7 +293,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
       })
    		console.log('lookForPrescription');
    	}
-
 })
 
 // $scope.pushNotificationChange = function() {

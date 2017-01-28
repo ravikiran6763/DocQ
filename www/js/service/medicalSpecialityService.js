@@ -65,7 +65,6 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
       this.checkForAccptedReq = function (patient) {
         // console.log(patient);
         var deferred = $q.defer();
-        console.log(BASE_URL.url + API.checkForAccptedReq);
         $http.post(BASE_URL.url + API.checkForAccptedReq,patient)
         .success(function (data, status, headers, config){
           deferred.resolve(data);

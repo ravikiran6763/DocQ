@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices) {
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$interval, $ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -80,6 +80,73 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			console.log(accptdReq);
 			patientrequesttodoctor.accpetedbydoctor(accptdReq);
 
+			$scope.counter = 120;
+			$scope.onTimeout = function(){
+				$scope.counter--;
+				mytimeout = $timeout($scope.onTimeout,1000);
+				if($scope.counter == 0){
+				console.log('one minute over');
+				$rootScope.buttonText='Send Request';
+				$timeout.cancel(mytimeout);
+					$scope.noResponsePopup = $ionicPopup.show({
+						template: "<div ng-app='refresh_div' ><p>Patient did not respond .</p></div>",
+						cssClass: 'requestPopup',
+						scope: $scope,
+						buttons: [
+						{
+						text: 'OK',
+						type: 'button-positive',
+						onTap:function(){
+
+							$state.go("templates.doctor_home");
+							$scope.noResponsePopup.close();
+							$ionicHistory.clearHistory();
+						}
+						},
+
+					]
+					});
+				}
+			}
+			 var mytimeout = $timeout($scope.onTimeout,1000);
+
+			 $scope.callReqPopUp = $ionicPopup.show({
+	           template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+	           cssClass: 'requestPopup',
+	           scope: $scope,
+	           buttons: [
+	           {
+	           text: 'Cancel',
+	           type: 'button-royal',
+	           onTap:function(){
+	             console.log('cancel');
+	             console.log($scope.counter);
+	             console.log($localStorage.user);
+							 console.log($localStorage.reqId);
+
+							 $state.go("templates.doctor_home");
+
+	             doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
+	             $scope.cancelledByDoc=response;
+							 console.log($scope.cancelledByDoc);
+	              //  $state.go($state.current, {}, {reload: true});
+	             }).catch(function(error){
+	             console.log('failure data', error);
+	             });
+	           }
+	           },
+	         ]
+	         });
+					 $timeout(function() {
+	           console.log('cancelCall here');
+
+	            $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
+
+
+							console.log($rootScope.currentView);
+
+	         }, 120000);
+
 			// patientrequesttodoctor.acceptedbydoctor(accptdReq);
 
 			// $state.go('templates.requestAccepted');
@@ -113,7 +180,71 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 		}
 
 	};
+// check patient activity///
+$scope.isFirstTime = false;
+$interval(checkAcceptedReq,2000);
+ function checkAcceptedReq(){
+	 doctorServices.patientActivity($rootScope.reqId).then(function(response){
+	 $scope.consultStatus=response;
 
+	 if($scope.consultStatus[0][0] == 3 && $scope.isFirstTime == false){
+		 $scope.callReqPopUp.close();
+		 $scope.isFirstTime=true;
+
+		 $scope.declinedByPatient = $ionicPopup.show({
+		 			template: "<div>Patient has declined for a consultation</div>",
+		 			cssClass: 'requestPopup',
+		 			scope: $scope,
+		 			buttons: [
+		 			{
+		 			text: 'Ok',
+		 			type: 'button-positive',
+		 			onTap:function(){
+		 				$state.go("templates.doctor_home");
+						$ionicHistory.clearHistory();
+		 			}
+		 			},
+		 		]
+		 		});
+	 }
+		//  $state.go($state.current, {}, {reload: true});
+	 }).catch(function(error){
+	 console.log('failure data', error);
+	 });
+ }
+////
+
+$scope.isFirstTime = false;
+$interval(videoOrAudio,2000);
+ function videoOrAudio(){
+	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
+	 $scope.videoOrAudio=response;
+
+	 if($scope.consultStatus[0][0] == 2 ){
+		 $state.go("templates.notesForPatient")
+	 }
+		//  $state.go($state.current, {}, {reload: true});
+	 }).catch(function(error){
+	 console.log('failure data', error);
+	 });
+ }
 
 
 })
+
+//
+// $scope.noResponsePopup = $ionicPopup.show({
+// 			template: "<div ng-app='refresh_div' ><p>Patient did not respond .</p></div>",
+// 			cssClass: 'requestPopup',
+// 			scope: $scope,
+// 			buttons: [
+// 			{
+// 			text: 'OK',
+// 			type: 'button-positive',
+// 			onTap:function(){
+// 				$state.go("templates.doctor_home");
+// 			}
+// 			},
+//
+// 		]
+// 		});

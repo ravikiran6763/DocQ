@@ -36,12 +36,12 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
 //console.log(networkState);
-$interval(checkForInternet, 1000);
+// $interval(checkForInternet, 1000);
 
 $localStorage.chekedData =0;
 $localStorage.dataConnection=navigator.onLine;
 ////////////////////////////////////////////////////////////////////////////////
-$interval(checkForInternet, 5000);
+$interval(checkForInternet, 5000,1);
 function checkForInternet() {
 
 if(!navigator.onLine ){
@@ -102,12 +102,15 @@ document.addEventListener("deviceready", function (){
 
 ////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 // console.log($ionicHistory.currentStateName());
 
 $rootScope.statename = $ionicHistory.currentStateName();
 
 console.log($rootScope.statename);
 
+=======
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -547,9 +550,13 @@ console.log($ionicHistory.currentStateName());
 	// $interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
+<<<<<<< HEAD
 
 		if($ionicHistory.currentStateName() != 'auth.loginNew'){
+=======
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 
+		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
 						// console.log('successfull data', response);
 						$scope.calledDetails=response;
@@ -614,6 +621,7 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
+<<<<<<< HEAD
 $rootScope.homePage=$ionicHistory.currentStateName();
 		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
 		{
@@ -667,6 +675,8 @@ $rootScope.homePage=$ionicHistory.currentStateName();
 		}
 
 
+=======
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 				// console.log('callAtInterval');
 	}
 
@@ -677,6 +687,7 @@ $rootScope.homePage=$ionicHistory.currentStateName();
 			callId:$rootScope.callId
 
 			}
+			console.log(calldecline);
 			$localStorage.ViewDoc=0;
 			callAcceptedService.callDeclined(calldecline).then(function(response){
 				$scope.declineStatus=response;
@@ -693,6 +704,12 @@ $rootScope.homePage=$ionicHistory.currentStateName();
 $scope.checkWalletBalance=function()
 {
 	$ionicLoading.show();
+	var calldecline={
+	patient:$localStorage.user,
+	doctor:$rootScope.doctorPhone,
+	callId:$rootScope.callId
+	}
+	console.log(calldecline);
 	doctorServices.checkMyBalance($localStorage.user).then(function(response){
 		// console.log(response[0][0]);
 	$scope.myBalance=response[0][0];
@@ -926,7 +943,6 @@ $scope.done = function (prescType,sno){
 
         }
     }
-		console.log($rootScope.prescription);
 $scope.clear=function()
 {
 		$scope.diagnosis.diagnosisforpatient="";
@@ -1067,7 +1083,35 @@ console.log($rootScope.chekDiag);
     }
     // console.log(URL);
 }
+if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.currentStateName() =='templates.doctor_home')
+{
 
+			$scope.unreadchatforpatient = {};
+				var username = "greet+"+$localStorage.user;
+				if($ionicHistory.currentStateName() =='app.patient_home')
+				{
+						var password = "DQ_patient";
+				}
+				else
+				{
+						var password = "DQ_doctor";
+				}
+					var success = function(message)
+					{
+							$scope.unreadchatforpatient = message;
+					}
+
+					var failure = function()
+					{
+					 alert("Error calling Hello Plugin");
+					 //console.log('error');
+
+					}
+
+		hello.unreadchatfromusers(username,password,success, failure);
+
+
+}
 
 
 
