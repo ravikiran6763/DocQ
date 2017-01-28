@@ -98,7 +98,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 						text: 'OK',
 						type: 'button-positive',
 						onTap:function(){
+
 							$state.go("templates.doctor_home");
+							$scope.noResponsePopup.close();
+							$ionicHistory.clearHistory();
 						}
 						},
 
