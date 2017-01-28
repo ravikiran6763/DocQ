@@ -103,6 +103,34 @@ this.changeDocPwd = function(newPwd){
   });
   return deferred.promise;
 
+}
+
+this.cancelByDoc = function(consultId){
+
+  var deferred = $q.defer();
+
+  $http.post(BASE_URL.url + API.cancelByDoc,consultId)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
+this.patientActivity = function(consultId){
+  var deferred = $q.defer();
+
+  $http.post(BASE_URL.url + API.patientActivity,consultId)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
 
 }
 

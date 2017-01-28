@@ -9,6 +9,33 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
+$rootScope.homePage=$ionicHistory.currentStateName();
+
+    if( $rootScope.homePage =='templates.doctor_home')
+    {
+      console.log($rootScope.homePage);
+
+    			$scope.unreadchatforpatient = {};
+    				var username = "greet+"+$localStorage.user;
+						var password = "DQ_doctor";
+
+    					var success = function(message)
+    					{
+    							$scope.unreadchatforpatient = message;
+    					}
+
+    					var failure = function()
+    					{
+    					 alert("Error calling Hello Plugin");
+    					 //console.log('error');
+
+    					}
+
+    		// hello.unreadchatfromusers(username,password,success, failure);
+
+
+    }
+
 
     // $scope.data.dataLoading = true;
     //
@@ -22,7 +49,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     console.log($ionicHistory.currentStateName());
       $ionicLoading.show();
 
-    console.log($state.$current.name);
     $scope.emailNotification = 'Subscribed';
     console.log($scope.emailNotification);
 
@@ -214,8 +240,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
       })
    		console.log('lookForPrescription');
    	}
-console.log($ionicHistory.currentStateName());
-console.log('kkkk');
 })
 
 // $scope.pushNotificationChange = function() {

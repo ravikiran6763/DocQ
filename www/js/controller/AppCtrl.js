@@ -101,7 +101,6 @@ document.addEventListener("deviceready", function (){
 
 
 ////////////////////////////////////////////////////////////////////////////////
-console.log('jjjj');
 
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
@@ -874,7 +873,6 @@ $scope.done = function (prescType,sno){
 
         }
     }
-		console.log($rootScope.prescription);
 $scope.clear=function()
 {
 		$scope.diagnosis.diagnosisforpatient="";

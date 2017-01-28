@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout,$ionicPopup,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
@@ -96,6 +96,40 @@ $scope.BalanceForVoiceCall = function()
 
 }
 
+$scope.isFirstTime = false;
+$interval(checkAcceptedReq,2000);
+ function checkAcceptedReq(){
+	 doctorServices.patientActivity($rootScope.callId).then(function(response){
+	 $scope.consultStatus=response;
+
+	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
+
+		 $scope.isFirstTime=true;
+		 $scope.declinedByPatient = $ionicPopup.show({
+		 			template: "<div>Doctor has declined for a consultation</div>",
+		 			cssClass: 'requestPopup',
+		 			scope: $scope,
+		 			buttons: [
+		 			{
+		 			text: 'Ok',
+		 			type: 'button-positive',
+		 			onTap:function(){
+		 				$state.go("app.patient_home");
+						$scope.declinedByPatient.close();
+						$ionicHistory.clearHistory();
+		 			}
+		 			},
+		 		]
+		 		});
+	 }
+	 else{
+
+	 }
+		//  $state.go($state.current, {}, {reload: true});
+	 }).catch(function(error){
+	 console.log('failure data', error);
+	 });
+ }
 
 
 });

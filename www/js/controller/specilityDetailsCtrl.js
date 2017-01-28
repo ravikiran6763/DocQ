@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $scope, $interval, $stateParams,$ionicPopup ,$localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading) {
+DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $scope, $interval, $stateParams,$ionicPopup ,$localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading,doctorServices) {
 
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
@@ -71,6 +71,21 @@ $scope.sendrequesttoonlinedoctors = function()
           $rootScope.buttonText='Send Request';
           $timeout.cancel(mytimeout);
 
+          $scope.noResponsePopup = $ionicPopup.show({
+                template: "<div ng-app='refresh_div' ><p>None Of the doctors have accepted your request .</p></div>",
+                cssClass: 'requestPopup',
+                scope: $scope,
+                buttons: [
+                {
+                text: 'OK',
+                type: 'button-positive',
+                onTap:function(){
+                  $state.go("app.medical_speciality");
+                }
+                },
+
+              ]
+              });
           }
         }
      var mytimeout = $timeout($scope.onTimeout,1000);//timer interval
@@ -98,40 +113,23 @@ $scope.sendrequesttoonlinedoctors = function()
 
          ]
          });
+         $scope.nonePopUp=false;
+
          $timeout(function() {
            console.log('cancelCall here');
            medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
            $scope.cancelledReq=response;
            $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
+            $scope.nonePopUp=true;
 
              console.log($scope.cancelledReq);
            }).catch(function(error){
            console.log('failure data', error);
            });
-           
-            $scope.noResponsePopup = $ionicPopup.show({
-                  template: "<div ng-app='refresh_div' ><p>None of the available doctors have responded to your request.</p></div>",
-                  cssClass: 'requestPopup',
-                  scope: $scope,
-                  buttons: [
-                  {
-                  text: 'OK',
-                  type: 'button-positive',
-                  onTap:function(){
-                    medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
-                    $scope.cancelledReq=response;
-                      $state.go($state.current, {}, {reload: true});
-                    }).catch(function(error){
-                    console.log('failure data', error);
-                    });
-                  }
-                  },
-
-                ]
-                });
-         }, 120000);
 
 
+         }, 121000);
+         
    console.log($scope.counter);
    console.log('buttonclicked');
    }
@@ -154,6 +152,8 @@ $scope.sendrequesttoonlinedoctors = function()
      $scope.accptdReq=response;
      console.log('check');
        if($scope.accptdReq != ''){
+         console.log($scope.accptdReq);
+
          var accptDoc=$scope.accptdReq;
          for(var i=0; i<accptDoc.length; i++){
            $rootScope.doctorPhone=accptDoc[i].doctorPhone,
@@ -171,4 +171,31 @@ $scope.sendrequesttoonlinedoctors = function()
 
    }
 
+   $scope.isFirstTime = false;
+
+
+
+
+
 });
+//
+// $scope.noResponsePopup = $ionicPopup.show({
+//       template: "<div ng-app='refresh_div' ><p>None of the available doctors have responded to your request.</p></div>",
+//       cssClass: 'requestPopup',
+//       scope: $scope,
+//       buttons: [
+//       {
+//       text: 'OK',
+//       type: 'button-positive',
+//       onTap:function(){
+//         medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+//         $scope.cancelledReq=response;
+//           $state.go($state.current, {}, {reload: true});
+//         }).catch(function(error){
+//         console.log('failure data', error);
+//         });
+//       }
+//       },
+//
+//     ]
+//     });
