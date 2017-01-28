@@ -1,6 +1,7 @@
 'use strict';
 DoctorQuickApp.service('doctorServices', function ($http,$q,$localStorage, BASE_URL, API) {
 
+
 this.doctorDetails = function (docPhone) {
   var deferred = $q.defer();
   console.log(docPhone);

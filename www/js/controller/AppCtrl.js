@@ -103,6 +103,11 @@ document.addEventListener("deviceready", function (){
 ////////////////////////////////////////////////////////////////////////////////
 
 // console.log($ionicHistory.currentStateName());
+
+$rootScope.statename = $ionicHistory.currentStateName();
+
+console.log($rootScope.statename);
+
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -537,12 +542,12 @@ $scope.ratingsObject = {
 
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
-
+console.log($ionicHistory.currentStateName());
 	//  console.log($localStorage.seen);
 	// $interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
-		console.log($ionicHistory.currentStateName());
+
 		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 
 			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
@@ -609,10 +614,12 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
-
-		if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.currentStateName() =='templates.doctor_home')
+$rootScope.homePage=$ionicHistory.currentStateName();
+		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
 		{
 
+			console.log($rootScope.homePage);
+					console.log('doctor home called');
 
 					$scope.unreadchatforpatient = {};
 
@@ -629,6 +636,7 @@ $localStorage.ViewDoc=0;
 						else
 						{
 
+								console.log('dcot');
 
 								var password = "DQ_doctor";
 						}
@@ -640,6 +648,8 @@ $localStorage.ViewDoc=0;
 							{
 
 							 		$scope.unreadchatforpatient = message;
+
+									console.log($scope.unreadchatforpatient);
 
 
 							}
@@ -655,12 +665,6 @@ $localStorage.ViewDoc=0;
 
 
 		}
-
-
-
-
-
-
 
 
 				// console.log('callAtInterval');

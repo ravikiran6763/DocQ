@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootScope,$localStorage, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootScope,$localStorage,$ionicHistory, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -8,6 +8,51 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
 
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
+
+
+    $rootScope.statename = $ionicHistory.currentStateName();
+
+
+    if($rootScope.statename =='templates.doctor_home')
+    {
+
+      $scope.unreadchatforpatient = {};
+
+
+        console.log('this controller called');
+
+            var username = "greet+"+$localStorage.user;
+
+
+                var password = "DQ_doctor";
+
+
+                console.log(username);
+
+              var success = function(message)
+              {
+
+                  $scope.unreadchatforpatient = message;
+
+                  console.log($rootScope.unreadchatforpatient);
+
+
+
+
+              }
+
+              var failure = function()
+              {
+               alert("Error calling Hello Plugin");
+               //console.log('error');
+
+              }
+
+      hello.unreadchatfromusers(username,password,success, failure);
+
+
+    }
+
 
 
     // $scope.data.dataLoading = true;
@@ -199,7 +244,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootSc
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-      console.log($scope.res);
+      //console.log($scope.res);
       }).catch(function(error){
       console.log('failure data', error);
       })
