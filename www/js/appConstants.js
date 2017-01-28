@@ -76,6 +76,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'acceptedbydoctor':'doctor/acceptedbydoctor.php',
         'cancelByDoc':'doctor/cancelByDoc.php',
         'patientActivity':'doctor/patientActivity.php',
+        'videoOrAudio':'doctor/videoOrAudio.php',
 
 
 

@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $scope, $interval, $stateParams,$ionicPopup ,$localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading,doctorServices) {
+DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $scope, $interval,$ionicHistory, $stateParams,$ionicPopup ,$localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading,doctorServices) {
 
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
@@ -67,7 +67,6 @@ $scope.sendrequesttoonlinedoctors = function()
           mytimeout = $timeout($scope.onTimeout,1000);
           if($scope.counter == 0){
           console.log('one minute over');
-          $scope.counter=120;
           $rootScope.buttonText='Send Request';
           $timeout.cancel(mytimeout);
 
@@ -129,7 +128,7 @@ $scope.sendrequesttoonlinedoctors = function()
 
 
          }, 121000);
-         
+
    console.log($scope.counter);
    console.log('buttonclicked');
    }
@@ -145,12 +144,15 @@ $scope.sendrequesttoonlinedoctors = function()
    }
 
   //  $interval(CheckOnlineDocs, 5000);
-  $interval(checkAcceptedReq,1000);
+  console.log();
+  if($ionicHistory.currentStateName() == 'app.specialityDetailsNew'){
+    $interval(checkAcceptedReq,1000);
+
+  }
    function checkAcceptedReq(){
     //  console.log($scope.accptdReq);
      medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
      $scope.accptdReq=response;
-     console.log('check');
        if($scope.accptdReq != ''){
          console.log($scope.accptdReq);
 

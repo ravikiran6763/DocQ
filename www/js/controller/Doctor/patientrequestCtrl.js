@@ -86,7 +86,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				mytimeout = $timeout($scope.onTimeout,1000);
 				if($scope.counter == 0){
 				console.log('one minute over');
-				$scope.counter=120;
 				$rootScope.buttonText='Send Request';
 				$timeout.cancel(mytimeout);
 					$scope.noResponsePopup = $ionicPopup.show({
@@ -214,6 +213,21 @@ $interval(checkAcceptedReq,2000);
 	 });
  }
 ////
+
+$scope.isFirstTime = false;
+$interval(videoOrAudio,2000);
+ function videoOrAudio(){
+	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
+	 $scope.videoOrAudio=response;
+
+	 if($scope.consultStatus[0][0] == 2 ){
+		 $state.go("templates.notesForPatient")
+	 }
+		//  $state.go($state.current, {}, {reload: true});
+	 }).catch(function(error){
+	 console.log('failure data', error);
+	 });
+ }
 
 
 })
