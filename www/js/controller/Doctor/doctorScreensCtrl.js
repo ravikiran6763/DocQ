@@ -75,7 +75,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
               }
 
-      hello.unreadchatfromusers(username,password,success, failure);
+      // hello.unreadchatfromusers(username,password,success, failure);
 
 
     }

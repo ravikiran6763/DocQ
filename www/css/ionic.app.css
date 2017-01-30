@@ -9871,7 +9871,7 @@ ion-content.scroll-content.ionic-scroll {
 
 .sideMenuToggle {
   position: absolute;
-  margin-top: -18%;
+  margin-top: -16%;
   margin-left: 70%;
   height: 14%;
   z-index: 2; }
@@ -11679,7 +11679,7 @@ ion-side-menu .heading-item .message {
         margin: 3% 0 0 2%; }
         .mydoctor-profile-view .myDoctor-list li .profile-img img {
           border-radius: 100% !important;
-          width: 95%; }
+          width: 90%; }
       .mydoctor-profile-view .myDoctor-list li .next-icon {
         width: 5%;
         float: right;
@@ -11861,7 +11861,7 @@ ion-side-menu .heading-item .message {
     color: #a9a9a9;
     margin: 0;
     padding: 0;
-    font-size: 5vw; }
+    font-size: 100%; }
 
 .callAccpted-view {
   background-color: #e2e2e2 !important;
