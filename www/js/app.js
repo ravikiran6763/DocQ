@@ -529,7 +529,9 @@ $stateProvider
   .state('templates', {
     url: "/templates",
     abstract: true,
-    templateUrl: "views/templates/doc-sidemenu.html"
+    templateUrl: "views/templates/doc-sidemenu.html",
+    controller: 'doctorScreensCtrl'
+
   })
 
   .state('templates.doctor_home', {

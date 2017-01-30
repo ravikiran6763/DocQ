@@ -31,6 +31,12 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 			$scope.chatlist = message;
 			if($scope.deviceAndroid)
 			{
@@ -54,11 +60,20 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			else
 			{
 
-				//console.log($scope.chatlist);
-				//
-				// var data = JSON.parse(message);
-				//
-				// console.log(data);
+				console.log($scope.chatlist);
+
+
+				alert($scope.chatlist);
+				
+
+				var data = JSON.parse($scope.chatlist);
+
+			console.log(data);
+
+
+
+
+
 
 				// var result = {};
 				//
@@ -96,7 +111,12 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			//console.log($scope.name[2]);
 		//console.log($scope.name[3]);
 
+<<<<<<< HEAD
+
+
+=======
 		console.log(message);
+>>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 
 	var failure = function()
 	{
