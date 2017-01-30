@@ -1039,8 +1039,6 @@ if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.curren
 					}
 
 		hello.unreadchatfromusers(username,password,success, failure);
-
-
 }
 
 
