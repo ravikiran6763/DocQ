@@ -83,32 +83,37 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$scope.counter = 120;
 			$scope.onTimeout = function(){
 				$scope.counter--;
-				mytimeout = $timeout($scope.onTimeout,1000);
+				docTimeout = $timeout($scope.onTimeout,1000);
 				if($scope.counter == 0){
 				console.log('one minute over');
 				$rootScope.buttonText='Send Request';
-				$timeout.cancel(mytimeout);
-					$scope.noResponsePopup = $ionicPopup.show({
-						template: "<div ng-app='refresh_div' ><p>Patient did not respond .</p></div>",
-						cssClass: 'requestPopup',
-						scope: $scope,
-						buttons: [
-						{
-						text: 'OK',
-						type: 'button-positive',
-						onTap:function(){
+				$timeout.cancel(docTimeout);
+				$scope.callReqPopUp.close();
 
-							$state.go("templates.doctor_home");
-							$scope.noResponsePopup.close();
-							$ionicHistory.clearHistory();
-						}
-						},
-
-					]
-					});
+				$scope.noResponsePopup = $ionicPopup.show({
+					 template: "<div><p>Patient did not respond .</p></div>",
+					 cssClass: 'requestPopup',
+					 scope: $scope,
+					 buttons: [
+					 {
+					 text: 'OK',
+					 type: 'button-positive',
+					 onTap:function(){
+						 $state.go("templates.doctor_home");
+						 $ionicHistory.clearHistory();
+						 $rootScope.closeDocPopUp= false;
+					 }
+					 },
+				 ]
+				 });
 				}
 			}
-			 var mytimeout = $timeout($scope.onTimeout,1000);
+			 var docTimeout = $timeout($scope.onTimeout,1000);
+
+			 if($rootScope.closeDocPopUp == true){
+				 console.log('did not respond');
+
+			 }
 
 			 $scope.callReqPopUp = $ionicPopup.show({
 	           template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
@@ -121,7 +126,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 	           onTap:function(){
 	             console.log('cancel');
 	             console.log($scope.counter);
-	             console.log($localStorage.user);
 							 console.log($localStorage.reqId);
 
 							 $state.go("templates.doctor_home");
@@ -137,15 +141,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 	           },
 	         ]
 	         });
-					 $timeout(function() {
-	           console.log('cancelCall here');
 
-	            $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
-
-
-							console.log($rootScope.currentView);
-
-	         }, 120000);
 
 			// patientrequesttodoctor.acceptedbydoctor(accptdReq);
 
@@ -215,12 +211,13 @@ $interval(checkAcceptedReq,2000);
 ////
 
 $scope.isFirstTime = false;
-$interval(videoOrAudio,2000);
+// $interval(videoOrAudio,5000);
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 	 $scope.videoOrAudio=response;
 
 	 if($scope.consultStatus[0][0] == 2 ){
+		 $scope.callReqPopUp.close();
 		 $state.go("templates.notesForPatient")
 	 }
 		//  $state.go($state.current, {}, {reload: true});
