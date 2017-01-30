@@ -102,15 +102,12 @@ document.addEventListener("deviceready", function (){
 
 ////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<< HEAD
 // console.log($ionicHistory.currentStateName());
 
 $rootScope.statename = $ionicHistory.currentStateName();
 
 console.log($rootScope.statename);
 
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -550,11 +547,6 @@ console.log($ionicHistory.currentStateName());
 	// $interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
-<<<<<<< HEAD
-
-		if($ionicHistory.currentStateName() != 'auth.loginNew'){
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 
 		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
@@ -621,7 +613,6 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
-<<<<<<< HEAD
 $rootScope.homePage=$ionicHistory.currentStateName();
 		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
 		{
@@ -673,10 +664,6 @@ $rootScope.homePage=$ionicHistory.currentStateName();
 
 
 		}
-
-
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 				// console.log('callAtInterval');
 	}
 

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope, $timeout,$rootScope,$localStorage,$ionicHistory, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
-=======
 DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$rootScope,$localStorage, $ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices) {
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -13,7 +9,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
-$rootScope.homePage=$ionicHistory.currentStateName();
+    $rootScope.homePage=$ionicHistory.currentStateName();
 
     if( $rootScope.homePage =='templates.doctor_home')
     {
@@ -273,10 +269,7 @@ $rootScope.homePage=$ionicHistory.currentStateName();
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-<<<<<<< HEAD
       //console.log($scope.res);
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
       }).catch(function(error){
       console.log('failure data', error);
       })

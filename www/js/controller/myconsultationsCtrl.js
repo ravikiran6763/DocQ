@@ -31,12 +31,6 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 			$scope.chatlist = message;
 			if($scope.deviceAndroid)
 			{
@@ -64,7 +58,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 
 				alert($scope.chatlist);
-				
+
 
 				var data = JSON.parse($scope.chatlist);
 
@@ -111,13 +105,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			//console.log($scope.name[2]);
 		//console.log($scope.name[3]);
 
-<<<<<<< HEAD
-
-
-=======
 		console.log(message);
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
-
 	var failure = function()
 	{
 		alert("Error calling Hello Plugin");
