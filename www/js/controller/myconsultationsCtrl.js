@@ -6,15 +6,12 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 
-	$ionicLoading.show();
-
-console.log('called');
-
 
 var username = "greet+"+$localStorage.user;
-var password = "DQ_patient";
+var password = "DQ_doctor";
 
 
+console.log(password);
 
 var msg;
 var msgdate;
@@ -24,6 +21,8 @@ var lists =[];
 var dateformation =[];
 
 
+
+
 var datestring;
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
@@ -31,107 +30,104 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
-<<<<<<< HEAD
 
-
-
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 			$scope.chatlist = message;
+
 			if($scope.deviceAndroid)
 			{
-				$scope.name = $scope.chatlist.split('{');
-				msg = $scope.name[2];
-				msg = msg.substring(0,msg.length-1);
-				$scope.msg = msg;
-				msgdate = $scope.name[3];
-				msgdate = msgdate.substring(0,msgdate.length-3)
-				msgdate = msgdate.split('=');
-				lists = msgdate;
+
+					console.log('this is android device');
 
 
-				console.log(lists[1]);
-				dateformation = lists[1].split(' ');
-				datestring = dateformation[1].concat(dateformation[2]);
-				datestring = datestring.concat(dateformation[5]);
-				$scope.datestring = datestring;
-				console.log(datestring);
+						$scope.name = $scope.chatlist.split('{');
+					msg = $scope.name[2];
+					msg = msg.substring(0,msg.length-1);
+					$scope.msg = msg;
+					msgdate = $scope.name[3];
+					msgdate = msgdate.substring(0,msgdate.length-3)
+					msgdate = msgdate.split('=');
+					lists = msgdate;
+
+
+					console.log(lists[1]);
+					dateformation = lists[1].split(' ');
+					datestring = dateformation[1].concat(dateformation[2]);
+					datestring = datestring.concat(dateformation[5]);
+					$scope.datestring = datestring;
+					console.log(datestring);
 			}
 			else
 			{
 
-				console.log($scope.chatlist);
+				console.log('this is called');
+
+					var forioschatlist = {};
+
+						forioschatlist = $scope.chatlist;
+
+						var data = JSON.parse(forioschatlist);
+
+						console.log(data);
 
 
-				alert($scope.chatlist);
-				
-
-				var data = JSON.parse($scope.chatlist);
-
-			console.log(data);
+						for (var key in data) {
+    if (data.hasOwnProperty(key)) {
+        console.log(key + " = " + data[key]);
 
 
+					if(key == "unread")
+					{
+
+							$scope.unreadchatcountfromvsee = data[key];
 
 
 
+					}
+					else if(key == "message")
+					{
 
-				// var result = {};
-				//
-				//
-				// for(i=0;i<data.names.length;i++)
-				// {
-				//
-				// 		result[data.names[i].name] = data.names[i];
-				//
-				//
-				//
-				// }
-				//
-				// console.log(result);
+						$scope.msg = data[key];
+
+
+					}
+					else if(key == "name")
+					{
+
+							$scope.name = data[key];
+
+
+					}
+					else if(key == "dateformat")
+					{
+
+							$scope.datestring = data[key];
+
+
+					}
+					else {
+
+						console.log('no response from vsee');
+						// noresponse of chat from vsee
+					}
+
+
+    }
+}
 
 
 			}
 		}
 
-			// lists = lists.split(' ');
-			//
-			//
-			// dateformation = lists[1]." ".lists[2]." ".lists[5];
 
+		var failure = function()
+		{
+			alert("Error calling Hello Plugin");
+		}
 
-			//console.log(lists);
-
-			//console.log(dateformation);
-
-
-			//console.log(msg);
+		hello.chatcounts(username,password,success, failure);
 
 
 
-			//console.log($scope.name[2]);
-		//console.log($scope.name[3]);
-
-<<<<<<< HEAD
-
-
-=======
-		console.log(message);
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
-
-	var failure = function()
-	{
-		alert("Error calling Hello Plugin");
-	}
-
-hello.chatcounts(username,password,success, failure);
-
-
-
-	$ionicLoading.show();
-
-console.log('called');
-$ionicLoading.show();
-	$ionicLoading.show();
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 

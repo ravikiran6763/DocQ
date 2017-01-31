@@ -102,15 +102,6 @@ document.addEventListener("deviceready", function (){
 
 ////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<< HEAD
-// console.log($ionicHistory.currentStateName());
-
-$rootScope.statename = $ionicHistory.currentStateName();
-
-console.log($rootScope.statename);
-
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -368,7 +359,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$ionicLoading.show();
 										console.log('result fetched');
 											 $scope.doclist = response;
-											 console.log($scope.doclist);
+											console.log($scope.doclist);
 											 $ionicLoading.hide();
 									}
 									else if(Object.keys(response).length == 0)
@@ -545,16 +536,11 @@ $scope.ratingsObject = {
 
 	 $scope.balAmnt;
 	 $rootScope.myBalance;
-console.log($ionicHistory.currentStateName());
+
 	//  console.log($localStorage.seen);
 	// $interval(callReqInterval, 15000);
 $localStorage.ViewDoc=0;
 	function callReqInterval() {
-<<<<<<< HEAD
-
-		if($ionicHistory.currentStateName() != 'auth.loginNew'){
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 
 		if($ionicHistory.currentStateName() != 'auth.loginNew'){
 			medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
@@ -580,7 +566,7 @@ $localStorage.ViewDoc=0;
 								$localStorage.Doctocall =  $rootScope.doctorPhone;
 								if($rootScope.cal_flag === '4'  && $rootScope.popupSeen === '1' ){
 
-														 $ionicPopup.confirm({
+														$ionicPopup.confirm({
 																		title: '<i class="ion-checkmark-circled" style="font-size: 20vw !important; color: #6fa02d !important;"></i><br/>',
 																		template: '<center><b>Dr {{accptdDocFname}} {{accptdDocLname}}</b><br> has accepted your invitation for a consultation. Please start the consultation now or decline.</center>',
 																		cssClass: 'videoPopup',
@@ -621,62 +607,6 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
-<<<<<<< HEAD
-$rootScope.homePage=$ionicHistory.currentStateName();
-		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
-		{
-
-			console.log($rootScope.homePage);
-					console.log('doctor home called');
-
-					$scope.unreadchatforpatient = {};
-
-
-						var username = "greet+"+$localStorage.user;
-
-
-						if($ionicHistory.currentStateName() =='app.patient_home')
-						{
-
-								var password = "DQ_patient";
-
-						}
-						else
-						{
-
-								console.log('dcot');
-
-								var password = "DQ_doctor";
-						}
-
-
-
-
-							var success = function(message)
-							{
-
-							 		$scope.unreadchatforpatient = message;
-
-									console.log($scope.unreadchatforpatient);
-
-
-							}
-
-							var failure = function()
-							{
-							 alert("Error calling Hello Plugin");
-							 //console.log('error');
-
-							}
-
-				hello.unreadchatfromusers(username,password,success, failure);
-
-
-		}
-
-
-=======
->>>>>>> 77c725d39ff6df93ea4c6c79f90a770da0163d33
 				// console.log('callAtInterval');
 	}
 
@@ -1083,19 +1013,24 @@ console.log($rootScope.chekDiag);
     }
     // console.log(URL);
 }
-if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.currentStateName() =='templates.doctor_home')
+
+
+$scope.statename = $ionicHistory.currentStateName();
+
+console.log($state.statename);
+
+if($scope.statename =='app.patient_home')
 {
+
+
+		console.log('unread chat count for android called');
+
 
 			$scope.unreadchatforpatient = {};
 				var username = "greet+"+$localStorage.user;
-				if($ionicHistory.currentStateName() =='app.patient_home')
-				{
+
 						var password = "DQ_patient";
-				}
-				else
-				{
-						var password = "DQ_doctor";
-				}
+
 					var success = function(message)
 					{
 							$scope.unreadchatforpatient = message;
@@ -1108,12 +1043,8 @@ if($ionicHistory.currentStateName() =='app.patient_home' || $ionicHistory.curren
 
 					}
 
-		hello.unreadchatfromusers(username,password,success, failure);
-
-
+	hello.unreadchatfromusers(username,password,success, failure);
 }
-
-
 
 
 });
