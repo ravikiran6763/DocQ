@@ -1,13 +1,48 @@
 <ion-view class="mydoctor-profile-view" cache-view="false">
   <ion-content>
 
-    <div>
-          <a class="item item-avatar item-icon-right" ng-repeat="doc in doclist" ng-click="viewDoc2({{doc.doctorPhone}});">
+    <div class="myDoctor-list">
+
+      <ul>
+        <!-- <li  ui-sref="app.viewdoctor_profile({myDocFname:doctor.doctorFname,myDocLname:doctor.doctorLname,myDocNum:doctor.doctorPhone,myDocDegree:doctor.doctorDegrees})"> -->
+      <li  ng-repeat="doc in doclist" ng-click="viewDoc2({{doc.doctorPhone}});">
+        <div class="profile-img">
+          <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
+          <img src="img/doc.jpg">
+
+          <!-- <ionic-letter-avatar data={{doctor.doctorFname}}  shape="round" charcount='1'></ionic-letter-avatar> -->
+        </div>
+        <div class="name-content">
+          <h2>Dr.{{doc.doctorFname |capitalize }} {{doc.doctorLname |capitalize }} </h2>
+
+          <p>{{doc.doctorDegrees}} Degrees</p>
+
+          <p>Practicing since {{doc.practicingSince}}</p>
+
+            <div class="ratingContainer">
+              <span ng-repeat="rating in ratings" >
+                <div  star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
+                </div>
+              </span>
+            </div>
+
+            <p class="totalReview">
+                ({{doc.totalCount}} Reviews)
+            </p>
+        </div>
+        <div class="next-icon">
+          <i class="icon ion-android-add-circle" ng-show="{{doc.onoff == 1}}"></i>
+          <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doc.onoff == 2}}"></i>
+        </div>
+      </li>
+    </ul>
+
+
+
+          <!-- <a class="item item-avatar item-icon-right" >
             <img src="img/doc.jpg">
-            <h2>Dr.{{doc.doctorFname |capitalize }} {{doc.doctorLname |capitalize }} </h2>
             <i class="icon ion-android-add-circle" ng-show="{{doc.onoff == 1}}"></i>
             <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doc.onoff == 2}}"></i>
-            <p>{{doc.doctorDegrees}} Degrees</p>
             <p>Practicing since {{doc.practicingSince}}
               <div class="ratingContainer">
                   <span ng-repeat="rating in ratings">
@@ -15,20 +50,15 @@
                   </span>
               </div>
             </p>
-          </a>
+          </a> -->
 
       </div>
-
-
-
-
 <!--
      <ul>
     <li ng-repeat="doc in doclist">
       {{ doc.doctorFname }}
     </li>
   </ul> -->
-
 
   </ion-content>
 </ion-view>

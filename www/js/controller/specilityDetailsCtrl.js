@@ -50,7 +50,7 @@ console.log($rootScope.specialId);
    $scope.buttonText='Send Request';
 
 
-
+$rootScope.popUpClosed=false;
 $scope.sendrequesttoonlinedoctors = function()
 {
      //////////
@@ -64,14 +64,16 @@ $scope.sendrequesttoonlinedoctors = function()
         $scope.counter = 120;
         $scope.onTimeout = function(){
           $scope.counter--;
-          mytimeout = $timeout($scope.onTimeout,1000);
+          patientTimeout = $timeout($scope.onTimeout,1000);
           if($scope.counter == 0){
           console.log('one minute over');
           $rootScope.buttonText='Send Request';
-          $timeout.cancel(mytimeout);
+          $timeout.cancel(patientTimeout);
+          console.log($ionicHistory.currentStateName());
 
+          $scope.callReqPopUp.close();
           $scope.noResponsePopup = $ionicPopup.show({
-                template: "<div ng-app='refresh_div' ><p>None Of the doctors have accepted your request .</p></div>",
+                template: "<div ><p>None Of the doctors have accepted your request .</p></div>",
                 cssClass: 'requestPopup',
                 scope: $scope,
                 buttons: [
@@ -79,18 +81,32 @@ $scope.sendrequesttoonlinedoctors = function()
                 text: 'OK',
                 type: 'button-positive',
                 onTap:function(){
+                  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+                  $scope.cancelledReq=response;
                   $state.go("app.medical_speciality");
+                  }).catch(function(error){
+                  console.log('failure data', error);
+                  });
+
+
                 }
                 },
 
               ]
               });
+
           }
         }
-     var mytimeout = $timeout($scope.onTimeout,1000);//timer interval
+     var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+
+     if($rootScope.popUpClosed == true){
+
+
+     }
+
      $rootScope.buttonText='Request sent' ;
      $scope.callReqPopUp = $ionicPopup.show({
-           template: "<div ng-app='refresh_div' >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+           template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
            cssClass: 'requestPopup',
            scope: $scope,
            buttons: [
@@ -107,14 +123,16 @@ $scope.sendrequesttoonlinedoctors = function()
              }).catch(function(error){
              console.log('failure data', error);
              });
+
            }
            },
 
          ]
+
          });
          $scope.nonePopUp=false;
 
-         $timeout(function() {
+         var closePopup=function() {
            console.log('cancelCall here');
            medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
            $scope.cancelledReq=response;
@@ -126,8 +144,7 @@ $scope.sendrequesttoonlinedoctors = function()
            console.log('failure data', error);
            });
 
-
-         }, 121000);
+         }
 
    console.log($scope.counter);
    console.log('buttonclicked');

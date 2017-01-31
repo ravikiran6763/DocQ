@@ -6,10 +6,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope, $ionicConf
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
-
 	console.log('Search controller called');
-
-
 
 
 })

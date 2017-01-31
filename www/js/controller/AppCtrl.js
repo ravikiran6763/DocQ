@@ -102,6 +102,15 @@ document.addEventListener("deviceready", function (){
 
 ////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
+=======
+// console.log($ionicHistory.currentStateName());
+
+$rootScope.statename = $ionicHistory.currentStateName();
+
+console.log($rootScope.statename);
+
+>>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -607,6 +616,60 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
+<<<<<<< HEAD
+=======
+$rootScope.homePage=$ionicHistory.currentStateName();
+		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
+		{
+
+			console.log($rootScope.homePage);
+					console.log('doctor home called');
+
+					$scope.unreadchatforpatient = {};
+
+
+						var username = "greet+"+$localStorage.user;
+
+
+						if($ionicHistory.currentStateName() =='app.patient_home')
+						{
+
+								var password = "DQ_patient";
+
+						}
+						else
+						{
+
+								console.log('dcot');
+
+								var password = "DQ_doctor";
+						}
+
+
+
+
+							var success = function(message)
+							{
+
+							 		$scope.unreadchatforpatient = message;
+
+									console.log($scope.unreadchatforpatient);
+
+
+							}
+
+							var failure = function()
+							{
+							 alert("Error calling Hello Plugin");
+							 //console.log('error');
+
+							}
+
+				hello.unreadchatfromusers(username,password,success, failure);
+
+
+		}
+>>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 				// console.log('callAtInterval');
 	}
 
@@ -1043,7 +1106,11 @@ if($scope.statename =='app.patient_home')
 
 					}
 
+<<<<<<< HEAD
 	hello.unreadchatfromusers(username,password,success, failure);
+=======
+		hello.unreadchatfromusers(username,password,success, failure);
+>>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 }
 
 

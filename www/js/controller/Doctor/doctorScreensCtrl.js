@@ -9,6 +9,37 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
+<<<<<<< HEAD
+=======
+    $rootScope.homePage=$ionicHistory.currentStateName();
+
+    if( $rootScope.homePage =='templates.doctor_home')
+    {
+      console.log($rootScope.homePage);
+
+    			$scope.unreadchatforpatient = {};
+    				var username = "greet+"+$localStorage.user;
+						var password = "DQ_doctor";
+
+    					var success = function(message)
+    					{
+    							$scope.unreadchatforpatient = message;
+    					}
+
+    					var failure = function()
+    					{
+    					 alert("Error calling Hello Plugin");
+    					 //console.log('error');
+
+    					}
+
+    		// hello.unreadchatfromusers(username,password,success, failure);
+
+
+    }
+
+
+>>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
     $rootScope.statename = $ionicHistory.currentStateName();
 
 
@@ -47,7 +78,11 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
               }
 
+<<<<<<< HEAD
       //hello.unreadchatfromusers(username,password,success, failure);
+=======
+      // hello.unreadchatfromusers(username,password,success, failure);
+>>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 
 
     }
