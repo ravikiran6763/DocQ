@@ -17,11 +17,14 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			console.log($scope.currentState);
 
 
+			$rootScope.unreadchatforpatient = {};
+
+
+
 
 			if($scope.currentState == 'app.patient_home')
 			{
 
-				$scope.unreadchatforpatient = {};
 
 
 					var username = "greet+"+$localStorage.user;
@@ -33,9 +36,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 						var success = function(message)
 						{
-								$scope.unreadchatforpatient = message;
-
-								alert(message);
+								$rootScope.unreadchatforpatient = message;
 
 						}
 
@@ -46,7 +47,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 						}
 
-						hello.unreadchatfromusers(username,password,success, failure);
+						//hello.unreadchatfromusers(username,password,success, failure);
 
 
 			}

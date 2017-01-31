@@ -49,7 +49,7 @@ $scope.checkWalletBalance = function()
 						$scope.enddate = new Date();
 						console.log($localStorage.user);
 						console.log($localStorage.Doctocall);
-						callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
+						callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 						$state.go('app.patient_summary');
 
 				}

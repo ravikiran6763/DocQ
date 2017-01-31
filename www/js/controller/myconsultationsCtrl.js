@@ -30,10 +30,8 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
-<<<<<<< HEAD
 
-=======
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
+
 			$scope.chatlist = message;
 
 			if($scope.deviceAndroid)
@@ -66,12 +64,8 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 					var forioschatlist = {};
 
-<<<<<<< HEAD
 						forioschatlist = $scope.chatlist;
-=======
-				alert($scope.chatlist);
 
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 
 						var data = JSON.parse(forioschatlist);
 
@@ -114,7 +108,6 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 					}
 					else {
 
-<<<<<<< HEAD
 						console.log('no response from vsee');
 						// noresponse of chat from vsee
 					}
@@ -123,13 +116,6 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
     }
 }
 
-=======
-		console.log(message);
-	var failure = function()
-	{
-		alert("Error calling Hello Plugin");
-	}
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 
 			}
 		}
@@ -140,7 +126,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
-		hello.chatcounts(username,password,success, failure);
+	hello.chatcounts(username,password,success, failure);
 
 
 
@@ -155,12 +141,36 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 });
 $scope.consultationDetails=function(consultedDoc)
 {
-	console.log(consultedDoc);
 
-	$rootScope.consultedDoc=consultedDoc;
-	$localStorage.consultedDoctor=$scope.consultedDoc;
-		$ionicLoading.hide();
-	$state.go('app.patient_summary');
+
+	var username = "greet+"+$localStorage.user;
+	var password = "DQ_patient";
+
+
+ var persontocall = "greet+" + consultedDoc;
+ console.log(persontocall);
+
+
+		var success = function(message)
+		{
+			alert(message);
+		}
+
+		var failure = function()
+		{
+			alert("Error calling Hello Plugin");
+		}
+
+	hello.chat(username,password,persontocall,success, failure);
+
+
+
+	// console.log(consultedDoc);
+	//
+	// $rootScope.consultedDoc=consultedDoc;
+	// $localStorage.consultedDoctor=$scope.consultedDoc;
+	// 	$ionicLoading.hide();
+	// $state.go('app.patient_summary');
 
 
 }

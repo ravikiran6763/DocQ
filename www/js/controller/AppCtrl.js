@@ -102,15 +102,12 @@ document.addEventListener("deviceready", function (){
 
 ////////////////////////////////////////////////////////////////////////////////
 
-<<<<<<< HEAD
-=======
 // console.log($ionicHistory.currentStateName());
 
 $rootScope.statename = $ionicHistory.currentStateName();
 
 console.log($rootScope.statename);
 
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -616,8 +613,6 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
-<<<<<<< HEAD
-=======
 $rootScope.homePage=$ionicHistory.currentStateName();
 		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
 		{
@@ -669,7 +664,6 @@ $rootScope.homePage=$ionicHistory.currentStateName();
 
 
 		}
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 				// console.log('callAtInterval');
 	}
 
@@ -1106,11 +1100,7 @@ if($scope.statename =='app.patient_home')
 
 					}
 
-<<<<<<< HEAD
 	hello.unreadchatfromusers(username,password,success, failure);
-=======
-		hello.unreadchatfromusers(username,password,success, failure);
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
 }
 
 

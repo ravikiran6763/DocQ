@@ -78,6 +78,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'patientActivity':'doctor/patientActivity.php',
         'videoOrAudio':'doctor/videoOrAudio.php',
 
+        'updateNotes':'doctor/updateNotes.php',
+
 
 
         'docAccountsBalance' : 'doctor/docAccountsBalance.php',

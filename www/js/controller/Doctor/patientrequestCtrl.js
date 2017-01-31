@@ -57,6 +57,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 		if($scope.type === 'Decline' && $localStorage.accpt === 1){
 
 				console.log('cant Decline now');
+
+
+
+
 		}
 		else if($scope.type === 'Accept'){
 			$localStorage.accpt=1;
@@ -142,6 +146,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 	         ]
 	         });
 
+					$localStorage.accpt = 0;
+
 
 			// patientrequesttodoctor.acceptedbydoctor(accptdReq);
 
@@ -211,7 +217,7 @@ $interval(checkAcceptedReq,2000);
 ////
 
 $scope.isFirstTime = false;
-// $interval(videoOrAudio,5000);
+ $interval(videoOrAudio,15000,1);
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 	 $scope.videoOrAudio=response;

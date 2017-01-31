@@ -1,6 +1,29 @@
 
 DoctorQuickApp.service('patientProfileDetailsService', function($http, $q, BASE_URL, API){
 
+
+this.updatenotesflag = function(callid)
+{
+
+
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.updateNotes);
+  $http.post(BASE_URL.url + API.updateNotes,callid)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+
+  return deferred.promise;
+}
+
+
+
+
+
+
   this.fetchPatient = function(detail){
     // console.log(detail);
     var deferred = $q.defer();
@@ -16,7 +39,7 @@ DoctorQuickApp.service('patientProfileDetailsService', function($http, $q, BASE_
 		return deferred.promise;
   }
 
-  
+
 
 
   //password change

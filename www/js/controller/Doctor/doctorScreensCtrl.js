@@ -9,8 +9,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
-<<<<<<< HEAD
-=======
+
     $rootScope.homePage=$ionicHistory.currentStateName();
 
     if( $rootScope.homePage =='templates.doctor_home')
@@ -33,59 +32,11 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     					}
 
-    		// hello.unreadchatfromusers(username,password,success, failure);
+    	hello.unreadchatfromusers(username,password,success, failure);
 
 
     }
 
-
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
-    $rootScope.statename = $ionicHistory.currentStateName();
-
-
-    if($rootScope.statename =='templates.doctor_home')
-    {
-
-      $rootScope.unreadchatforpatient = {};
-
-
-        console.log('this controller called');
-
-            var username = "greet+"+$localStorage.user;
-
-
-                var password = "DQ_doctor";
-
-
-                console.log(username);
-
-              var success = function(message)
-              {
-
-                  $rootScope.unreadchatforpatient = message;
-
-                  console.log($rootScope.unreadchatforpatient);
-
-
-
-
-              }
-
-              var failure = function()
-              {
-               alert("Error calling Hello Plugin");
-               //console.log('error');
-
-              }
-
-<<<<<<< HEAD
-      //hello.unreadchatfromusers(username,password,success, failure);
-=======
-      // hello.unreadchatfromusers(username,password,success, failure);
->>>>>>> f6afb9a9a23ba98c4a60cfbf642a44a8b6a86a9a
-
-
-    }
 
 
 
