@@ -10,13 +10,18 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
   $rootScope.prescription={};
 
 
+  patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
+      //console.log($localStorage.reqPat);
+
+      console.log('success');
+
+    }).catch(function(error){
+      console.log('failure data', error);
+    })
+
 console.log($rootScope.reqId);
 
   //this is used to set notesflag in the database top 2
-
-
-
-
 
 console.log($localStorage.reqPat);
   patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){

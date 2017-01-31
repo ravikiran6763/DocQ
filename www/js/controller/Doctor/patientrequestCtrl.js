@@ -217,13 +217,14 @@ $interval(checkAcceptedReq,2000);
 ////
 
 $scope.isFirstTime = false;
- $interval(videoOrAudio,15000,1);
+ $interval(videoOrAudio,10000);
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 	 $scope.videoOrAudio=response;
 	 console.log( $scope.videoOrAudio);
 	 console.log($scope.videoOrAudio[0][0]);
 	 if($scope.videoOrAudio[0][0] == 2 ){
+		 console.log('closethis popup');
 		 $scope.callReqPopUp.close();
 		 $state.go("templates.notesForPatient")
 

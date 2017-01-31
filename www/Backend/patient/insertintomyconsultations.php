@@ -17,7 +17,7 @@
 		$enddate = $details1->enddate;
 		$callId = $details1->callid;
 
-		$sql = "update reqForConsultation set callType='$decidingparameter',callStartTime='$startdate',callEndTime='$enddate'  where patientNum='$patient_phno' and id='$callId'";
+		$sql = "update reqForConsultation set callType='$decidingparameter',callStartTime='$startdate',callEndTime='$enddate',notesFlag=2  where patientNum='$patient_phno' and id='$callId'";
 		// $sql = "update acceptedpatients set cal_flag='$decidingparameter',startTime='$startdate',endTime='$enddate'  where patientphno='$patient_phno' and doctorphno='$doctor_phno' and id='$callId'";
 		// echo $sql;
 		$retval = mysql_query( $sql, $dbhandle );

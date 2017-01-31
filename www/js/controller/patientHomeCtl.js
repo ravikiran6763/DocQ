@@ -16,16 +16,9 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 			console.log($scope.currentState);
 
-
 			$rootScope.unreadchatforpatient = {};
-
-
-
-
 			if($scope.currentState == 'app.patient_home')
 			{
-
-
 
 					var username = "greet+"+$localStorage.user;
 
@@ -47,14 +40,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 						}
 
-<<<<<<< HEAD
-						// hello.unreadchatfromusers(username,password,success, failure);
-=======
 				hello.unreadchatfromusers(username,password,success, failure);
-
->>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
-
-
 			}
 
 			$ionicPlatform.registerBackButtonAction(function(e){
