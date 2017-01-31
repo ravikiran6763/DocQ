@@ -50,7 +50,7 @@ $scope.checkWalletBalance = function()
 						console.log($localStorage.user);
 						console.log($localStorage.Doctocall);
 						callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-						$state.go('app.patient_summary');
+						$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 
 				}
 				var failure = function()

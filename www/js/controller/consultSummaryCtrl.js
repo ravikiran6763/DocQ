@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $window, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$stateParams,$window, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -7,9 +7,9 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope, $wi
 	  $scope.rating.rate = 3;
 	  $scope.rating.max = 5;
 
-console.log($localStorage.consultedDoctor);
+console.log($stateParams.calledDoctor);
 
-console.log($localStorage.Doctocall);
+console.log($stateParams.calledDoctor);
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
@@ -18,7 +18,7 @@ var key = this;
 
 $ionicLoading.show();
 
-myConsultationService.docSummaryDetails($localStorage.Doctocall).then(function(response){
+myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
 		console.log($scope.myDoctor);
 		$ionicLoading.hide();
@@ -109,7 +109,7 @@ $scope.ratingsObject = {
 
 		//to fetch the overall Rating o0f a doctor
 
-rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
+rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(response){
 		// rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
@@ -135,7 +135,7 @@ rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(functi
 
 							// var persontocall = "greet+" + $localStorage.consultedDoctor;
 
-					 var persontocall = "greet+" + $localStorage.Doctocall;
+					 var persontocall = "greet+" + $stateParams.calledDoctor;
 					 console.log(persontocall);
 							var success = function(message)
 							{

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http, LoginService, patientCareService, doctorServices,myConsultationService) {
+DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http, LoginService, patientCareService, doctorServices,myConsultationService) {
 
 	$rootScope.headerTxt="My Consultaions";
 	$rootScope.showBackBtn=true;
@@ -7,8 +7,34 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showDocStatus=false;
 
 
+
+$scope.pagedecision=$ionicHistory.currentStateName();
+
+console.log($scope.pagedecision);
+
+
+
+
+
 var username = "greet+"+$localStorage.user;
-var password = "DQ_doctor";
+
+if($scope.pagedecision === 'templates.consulted_patient')
+{
+
+		var password = "DQ_doctor";
+
+		console.log(password);
+}
+else {
+
+	var password = "DQ_patient";
+
+	console.log(password);
+
+}
+
+
+
 
 
 console.log(password);

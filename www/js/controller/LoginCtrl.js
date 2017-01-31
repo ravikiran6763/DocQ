@@ -57,9 +57,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
-				 console.log(response);
+
 					if(response === "patient")
 					{
+
+						$localStorage.doctororpatient = response;
+
+
+
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 						var success = function(message)
@@ -75,6 +80,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					}
 					else if(response === "doctor")
 					{
+
+						$localStorage.doctororpatient = response;
+
+
 					var uname1 = "greet+"+$scope.loginData.phone;
 					var pw1 = "DQ_doctor";
 					var success = function(message)
