@@ -30,6 +30,11 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 			$scope.chatlist = message;
 
 			if($scope.deviceAndroid)
@@ -62,7 +67,10 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 					var forioschatlist = {};
 
 						forioschatlist = $scope.chatlist;
+<<<<<<< HEAD
+=======
 				alert($scope.chatlist);
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 
 
 						var data = JSON.parse(forioschatlist);
@@ -114,12 +122,16 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
     }
 }
 
+<<<<<<< HEAD
+
+=======
 		console.log(message);
 	var failure = function()
 	{
 		alert("Error calling Hello Plugin");
 	}
 // hello.chatcounts(username,password,success, failure);
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 			}
 		}
 
@@ -129,7 +141,11 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
+<<<<<<< HEAD
+	hello.chatcounts(username,password,success, failure);
+=======
 		// hello.chatcounts(username,password,success, failure);
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 
 
 
@@ -144,12 +160,36 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 });
 $scope.consultationDetails=function(consultedDoc)
 {
-	console.log(consultedDoc);
 
-	$rootScope.consultedDoc=consultedDoc;
-	$localStorage.consultedDoctor=$scope.consultedDoc;
-		$ionicLoading.hide();
-	$state.go('app.patient_summary');
+
+	var username = "greet+"+$localStorage.user;
+	var password = "DQ_patient";
+
+
+ var persontocall = "greet+" + consultedDoc;
+ console.log(persontocall);
+
+
+		var success = function(message)
+		{
+			alert(message);
+		}
+
+		var failure = function()
+		{
+			alert("Error calling Hello Plugin");
+		}
+
+	hello.chat(username,password,persontocall,success, failure);
+
+
+
+	// console.log(consultedDoc);
+	//
+	// $rootScope.consultedDoc=consultedDoc;
+	// $localStorage.consultedDoctor=$scope.consultedDoc;
+	// 	$ionicLoading.hide();
+	// $state.go('app.patient_summary');
 
 
 }
