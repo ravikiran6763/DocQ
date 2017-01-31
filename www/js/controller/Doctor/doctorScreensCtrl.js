@@ -9,7 +9,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
     $rootScope.homePage=$ionicHistory.currentStateName();
 
     if( $rootScope.homePage =='templates.doctor_home')
@@ -36,8 +39,51 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
 
     }
+<<<<<<< HEAD
 
 
+=======
+    $rootScope.statename = $ionicHistory.currentStateName();
+
+
+    if($rootScope.statename =='templates.doctor_home')
+    {
+
+      $rootScope.unreadchatforpatient = {};
+
+
+        console.log('this controller called');
+
+            var username = "greet+"+$localStorage.user;
+
+
+                var password = "DQ_doctor";
+
+
+                console.log(username);
+
+              var success = function(message)
+              {
+
+                  $rootScope.unreadchatforpatient = message;
+
+                  console.log($rootScope.unreadchatforpatient);
+
+
+
+
+              }
+
+              var failure = function()
+              {
+               alert("Error calling Hello Plugin");
+               //console.log('error');
+
+              }
+      // hello.unreadchatfromusers(username,password,success, failure);
+    }
+
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 
 
     // $scope.data.dataLoading = true;
@@ -227,7 +273,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-      //console.log($scope.res);
+      // console.log($scope.res);
       }).catch(function(error){
       console.log('failure data', error);
       })

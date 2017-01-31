@@ -28,6 +28,7 @@ ion-content.scroll-content.ionic-scroll{
     stroke: #489808 !important;
 }
 
+
 .timer{
     margin: 20vh 0 0 33vw !important;
     font-family: inherit !important;
@@ -448,6 +449,10 @@ height: 100%;
       }
 }
 .loginPopup {
+    position: relative !important;
+    margin-top: 132% !important;
+    // margin-top: 152% !important;//for ios build
+
       .popup-body{
         padding: 0% !important;
         overflow: hidden !important;
@@ -463,7 +468,7 @@ height: 100%;
         .errorContent{
           color: #fff !important;
           width: 100% !important;
-        padding: 1% !important;
+          padding: 1% !important;
           p{
             font-size: smaller;
             color: inherit;
@@ -473,7 +478,8 @@ height: 100%;
           position: absolute;
           margin-top: 0vh;
           margin-bottom: 0;
-          top: -4%;left: 85%;
+          top: -20%;
+          left: 85%;
           background: #af262d;
           border-radius: 22px;
           font-size: 8vw;
@@ -484,9 +490,8 @@ height: 100%;
       }
 			.popup{
 				background-color: #af262d;
-        top: 79%;
-        height: 25%;
-        width: 100%
+        width: 100%;
+        position: relative;
 			}
 			.popup-head {
 				padding: 3%;

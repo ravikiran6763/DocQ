@@ -3,6 +3,11 @@
 	ion-content{
 		overflow:  hidden !important;
 	}
+	.loginPopup.popup-container.popup-showing {
+	    visibility: visible;
+	    margin-top: 125% !important;
+	    position: relative !important;
+	}
 
 	.top-content{
 		width: 100% !important;

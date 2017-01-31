@@ -30,15 +30,17 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 			$scope.chatlist = message;
 
 			if($scope.deviceAndroid)
 			{
 
 					console.log('this is android device');
-
 
 						$scope.name = $scope.chatlist.split('{');
 					msg = $scope.name[2];
@@ -65,6 +67,10 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 					var forioschatlist = {};
 
 						forioschatlist = $scope.chatlist;
+<<<<<<< HEAD
+=======
+				alert($scope.chatlist);
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 
 
 						var data = JSON.parse(forioschatlist);
@@ -116,7 +122,16 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
     }
 }
 
+<<<<<<< HEAD
 
+=======
+		console.log(message);
+	var failure = function()
+	{
+		alert("Error calling Hello Plugin");
+	}
+// hello.chatcounts(username,password,success, failure);
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 			}
 		}
 
@@ -126,7 +141,11 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
+<<<<<<< HEAD
 	hello.chatcounts(username,password,success, failure);
+=======
+		// hello.chatcounts(username,password,success, failure);
+>>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 
 
 

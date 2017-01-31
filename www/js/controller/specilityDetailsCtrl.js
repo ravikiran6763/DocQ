@@ -49,8 +49,7 @@ console.log($rootScope.specialId);
    $scope.stopped = false;
    $scope.buttonText='Send Request';
 
-
-$rootScope.popUpClosed=false;
+$rootScope.popUpClosed == false;
 $scope.sendrequesttoonlinedoctors = function()
 {
      //////////
@@ -70,42 +69,41 @@ $scope.sendrequesttoonlinedoctors = function()
           $rootScope.buttonText='Send Request';
           $timeout.cancel(patientTimeout);
           console.log($ionicHistory.currentStateName());
-
+          $rootScope.popUpClosed == true
           $scope.callReqPopUp.close();
-          $scope.noResponsePopup = $ionicPopup.show({
-                template: "<div ><p>None Of the doctors have accepted your request .</p></div>",
-                cssClass: 'requestPopup',
-                scope: $scope,
-                buttons: [
-                {
-                text: 'OK',
-                type: 'button-positive',
-                onTap:function(){
-                  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
-                  $scope.cancelledReq=response;
-                  $state.go("app.medical_speciality");
-                  }).catch(function(error){
-                  console.log('failure data', error);
-                  });
-
-
-                }
-                },
-
-              ]
-              });
 
           }
         }
      var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
 
      if($rootScope.popUpClosed == true){
+       $rootScope.popUpClosed == false;
 
+       $scope.noResponsePopup = $ionicPopup.prompt({
+             template: "<div ><p>None Of the doctors have accepted your request .</p></div>",
+             cssClass: 'requestPopup',
+             scope: $scope,
+             buttons: [
+             {
+             text: 'OK',
+             type: 'button-positive',
+             onTap:function(){
+               medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+               $scope.cancelledReq=response;
+               $state.go("app.medical_speciality");
+               }).catch(function(error){
+               console.log('failure data', error);
+               });
+             }
+             },
+
+           ]
+           });
 
      }
 
      $rootScope.buttonText='Request sent' ;
-     $scope.callReqPopUp = $ionicPopup.show({
+     $scope.callReqPopUp = $ionicPopup.prompt({
            template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
            cssClass: 'requestPopup',
            scope: $scope,
@@ -191,10 +189,6 @@ $scope.sendrequesttoonlinedoctors = function()
    }
 
    $scope.isFirstTime = false;
-
-
-
-
 
 });
 //

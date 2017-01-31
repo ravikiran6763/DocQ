@@ -10205,52 +10205,52 @@ ion-side-menu.menu-left.menu {
         font-size: smaller;
         color: inherit; }
 
-.loginPopup .popup-body {
-  padding: 0% !important;
-  overflow: hidden !important;
-  margin: 0 auto;
-  width: 80%; }
-  .loginPopup .popup-body .heading {
-    margin-left: 10%;
-    margin-top: 1%; }
-    .loginPopup .popup-body .heading p {
-      color: #fff !important; }
-  .loginPopup .popup-body .errorContent {
-    color: #fff !important;
-    width: 100% !important;
-    padding: 1% !important; }
-    .loginPopup .popup-body .errorContent p {
-      font-size: smaller;
-      color: inherit; }
-  .loginPopup .popup-body .closeButton {
-    position: absolute;
-    margin-top: 0vh;
-    margin-bottom: 0;
-    top: -4%;
-    left: 85%;
-    background: #af262d;
-    border-radius: 22px;
-    font-size: 8vw;
-    color: #fff;
-    text-align: end;
-    padding: 7px; }
-
-.loginPopup .popup {
-  background-color: #af262d;
-  top: 79%;
-  height: 25%;
-  width: 100%; }
-
-.loginPopup .popup-head {
-  padding: 3%;
-  border-bottom: 0px;
-  text-align: center; }
-
-.loginPopup .popup-title {
-  margin: 0;
-  padding: 0;
-  font-size: 15px;
-  color: #fff; }
+.loginPopup {
+  position: relative !important;
+  margin-top: 132% !important;
+  margin-top: 152% !important; }
+  .loginPopup .popup-body {
+    padding: 0% !important;
+    overflow: hidden !important;
+    margin: 0 auto;
+    width: 80%; }
+    .loginPopup .popup-body .heading {
+      margin-left: 10%;
+      margin-top: 1%; }
+      .loginPopup .popup-body .heading p {
+        color: #fff !important; }
+    .loginPopup .popup-body .errorContent {
+      color: #fff !important;
+      width: 100% !important;
+      padding: 1% !important; }
+      .loginPopup .popup-body .errorContent p {
+        font-size: smaller;
+        color: inherit; }
+    .loginPopup .popup-body .closeButton {
+      position: absolute;
+      margin-top: 0vh;
+      margin-bottom: 0;
+      top: -20%;
+      left: 85%;
+      background: #af262d;
+      border-radius: 22px;
+      font-size: 8vw;
+      color: #fff;
+      text-align: end;
+      padding: 7px; }
+  .loginPopup .popup {
+    background-color: #af262d;
+    width: 100%;
+    position: relative; }
+  .loginPopup .popup-head {
+    padding: 3%;
+    border-bottom: 0px;
+    text-align: center; }
+  .loginPopup .popup-title {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    color: #fff; }
 
 .termsPopup .popup {
   width: 90%;
@@ -10807,6 +10807,11 @@ ion-spinner.spinner-on-load {
 
 .dqLogin-view ion-content {
   overflow: hidden !important; }
+
+.dqLogin-view .loginPopup.popup-container.popup-showing {
+  visibility: visible;
+  margin-top: 125% !important;
+  position: relative !important; }
 
 .dqLogin-view .top-content {
   width: 100% !important;
@@ -11500,7 +11505,7 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .consultationList-view .myDoctor-list {
     width: 100%;
-    height: 100%;
+    height: 12%;
     overflow: scroll !important; }
     .consultationList-view .myDoctor-list li {
       height: 15%;
@@ -13456,6 +13461,8 @@ ion-side-menu .heading-item .message {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .doc-reg-1-view .scroll-content {
+    position: relative !important; }
   .doc-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .doc-reg-1-view .top-content {
@@ -13556,6 +13563,8 @@ ion-side-menu .heading-item .message {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .doc-reg-2-view .scroll-content {
+    position: relative !important; }
   .doc-reg-2-view .top-content {
     height: 44% !important; }
     .doc-reg-2-view .top-content .regTitle {
@@ -13648,12 +13657,13 @@ ion-side-menu .heading-item .message {
 .patient-reg-1-view {
   width: 100% !important;
   height: 100% !important;
-  font-family: Ubuntu,bold,sans-serif !important;
-  overflow: hidden !important; }
+  font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .patient-reg-1-view .scroll-content {
+    position: relative !important; }
   .patient-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-1-view .top-content {
@@ -13666,9 +13676,13 @@ ion-side-menu .heading-item .message {
         position: absolute !important;
         width: 80% !important;
         margin: 0 auto !important; }
-        .patient-reg-1-view .top-content .regTitle .regHeader p {
+        .patient-reg-1-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 210%; }
+        .patient-reg-1-view .top-content .regTitle .regHeader .backButton p {
           margin-top: 9%;
           font-size: 145%;
+          margin-left: 6%;
           text-align: center; }
         .patient-reg-1-view .top-content .regTitle .regHeader .regFlowImg {
           width: 80% !important;
@@ -13680,7 +13694,10 @@ ion-side-menu .heading-item .message {
           width: 85% !important;
           margin: 0 auto !important; }
           .patient-reg-1-view .top-content .regTitle .regHeader .regMsg p {
-            font-size: 100%; }
+            margin-top: 7%;
+            font-size: 100%;
+            text-align: center;
+            width: 100%; }
   .patient-reg-1-view .form-content {
     height: 45% !important;
     margin-top: 0 !important; }
@@ -13735,12 +13752,13 @@ ion-side-menu .heading-item .message {
 .patient-reg-3-view {
   width: 100% !important;
   height: 100% !important;
-  font-family: Ubuntu,bold,sans-serif !important;
-  overflow: hidden !important; }
+  font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-3-view ion-content {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .patient-reg-3-view .scroll-content {
+    position: relative !important; }
   .patient-reg-3-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-3-view .top-content {
@@ -13845,12 +13863,13 @@ ion-side-menu .heading-item .message {
 .patient-reg-2-view {
   width: 100% !important;
   height: 100% !important;
-  font-family: Ubuntu,bold,sans-serif !important;
-  overflow: hidden !important; }
+  font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-2-view ion-content {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .patient-reg-2-view .scroll-content {
+    position: relative !important; }
   .patient-reg-2-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-2-view .top-content {

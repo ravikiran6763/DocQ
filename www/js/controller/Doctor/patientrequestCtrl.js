@@ -109,7 +109,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					 }
 					 },
 				 ]
-				 });
+			 });
 				}
 			}
 			 var docTimeout = $timeout($scope.onTimeout,1000);
@@ -119,7 +119,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 			 }
 
-			 $scope.callReqPopUp = $ionicPopup.show({
+			 $scope.callReqPopUp = $ionicPopup.prompt({
 	           template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
 	           cssClass: 'requestPopup',
 	           scope: $scope,

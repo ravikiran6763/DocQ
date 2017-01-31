@@ -6,7 +6,10 @@
   <div class="top-content ">
       <div class="regTitle">
           <div class="regHeader">
-                <p >Doctor Registration</p>
+            <div class="backButton " ng-click="goBack();">
+              <i class="icon ion-ios-arrow-back" ></i>
+              <p >Doctor Registration</p>
+            </div>
                 <div class="regFlowImg">
                 <img  src="./img/progress1.png" >
                 </div>
@@ -36,7 +39,7 @@
   </div>
 
   <div class="bottom-content">
-    <button class="login_button button button-block button-assertive"  type="submit" ng-click="validateDoctor(DocReg.$valid)"  ng-disabled="DocReg.$invalid"><span>Next</span></button>
+    <button class="login_button button button-block button-assertive"  type="submit" ng-click="validateDoctor(DocReg.$valid)" ><span>Next</span></button>
     <!-- <div class="tAndC">
       <div class="terms">
         <h2 > By Signing in, I agree to DoctorQuick's <br/><a ng-click="termsAndCond();">terms and conditions</a>  </h2>
