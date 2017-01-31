@@ -264,7 +264,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-      //console.log($scope.res);
+      // console.log($scope.res);
       }).catch(function(error){
       console.log('failure data', error);
       })

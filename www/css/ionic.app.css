@@ -10205,52 +10205,52 @@ ion-side-menu.menu-left.menu {
         font-size: smaller;
         color: inherit; }
 
-.loginPopup .popup-body {
-  padding: 0% !important;
-  overflow: hidden !important;
-  margin: 0 auto;
-  width: 80%; }
-  .loginPopup .popup-body .heading {
-    margin-left: 10%;
-    margin-top: 1%; }
-    .loginPopup .popup-body .heading p {
-      color: #fff !important; }
-  .loginPopup .popup-body .errorContent {
-    color: #fff !important;
-    width: 100% !important;
-    padding: 1% !important; }
-    .loginPopup .popup-body .errorContent p {
-      font-size: smaller;
-      color: inherit; }
-  .loginPopup .popup-body .closeButton {
-    position: absolute;
-    margin-top: 0vh;
-    margin-bottom: 0;
-    top: -4%;
-    left: 85%;
-    background: #af262d;
-    border-radius: 22px;
-    font-size: 8vw;
-    color: #fff;
-    text-align: end;
-    padding: 7px; }
-
-.loginPopup .popup {
-  background-color: #af262d;
-  top: 79%;
-  height: 25%;
-  width: 100%; }
-
-.loginPopup .popup-head {
-  padding: 3%;
-  border-bottom: 0px;
-  text-align: center; }
-
-.loginPopup .popup-title {
-  margin: 0;
-  padding: 0;
-  font-size: 15px;
-  color: #fff; }
+.loginPopup {
+  position: relative !important;
+  margin-top: 132% !important;
+  margin-top: 152% !important; }
+  .loginPopup .popup-body {
+    padding: 0% !important;
+    overflow: hidden !important;
+    margin: 0 auto;
+    width: 80%; }
+    .loginPopup .popup-body .heading {
+      margin-left: 10%;
+      margin-top: 1%; }
+      .loginPopup .popup-body .heading p {
+        color: #fff !important; }
+    .loginPopup .popup-body .errorContent {
+      color: #fff !important;
+      width: 100% !important;
+      padding: 1% !important; }
+      .loginPopup .popup-body .errorContent p {
+        font-size: smaller;
+        color: inherit; }
+    .loginPopup .popup-body .closeButton {
+      position: absolute;
+      margin-top: 0vh;
+      margin-bottom: 0;
+      top: -20%;
+      left: 85%;
+      background: #af262d;
+      border-radius: 22px;
+      font-size: 8vw;
+      color: #fff;
+      text-align: end;
+      padding: 7px; }
+  .loginPopup .popup {
+    background-color: #af262d;
+    width: 100%;
+    position: relative; }
+  .loginPopup .popup-head {
+    padding: 3%;
+    border-bottom: 0px;
+    text-align: center; }
+  .loginPopup .popup-title {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    color: #fff; }
 
 .termsPopup .popup {
   width: 90%;
@@ -10807,6 +10807,11 @@ ion-spinner.spinner-on-load {
 
 .dqLogin-view ion-content {
   overflow: hidden !important; }
+
+.dqLogin-view .loginPopup.popup-container.popup-showing {
+  visibility: visible;
+  margin-top: 125% !important;
+  position: relative !important; }
 
 .dqLogin-view .top-content {
   width: 100% !important;

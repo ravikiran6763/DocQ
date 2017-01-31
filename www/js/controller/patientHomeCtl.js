@@ -46,7 +46,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 						}
 
-						hello.unreadchatfromusers(username,password,success, failure);
+						// hello.unreadchatfromusers(username,password,success, failure);
 
 
 			}
