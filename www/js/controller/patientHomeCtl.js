@@ -12,14 +12,56 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			});
 
 
+			$scope.currentState=$ionicHistory.currentStateName();
 
+			console.log($scope.currentState);
+
+
+
+			if($scope.currentState == 'app.patient_home')
+			{
+
+				$scope.unreadchatforpatient = {};
+
+
+					var username = "greet+"+$localStorage.user;
+
+							var password = "DQ_patient";
+
+							console.log(username);
+
+
+						var success = function(message)
+						{
+								$scope.unreadchatforpatient = message;
+
+								alert(message);
+
+						}
+
+						var failure = function()
+						{
+						 alert("Error calling unreadchatcount Plugin");
+						 //console.log('error');
+
+						}
+
+						hello.unreadchatfromusers(username,password,success, failure);
+
+
+			}
 
 			$ionicPlatform.registerBackButtonAction(function(e){
 
 				$scope.currentState=$ionicHistory.currentStateName();
+
+console.log($scope.currentState);
+
 				if($scope.currentState === 'templates.doctor_home' || $scope.currentState ==='app.patient_home'){
 					// $ionicHistory.clearHistory();
 					$ionicHistory.removeBackView();
+
+					console.log('this is called');
 
 
 				}
@@ -42,7 +84,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			},101);
 
 
-		
+
 
 
 
