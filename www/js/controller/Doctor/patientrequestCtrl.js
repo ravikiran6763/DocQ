@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$interval, $ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices) {
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$interval, $ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -221,10 +221,12 @@ $scope.isFirstTime = false;
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 	 $scope.videoOrAudio=response;
-
-	 if($scope.consultStatus[0][0] == 2 ){
+	 console.log( $scope.videoOrAudio);
+	 console.log($scope.videoOrAudio[0][0]);
+	 if($scope.videoOrAudio[0][0] == 2 ){
 		 $scope.callReqPopUp.close();
 		 $state.go("templates.notesForPatient")
+
 	 }
 		//  $state.go($state.current, {}, {reload: true});
 	 }).catch(function(error){

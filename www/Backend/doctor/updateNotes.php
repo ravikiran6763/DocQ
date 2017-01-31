@@ -10,7 +10,7 @@
 
 
 
-     $accpteddoctor = "update reqForConsultation set notesFlag=4,declinedTime=now() where id='$requesteddata'";
+     $accpteddoctor = "update reqForConsultation set notesFlag=2 where id='$requesteddata'";
      // echo $accpteddoctor;
      $retval = mysql_query($accpteddoctor,$dbhandle);
      if(! $retval )

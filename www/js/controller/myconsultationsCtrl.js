@@ -30,11 +30,6 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 			$scope.chatlist = message;
 
 			if($scope.deviceAndroid)
@@ -67,14 +62,8 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 					var forioschatlist = {};
 
 						forioschatlist = $scope.chatlist;
-<<<<<<< HEAD
-=======
 				alert($scope.chatlist);
->>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
-
-
 						var data = JSON.parse(forioschatlist);
-
 						console.log(data);
 
 
@@ -85,55 +74,29 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 					if(key == "unread")
 					{
-
 							$scope.unreadchatcountfromvsee = data[key];
-
-
-
 					}
 					else if(key == "message")
 					{
-
 						$scope.msg = data[key];
-
-
 					}
 					else if(key == "name")
 					{
-
 							$scope.name = data[key];
-
-
 					}
 					else if(key == "dateformat")
 					{
-
 							$scope.datestring = data[key];
-
-
 					}
 					else {
-
 						console.log('no response from vsee');
 						// noresponse of chat from vsee
 					}
-
-
     }
 }
+}
+}
 
-<<<<<<< HEAD
-
-=======
-		console.log(message);
-	var failure = function()
-	{
-		alert("Error calling Hello Plugin");
-	}
-// hello.chatcounts(username,password,success, failure);
->>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
-			}
-		}
 
 
 		var failure = function()
@@ -141,19 +104,12 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
-<<<<<<< HEAD
-	hello.chatcounts(username,password,success, failure);
-=======
+	// hello.chatcounts(username,password,success, failure);
 		// hello.chatcounts(username,password,success, failure);
->>>>>>> ce4a0b7c57e417562e3dd360899ca7798ad59e4a
 
-
-
-	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
-
 		console.log($scope.myDoctor);
-
 		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);
@@ -161,20 +117,14 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.consultationDetails=function(consultedDoc)
 {
 
-
 	var username = "greet+"+$localStorage.user;
 	var password = "DQ_patient";
-
-
- var persontocall = "greet+" + consultedDoc;
+ 	var persontocall = "greet+" + consultedDoc;
  console.log(persontocall);
-
-
 		var success = function(message)
 		{
 			alert(message);
 		}
-
 		var failure = function()
 		{
 			alert("Error calling Hello Plugin");
@@ -182,15 +132,12 @@ $scope.consultationDetails=function(consultedDoc)
 
 	hello.chat(username,password,persontocall,success, failure);
 
-
-
 	// console.log(consultedDoc);
 	//
 	// $rootScope.consultedDoc=consultedDoc;
 	// $localStorage.consultedDoctor=$scope.consultedDoc;
 	// 	$ionicLoading.hide();
 	// $state.go('app.patient_summary');
-
 
 }
 // for doctors consultationDetails

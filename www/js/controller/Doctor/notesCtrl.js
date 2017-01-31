@@ -14,14 +14,7 @@ console.log($rootScope.reqId);
 
   //this is used to set notesflag in the database top 2
 
-  patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
-    //console.log($localStorage.reqPat);
 
-    console.log('success');
-
-  }).catch(function(error){
-    console.log('failure data', error);
-  })
 
 
 
