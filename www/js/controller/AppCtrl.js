@@ -107,6 +107,10 @@ document.addEventListener("deviceready", function (){
 $rootScope.statename = $ionicHistory.currentStateName();
 
 console.log($rootScope.statename);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 if($ionicHistory.currentStateName() === 'app.patient_home'){
 	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
@@ -612,6 +616,10 @@ $localStorage.ViewDoc=0;
 				 });
 
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 $rootScope.homePage=$ionicHistory.currentStateName();
 		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
 		{

@@ -9,6 +9,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
     $rootScope.homePage=$ionicHistory.currentStateName();
 
     if( $rootScope.homePage =='templates.doctor_home')
@@ -31,6 +35,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     					}
 
+<<<<<<< HEAD
     	// hello.unreadchatfromusers(username,password,success, failure);
 
 
@@ -74,6 +79,14 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
               }
       // hello.unreadchatfromusers(username,password,success, failure);
     }
+=======
+    	//hello.unreadchatfromusers(username,password,success, failure);
+
+
+    }
+
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 
     // $scope.data.dataLoading = true;
     //

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http, LoginService, patientCareService, doctorServices,myConsultationService) {
+DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http, LoginService, patientCareService, doctorServices,myConsultationService) {
 
 	$rootScope.headerTxt="My Consultaions";
 	$rootScope.showBackBtn=true;
@@ -7,8 +7,34 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state, $scope, $rootS
 	$rootScope.showDocStatus=false;
 
 
+
+$scope.pagedecision=$ionicHistory.currentStateName();
+
+console.log($scope.pagedecision);
+
+
+
+
+
 var username = "greet+"+$localStorage.user;
-var password = "DQ_doctor";
+
+if($scope.pagedecision === 'templates.consulted_patient')
+{
+
+		var password = "DQ_doctor";
+
+		console.log(password);
+}
+else {
+
+	var password = "DQ_patient";
+
+	console.log(password);
+
+}
+
+
+
 
 
 console.log(password);
@@ -30,6 +56,10 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 	var success = function(message)
 	{
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 			$scope.chatlist = message;
 
 			if($scope.deviceAndroid)
@@ -62,10 +92,14 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 					var forioschatlist = {};
 
 						forioschatlist = $scope.chatlist;
+<<<<<<< HEAD
 				alert($scope.chatlist);
+=======
+
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 						var data = JSON.parse(forioschatlist);
 						console.log(data);
-
 
 						for (var key in data) {
     if (data.hasOwnProperty(key)) {
@@ -97,6 +131,14 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 }
 }
 
+<<<<<<< HEAD
+=======
+}
+}
+
+
+
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 
 
 		var failure = function()
@@ -104,8 +146,12 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
+<<<<<<< HEAD
 	// hello.chatcounts(username,password,success, failure);
 		// hello.chatcounts(username,password,success, failure);
+=======
+	hello.chatcounts(username,password,success, failure);
+>>>>>>> 74224c721d247d700e439a640b55b0b938c7c5be
 
 myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details

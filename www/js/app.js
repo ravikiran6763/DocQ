@@ -386,7 +386,7 @@ $stateProvider
 })
 
 .state('app.patient_summary', {
-  url: "/patient_summary",
+  url: "/patient_summary/:calledDoctor",
   views: {
     'menuContent': {
       templateUrl: "views/app/patient_summary.html",
