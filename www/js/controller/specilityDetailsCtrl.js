@@ -192,10 +192,6 @@ $scope.sendrequesttoonlinedoctors = function()
 
    $scope.isFirstTime = false;
 
-
-
-
-
 });
 //
 // $scope.noResponsePopup = $ionicPopup.show({

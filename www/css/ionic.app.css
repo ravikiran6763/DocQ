@@ -11500,7 +11500,7 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .consultationList-view .myDoctor-list {
     width: 100%;
-    height: 100%;
+    height: 12%;
     overflow: scroll !important; }
     .consultationList-view .myDoctor-list li {
       height: 15%;
@@ -13456,6 +13456,8 @@ ion-side-menu .heading-item .message {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .doc-reg-1-view .scroll-content {
+    position: relative !important; }
   .doc-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .doc-reg-1-view .top-content {
@@ -13556,6 +13558,8 @@ ion-side-menu .heading-item .message {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .doc-reg-2-view .scroll-content {
+    position: relative !important; }
   .doc-reg-2-view .top-content {
     height: 44% !important; }
     .doc-reg-2-view .top-content .regTitle {
@@ -13648,12 +13652,13 @@ ion-side-menu .heading-item .message {
 .patient-reg-1-view {
   width: 100% !important;
   height: 100% !important;
-  font-family: Ubuntu,bold,sans-serif !important;
-  overflow: hidden !important; }
+  font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .patient-reg-1-view .scroll-content {
+    position: relative !important; }
   .patient-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-1-view .top-content {
@@ -13666,9 +13671,13 @@ ion-side-menu .heading-item .message {
         position: absolute !important;
         width: 80% !important;
         margin: 0 auto !important; }
-        .patient-reg-1-view .top-content .regTitle .regHeader p {
+        .patient-reg-1-view .top-content .regTitle .regHeader .backButton i {
+          position: absolute;
+          font-size: 210%; }
+        .patient-reg-1-view .top-content .regTitle .regHeader .backButton p {
           margin-top: 9%;
           font-size: 145%;
+          margin-left: 6%;
           text-align: center; }
         .patient-reg-1-view .top-content .regTitle .regHeader .regFlowImg {
           width: 80% !important;
@@ -13680,7 +13689,10 @@ ion-side-menu .heading-item .message {
           width: 85% !important;
           margin: 0 auto !important; }
           .patient-reg-1-view .top-content .regTitle .regHeader .regMsg p {
-            font-size: 100%; }
+            margin-top: 7%;
+            font-size: 100%;
+            text-align: center;
+            width: 100%; }
   .patient-reg-1-view .form-content {
     height: 45% !important;
     margin-top: 0 !important; }
@@ -13735,12 +13747,13 @@ ion-side-menu .heading-item .message {
 .patient-reg-3-view {
   width: 100% !important;
   height: 100% !important;
-  font-family: Ubuntu,bold,sans-serif !important;
-  overflow: hidden !important; }
+  font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-3-view ion-content {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .patient-reg-3-view .scroll-content {
+    position: relative !important; }
   .patient-reg-3-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-3-view .top-content {
@@ -13845,12 +13858,13 @@ ion-side-menu .heading-item .message {
 .patient-reg-2-view {
   width: 100% !important;
   height: 100% !important;
-  font-family: Ubuntu,bold,sans-serif !important;
-  overflow: hidden !important; }
+  font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-2-view ion-content {
     width: auto;
     height: 100%;
     overflow: hidden !important; }
+  .patient-reg-2-view .scroll-content {
+    position: relative !important; }
   .patient-reg-2-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-2-view .top-content {

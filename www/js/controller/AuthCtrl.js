@@ -427,22 +427,22 @@ $scope.patientRegistration = function()
       if(!$scope.Doctor.doc_fname){
         // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
         $scope.submitted = true;
-
-        $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
-        // success
-        }, function (error) {
-        // error
-        });
+        //
+        // $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+        // // success
+        // }, function (error) {
+        // // error
+        // });
       }
       else if(!$scope.Doctor.doc_lname){
         // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
         $scope.submittedLname = true;
 
-        $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
-        // success
-        }, function (error) {
-        // error
-        });
+        // $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
+        // // success
+        // }, function (error) {
+        // // error
+        // });
       }
       else{
         console.log('validated');

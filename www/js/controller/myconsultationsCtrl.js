@@ -105,13 +105,13 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			//console.log($scope.name[2]);
 		//console.log($scope.name[3]);
 
-		console.log(message);
+		// console.log(message);
 	var failure = function()
 	{
 		alert("Error calling Hello Plugin");
 	}
 
-hello.chatcounts(username,password,success, failure);
+// hello.chatcounts(username,password,success, failure);
 
 
 

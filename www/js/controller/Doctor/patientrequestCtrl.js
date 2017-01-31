@@ -105,7 +105,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					 }
 					 },
 				 ]
-				 });
+			 });
 				}
 			}
 			 var docTimeout = $timeout($scope.onTimeout,1000);
