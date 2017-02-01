@@ -156,7 +156,7 @@ $scope.sendForm = function($event,form)
         position: "bottom",
         styling: {
         opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-        backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+        backgroundColor: '6FA22C', // make sure you use #RRGGBB. Default #333333
         textColor: '#ffffff', // Ditto. Default #FFFFFF
         textSize: 10.5, // Default is approx. 13.
         cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
