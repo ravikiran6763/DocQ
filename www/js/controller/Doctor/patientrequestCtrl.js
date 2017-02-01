@@ -27,6 +27,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
 
+$rootScope.closeDocPopUp=false;
 				////// calculate datedifference////
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
@@ -41,13 +42,9 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					var diff = currentTimestamp-timestamp;
 					console.log(diffMs);
 				//////
-
 					$rootScope.callReq=false;
 					$rootScope.callAcc=true;
 					$rootScope.timer=true;
-
-
-
 
  $scope.type = '';
  $scope.setType = function(event){
@@ -57,9 +54,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 		if($scope.type === 'Decline' && $localStorage.accpt === 1){
 
 				console.log('cant Decline now');
-
-
-
 
 		}
 		else if($scope.type === 'Accept'){
@@ -94,29 +88,31 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				$timeout.cancel(docTimeout);
 				$scope.callReqPopUp.close();
 
-				$scope.noResponsePopup = $ionicPopup.show({
-					 template: "<div><p>Patient did not respond .</p></div>",
-					 cssClass: 'requestPopup',
-					 scope: $scope,
-					 buttons: [
-					 {
-					 text: 'OK',
-					 type: 'button-positive',
-					 onTap:function(){
-						 $state.go("templates.doctor_home");
-						 $ionicHistory.clearHistory();
-						 $rootScope.closeDocPopUp= false;
-					 }
-					 },
-				 ]
-			 });
+				$rootScope.closeDocPopUp=true;
+				console.log($rootScope.closeDocPopUp);
 				}
 			}
 			 var docTimeout = $timeout($scope.onTimeout,1000);
 
 			 if($rootScope.closeDocPopUp == true){
 				 console.log('did not respond');
-
+				 console.log($rootScope.closeDocPopUp);
+				//  $scope.noResponsePopup = $ionicPopup.show({
+				// 		template: "<div><p>Patient did not respond .</p></div>",
+				// 		cssClass: 'requestPopup',
+				// 		scope: $scope,
+				// 		buttons: [
+				// 		{
+				// 		text: 'OK',
+				// 		type: 'button-positive',
+				// 		onTap:function(){
+				// 			$state.go("templates.doctor_home");
+				// 			$ionicHistory.clearHistory();
+				// 			$rootScope.closeDocPopUp= false;
+				// 		}
+				// 		},
+				// 	]
+				// });
 			 }
 
 			 $scope.callReqPopUp = $ionicPopup.prompt({
@@ -204,6 +200,7 @@ $interval(checkAcceptedReq,2000);
 		 			onTap:function(){
 		 				$state.go("templates.doctor_home");
 						$ionicHistory.clearHistory();
+						 $scope.isFirstTime=false;
 		 			}
 		 			},
 		 		]

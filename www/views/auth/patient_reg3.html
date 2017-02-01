@@ -27,16 +27,16 @@
     <form name="PatientReg1" ng-submit="submitForm($event)" >
       <div class="row otp" >
           <div class="col">
-            <input type='number' mask-clean='true' id="part1" maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true"  />
+            <input type='tel' mask-clean='true' id="part1" maxlength="1"  ng-model='otpentered.OTP1' mask='9' restrict="reject" clean="true"  />
           </div>
           <div class="col">
-            <input type='number' mask-clean='true' id="part2" maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true" autofocus-when1 />
+            <input type='tel' mask-clean='true' id="part2" maxlength="1" ng-model='otpentered.OTP2' mask='9' restrict="reject" clean="true" autofocus-when1 />
           </div>
           <div class="col">
-            <input type='number' mask-clean='true' id="part3" maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" autofocus-When2/>
+            <input type='tel' mask-clean='true' id="part3" maxlength="1" ng-model='otpentered.OTP3' mask='9' restrict="reject" clean="true" autofocus-When2/>
           </div>
           <div class="col">
-            <input type='number' mask-clean='true' id="part4" maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" autofocus-When3/>
+            <input type='tel' mask-clean='true' id="part4" maxlength="1"  ng-model='otpentered.OTP4' mask='9' restrict="reject" clean="true" autofocus-When3/>
           </div>
       </div>
 
@@ -54,7 +54,7 @@
     <!-- <button class="login_button button button-block button-assertive"  type="submit" ng-click="validateUser(PatientReg1.$valid)" linked="link"  ><span>Next</span></button> -->
     <div class="tAndC">
       <div class="otpTap">
-        <h2 > Didn't receive a text from DoctroQuick? <br/><a ng-click="termsAndCond();">Tap Resend</a>  </h2>
+        <h2 > Didn't receive a text from DoctroQuick? <br/>Tap Resend </h2>
       </div>
       <div class="terms">
         <h2 > By Signing in, I agree to DoctorQuick's <br/><a ng-click="termsAndCond();">terms and conditions</a>  </h2>

@@ -23,64 +23,73 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
 
       });
 
-   //
-  //  if($localStorage.user && $localStorage.pass){
-  //    console.log('user already logged in')
-  //    $ionicLoading.show();
-  //    // $scope.doLogIn();
-  //    console.log('userNum' , $localStorage.user);
-  //    console.log('password' , $localStorage.pass);
-  //    var preLoginDetails={
-  //      userNum : $localStorage.user,
-  //      password : $localStorage.pass
-  //    };
-  //    console.log(preLoginDetails);
-  //    var message="loading";
-  //    $timeout(function() {
-  //      $ionicLoading.show();
-  //      LoginService.loginprocess(preLoginDetails).then(function(response){
-  //       $scope.LoginStatus=response;
-  //       if(response === "patient")
-  //       {
-  //         var uname1 = "greet+"+$localStorage.user;
-  //         var pw1 = "DQ_patient";
-  //         var success = function(message)
-  //           {
-  //             alert(message);
-  //           }
-  //           var failure = function()
-  //           {
-  //             alert("Error calling Hello Plugin");
-  //           }
-  //           hello.login(uname1,pw1,success, failure);
-  //       //$state.go('app.patient_home');
-  //       }
-   //
-  //       else if(response === "doctor")
-  //       {
-   //
-  //       var uname1 = "greet+"+$localStorage.user;
-  //       var pw1 = "DQ_doctor";
-  //       var success = function(message)
-  //         {
-  //           alert(message);
-  //         }
-  //         var failure = function()
-  //         {
-  //           alert("Error calling Hello Plugin");
-  //         }
-  //     //$state.go('templates.doctor_home');
-  //      hello.login(uname1,pw1,success, failure);
-  //       $localStorage.onOff=1;
-  //       }
-  //        console.log($scope.LoginStatus);
-  //        $ionicLoading.hide();
-  //      }).catch(function(error){
-  //      console.log('failure data', error);
-  //      });
-  //  }, 1000);
-   //
-  //  }
+
+   if($localStorage.user && $localStorage.pass){
+     console.log('user already logged in')
+     $ionicLoading.show();
+     // $scope.doLogIn();
+     console.log('userNum' , $localStorage.user);
+     console.log('password' , $localStorage.pass);
+     var preLoginDetails={
+       userNum : $localStorage.user,
+       password : $localStorage.pass
+     };
+     console.log(preLoginDetails);
+     var message="loading";
+     $timeout(function() {
+       $ionicLoading.show();
+       LoginService.loginprocess(preLoginDetails).then(function(response){
+        $scope.LoginStatus=response;
+        console.log($scope.LoginStatus);
+        if(response === "patient")
+        {
+          var uname1 = "greet+"+$localStorage.user;
+          var pw1 = "DQ_patient";
+          var success = function(message)
+            {
+              alert(message);
+            }
+            var failure = function()
+            {
+              alert("Error calling Hello Plugin");
+            }
+            // hello.login(uname1,pw1,success, failure);
+          $ionicHistory.nextViewOptions({
+          disableAnimate: true,
+          disableBack: true
+          });
+
+        $state.go('app.patient_home');
+        }
+
+        else if(response === "doctor")
+        {
+        var uname1 = "greet+"+$localStorage.user;
+        var pw1 = "DQ_doctor";
+        var success = function(message)
+          {
+            alert(message);
+          }
+          var failure = function()
+          {
+            alert("Error calling Hello Plugin");
+          }
+        $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+        disableBack: true
+        });
+      $state.go('templates.doctor_home');
+      //  hello.login(uname1,pw1,success, failure);
+        $localStorage.onOff=1;
+        }
+
+         $ionicLoading.hide();
+       }).catch(function(error){
+       console.log('failure data', error);
+       });
+   }, 1000);
+
+   }
 
 $scope.sendForm = function($event,form)
 {
@@ -141,7 +150,20 @@ $scope.sendForm = function($event,form)
     patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
     {
         $scope.otp=response;
-        console.log($scope.otp);
+        window.plugins.toast.showWithOptions({
+        message: "OTP has been sent to your mobile number",
+        duration: "short", // 2000 ms
+        position: "bottom",
+        styling: {
+        opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+        backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+        textColor: '#ffffff', // Ditto. Default #FFFFFF
+        textSize: 10.5, // Default is approx. 13.
+        cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+        horizontalPadding: 10, // iOS default 16, Android default 50
+        verticalPadding: 6 // iOS default 12, Android default 30
+        }
+        });
       })
       .catch(function(error)
       {
@@ -183,31 +205,13 @@ $scope.patientRegistration = function()
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
             console.log(response);
-            if(response =='ERROR'){
-              console.log("Patient Already Exist");
-
-              //Alert Popup goes healthcare
-              $scope.myPopup = $ionicPopup.show({
-								title: 'Patient Already Exist',
-								template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="color:red">X</p></div>',
-								cssClass: 'loginPopup',
-								scope: $scope,
-								// buttons: [
-								// 	{ text: 'Cancel' },
-								// 	{
-								// 	text: '<b>Agree</b>',
-								// 	type: 'button-positive',
-								//
-								// 	},
-								// ]
-							});
-							$scope.closethis = function()
-							{
-							$scope.myPopup.close();
+            if(response){
               $window.localStorage.clear();
+              $ionicHistory.nextViewOptions({
+              disableAnimate: true,
+              disableBack: true
+              });
               $state.go('auth.loginNew');
-
-							};
 
             }
             else{
@@ -223,15 +227,6 @@ $scope.patientRegistration = function()
               showWithOptions(options)
               */
 
-              $scope.queryPopup =$ionicPopup.show({
-        	     template: 'Successfully registered',
-        			 cssClass: 'dqAlerts',
-        			 scope: $scope,
-        	   	});
-        			$timeout(function() {
-        		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-                 $state.go('auth.loginNew');
-        		  }, 1000);
             }
 
           })
@@ -275,11 +270,20 @@ $scope.patientRegistration = function()
         if($scope.PatientDetail.patient_age<18){
           $scope.submittedAge = true;
           // alert('You Should be 18+ to use this app')
-          $cordovaToast.showLongBottom('You must be 18 over to register', 'short', 'center').then(function(success) {
-          // success
-          }, function (error) {
-          // error
-          });
+              window.plugins.toast.showWithOptions({
+              message: "You Should be 18+ to use this app",
+              duration: "short", // 2000 ms
+              position: "bottom",
+              styling: {
+              opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+              backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+              textColor: '#ffffff', // Ditto. Default #FFFFFF
+              textSize: 10.5, // Default is approx. 13.
+              cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+              horizontalPadding: 10, // iOS default 16, Android default 50
+              verticalPadding: 6 // iOS default 12, Android default 30
+              }
+              });
         }
         else{
           $state.go('auth.patient_reg2');
@@ -353,14 +357,21 @@ $scope.patientRegistration = function()
 
     if(isForm1Valid) {
       // console.log($scope.PatientDetail.pat_password.length());
-
       if($scope.firstNum < 7){
         console.log($scope.firstNum);
-
-        $cordovaToast.showLongBottom('Enter a Valid 10 digit phone number', 'short', 'center').then(function(success) {
-        // success
-        }, function (error) {
-        // error
+        window.plugins.toast.showWithOptions({
+        message: "Enter a Valid 10 digit phone number",
+        duration: "short", // 2000 ms
+        position: "bottom",
+        styling: {
+        opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+        backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+        textColor: '#ffffff', // Ditto. Default #FFFFFF
+        textSize: 10.5, // Default is approx. 13.
+        cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+        horizontalPadding: 10, // iOS default 16, Android default 50
+        verticalPadding: 6 // iOS default 12, Android default 30
+        }
         });
       }
       else{
@@ -372,7 +383,7 @@ $scope.patientRegistration = function()
             if($scope.patientExist === 'patient'){
               $scope.myPopup=$ionicPopup.show({
                 title: 'Patient Already Exist',
-                template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="color:#fff; margin-top: -7px; ">X</p></div>',
+                template: '<div ><p>Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p>X</p></div>',
                 cssClass: 'loginPopup',
                 scope: $scope,
                 // buttons: [
@@ -404,6 +415,10 @@ $scope.patientRegistration = function()
                 .catch(function(error)
                 {
                   console.log('failure data', error);
+                });
+                $ionicHistory.nextViewOptions({
+                disableAnimate: true,
+                disableBack: true
                 });
                 $state.go('auth.patient_reg3');
               }
