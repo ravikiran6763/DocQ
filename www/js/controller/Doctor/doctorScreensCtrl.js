@@ -11,6 +11,33 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     $rootScope.homePage=$ionicHistory.currentStateName();
 
+interval(checkNewMsgs,2000);
+function checkNewMsgs(){
+  if( $rootScope.homePage =='templates.doctor_home')
+  {
+    console.log($rootScope.homePage);
+
+        $scope.unreadchatforpatient = {};
+          var username = "greet+"+$localStorage.user;
+          var password = "DQ_doctor";
+
+            var success = function(message)
+            {
+                $scope.unreadchatforpatient = message;
+            }
+
+            var failure = function()
+            {
+             alert("Error calling Hello Plugin");
+             //console.log('error');
+
+            }
+
+    // hello.unreadchatfromusers(username,password,success, failure);
+
+
+  }
+}
     if( $rootScope.homePage =='templates.doctor_home')
     {
       console.log($rootScope.homePage);
