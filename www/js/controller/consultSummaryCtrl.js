@@ -10,6 +10,8 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$sta
 console.log($stateParams.calledDoctor);
 
 console.log($stateParams.calledDoctor);
+
+
 // $ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
@@ -121,35 +123,6 @@ rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(r
 			}).catch(function(error){
 				console.log('failure data', error);
 		});
-
-
-		$scope.chatclicked = function()
-		{
-
-				console.log($localStorage.consultedDoctor);
-				console.log($localStorage.user);
-
-
-						var username = "greet+"+$localStorage.user;
-						var password = "DQ_patient";
-
-							// var persontocall = "greet+" + $localStorage.consultedDoctor;
-
-					 var persontocall = "greet+" + $stateParams.calledDoctor;
-					 console.log(persontocall);
-							var success = function(message)
-							{
-								alert(message);
-							}
-
-							var failure = function()
-							{
-								alert("Error calling Hello Plugin");
-							}
-
-							hello.chat(username,password,persontocall,success, failure);
-		}
-
 
 $scope.addToFavorite=function(fav){
 	$scope.favorite=fav;
