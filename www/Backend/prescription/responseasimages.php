@@ -6,12 +6,18 @@
  $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
 
 
+<<<<<<< HEAD
 	//$png= imagecreatefrompng('dq_loginlogo.png');
 //list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
 
 //$count = imagecreatetruecolor($width, $height);
 //imagecopyresampled($count, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
 //imagecopyresampled($count, $png, 30, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
+=======
+ $png= imagecreatefrompng('dq_loginlogo.png');
+ list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
+
+>>>>>>> 2765092d61353aac33a73f59fe6576ce9c16a9ef
 
 	if(isset($postdata))
 	{
@@ -251,8 +257,12 @@
 
 mysql_close($dbhandle);
 
+<<<<<<< HEAD
 //$png= imagecreatefrompng('dq_loginlogo.png');
 //list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
+=======
+
+>>>>>>> 2765092d61353aac33a73f59fe6576ce9c16a9ef
 
 //$count = imagecreatetruecolor($width, $height);
 //imagecopyresampled($count, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
