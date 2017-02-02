@@ -79,15 +79,19 @@ DoctorQuickApp.run(function($ionicPlatform) {
   });
 })
 
-DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       $ionicPlatform.registerBackButtonAction(function (event) {
-
         if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.patient_home")){
             console.log('back button disabled');
 
+              $ionicPlatform.registerBackButtonAction(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("Stop");
+              }, 100);
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
@@ -96,7 +100,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
                 // For all other states, the H/W BACK button is enabled
                 navigator.app.backHistory();
             }
-        }, 100);
+        }, 1000);
 
 
       if (ionic.Platform.isAndroid()) {
@@ -197,7 +201,7 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
-          $ionicConfig.views.swipeBackEnabled(true);
+          $ionicConfig.views.swipeBackEnabled(false);
         }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
@@ -212,39 +216,50 @@ DoctorQuickApp.run(function($ionicPlatform, PushNotificationsService, $rootScope
   PushNotificationsService.register();
   });
 
-  //press again to exit
-  //
-  // $ionicPlatform.registerBackButtonAction(function(e){
-  //   $scope.currState=$ionicHistory.currentStateName();
-  //   if($scope.currState === 'templates.doctor_home' || $scope.currState ==='app.patient_home'){
-  //     // $ionicHistory.clearHistory();
-  //     $ionicHistory.removeBackView();
-  //
-  //
-  //   }
-  //     // if ($rootScope.backButtonPressedOnceToExit) {
-  //     // ionic.Platform.exitApp();
-  //     // }
-  //
-  //     else if ($ionicHistory.backView()) {
-  //     $ionicHistory.goBack();
-  //     console.log('cameback');
-  //
-  //
-  //     }
-  //     else {
-  //     // $rootScope.backButtonPressedOnceToExit = true;
-  //     // window.plugins.toast.showShortCenter(
-  //     // "Press back button again to exit",function(a){},function(b){}
-  //     // );
-  //     // setTimeout(function(){
-  //     // $rootScope.backButtonPressedOnceToExit = false;
-  //     // },2000);
-  //     console.log('doNOthing');
-  //     }
-  //     e.preventDefault();
-  //     return false;
-  // },101);
+  // press again to exit
+
+  $ionicPlatform.registerBackButtonAction(function(e){
+    $rootScope.currState=$ionicHistory.currentStateName();
+    if($rootScope.currState === 'templates.doctor_home' || $rootScope.currState ==='app.patient_home'){
+      // $ionicHistory.clearHistory();
+      $ionicHistory.removeBackView();
+
+    }
+      if ($rootScope.backButtonPressedOnceToExit) {
+      ionic.Platform.exitApp();
+      }
+
+      else if ($ionicHistory.backView()) {
+      $ionicHistory.goBack();
+      console.log('cameback');
+
+
+      }
+      else {
+      $rootScope.backButtonPressedOnceToExit = true;
+
+      window.plugins.toast.showWithOptions({
+      message: "Press back button again to exit",
+      duration: "short", // 2000 ms
+      position: "bottom",
+      styling: {
+      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+      backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+      textColor: '#ffffff', // Ditto. Default #FFFFFF
+      textSize: 10.5, // Default is approx. 13.
+      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+      horizontalPadding: 10, // iOS default 16, Android default 50
+      verticalPadding: 6 // iOS default 12, Android default 30
+      }
+      });
+      setTimeout(function(){
+      $rootScope.backButtonPressedOnceToExit = false;
+      },2000);
+      console.log('doNOthing');
+      }
+      e.preventDefault();
+      return false;
+  },101);
 
   })
 

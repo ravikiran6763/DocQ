@@ -118,11 +118,11 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
-	hello.chatcounts(username,password,success, failure);
+	// hello.chatcounts(username,password,success, failure);
 
 myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-		$scope.myDoctor=response;//store the response array in doctor details
-		console.log($scope.myDoctor);
+		$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+		console.log($rootScope.ConsultedDoctor);
 		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);
@@ -143,7 +143,7 @@ $scope.consultationDetails=function(consultedDoc)
 			alert("Error calling Hello Plugin");
 		}
 
-	hello.chat(username,password,persontocall,success, failure);
+	// hello.chat(username,password,persontocall,success, failure);
 
 	// console.log(consultedDoc);
 	//
@@ -159,7 +159,6 @@ myConsultationService.myConsultedPatients($localStorage.user).then(function(resp
 	$scope.myPatients=response;//store the response array in doctor details
 	console.log($scope.myPatients);
 	$ionicLoading.hide();
-
 }).catch(function(error){
 console.log('failure data', error);
 });

@@ -9824,6 +9824,16 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.intl {
+  position: absolute !important;
+  margin: -11% 0 0 2% !important;
+  font-size: 100% !important; }
+
+.intlReg {
+  position: absolute !important;
+  margin: -10% 0 0 2% !important;
+  font-size: 100% !important; }
+
 ion-side-menu ion-item.item .menu-text {
   font-family: Ubuntu,bold,sans-serif !important;
   font-size: 100%; }
@@ -10207,8 +10217,7 @@ ion-side-menu.menu-left.menu {
 
 .loginPopup {
   position: relative !important;
-  margin-top: 132% !important;
-  margin-top: 152% !important; }
+  margin-top: 132% !important; }
   .loginPopup .popup-body {
     padding: 0% !important;
     overflow: hidden !important;
@@ -10838,7 +10847,7 @@ ion-spinner.spinner-on-load {
     .dqLogin-view .login-content .form-group input[type="tel"] {
       margin-top: 4% !important;
       height: 16% !important;
-      padding-left: 10px;
+      padding: 0 0 0 13%;
       width: 100% !important; }
     .dqLogin-view .login-content .form-group input[type="password"] {
       margin-top: 4% !important;
@@ -13609,10 +13618,10 @@ ion-side-menu .heading-item .message {
         height: 22% !important;
         padding-left: 10px;
         width: 100% !important; }
-    .doc-reg-2-view .form-content input[type="number"] {
+    .doc-reg-2-view .form-content input[type="tel"] {
       margin-top: 4% !important;
       height: 22% !important;
-      padding-left: 10px;
+      padding: 0 0 0 13% !important;
       width: 100% !important; }
     .doc-reg-2-view .form-content input[type="email"] {
       margin-top: 4% !important;
@@ -13805,11 +13814,12 @@ ion-side-menu .heading-item .message {
     .patient-reg-3-view .form-content .otp {
       width: 80% !important;
       margin: 0 auto; }
-    .patient-reg-3-view .form-content input[type="number"] {
+    .patient-reg-3-view .form-content input[type="tel"] {
       margin-top: 30% !important;
       height: 40% !important;
-      padding-left: 18px;
-      width: 100% !important; }
+      padding-left: 40% !important;
+      width: 100% !important;
+      font-weight: bold !important; }
   .patient-reg-3-view .bottom-content {
     height: 38% !important; }
     .patient-reg-3-view .bottom-content .buttonContent {
@@ -13828,11 +13838,11 @@ ion-side-menu .heading-item .message {
       height: 20% !important;
       margin: 0 auto; }
       .patient-reg-3-view .bottom-content .tAndC .otpTap {
-        width: 80% !important;
+        width: 94% !important;
         height: 100%;
         margin: 0 auto; }
         .patient-reg-3-view .bottom-content .tAndC .otpTap h2 {
-          font-size: 80%;
+          font-size: 100%;
           color: #fff;
           text-align: center;
           margin-top: 8%;
@@ -13930,7 +13940,7 @@ ion-side-menu .heading-item .message {
       .patient-reg-2-view .form-content .form-group input[type="tel"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding: 4% !important;
+        padding: 0 0 0 14% !important;
         width: 100% !important; }
       .patient-reg-2-view .form-content .form-group input[type="password"] {
         margin-top: 4% !important;

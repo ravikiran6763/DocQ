@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, doctoronoffdetails) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, doctoronoffdetails) {
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
@@ -15,6 +15,29 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 			$scope.currentState=$ionicHistory.currentStateName();
 
 			console.log($scope.currentState);
+
+$interval(checkNewMessages,2000);
+
+function checkNewMessages(){
+	if($scope.currentState == 'app.patient_home')
+	{
+
+			var username = "greet+"+$localStorage.user;
+			var password = "DQ_patient";
+
+					console.log(username);
+				var success = function(message)
+				{
+						$rootScope.unreadchatforpatient = message;
+				}
+				var failure = function()
+				{
+				 alert("Error calling unreadchatcount Plugin");
+				 //console.log('error');
+				}
+		// hello.unreadchatfromusers(username,password,success, failure);
+	}
+}
 
 			$rootScope.unreadchatforpatient = {};
 			if($scope.currentState == 'app.patient_home')
@@ -40,7 +63,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope, 
 
 						}
 
-				hello.unreadchatfromusers(username,password,success, failure);
+				// hello.unreadchatfromusers(username,password,success, failure);
 			}
 
 			$ionicPlatform.registerBackButtonAction(function(e){

@@ -158,7 +158,7 @@ $scope.sendrequesttoonlinedoctors = function()
     });
    }
 
-  //  $interval(CheckOnlineDocs, 5000);
+   $interval(CheckOnlineDocs, 2000);
   console.log();
   if($ionicHistory.currentStateName() == 'app.specialityDetailsNew'){
     $interval(checkAcceptedReq,1000);

@@ -27,7 +27,7 @@
     <form name="PatientReg2" ng-submit="submitForm($event)" ng-class={submitted2ndPage:submitted2ndPage}>
         <div class="form-group" >
           <img  ng-hide='true' ng-src="img/patientAvatar.png" ng-model='PatientDetail.patientAvatar' >
-          <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}></input>
+          <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}><span class="intlReg">+91</span></input>
         </div>
         <div class="form-group button-bar" >
           <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'M'" required><span >Male</span></ion-radio>

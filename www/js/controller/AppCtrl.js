@@ -1021,7 +1021,7 @@ $scope.sendprescription = function()
           medication : $scope.medication
         };
 
-console.log($rootScope.chekDiag);
+				console.log($rootScope.chekDiag);
 
         //test jpeg image response
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){

@@ -16,7 +16,8 @@
   <div class="login-content">
     <form  novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
       <div class="form-group">
-        <input class="form-control" type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" required/>
+        <!-- <input type="tel" name="tel" ng-model="loginData.phone" ng-intl-tel-input> -->
+        <input class="form-control" type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required><span class="intl">+91</span></input>
       </div>
 
       <div class="form-group">
