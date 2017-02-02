@@ -118,7 +118,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 			alert("Error calling Hello Plugin");
 		}
 
-	// hello.chatcounts(username,password,success, failure);
+ hello.chatcounts(username,password,success, failure);
 
 myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -143,7 +143,7 @@ $scope.consultationDetails=function(consultedDoc)
 			alert("Error calling Hello Plugin");
 		}
 
-	// hello.chat(username,password,persontocall,success, failure);
+ hello.chat(username,password,persontocall,success, failure);
 
 	// console.log(consultedDoc);
 	//
