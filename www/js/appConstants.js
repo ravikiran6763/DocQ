@@ -58,6 +58,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'addToFavorite':'patient/addToFavorite.php',
         'checkForAccptedReq':'patient/checkForAccptedReq.php',
         'updateseenView':'patient/updateseenView.php',
+        'declinedDuringCall':'patient/declinedDuringCall.php',
 
 
 

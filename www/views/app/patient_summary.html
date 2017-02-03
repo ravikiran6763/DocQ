@@ -9,19 +9,19 @@
         <div class="name-content">
           <h2>Dr.{{consult.doctorFname | capitalize}} {{consult.doctorMname | capitalize}} {{consult.doctorLname | capitalize}}</h2>
           <p>{{consult.doctorDegrees}}<br>Practising since {{consult.practicingSince}} </p>
-          <div class="ratingContainer">
+          <!-- <div class="ratingContainer">
             <span ng-repeat="rating in ratingss">
               <div star-rating rating-value="rating.current" max="rating.max" ></div>
             </span>
-          </div>
+          </div> -->
           <!-- <a href="javascript:" ng-repeat="r in ratedArr" style="text-decoration:none; font-size: 150%; margin-left:1.5%">
             <i class="icon {{r.icon}}"ng-click="rates(r.ratings,r.value)"></i>
           </a> -->
-          <!-- <div class="ratingContainer">
+          <div class="ratingContainer">
               <span ng-repeat="rating in ratings">
                 <div star-rating rating-value="rating.current" max="rating.max" ></div>
               </span>
-          </div> -->
+          </div>
 
         </div>
         <!-- <div class="next-icon">
@@ -32,11 +32,6 @@
     </div>
     <div class="rateClass">
       <div class="card ">
-<<<<<<< HEAD
-          
-=======
-
->>>>>>> db969b5f572e3b74fc573abcaab398240e4f1c1c
           <div class="row">
             <div class="col">Add doctor to favorites</div>
             <div class="col-30 " >

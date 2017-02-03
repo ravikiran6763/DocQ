@@ -6,13 +6,10 @@
 		if (isset($postdata))
 		{
 
-			$declineDetails = json_decode($postdata);
-			$patient = $declineDetails->patient;
-			$doctor= $declineDetails->doctor;
-			$callId= $declineDetails->callId;
+			$callId = json_decode($postdata);
 
       // $callDetails = array();
-      $sql = "update reqForConsultation set flag=3,status=2 where patientNum='$patient' and id='$callId'";
+    echo  $sql = "update reqForConsultation set status=3 where id='$callId'";
       $retval = mysql_query( $sql, $dbhandle );
       while($row = mysql_fetch_array($retval))
       {
