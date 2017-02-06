@@ -19,7 +19,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 
 	$scope.accptNotifications=false;
 	$scope.rejectNotifications=true;
-
+	$rootScope.sandwich=false;
 // var model = $cordovaDevice.getModel();
 // console.log(model);
 $localStorage.reqSent="";
@@ -30,6 +30,30 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
 // $interval.cancel(checkAcceptedReq,2000);
+ion.sound({
+    sounds: [
+        {
+            name: "beer_can_opening",
+						volume: 0.2
+        },
+        {
+            name: "notify_sound",
+            volume: 0.2
+        },
+        {
+            name: "bell_ring",
+            volume: 0.1,
+            preload: false
+        }
+    ],
+    volume: 0.5,
+    path: "sounds/",
+    preload: true
+});
+
+// play sound
+ion.sound.play("beer_can_opening");
+
 
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
@@ -168,6 +192,10 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						}
 						else if($scope.prevPage === 'templates.notesForPatient'){
 							$state.go('templates.doctor_home');
+						}
+						else if($scope.prevPage === 'app.callAccepted'){
+							// alert('decline call here');
+							// ion.sound.play("bell_ring");
 						}
 						else{
 							window.history.back();
