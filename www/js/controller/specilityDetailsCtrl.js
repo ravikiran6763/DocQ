@@ -152,7 +152,7 @@ $scope.sendrequesttoonlinedoctors = function()
 
   $interval(checkAcceptedReq,2000);
    function checkAcceptedReq(){
-     console.log($scope.accptdReq);
+    //  console.log($scope.accptdReq);
      medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
      $scope.accptdReq=response;
        if($scope.accptdReq != ''){

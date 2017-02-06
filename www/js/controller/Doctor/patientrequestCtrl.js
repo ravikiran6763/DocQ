@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$interval, $ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService,medicalSpecialityService) {
+DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$state,$localStorage,$stateParams,$interval,$ionicPlatform,$ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService,medicalSpecialityService) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -20,8 +20,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				 $localStorage.reqId= $rootScope.reqId;
 				 console.log($localStorage.reqId);
-				 $localStorage.reqPat=$rootScope.pphno;
-				 console.log($localStorage.reqPat);
+				 $rootScope.reqPat=$rootScope.pphno;
 				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
 			 	$scope.CurrentDate = new Date();
@@ -116,13 +115,8 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			console.log('destroyed');
 			});
 
-			 if($rootScope.closeDocPopUp == true){
-				 console.log('did not respond');
-				 console.log($rootScope.closeDocPopUp);
 
-			 }
-
-			 $scope.callReqPopUp = $ionicPopup.prompt({
+			 $scope.callReqPopUp = $ionicPopup.show({
 	           template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
 	           cssClass: 'requestPopup',
 	           scope: $scope,
@@ -199,18 +193,34 @@ function checkForrDeclined(){
 }
 $localStorage.showPopUp = 1;
 
-$interval(checkAcceptedReq,3000);
+$interval(checkAcceptedReq,1000);
+var checkPatientActivity={
+	callId:$rootScope.reqId,
+	doctor:$rootScope.pphno
+}
+console.log(checkPatientActivity);
+var patAct = {
+accpetcode : "2",
+doctorphno : $localStorage.user,
+patientphno : $stateParams.pphno,
+consultId:$rootScope.reqId
+}
+console.log(patAct);
+$scope.popupShown = true;
  function checkAcceptedReq(){
-	 doctorServices.patientActivity($rootScope.reqId).then(function(response){
-	 $scope.consultStatus=response;
-				 if($scope.consultStatus[0][0] == 3 && $localStorage.showPopUp == 1){
-					 console.log($scope.consultStatus[0][0] );
-
+	 doctorServices.doctorActivity(patAct).then(function(response){
+		 console.log(response);
+		 $scope.consultStatus=response;
+	//  doctorServices.patientActivity($rootScope.reqId).then(function(response){
+				 if($scope.consultStatus[0][0] == 3 && $scope.popupShown == true){
 					 console.log('open popup');
+					 $scope.popupShown = false;
+					 console.log($scope.consultStatus[0][0]);
 					 $scope.callReqPopUp.close();
 					 setTimeout(function () {
 						console.log('delay 3 sec');
 					}, 3000);
+
 
 						var alertPopup = $ionicPopup.alert({
 						title: 'Declined!',
@@ -220,8 +230,9 @@ $interval(checkAcceptedReq,3000);
 						});
 						alertPopup.then(function(res) {
 							$scope.callReqPopUp.close();
-							$state.go("templates.doctor_home");
-
+							$state.go("templates.doctor_home",{reload:true});
+							var patAct={};
+							$scope.isFirstTime =false;
 							$ionicHistory.clearHistory();
 							$scope.$on('$destroy', function(){
 							 $timeout.cancel(docTimeout);
@@ -245,7 +256,6 @@ $scope.isFirstTime = false;
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 	 $scope.videoOrAudio=response;
-	 console.log( $scope.videoOrAudio);
 	 if($scope.videoOrAudio[0][0] == 2 ){
 		 console.log('closethis popup');
 		 $scope.callReqPopUp.close();
@@ -263,6 +273,7 @@ $scope.isFirstTime = false;
 	 console.log('failure data', error);
 	 });
  }
+
 
 
 })

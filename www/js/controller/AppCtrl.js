@@ -24,14 +24,12 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 // console.log(model);
 $localStorage.reqSent="";
 
-
-
-
 // console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
+// $interval.cancel(checkAcceptedReq,2000);
 
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
@@ -661,24 +659,7 @@ $rootScope.homePage=$ionicHistory.currentStateName();
 				// console.log('callAtInterval');
 	}
 
-	$scope.declineCall=function(){
-			var calldecline={
-			patient:$localStorage.user,
-			doctor:$rootScope.doctorPhone,
-			callId:$rootScope.callId
 
-			}
-			console.log(calldecline);
-			$localStorage.ViewDoc=0;
-			callAcceptedService.callDeclined(calldecline).then(function(response){
-				$scope.declineStatus=response;
-				console.log($scope.declineStatus);
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
-				$state.go('app.patient_home')
-				console.log('decline clicked');
-	}
 
 //video call in search
 
