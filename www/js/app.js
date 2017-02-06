@@ -223,6 +223,7 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
     if($rootScope.currState === 'templates.doctor_home' || $rootScope.currState ==='app.patient_home'){
       // $ionicHistory.clearHistory();
       $ionicHistory.removeBackView();
+      $interval.cancel(checkAcceptedReq);
 
     }
       if ($rootScope.backButtonPressedOnceToExit) {

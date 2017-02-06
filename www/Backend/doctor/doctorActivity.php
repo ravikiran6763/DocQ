@@ -6,12 +6,16 @@ if (isset($postdata))
 {
   // echo "string";
 
-      $checkPatientActivity =  json_decode($postdata);
-      $consultID = $checkPatientActivity->callId;
-			$doctorphno = $checkPatientActivity->doctor;
+      $accptdReq =  json_decode($postdata);
+       $consultID = $accptdReq->consultId;
+			$patient = $accptdReq->patientphno;
+       $doctor = $accptdReq->doctorphno;
+      $accpetcode = $accptdReq->accpetcode;
+
+
      $consultStatus = array();
 
-      $sql = "select flag from reqForConsultation where id='$consultID' and accptedDoctor='$doctorphno'";
+     $sql = "select flag from reqForConsultation where id='$consultID' and accptedDoctor='$doctor'";
      $retval = mysql_query( $sql, $dbhandle );
      while($row = mysql_fetch_array($retval))
      {

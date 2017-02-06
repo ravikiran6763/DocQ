@@ -1,10 +1,12 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout,$ionicPopup,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+
+	HardwareBackButtonManager.disable();
 
  // $interval(callAtInterval, 5000);
 
@@ -106,10 +108,18 @@ $scope.BalanceForVoiceCall = function()
 
 $scope.isFirstTime = false;
 $interval(checkAcceptedReq,2000);
- function checkAcceptedReq(){
-	 doctorServices.patientActivity($rootScope.callId).then(function(response){
-	 $scope.consultStatus=response;
 
+
+var checkPatientActivity={
+	callId:$rootScope.callId,
+	doctor:$stateParams.accptdDoc
+}
+console.log(checkPatientActivity);
+ function checkAcceptedReq(){
+	//  doctorServices.patientActivity($rootScope.callId).then(function(response){
+	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
+	 $scope.consultStatus=response;
+	 console.log($scope.consultStatus);
 	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
 
 		 $scope.isFirstTime=true;
@@ -129,16 +139,35 @@ $interval(checkAcceptedReq,2000);
 			 $ionicHistory.clearHistory();
        console.log('Thank you for not eating my delicious ice cream cone');
      });
-	
+
 	 }
 	 else{
 
 	 }
 		//  $state.go($state.current, {}, {reload: true});
 	 }).catch(function(error){
-	 console.log('failure data', error);
+	//  console.log('failure data', error);
 	 });
  }
 
+ $scope.declineCall=function(){
+		 var calldecline={
+		 patient:$localStorage.user,
+		 doctor:$rootScope.doctorPhone,
+		 callId:$rootScope.callId
+
+		 }
+		 console.log(calldecline);
+		 $interval.cancel(checkAcceptedReq);
+		 $localStorage.ViewDoc=0;
+		 callAcceptedService.callDeclined(calldecline).then(function(response){
+			 $scope.declineStatus=response;
+			 console.log($scope.declineStatus);
+		 }).catch(function(error){
+		 console.log('failure data', error);
+		 });
+			 $state.go('app.patient_home')
+			 console.log('decline clicked');
+ }
 
 });

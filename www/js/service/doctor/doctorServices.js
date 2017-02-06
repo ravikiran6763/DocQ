@@ -121,10 +121,25 @@ this.cancelByDoc = function(consultId){
 
 }
 
-this.patientActivity = function(consultId){
+this.patientActivity = function(checkPatientActivity){
   var deferred = $q.defer();
 
-  $http.post(BASE_URL.url + API.patientActivity,consultId)
+  $http.post(BASE_URL.url + API.patientActivity,checkPatientActivity)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
+this.doctorActivity = function(patAct){
+  // console.log(accptdReq);
+  var deferred = $q.defer();
+
+  $http.post(BASE_URL.url + API.doctorActivity,patAct)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
   })
