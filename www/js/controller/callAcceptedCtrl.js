@@ -68,7 +68,7 @@ $scope.checkWalletBalance = function()
 				}
 				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 
-				// hello.greet(uname,pw,persontocall,success, failure);
+		 hello.greet(uname,pw,persontocall,success, failure);
 }
 
 

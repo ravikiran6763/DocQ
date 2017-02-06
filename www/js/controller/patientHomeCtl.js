@@ -35,36 +35,11 @@ function checkNewMessages(){
 				 alert("Error calling unreadchatcount Plugin");
 				 //console.log('error');
 				}
-		// hello.unreadchatfromusers(username,password,success, failure);
+ 			hello.unreadchatfromusers(username,password,success, failure);
 	}
 }
 
-			$rootScope.unreadchatforpatient = {};
-			if($scope.currentState == 'app.patient_home')
-			{
 
-					var username = "greet+"+$localStorage.user;
-
-							var password = "DQ_patient";
-
-							console.log(username);
-
-
-						var success = function(message)
-						{
-								$rootScope.unreadchatforpatient = message;
-
-						}
-
-						var failure = function()
-						{
-						 alert("Error calling unreadchatcount Plugin");
-						 //console.log('error');
-
-						}
-
-				// hello.unreadchatfromusers(username,password,success, failure);
-			}
 
 			$ionicPlatform.registerBackButtonAction(function(e){
 
