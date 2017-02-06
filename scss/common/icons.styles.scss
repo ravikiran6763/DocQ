@@ -119,9 +119,12 @@
 //ratingsObject ion-ios-star
 .ion-ios-star::before{
   color: #fbb03a !important;
+  font-size: 130% !important;
+  
 }
 .ion-ios-star-outline::before{
   color: black;
+  font-size: 130% !important;
 }
 
 .ion-android-favorite-outline:before {

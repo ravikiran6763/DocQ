@@ -113,22 +113,23 @@ $interval(checkAcceptedReq,2000);
 	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
 
 		 $scope.isFirstTime=true;
-		 $scope.declinedByPatient = $ionicPopup.show({
-		 			template: "<div>Doctor has declined for a consultation</div>",
-		 			cssClass: 'requestPopup',
-		 			scope: $scope,
-		 			buttons: [
-		 			{
-		 			text: 'Ok',
-		 			type: 'button-positive',
-		 			onTap:function(){
-		 				$state.go("app.patient_home");
-						$scope.declinedByPatient.close();
-						$ionicHistory.clearHistory();
-		 			}
-		 			},
-		 		]
-		 		});
+
+		 setTimeout(function () {
+			 console.log('delay 3 sec');
+		 }, 3000);
+
+     var alertPopup = $ionicPopup.alert({
+       title: 'Declined!',
+			 template: "<div>Doctor has declined for a consultation</div>",
+			 cssClass: 'requestPopup',
+			 scope: $scope,
+     });
+     alertPopup.then(function(res) {
+			 $state.go("app.patient_home");
+			 $ionicHistory.clearHistory();
+       console.log('Thank you for not eating my delicious ice cream cone');
+     });
+	
 	 }
 	 else{
 

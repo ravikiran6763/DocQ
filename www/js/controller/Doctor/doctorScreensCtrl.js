@@ -15,7 +15,7 @@ $interval(checkNewMsgs,2000);
 function checkNewMsgs(){
   if( $rootScope.homePage =='templates.doctor_home')
   {
-    console.log($rootScope.homePage);
+    // console.log($rootScope.homePage);
 
         $scope.unreadchatforpatient = {};
           var username = "greet+"+$localStorage.user;
@@ -206,7 +206,7 @@ function checkNewMsgs(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.res = response;
     $ionicLoading.hide();
-    console.log($scope.res);
+    // console.log($scope.res);
     }).catch(function(error){
     console.log('failure data', error);
     })

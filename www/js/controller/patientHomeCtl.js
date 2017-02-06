@@ -25,7 +25,7 @@ function checkNewMessages(){
 			var username = "greet+"+$localStorage.user;
 			var password = "DQ_patient";
 
-					console.log(username);
+					// console.log(username);
 				var success = function(message)
 				{
 						$rootScope.unreadchatforpatient = message;
