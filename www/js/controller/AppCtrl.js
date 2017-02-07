@@ -450,11 +450,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 			//alert('error calling hello plugin');
 			console.log('error calling hello plugin');
-			
+
 
 		}
 
-	hello.logout(unametologout,pwtologout,success, failure);
+	//hello.logout(unametologout,pwtologout,success, failure);
 
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -528,7 +528,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			.then(function(response){
 			console.log(response);
 
-<<<<<<< HEAD
+
 
 			window.plugins.toast.showWithOptions({
 		message: "Your password has been updated.",
@@ -550,8 +550,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 
-=======
->>>>>>> 253b4889d0d3297fbd2b1ef33ddf4ac7532e1ec0
 			}).catch(function(error){
 			console.log('failure data', error);
 			});
