@@ -11858,7 +11858,7 @@ ion-side-menu .heading-item .message {
       margin-top: 6vh;
       font-family: Ubuntu,bold,sans-serif !important; }
     .searchDoctor-profile-view .bottom-content h5 {
-      font-size: 3vw;
+      font-size: 150% !important;
       line-height: 0vh;
       text-align: center;
       margin-top: 3vh;
