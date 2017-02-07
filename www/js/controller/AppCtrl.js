@@ -422,17 +422,24 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var unametologout = "greet+"+$localStorage.user;
 		var pwtologout = "DQ_patient";
 
+		console.log(unametologout);
+
 		var success = function(message)
 		{
 
-				console.log('patient loggedOut');
+				//alert(message)
+
+					console.log(message);
+
 
 		}
 		var failure = function()
 		{
 
-				console.log('error in calling plugin');
-			//alert("Error calling Hello Plugin");
+			//alert('error calling hello plugin');
+			console.log('error calling hello plugin');
+			
+
 		}
 
 	hello.logout(unametologout,pwtologout,success, failure);
@@ -526,7 +533,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		});
 
 	window.history.back();
-	
+
 
 
 
