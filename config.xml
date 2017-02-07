@@ -25,7 +25,6 @@
   <allow-intent href="*"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
-  <preference name="DisallowOverscroll" value="true"/>
   <preference name="SplashScreenDelay" value="200"/>
   <preference name="FadeSplashScreenDuration" value="200"/>
   <preference name="android-minSdkVersion" value="16"/>
@@ -41,7 +40,7 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="SplashScreenDelay" value="500"/>
-  <preference name="FadeSplashScreenDuration" value="1000"/>
+  <preference name="FadeSplashScreenDuration" value="500"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
   <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
@@ -56,12 +55,17 @@
   <preference name="AndroidPersistentFileLocation" value="Internal"/>
   <preference name="iosPersistentFileLocation" value="Library"/>
   <preference name="iosExtraFilesystems" value="library-nosync"/>
+
+
   <plugin name="cordova-plugin-whitelist" version="1.2.0"/>
   <plugin name="cordova-plugin-whitelist" version="1.2.0"/>
   <plugin name="cordova-plugin-device" spec="^1.1.0">
     <variable name="MY_VARIABLE" value="my_variable_value"/>
   </plugin>
   <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git"/>
+
+
+
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>

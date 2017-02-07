@@ -21,7 +21,9 @@
 
             <div class="ratingContainer">
               <span ng-repeat="rating in ratings">
-                <div    star-rating rating-value="doc.ratings / doc.totalRates" max="rating.max" >
+                <!-- <div    star-rating rating-value="doc.ratings / doc.totalRates" max=5 >
+                </div> -->
+                <div    star-rating rating-value="rating.current" max=5 >
                 </div>
               </span>
               <p class="totalReview">

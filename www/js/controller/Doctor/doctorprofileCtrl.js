@@ -24,37 +24,71 @@ console.log('called');
 // $interval(checkConnection, 6000);
 
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
-  console.log(response[1]);
 $scope.myDocDetails1=response;
-
-$scope.items =
-[
-{'id':'1','name':'item1'},
-{'id':'2','name':'item2'}
-];
-var index = $scope.items.map(function (item) {
-            return item.id;
-        }).indexOf(2);
-console.log(index);
-$scope.ratings = [{
-      current: 5,
-      max: 5
-  }, ];
 console.log('doc',$scope.myDocDetails1);
+var data=$scope.myDocDetails1;//take all json data into this variable
+  for(var i=0; i<data.length; i++){
 
+        $rootScope.rates=data[i].ratings,
+        $rootScope.totalRates=data[i].totalRates
+
+        if($rootScope.rates == null ){
+          $rootScope.rates=''
+        }
+        if($rootScope.totalRates == null ){
+          $rootScope.totalRates=''
+        }
+        console.log($rootScope.rates);
+
+        $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+        console.log('rates',$rootScope.DocRates);
+        console.log('total',$rootScope.totalRates);
+
+        console.log('doc',$rootScope.DocRates);
+
+        $scope.ratings = [{
+               current: $rootScope.DocRates,
+               max: 5,
+               total:$rootScope.totalRates
+             }, ];
+    }
 }).catch(function(error){
 console.log('failure data', error);
 });
 
+     console.log($scope.ratings.current);
 function checkDocStatus(){
   doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
   $scope.myDocDetails1=response;
-  console.log('doc',$scope.myDocDetails1);
+  var data=$scope.myDocDetails1;//take all json data into this variable
+    for(var i=0; i<data.length; i++){
+
+          $rootScope.rates=data[i].ratings,
+          $rootScope.totalRates=data[i].totalRates
+
+          if($rootScope.rates == null ){
+            $rootScope.rates=''
+          }
+          if($rootScope.totalRates == null ){
+            $rootScope.totalRates=''
+          }
+          console.log($rootScope.rates);
+
+          $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+          console.log('rates',$rootScope.DocRates);
+          console.log('total',$rootScope.totalRates);
+
+
+
+      }
+
+
   }).catch(function(error){
   console.log('failure data', error);
   });
 }
-console.log(window.connection);
+
+
 
 doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;

@@ -10250,7 +10250,8 @@ ion-side-menu.menu-left.menu {
   .loginPopup .popup {
     background-color: #af262d;
     width: 100%;
-    position: relative; }
+    position: relative;
+    height: 22% !important; }
   .loginPopup .popup-head {
     padding: 3%;
     border-bottom: 0px;
@@ -11516,7 +11517,6 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .consultationList-view .myDoctor-list {
     width: 100%;
-    height: 12%;
     overflow: scroll !important; }
     .consultationList-view .myDoctor-list li {
       height: 15%;
