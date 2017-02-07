@@ -171,6 +171,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						}
 						else if($scope.prevPage === 'app.results'){
 							$state.go('app.searchDoctors');
+							window.history.back();
 						}
 						else if($scope.prevPage === 'app.specialityDetailsNew'){
 
@@ -203,30 +204,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}
 		}
 
-			$scope.viewDoc2=function(docPhone){
 
-			doctorServices.myDoctorsDetails(docPhone).then(function(response){
-						$scope.myDocDetail=response;
-						console.log(response);
-						$state.go('app.results');
-					}).catch(function(error){
-					console.log('failure data', error);
-					});
-
-					$scope.myDoctorRatings={}
-					rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
-				 	$scope.myDoctorRatings=response;//store the response array in doctor details
-
-					$scope.ratings = [{
-								 current: $scope.myDoctorRatings,
-								 max: 5
-						 }, ];
-						 console.log($scope.ratings);
-				  }).catch(function(error){
-				  console.log('failure data', error);
-				  });
-
-				}
 
 
 
