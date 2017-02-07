@@ -262,11 +262,7 @@ $scope.isFirstTime = false;
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');
-<<<<<<< HEAD
-			 $state.go("templates.notesForPatient",{calPtFname:})
-=======
 			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat})
->>>>>>> 253b4889d0d3297fbd2b1ef33ddf4ac7532e1ec0
 
 			 console.log('show accpted doc profile');
 		 }, 5000);

@@ -23,8 +23,8 @@ console.log($rootScope.reqId);
   //this is used to set notesflag in the database top 2
 
 console.log($localStorage.reqPat);
-  patientProfileDetailsService.fetchPatient($rootScope.reqPat).then(function(response){
-    console.log($localStorage.reqPat);
+  patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){
+    
     $scope.patient_details=response;
     $ionicLoading.hide();
     console.log($scope.patient_details);
