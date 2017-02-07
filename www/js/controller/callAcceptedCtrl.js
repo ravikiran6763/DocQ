@@ -5,6 +5,7 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+	$rootScope.sandwich=true;
 
 	HardwareBackButtonManager.disable();
 
@@ -119,7 +120,7 @@ console.log(checkPatientActivity);
 	//  doctorServices.patientActivity($rootScope.callId).then(function(response){
 	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
 	 $scope.consultStatus=response;
-	 console.log($scope.consultStatus);
+	//  console.log($scope.consultStatus);
 	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
 
 		 $scope.isFirstTime=true;

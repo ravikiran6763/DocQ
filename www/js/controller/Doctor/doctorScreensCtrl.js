@@ -33,9 +33,7 @@ function checkNewMsgs(){
 
             }
 
-   hello.unreadchatfromusers(username,password,success, failure);
-
-
+  //  hello.unreadchatfromusers(username,password,success, failure);
   }
 }
 
@@ -214,17 +212,38 @@ function checkNewMsgs(){
 
     $interval(callAtInterval, 1000);
     //$interval(lookForPrescription, 1000);
+ $scope.pending=$localStorage.requests;
+ console.log($scope.pending);
 
+
+$scope.hello = 5;
+
+
+  $localStorage.totalReq = 0;
+$scope.$watch('pending', function() { console.log('watch!'); });
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.res = response;
-      // console.log($scope.res);
+      $scope.requests=$scope.res.length;
+      // console.log($localStorage.totalReq);
+      // console.log($scope.requests);
+
+
       }).catch(function(error){
       console.log('failure data', error);
       })
    		// console.log('callAtInterval');
    	}
 
+    $scope.$watch('requests', function (newValue, oldValue, scope) {
+        console.log('changed');
+        console.log(newValue);
+        console.log(oldValue);
+        if(newValue > oldValue){
+          ion.sound.play('bell_ring');
+        }
+
+    },true);
     function lookForPrescription() {
       // $state.go('templates.notesForPatient');
       doctorServices.lookForPrescription($localStorage.user).then(function(response){
