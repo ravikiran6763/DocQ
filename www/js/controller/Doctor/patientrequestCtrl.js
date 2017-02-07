@@ -262,7 +262,11 @@ $scope.isFirstTime = false;
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');
+<<<<<<< HEAD
 			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat})
+=======
+			 $state.go("templates.notesForPatient",{calPtFname:})
+>>>>>>> 783e9c89f03b9c9a484e747f63de85042bedf165
 
 			 console.log('show accpted doc profile');
 		 }, 5000);
@@ -276,4 +280,4 @@ $scope.isFirstTime = false;
 
 
 
-})
+});
