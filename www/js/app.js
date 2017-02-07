@@ -492,7 +492,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/searchresultbydoctor.html",
-        controller:"searchDoctorsController"
       }
     }
   })
@@ -642,7 +641,7 @@ $stateProvider
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient",
+    url: "/notesForPatient/:reqPat",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",

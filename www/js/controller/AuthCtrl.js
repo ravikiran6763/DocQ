@@ -18,7 +18,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
           console.log('ready');
-          StatusBar.hide();
+          // StatusBar.hide();
         }
 
       });

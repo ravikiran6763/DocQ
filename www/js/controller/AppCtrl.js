@@ -145,10 +145,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	};
 
-	$scope.ratings = [{
- 				current: $scope.myDoctorRatings,
- 				max: 5
- 		}, ];
+
 
 
 
@@ -169,10 +166,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							// $state.go('templates.doctor_home');
 							console.log('donothing');
 						}
-						else if($scope.prevPage === 'app.results'){
-							$state.go('app.searchDoctors');
-							window.history.back();
-						}
+
 						else if($scope.prevPage === 'app.specialityDetailsNew'){
 
 							$localStorage.reqSent=0;
@@ -180,7 +174,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							window.history.back();
 
 						}
-						else if($scope.prevPage === 'app.doctorsearch'){
+						else if($scope.prevPage === 'app.results'){
 							console.log('clear search values here');
 							$scope.specialdata='';
 							$scope.genderdata='';
@@ -204,7 +198,30 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}
 		}
 
+			$scope.viewDoc2=function(docPhone){
 
+			doctorServices.myDoctorsDetails(docPhone).then(function(response){
+						$scope.myDocDetail=response;
+						console.log(response);
+						$state.go('app.results');
+					}).catch(function(error){
+					console.log('failure data', error);
+					});
+
+					$scope.myDoctorRatings={}
+					rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
+				 	$scope.myDoctorRatings=response;//store the response array in doctor details
+					$scope.ratings = [{
+								 current: $scope.myDoctorRatings,
+								 max: 5,
+								 total:2
+						 }, ];
+						 console.log($scope.ratings);
+				  }).catch(function(error){
+				  console.log('failure data', error);
+				  });
+
+				}
 
 
 
@@ -370,6 +387,23 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 $scope.doclist = response;
 											console.log($scope.doclist);
 											 $ionicLoading.hide();
+
+											 	var data=$scope.doclist;//take all json data into this variable
+											 		for(var i=0; i<data.length; i++){
+
+																$rootScope.ratings=data[i].ratings,
+																$rootScope.totalRates=data[i].totalRates
+
+																console.log(	$rootScope.ratings);
+															// 	$rootScope.callId=data[i].callId,
+															$scope.ratings = [{
+			 															 current: $rootScope.ratings,
+			 															 max: 5,
+																		 total:$rootScope.totalRates
+			 													 }, ];
+											 			}
+
+
 									}
 									else if(Object.keys(response).length == 0)
 									{
@@ -486,27 +520,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			patientProfileDetailsService.changePwd2(newPwd)
 			.then(function(response){
 			console.log(response);
-
-
-			window.plugins.toast.showWithOptions({
-		message: "Your password has been updated.",
-		duration: "short", // 2000 ms
-		position: "bottom",
-		styling: {
-		opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-		backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-		textColor: '#ffffff', // Ditto. Default #FFFFFF
-		textSize: 13, // Default is approx. 13.
-		cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-		horizontalPadding: 16, // iOS default 16, Android default 50
-		verticalPadding: 12 // iOS default 12, Android default 30
-		}
-		});
-
-	window.history.back();
-	
-
-
 
 			}).catch(function(error){
 			console.log('failure data', error);

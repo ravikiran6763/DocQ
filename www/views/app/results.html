@@ -22,7 +22,7 @@
                 Rating
               </div>
               <div class=" col" ng-repeat="rating in ratings">
-                {{rating.current | number:1}}/23
+                {{rating.current | number:1}}/{{rating.total}}
               </div>
               <div class="col ">
                   <span ng-repeat="rating in ratings">

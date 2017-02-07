@@ -20,15 +20,16 @@
           <p>Practicing since {{doc.practicingSince}}</p>
 
             <div class="ratingContainer">
-              <span ng-repeat="rating in ratings" >
-                <div  star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
+              <span ng-repeat="rating in ratings">
+                <div    star-rating rating-value="doc.ratings / doc.totalRates" max="rating.max" >
                 </div>
               </span>
+              <p class="totalReview">
+                  ({{doc.totalRates}} Reviews)
+              </p>
             </div>
 
-            <p class="totalReview">
-                ({{doc.totalCount}} Reviews)
-            </p>
+
         </div>
         <div class="next-icon">
           <i class="icon ion-android-add-circle" ng-show="{{doc.onoff == 1}}"></i>
