@@ -86,18 +86,14 @@
   <feature name="NetworkStatus">
     <param name="ios-package" value="CDVConnection"/>
   </feature>
+  <feature name="Toast">
+    <param name="ios-package" value="Toast" />
+  </feature>
   <mime-mapping>
     <extension>js</extension>
     <mime-type>application/javascript</mime-type>
   </mime-mapping>
-  <mime-mapping>
-    <extension>js</extension>
-    <mime-type>application/javascript</mime-type>
-  </mime-mapping>
-  <mime-mapping>
-    <extension>js</extension>
-    <mime-type>application/javascript</mime-type>
-  </mime-mapping>
+
   <platform name="ios">
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
@@ -237,12 +233,12 @@
       <true/>
     </dict>
     <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-      <universal-links>
+      <!-- <universal-links>
         <ios-team-id value="R6422J88GD"/>
         <host name="doctorquick.com">
           <path url="/www/templates/*"/>
         </host>
-      </universal-links>
+      </universal-links> -->
     </widget>
   </config-file>
 </widget>

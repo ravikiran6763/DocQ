@@ -145,10 +145,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	};
 
-	$scope.ratings = [{
- 				current: $scope.myDoctorRatings,
- 				max: 5
- 		}, ];
+
 
 
 
@@ -169,9 +166,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							// $state.go('templates.doctor_home');
 							console.log('donothing');
 						}
-						else if($scope.prevPage === 'app.results'){
-							$state.go('app.searchDoctors');
-						}
+
 						else if($scope.prevPage === 'app.specialityDetailsNew'){
 
 							$localStorage.reqSent=0;
@@ -179,7 +174,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							window.history.back();
 
 						}
-						else if($scope.prevPage === 'app.doctorsearch'){
+						else if($scope.prevPage === 'app.results'){
 							console.log('clear search values here');
 							$scope.specialdata='';
 							$scope.genderdata='';
@@ -216,10 +211,10 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					$scope.myDoctorRatings={}
 					rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
 				 	$scope.myDoctorRatings=response;//store the response array in doctor details
-
 					$scope.ratings = [{
 								 current: $scope.myDoctorRatings,
-								 max: 5
+								 max: 5,
+								 total:2
 						 }, ];
 						 console.log($scope.ratings);
 				  }).catch(function(error){
@@ -392,6 +387,23 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 $scope.doclist = response;
 											console.log($scope.doclist);
 											 $ionicLoading.hide();
+
+											 	var data=$scope.doclist;//take all json data into this variable
+											 		for(var i=0; i<data.length; i++){
+
+																$rootScope.ratings=data[i].ratings,
+																$rootScope.totalRates=data[i].totalRates
+
+																console.log(	$rootScope.ratings);
+															// 	$rootScope.callId=data[i].callId,
+															$scope.ratings = [{
+			 															 current: $rootScope.ratings,
+			 															 max: 5,
+																		 total:$rootScope.totalRates
+			 													 }, ];
+											 			}
+
+
 									}
 									else if(Object.keys(response).length == 0)
 									{
@@ -516,6 +528,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			.then(function(response){
 			console.log(response);
 
+<<<<<<< HEAD
 
 			window.plugins.toast.showWithOptions({
 		message: "Your password has been updated.",
@@ -537,6 +550,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 
+=======
+>>>>>>> 253b4889d0d3297fbd2b1ef33ddf4ac7532e1ec0
 			}).catch(function(error){
 			console.log('failure data', error);
 			});

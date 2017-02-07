@@ -201,6 +201,7 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
+          $ionicConfig.views.transition(none);
           $ionicConfig.views.swipeBackEnabled(false);
         }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
@@ -491,7 +492,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/searchresultbydoctor.html",
-        controller:"searchDoctorsController"
       }
     }
   })
@@ -502,8 +502,8 @@ $stateProvider
       url: "/results/",
       views: {
         'menuContent': {
-          templateUrl: "views/app/results.html"
-
+          templateUrl: "views/app/results.html",
+          controller:"searchDoctorsController"
         }
       }
     })
@@ -641,7 +641,7 @@ $stateProvider
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient",
+    url: "/notesForPatient/:reqPat",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",

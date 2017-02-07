@@ -11716,8 +11716,7 @@ ion-side-menu .heading-item .message {
           color: black; }
         .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
           position: absolute;
-          position: absolute;
-          margin-left: 59%;
+          margin-left: 21%;
           margin-top: 3.5%;
           text-overflow: ellipsis; }
         .mydoctor-profile-view .myDoctor-list li .name-content h2 {
@@ -11852,7 +11851,7 @@ ion-side-menu .heading-item .message {
   .searchDoctor-profile-view .bottom-content {
     height: 52%; }
     .searchDoctor-profile-view .bottom-content h4 {
-      font-size: 4vw;
+      font-size: 120% !important;
       line-height: 0vh;
       text-align: center;
       margin-top: 6vh;

@@ -18,7 +18,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
           console.log('ready');
-          StatusBar.hide();
+          // StatusBar.hide();
         }
 
       });
@@ -53,7 +53,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             {
               alert("Error calling Hello Plugin");
             }
-            hello.login(uname1,pw1,success, failure);
+            // hello.login(uname1,pw1,success, failure);
           $ionicHistory.nextViewOptions({
           disableAnimate: true,
           disableBack: true
@@ -158,10 +158,10 @@ $scope.sendForm = function($event,form)
         opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
         backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
         textColor: '#ffffff', // Ditto. Default #FFFFFF
-        textSize: 10.5, // Default is approx. 13.
+        textSize: 13, // Default is approx. 13.
         cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-        horizontalPadding: 10, // iOS default 16, Android default 50
-        verticalPadding: 6 // iOS default 12, Android default 30
+        horizontalPadding: 16, // iOS default 16, Android default 50
+        verticalPadding: 12 // iOS default 12, Android default 30
         }
         });
       })
@@ -278,10 +278,10 @@ $scope.patientRegistration = function()
               opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
               backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
               textColor: '#ffffff', // Ditto. Default #FFFFFF
-              textSize: 10.5, // Default is approx. 13.
+              textSize: 13, // Default is approx. 13.
               cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-              horizontalPadding: 10, // iOS default 16, Android default 50
-              verticalPadding: 6 // iOS default 12, Android default 30
+              horizontalPadding: 16, // iOS default 16, Android default 50
+              verticalPadding: 12 // iOS default 12, Android default 30
               }
               });
         }
@@ -345,11 +345,22 @@ $scope.patientRegistration = function()
     else if(!$scope.PatientDetail.pat_password){
       // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedPwd = true;
-      $cordovaToast.showLongCenter('Valid password be entered', 'short', 'center').then(function(success){
-      // success
-      }, function (error) {
-      // error
+
+      window.plugins.toast.showWithOptions({
+      message: "Valid password must be entered",
+      duration: "short", // 2000 ms
+      position: "bottom",
+      styling: {
+      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+      backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+      textColor: '#ffffff', // Ditto. Default #FFFFFF
+      textSize: 13, // Default is approx. 13.
+      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+      horizontalPadding: 16, // iOS default 16, Android default 50
+      verticalPadding: 12 // iOS default 12, Android default 30
+      }
       });
+
     }
     else{
       console.log('validated');
@@ -367,10 +378,10 @@ $scope.patientRegistration = function()
         opacity: 0.75, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
         backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
         textColor: '#ffffff', // Ditto. Default #FFFFFF
-        textSize: 10.5, // Default is approx. 13.
+        textSize: 13, // Default is approx. 13.
         cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-        horizontalPadding: 10, // iOS default 16, Android default 50
-        verticalPadding: 6 // iOS default 12, Android default 30
+        horizontalPadding: 16, // iOS default 16, Android default 50
+        verticalPadding: 12 // iOS default 12, Android default 30
         }
         });
       }
