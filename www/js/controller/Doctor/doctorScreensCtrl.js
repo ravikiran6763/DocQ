@@ -18,6 +18,7 @@ function checkNewMsgs(){
     // console.log($rootScope.homePage);
 
         $scope.unreadchatforpatient = {};
+
           var username = "greet+"+$localStorage.user;
           var password = "DQ_doctor";
 
@@ -28,8 +29,8 @@ function checkNewMsgs(){
 
             var failure = function()
             {
-             alert("Error calling Hello Plugin");
-             //console.log('error');
+             //alert("Error calling Hello Plugin");
+             console.log('error');
 
             }
 
