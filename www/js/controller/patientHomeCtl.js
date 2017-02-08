@@ -22,20 +22,21 @@ function checkNewMessages(){
 	if($scope.currentState == 'app.patient_home')
 	{
 
+		$scope.unreadchatforpatient = {};
 			var username = "greet+"+$localStorage.user;
 			var password = "DQ_patient";
 
 					// console.log(username);
 				var success = function(message)
 				{
-						$rootScope.unreadchatforpatient = message;
+						$scope.unreadchatforpatient = message;
 				}
 				var failure = function()
 				{
 				 alert("Error calling unreadchatcount Plugin");
 				 //console.log('error');
 				}
- 		// 	hello.unreadchatfromusers(username,password,success, failure);
+ 	 	hello.unreadchatfromusers(username,password,success, failure);
 	}
 }
 
