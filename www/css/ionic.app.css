@@ -11937,7 +11937,9 @@ ion-side-menu .heading-item .message {
     color: #a9a9a9;
     margin: 0;
     padding: 0;
-    font-size: 5vw; }
+    font-size: 5vw;
+    margin-left: 35%;
+    margin-top: -2%; }
   .callAccpted-view button {
     text-align: center;
     border: none; }

@@ -600,7 +600,6 @@ $scope.ratingsObject = {
 };
 
 	$scope.ratings = [{ name: 'DocRating', number: '3.5' }]
-
    $scope.getStars = function(rating) {
      // Get the value
      var val = parseFloat(rating);

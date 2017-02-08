@@ -18,6 +18,15 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
  $rootScope.accptdDoc=$stateParams.accptdDoc;
  $rootScope.callId=$stateParams.callId;
  $rootScope.callFlag=$stateParams.callFlag;
+ $rootScope.rates=$stateParams.rates;
+ $rootScope.totalRates=$stateParams.totalRates;
+
+ $scope.ratings = [{
+ 			 current: $rootScope.rates,
+ 			 max: 5,
+ 			 total:$rootScope.totalRates
+ 	 }, ];
+
 console.log($rootScope.callFlag,$rootScope.callId);
  callAcceptedService.updateseenView($rootScope.callId).then(function(response){
  $scope.cancelledReq=response;
@@ -109,8 +118,6 @@ $scope.BalanceForVoiceCall = function()
 
 $scope.isFirstTime = false;
 $interval(checkAcceptedReq,2000);
-
-
 var checkPatientActivity={
 	callId:$rootScope.callId,
 	doctor:$stateParams.accptdDoc

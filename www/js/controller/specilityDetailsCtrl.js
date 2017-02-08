@@ -161,13 +161,16 @@ $scope.sendrequesttoonlinedoctors = function()
          for(var i=0; i<accptDoc.length; i++){
            $rootScope.doctorPhone=accptDoc[i].doctorPhone,
            $rootScope.callId=accptDoc[i].callId,
-           $rootScope.cal_flag=accptDoc[i].flag
+           $rootScope.cal_flag=accptDoc[i].flag,
+           $rootScope.rates=accptDoc[i].ratings,
+           $rootScope.totalRates=accptDoc[i].totalRates
+
          }
          $scope.callReqPopUp.close();
 
          setTimeout(function () {
            console.log('delay 3 sec');
-           $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag});
+           $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag,rates:$rootScope.rates,totalRates:$rootScope.totalRates});
            console.log('show accpted doc profile');
          }, 1000);
 
