@@ -12087,6 +12087,58 @@ ion-side-menu .heading-item .message {
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 50%; }
+  .patient-payment-view .payment-bottom-content {
+    background-color: #e2e2e2;
+    width: 100%;
+    height: 45%;
+    box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, 0.8);
+    overflow: scroll !important; }
+    .patient-payment-view .payment-bottom-content li {
+      height: 31.3%;
+      border-bottom: 2px solid #678929;
+      padding-top: 5%;
+      *zoom: 1; }
+      .patient-payment-view .payment-bottom-content li:before, .patient-payment-view .payment-bottom-content li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .patient-payment-view .payment-bottom-content li:after {
+        clear: both; }
+      .patient-payment-view .payment-bottom-content li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .patient-payment-view .payment-bottom-content li .profile-img {
+        width: 13%;
+        float: left;
+        margin: 1% 0 0 2%; }
+        .patient-payment-view .payment-bottom-content li .profile-img img {
+          margin-left: 3%;
+          margin-top: -5%;
+          width: 100%;
+          border-radius: 100%; }
+      .patient-payment-view .payment-bottom-content li .next-icon {
+        width: 5%;
+        float: right;
+        padding-top: 2%;
+        padding-right: 8%;
+        position: relative; }
+        .patient-payment-view .payment-bottom-content li .next-icon .ion-chevron-right:before {
+          color: #ffffff;
+          font-size: 1.8em; }
+      .patient-payment-view .payment-bottom-content li .name-content {
+        float: left;
+        padding: 3% 3%;
+        height: 100%; }
+        .patient-payment-view .payment-bottom-content li .name-content p {
+          font-size: 80%;
+          margin: 0px;
+          color: #fff; }
+        .patient-payment-view .payment-bottom-content li .name-content h2 {
+          margin-top: 0;
+          font-size: 125%;
+          color: #fff;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%; }
 
 .sepecility-details-view {
   background-color: #e2e2e2 !important;

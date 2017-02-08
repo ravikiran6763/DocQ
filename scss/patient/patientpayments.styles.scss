@@ -181,4 +181,76 @@
   }
 
   }
+  .payment-bottom-content{
+    background-color: #e2e2e2;
+    width: 100%;
+    height: 45%;
+    box-shadow: inset 0px 10px 10px -10px rgba(0,0,0,0.8);
+    overflow: scroll !important;
+
+
+  li {
+    height: 31.3%;
+    border-bottom: 2px solid #678929;
+    padding-top: 5% ;
+
+    @include clearfix();
+
+    &:first-child {
+      //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
+    }
+
+    &:last-child {
+      border-bottom: none !important;
+      margin-bottom: 10px auto;
+    }
+
+    .profile-img {
+      width: 13%;
+    float: left;
+    margin: 1% 0 0 2%;
+
+      img {
+        margin-left: 3%;
+        margin-top: -5%;
+        width: 100%;
+        border-radius: 100%;
+      }
+    }
+
+    .next-icon {
+      width: 5%;
+      float: right;
+      padding-top: 2%;
+      padding-right: 8%;
+      position: relative;
+
+      .ion-chevron-right:before {
+        color: #ffffff;
+        font-size: 1.8em;
+      }
+    }
+
+    .name-content {
+      float: left;
+      padding: 3% 3%;
+      height: 100%;
+
+      p{
+          font-size: 80%;
+          margin: 0px;
+          color: #fff;
+        }
+
+      h2{
+        margin-top: 0;
+        font-size: 125%;
+        color: #fff;
+        font-family: Ubuntu,bold,sans-serif !important;
+        line-height: 50%;
+                }
+    }
+
+  }
+  }
 }
