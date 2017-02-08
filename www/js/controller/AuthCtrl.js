@@ -394,7 +394,9 @@ $scope.patientRegistration = function()
             if($scope.patientExist === 'patient'){
               $scope.myPopup=$ionicPopup.show({
                 title: 'Patient Already Exist',
-                template: '<div ><p>Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: -17px;left: 88vw; background: #6fa02d; border-radius: 22px; font-size: 8vw; color: #fff; text-align: end; padding: 7px; height:30px" ng-controller="LoginCtrl" ng-Click="closethis();"><p>X</p></div>',
+
+                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please try again if the problem persists call us directly.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+
                 cssClass: 'loginPopup',
                 scope: $scope,
                 // buttons: [

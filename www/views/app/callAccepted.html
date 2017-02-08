@@ -10,7 +10,10 @@
       </div>
       <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname|capitalize}} {{ mydocs.doctorLname|capitalize}} </h1>
       <h2>{{mydocs.doctorDegrees}}, Degrees<br>practicing since {{mydocs.practicingSince}}</h2>
-      <h2></h2>
+      <span ng-repeat="rating in ratings" >
+        <div  star-rating rating-value="rating.current" max="rating.max" >
+        </div>
+      </span>
 
     </div>
 

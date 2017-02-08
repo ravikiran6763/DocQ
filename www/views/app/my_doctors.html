@@ -26,11 +26,11 @@
                   <div  star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
                   </div>
                 </span>
+                <p class="totalReview">
+                  ({{doctor.totalCount}} Reviews)
+                </p>
               </div>
 
-              <p class="totalReview">
-                  ({{doctor.totalCount}} Reviews)
-              </p>
           </div>
           <div class="next-icon">
             <i class="icon ion-android-add-circle" ng-show="{{doctor.onoff == 1}}"></i>

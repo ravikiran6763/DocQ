@@ -214,7 +214,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					$scope.ratings = [{
 								 current: $scope.myDoctorRatings,
 								 max: 5,
-								 total:2
+								 total:0
 						 }, ];
 						 console.log($scope.ratings);
 				  }).catch(function(error){
@@ -378,6 +378,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									bylanguage:languagewise
 								};
 								console.log(searchdoctor);
+								$rootScope.rates=0;
+								$rootScope.totalRates=0;
 								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
 									if(Object.keys(response).length)
 									{
@@ -391,16 +393,27 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 	var data=$scope.doclist;//take all json data into this variable
 											 		for(var i=0; i<data.length; i++){
 
-																$rootScope.ratings=data[i].ratings,
+																$rootScope.rates=data[i].ratings,
 																$rootScope.totalRates=data[i].totalRates
 
-																console.log(	$rootScope.ratings);
-															// 	$rootScope.callId=data[i].callId,
+																if($rootScope.rates == null ){
+																	$rootScope.rates=''
+																}
+																if($rootScope.totalRates == null ){
+																	$rootScope.totalRates=''
+																}
+																console.log($rootScope.rates);
+
+																$rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+																console.log('rates',$rootScope.DocRates);
+																console.log('total',$rootScope.totalRates);
+
 															$scope.ratings = [{
-			 															 current: $rootScope.ratings,
+			 															 current: $rootScope.DocRates,
 			 															 max: 5,
 																		 total:$rootScope.totalRates
-			 													 }, ];
+																	 }, ];
+
 											 			}
 
 
@@ -529,26 +542,22 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			console.log(response);
 
 
+				window.plugins.toast.showWithOptions({
+					message: "Your password has been updated.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
 
-			window.plugins.toast.showWithOptions({
-		message: "Your password has been updated.",
-		duration: "short", // 2000 ms
-		position: "bottom",
-		styling: {
-		opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-		backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-		textColor: '#ffffff', // Ditto. Default #FFFFFF
-		textSize: 13, // Default is approx. 13.
-		cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-		horizontalPadding: 16, // iOS default 16, Android default 50
-		verticalPadding: 12 // iOS default 12, Android default 30
-		}
-		});
-
-	window.history.back();
-
-
-
+	// window.history.back();
 
 			}).catch(function(error){
 			console.log('failure data', error);
@@ -591,7 +600,6 @@ $scope.ratingsObject = {
 };
 
 	$scope.ratings = [{ name: 'DocRating', number: '3.5' }]
-
    $scope.getStars = function(rating) {
      // Get the value
      var val = parseFloat(rating);
