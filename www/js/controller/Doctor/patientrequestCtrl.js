@@ -21,6 +21,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 $localStorage.reqId= $rootScope.reqId;
 				 console.log($localStorage.reqId);
 				 $rootScope.reqPat=$rootScope.pphno;
+				 $localStorage.reqPat
 				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
 			 	$scope.CurrentDate = new Date();
@@ -262,7 +263,7 @@ $scope.isFirstTime = false;
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');
-			 $state.go("templates.notesForPatient",{calPtFname:})
+			 $state.go("templates.notesForPatient",{reqPat:$localStorage.reqPat})
 
 			 console.log('show accpted doc profile');
 		 }, 5000);
@@ -276,4 +277,4 @@ $scope.isFirstTime = false;
 
 
 
-});
+})

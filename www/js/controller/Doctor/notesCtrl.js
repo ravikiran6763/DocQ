@@ -9,26 +9,15 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
   $rootScope.prescription={};
 
-$rootScope.reqPat = $stateParams.reqPat;
-  patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
-      //console.log($localStorage.reqPat);
-      console.log('success');
-
-    }).catch(function(error){
-      console.log('failure data', error);
-    })
-
-console.log($rootScope.reqId);
-
-  //this is used to set notesflag in the database top 2
+// $localStorage.reqPat = $stateParams.reqPat;
 
 console.log($localStorage.reqPat);
-  patientProfileDetailsService.fetchPatient($rootScope.reqPat).then(function(response){
-    console.log($localStorage.reqPat);
+  //this is used to set notesflag in the database top 2
+
+  patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){
     $scope.patient_details=response;
     $ionicLoading.hide();
     console.log($scope.patient_details);
-
   }).catch(function(error){
     console.log('failure data', error);
   })
@@ -40,7 +29,6 @@ console.log($localStorage.reqPat);
 
     // $scope.prequestedtime = $rootScope.requesteddatetime;
     $scope.paphno = $stateParams.clPtPh;
-
     console.log($scope.patientfname);
 		// console.log($scope.paphno);
 
