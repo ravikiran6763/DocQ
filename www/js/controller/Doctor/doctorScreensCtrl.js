@@ -34,7 +34,7 @@ function checkNewMsgs(){
 
             }
 
- hello.unreadchatfromusers(username,password,success, failure);
+ // hello.unreadchatfromusers(username,password,success, failure);
   }
 }
 
