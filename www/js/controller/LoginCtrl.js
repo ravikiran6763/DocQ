@@ -60,7 +60,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						searchDoctorServices.specialitySearch().then(function(response){
 							window.localStorage['specialityList1'] = angular.toJson(response);
-							console.log(window.localStorage['specialityList1']);
+							// console.log(window.localStorage['specialityList1']);
 						}).catch(function(error){
 						console.log('failure data', error);
 						});

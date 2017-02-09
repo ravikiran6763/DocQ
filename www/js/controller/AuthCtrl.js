@@ -53,7 +53,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             {
               alert("Error calling Hello Plugin");
             }
-        hello.login(uname1,pw1,success, failure);
+        // hello.login(uname1,pw1,success, failure);
           $ionicHistory.nextViewOptions({
           disableAnimate: true,
           disableBack: true

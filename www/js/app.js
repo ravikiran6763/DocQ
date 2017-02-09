@@ -38,7 +38,9 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ngMessages',
   'ion-alpha-scroll',
   'angular-circular-progress',
-  'ionic-letter-avatar'
+  'ionic-letter-avatar',
+  'ionic.service.core',
+  'ionic.service.push'
 ])
 
 DoctorQuickApp.run(function($window, $rootScope) {
@@ -266,7 +268,13 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
   })
 
 
-
+  DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
+    $ionicAppProvider.identify({
+      app_id: 'bd00003c',
+      api_key: '8ad5f33f91a41a0d11c53ffdb5884c7643ec4be0b6a2276c',
+      dev_push: true
+    });
+  }])
 
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {

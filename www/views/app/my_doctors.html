@@ -20,18 +20,16 @@
             <h2 >Dr.{{doctor.doctorFname | capitalize }} {{doctor.doctorLname | capitalize}} </h2>
             <p>{{doctor.doctorDegrees}} Degrees</p>
             <p>Practicing since {{doctor.practicingSince}}</p>
-
-              <div class="ratingContainer">
-                <span ng-repeat="rating in ratings" >
-                  <div  star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
-                  </div>
-                </span>
-                <p class="totalReview">
-                  ({{doctor.totalCount}} Reviews)
-                </p>
+            <span ng-repeat="rating in ratings" >
+              <div  star-rating rating-value="doctor.totalRating / doctor.totalCount" max="rating.max" >
               </div>
+              <p class="totalReview">
+                ({{doctor.totalCount}} Reviews)
+              </p>
+            </span>
 
           </div>
+
           <div class="next-icon">
             <i class="icon ion-android-add-circle" ng-show="{{doctor.onoff == 1}}"></i>
             <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doctor.onoff == 2}}"></i>

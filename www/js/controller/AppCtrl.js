@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $ionicPush, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -30,6 +30,13 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
 // $interval.cancel(checkAcceptedReq,2000);
+
+$rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
+  alert("Successfully registered token " + data.token);
+  console.log('Ionic Push: Got token ', data.token, data.platform);
+  $scope.token = data.token;
+});
+
 ion.sound({
     sounds: [
         {
@@ -53,6 +60,23 @@ ion.sound({
 
 // play sound
 ion.sound.play("beer_can_opening");
+
+$scope.pushRegister = function() {
+ console.log('Ionic Push: Registering user');
+ $scope.accptNotifications=true;
+ $scope.rejectNotifications=false;
+ // Register with the Ionic Push service.  All parameters are optional.
+ $ionicPush.register({
+   canShowAlert: true, //Can pushes show an alert on your screen?
+   canSetBadge: true, //Can pushes update app icon badges?
+   canPlaySound: true, //Can notifications play a sound?
+   canRunActionsOnWake: true, //Can run actions outside the app,
+   onNotification: function(notification) {
+     // Handle new push notifications here
+     return true;
+   }
+ });
+};
 
 
 //var networkState= $cordovaNetwork.isOnline();
@@ -409,10 +433,24 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									else if(Object.keys(response).length == 0)
 									{
 										console.log('empty');
-										$ionicPopup.alert({
-										title: 'Sorry',
-										template:' no doctors are available right now!!'
-										})
+												var confirmPopup = $ionicPopup.confirm({
+															 title: 'DoctorQuick',
+															 template: 'No doctors are available right now!!',
+															 cssClass: 'videoPopup',
+															 scope: $scope,
+															 buttons: [
+
+															 {
+																 text: 'Ok',
+																 type: 'button-positive',
+																 onTap: function(e) {
+																 console.log('ok');
+
+															 }
+														 },
+														 ]
+														 });
+
 										return true;
 
 									}
@@ -896,14 +934,12 @@ $scope.BalanceForVoiceCall=function()
 
 /////////////Show and hide notification////////////////////////////////////////
 
-		$scope.hideNotifications = function (message) {
-			console.log(message);
+		$scope.hideNotifications = function () {
 			$scope.accptNotifications=true;
 			$scope.rejectNotifications=false;
 
 		};
-		$scope.showNotifications = function (message) {
-					console.log(message);
+		$scope.showNotifications = function () {
 					$scope.accptNotifications=false;
 					$scope.rejectNotifications=true;
 
