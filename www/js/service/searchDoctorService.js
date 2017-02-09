@@ -14,6 +14,20 @@ this.specialitySearch = function (speciality) {
   return deferred.promise;
 
 }
+
+this.getLanguages = function () {
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.languages)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+
+  return deferred.promise;
+
+}
 //function to fetch all the Doctors
 
 this.fetchAllDoctors = function () {
@@ -32,7 +46,7 @@ this.fetchAllDoctors = function () {
 }
 
 
-// 
+//
 // var resultofsearch;
 
 

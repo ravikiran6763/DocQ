@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootScope, $scope, $interval, $timeout, medicalSpecialityService,$localStorage, $ionicLoading) {
+DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootScope, $scope, $interval, $window, $timeout, medicalSpecialityService,$localStorage, $ionicLoading) {
 
     $rootScope.headerTxt="Medical Speciality";
     $rootScope.showBackBtn=true;
@@ -7,14 +7,8 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showNotification=false;
     $rootScope.showBadge=false;
 
-    medicalSpecialityService.getMedicalSpecialist().then(function(response){
-      $ionicLoading.show();
-        console.log('successfull data', response);
-        $scope.specialitiesList = response;
-          $ionicLoading.hide();
-     }).catch(function(error){
-         console.log('failure data', error);
-     });
+    $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
+    console.log($scope.specialitiesList);
 
      medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
  		 .then(function(response){

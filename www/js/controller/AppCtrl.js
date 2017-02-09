@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -250,19 +250,16 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 				};
 				if (selectedSearch == "language") {
 
-					$rootScope.LanguageList = [
-								{'lang': 'English'},
-								{'lang': 'Kannada'},
-								{'lang': 'Hindi'},
-								{'lang': 'Tamil'},
-								{'lang': 'Telugu'}
-					]
+
+
+					$scope.LanguageList = angular.fromJson($window.localStorage['languages']);
+					console.log($scope.LanguageList);
+
 					$rootScope.SearchHeader='Language';
 					$rootScope.showSPecialities=false;
 					$rootScope.showSex=false;
 					$rootScope.showStatus=false;
 					$rootScope.showLanguage=true;
-						console.log($rootScope.LanguageList);
 				};
 
 				if (selectedSearch == "onlineOffline") {
@@ -289,18 +286,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					$rootScope.showSex=false;
 					$rootScope.showStatus=false;
 					$rootScope.showLanguage=false;
-					$ionicLoading.show();
 
-							searchDoctorServices.specialitySearch().then(function(response){
-							$rootScope.specialityList1=response;
-							if($rootScope.specialityList1){
-								$ionicLoading.hide();
-							}
-
-
-					}).catch(function(error){
-						console.log('failure data', error);
-					});
+					$scope.specialityList1 = angular.fromJson($window.localStorage['specialityList1']);
+					console.log($scope.specialityList1);
 
 				};
 

@@ -9844,6 +9844,10 @@ ion-side-menu ion-item.item .menu-text {
 .ng-animate .scroll-bar {
   visibility: visible !important; }
 
+ion-content.scroll-content.ionic-scroll {
+  height: auto !important;
+  overflow: auto !important; }
+
 scroll-bar-indicator {
   height: 6%;
   width: 300%; }
