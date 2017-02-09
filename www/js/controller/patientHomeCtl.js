@@ -15,10 +15,12 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 $interval(checkNewMessages,2000);
 
 function checkNewMessages(){
+
 	if($scope.currentState == 'app.patient_home')
 	{
 
-		$scope.unreadchatforpatient = {};
+	  $scope.unreadchatforpatient = {};
+
 			var username = "greet+"+$localStorage.user;
 			var password = "DQ_patient";
 
@@ -29,11 +31,19 @@ function checkNewMessages(){
 				}
 				var failure = function()
 				{
-				 alert("Error calling unreadchatcount Plugin");
-				 //console.log('error');
+				 //alert("Error calling unreadchatcount Plugin");
+				 console.log('error');
 				}
+<<<<<<< HEAD
 		//  	hello.unreadchatfromusers(username,password,success, failure);
+=======
+
+	 	//hello.unreadchatfromusers(username,password,success, failure);
+
+>>>>>>> 389412bc3de2aedc43bd2012704e035f90d6cf9d
 	}
+
+
 }
 $timeout(function () {
 	console.log('timeout');
