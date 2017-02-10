@@ -20,7 +20,10 @@
 .ng-animate .scroll-bar {
   visibility: visible !important;
 }
-
+ion-content.scroll-content.ionic-scroll {
+    height: auto !important;
+    overflow: auto !important;
+}
 scroll-bar-indicator{
     height: 6%;
     width: 300%;
@@ -70,8 +73,8 @@ ion-content.scroll-content.ionic-scroll{
       position: absolute;
       margin-top: -16%;
       margin-left: 70%;
-      height: 14%;
-      // background-color: red;
+      height: 15%;
+      width: 25%;
       z-index: 2;
 
 

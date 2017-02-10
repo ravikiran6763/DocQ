@@ -9844,6 +9844,10 @@ ion-side-menu ion-item.item .menu-text {
 .ng-animate .scroll-bar {
   visibility: visible !important; }
 
+ion-content.scroll-content.ionic-scroll {
+  height: auto !important;
+  overflow: auto !important; }
+
 scroll-bar-indicator {
   height: 6%;
   width: 300%; }
@@ -9883,7 +9887,8 @@ ion-content.scroll-content.ionic-scroll {
   position: absolute;
   margin-top: -16%;
   margin-left: 70%;
-  height: 14%;
+  height: 15%;
+  width: 25%;
   z-index: 2; }
 
 .docSidemenuToggle {
@@ -11356,9 +11361,8 @@ ion-side-menu .heading-item .message {
         float: left;
         margin: 1% 0 0 2%; }
         .patientscreen-view .patientScreen-bottom-content li .profile-img img {
-          margin-left: 3%;
           margin-top: -5%;
-          width: 95%; }
+          width: 100%; }
       .patientscreen-view .patientScreen-bottom-content li .next-icon {
         width: 5%;
         float: right;
@@ -11676,7 +11680,7 @@ ion-side-menu .heading-item .message {
     height: 90%;
     overflow: scroll !important; }
     .mydoctor-profile-view .myDoctor-list li {
-      height: 15%;
+      height: 19%;
       border-bottom: 2px solid #dadada;
       *zoom: 1; }
       .mydoctor-profile-view .myDoctor-list li:before, .mydoctor-profile-view .myDoctor-list li:after {
@@ -11694,11 +11698,11 @@ ion-side-menu .heading-item .message {
         margin: 3% 0 0 2%; }
         .mydoctor-profile-view .myDoctor-list li .profile-img img {
           border-radius: 100% !important;
-          width: 90%; }
+          width: 100% !important; }
       .mydoctor-profile-view .myDoctor-list li .next-icon {
         width: 5%;
         float: right;
-        padding-top: 4%;
+        padding-top: 7%;
         padding-right: 10%;
         position: relative; }
         .mydoctor-profile-view .myDoctor-list li .next-icon .ion-chevron-right:before {
@@ -11714,9 +11718,8 @@ ion-side-menu .heading-item .message {
           margin: 0% 2%;
           color: black; }
         .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
-          position: absolute;
-          margin-left: 21%;
-          margin-top: 3.5%;
+          margin-left: 43%;
+          margin-top: -2%;
           text-overflow: ellipsis; }
         .mydoctor-profile-view .myDoctor-list li .name-content h2 {
           margin: 2%;
@@ -11724,10 +11727,8 @@ ion-side-menu .heading-item .message {
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 50%; }
-        .mydoctor-profile-view .myDoctor-list li .name-content .ratingContainer {
-          margin-top: -8.5%;
-          margin-left: 53%;
-          width: 38%; }
+        .mydoctor-profile-view .myDoctor-list li .name-content .rating {
+          margin: 0% !important; }
 
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
@@ -11915,9 +11916,9 @@ ion-side-menu .heading-item .message {
       color: #4b9a0c;
       font-size: 112%; }
   .callAccpted-view .bottom-content {
-    height: 52%; }
+    height: 42%; }
     .callAccpted-view .bottom-content h5 {
-      font-size: 88%;
+      font-size: 120%;
       line-height: 0%;
       text-align: center;
       margin-top: 8%;

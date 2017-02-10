@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService, patientProfileDetailsService)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
 {
 
 		$scope.user = {};
@@ -45,25 +45,45 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					userNum : $scope.loginData.phone,
 					password : $scope.loginData.pin
 				};
-				// console.log(userDetails);
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!experiment!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-				// LoginService.loginprocess(userDetails)
-				// .then(function(response) {
-				// 	console.log(response);
-				// 		$rootScope.$broadcast('authorized');
-				// 		$state.go('app.patient_home');
-				// });
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 
 					if(response === "patient")
 					{
+						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
+							window.localStorage['patientDetails'] = angular.toJson(response);
+							console.log($scope.patient_details);
+						}).catch(function(error){
+						console.log('failure data', error);
+						})
+
+						searchDoctorServices.specialitySearch().then(function(response){
+							window.localStorage['specialityList1'] = angular.toJson(response);
+							// console.log(window.localStorage['specialityList1']);
+						}).catch(function(error){
+						console.log('failure data', error);
+						});
+
+						searchDoctorServices.getLanguages().then(function(response){
+							window.localStorage['languages'] = angular.toJson(response);
+							console.log(window.localStorage['languages']);
+						}).catch(function(error){
+						console.log('failure data', error);
+						});
+
+						///////////get all specialities///////////
+
+						 medicalSpecialityService.getMedicalSpecialist().then(function(response){
+				         console.log('successfull data', response);
+				         $scope.specialitiesList = response;
+								 window.localStorage['specialitiesList'] = angular.toJson(response);
+				      }).catch(function(error){
+				          console.log('failure data', error);
+				      });
+
 
 						$localStorage.doctororpatient = response;
-
-
 
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
@@ -83,6 +103,16 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					{
 
 						$localStorage.doctororpatient = response;
+
+						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
+					    $rootScope.doctor_details=response;//store the response array in doctor details
+					    console.log($rootScope.doctor_details);
+					    window.localStorage['doctorDetails'] = angular.toJson(response);
+
+					  }).catch(function(error){
+					    console.log('failure data', error);
+					  });
+
 
 
 					var uname1 = "greet+"+$scope.loginData.phone;

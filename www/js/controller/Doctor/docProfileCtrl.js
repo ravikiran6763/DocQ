@@ -6,19 +6,8 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope, $ionicCo
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
-console.log('doctor profile called');
-
-
-console.log($localStorage.user);
-
-  doctorServices.doctorDetails($localStorage.user).then(function(response){
-    console.log($localStorage.user);
-    $rootScope.doctor_details=response;//store the response array in doctor details
-    console.log($rootScope.doctor_details);
-  }).catch(function(error){
-    console.log('failure data', error);
-  });
-
+  $scope.userDoctor = angular.fromJson($window.localStorage['doctorDetails']);
+  console.log($scope.userDoctor);
 	 $scope.$watch('toggle', function(){
 			 $scope.toggleText = $scope.toggle ? 'Accept!' : 'Accepted';
 	 });

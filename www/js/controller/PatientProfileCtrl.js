@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -12,7 +12,12 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
 
-console.log('callled');
+	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+	console.log($scope.patient_details);
+
+// $window.localStorage['patientDetails'] = JSON.stringify([{
+//   patientAge: 23,
+// }]);
 
 	function updatedPIc(){
 		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
@@ -25,18 +30,6 @@ console.log('callled');
 	})
 
 	}
-
-	$ionicLoading.show();
-
-	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
-		$scope.patient_details=response;
-		$ionicLoading.hide();
-		console.log($scope.patient_details);
-
-}).catch(function(error){
-console.log('failure data', error);
-})
-
 
 
 				$scope.termsAndCond=function(){

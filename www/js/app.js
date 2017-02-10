@@ -38,7 +38,9 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ngMessages',
   'ion-alpha-scroll',
   'angular-circular-progress',
-  'ionic-letter-avatar'
+  'ionic-letter-avatar',
+  'ionic.service.core',
+  'ionic.service.push'
 ])
 
 DoctorQuickApp.run(function($window, $rootScope) {
@@ -57,7 +59,7 @@ DoctorQuickApp.run(function($window, $rootScope) {
       // console.log($rootScope.online);
 })
 
-DoctorQuickApp.run(function($ionicPlatform) {
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     window.plugin.backgroundMode.enable();
@@ -77,6 +79,36 @@ DoctorQuickApp.run(function($ionicPlatform) {
       StatusBar.styleBlackOpaque();
     }
   });
+
+
+  $interval(checkConnection, 1000)
+
+  function checkConnection() {
+      var networkState = navigator.network.connection.type;
+
+      var states = {};
+      states[Connection.UNKNOWN]  = 'Unknown';
+      states[Connection.ETHERNET] = 'Ethernet';
+      states[Connection.WIFI]     = 'WiFi';
+      states[Connection.CELL_2G]  = '2G';
+      states[Connection.CELL_3G]  = '3G';
+      states[Connection.CELL_4G]  = '4G';
+      states[Connection.NONE]     = 'None';
+
+      $localStorage.networkType = states[networkState];
+      console.log('Connection type: ' + $localStorage.networkType);
+  }
+
+  document.addEventListener("offline", onOffline, false);
+
+  function onOffline() {
+      // Handle the offline event
+      alert('offline');
+  }
+
+
+
+
 })
 
 DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
@@ -170,27 +202,7 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
           console.log('device ready for network check');
       }
 
-      function checkConnection() {
-          var networkState = navigator.network.connection.type;
 
-          var states = {};
-          states[Connection.UNKNOWN]  = 'Unknown connection';
-          states[Connection.ETHERNET] = 'Ethernet connection';
-          states[Connection.WIFI]     = 'WiFi connection';
-          states[Connection.CELL_2G]  = 'Cell 2G connection';
-          states[Connection.CELL_3G]  = 'Cell 3G connection';
-          states[Connection.CELL_4G]  = 'Cell 4G connection';
-          states[Connection.NONE]     = 'No network connection';
-
-          alert('Connection type: ' + states[networkState]);
-      }
-
-      document.addEventListener("offline", onOffline, false);
-
-      function onOffline() {
-          // Handle the offline event
-          alert('offline');
-      }
 
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
@@ -266,7 +278,13 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
   })
 
 
-
+  DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
+    $ionicAppProvider.identify({
+      app_id: 'bd00003c',
+      api_key: '8ad5f33f91a41a0d11c53ffdb5884c7643ec4be0b6a2276c',
+      dev_push: true
+    });
+  }])
 
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {

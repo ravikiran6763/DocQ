@@ -2,9 +2,26 @@
 
 
 
-DoctorQuickApp.controller('docSidemenuCtrl', function($scope,$rootScope, $ionicConfig) {
-	//console.log('sidemenu');
-	$rootScope.docAvailable = false;
+DoctorQuickApp.controller('PushCtrl', function($scope, $rootScope, $ionicUser, $ionicPush) {
+					$scope.identifyUser = function() {
+						var user = $ionicUser.get();
+						if(!user.user_id) {
+							// Set your user_id here, or generate a random one.
+							user.user_id = $ionicUser.generateGUID();
+						};
+					 	console.log(user.user_id);
+						// Metadata
+						angular.extend(user, {
+							name: 'Ravikiran',
+							bio: 'DocQuick'
+						});
+
+						// Identify your user with the Ionic User Service
+						$ionicUser.identify(user).then(function(){
+							$scope.identified = true;
+							console.log('Identified user ' + user.name + '\n ID ' + user.user_id);
+						});
+					};
 
 })
 

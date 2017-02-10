@@ -47,7 +47,7 @@ $rootScope.chatCount='';
 			console.log(doctorPhone);
 			rateDoctorServices.getDocRatingsByAll(doctorPhone).then(function(response){
 				$scope.docRating=response;
-				console.log($scope.myConsultedDoctors);
+				console.log($scope.docRating);
 				$ionicLoading.hide();
 				$scope.$watch('docRating', function() {
 			 // do something here

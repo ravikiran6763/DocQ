@@ -2,7 +2,7 @@
 
 require 'headers.php';
 
-	 $sql = "SELECT id,special,content,description FROM speciality order by special";
+	 $sql = "SELECT language  FROM indianLanguages order by language";
 		$retval = mysql_query( $sql, $dbhandle );
 	   if(! $retval )
 	   {
