@@ -233,7 +233,10 @@
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
     <plugin name="ionic-plugin-deploy" spec="~0.6.5" />
+<<<<<<< HEAD
     <plugin name="phonegap-plugin-push" spec="~1.9.2">
         <variable name="SENDER_ID" value="271054721857" />
     </plugin>
+=======
+>>>>>>> bd5cac9bd479d0c9d9c136bef395a0cf59b587be
 </widget>

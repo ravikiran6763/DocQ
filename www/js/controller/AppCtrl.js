@@ -7,6 +7,9 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showDocStatus=false;
 	$scope.myDocDetail = {};
 
+
+	
+
 	$rootScope.showSPecialities=false;
 	$rootScope.showSex=false;
 	$rootScope.showStatus=false;
