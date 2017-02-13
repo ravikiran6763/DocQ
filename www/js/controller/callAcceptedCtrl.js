@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
@@ -41,6 +41,29 @@ console.log($rootScope.callFlag,$rootScope.callId);
  console.log('failure data', error);
  });
 
+ document.addEventListener("deviceready", function (){
+     var type = $cordovaNetwork.getNetwork()
+     var isOnline = $cordovaNetwork.isOnline()
+     var isOffline = $cordovaNetwork.isOffline()
+ 		console.log(type);
+
+ 		if(  type != '4g'){
+ 			console.log('wifi');
+ 		}
+     // listen for Online event
+     $rootScope.$on('networkOffline', function(event, networkState){
+       var onlineState = networkState;
+ 			console.log(onlineState);
+     })
+
+     // listen for Offline event
+     $rootScope.$on('networkOffline', function(event, networkState){
+       var offlineState = networkState;
+ 			console.log(offlineState);
+     })
+
+   }, false);
+
 
 $scope.checkWalletBalance = function()
 {
@@ -49,36 +72,84 @@ $scope.checkWalletBalance = function()
 	$scope.callid = $rootScope.callId;
 	$localStorage.ViewDoc=1;
 
-			var uname = "greet+"+$localStorage.user;
-			 var pw = "DQ_patient";
+	console.log($localStorage.networkType);
+	var uname = "greet+"+$localStorage.user;
+	var pw = "DQ_patient";
 
-			 var persontocall = "greet+" + $rootScope.accptdDoc;
-			 console.log(uname);
-			 console.log($scope.callid);
-			 	 var success = function(message)
-				{
-						alert(message);
-						$scope.enddate = new Date();
-						console.log($localStorage.user);
-						console.log($localStorage.Doctocall);
-						callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-						$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
+		 var persontocall = "greet+" + $rootScope.accptdDoc;
+		 console.log(uname);
+		 console.log($scope.callid);
 
-						patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
-			 			 //console.log($localStorage.reqPat);
-			 			 console.log('success');
-
-			 		 }).catch(function(error){
-			 			 console.log('failure data', error);
-			 		 })
-				}
-				var failure = function()
-				{
-					alert("Error calling Hello Plugin");
-				}
+	if($localStorage.networkType == 'None')
+	{
+		var confirmPopup = $ionicPopup.confirm({
+						title: 'DoctorQuick',
+						template: 'You are Offline ',
+						cssClass: 'videoPopup',
+						scope: $scope,
+						buttons: [
+							{
+								text: 'Ok',
+								type: 'button-royal',
+								onTap: function(e) {
+								console.log('offline');
+								}
+							},
+						]
+					});
+	}
+	else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
+	{
+		var confirmPopup = $ionicPopup.confirm({
+						title: 'DoctorQuick',
+						template: 'We detected slow nwtwork on your device ',
+						cssClass: 'videoPopup',
+						scope: $scope,
+						buttons: [
+							{
+								text: 'Ok',
+								type: 'button-positive',
+								onTap: function(e) {
+								console.log('ok');
+								}
+							},
+						]
+					});
+	}
+	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
+	{
+		var success = function(message)
+		{
+				alert(message);
+				$scope.enddate = new Date();
+				console.log($localStorage.user);
+				console.log($rootScope.accptdDoc);
+				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 
-		 hello.greet(uname,pw,persontocall,success, failure);
+				patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
+				 //console.log($localStorage.reqPat);
+				 console.log('success');
+
+			 }).catch(function(error){
+				 console.log('failure data', error);
+			 })
+		}
+		var failure = function()
+		{
+			alert("Error calling Hello Plugin");
+		}
+			hello.greet(uname,pw,persontocall,success, failure);
+	}
+	else{
+
+		////Do nothing
+
+	}
+
+
+
+				// $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 }
 
 

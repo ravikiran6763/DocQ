@@ -1,85 +1,17 @@
-.doc-reg2-view
-{
-	font-family: Ubuntu,bold,sans-serif !important;
-	ion-content{
-		overflow: scroll !important;
-	}
-	.top-content{
-		height: 40%;
-		width: 80%;
-		margin: 0 auto;
-		text-align: center;
+FireBase Details
 
-		img{
+Project ID :  doctorquick-e6ffd
+Web API Key: AIzaSyAiKbzEBShSGpHvME3IU2QmxWX9rlmRajU
 
-				width: 42%;
-				padding-top: 55px;
+Firebase using doctorquick2016@gmail.common
 
-		}
-	}
-	.form-content{
-		height: 40%;
-		width: 80%;
-		margin: 0 auto;
-		.item-input{
-			margin-top: 2vh;
-			select{
-				border: none;
-				font-family: inherit;
-				background-color: #fff;
-			}
-		}
-	}
-	.bottom-content{
-		height: 20%;
-		width: 80%;
-		margin: 0 auto;
+Id: doctorquick-158607
+senderId :271054721857
+API Key: AIzaSyBPldeHuqE5O3GGqS2jWIkR5s8JKNnfxDE
+serve key: AAAAPxwe00E:APA91bELSBi0pwKzNMXAsEGYftKvaFlomS0lvJTBCGaW3OMEWoWxj_8D0ePSJHFvxsGLoPaKhAlJsnGRirEXAi2n0Kokn5KeulA9OZqH4M_FKbqJKKLPB6ehTsF84r3Qs48VGOt152b7
 
 
-		.button{
-			background-color: #6aa13e;
-			border: none;
-			color: #fff;
-		}
-	}
-	.popup-body {
-		font-family: Ubuntu,bold,sans-serif !important;
-	}
-	input[type="email"]{
-		margin-top: 2vh !important;
-		height: 40px !important;
-		padding-left: 10px;
-		width: 100%;
-	// height: 100%;
-}
-input[type="number"]{
-	margin-top: 2vh !important;
-	height: 40px !important;
-	padding-left: 10px;
-	width: 100%;
-// height: 100%;
-}
-.login_button {
-		background-color: #6aa13e;
-		color: #ffffff;
-		height: 48px;
-		width: 100%;
-		margin: 0 auto;
-		span{
-			color:#fff;
-			font-size: 4.5vw !important;
-		}
-}
+GCM Details:
 
-.button-stable{
-	background-color: #6aa13e;
-}
-.button-stable.activated{
-	background-color: #557a23 !important;
-}
-
-.button-calm.activated{
-	background-color:#026451!important;
-}
-
-}
+API : AIzaSyADhIKJf-hqnKUqydRuSuT8481R6KWauFg
+server key saved in DQBAckup folder
