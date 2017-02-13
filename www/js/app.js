@@ -40,8 +40,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'angular-circular-progress',
   'ionic-letter-avatar',
   'ionic.service.core',
-  'ionic.service.push',
-  'firebase'
+  'ionic.service.push'
 ])
 
 DoctorQuickApp.run(function($window, $rootScope) {

@@ -120,22 +120,16 @@ $scope.checkWalletBalance = function()
 						]
 					});
 	}
-<<<<<<< HEAD
 	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
-=======
 	if($localStorage.networkType == '4G' || $localStorage.networkType == 'wifi')
->>>>>>> bd5cac9bd479d0c9d9c136bef395a0cf59b587be
 	{
 		var success = function(message)
 		{
 				alert(message);
 				$scope.enddate = new Date();
 				console.log($localStorage.user);
-<<<<<<< HEAD
 				console.log($rootScope.accptdDoc);
-=======
 				console.log($localStorage.Doctocall);
->>>>>>> bd5cac9bd479d0c9d9c136bef395a0cf59b587be
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 
@@ -153,17 +147,11 @@ $scope.checkWalletBalance = function()
 		}
 			hello.greet(uname,pw,persontocall,success, failure);
 	}
-<<<<<<< HEAD
 	else{
 
 		////Do nothing
 
 	}
-
-=======
->>>>>>> bd5cac9bd479d0c9d9c136bef395a0cf59b587be
-
-
 				// $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 }
 
