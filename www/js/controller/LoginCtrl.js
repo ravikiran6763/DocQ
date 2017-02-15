@@ -53,7 +53,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					{
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
-							console.log($scope.patient_details);
 						}).catch(function(error){
 						console.log('failure data', error);
 						})
@@ -67,7 +66,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						searchDoctorServices.getLanguages().then(function(response){
 							window.localStorage['languages'] = angular.toJson(response);
-							console.log(window.localStorage['languages']);
+							// console.log(window.localStorage['languages']);
 						}).catch(function(error){
 						console.log('failure data', error);
 						});

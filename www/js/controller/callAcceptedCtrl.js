@@ -70,7 +70,7 @@ $scope.checkWalletBalance = function()
 	var videocallflag = 2;
 	$scope.startdate = new Date();
 	$scope.callid = $rootScope.callId;
-	$localStorage.ViewDoc=1;
+	// $localStorage.ViewDoc=1;
 
 	console.log($localStorage.networkType);
 	var uname = "greet+"+$localStorage.user;
@@ -98,11 +98,8 @@ $scope.checkWalletBalance = function()
 						]
 					});
 	}
-<<<<<<< HEAD
 	else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
-=======
 	if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
->>>>>>> bd5cac9bd479d0c9d9c136bef395a0cf59b587be
 	{
 		var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -241,7 +238,7 @@ console.log(checkPatientActivity);
 		 }
 		 console.log(calldecline);
 		 $interval.cancel(checkAcceptedReq);
-		 $localStorage.ViewDoc=0;
+		//  $localStorage.ViewDoc=0;
 		 callAcceptedService.callDeclined(calldecline).then(function(response){
 			 $scope.declineStatus=response;
 			 console.log($scope.declineStatus);

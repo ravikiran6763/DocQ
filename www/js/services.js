@@ -78,11 +78,11 @@ angular.module('DoctorQuick.services', [])
 			});
 
 			// WARNING: dangerous to unregister (results in loss of tokenID)
-			// $cordovaPush.unregister(options).then(function(result) {
-			//   // Success!
-			// }, function(err) {
-			//   // Error
-			// });
+			$cordovaPush.unregister(options).then(function(result) {
+			  // Success!
+			}, function(err) {
+			  // Error
+			});
 		}
 
 		if(ionic.Platform.isIOS())

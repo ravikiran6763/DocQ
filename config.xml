@@ -21,6 +21,7 @@
     <allow-navigation href="http://*/*" />
     <allow-navigation href="https://*/*" />
     <allow-navigation href="data:*" />
+    <allow-navigation href="http://192.168.30.49:8100" />
     <allow-intent href="*" />
     <allow-intent href="*" />
     <preference name="webviewbounce" value="false" />
@@ -61,6 +62,7 @@
         <variable name="MY_VARIABLE" value="my_variable_value" />
     </plugin>
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
+    <plugin name="ionic-plugin-deploy" spec="~0.6.5" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -232,11 +234,5 @@
         </dict>
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
-    <plugin name="ionic-plugin-deploy" spec="~0.6.5" />
-<<<<<<< HEAD
-    <plugin name="phonegap-plugin-push" spec="~1.9.2">
-        <variable name="SENDER_ID" value="271054721857" />
-    </plugin>
-=======
->>>>>>> bd5cac9bd479d0c9d9c136bef395a0cf59b587be
+    
 </widget>

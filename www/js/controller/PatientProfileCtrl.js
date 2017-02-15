@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$window,$ionicConfig,$ionicPush,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -18,7 +18,22 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 // $window.localStorage['patientDetails'] = JSON.stringify([{
 //   patientAge: 23,
 // }]);
+$scope.register = function() {
+ console.log('Ionic Push: Registering user');
 
+ $scope.accptNotifications=true;
+ $scope.rejectNotifications=false;
+ // Register with the Ionic Push service.  All parameters are optional.
+ $ionicPush.register().then(function(token){
+	 return $ionicPush.saveToken(token);
+ }).then(function(token){
+	 console.log('token',token);
+ }).catch(function(err){
+	 console.log(err);
+ });
+
+
+};
 	function updatedPIc(){
 		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
 			$scope.patient_details=response;
