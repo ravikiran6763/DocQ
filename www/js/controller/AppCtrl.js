@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -54,24 +54,31 @@ ion.sound({
 // play sound
 ion.sound.play("beer_can_opening");
 
-
 $scope.pushRegister = function() {
  console.log('Ionic Push: Registering user');
-
  $scope.accptNotifications=true;
  $scope.rejectNotifications=false;
- // Register with the Ionic Push service.  All parameters are optional.
- $ionicPush.register().then(function(token){
-	 console.log('running');
-	 return $ionicPush.saveToken(token);
- }).then(function(token){
-	 console.log('token',token);
- }).catch(function(err){
-	 console.log(err);
+
+ window.plugins.OneSignal.getIds(function(ids){
+  console.log(ids);
+ 	var notificationObj = {
+ 		contents: {en: "You have new consultation request"},
+ 		include_player_ids: [ids.userId],
+ 		android_sound:'tring'
+ 	};
+ 	window.plugins.OneSignal.postNotification(notificationObj,
+ 		function(successResponse) {
+ 			console.log("Notification Post Success:", successResponse);
+ 		},
+ 		function (failedResponse) {
+ 			console.log("Notification Post Failed: ", failedResponse);
+ 			alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
+ 		}
+ 	);
  });
 
-
 };
+
 
 
 //var networkState= $cordovaNetwork.isOnline();

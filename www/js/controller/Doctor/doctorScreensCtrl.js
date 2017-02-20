@@ -240,8 +240,8 @@ $scope.$watch('pending', function() { console.log('watch!'); });
 
     $scope.$watch('requests', function (newValue, oldValue, scope) {
         console.log('changed');
-        console.log(newValue);
-        console.log(oldValue);
+        // console.log(newValue);
+        // console.log(oldValue);
         if(newValue > oldValue){
           // alert('ting');
           ion.sound.play('bell_ring');

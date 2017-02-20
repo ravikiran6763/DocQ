@@ -10914,8 +10914,7 @@ ion-spinner.spinner-on-load {
     margin: 10% 0 0 0; }
 
 .dqLogin-view .bottom-content {
-  width: 100% !important;
-  height: 15% !important; }
+  width: 100% !important; }
   .dqLogin-view .bottom-content .leftbuttons {
     float: left;
     width: 50%;
@@ -11339,7 +11338,7 @@ ion-side-menu .heading-item .message {
   .patientscreen-view .patientScreen-bottom-content {
     background-color: #6aa433;
     width: 100%;
-    height: 45%;
+    height: 42%;
     box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
     overflow: scroll !important; }
     .patientscreen-view .patientScreen-bottom-content li {

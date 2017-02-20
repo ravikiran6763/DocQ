@@ -39,17 +39,28 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ion-alpha-scroll',
   'angular-circular-progress',
   'ionic-letter-avatar',
-  'ionic.cloud'
+  'ionic.cloud',
+  'ionic.service.core',
+  'ionic.service.push'
 
 
 ])
+// DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
+//   $ionicAppProvider.identify({
+//     app_id: 'b578c73c',
+//     api_key: '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
+//     dev_push: true
+//   });
+// }])
+
 DoctorQuickApp.config(function($ionicCloudProvider) {
   $ionicCloudProvider.init({
     "core": {
-      "app_id": "b578c73c"
+      "app_id": "b578c73c",
+      "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
     },
     "push": {
-      "sender_id": "271054721857",
+      "sender_id": "310212728810",
       "pluginConfig": {
         "ios": {
           "badge": true,
@@ -100,11 +111,10 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     //
     console.log('deviceready');
 
-
   });
 
 
-  $interval(checkConnection, 1000)
+  // $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -208,11 +218,26 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
+  document.addEventListener('deviceready', function ($scope,$localStorage) {
+    // Enable to debug issues.
+    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
+    console.log('onesignal');
+    var notificationOpenedCallback = function(jsonData) {
+      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    };
+
+    window.plugins.OneSignal
+      .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
+      .handleNotificationOpened(notificationOpenedCallback)
+      .endInit();
+      // Call syncHashedEmail anywhere in your app if you have the user's email.
+      // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+      // window.plugins.OneSignal.syncHashedEmail(userEmail);
+  }, false);
 
   // This fixes transitions for transparent background views
 
-  document.addEventListener("deviceready", onDeviceReady, false);
       // Cordova is loaded and it is now safe to make calls Cordova methods
       //
       function onDeviceReady() {
