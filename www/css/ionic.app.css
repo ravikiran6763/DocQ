@@ -10047,6 +10047,9 @@ ion-side-menu.menu-left.menu {
 .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
 
+.topUp input.ng-invalid:not(:focus) {
+  border: 2px solid red; }
+
 .submitted2ndPage input.ng-invalid:not(:focus) {
   border: 2px solid red; }
 

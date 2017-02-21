@@ -17,7 +17,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	  console.log('isDocTopUpValid ', isDocTopUpValid);
 	  console.log('clicked');
 
-	  $scope.submitted = true;
+	  $scope.topUp = true;
 	  if(isDocTopUpValid) {
 	    // console.log('isDocFormValid ', isDocFormValid)
 
