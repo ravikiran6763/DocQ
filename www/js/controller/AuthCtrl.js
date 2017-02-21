@@ -35,6 +35,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
        password : $localStorage.pass
      };
      console.log(preLoginDetails);
+
      var message="loading";
      $timeout(function() {
        $ionicLoading.show();
@@ -46,27 +47,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           var uname1 = "greet+"+$localStorage.user;
           var pw1 = "DQ_patient";
           var success = function(message)
-            {
-              alert(message);
-            }
-            var failure = function()
-            {
-              alert("Error calling Hello Plugin");
-            }
-        // hello.login(uname1,pw1,success, failure);
-          $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-          });
-
-        $state.go('app.patient_home');
-        }
-
-        else if(response === "doctor")
-        {
-        var uname1 = "greet+"+$localStorage.user;
-        var pw1 = "DQ_doctor";
-        var success = function(message)
           {
             alert(message);
           }
@@ -74,13 +54,72 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             alert("Error calling Hello Plugin");
           }
-        $ionicHistory.nextViewOptions({
-        disableAnimate: true,
-        disableBack: true
-        });
-      $state.go('templates.doctor_home');
-       hello.login(uname1,pw1,success, failure);
-        $localStorage.onOff=1;
+          // hello.login(uname1,pw1,success, failure);
+
+          $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+          });
+
+          $state.go('app.patient_home');
+          window.plugins.OneSignal.getIds(function(ids) {
+            //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+            //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+            // console.log(JSON.stringify(ids['userId']));
+            $scope.playerId=JSON.stringify(ids['userId']);
+
+            console.log($scope.playerId);
+            var updatePlayer ={
+              palyerId:$scope.playerId,
+              userNum:$localStorage.user,
+              user:'patient'
+            }
+            console.log(updatePlayer);
+            LoginService.updatePlayer(updatePlayer).then(function(response){
+              console.log(response);
+            })
+          });
+
+        }
+
+        else if(response === "doctor")
+        {
+            var uname1 = "greet+"+$localStorage.user;
+            var pw1 = "DQ_doctor";
+            var success = function(message)
+            {
+              alert(message);
+            }
+            var failure = function()
+            {
+              alert("Error calling Hello Plugin");
+            }
+            $ionicHistory.nextViewOptions({
+              disableAnimate: true,
+              disableBack: true
+            });
+            $state.go('templates.doctor_home');
+
+            window.plugins.OneSignal.getIds(function(ids) {
+              //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+              //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+              // console.log(JSON.stringify(ids['userId']));
+              $scope.playerId=JSON.stringify(ids['userId']);
+              console.log($scope.playerId);
+
+              var updatePlayer ={
+                palyerId:$scope.playerId,
+                userNum:$localStorage.user,
+                user:'doctor'
+              }
+              console.log(updatePlayer);
+              LoginService.updatePlayer(updatePlayer).then(function(response){
+                console.log(response);
+              })
+            });
+
+            hello.login(uname1,pw1,success, failure);
+            $localStorage.onOff=1;
         }
 
          $ionicLoading.hide();

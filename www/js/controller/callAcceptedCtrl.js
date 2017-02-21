@@ -70,7 +70,7 @@ $scope.checkWalletBalance = function()
 	var videocallflag = 2;
 	$scope.startdate = new Date();
 	$scope.callid = $rootScope.callId;
-	$localStorage.ViewDoc=1;
+	// $localStorage.ViewDoc=1;
 
 	console.log($localStorage.networkType);
 	var uname = "greet+"+$localStorage.user;
@@ -98,6 +98,7 @@ $scope.checkWalletBalance = function()
 						]
 					});
 	}
+	else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
 	if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
 	{
 		var confirmPopup = $ionicPopup.confirm({
@@ -116,6 +117,7 @@ $scope.checkWalletBalance = function()
 						]
 					});
 	}
+	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
 	if($localStorage.networkType == '4G' || $localStorage.networkType == 'wifi')
 	{
 		var success = function(message)
@@ -123,6 +125,7 @@ $scope.checkWalletBalance = function()
 				alert(message);
 				$scope.enddate = new Date();
 				console.log($localStorage.user);
+				console.log($rootScope.accptdDoc);
 				console.log($localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
@@ -141,8 +144,11 @@ $scope.checkWalletBalance = function()
 		}
 			hello.greet(uname,pw,persontocall,success, failure);
 	}
+	else{
 
+		////Do nothing
 
+	}
 				// $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
 }
 
@@ -232,7 +238,7 @@ console.log(checkPatientActivity);
 		 }
 		 console.log(calldecline);
 		 $interval.cancel(checkAcceptedReq);
-		 $localStorage.ViewDoc=0;
+		//  $localStorage.ViewDoc=0;
 		 callAcceptedService.callDeclined(calldecline).then(function(response){
 			 $scope.declineStatus=response;
 			 console.log($scope.declineStatus);

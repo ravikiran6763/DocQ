@@ -1,6 +1,6 @@
 {
   "name": "DoctorQuick",
-  "app_id": "bd00003c",
+  "app_id": "b578c73c",
   "gulpStartupTasks": [
     "sass",
     "watch"

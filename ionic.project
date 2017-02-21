@@ -1,6 +1,6 @@
 {
-  "name": "proxy-example",
-  "app_id": "bd00003c",
+  "name": "DoctorQuick",
+  "app_id": "b578c73c",
   "gulpStartupTasks": [
     "sass",
     "watch"

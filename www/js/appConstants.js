@@ -27,6 +27,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'payuFailure': 'common/payuFailure.php',
         'payuSucces': 'common/payuSucces.php',
         'languages': 'common/languages.php',
+        'updatePlayer': 'common/updatePlayer.php',
+
 
 
         /*PATIENT APIS*/

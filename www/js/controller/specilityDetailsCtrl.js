@@ -54,6 +54,26 @@ $scope.sendrequesttoonlinedoctors = function()
 {
      //////////
      /*Send request to all available doctor*/
+
+    //  window.plugins.OneSignal.getIds(function(ids){
+    //  	console.log(ids);
+    //    var notificationObj = {
+    //  		 contents: {en: "You have one new request!!!"},
+    //  		 include_player_ids: [ids.userId],
+    //      android_sound:'tring'
+    //  	 };
+    //    console.log();
+    //    window.plugins.OneSignal.postNotification(notificationObj,
+    //      function(successResponse) {
+    //        console.log("Notification Post Success:", successResponse);
+    //      },
+    //      function (failedResponse) {
+    //        console.log("Notification Post Failed: ", failedResponse);
+    //        alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
+    //      }
+    //    );
+    //  });
+
      medicalSpecialityService.sendrequesttodoctor($rootScope.special).then(function(response){
        console.log('successfull data', response);
       }).catch(function(error){

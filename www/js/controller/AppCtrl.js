@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $ionicPush, $cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService, searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -6,9 +6,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 	$scope.myDocDetail = {};
-
-
-	
 
 	$rootScope.showSPecialities=false;
 	$rootScope.showSex=false;
@@ -25,20 +22,13 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.sandwich=false;
 // var model = $cordovaDevice.getModel();
 // console.log(model);
-$localStorage.reqSent="";
 
-// console.log($localStorage.reqSent);
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
 // $interval.cancel(checkAcceptedReq,2000);
 
-$rootScope.$on('$cordovaPush:tokenReceived', function(event, data) {
-  alert("Successfully registered token " + data.token);
-  console.log('Ionic Push: Got token ', data.token, data.platform);
-  $scope.token = data.token;
-});
 
 ion.sound({
     sounds: [
@@ -68,18 +58,27 @@ $scope.pushRegister = function() {
  console.log('Ionic Push: Registering user');
  $scope.accptNotifications=true;
  $scope.rejectNotifications=false;
- // Register with the Ionic Push service.  All parameters are optional.
- $ionicPush.register({
-   canShowAlert: true, //Can pushes show an alert on your screen?
-   canSetBadge: true, //Can pushes update app icon badges?
-   canPlaySound: true, //Can notifications play a sound?
-   canRunActionsOnWake: true, //Can run actions outside the app,
-   onNotification: function(notification) {
-     // Handle new push notifications here
-     return true;
-   }
+
+ window.plugins.OneSignal.getIds(function(ids){
+  console.log(ids);
+ 	var notificationObj = {
+ 		contents: {en: "You have new consultation request"},
+ 		include_player_ids: [ids.userId],
+ 		android_sound:'tring'
+ 	};
+ 	window.plugins.OneSignal.postNotification(notificationObj,
+ 		function(successResponse) {
+ 			console.log("Notification Post Success:", successResponse);
+ 		},
+ 		function (failedResponse) {
+ 			console.log("Notification Post Failed: ", failedResponse);
+ 			alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
+ 		}
+ 	);
  });
+
 };
+
 
 
 //var networkState= $cordovaNetwork.isOnline();
@@ -155,9 +154,8 @@ document.addEventListener("deviceready", function (){
 
 $rootScope.statename = $ionicHistory.currentStateName();
 
-console.log($rootScope.statename);
+// console.log($rootScope.statename);
 if($ionicHistory.currentStateName() === 'app.patient_home'){
-	// $localStorage.reqSent=0;
 	console.log($ionicHistory.currentStateName() );
 	$ionicHistory.nextViewOptions({
 					disableBack: true
@@ -195,9 +193,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						}
 
 						else if($scope.prevPage === 'app.specialityDetailsNew'){
-
-							$localStorage.reqSent=0;
-							console.log($localStorage.reqSent);
 							window.history.back();
 
 						}
@@ -221,7 +216,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						}
 						else{
 							window.history.back();
-							$localStorage.reqSent=0;
 							}
 		}
 
@@ -648,7 +642,6 @@ $scope.ratingsObject = {
 
 	//  console.log($localStorage.seen);
 	// $interval(callReqInterval, 15000);
-$localStorage.ViewDoc=0;
 	function callReqInterval() {
 
 		if($ionicHistory.currentStateName() != 'auth.loginNew'){
@@ -1154,7 +1147,6 @@ $scope.sendprescription = function()
 $scope.statename = $ionicHistory.currentStateName();
 
 console.log($state.statename);
-
 if($scope.statename =='app.patient_home')
 {
 
@@ -1184,3 +1176,37 @@ if($scope.statename =='app.patient_home')
 
 
 });
+
+
+///Firebase appraoch of push notification getting token with some service worker error
+
+// var config = {
+// 	apiKey: "AIzaSyBPldeHuqE5O3GGqS2jWIkR5s8JKNnfxDE",
+// 	authDomain: "doctorquick-158607.firebaseapp.com",
+// 	databaseURL: "https://doctorquick-158607.firebaseio.com",
+// 	storageBucket: "doctorquick-158607.appspot.com",
+// 	messagingSenderId: "271054721857"
+// };
+// console.log(config);
+// firebase.initializeApp(config);
+// console.log(firebase.app().name);
+//
+// // Retrieve Firebase Messaging object.
+// const messaging = firebase.messaging();
+//
+// 	messaging.requestPermission()
+// 	.then(function() {
+// 	console.log('Notification permission granted.');
+//
+// 	return messaging.getToken();
+// 	})
+// 	.then(function(token){
+// 		console.log(token);
+// 	})
+// 	.catch(function(err) {
+// 	console.log('Unable to get permission to notify.', err);
+// 	});
+//
+// 	messaging.onMessage(function(payload){
+// 		console.log('onMessage',payload);
+// 	});

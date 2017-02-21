@@ -13,7 +13,7 @@ angular.module('underscore', [])
 
 
 var DoctorQuickApp = angular.module('DoctorQuick', [
-  'ionic','ionic.service.core',
+  'ionic',
   'angularMoment',
   'DoctorQuick.directives',
   'DoctorQuick.filters',
@@ -39,10 +39,40 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ion-alpha-scroll',
   'angular-circular-progress',
   'ionic-letter-avatar',
+  'ionic.cloud',
   'ionic.service.core',
   'ionic.service.push'
-])
 
+
+])
+// DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
+//   $ionicAppProvider.identify({
+//     app_id: 'b578c73c',
+//     api_key: '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
+//     dev_push: true
+//   });
+// }])
+
+DoctorQuickApp.config(function($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    "core": {
+      "app_id": "b578c73c",
+      "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
+    },
+    "push": {
+      "sender_id": "310212728810",
+      "pluginConfig": {
+        "ios": {
+          "badge": true,
+          "sound": true
+        },
+        "android": {
+          "iconColor": "#343434"
+        }
+      }
+    }
+  });
+})
 DoctorQuickApp.run(function($window, $rootScope) {
   // console.log(navigator.onLine);
       $rootScope.online = navigator.onLine;
@@ -57,16 +87,16 @@ DoctorQuickApp.run(function($window, $rootScope) {
         });
       }, false);
       // console.log($rootScope.online);
+
 })
 
-DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage) {
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     window.plugin.backgroundMode.enable();
     function successFunction() {
       console.log("It worked!");
     }
-
     function errorFunction(error) {
         console.log(error);
       }
@@ -78,14 +108,15 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.StatusBar) {
       StatusBar.styleBlackOpaque();
     }
+    //
+    console.log('deviceready');
+
   });
 
 
-  $interval(checkConnection, 1000)
-
+  // $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
-
       var states = {};
       states[Connection.UNKNOWN]  = 'Unknown';
       states[Connection.ETHERNET] = 'Ethernet';
@@ -106,12 +137,9 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       alert('offline');
   }
 
-
-
-
 })
 
-DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -134,12 +162,11 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
             }
         }, 1000);
 
-
-      if (ionic.Platform.isAndroid()) {
-         window.addEventListener("native.hidekeyboard", function () {
-         StatusBar.hide();
-         window.AndroidFullScreen.immersiveMode(false, false);
-           });}
+    if (ionic.Platform.isAndroid()) {
+      window.addEventListener("native.hidekeyboard", function () {
+      StatusBar.hide();
+      window.AndroidFullScreen.immersiveMode(false, false);
+    });}
 
       if(window.StatusBar)
       {
@@ -154,7 +181,9 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
               toast.show("Internet is disconnected on your device");
             };
       };
-      PushNotificationsService.register();
+      // PushNotificationsService.register();
+
+
 
       // Android customization
       cordova.plugins.backgroundMode.setDefaults({ text:'Keeps you Awailable on DQ.'});
@@ -176,24 +205,38 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
 
           function successFunction()
           {
-          console.info("It worked!");
+            console.info("It worked!");
           }
           function errorFunction(error)
           {
-          console.error(error);
+            console.error(error);
           }
           function trace(value)
           {
-          console.log(value);
+            console.log(value);
           }
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
+  document.addEventListener('deviceready', function ($scope,$localStorage) {
+    // Enable to debug issues.
+    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
+    console.log('onesignal');
+    var notificationOpenedCallback = function(jsonData) {
+      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+    };
+
+    window.plugins.OneSignal
+      .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
+      .handleNotificationOpened(notificationOpenedCallback)
+      .endInit();
+      // Call syncHashedEmail anywhere in your app if you have the user's email.
+      // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
+      // window.plugins.OneSignal.syncHashedEmail(userEmail);
+  }, false);
 
   // This fixes transitions for transparent background views
-
-  document.addEventListener("deviceready", onDeviceReady, false);
 
       // Cordova is loaded and it is now safe to make calls Cordova methods
       //
@@ -201,8 +244,6 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
           checkConnection();
           console.log('device ready for network check');
       }
-
-
 
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
@@ -225,9 +266,7 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
 
   });
 
-  $ionicPlatform.on("resume", function(){
-  PushNotificationsService.register();
-  });
+
 
   // press again to exit
 
@@ -278,19 +317,9 @@ DoctorQuickApp.run(function($ionicPlatform,PushNotificationsService, $rootScope,
   })
 
 
-  DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
-    $ionicAppProvider.identify({
-      app_id: 'bd00003c',
-      api_key: '8ad5f33f91a41a0d11c53ffdb5884c7643ec4be0b6a2276c',
-      dev_push: true
-    });
-  }])
-
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
-
   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     }
