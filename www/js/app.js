@@ -91,6 +91,7 @@ DoctorQuickApp.run(function($window, $rootScope) {
 })
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
+
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     window.plugin.backgroundMode.enable();
@@ -105,8 +106,9 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
+    ionic.Platform.fullScreen();
     if (window.StatusBar) {
-      StatusBar.styleBlackOpaque();
+      return StatusBar.hide();
     }
     //
     console.log('deviceready');
@@ -224,12 +226,23 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
 
     console.log('onesignal');
     var notificationOpenedCallback = function(jsonData) {
-      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      // alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+           $state.go('templates.patientRequest');
     };
+    // Set your iOS Settings
+    var iosSettings = {};
+
+    iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+    iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
 
     window.plugins.OneSignal
       .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
       .handleNotificationOpened(notificationOpenedCallback)
+      .handleNotificationReceived(function(jsonData) {
+      alert("Notification received:\n" + JSON.stringify(jsonData));
+      console.log('Did I receive a notification: ' + JSON.stringify(jsonData));
+      })
+      .iOSSettings(iosSettings)
       .endInit();
       // Call syncHashedEmail anywhere in your app if you have the user's email.
       // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.

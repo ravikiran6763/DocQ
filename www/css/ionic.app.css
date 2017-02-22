@@ -11388,7 +11388,7 @@ ion-side-menu .heading-item .message {
   .patientscreen-view .doctorScreen-bottom-content {
     background-color: #6aa433;
     width: 100%;
-    height: 45%;
+    height: 42%;
     box-shadow: inset 0 20px 20px -20px rgba(0, 0, 0, 0.8);
     overflow: scroll !important; }
     .patientscreen-view .doctorScreen-bottom-content li {
