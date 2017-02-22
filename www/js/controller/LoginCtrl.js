@@ -95,7 +95,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						alert("Error calling Hello Plugin");
 						}
 					$state.go('app.patient_home');
-					hello.login(uname1,pw1,success, failure);
+					//hello.login(uname1,pw1,success, failure);
+
+
+					hello.background(success, failure);
+
 
 					}
 					else if(response === "doctor")

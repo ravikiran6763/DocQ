@@ -17,20 +17,20 @@ $rootScope.specialId = $stateParams.specialId;
 
 // TO CHECK NO OF DOCTORS ONLINE IN VSEE
 
-  // var username = "greet+8792618138,ravikiran6763@gmail.com";
-  // var password = "DQ_patient";
-  //
-  // var success = function(message)
-  // {
-  //   alert(message);
-  // }
-  //
-  // var failure = function()
-  // {
-  //   alert("Error calling Hello Plugin");
-  // }
+  var username = "greet+8792618138";
+  var password = "DQ_patient";
 
-  // hello.logininformation(username,password,success, failure);
+  var success = function(message)
+  {
+    alert(message);
+  }
+
+  var failure = function()
+  {
+    alert("Error calling Hello Plugin");
+  }
+
+  //hello.logininformation(username,password,success, failure);
 
 
 
