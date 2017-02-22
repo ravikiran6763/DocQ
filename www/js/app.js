@@ -225,6 +225,9 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
     console.log('onesignal');
     var notificationOpenedCallback = function(jsonData) {
       alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      alert('handle  routing here')
+      $state.go('templates.patientRequestß');
+
     };
 
     window.plugins.OneSignal
