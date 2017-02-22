@@ -46,15 +46,16 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 		 $Ids =array();
 			$Ids = $GLOBALS['myArray'];
 				 $content = array(
-					 "en" => 'Hey DocQuick !!!'
+					 "en" => 'You have a new consultation request pending!!!'
 					 );
 
 				 $fields = array(
 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 					 'include_player_ids' => $Ids,
-					 'data' => array("foo" => "bar"),
+					 'data' => array("user" => "patient"),
 					 'contents' => $content,
-					 'android_sound' => 'tring'
+					 'android_sound' => 'android',
+					 'ios_sound' => 'iphone.wav'
 				 );
 
 				 $fields = json_encode($fields);
@@ -80,17 +81,10 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 			 $response = sendMessage();
 			 $return["allresponses"] = $response;
 			 $return = json_encode( $return);
-
 			 print("\n\nJSON received:\n");
 			 print($return);
 			 print("\n");
-
-
-
  }
-
-
-
 
 }
 mysql_close($dbhandle);
