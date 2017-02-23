@@ -260,6 +260,13 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
 
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+    console.log('toState',toState);
+    console.log('toParams',toParams);
+    console.log('fromState',fromState);
+    console.log('fromParams',fromParams);
+
+
+
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
