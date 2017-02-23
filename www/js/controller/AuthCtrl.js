@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window,$ionicAuth, $ionicUser, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -240,17 +240,29 @@ $scope.patientRegistration = function()
                   pateientPwd:$scope.PatientDetail.pat_password,
                   patientImage:$rootScope.imageData
                 };
+                var loginData = {
+                  'phone': $scope.PatientDetail.patient_mob,
+                  'password': $scope.PatientDetail.pat_password
+                };
+
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
             console.log(response);
             if(response){
               $window.localStorage.clear();
+
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
               });
-              $state.go('auth.loginNew');
+
+              $state.go('auth.loginNew', {}, {location: "replace", reload: true});
+
+              var details = {
+                'phone': $scope.PatientDetail.patient_mob,
+                'password': $scope.PatientDetail.pat_password
+              }
 
             }
             else{

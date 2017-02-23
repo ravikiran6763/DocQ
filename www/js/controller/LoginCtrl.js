@@ -46,11 +46,16 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					password : $scope.loginData.pin
 				};
 
+$scope.lastView = $ionicHistory.backView();
+console.log($scope.lastView);
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 
 					if(response === "patient")
 					{
+						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
+						sessionStorage.setItem('User', 'Patient');
+
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
 						}).catch(function(error){
@@ -94,19 +99,23 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						{
 						alert("Error calling Hello Plugin");
 						}
-					$state.go('app.patient_home');
+
+						$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+						});
+					$state.go('app.patient_home', {}, {location: "replace", reload: true});
+
 					//hello.login(uname1,pw1,success, failure);
-
-
 					hello.background(success, failure);
-
 
 					}
 					else if(response === "doctor")
 					{
+						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
+						sessionStorage.setItem('User', 'Doctor');
 
 						$localStorage.doctororpatient = response;
-
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
 					    $rootScope.doctor_details=response;//store the response array in doctor details
 					    console.log($rootScope.doctor_details);
@@ -128,16 +137,18 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						{
 							alert("Error Occurred While Loggin in to DoctoQuick");
 						}
-					$state.go('templates.doctor_home');
 
+						$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+						});
+					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 					hello.login(uname1,pw1,success, failure);
-
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
-
 							template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Already Logged In</p></div><div class="errorContent"><p>The user is alreaady Logged in</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 							cssClass: 'loginPopup',
 							scope: $scope,
@@ -151,7 +162,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
-
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 								cssClass: 'loginPopup',
 								scope: $scope,
