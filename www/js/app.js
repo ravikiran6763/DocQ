@@ -220,46 +220,24 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
-  document.addEventListener('deviceready', function ($scope,$localStorage) {
+  document.addEventListener('deviceready', function ($scope,$state) {
     // Enable to debug issues.
     // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-
-    console.log('onesignal');
-    var notificationOpenedCallback = function(jsonData) {
-<<<<<<< HEAD
-      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      alert('handle  routing here')
-      $state.go('templates.patientRequestß');
-
-=======
-      // alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-           $state.go('templates.patientRequest');
->>>>>>> 55b190f28e225f84022d6d91f32ef356825936cd
-    };
-    // Set your iOS Settings
     var iosSettings = {};
-
     iosSettings["kOSSettingsKeyAutoPrompt"] = true;
     iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
-
     window.plugins.OneSignal
-      .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
-      .handleNotificationOpened(notificationOpenedCallback)
-      .handleNotificationReceived(function(jsonData) {
-      alert("Notification received:\n" + JSON.stringify(jsonData));
-      console.log('Did I receive a notification: ' + JSON.stringify(jsonData));
+        .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+        .handleNotificationReceived(function(jsonData) {
+        alert("Notification received:\n" + JSON.stringify(jsonData));
+        console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
       })
-      .iOSSettings(iosSettings)
       .endInit();
-      // Call syncHashedEmail anywhere in your app if you have the user's email.
-      // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
-      // window.plugins.OneSignal.syncHashedEmail(userEmail);
+
   }, false);
 
-  // This fixes transitions for transparent background views
 
-      // Cordova is loaded and it is now safe to make calls Cordova methods
-      //
       function onDeviceReady() {
           checkConnection();
           console.log('device ready for network check');
@@ -269,11 +247,7 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
     console.log('toState',toState);
     console.log('toParams',toParams);
-    console.log('fromState',fromState);
-    console.log('fromParams',fromParams);
-
-
-
+    console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
@@ -283,6 +257,9 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
         {
           $ionicConfig.views.transition(none);
           $ionicConfig.views.swipeBackEnabled(false);
+        }
+        else{
+          $ionicConfig.views.transition(none);
         }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
@@ -312,7 +289,6 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       else if ($ionicHistory.backView()) {
       $ionicHistory.goBack();
       console.log('cameback');
-
 
       }
       else {
