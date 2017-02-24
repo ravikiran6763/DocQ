@@ -223,6 +223,21 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
   document.addEventListener('deviceready', function ($scope,$state) {
     // Enable to debug issues.
     // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+<<<<<<< HEAD
+=======
+
+    console.log('onesignal');
+    var notificationOpenedCallback = function(jsonData) {
+      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+      alert('handle  routing here')
+      $state.go('templates.patientRequestß');
+
+
+      // alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+           $state.go('templates.patientRequest');
+    };
+    // Set your iOS Settings
+>>>>>>> 9a70ff9f91736c4fa19c6ce42b57310054242b78
     var iosSettings = {};
     iosSettings["kOSSettingsKeyAutoPrompt"] = true;
     iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
