@@ -116,7 +116,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   });
 
 
-  // $interval(checkConnection, 1000)
+ $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -223,9 +223,6 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
   document.addEventListener('deviceready', function ($scope,$state) {
     // Enable to debug issues.
     // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-<<<<<<< HEAD
-=======
-
     console.log('onesignal');
     var notificationOpenedCallback = function(jsonData) {
       alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
@@ -237,7 +234,6 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
            $state.go('templates.patientRequest');
     };
     // Set your iOS Settings
->>>>>>> 9a70ff9f91736c4fa19c6ce42b57310054242b78
     var iosSettings = {};
     iosSettings["kOSSettingsKeyAutoPrompt"] = true;
     iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
@@ -457,7 +453,8 @@ $stateProvider
     }
   })
 //myconsultations
-.state('app.my_consultations', {
+
+.state('app.my_consultations',{
   url: "/my_consultations",
   views: {
     'menuContent': {

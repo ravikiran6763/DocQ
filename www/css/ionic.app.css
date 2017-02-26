@@ -12519,18 +12519,15 @@ ion-side-menu .heading-item .message {
       width: 95% !important;
       padding-top: 0;
       padding-bottom: 0;
-      margin: 2% 2% !important;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); }
       .summary-view .rateClass .card .col {
         padding: 2%;
         margin-left: 4%; }
       .summary-view .rateClass .card .col-75 {
         padding: 8% !important; }
-      .summary-view .rateClass .card .col-30 {
-        padding: 1%; }
-        .summary-view .rateClass .card .col-30 p {
-          margin-top: 40%;
-          margin-left: 1%; }
+      .summary-view .rateClass .card .col-30 p {
+        margin-top: 40%;
+        margin-left: 1%; }
   .summary-view .lowRatesComment {
     width: 90%;
     height: 45%;

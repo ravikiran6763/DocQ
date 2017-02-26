@@ -99,7 +99,6 @@ $scope.checkWalletBalance = function()
 					});
 	}
 	else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
-	if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
 	{
 		var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -118,7 +117,6 @@ $scope.checkWalletBalance = function()
 					});
 	}
 	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
-	if($localStorage.networkType == '4G' || $localStorage.networkType == 'wifi')
 	{
 		var success = function(message)
 		{
