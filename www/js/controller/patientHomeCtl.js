@@ -19,7 +19,7 @@ function checkNewMessages(){
 	if($scope.currentState == 'app.patient_home')
 	{
 
-	  $scope.unreadchatforpatient = {};
+	  $scope.unreadchatforpatient = 0;
 
 			var username = "greet+"+$localStorage.user;
 			var password = "DQ_patient";
@@ -34,7 +34,7 @@ function checkNewMessages(){
 				 //alert("Error calling unreadchatcount Plugin");
 				 console.log('error');
 				}
-	 	//hello.unreadchatfromusers(username,password,success, failure);
+				hello.unreadchatfromusers(username,password,success, failure);
 
 	}
 
