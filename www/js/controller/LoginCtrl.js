@@ -33,7 +33,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 	$scope.doLogIn = function()
 	{
-
 			$rootScope.submitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
@@ -107,8 +106,7 @@ console.log($scope.lastView);
 					$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
 					hello.login(uname1,pw1,success, failure);
-					//hello.background(success, failure);
-
+					hello.background(success, failure);
 					}
 					else if(response === "doctor")
 					{
@@ -124,15 +122,13 @@ console.log($scope.lastView);
 					  }).catch(function(error){
 					    console.log('failure data', error);
 					  });
-
-
-
 					var uname1 = "greet+"+$scope.loginData.phone;
 					var pw1 = "DQ_doctor";
 					var success = function(message)
 						{
 							console.log(message);
 						}
+
 						var failure = function()
 						{
 							alert("Error Occurred While Loggin in to DoctoQuick");
@@ -170,7 +166,6 @@ console.log($scope.lastView);
 							{
 							$scope.myPopup.close();
 							};
-
 						}
 
 				}).catch(function(error){

@@ -9,7 +9,7 @@ if (isset($postdata))
      $consultID =  json_decode($postdata);
      $consultStatus = array();
 
-   $sql = "select callType from reqForConsultation where id='$consultID' and notesFlag=2";
+     $sql = "select callType from reqForConsultation where id='$consultID' and notesFlag=2";
      $retval = mysql_query( $sql, $dbhandle );
      while($row = mysql_fetch_array($retval))
      {

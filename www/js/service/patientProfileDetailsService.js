@@ -4,8 +4,6 @@ DoctorQuickApp.service('patientProfileDetailsService', function($http, $q, BASE_
 
 this.updatenotesflag = function(callid)
 {
-
-
   var deferred = $q.defer();
   console.log(BASE_URL.url + API.updateNotes);
   $http.post(BASE_URL.url + API.updateNotes,callid)

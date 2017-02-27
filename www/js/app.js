@@ -39,9 +39,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ion-alpha-scroll',
   'angular-circular-progress',
   'ionic-letter-avatar',
-  'ionic.cloud',
-  'ionic.service.core',
-  'ionic.service.push'
+  'ionic.cloud'
 
 
 ])
@@ -115,8 +113,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
   });
 
-
- $interval(checkConnection, 1000)
+  $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -227,9 +224,6 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
     var notificationOpenedCallback = function(jsonData) {
       alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
       alert('handle  routing here')
-      $state.go('templates.patientRequestß');
-
-
       // alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
            $state.go('templates.patientRequest');
     };
@@ -703,7 +697,7 @@ $stateProvider
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient/:reqPat",
+    url: "/notesForPatient/:reqPat/:reqId",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",

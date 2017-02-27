@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager,patientProfileDetailsService) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
@@ -78,6 +78,7 @@ $scope.checkWalletBalance = function()
 
 		 var persontocall = "greet+" + $rootScope.accptdDoc;
 		 console.log(uname);
+		 console.log(persontocall);
 		 console.log($scope.callid);
 
 	if($localStorage.networkType == 'None')
@@ -124,8 +125,9 @@ $scope.checkWalletBalance = function()
 				$scope.enddate = new Date();
 				console.log($localStorage.user);
 				console.log($rootScope.accptdDoc);
-				console.log($localStorage.Doctocall);
+				// console.log($localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
+<<<<<<< HEAD
 				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc},{reload: true});
 
 				console.log($rootScope.reqId);
@@ -133,11 +135,17 @@ $scope.checkWalletBalance = function()
 
 				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
 				 //console.log($localStorage.reqPat);
+=======
+				console.log($rootScope.callId);
+				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
+					console.log(response);
+>>>>>>> 45abb1c709bc88a201ef825b8ff1085f3a547cd2
 				 console.log('success');
-
 			 }).catch(function(error){
 				 console.log('failure data', error);
 			 })
+			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
+
 		}
 		var failure = function()
 		{
@@ -147,7 +155,7 @@ $scope.checkWalletBalance = function()
 	}
 	else{
 
-		////Do nothing
+		//Do nNothing
 
 	}
 				// $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
@@ -201,10 +209,8 @@ console.log(checkPatientActivity);
 	 $scope.consultStatus=response;
 	//  console.log($scope.consultStatus);
 	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
-
 		 $scope.isFirstTime=true;
-
-		 setTimeout(function () {
+		 setTimeout(function (){
 			 console.log('delay 3 sec');
 		 }, 3000);
 
@@ -222,7 +228,7 @@ console.log(checkPatientActivity);
 
 	 }
 	 else{
-
+		 console.log('noData');
 	 }
 		//  $state.go($state.current, {}, {reload: true});
 	 }).catch(function(error){

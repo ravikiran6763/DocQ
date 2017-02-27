@@ -12,7 +12,7 @@ if (isset($postdata))
 		$loginpw= $r->password;
 		$loginpw = base64_encode($loginpw);//converts password string to encoded format
 
-       $sql1 = "select count(*) as patient,loginFlag as loggedState from patientDetails where patientPhone='$loginphno' and patientPwd='$loginpw'";
+       $sql1 = "select count(*) as patient,loginFlag as loggedState from patientDetails where patientPhone='$loginphno' and patientPwd='$loginpw' and loginFlag=1";
       $retval1 = mysql_query( $sql1, $dbhandle );
       while($row1 = mysql_fetch_array($retval1))
       {
@@ -25,11 +25,11 @@ if (isset($postdata))
       {
         echo "patient";
 
-            // $loginUpdate = "update patientDetails set loginFlag=2 where patientPhone='$loginphno'";
-            // $retLogin = mysql_query( $loginUpdate, $dbhandle );
-            // while($row = mysql_fetch_array($retLogin))
-            // {
-            // }
+            $loginUpdate = "update patientDetails set loginFlag=2 where patientPhone='$loginphno'";
+            $retLogin = mysql_query( $loginUpdate, $dbhandle );
+            while($row = mysql_fetch_array($retLogin))
+            {
+            }
       }
 
 

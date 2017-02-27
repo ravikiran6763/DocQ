@@ -28,6 +28,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'payuSucces': 'common/payuSucces.php',
         'languages': 'common/languages.php',
         'updatePlayer': 'common/updatePlayer.php',
+        'alreadyLoggedIn': 'common/alreadyLoggedIn.php',
+
 
 
 
@@ -82,8 +84,6 @@ DoctorQuickApp.constant('BASE_URL', {
         'patientActivity':'doctor/patientActivity.php',
         'videoOrAudio':'doctor/videoOrAudio.php',
         'doctorActivity':'doctor/doctorActivity.php',
-
-
         'updateNotes':'doctor/updateNotes.php',
 
 
