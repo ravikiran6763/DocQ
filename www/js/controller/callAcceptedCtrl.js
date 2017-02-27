@@ -125,9 +125,9 @@ $scope.checkWalletBalance = function()
 				$scope.enddate = new Date();
 				console.log($localStorage.user);
 				console.log($rootScope.accptdDoc);
-				console.log($localStorage.Doctocall);
+				// console.log($localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc});
+				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
 
 				patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
 				 //console.log($localStorage.reqPat);

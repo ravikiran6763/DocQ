@@ -28,6 +28,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'payuSucces': 'common/payuSucces.php',
         'languages': 'common/languages.php',
         'updatePlayer': 'common/updatePlayer.php',
+        'alreadyLoggedIn': 'common/alreadyLoggedIn.php',
+
 
 
 

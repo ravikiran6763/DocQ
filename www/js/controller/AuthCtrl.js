@@ -39,7 +39,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
      var message="loading";
      $timeout(function() {
        $ionicLoading.show();
-       LoginService.loginprocess(preLoginDetails).then(function(response){
+       LoginService.alreadyLoggedIn(preLoginDetails).then(function(response){
         $scope.LoginStatus=response;
         console.log($scope.LoginStatus);
         if(response === "patient")

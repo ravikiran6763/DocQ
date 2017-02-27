@@ -262,7 +262,7 @@ $scope.isFirstTime = false;
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');
-			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat})
+			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat}, {location: "replace", reload: true})
 			 console.log($rootScope.reqPat);
 			 console.log('show accpted doc profile');
 		 }, 5000);

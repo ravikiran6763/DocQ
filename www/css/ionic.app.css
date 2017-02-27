@@ -11810,6 +11810,8 @@ ion-side-menu .heading-item .message {
 .searchDoctor-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .searchDoctor-profile-view ionic-content {
+    overflow: hidden !important; }
   .searchDoctor-profile-view .title .title-left .header-item {
     left: 0px !important;
     right: 0px !important; }
@@ -11850,28 +11852,27 @@ ion-side-menu .heading-item .message {
     .searchDoctor-profile-view .rating-field .card {
       width: 90% !important;
       margin: 0 auto; }
-  .searchDoctor-profile-view .bottom-content {
-    height: 52%; }
-    .searchDoctor-profile-view .bottom-content h4 {
-      font-size: 120% !important;
-      line-height: 0vh;
-      text-align: center;
-      margin-top: 6vh;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .searchDoctor-profile-view .bottom-content h5 {
-      font-size: 150% !important;
-      line-height: 0vh;
-      text-align: center;
-      margin-top: 3vh;
-      font-family: Ubuntu,bold,sans-serif !important; }
-    .searchDoctor-profile-view .bottom-content .button-content {
-      margin: 0 auto;
-      height: 50%;
-      width: 80%; }
-      .searchDoctor-profile-view .bottom-content .button-content .button {
-        background-color: #6aa13e;
-        font-family: Ubuntu,bold,sans-serif !important;
-        color: #fff; }
+  .searchDoctor-profile-view .bottom-content h4 {
+    font-size: 120% !important;
+    line-height: 0vh;
+    text-align: center;
+    margin-top: 6vh;
+    font-family: Ubuntu,bold,sans-serif !important; }
+  .searchDoctor-profile-view .bottom-content h5 {
+    font-size: 150% !important;
+    line-height: 0vh;
+    text-align: center;
+    margin-top: 3vh;
+    font-family: Ubuntu,bold,sans-serif !important; }
+  .searchDoctor-profile-view .bottom-content .button-content {
+    margin-top: 6% !important;
+    margin: 0 auto;
+    height: 28%;
+    width: 80%; }
+    .searchDoctor-profile-view .bottom-content .button-content .button {
+      background-color: #6aa13e;
+      font-family: Ubuntu,bold,sans-serif !important;
+      color: #fff; }
   .searchDoctor-profile-view .buttonPosition {
     margin-top: 5vh; }
   .searchDoctor-profile-view .rating {
@@ -12770,6 +12771,8 @@ ion-side-menu .heading-item .message {
 .ViewDoctorProfile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .ViewDoctorProfile-view ionic-content {
+    overflow: hidden !important; }
   .ViewDoctorProfile-view .top-content {
     width: 100%;
     height: 40%; }
@@ -12809,14 +12812,13 @@ ion-side-menu .heading-item .message {
       .ViewDoctorProfile-view .middle-content .card .col-30 {
         margin-top: 4%; }
   .ViewDoctorProfile-view .bottom-content {
-    width: 100%;
-    height: 45%; }
+    width: 100%; }
     .ViewDoctorProfile-view .bottom-content h4 {
       font-size: 130%;
       text-align: center;
       line-height: 5%; }
     .ViewDoctorProfile-view .bottom-content .buttons {
-      margin-top: 10%; }
+      margin-top: 5% !important; }
       .ViewDoctorProfile-view .bottom-content .buttons .button {
         width: 85%;
         margin-left: 8%; }
