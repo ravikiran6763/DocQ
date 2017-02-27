@@ -18,8 +18,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				 $rootScope.image = $stateParams.image;
 				 $rootScope.reqId = $stateParams.reqId;
 
-				 $localStorage.reqId= $rootScope.reqId;
-				 console.log($localStorage.reqId);
 				 $rootScope.reqPat=$rootScope.pphno;
 				 $localStorage.reqPat = $rootScope.reqPat;
 				 $rootScope.dateAndTime = $stateParams.dateAndTime;
@@ -259,7 +257,7 @@ $scope.popupShown = true;
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
 		 console.log('closethis popup');
-		 
+
 		 $scope.callReqPopUp.close();
 		 $scope.isFirstTime = true;
 
