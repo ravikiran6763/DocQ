@@ -19,7 +19,7 @@ function checkNewMsgs(){
   {
     // console.log($rootScope.homePage);
 
-        $scope.unreadchatforpatient = {};
+        $scope.unreadchatforpatient = 0;
 
           var username = "greet+"+$localStorage.user;
           var password = "DQ_doctor";
@@ -36,7 +36,7 @@ function checkNewMsgs(){
 
             }
 
- // hello.unreadchatfromusers(username,password,success, failure);
+hello.unreadchatfromusers(username,password,success, failure);
   }
 }
 

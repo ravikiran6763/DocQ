@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http, LoginService, patientCareService, doctorServices,myConsultationService) {
+DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $localStorage, $ionicLoading, $ionicConfig, $http,$interval, LoginService, patientCareService, doctorServices,myConsultationService) {
 
 	$rootScope.headerTxt="My Consultaions";
 	$rootScope.showBackBtn=true;
@@ -13,6 +13,11 @@ $scope.pagedecision=$ionicHistory.currentStateName();
 console.log($scope.pagedecision);
 
 var username = "greet+"+$localStorage.user;
+
+$interval(checkNewMessages,2000);
+
+function checkNewMessages()
+{
 
 if($scope.pagedecision === 'templates.consulted_patient')
 {
@@ -119,6 +124,8 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 		}
 
 hello.chatcounts(username,password,success, failure);
+
+}
 
 myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$rootScope.ConsultedDoctor=response;//store the response array in doctor details

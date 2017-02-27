@@ -127,8 +127,27 @@ $scope.checkWalletBalance = function()
 				console.log($rootScope.accptdDoc);
 				// console.log($localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
+<<<<<<< HEAD
+				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc},{reload: true});
+
+				console.log($rootScope.reqId);
+
+
+				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
+				 //console.log($localStorage.reqPat);
+=======
 				console.log($rootScope.callId);
+<<<<<<< HEAD
 				
+=======
+				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
+					console.log(response);
+>>>>>>> 45abb1c709bc88a201ef825b8ff1085f3a547cd2
+				 console.log('success');
+			 }).catch(function(error){
+				 console.log('failure data', error);
+			 })
+>>>>>>> 1b93fbc4d1d5248e05ec17125433a5bdad9e8f80
 			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
 
 		}

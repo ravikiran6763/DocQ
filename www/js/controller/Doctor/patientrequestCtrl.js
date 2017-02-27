@@ -250,16 +250,18 @@ $scope.popupShown = true;
  }
 ////
 
-$scope.isFirstTime = false;
  $interval(videoOrAudio,10000);
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
+		 $scope.isFirstTime = false;
+
 		 console.log($rootScope.reqId);
 	 $scope.videoOrAudio=response;
-	 if($scope.videoOrAudio[0][0] == 2 ){
+	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
 		 console.log('closethis popup');
 		 
 		 $scope.callReqPopUp.close();
+		 $scope.isFirstTime = true;
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');

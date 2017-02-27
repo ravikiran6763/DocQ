@@ -263,9 +263,9 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
           $ionicConfig.views.transition(none);
           $ionicConfig.views.swipeBackEnabled(false);
         }
-        else{
-          $ionicConfig.views.transition(none);
-        }
+        // else{
+        //   $ionicConfig.views.transition(none);
+        // }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
       // console.log(toState.name);
