@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager,patientProfileDetailsService) {
 
 	$rootScope.headerTxt="Doctor";
 	$rootScope.showBackBtn=true;
@@ -78,6 +78,7 @@ $scope.checkWalletBalance = function()
 
 		 var persontocall = "greet+" + $rootScope.accptdDoc;
 		 console.log(uname);
+		 console.log(persontocall);
 		 console.log($scope.callid);
 
 	if($localStorage.networkType == 'None')
@@ -99,7 +100,6 @@ $scope.checkWalletBalance = function()
 					});
 	}
 	else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
-	if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
 	{
 		var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -118,7 +118,6 @@ $scope.checkWalletBalance = function()
 					});
 	}
 	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
-	if($localStorage.networkType == '4G' || $localStorage.networkType == 'wifi')
 	{
 		var success = function(message)
 		{
@@ -200,10 +199,8 @@ console.log(checkPatientActivity);
 	 $scope.consultStatus=response;
 	//  console.log($scope.consultStatus);
 	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
-
 		 $scope.isFirstTime=true;
-
-		 setTimeout(function () {
+		 setTimeout(function (){
 			 console.log('delay 3 sec');
 		 }, 3000);
 
@@ -221,7 +218,7 @@ console.log(checkPatientActivity);
 
 	 }
 	 else{
-
+		 console.log('noData');
 	 }
 		//  $state.go($state.current, {}, {reload: true});
 	 }).catch(function(error){

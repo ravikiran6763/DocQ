@@ -106,7 +106,7 @@ console.log($scope.lastView);
 						});
 					$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
-					//hello.login(uname1,pw1,success, failure);
+					hello.login(uname1,pw1,success, failure);
 					hello.background(success, failure);
 
 					}
