@@ -416,7 +416,7 @@ $scope.patientRegistration = function()
       $scope.submittedPwd = true;
 
       window.plugins.toast.showWithOptions({
-      message: "Valid password must be entered",
+      message: "Valid 4 digit password must be entered",
       duration: "short", // 2000 ms
       position: "bottom",
       styling: {

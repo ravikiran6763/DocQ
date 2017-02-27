@@ -10,8 +10,10 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
   $rootScope.prescription={};
 
 $localStorage.reqPat = $stateParams.reqPat;
+$localStorage.reqId = $stateParams.reqId;
 
-console.log($localStorage.reqPat);
+console.log($localStorage.reqId);
+
   //this is used to set notesflag in the database top 2
 
   patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){
@@ -26,7 +28,6 @@ console.log($localStorage.reqPat);
 		$scope.patientfname = $stateParams.calPtFname;
 		$scope.patientlname = $stateParams.calPtLname;
     $scope.patientImage = $stateParams.calPtImage;
-
     // $scope.prequestedtime = $rootScope.requesteddatetime;
     $scope.paphno = $stateParams.clPtPh;
 		// console.log($scope.paphno);

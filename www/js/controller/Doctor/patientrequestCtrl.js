@@ -258,11 +258,12 @@ $scope.isFirstTime = false;
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 ){
 		 console.log('closethis popup');
+		 
 		 $scope.callReqPopUp.close();
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');
-			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat}, {location: "replace", reload: true})
+			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat,reqId:$rootScope.reqId}, {location: "replace", reload: true})
 			 console.log($rootScope.reqPat);
 			 console.log('show accpted doc profile');
 		 }, 5000);

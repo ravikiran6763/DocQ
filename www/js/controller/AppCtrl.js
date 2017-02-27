@@ -781,11 +781,8 @@ $scope.checkWalletBalance=function()
 
 				 var persontocall = "greet+" + $localStorage.docPhone;
 				//  var persontocall = "greet+" + $localStorage.consultedDoctor;
-
-
 				 console.log(uname);
 				 console.log(persontocall);
-
 				 var success = function(message)
 					{
 							alert(message);
