@@ -2,6 +2,8 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$sta
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
+	$rootScope.showNotification = false;
+
 
 	$scope.rating = {};
 	  $scope.rating.rate = 3;
@@ -13,8 +15,6 @@ console.log($stateParams.calledDoctor);
 $ionicLoading.show();
 
 var key = this;
-
-$ionicLoading.show();
 
 myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
@@ -36,10 +36,9 @@ $scope.ratingsObject = {
 		}
 	};
 
-      $scope.ratingsCallback = function(rating) {
+      $scope.ratingsCallback = function(rating){
         console.log('Selected rating is : ', rating);
       };
-
 
 			var rating={};
 			$rootScope.ratingValue;
@@ -85,7 +84,7 @@ $scope.ratingsObject = {
 						console.log($scope.rated);
 						$scope.ratingComments.comment="";
 						// $state.go('app.patient_home');
-						$state.go($state.current, {}, {reload: true});
+						$state.go('app.patient_home', {}, {reload: true});
 					}).catch(function(error){
 						console.log('failure data', error);
 					});

@@ -57,10 +57,16 @@
           <h2 class="menu-text">Customer Care</h2>
         </ion-item>
 
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_summary">
+          <i class="icon ion-document"></i>
+          <h2 class="menu-text">Summary</h2>
+        </ion-item>
+
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
           <i class="icon ion-document"></i>
           <h2 class="menu-text">Notifications</h2>
         </ion-item>
+
 
         <div class="sideMenuToggle">
           <img  src="img/dq_switch_notifications_on_720x1280.png"  width="100%" height="75%"  ng-hide="accptNotifications" ng-click="pushRegister()" on-drag-left="pushRegister()">

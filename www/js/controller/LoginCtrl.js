@@ -107,7 +107,11 @@ console.log($scope.lastView);
 					$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
 					hello.login(uname1,pw1,success, failure);
+<<<<<<< HEAD
 					hello.background(success, failure);
+=======
+					//hello.background(success, failure);
+>>>>>>> 95b1345f7483dfce9b8ef32e57b52509921d9e8c
 
 					}
 					else if(response === "doctor")
