@@ -697,7 +697,7 @@ $stateProvider
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient/:reqPat/:reqId",
+    url: "/notesForPatient",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",
