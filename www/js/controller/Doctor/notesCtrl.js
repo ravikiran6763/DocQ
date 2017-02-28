@@ -9,14 +9,37 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
   $rootScope.prescription={};
 
+  $scope.currentPatient={};
+  $scope.currentPatient = angular.fromJson($localStorage.currentPatient);
+  console.log($scope.currentPatient);
+  $rootScope.patientFname=$scope.currentPatient.patientFname;
+  $rootScope.patientLname=$scope.currentPatient.patientLname;
+  $rootScope.patientAge=$scope.currentPatient.patientAge;
+  $rootScope.patientSex=$scope.currentPatient.patientSex;
+  $rootScope.patientImage=$scope.currentPatient.image;
+  $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
+  $rootScope.reqId=$scope.currentPatient.id;
+  $rootScope.patientNum=$scope.currentPatient.patientNum;
+
 $localStorage.reqPat = $stateParams.reqPat;
-$localStorage.reqId = $stateParams.reqId;
+$rootScope.reqId = $stateParams.reqId;
 
 console.log($localStorage.reqId);
 
+setTimeout(function () {
+  patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
+    console.log(response);
+   console.log('success');
+  }).catch(function(error){
+   console.log('failure data', error);
+  })
+}, 5000);
+
+
+
   //this is used to set notesflag in the database top 2
 
-  patientProfileDetailsService.fetchPatient($localStorage.reqPat).then(function(response){
+  patientProfileDetailsService.fetchPatient($rootScope.patientNum).then(function(response){
     $scope.patient_details=response;
     $ionicLoading.hide();
     console.log($scope.patient_details);
@@ -25,11 +48,6 @@ console.log($localStorage.reqId);
   })
 
   $ionicLoading.show();
-		$scope.patientfname = $stateParams.calPtFname;
-		$scope.patientlname = $stateParams.calPtLname;
-    $scope.patientImage = $stateParams.calPtImage;
-    // $scope.prequestedtime = $rootScope.requesteddatetime;
-    $scope.paphno = $stateParams.clPtPh;
 		// console.log($scope.paphno);
 
 

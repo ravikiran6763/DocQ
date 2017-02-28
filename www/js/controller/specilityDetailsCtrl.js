@@ -175,6 +175,7 @@ $scope.sendrequesttoonlinedoctors = function()
     //  console.log($scope.accptdReq);
      medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
      $scope.accptdReq=response;
+     console.log(response);
        if($scope.accptdReq != ''){
          console.log($scope.accptdReq);
          var accptDoc=$scope.accptdReq;

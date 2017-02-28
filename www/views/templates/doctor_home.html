@@ -24,7 +24,7 @@
 
       <div class="doctorScreen-bottom-content">
         <ul>
-          <li class="" ng-repeat="r in res" ui-sref="templates.patientRequest({reqId:r.id,pfname:r.patientFname,plname:r.patientLname,psex:r.patientSex,page:r.patientAge,pphno:r.patientNum,image:r.image,dateAndTime:r.requestedTime})">
+          <li class="" ng-repeat="r in pendingRequests" ng-click="viewRequest(r);">
           <div class="profile-img">
             <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
             <img  ng-show="r.image == null " ng-src="img/patientAvatar.png"  >
@@ -38,7 +38,7 @@
           </div>
         </li>
 
-        <li ng-show="!res.length" style="margin-top: 8vh;"><center><b style="color:#417611;">No Requests Pending</b></center></li>
+        <li ng-show="!pendingRequests.length" style="margin-top: 8vh;"><center><b style="color:#417611;">No Requests Pending</b></center></li>
 
       </div>
     </ul>

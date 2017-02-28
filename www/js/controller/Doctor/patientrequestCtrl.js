@@ -7,29 +7,29 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				$scope.toggleText = "Accept";
 
-				$rootScope.pfname = $stateParams.pfname;
-				$rootScope.plname = $stateParams.plname;
+						$scope.currentPatient={};
+			     $scope.currentPatient = angular.fromJson($localStorage.currentPatient);
+			     console.log($scope.currentPatient);
+					 $rootScope.patientFname=$scope.currentPatient.patientFname;
+					 $rootScope.patientLname=$scope.currentPatient.patientLname;
+					 $rootScope.patientAge=$scope.currentPatient.patientAge;
+					 $rootScope.patientSex=$scope.currentPatient.patientSex;
+					 $rootScope.patientImage=$scope.currentPatient.image;
+					 $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
+					 $rootScope.reqId=$scope.currentPatient.id;
+					 $rootScope.patientNum=$scope.currentPatient.patientNum;
 
-				 $rootScope.page = $stateParams.page;
-				 $rootScope.psex = $stateParams.psex;
 
-				 $rootScope.pphno = $stateParams.pphno;
-				 console.log($rootScope.pphno);
-				 $rootScope.image = $stateParams.image;
-				 $rootScope.reqId = $stateParams.reqId;
 
-				 $localStorage.reqId= $rootScope.reqId;
-				 console.log($localStorage.reqId);
-				 $rootScope.reqPat=$rootScope.pphno;
-				 $localStorage.reqPat = $rootScope.reqPat;
-				 $rootScope.dateAndTime = $stateParams.dateAndTime;
 
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
 
+				console.log($rootScope.dateDiff);
 				$rootScope.closeDocPopUp=false;
 				////// calculate datedifference////
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
+
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
 
 					var diffMs = (currentTimestamp - timestamp);
@@ -72,11 +72,68 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			var accptdReq = {
 			accpetcode : "2",
 			doctorphno : $localStorage.user,
-			patientphno : $stateParams.pphno,
+			patientphno : $rootScope.patientNum,
 			consultId:$rootScope.reqId
 			}
 			console.log(accptdReq);
-			patientrequesttodoctor.accpetedbydoctor(accptdReq);
+			patientrequesttodoctor.accpetedbydoctor(accptdReq).then(function(response){
+				$scope.reqStatus=response;
+				console.log('updatedResponse:',response);
+				if($scope.reqStatus == 'alreadyUpdated'){
+
+					$scope.callReqPopUp = $ionicPopup.show({
+							 title:"Sorry!!!",
+	 	           template: "<div >This Request has been served already</b></div>",
+	 	           cssClass: 'requestPopup',
+	 	           scope: $scope,
+	 	           buttons: [
+	 	           {
+	 	           text: 'Ok',
+	 	           type: 'button-positive',
+	 	           onTap:function(){
+	 	             console.log('cancel');
+								$ionicHistory.nextViewOptions({
+									disableAnimate: true,
+									disableBack: true
+								});
+							 	$state.go('templates.doctor_home',{}, {location: "replace", reload: true})
+	 	           }
+	 	           },
+	 	         ]
+	 	         });
+
+
+				}
+				else{
+					$scope.callReqPopUp = $ionicPopup.show({
+	 	           template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+	 	           cssClass: 'requestPopup',
+	 	           scope: $scope,
+	 	           buttons: [
+	 	           {
+	 	           text: 'Cancel',
+	 	           type: 'button-royal',
+	 	           onTap:function(){
+	 	             console.log('cancel');
+	 	             console.log($scope.counter);
+	 							 console.log($localStorage.reqId);
+
+	 							 $state.go("templates.doctor_home");
+
+	 	             doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
+	 	             $scope.cancelledByDoc=response;
+	 							 console.log($scope.cancelledByDoc);
+	 	              //  $state.go($state.current, {}, {reload: true});
+	 	             }).catch(function(error){
+	 	             console.log('failure data', error);
+	 	             });
+	 	           }
+	 	           },
+	 	         ]
+	 	         });
+				}
+			});
+
 
 			$scope.counter = 120;
 			$scope.onTimeout = function(){
@@ -117,32 +174,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			});
 
 
-			 $scope.callReqPopUp = $ionicPopup.show({
-	           template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
-	           cssClass: 'requestPopup',
-	           scope: $scope,
-	           buttons: [
-	           {
-	           text: 'Cancel',
-	           type: 'button-royal',
-	           onTap:function(){
-	             console.log('cancel');
-	             console.log($scope.counter);
-							 console.log($localStorage.reqId);
 
-							 $state.go("templates.doctor_home");
-
-	             doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
-	             $scope.cancelledByDoc=response;
-							 console.log($scope.cancelledByDoc);
-	              //  $state.go($state.current, {}, {reload: true});
-	             }).catch(function(error){
-	             console.log('failure data', error);
-	             });
-	           }
-	           },
-	         ]
-	         });
 
 					$localStorage.accpt = 0;
 
@@ -197,13 +229,13 @@ $localStorage.showPopUp = 1;
 $interval(checkAcceptedReq,1000);
 var checkPatientActivity={
 	callId:$rootScope.reqId,
-	doctor:$rootScope.pphno
+	doctor:$rootScope.patientNum
 }
 console.log(checkPatientActivity);
 var patAct = {
 accpetcode : "2",
 doctorphno : $localStorage.user,
-patientphno : $stateParams.pphno,
+patientphno : $rootScope.patientNum,
 consultId:$rootScope.reqId
 }
 console.log(patAct);
@@ -211,6 +243,7 @@ $scope.popupShown = true;
  function checkAcceptedReq(){
 	 doctorServices.doctorActivity(patAct).then(function(response){
 		 $scope.consultStatus=response;
+		 console.log($scope.consultStatus);
 	//  doctorServices.patientActivity($rootScope.reqId).then(function(response){
 				 if($scope.consultStatus[0][0] == 3 && $scope.popupShown == true){
 					 console.log('open popup');
@@ -243,6 +276,7 @@ $scope.popupShown = true;
 
 					 $localStorage.showPopUp=2;
 				 }
+
 		//  $state.go($state.current, {}, {reload: true});
 	 }).catch(function(error){
 	//  console.log('failure data', error);
@@ -259,13 +293,20 @@ $scope.popupShown = true;
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
 		 console.log('closethis popup');
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9cc1a61e189ed7be86aa61875db7698640fc16f5
 		 $scope.callReqPopUp.close();
 		 $scope.isFirstTime = true;
 
 		 setTimeout(function () {
 			 console.log('delay 3 sec');
-			 $state.go("templates.notesForPatient",{reqPat:$rootScope.reqPat,reqId:$rootScope.reqId}, {location: "replace", reload: true})
+			 $ionicHistory.nextViewOptions({
+			   disableAnimate: true,
+			   disableBack: true
+			 });
+			 $state.go("templates.notesForPatient",{},{location: "replace", reload: true})
 			 console.log($rootScope.reqPat);
 			 console.log('show accpted doc profile');
 		 }, 5000);

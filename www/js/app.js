@@ -645,7 +645,7 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest/:reqId/:pfname/:plname/:psex/:page/:pphno/:image/:dateAndTime",
+    url: "/patientRequest",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -697,7 +697,7 @@ $stateProvider
   })
 
   .state('templates.notesForPatient', {
-    url: "/notesForPatient/:reqPat/:reqId",
+    url: "/notesForPatient",
     views: {
       'menuContent': {
         templateUrl: "views/templates/notesForPatient.html",

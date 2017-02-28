@@ -12,16 +12,15 @@
 			$patientphno = $requesteddata->patientphno;
 			$reqId = $requesteddata->consultId;
 
-
-    $accpteddoctor = "update reqForConsultation set flag=2,accptedDoctor='$doctorphno',accptedDatetime=now() where patientNum='$patientphno' and id='$reqId'";
-     // echo $accpteddoctor;
-     $retval = mysql_query($accpteddoctor,$dbhandle);
-     if(! $retval )
-     {
-       die('Could not update data: ' . mysql_error());
-     }
-
-
+			$accpteddoctor = "update reqForConsultation set flag=2,accptedDoctor='$doctorphno',accptedDatetime=now() where patientNum='$patientphno' and id='$reqId' and accptedDoctor is NULL";
+		  // echo $accpteddoctor;
+		 $retval = mysql_query($accpteddoctor,$dbhandle);
+			if (mysql_affected_rows() > 0) {
+				echo "updated!";
+			}
+			else {
+				echo "alreadyUpdated"; // always prints not affected
+			}
 
 	}
 

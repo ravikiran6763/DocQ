@@ -5,10 +5,10 @@ DoctorQuickApp.service('patientrequesttodoctor', function ($http,$q, BASE_URL, A
       {
           console.log('clicked');
        		var deferred = $q.defer();
-          console.log(BASE_URL.url + API.acceptedbydoctor);
+          // console.log(BASE_URL.url + API.acceptedbydoctor);
        		$http.post(BASE_URL.url + API.acceptedbydoctor,accptdReq)
        		.success(function (data, status, headers, config){
-            // console.log(data);
+            console.log(data);
        			deferred.resolve(data);
        		})
        		.error(function (){
