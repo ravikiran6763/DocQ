@@ -26,3 +26,10 @@ curl -X POST --header "Authorization: key=AIzaSyBPldeHuqE5O3GGqS2jWIkR5s8JKNnfxD
 
 
 6873c259-9a11-4a2a-a3b5-53aea7d59429
+
+
+$ionicHistory.nextViewOptions({
+  disableAnimate: true,
+  disableBack: true
+});
+$state.go('templates.doctor_home',{}, {location: "replace", reload: true})

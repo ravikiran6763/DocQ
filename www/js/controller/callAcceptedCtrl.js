@@ -131,16 +131,11 @@ $scope.checkWalletBalance = function()
 
 				console.log($rootScope.reqId);
 
+				$ionicHistory.nextViewOptions({
+					disableAnimate: true,
+					disableBack: true
+				});
 
-				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
-				 //console.log($localStorage.reqPat);
-				console.log($rootScope.callId);
-				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
-					console.log(response);
-				 console.log('success');
-			 }).catch(function(error){
-				 console.log('failure data', error);
-			 })
 			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
 
 		}
@@ -238,7 +233,6 @@ console.log(checkPatientActivity);
 		 patient:$localStorage.user,
 		 doctor:$rootScope.doctorPhone,
 		 callId:$rootScope.callId
-
 		 }
 		 console.log(calldecline);
 		 $interval.cancel(checkAcceptedReq);

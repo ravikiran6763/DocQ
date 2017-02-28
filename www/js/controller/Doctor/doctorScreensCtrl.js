@@ -36,7 +36,7 @@ function checkNewMsgs(){
 
             }
 
-hello.unreadchatfromusers(username,password,success, failure);
+            // hello.unreadchatfromusers(username,password,success, failure);
   }
 }
 
@@ -203,9 +203,9 @@ hello.unreadchatfromusers(username,password,success, failure);
 
 	}
 
-  $scope.res = {};
+  $scope.pendingRequests = {};
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-    $scope.res = response;
+    $scope.pendingRequests = response;
     $ionicLoading.hide();
     // console.log($scope.res);
     }).catch(function(error){
@@ -221,12 +221,11 @@ hello.unreadchatfromusers(username,password,success, failure);
 
 $scope.hello = 5;
 
-
   $localStorage.totalReq = 0;
 $scope.$watch('pending', function() { console.log('watch!'); });
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-      $scope.res = response;
+      $scope.pendingRequests = response;
       $scope.requests=$scope.res.length;
       // console.log($localStorage.totalReq);
       // console.log($scope.requests);
@@ -258,6 +257,13 @@ $scope.$watch('pending', function() { console.log('watch!'); });
       })
    		console.log('lookForPrescription');
    	}
+
+$scope.viewRequest=function(patient){
+  $localStorage.currentPatient = patient;
+  $state.go('templates.patientRequest')
+}
+
+
 })
 
 // $scope.pushNotificationChange = function() {
