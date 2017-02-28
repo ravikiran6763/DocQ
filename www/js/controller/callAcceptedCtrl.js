@@ -1,20 +1,15 @@
-DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager,patientProfileDetailsService) {
+DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,$ionicSideMenuDelegate,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager,patientProfileDetailsService) {
 
 	$rootScope.headerTxt="Doctor";
-	$rootScope.showBackBtn=true;
+	$rootScope.showBackBtn=false;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.sandwich=true;
 
 	HardwareBackButtonManager.disable();
+	$ionicSideMenuDelegate.canDragContent(false)
 
- // $interval(callAtInterval, 5000);
-
- // function callAtInterval() {
- //
- // 	console.log('callAtInterval');
- // }
  $rootScope.accptdDoc=$stateParams.accptdDoc;
  $rootScope.callId=$stateParams.callId;
  $rootScope.callFlag=$stateParams.callFlag;
@@ -41,29 +36,7 @@ console.log($rootScope.callFlag,$rootScope.callId);
  console.log('failure data', error);
  });
 
- document.addEventListener("deviceready", function (){
-     var type = $cordovaNetwork.getNetwork()
-     var isOnline = $cordovaNetwork.isOnline()
-     var isOffline = $cordovaNetwork.isOffline()
- 		console.log(type);
-
- 		if(  type != '4g'){
- 			console.log('wifi');
- 		}
-     // listen for Online event
-     $rootScope.$on('networkOffline', function(event, networkState){
-       var onlineState = networkState;
- 			console.log(onlineState);
-     })
-
-     // listen for Offline event
-     $rootScope.$on('networkOffline', function(event, networkState){
-       var offlineState = networkState;
- 			console.log(offlineState);
-     })
-
-   }, false);
-
+console.log($ionicHistory);
 
 $scope.checkWalletBalance = function()
 {
