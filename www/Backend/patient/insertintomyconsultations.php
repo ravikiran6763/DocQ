@@ -31,7 +31,7 @@
 		}
 		// INSERT INTO MYCONSULTATION TABLE
 
-		$sqlmyconsultation = "INSERT INTO myConsultations(doctorPhone,patientPhone,consultDate) VALUES ('$doctor_phno', '$patient_phno',now())";
+		$sqlmyconsultation = "INSERT INTO myConsultations(consultationId,doctorPhone,patientPhone,consultDate) VALUES ('$callId','$doctor_phno', '$patient_phno',now())";
 		$retvalmyconsulation = mysql_query( $sqlmyconsultation, $dbhandle );
 		if(!$retvalmyconsulation)
 		{

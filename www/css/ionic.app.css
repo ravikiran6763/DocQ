@@ -13187,7 +13187,7 @@ ion-side-menu .heading-item .message {
       padding: 0; }
     .patient-notes-view .card .checkbox {
       position: absolute;
-      margin: -1% 0 0 2%;
+      margin: -2% 0 0 -1%;
       padding-left: 6%;
       padding-top: 2%; }
     .patient-notes-view .card i {
