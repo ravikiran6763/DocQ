@@ -19,22 +19,15 @@ $interval(checkNewMessages,2000);
 function checkNewMessages()
 {
 
-if($scope.pagedecision === 'templates.consulted_patient')
-{
+		if($scope.pagedecision === 'templates.consulted_patient')
+		{
+				var password = "DQ_doctor";
+				console.log(password);
+		}
+		else {
+			var password = "DQ_patient";
+		}
 
-		var password = "DQ_doctor";
-
-		console.log(password);
-}
-else {
-
-	var password = "DQ_patient";
-
-	console.log(password);
-
-}
-
-console.log(password);
 
 var msg;
 var msgdate;

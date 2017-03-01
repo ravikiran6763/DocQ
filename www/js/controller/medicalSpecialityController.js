@@ -19,8 +19,4 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
  				 console.log('failure data', error);
  		 });
 
-
-
-
-
 });

@@ -10620,6 +10620,8 @@ ion-spinner.spinner-on-load {
 .auth-outer {
   background-color: transparent !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .auth-outer ionic-content {
+    overflow: hidden !important; }
   .auth-outer ion-view {
     background-color: transparent;
     box-shadow: none !important; }
@@ -11964,9 +11966,14 @@ ion-side-menu .heading-item .message {
 .patient-payment-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .patient-payment-view ionic-content {
+    overflow: hidden !important; }
+  .patient-payment-view .scroll-view {
+    height: 100% !important; }
   .patient-payment-view .top-content {
     width: 100%;
-    height: 50%; }
+    height: 50%;
+    overflow: hidden !important; }
     .patient-payment-view .top-content .accDetails {
       width: 90%;
       height: 100%;
@@ -12030,7 +12037,7 @@ ion-side-menu .heading-item .message {
     box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, 0.8);
     overflow: scroll !important; }
     .patient-payment-view .bottom-content li {
-      height: 33%;
+      height: 30%;
       border-bottom: 2px solid #dadada;
       margin-top: 1%;
       *zoom: 1; }
@@ -13728,7 +13735,6 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
-    height: 100%;
     overflow: hidden !important; }
   .patient-reg-1-view .scroll-content {
     position: relative !important; }
