@@ -4,10 +4,8 @@
 	require "mergejpegimage.php";
 	header('Content-type: text/html; charset=utf-8');
  $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
-
-
-	if(isset($postdata))
-	{
+ if(isset($postdata))
+ {
 
 	      $request = json_decode($postdata);
 	      $doctorphoneno = $request->docphno; //DOCTOR PHONE NO
@@ -15,6 +13,12 @@
 	      $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
 	      $tests = $request->tests;//TESTSBY DOCTOR
 	      $medication = $request->medication;//MEDICATION BY DOCTOR
+
+	      // $doctorphoneno = '7829786711'; //DOCTOR PHONE NO
+	      // $patientphoneno = '9845000753';//PATIENT PHONE NO
+	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
+	      // $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
+	      // $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
 
 
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE
@@ -125,37 +129,39 @@
    			 $red   = imagecolorallocate($my_img, 0,   255,   0);
   	     $black = imagecolorallocate($my_img, 0, 0, 0);
 
+				 $font = 'Ubuntu-B.ttf';
 				imagestring( $my_img, 20, 20, 20, "Dr.$doctor_fullname",$text_colour );
 				// imagestring( $my_img, 4, 800, 25, "Dr.$doctor_fullname", $text_colour );
 
 				//DOCTOR INFORMATION LIKE NAME,ADDRESS,CITY,PIN AND DATE
 
 				imagestring( $my_img, 40, 20, 40, "$doctor_degrees", $text_colour );
-				imagestring( $my_img, 60, 20, 60, "$doctor_fulladdress", $text_colour );
-				imagestring( $my_img, 80, 20, 80, "$doctor_citypin", $text_colour );
+				imagestring( $my_img, 60, 20, 60, "MCI No:123456", $text_colour );
+				imagestring( $my_img, 80, 20, 80, "$doctor_fulladdress", $text_colour );
+				imagestring( $my_img, 100, 20, 100, "$doctor_citypin", $text_colour );
 
 				imagerectangle($my_img, 0, 0, 920, 1080, $line_colour1);
-				$thickness = 18;
-				imageline( $my_img, 0, 115, 920, 115, $line_colour );
+				// $thickness = 18;
+				// imageline( $my_img, 0, 115, 920, 115, $line_colour );
 
 				$thickness = 18;
-				imageline( $my_img, 0, 115, 920, 115, $line_colour );
+				imageline( $my_img, 0, 165, 920, 165, $line_colour );
 				//PATIENT INFORMATION LIKE NAME,AGE AND SEX
 				imagerectangle($my_img, 0, 0, 920, 1080, $line_colour1);
-				imagestring( $my_img, 145, 20, 145, "Patient Name: $patient_fullname", $text_colour );
-				imagestring( $my_img, 175, 20, 175, "Age: $patient_age ", $text_colour );
-				imagestring( $my_img, 175, 250, 175, "Gender:$patient_sex", $text_colour );
-				$date= date("Y/m/d") ;
-				imagestring( $my_img, 145, 750, 145, "Date:$date", $text_colour );
+				imagestring( $my_img, 185, 20, 185, "Patient Name: $patient_fullname",  $text_colour );
+				imagestring( $my_img, 205, 20, 205, "Age: $patient_age ",  $text_colour );
+				imagestring( $my_img, 205, 250, 205, "Gender:$patient_sex", $text_colour );
+				$date= date("d/m/Y") ;
+				imagestring( $my_img, 185, 750, 185, "Date:$date", $text_colour );
 
 
 				//DIAGNOSIS SPECIFIED BY DOCTOR
-				imagestring( $my_img, 50, 20, 220, "Diagnosis", $text_colour );
-				imageline( $my_img, 20, 245, 100, 245, $line_colour );
+				imagestring( $my_img, 90, 20, 260, "Diagnosis", $text_colour );
+				imageline( $my_img, 20, 280, 110, 280,  $line_colour );
 
 				$diagnosis="$mentioneddiagnosis";
 				$diagnosisText=explode("\n",wordwrap($diagnosis,90,"\n"));
-				$x=265;
+				$x=285;
 				foreach($diagnosisText as $arr)
 				{
 				  $white=imagecolorallocate($my_img,0,0,0); //sets text color
@@ -177,7 +183,7 @@
 				  $y=$y+18;
 
 				}
-				imagestring( $my_img, 60, 20, 700, "Medications", $text_colour );
+				imagestring( $my_img, 60, 20, 700, "Medications",  $text_colour );
 				imageline( $my_img, 20, 720, 120, 720, $line_colour );
 
 				$medication="$mentionedmedication";
@@ -191,15 +197,31 @@
 
 				}
 
-				imagestring( $my_img, 100, 60, 990, "-SD-", $text_colour );
+				imagestring( $my_img, 100, 60, 990, "-SD-",$text_colour );
 				imagestring( $my_img, 1020, 60, 1020, "Dr.$doctor_fullname",$text_colour );
 				imagestring( $my_img, 1050, 60, 1050, "$doctor_degrees", $text_colour );
 
-
  				 header( "Content-type: image/jpeg" );
 				//GENERATE JPEG FORMAT IMAGE BASED ON CONSULTATION ID BY THE PATIENT
+
 				imagejpeg( $my_img,"DocQuik$preCount.jpeg");
-				imagedestroy( $my_img );
+				imagedestroy($my_img);
+
+				$png = imagecreatefrompng('dq_loginlogo.png');
+				$jpeg = imagecreatefromjpeg("DocQuik$preCount.jpeg");
+
+				list($width, $height) = getimagesize("DocQuik$preCount.jpeg");
+				list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
+
+
+				$out = imagecreatetruecolor($width, $height);
+				imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
+				imagecopyresampled($out, $png, 680, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
+				imagejpeg($out, "DocQuik$preCount.jpeg");
+
+				$base64 = base64_encode($out);
+
+				imagedestroy( $out );
 
 			}
 		}
@@ -207,23 +229,10 @@
 		{
 		   echo "Please Mention Diagnosis as it is Mandatory";
 		}
-	}
-
-
-
-
+ }
 
 mysql_close($dbhandle);
 
-$png= imagecreatefrompng('dq_loginlogo.png');
-list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
-
-$count = imagecreatetruecolor($width, $height);
-imagecopyresampled($count, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
-imagecopyresampled($count, $png, 30, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
-
-
-// $base64Prescription = base64_encode($imagedata);
 
  echo "DocQuik$preCount";
 ?>

@@ -16,6 +16,4 @@ console.log($localStorage.user);
 
    $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
 
-
-
 })
