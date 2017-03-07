@@ -51,26 +51,26 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
 //   });
 // }])
 
-DoctorQuickApp.config(function($ionicCloudProvider) {
-  $ionicCloudProvider.init({
-    "core": {
-      "app_id": "b578c73c",
-      "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
-    },
-    "push": {
-      "sender_id": "310212728810",
-      "pluginConfig": {
-        "ios": {
-          "badge": true,
-          "sound": true
-        },
-        "android": {
-          "iconColor": "#343434"
-        }
-      }
-    }
-  });
-})
+// DoctorQuickApp.config(function($ionicCloudProvider) {
+//   $ionicCloudProvider.init({
+//     "core": {
+//       "app_id": "b578c73c",
+//       "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
+//     },
+//     "push": {
+//       "sender_id": "310212728810",
+//       "pluginConfig": {
+//         "ios": {
+//           "badge": true,
+//           "sound": true
+//         },
+//         "android": {
+//           "iconColor": "#343434"
+//         }
+//       }
+//     }
+//   });
+// })
 DoctorQuickApp.run(function($window, $rootScope) {
   // console.log(navigator.onLine);
       $rootScope.online = navigator.onLine;
@@ -87,6 +87,25 @@ DoctorQuickApp.run(function($window, $rootScope) {
       // console.log($rootScope.online);
 
 })
+
+document.addEventListener('deviceready', function () {
+  // Enable to debug issues.
+  // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+  var notificationOpenedCallback = function(jsonData) {
+    alert('hello');
+    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+  };
+
+  window.plugins.OneSignal
+    .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429", "271054721857")
+    .handleNotificationOpened(notificationOpenedCallback)
+    .endInit();
+
+  // Sync hashed email if you have a login system or collect it.
+  //   Will be used to reach the user at the most optimal time of day.
+  // window.plugins.OneSignal.syncHashedEmail(userEmail);
+}, false);
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
 
@@ -108,8 +127,29 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.StatusBar) {
       return StatusBar.hide();
     }
+
+    var notificationOpenedCallback = function(jsonData) {
+    //alert("Notification received:\n" + JSON.stringify(jsonData));
+      //console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+      $rootScope.openedFromNotification = true;
+      alert($rootScope.openedFromNotification);
+      // $ionicHistory.clearCache();
+      // $window.location.reload(true);
+      $rootScope.$broadcast('app:notification', {refresh: true});
+    };
     //
-    console.log('deviceready');
+    // window.plugins.OneSignal
+    //   .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429", "271054721857")
+    //   .handleNotificationOpened(notificationOpenedCallback)
+    //   .endInit();
+
+
+      window.plugins.OneSignal.init("6873c259-9a11-4a2a-a3b5-53aea7d59429",
+                                     {googleProjectNumber: "271054721857"},
+                                     notificationOpenedCallback);
+
+      // Show an alert box if a notification comes in when the user is in your app.
+      window.plugins.OneSignal.enableInAppAlertNotification(true);
 
   });
 
@@ -217,36 +257,13 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
   });
 
-  document.addEventListener('deviceready', function ($scope,$state) {
-    // Enable to debug issues.
-    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-    console.log('onesignal');
-    var notificationOpenedCallback = function(jsonData) {
-      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      alert('handle  routing here')
-      // alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-           $state.go('templates.patientRequest');
-    };
-    // Set your iOS Settings
-    var iosSettings = {};
-    iosSettings["kOSSettingsKeyAutoPrompt"] = true;
-    iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
-    window.plugins.OneSignal
-        .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
-        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
-        .handleNotificationReceived(function(jsonData) {
-        alert("Notification received:\n" + JSON.stringify(jsonData));
-        console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-      })
-      .endInit();
-
-  }, false);
 
 
-      function onDeviceReady() {
-          checkConnection();
-          console.log('device ready for network check');
-      }
+
+  function onDeviceReady() {
+      checkConnection();
+      console.log('device ready for network check');
+  }
 
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
@@ -260,12 +277,12 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
-          $ionicConfig.views.transition(none);
+          $ionicConfig.views.transition('none');
           $ionicConfig.views.swipeBackEnabled(false);
         }
-        // else{
-        //   $ionicConfig.views.transition(none);
-        // }
+        else{
+          $ionicConfig.views.transition('none');
+        }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
       // console.log(toState.name);

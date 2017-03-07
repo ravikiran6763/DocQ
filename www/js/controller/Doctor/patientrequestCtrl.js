@@ -19,9 +19,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					 $rootScope.reqId=$scope.currentPatient.id;
 					 $rootScope.patientNum=$scope.currentPatient.patientNum;
 
-
-
-
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
 
@@ -293,10 +290,6 @@ $scope.popupShown = true;
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
 		 console.log('closethis popup');
-<<<<<<< HEAD
-
-=======
->>>>>>> 9cc1a61e189ed7be86aa61875db7698640fc16f5
 		 $scope.callReqPopUp.close();
 		 $scope.isFirstTime = true;
 
@@ -312,8 +305,6 @@ $scope.popupShown = true;
 		 }, 5000);
 
 	 }
-	 
-
 		//  $state.go($state.current, {}, {reload: true});
 	 }).catch(function(error){
 	 console.log('failure data', error);

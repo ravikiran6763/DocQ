@@ -52,10 +52,11 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 				 $fields = array(
 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 					 'include_player_ids' => $Ids,
-					 'data' => array("view" => "profile"),
+					 'additionalData' => array("foo" => "bar"),
 					 'contents' => $content,
 					 'android_sound' => 'android',
-					 'ios_sound' => 'iphone.wav'
+					 'ios_sound' => 'iphone.wav',
+					 'url' => 'https://www.google.co.in/'
 				 );
 
 				 $fields = json_encode($fields);
