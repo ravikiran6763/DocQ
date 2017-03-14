@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window,$ionicAuth, $ionicUser, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window,$ionicAuth, $ionicUser,$ionicPush, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -55,7 +55,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             alert("Error calling Hello Plugin");
           }
           // hello.login(uname1,pw1,success, failure);
-
+          $ionicPush.register().then(function(t) {
+            return $ionicPush.saveToken(t);
+          }).then(function(t) {
+            // alert(t.token);
+            console.log('Token saved:', t.token);
+          });
           $ionicHistory.nextViewOptions({
             disableAnimate: true,
             disableBack: true
@@ -117,7 +122,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
                 console.log(response);
               })
             });
-
+            $ionicPush.register().then(function(t) {
+              return $ionicPush.saveToken(t);
+            }).then(function(t) {
+              // alert(t.token);
+              console.log('Token saved:', t.token);
+            });
             hello.login(uname1,pw1,success, failure);
             $localStorage.onOff=1;
         }

@@ -7,6 +7,9 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				$scope.toggleText = "Accept";
 
+					$rootScope.pushReqId=$stateParams.reqId;
+					alert('reqId',$rootScope.pushReqId)
+
 						$scope.currentPatient={};
 			     $scope.currentPatient = angular.fromJson($localStorage.currentPatient);
 			     console.log($scope.currentPatient);

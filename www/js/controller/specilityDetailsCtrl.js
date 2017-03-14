@@ -82,7 +82,7 @@ $scope.sendrequesttoonlinedoctors = function()
       /*Start timers*/
         $scope.counter = 120;
         $scope.onTimeout = function(){
-          console.log($scope.counter);
+          // console.log($scope.counter);
           $scope.counter--;
           patientTimeout = $timeout($scope.onTimeout,1000);
           if($scope.counter == 0){
