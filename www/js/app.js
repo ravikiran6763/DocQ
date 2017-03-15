@@ -256,7 +256,7 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
-      $ionicConfig.views.transition('platform');
+      $ionicConfig.views.transition(none);
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
