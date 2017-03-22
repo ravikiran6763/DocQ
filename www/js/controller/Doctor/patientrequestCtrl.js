@@ -8,19 +8,50 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				$scope.toggleText = "Accept";
 
 					$rootScope.pushReqId=$stateParams.reqId;
-					alert('reqId',$rootScope.pushReqId)
+					$rootScope.pushReqPat=$stateParams.reqPat;
 
-						$scope.currentPatient={};
+					 console.log('reqId',$rootScope.pushReqId)
+					 console.log('reqPat',$rootScope.pushReqPat)
+
+					 var consltDetails ={
+						 reqId:$rootScope.pushReqId,
+						 reqPat:$rootScope.pushReqPat
+					 }
+					 $ionicLoading.show();
+					 console.log('consutation:',consltDetails);
+					 doctorServices.fetchReqPatientDetails(consltDetails).then(function(response){
+						 console.log('Response::',response);
+					 $rootScope.reqPatDetails=response;
+					 var data=$rootScope.reqPatDetails//take all json data into this variable
+			 		 var totList=[];
+			 				for(var i=0; i<data.length; i++){
+
+			 						$rootScope.reqId=data[i].id,
+			 						$rootScope.reqPat=data[i].patientPhone,
+
+			 				console.log($rootScope.reqId);
+			 				console.log($rootScope.reqPat);
+
+			 				}
+
+					 $ionicLoading.hide();
+					  //  $state.go($state.current, {}, {reload: true});
+					 }).catch(function(error){
+					 console.log('failure data', error);
+					 });
+
+					 $scope.currentPatient={};
 			     $scope.currentPatient = angular.fromJson($localStorage.currentPatient);
-			     console.log($scope.currentPatient);
-					 $rootScope.patientFname=$scope.currentPatient.patientFname;
-					 $rootScope.patientLname=$scope.currentPatient.patientLname;
-					 $rootScope.patientAge=$scope.currentPatient.patientAge;
-					 $rootScope.patientSex=$scope.currentPatient.patientSex;
-					 $rootScope.patientImage=$scope.currentPatient.image;
-					 $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
-					 $rootScope.reqId=$scope.currentPatient.id;
-					 $rootScope.patientNum=$scope.currentPatient.patientNum;
+			    //  console.log($scope.currentPatient);
+					//  $rootScope.reqId=$scope.currentPatient.id;
+
+					//  $rootScope.patientFname=$scope.currentPatient.patientFname;
+					//  $rootScope.patientLname=$scope.currentPatient.patientLname;
+					//  $rootScope.patientAge=$scope.currentPatient.patientAge;
+					//  $rootScope.patientSex=$scope.currentPatient.patientSex;
+					//  $rootScope.patientImage=$scope.currentPatient.image;
+					//  $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
+					//  $rootScope.patientNum=$scope.currentPatient.patientNum;
 
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
@@ -72,7 +103,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			var accptdReq = {
 			accpetcode : "2",
 			doctorphno : $localStorage.user,
-			patientphno : $rootScope.patientNum,
+			patientphno : $rootScope.reqPat,
 			consultId:$rootScope.reqId
 			}
 			console.log(accptdReq);
@@ -235,13 +266,15 @@ console.log(checkPatientActivity);
 var patAct = {
 accpetcode : "2",
 doctorphno : $localStorage.user,
-patientphno : $rootScope.patientNum,
+patientphno : $rootScope.reqPat,
 consultId:$rootScope.reqId
 }
-console.log(patAct);
+
 $scope.popupShown = true;
  function checkAcceptedReq(){
 	 doctorServices.doctorActivity(patAct).then(function(response){
+		 console.log(patAct);
+		 console.log('checking for patient activity');
 		 $scope.consultStatus=response;
 		 console.log($scope.consultStatus);
 	//  doctorServices.patientActivity($rootScope.reqId).then(function(response){

@@ -52,7 +52,7 @@ ion.sound({
 });
 
 // play sound
-ion.sound.play("beer_can_opening");
+// ion.sound.play("beer_can_opening");
 
 $scope.pushRegister = function() {
  console.log('Ionic Push: Registering user');
@@ -66,15 +66,7 @@ $scope.pushRegister = function() {
  		include_player_ids: [ids.userId],
  		android_sound:'tring'
  	};
- 	window.plugins.OneSignal.postNotification(notificationObj,
- 		function(successResponse) {
- 			console.log("Notification Post Success:", successResponse);
- 		},
- 		function (failedResponse) {
- 			console.log("Notification Post Failed: ", failedResponse);
- 			alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
- 		}
- 	);
+ 
  });
 
 };

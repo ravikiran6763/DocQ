@@ -10,7 +10,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docNotAvailable=false;
 
     $rootScope.homePage=$ionicHistory.currentStateName();
-
     HardwareBackButtonManager.disable();
 
 $interval(checkNewMsgs,2000);
@@ -243,7 +242,7 @@ $scope.$watch('pending', function() { console.log('watch!'); });
         // console.log(oldValue);
         if(newValue > oldValue){
           // alert('ting');
-          ion.sound.play('bell_ring');
+          // ion.sound.play('bell_ring');
         }
 
     },true);
@@ -259,8 +258,9 @@ $scope.$watch('pending', function() { console.log('watch!'); });
    	}
 
 $scope.viewRequest=function(patient){
-  $localStorage.currentPatient = patient;
-  $state.go('templates.patientRequest')
+  $rootScope.currentPatient = patient;
+  console.log($rootScope.currentPatient);
+  $state.go('templates.viewPatientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum})
 }
 
 

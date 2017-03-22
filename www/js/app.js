@@ -41,25 +41,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic-letter-avatar',
   'ionic.cloud'
 ])
-// DoctorQuickApp.config(function($ionicCloudProvider) {
-//   $ionicCloudProvider.init({
-//     "core": {
-//       "app_id": "b578c73c"
-//     },
-//     "push": {
-//       "sender_id": "271054721857",
-//       "pluginConfig": {
-//         "ios": {
-//           "badge": true,
-//           "sound": true
-//         },
-//         "android": {
-//           "iconColor": "#343434"
-//         }
-//       }
-//     }
-//   });
-// })
+
 DoctorQuickApp.run(function($window, $rootScope) {
   // console.log(navigator.onLine);
       $rootScope.online = navigator.onLine;
@@ -73,13 +55,7 @@ DoctorQuickApp.run(function($window, $rootScope) {
           $rootScope.online = true;
         });
       }, false);
-      // console.log($rootScope.online);
-//---------------------IONIC PUSH Alerts in APP---------------------------------
-    // $rootScope.$on('cloud:push:notification', function(event, data) {
-    // var msg = data.message;
-    // alert(msg.title + ': ' + msg.text);
-    // });
-//---------------------IONIC PUSH-----------------------------------------------
+
 })
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
@@ -172,15 +148,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       };
       // PushNotificationsService.register();
       // Android customization
-      cordova.plugins.backgroundMode.setDefaults({ text:'Keeps you Awailable on DQ.'});
       // Enable background mode
-      cordova.plugins.backgroundMode.enable();
+
       if(cordova.plugins.backgroundMode.isEnabled()){
            console.log('Hi, I am enabled. Signed : backgroundMode.');
          }
 
       // Called when background mode has been activated
-      cordova.plugins.backgroundMode.onactivate = function () {
+      cordova.plugins.backgroundMode.onactivate = function (){
       setTimeout(function () {
       // Modify the currently displayed notification
       cordova.plugins.backgroundMode.configure({
@@ -203,28 +178,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
           }
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 //-------------------------------------ONESIGNAL PUSH SETUP---------------------
-
-
-      var notificationOpenedCallback = function(result) {
-        var data = result.notification.payload.additionalData;
-        if(data.targetUrl == 'patientRequestfromdocotor.html'){
-          console.log('route');
-          // var $injector = angular.injector();
-          // var state = $injector.get($state);
-          state.go('templates.patientRequest');
-        }
-        // alert(data.targetUrl)
-        // if (data && data.targetUrl) {
-        //   var state = $injector.get($state);
-        //   state.go(data.targetUrl);
-        // }
-      };
-
-
-      window.plugins.OneSignal.getIds(function(ids) {
-        console.log('getIds: ' + JSON.stringify(ids));
-        console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
-      });
         window.plugins.OneSignal
         .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
         .handleNotificationReceived(function(jsonData) {
@@ -232,16 +185,30 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
             console.log('Did I receive a notification: ' + JSON.stringify(jsonData));
         })
         .endInit();
-  window.plugins.OneSignal
-  .startInit( "6873c259-9a11-4a2a-a3b5-53aea7d59429")
-  .handleNotificationOpened(function(jsonData) {
-    var data = jsonData.notification.payload.additionalData;
-    alert(data.reqId);
-    alert("Notification opened:\n" + JSON.stringify(jsonData));
-    console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-    $state.go('templates.patientRequest',{ "reqId": data.reqId});//,{ "reqId": 'data.reqId'}
-  })
-  .endInit();
+        window.plugins.OneSignal.getIds(function(ids) {
+          // alert('getIds: ' + JSON.stringify(ids));
+          console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+        });
+        var iosSettings = {};
+        iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+        iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+
+        window.plugins.OneSignal
+          .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
+          .iOSSettings(iosSettings)
+          .endInit();
+
+        window.plugins.OneSignal
+        .startInit( "6873c259-9a11-4a2a-a3b5-53aea7d59429")
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
+        .handleNotificationOpened(function(jsonData) {
+          var data = jsonData.notification.payload.additionalData;
+          // console.log('fromPush',data.reqId);
+          // alert("Notification opened:\n" + JSON.stringify(jsonData));
+          console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat});
+        })
+        .endInit();
 
 //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
@@ -249,6 +216,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       checkConnection();
       console.log('device ready for network check');
   }
+
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
     console.log('toState',toState);
     console.log('toParams',toParams);
@@ -636,8 +604,8 @@ $stateProvider
       }
     }
   })
-  .state('templates.patientRequest', {
-    url: "/patientRequest/:reqId",
+  .state('templates.viewPatientRequest', {
+    url: "/viewPatientRequest/:reqId/:reqPat",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -646,6 +614,15 @@ $stateProvider
     }
   })
 
+  .state('templates.patientRequest', {
+    url: "/patientRequest/:reqId/:reqPat",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/patientRequestfromdocotor.html",
+          controller: 'patientrequestCtrl'
+      }
+    }
+  })
   // .state('templates.chat_with_patient', {
   //   url: "/chat_with_patient",
   //   views: {
@@ -781,7 +758,7 @@ $stateProvider
 
 // DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
 //   $ionicAppProvider.identify({
-//     app_id: 'b578c73c',
+//     app_id: '45d07bf3',
 //     api_key: '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
 //     dev_push: true
 //   });
@@ -790,7 +767,7 @@ $stateProvider
 // DoctorQuickApp.config(function($ionicCloudProvider) {
 //   $ionicCloudProvider.init({
 //     "core": {
-//       "app_id": "b578c73c",
+//       "app_id": "45d07bf3",
 //       "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
 //     },
 //     "push": {
