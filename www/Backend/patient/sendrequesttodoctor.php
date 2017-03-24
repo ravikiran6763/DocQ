@@ -28,11 +28,13 @@ if(isset($postdata))
 			 else
 			 {
 							 echo "Query Submitted";
-							$fiveMins="SELECT id as reqId  FROM reqForConsultation order by id DESC limit 1";
+							$fiveMins="SELECT id as reqId,requestedTime as reqTime  FROM reqForConsultation order by id DESC limit 1";
 						 	$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
 						 	while($row = mysql_fetch_array($fiveMinsRet))
 						 	{
 								$reqId=$row['reqId'];
+								$reqTime=$row['reqTime'];
+
 							}
 			 }
 		}
@@ -53,6 +55,10 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 		 $Ids =array();
 			$Ids = $GLOBALS['myArray'];
 			$reqId = $GLOBALS['reqId'];
+			$reqTime = $GLOBALS['reqTime'];
+			$rreqPatImg = $GLOBALS['reqPatImg'];
+
+
 			echo  $reqPat = $GLOBALS['patient_phno'];
 
 
@@ -63,9 +69,9 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 				 $fields = array(
 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 					 'include_player_ids' => $Ids,
-					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"targetUrl" => "patientRequestfromdocotor.html"),
+					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromdocotor.html"),
 					 'contents' => $content,
-					 'android_sound' => 'android',
+					 'android_sound' => 'androidtone',
 					 'ios_sound' => 'iphone.wav',
 
 				 );

@@ -206,7 +206,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
           // console.log('fromPush',data.reqId);
           // alert("Notification opened:\n" + JSON.stringify(jsonData));
           console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat});
+          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime});
         })
         .endInit();
 
@@ -605,7 +605,7 @@ $stateProvider
     }
   })
   .state('templates.viewPatientRequest', {
-    url: "/viewPatientRequest/:reqId/:reqPat",
+    url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -615,7 +615,7 @@ $stateProvider
   })
 
   .state('templates.patientRequest', {
-    url: "/patientRequest/:reqId/:reqPat",
+    url: "/patientRequest/:reqId/:reqPat/:reqTime",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",

@@ -4,7 +4,7 @@ DoctorQuickApp.service('doctorServices', function ($http,$q,$localStorage, BASE_
 
 this.doctorDetails = function (docPhone) {
   var deferred = $q.defer();
-  console.log(docPhone);
+  // console.log(docPhone);
   $http.post(BASE_URL.url + API.doctorDetails,docPhone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
@@ -17,7 +17,7 @@ this.doctorDetails = function (docPhone) {
 }
 
 this.fetchReqPatientDetails = function(detail){
-  console.log(detail);
+  // console.log(detail);
   var deferred = $q.defer();
   console.log(BASE_URL.url + API.reqPatientDetails);
   $http.post(BASE_URL.url + API.reqPatientDetails,detail)
@@ -60,7 +60,7 @@ this.myDoctorsDetails = function (mydocPhone) {
 }
 
 this.myConsultedPatients = function (meDoc) {
-  console.log(meDoc);
+  // console.log(meDoc);
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.myConsultedPatients,meDoc)
   .success(function (data, status, headers, config){
@@ -94,7 +94,7 @@ this.checkMyBalance = function (myNumber) {
 this.changeDocPwd = function(newPwd){
 
   var deferred = $q.defer();
-  console.log(BASE_URL.url + API.updateDocPassword);
+  // console.log(BASE_URL.url + API.updateDocPassword);
   $http.post(BASE_URL.url + API.updateDocPassword,newPwd)
   .success(function (data, status, headers, config){
     deferred.resolve(data);

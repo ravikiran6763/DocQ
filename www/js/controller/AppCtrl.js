@@ -53,6 +53,7 @@ ion.sound({
 
 // play sound
 // ion.sound.play("beer_can_opening");
+//ion.sound.stop("witchdoctor");
 
 $scope.pushRegister = function() {
  console.log('Ionic Push: Registering user');
@@ -66,7 +67,7 @@ $scope.pushRegister = function() {
  		include_player_ids: [ids.userId],
  		android_sound:'tring'
  	};
- 
+
  });
 
 };

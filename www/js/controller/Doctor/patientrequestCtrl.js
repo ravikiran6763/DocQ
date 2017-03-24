@@ -9,25 +9,25 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 					$rootScope.pushReqId=$stateParams.reqId;
 					$rootScope.pushReqPat=$stateParams.reqPat;
+					$rootScope.dateAndTime=$stateParams.reqTime;
+
 
 					 console.log('reqId',$rootScope.pushReqId)
 					 console.log('reqPat',$rootScope.pushReqPat)
-
 					 var consltDetails ={
-						 reqId:$rootScope.pushReqId,
-						 reqPat:$rootScope.pushReqPat
+						 reqId:$stateParams.reqId,
+						 reqPat:$stateParams.reqPat
 					 }
-					 $ionicLoading.show();
 					 console.log('consutation:',consltDetails);
 					 doctorServices.fetchReqPatientDetails(consltDetails).then(function(response){
 						 console.log('Response::',response);
 					 $rootScope.reqPatDetails=response;
 					 var data=$rootScope.reqPatDetails//take all json data into this variable
-			 		 var totList=[];
 			 				for(var i=0; i<data.length; i++){
 
 			 						$rootScope.reqId=data[i].id,
 			 						$rootScope.reqPat=data[i].patientPhone,
+
 
 			 				console.log($rootScope.reqId);
 			 				console.log($rootScope.reqPat);
@@ -39,6 +39,29 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					 }).catch(function(error){
 					 console.log('failure data', error);
 					 });
+
+
+					 ion.sound({
+					     sounds: [
+					         {
+					             name: "androidtone",
+					 						volume: 0.2
+					         },
+
+					         {
+					             name: "bell_ring",
+					             volume: 0.1,
+					             preload: false
+					         }
+					     ],
+					     volume: 0.5,
+					     path: "sounds/",
+					     preload: true
+					 });
+
+					 // play sound
+					 ion.sound.play("androidtone");
+					 //ion.sound.stop("androidtone");
 
 					 $scope.currentPatient={};
 			     $scope.currentPatient = angular.fromJson($localStorage.currentPatient);
@@ -91,7 +114,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$localStorage.accpt=1;
 			$scope.isDisabled = true;
 			$scope.toggleText ='Accepted'
-
+			ion.sound.stop("androidtone");
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
@@ -219,6 +242,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$scope.isDisabled = true;
 		}
 		else if($scope.type === 'Decline'){
+			ion.sound.stop("androidtone");
 			console.log($scope.type);
 			$localStorage.accpt='';
 			console.log($localStorage.accpt);
@@ -258,6 +282,12 @@ function checkForrDeclined(){
 $localStorage.showPopUp = 1;
 
 $interval(checkAcceptedReq,1000);
+
+$rootScope.$on('$routeChangeStart', function() {
+	console.log('interval stopped');
+        $interval.cancel(checkAcceptedReq);
+    });
+
 var checkPatientActivity={
 	callId:$rootScope.reqId,
 	doctor:$rootScope.patientNum
@@ -266,22 +296,19 @@ console.log(checkPatientActivity);
 var patAct = {
 accpetcode : "2",
 doctorphno : $localStorage.user,
-patientphno : $rootScope.reqPat,
-consultId:$rootScope.reqId
+patientphno : $rootScope.pushReqPat,
+consultId:$rootScope.pushReqId
 }
 
 $scope.popupShown = true;
  function checkAcceptedReq(){
 	 doctorServices.doctorActivity(patAct).then(function(response){
-		 console.log(patAct);
-		 console.log('checking for patient activity');
+		 console.log('checking for patient activity:',patAct);
 		 $scope.consultStatus=response;
-		 console.log($scope.consultStatus);
-	//  doctorServices.patientActivity($rootScope.reqId).then(function(response){
+		//  console.log($scope.consultStatus);
 				 if($scope.consultStatus[0][0] == 3 && $scope.popupShown == true){
-					 console.log('open popup');
+					//  console.log('open popup');
 					 $scope.popupShown = false;
-					 console.log($scope.consultStatus[0][0]);
 					 $scope.callReqPopUp.close();
 					 setTimeout(function () {
 						console.log('delay 3 sec');
@@ -303,10 +330,7 @@ $scope.popupShown = true;
 							 $timeout.cancel(docTimeout);
 							 console.log('destroyed');
 							 });
-						console.log('Thank you for not eating my delicious ice cream cone');
 						});
-
-
 					 $localStorage.showPopUp=2;
 				 }
 
@@ -321,8 +345,7 @@ $scope.popupShown = true;
  function videoOrAudio(){
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 		 $scope.isFirstTime = false;
-
-		 console.log($rootScope.reqId);
+		//  console.log($rootScope.reqId);
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
 		 console.log('closethis popup');
@@ -336,8 +359,8 @@ $scope.popupShown = true;
 			   disableBack: true
 			 });
 			 $state.go("templates.notesForPatient",{},{location: "replace", reload: true})
-			 console.log($rootScope.reqPat);
-			 console.log('show accpted doc profile');
+			//  console.log($rootScope.reqPat);
+			//  console.log('show accpted doc profile');
 		 }, 5000);
 
 	 }
@@ -346,7 +369,8 @@ $scope.popupShown = true;
 	 console.log('failure data', error);
 	 });
  }
-
-
-
-})
+}).run(['$rootScope', '$interval', function($rootScope, $interval) {
+    $rootScope.$on('$routeChangeStart', function() {
+        $interval.cancel(checkAcceptedReq);
+    });
+}]);
