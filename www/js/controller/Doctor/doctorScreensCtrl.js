@@ -259,8 +259,8 @@ $scope.$watch('pending', function() { console.log('watch!'); });
 
 $scope.viewRequest=function(patient){
   $rootScope.currentPatient = patient;
-  console.log($rootScope.currentPatient);
-  $state.go('templates.viewPatientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum})
+  console.log($rootScope.currentPatient.requestedTime);
+  $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }
 
 

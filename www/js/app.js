@@ -604,15 +604,15 @@ $stateProvider
       }
     }
   })
-  .state('templates.viewPatientRequest', {
-    url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
-    views: {
-      'menuContent': {
-        templateUrl: "views/templates/patientRequestfromdocotor.html",
-          controller: 'patientrequestCtrl'
-      }
-    }
-  })
+  // .state('templates.viewPatientRequest', {
+  //   url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/templates/patientRequestfromdocotor.html",
+  //         controller: 'patientrequestCtrl'
+  //     }
+  //   }
+  // })
 
   .state('templates.patientRequest', {
     url: "/patientRequest/:reqId/:reqPat/:reqTime",

@@ -11,7 +11,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					$rootScope.pushReqPat=$stateParams.reqPat;
 					$rootScope.dateAndTime=$stateParams.reqTime;
 
-
+					alert($rootScope.dateAndTime);
 					 console.log('reqId',$rootScope.pushReqId)
 					 console.log('reqPat',$rootScope.pushReqPat)
 					 var consltDetails ={
@@ -23,16 +23,16 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 						 console.log('Response::',response);
 					 $rootScope.reqPatDetails=response;
 					 var data=$rootScope.reqPatDetails//take all json data into this variable
-			 				for(var i=0; i<data.length; i++){
+					 		for(var i=0; i<data.length; i++){
 
 			 						$rootScope.reqId=data[i].id,
 			 						$rootScope.reqPat=data[i].patientPhone,
+									// $rootScope.dateAndTime=data[i].requestedTime
 
+					 		console.log($rootScope.reqId);
+					 		console.log($rootScope.reqPat);
 
-			 				console.log($rootScope.reqId);
-			 				console.log($rootScope.reqPat);
-
-			 				}
+					 		}
 
 					 $ionicLoading.hide();
 					  //  $state.go($state.current, {}, {reload: true});
@@ -47,7 +47,11 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					             name: "androidtone",
 					 						volume: 0.2
 					         },
-
+									 {
+									 		name: "iphone",
+									 	 volume: 0.2,
+										  preload: true
+									 },
 					         {
 					             name: "bell_ring",
 					             volume: 0.1,
@@ -59,8 +63,18 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					     preload: true
 					 });
 
+					 $scope.deviceAndroid = ionic.Platform.isAndroid();
+
+					 if($scope.deviceAndroid === true){
+
+						 ion.sound.play("androidtone");
+
+					 }
+					 else{
+						//  alert($scope.deviceAndroid);
+						 ion.sound.play("iphone");
+					 }
 					 // play sound
-					 ion.sound.play("androidtone");
 					 //ion.sound.stop("androidtone");
 
 					 $scope.currentPatient={};
@@ -83,9 +97,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 				$rootScope.closeDocPopUp=false;
 				////// calculate datedifference////
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
-
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
-
 					var diffMs = (currentTimestamp - timestamp);
 					var diffDays = Math.round(diffMs / 86400000); // days
 					var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
@@ -114,7 +126,15 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$localStorage.accpt=1;
 			$scope.isDisabled = true;
 			$scope.toggleText ='Accepted'
-			ion.sound.stop("androidtone");
+			if($scope.deviceAndroid === true){
+
+				ion.sound.stop("androidtone");
+
+			}
+			else{
+				ion.sound.stop("iphone");
+			}
+
 			$rootScope.chekDiag=false;
 			$rootScope.chekTests=false;
 			$rootScope.chekMedi=false;
@@ -226,23 +246,21 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$timeout.cancel(docTimeout);
 			console.log('destroyed');
 			});
-
-
-
-
 					$localStorage.accpt = 0;
 
-
 			// patientrequesttodoctor.acceptedbydoctor(accptdReq);
-
 			// $state.go('templates.requestAccepted');
-
 		}
 		else if($scope.type === 'Accepted'){
 			$scope.isDisabled = true;
 		}
 		else if($scope.type === 'Decline'){
-			ion.sound.stop("androidtone");
+			if($scope.deviceAndroid === true){
+				ion.sound.stop("androidtone");
+			}
+			else{
+				ion.sound.stop("iphone");
+			}
 			console.log($scope.type);
 			$localStorage.accpt='';
 			console.log($localStorage.accpt);
@@ -369,8 +387,7 @@ $scope.popupShown = true;
 	 console.log('failure data', error);
 	 });
  }
-}).run(['$rootScope', '$interval', function($rootScope, $interval) {
-    $rootScope.$on('$routeChangeStart', function() {
-        $interval.cancel(checkAcceptedReq);
-    });
-}]);
+
+ $scope.$on('$destroy', function () { $interval.cancel(videoOrAudio); });
+ $scope.$on('$destroy', function () { $interval.cancel(checkForrDeclined); });
+});
