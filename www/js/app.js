@@ -563,7 +563,6 @@ $stateProvider
     abstract: true,
     templateUrl: "views/templates/doc-sidemenu.html",
     controller: 'doctorScreensCtrl'
-
   })
 
   .state('templates.doctor_home', {

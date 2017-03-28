@@ -179,7 +179,7 @@ console.log(checkPatientActivity);
 	//  doctorServices.patientActivity($rootScope.callId).then(function(response){
 	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
 	 $scope.consultStatus=response;
-	//  console.log($scope.consultStatus);
+	 console.log($scope.consultStatus);
 	 if($scope.consultStatus[0][0] == 4 && $scope.isFirstTime == false){
 		 $scope.isFirstTime=true;
 		 setTimeout(function (){

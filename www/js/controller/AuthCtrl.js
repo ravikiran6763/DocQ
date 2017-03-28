@@ -128,7 +128,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               // alert(t.token);
               console.log('Token saved:', t.token);
             });
-            hello.login(uname1,pw1,success, failure);
+            // hello.login(uname1,pw1,success, failure);
             $localStorage.onOff=1;
         }
 

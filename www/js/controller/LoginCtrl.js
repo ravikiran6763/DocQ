@@ -46,7 +46,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				};
 
 $scope.lastView = $ionicHistory.backView();
-console.log($scope.lastView);
+				console.log($scope.lastView);
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 
@@ -57,6 +57,13 @@ console.log($scope.lastView);
 
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
+						}).catch(function(error){
+						console.log('failure data', error);
+						})
+
+						patientProfileDetailsService.fetchPatientImage($scope.loginData.phone).then(function(response){
+							console.log(response);
+							window.localStorage['patientProfileImage'] = angular.toJson(response);
 						}).catch(function(error){
 						console.log('failure data', error);
 						})
@@ -104,7 +111,6 @@ console.log($scope.lastView);
 							disableBack: true
 						});
 					$state.go('app.patient_home', {}, {location: "replace", reload: true});
-
 					hello.login(uname1,pw1,success, failure);
 					hello.background(success, failure);
 					}
@@ -112,7 +118,6 @@ console.log($scope.lastView);
 					{
 						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
 						sessionStorage.setItem('User', 'Doctor');
-
 						$localStorage.doctororpatient = response;
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
 					    $rootScope.doctor_details=response;//store the response array in doctor details
@@ -138,8 +143,9 @@ console.log($scope.lastView);
 							disableAnimate: true,
 							disableBack: true
 						});
+						console.log('doctorHome');
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-					hello.login(uname1,pw1,success, failure);
+					// hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){

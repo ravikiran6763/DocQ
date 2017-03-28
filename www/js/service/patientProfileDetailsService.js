@@ -17,10 +17,20 @@ this.updatenotesflag = function(callid)
   return deferred.promise;
 }
 
+this.fetchPatientImage = function(detail){
+  console.log(detail);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.fetchPatientImage);
+  $http.post(BASE_URL.url + API.fetchPatientImage,detail)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
 
-
-
-
+  return deferred.promise;
+}
 
   this.fetchPatient = function(detail){
     // console.log(detail);

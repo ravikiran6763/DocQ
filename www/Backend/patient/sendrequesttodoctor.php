@@ -44,8 +44,11 @@ if(isset($postdata))
 	}
 
 	/////SEND PUSH NOTIFICATION ALL THE AVAILABLE DOCTORS
+
 	//  $sendPush="SELECT playerId as playerId from doctorDetails where doctorSpecialityId like '%$speciality%'";
-$sendPush="SELECT playerId as playerId  from doctorDetails where doctorSpecialityId like '%$speciality%' order by playerId";
+//$sendPush="SELECT playerId as playerId  from doctorDetails,doctor_onoff where  doctorSpecialityId like '%$speciality%' order by playerId";
+$sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and onoff=1 and doctorSpecialityId like '%$speciality%'";
+
  $result = mysql_query($sendPush);
  while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)){
 		 $myArray[]= $row['playerId'];
@@ -57,9 +60,7 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 			$reqId = $GLOBALS['reqId'];
 			$reqTime = $GLOBALS['reqTime'];
 			$rreqPatImg = $GLOBALS['reqPatImg'];
-
-
-			echo  $reqPat = $GLOBALS['patient_phno'];
+			$reqPat = $GLOBALS['patient_phno'];
 
 
 				 $content = array(
@@ -73,7 +74,6 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 					 'contents' => $content,
 					 'android_sound' => 'androidtone',
 					 'ios_sound' => 'iphone.wav',
-
 				 );
 
 				 $fields = json_encode($fields);

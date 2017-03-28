@@ -64,6 +64,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'checkForAccptedReq':'patient/checkForAccptedReq.php',
         'updateseenView':'patient/updateseenView.php',
         'declinedDuringCall':'patient/declinedDuringCall.php',
+        'fetchPatientImage':'patient/fetchPatientImage.php',
+
 
 
 

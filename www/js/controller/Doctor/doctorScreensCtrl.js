@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -212,28 +212,34 @@ function checkNewMsgs(){
     })
 
 
-    $interval(callAtInterval, 1000);
+    $interval(pendingConsultations, 1000);
     //$interval(lookForPrescription, 1000);
  $scope.pending=$localStorage.requests;
  console.log($scope.pending);
 
 
-$scope.hello = 5;
-
+  $scope.hello = 5;
   $localStorage.totalReq = 0;
+//////////////////////////////
+console.log($location.path());
+//////////////////////////////
 $scope.$watch('pending', function() { console.log('watch!'); });
-   	function callAtInterval() {
-      doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-      $scope.pendingRequests = response;
-      $scope.requests=$scope.pendingRequests.length;
-      // console.log($localStorage.totalReq);
-      // console.log($scope.requests);
+   	function pendingConsultations() {
 
+      if($location.path() == '/templates/doctor_home'){
+        doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+        $scope.pendingRequests = response;
+        console.log('pending:',$scope.pendingRequests);
+        $scope.requests=$scope.pendingRequests.length;
+        }).catch(function(error){
+        console.log('failure data', error);
+        })
+      }
+      // else{
+      //   console.log('request not running');
+      //   $interval.cancel(pendingConsultations);
+      // }
 
-      }).catch(function(error){
-      console.log('failure data', error);
-      })
-   		// console.log('callAtInterval');
    	}
 
     $scope.$watch('requests', function (newValue, oldValue, scope) {
