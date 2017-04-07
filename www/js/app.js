@@ -101,7 +101,6 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       // Handle the offline event
       alert('offline');
   }
-
 })
 
 DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
@@ -206,7 +205,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
           // console.log('fromPush',data.reqId);
           // alert("Notification opened:\n" + JSON.stringify(jsonData));
           console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime});
+
+          $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+          });
+          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: true});
         })
         .endInit();
 
@@ -305,6 +309,11 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
   $stateProvider
+  .state('splash',{
+    url:'/splash',
+    templateUrl:'splash.html',
+    controller : 'splashCtrl'
+  })
   .state('auth', {
     url: "/auth",
     templateUrl: "views/auth/auth.html",
@@ -750,8 +759,20 @@ $stateProvider
 
   //Patient signup
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/auth/loginNew');
-  $httpProvider.interceptors.push('APIInterceptor');
+  $urlRouterProvider.otherwise('/splash');
+  // $httpProvider.interceptors.push('APIInterceptor');
+  // $urlRouterProvider.otherwise(function() {
+  //       var logged = false;
+  //     // alert($localStorage.doctororpatient);
+  //       // Check User logined or not
+  //       if (logged != true) {
+  //         // alert('hello');
+  //           return '/auth/loginNew';
+  //       } else {
+  //           return 'app.masterList';
+  //       }
+  //
+  //   });
 });
 
 

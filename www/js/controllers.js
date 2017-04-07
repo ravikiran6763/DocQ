@@ -167,6 +167,66 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 
 })
 
+DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$scope,$state,$ionicHistory,LoginService){
+  $timeout(function(){
+		console.log($localStorage.doctororpatient);
+		if($localStorage.doctororpatient === 'patient'){
+			window.plugins.OneSignal.getIds(function(ids){
+				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+				//document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+				console.log(JSON.stringify(ids['userId']));
+				$scope.playerId=JSON.stringify(ids['userId']);
+
+				console.log($scope.playerId);
+				var updatePlayer ={
+					palyerId:$scope.playerId,
+					userNum:$localStorage.user,
+					user:'patient'
+				}
+				console.log(updatePlayer);
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+					console.log(response);
+				})
+			});
+			$ionicHistory.nextViewOptions({
+			  disableAnimate: true,
+			  disableBack: true
+			});
+			$state.go('app.patient_home',{}, {location: "replace", reload: true})
+		}
+		else if($localStorage.doctororpatient === 'doctor'){
+			window.plugins.OneSignal.getIds(function(ids) {
+				$scope.playerId=JSON.stringify(ids['userId']);
+				console.log($scope.playerId);
+
+				var updatePlayer ={
+					palyerId:$scope.playerId,
+					userNum:$localStorage.user,
+					user:'doctor'
+				}
+				console.log(updatePlayer);
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+					console.log(response);
+				})
+			});
+			$ionicHistory.nextViewOptions({
+			  disableAnimate: true,
+			  disableBack: true
+			});
+			$state.go('templates.doctor_home',{}, {location: "replace", reload: true})
+		}
+		else{
+			$ionicHistory.nextViewOptions({
+			  disableAnimate: true,
+			  disableBack: true
+			});
+			$state.go('auth.loginNew',{}, {location: "replace", reload: true})
+			// $state.go('auth.loginNew');
+		}
+  },10000);
+
+  $ionicHistory.clearHistory();
+})
 
 DoctorQuickApp.controller('callAccptCtrl', function($scope,$rootScope, $stateParams,$ionicConfig,$localStorage,$ionicLoading,patientrequesttodoctor) {
    	$scope.toggle = true;

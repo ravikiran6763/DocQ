@@ -45,8 +45,6 @@ accountsService.docAccountsBalance($localStorage.user).then(function(response){
         callback: function (val) {  //Mandatory
           console.log('Selected To Date : ' + val, new Date(val));
           $rootScope.toDate = $filter('date')(new Date(val),'yyyy-MM-dd');
-          // $localStorage.toDate=$rootScope.toDate;
-
           accountsService.docAccountsDetails().then(function(response){
               // console.log(response);
               $scope.DocAcc=response;
@@ -70,4 +68,8 @@ accountsService.docAccountsBalance($localStorage.user).then(function(response){
     $scope.openDatePickerTo = function(){
       ionicDatePicker.openDatePicker(ipObj2);
     };
+
+    
+
+
 })

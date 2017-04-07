@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$route,$interval,$rootScope,$state,$window,$ionicConfig,$ionicPush,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$window,$ionicConfig,$ionicPush,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -113,7 +113,7 @@ $scope.register = function() {
 																			$scope.uploadedData=response;
 																			console.log($scope.uploadedData);
 																			// $ionicLoading.hide();
-																			$route.reload();
+																			 $window.location.reload();
 																		$scope.reload = function() {
 																		return $state.transitionTo($state.current, $stateParams, {
 																		reload: true

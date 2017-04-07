@@ -131,7 +131,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             // hello.login(uname1,pw1,success, failure);
             $localStorage.onOff=1;
         }
-
          $ionicLoading.hide();
        }).catch(function(error){
        console.log('failure data', error);

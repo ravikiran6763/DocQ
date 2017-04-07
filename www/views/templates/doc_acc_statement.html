@@ -17,10 +17,20 @@
   <div class="calender-container">
     <div class="date-container">
       <div class="from-date">
-        <p>From<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerfrom();"></i></span></p>
+          <div class="date-picker">
+            <div class="input">
+              <div class="result">From:<span></span></div>
+              <button><i class="ion-ios-calendar-outline" ng-click="openDatePickerfrom();"></i></button>
+            </div>
+            <div class="calendar"></div>
+          </div>
+        <!-- <p>From<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerfrom();"></i></span></p> -->
+                  <!-- <input type="date" ng-model="data.dueDate"> -->
       </div>
       <div class="to-date">
           <p>To<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerTo();"></i></span></p>
+          <!-- <input type="date" ng-model="data.dueDate"> -->
+
       </div>
     </div>
   </div>
