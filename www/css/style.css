@@ -97,7 +97,7 @@
   -webkit-animation-delay: 0s;-webkit-animation-duration: 4.8s;-webkit-animation-iteration-count: 1;-webkit-animation-fill-mode: both;-webkit-animation-name: second;
   -moz-animation-delay: 0s;-moz-animation-duration: 4.8s;-moz-animation-iteration-count: 1;-moz-animation-fill-mode: both;-moz-animation-name: second;
   -ms-animation-delay: 0s;-ms-animation-duration: 4.8s;-ms-animation-iteration-count: 1;-ms-animation-fill-mode: both;-ms-animation-name: second;
-  animation-delay: 0s;animation-duration: 4.8s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: second;
+  animation-delay: 0vs;animation-duration: 4.8s;animation-iteration-count: 1;animation-fill-mode: both;animation-name: second;
  }
 @-webkit-keyframes second
 {

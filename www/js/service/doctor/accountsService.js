@@ -31,7 +31,6 @@ console.log(docAccDetails);
       // console.log(BASE_URL.url + API.docAccDetails);
   		$http.post(BASE_URL.url + API.docAccDetails,docAccDetails)
   		.success(function (data, status, headers, config){
-        console.log(data);
   			deferred.resolve(data);
   		})
   		.error(function (){

@@ -7,9 +7,6 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
 	$rootScope.showBadge=false;
 console.log($localStorage.user);
 
-accountsService.docAccountsDetails($localStorage.user);
-
-
 accountsService.docAccountsBalance($localStorage.user).then(function(response){
     $scope.availableBalance=response;
     console.log($scope.availableBalance);
@@ -17,16 +14,13 @@ accountsService.docAccountsBalance($localStorage.user).then(function(response){
   console.log('failure data', error);
 });
 
-
-
-
-
   var ipObj1 = {
       callback: function (val) {  //Mandatory
-        // console.log(val);
+        console.log(val);
         console.log('Selected from Date : ' + val, new Date(val));
         // $rootScope.from = $filter('date')(new Date(val),'yyyy-MM-dd HH:mm:ss Z');
         $rootScope.from = $filter('date')(new Date(val),'yyyy-MM-dd');
+        console.log($rootScope.from);
         // $localStorage.fromDate=$rootScope.from;
         accountsService.docAccountsDetails($rootScope.from);
       },
@@ -41,13 +35,17 @@ accountsService.docAccountsBalance($localStorage.user).then(function(response){
       templateType: 'popup'       //Optional
     };
 // console.log($localStorage.fromDate);
+$rootScope.transcMsg='Select Dates';
     var ipObj2 = {
         callback: function (val) {  //Mandatory
           console.log('Selected To Date : ' + val, new Date(val));
           $rootScope.toDate = $filter('date')(new Date(val),'yyyy-MM-dd');
           accountsService.docAccountsDetails().then(function(response){
-              // console.log(response);
+              console.log(response);
               $scope.DocAcc=response;
+            if($scope.DocAcc.length === 0){
+              $rootScope.transcMsg='No Transactions';
+            }
               }).catch(function(error){
             console.log('failure data', error);
           });
@@ -69,7 +67,7 @@ accountsService.docAccountsBalance($localStorage.user).then(function(response){
       ionicDatePicker.openDatePicker(ipObj2);
     };
 
-    
+
 
 
 })

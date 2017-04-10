@@ -13027,27 +13027,33 @@ ion-side-menu .heading-item .message {
     margin: 0 auto;
     height: 10vh; }
     .doctor-acc-view .calender-container .date-container {
-      width: 70%;
-      height: 93%;
       margin-top: 2vh;
       margin: 0 auto;
       padding-top: 2vh; }
       .doctor-acc-view .calender-container .date-container .from-date {
         height: inherit;
-        width: 48%;
+        width: 44%;
         background-color: white;
-        float: left; }
+        float: left;
+        margin-left: 4% !important; }
         .doctor-acc-view .calender-container .date-container .from-date p {
           margin-top: 2vh;
-          margin-left: 2vw; }
+          margin-left: 2vw;
+          font-family: inherit;
+          font-size: small;
+          font-weight: bold; }
       .doctor-acc-view .calender-container .date-container .to-date {
         height: inherit;
-        width: 48%;
+        width: 44%;
         background-color: white;
-        float: right; }
+        float: right;
+        margin-right: 4% !important; }
         .doctor-acc-view .calender-container .date-container .to-date p {
           margin-top: 2vh;
-          margin-left: 2vw; }
+          margin-left: 2vw;
+          font-family: inherit;
+          font-size: small;
+          font-weight: bold; }
   .doctor-acc-view .bottom-content {
     height: 50vh;
     overflow: scroll !important; }

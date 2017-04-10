@@ -70,19 +70,21 @@
 
     .date-container{
       //background-color: blue;
-      width: 70%;
-      height: 93%;
       margin-top: 2vh;
       margin: 0 auto;
       padding-top: 2vh;
       .from-date{
         height: inherit;
-        width: 48%;
+        width: 44%;
         background-color: white;
         float: left;
+        margin-left: 4% !important;
         p{
            margin-top: 2vh;
            margin-left: 2vw;
+           font-family: inherit;
+           font-size: small;
+           font-weight: bold;
          }
 
 
@@ -90,12 +92,16 @@
 
       .to-date{
         height: inherit;
-        width: 48%;
+        width: 44%;
         background-color: white;
         float: right;
+        margin-right: 4% !important;
         p{
            margin-top: 2vh;
            margin-left: 2vw;
+           font-family: inherit;
+           font-size: small;
+           font-weight: bold;
          }
 
       }
