@@ -2,20 +2,21 @@
 
 	require 'headers.php';
 	header('Content-type: text/html; charset=utf-8');
-	echo $postdata = file_get_contents("php://input");
-
+	 $postdata = file_get_contents("php://input");
 if(isset($postdata))
 {
 
 	$request_from_patient = json_decode($postdata);
-	$patient_phno = $request_from_patient->patientphno;
+	echo $patient_phno = $request_from_patient->patientphno;
 	$speciality = $request_from_patient->speciality;
+	// $patient_phno = '9845000753';
+	// $speciality = 'Dentist';
 
-	$fiveMins="SELECT count(id) as count  FROM reqForConsultation WHERE requestedTime > DATE_SUB(NOW(), INTERVAL 3 MINUTE) and patientNum='$patient_phno' and flag = 1 ";
+	$fiveMins="SELECT count(id) as count  FROM reqForConsultation WHERE requestedTime > DATE_SUB(NOW(), INTERVAL 2 MINUTE) and patientNum='$patient_phno' and flag = 1 ";
 	$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
 	while($row = mysql_fetch_array($fiveMinsRet))
 	{
-	echo $count=$row['count'];
+	 	$count=$row['count'];
 		if($count === '0'){
 			$insertionvalues = "INSERT INTO reqForConsultation(patientNum,speciality,requestedTime) VALUES ('$patient_phno','$speciality',now())";
 		 	$retval1 = mysql_query($insertionvalues,$dbhandle);
@@ -27,11 +28,13 @@ if(isset($postdata))
 			 else
 			 {
 							 echo "Query Submitted";
-							 $fiveMins="SELECT id as reqId  FROM reqForConsultation order by id DESC limit 1";
+							$fiveMins="SELECT id as reqId,requestedTime as reqTime  FROM reqForConsultation order by id DESC limit 1";
 						 	$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
 						 	while($row = mysql_fetch_array($fiveMinsRet))
 						 	{
 								$reqId=$row['reqId'];
+								$reqTime=$row['reqTime'];
+
 							}
 			 }
 		}
@@ -41,8 +44,11 @@ if(isset($postdata))
 	}
 
 	/////SEND PUSH NOTIFICATION ALL THE AVAILABLE DOCTORS
+
 	//  $sendPush="SELECT playerId as playerId from doctorDetails where doctorSpecialityId like '%$speciality%'";
-$sendPush="SELECT playerId as playerId  from doctorDetails where doctorSpecialityId like '%$speciality%' order by playerId";
+//$sendPush="SELECT playerId as playerId  from doctorDetails,doctor_onoff where  doctorSpecialityId like '%$speciality%' order by playerId";
+$sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and onoff=1 and doctorSpecialityId like '%$speciality%'";
+
  $result = mysql_query($sendPush);
  while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)){
 		 $myArray[]= $row['playerId'];
@@ -52,6 +58,10 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 		 $Ids =array();
 			$Ids = $GLOBALS['myArray'];
 			$reqId = $GLOBALS['reqId'];
+			$reqTime = $GLOBALS['reqTime'];
+			$rreqPatImg = $GLOBALS['reqPatImg'];
+			$reqPat = $GLOBALS['patient_phno'];
+
 
 				 $content = array(
 					 "en" => 'You have a new consultation request pending!!!'
@@ -60,29 +70,28 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 				 $fields = array(
 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 					 'include_player_ids' => $Ids,
-					 'data' => array("reqId" => $reqId,"targetUrl" => "patientRequestfromdocotor.html"),
+					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromdocotor.html"),
 					 'contents' => $content,
-					 'android_sound' => 'android',
+					 'android_sound' => 'androidtone',
 					 'ios_sound' => 'iphone.wav',
-
 				 );
 
 				 $fields = json_encode($fields);
 					 print("\nJSON sent:\n");
 					 print($fields);
 
-				 $ch = curl_init();
-				 curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-				 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
+				 $rk = curl_init();
+				 curl_setopt($rk, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
+				 curl_setopt($rk, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
 																'Authorization: Basic MjAxYmFhNTItZTNiOS00ZDY3LTgzOTgtOGIxNDJmMjI1OGZj'));
-				 curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-				 curl_setopt($ch, CURLOPT_HEADER, FALSE);
-				 curl_setopt($ch, CURLOPT_POST, TRUE);
-				 curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-				 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+				 curl_setopt($rk, CURLOPT_RETURNTRANSFER, TRUE);
+				 curl_setopt($rk, CURLOPT_HEADER, FALSE);
+				 curl_setopt($rk, CURLOPT_POST, TRUE);
+				 curl_setopt($rk, CURLOPT_POSTFIELDS, $fields);
+				 curl_setopt($rk, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-				 $response = curl_exec($ch);
-				 curl_close($ch);
+				 $response = curl_exec($rk);
+				 curl_close($rk);
 
 				 return $response;
 			 }

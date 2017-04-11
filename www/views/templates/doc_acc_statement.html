@@ -1,15 +1,15 @@
 <ion-view class="doctor-acc-view" cache-view="false">
 
-  <div class="top-content" ng-repeat="bal in availableBalance">
+  <div class="top-content" >
     <div class="pay-logo">
       <pre-img ratio="_1_1" helper-class="rounded-image">
          <img ng-src="img/dq_icon_payments_large_540x960.png" spinner-on-load>
       </pre-img>
     </div>
     <h1>Report</h1>
-    <div class="bal-info">
+    <div class="bal-info" ng-repeat="bal in availableBalance">
       <div class="balance-content">
-        <p>Available <span>₹{{bal.totalBal}}</span></p>
+        <p>Available <span>₹0{{bal.totalBal}}</span></p>
       </div>
     </div>
   </div>
@@ -17,10 +17,15 @@
   <div class="calender-container">
     <div class="date-container">
       <div class="from-date">
-        <p>From<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerfrom();"></i></span></p>
+
+        <p>From {{from| date: "dd-MM-yyyy"}}<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerfrom();"></i></span></p>
+                  <!-- <input type="date" ng-model="data.dueDate"> -->
+
       </div>
       <div class="to-date">
-          <p>To<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerTo();"></i></span></p>
+          <p>To {{toDate| date: "dd-MM-yyyy"}}<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerTo();"></i></span></p>
+          <!-- <input type="date" ng-model="data.dueDate"> -->
+
       </div>
     </div>
   </div>
@@ -34,8 +39,10 @@
             <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}}</span></h2>
             <p>{{details.consultedDate |  date :  "dd.MM.y"}}</p>
         </div>
+
         </li>
-        <!-- <li ng-show="!details.DocAcc" style="margin-top: 8vh;"><center><b style="color:#417611;">Please Select date to view Transaction details</b></center></li> -->
+
+        <li ng-show="!details.DocAcc" style="margin-top: 8vh;"><center><b style="color:#417611;">{{transcMsg}}</b></center></li>
 
     </ul>
   </div>

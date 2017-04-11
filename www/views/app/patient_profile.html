@@ -1,17 +1,17 @@
 <ion-view class="profile-view" cache-view="false" >
-  <ion-content ng-repeat="patient in patient_details" scrollbar-y="false" has-bouncing="false" >
+  <ion-content  scrollbar-y="false" has-bouncing="false" >
     <div class="top-content">
       <div class="details">
-        <div class="profileImage">
-            <img  ng-hide="patient.image == null "ng-src="{{patient.image}}"  ng-click="changePhoto();" >
-            <img  ng-show="patient.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();">
+        <div class="profileImage" ng-repeat="im in patientProfileImage">
+            <img  ng-hide="im.image == null "ng-src="{{im.image}}"  ng-click="changePhoto();" >
+            <img  ng-show="im.image == null " ng-src="img/patientAvatar.png"  ng-click="changePhoto();">
         </div>
-        <div class="name-content">
+        <div class="name-content" ng-repeat="patient in patient_details">
           <h2>{{patient.patientFname}} {{patient.patientMname}} {{patient.patientLname}} </h2>
         </div>
       </div>
     </div>
-    <div class="profileDetails">
+    <div class="profileDetails" ng-repeat="patient in patient_details">
       <div class="card ">
           <div class="row">
             <div class="col">Age</div>
@@ -19,7 +19,8 @@
           </div>
           <div class="row">
             <div class="col">Gender</div>
-            <div class="col">{{patient.patientSex}}</div>
+            <div class="col" ng-if="patient.patientSex || 'M' ">Male</div>
+
           </div>
       </div>
 
@@ -44,8 +45,11 @@
            </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 5fed9ecc36f656734a1e87055de46b68fec51af5
 
   </ion-content>
 </ion-view>

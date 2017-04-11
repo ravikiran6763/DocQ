@@ -1,13 +1,15 @@
 <ion-view class="patient-request-view" cache-view="false">
 
-  <ion-content scroll="false" >
+  <ion-content scroll="false" ng-repeat=" pat in reqPatDetails">
 
     <div class="top-content">
       <div class="imageContainer">
-        <img class="item-icon-right" ng-src="{{patientImage}}" >
+        <img  ng-src="{{pat.image}}" >
+        <!-- <img  ng-src="img/patientAvatar.png"  > -->
       </div>
-      <h1>{{patientFname}} {{patientLname}}</h1>
-      <h2>{{patientSex}},Age:{{patientAge}}</h2>
+      <h1>{{pat.patientFname}} {{pat.patientLname}}</h1>
+      <h2>{{pat.patientSex}},Age:{{pat.patientAge}}</h2>
+      <!-- <h4>{{pat.id}}</h4> -->
 
     </div>
 
@@ -20,7 +22,6 @@
       <h4 class="item-icon-right">Consultation Accepted</h4>  <i class="icon ion-checkmark"></i><!--Consultation accepted-->
       <h5>Please wait for the call</h5><!--Please wait for the call ion-ios-checkmark-empty -->
     </div>
-  </ion-content>
   <ion-footer-bar class="row row-bottom bottom">
   <div class="bottom-content row">
 
@@ -31,6 +32,8 @@
 
   </div>
  </ion-footer-bar>
+</ion-content>
+
 </ion-view>
 
 

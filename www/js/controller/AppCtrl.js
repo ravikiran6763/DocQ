@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService, myConsultationService, rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -29,7 +29,7 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 
 // $interval.cancel(checkAcceptedReq,2000);
 
-
+console.log($location.path());
 ion.sound({
     sounds: [
         {
@@ -52,7 +52,8 @@ ion.sound({
 });
 
 // play sound
-ion.sound.play("beer_can_opening");
+// ion.sound.play("beer_can_opening");
+//ion.sound.stop("witchdoctor");
 
 $scope.pushRegister = function() {
  console.log('Ionic Push: Registering user');
@@ -66,16 +67,9 @@ $scope.pushRegister = function() {
  		include_player_ids: [ids.userId],
  		android_sound:'tring'
  	};
- 	window.plugins.OneSignal.postNotification(notificationObj,
- 		function(successResponse) {
- 			console.log("Notification Post Success:", successResponse);
- 		},
- 		function (failedResponse) {
- 			console.log("Notification Post Failed: ", failedResponse);
- 			alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
- 		}
- 	);
+
  });
+
 
 };
 
@@ -930,12 +924,12 @@ $scope.BalanceForVoiceCall=function()
 		$scope.hideNotifications = function () {
 			$scope.accptNotifications=true;
 			$scope.rejectNotifications=false;
-
+ 		window.plugins.OneSignal.registerForPushNotifications(true);
 		};
 		$scope.showNotifications = function () {
 					$scope.accptNotifications=false;
 					$scope.rejectNotifications=true;
-
+ 				window.plugins.OneSignal.registerForPushNotifications(false);
 				};
 
 ///prescription par

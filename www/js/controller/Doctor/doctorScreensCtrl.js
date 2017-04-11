@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -10,7 +10,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docNotAvailable=false;
 
     $rootScope.homePage=$ionicHistory.currentStateName();
-
     HardwareBackButtonManager.disable();
 
 $interval(checkNewMsgs,2000);
@@ -18,25 +17,24 @@ function checkNewMsgs(){
   if( $rootScope.homePage =='templates.doctor_home')
   {
     // console.log($rootScope.homePage);
-
         $scope.unreadchatforpatient = 0;
-
           var username = "greet+"+$localStorage.user;
           var password = "DQ_doctor";
-
             var success = function(message)
             {
                 $scope.unreadchatforpatient = message;
             }
-
             var failure = function()
             {
              //alert("Error calling Hello Plugin");
              console.log('error');
-
             }
+<<<<<<< HEAD
 
             hello.unreadchatfromusers(username,password,success, failure);
+=======
+            // hello.unreadchatfromusers(username,password,success, failure);
+>>>>>>> 5fed9ecc36f656734a1e87055de46b68fec51af5
   }
 }
 
@@ -48,15 +46,17 @@ function checkNewMsgs(){
     console.log($scope.emailNotification);
 
     $scope.Online = function (message) {
-            // $ionicLoading.show({
-            // content: 'Loading',
-            // animation: 'fade-in',
-            // showBackdrop: true,
-            // maxWidth: 200,
-            // showDelay: 20
-            // });
 
           console.log(message);
+          $scope.Timer = $interval(function () {
+            doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+            $scope.pendingRequests = response;
+            console.log('pending:',$scope.pendingRequests);
+            $scope.requests=$scope.pendingRequests.length;
+            }).catch(function(error){
+            console.log('failure data', error);
+            })
+          }, 1000);
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
 
@@ -88,9 +88,13 @@ function checkNewMsgs(){
         };
         $scope.Offline = function (message) {
           console.log(message);
+          // $window.location.reload();
+
           $scope.docAvailable=false;
           $scope.docNotAvailable=true;
-
+          if (angular.isDefined($scope.Timer)) {
+              $interval.cancel($scope.Timer);
+          }
           $localStorage.onOff=2
           var whichdoctoronoff = {
               doctorphno : $localStorage.user,
@@ -146,21 +150,18 @@ function checkNewMsgs(){
 						doctoronoffdetails.doctoronoff(whichdoctoronoff);
 
 							var uname1 = "greet+"+$localStorage.user;
-
-								var pw1 = "DQ_doctor";
-
-
+							var pw1 = "DQ_doctor";
 								console.log(uname1);
 								console.log(pw1);
 
 								var success = function(message)
 								{
-									alert(message);
+									console.log(message);
 								}
 
 								var failure = function()
 								{
-									alert("Error calling Hello Plugin");
+									console.log("Error calling Hello Plugin");
 								}
 
 								hello.login(uname1,pw1,success, failure);
@@ -175,12 +176,10 @@ function checkNewMsgs(){
 								onoff : $localStorage.onOff
 					}
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
-
-
 					var unametologout = "greet+"+$localStorage.user;
 					var pwtologout = "DQ_doctor";
 
-						alert(unametologout);
+					alert(unametologout);
 					var success = function(message)
 					{
 						alert(message);
@@ -193,13 +192,6 @@ function checkNewMsgs(){
 
 				}
 
-		$scope.docStatus = [
-	    {name: 'one', hidden: true},
-
-	  	];
-
-			console.log('check box changed', $scope.checkedValue);
-		// $rootScope.showDocStatus=true;
 
 	}
 
@@ -213,28 +205,32 @@ function checkNewMsgs(){
     })
 
 
-    $interval(callAtInterval, 1000);
+    // $interval(pendingConsultations, 1000);
     //$interval(lookForPrescription, 1000);
  $scope.pending=$localStorage.requests;
  console.log($scope.pending);
 
 
-$scope.hello = 5;
-
+  $scope.hello = 5;
   $localStorage.totalReq = 0;
+//////////////////////////////
+console.log($location.path());
+//////////////////////////////
 $scope.$watch('pending', function() { console.log('watch!'); });
-   	function callAtInterval() {
-      doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-      $scope.pendingRequests = response;
-      $scope.requests=$scope.pendingRequests.length;
-      // console.log($localStorage.totalReq);
-      // console.log($scope.requests);
+   	function pendingConsultations() {
 
+        doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+        $scope.pendingRequests = response;
+        console.log('pending:',$scope.pendingRequests);
+        $scope.requests=$scope.pendingRequests.length;
+        }).catch(function(error){
+        console.log('failure data', error);
+        })
+      // else{
+      //   console.log('request not running');
+      //   $interval.cancel(pendingConsultations);
+      // }
 
-      }).catch(function(error){
-      console.log('failure data', error);
-      })
-   		// console.log('callAtInterval');
    	}
 
     $scope.$watch('requests', function (newValue, oldValue, scope) {
@@ -243,7 +239,7 @@ $scope.$watch('pending', function() { console.log('watch!'); });
         // console.log(oldValue);
         if(newValue > oldValue){
           // alert('ting');
-          ion.sound.play('bell_ring');
+          // ion.sound.play('bell_ring');
         }
 
     },true);
@@ -259,9 +255,23 @@ $scope.$watch('pending', function() { console.log('watch!'); });
    	}
 
 $scope.viewRequest=function(patient){
-  $localStorage.currentPatient = patient;
-  $state.go('templates.patientRequest')
+  $rootScope.currentPatient = patient;
+  console.log($rootScope.currentPatient.requestedTime);
+  $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }
+
+  // $scope.Timer = $interval(function () {
+  //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+  //   $scope.pendingRequests = response;
+  //   console.log('pending:',$scope.pendingRequests);
+  //   $scope.requests=$scope.pendingRequests.length;
+  //   }).catch(function(error){
+  //   console.log('failure data', error);
+  //   })
+  // }, 1000);
+
+
+
 
 
 })

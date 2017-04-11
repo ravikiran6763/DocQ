@@ -17,7 +17,7 @@ API : AIzaSyADhIKJf-hqnKUqydRuSuT8481R6KWauFg
 server key saved in DQBAckup folder
 
 
-{"app_id":"b578c73c","api_key":"8ad5f33f91a41a0d11c53ffdb5884c7643ec4be0b6a2276c"}
+{"app_id":"45d07bf3","api_key":"8ad5f33f91a41a0d11c53ffdb5884c7643ec4be0b6a2276c"}
 
 
 curl -X POST --header "Authorization: key=AIzaSyBPldeHuqE5O3GGqS2jWIkR5s8JKNnfxDE" --header "Content-Type: application/json" -d '{"notification": {"title": "DoctorQuick","body": "hello!!","icon": "girl.png","click_action": "http://localhost:8101"}, "to": "emWCgSJ2Mh4:APA91bETX21KA9v2UYm7ipZNjXGi0E9wTW1jlgR_fVVs_lTwCjP8td0An9UeKbXmBTC8x10eNT6VrJhRVIenBkDM0fp59euSuK2ohO06flSAT9OodYyMj_M8xc75pZLTnR46QKZfwpdK"}' "https://fcm.googleapis.com/fcm/send"

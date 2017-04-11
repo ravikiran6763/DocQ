@@ -10,15 +10,13 @@
 
   	   $image= $uploadData->image;
        $patientPhone= $uploadData->patientPhone;
-
-
       // $callDetails = array();
 
-      echo  $sql = "update patientImages set image='$image' where patientphone='$patientPhone'";
+       $sql = "update patientImages set image='$image' where patientphone='$patientPhone'";
       $retval = mysql_query( $sql, $dbhandle );
       while($row = mysql_fetch_array($retval))
       {
-        echo $row;
+				echo "updated";
       }
 
       if(! $retval )

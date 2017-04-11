@@ -36,8 +36,8 @@
       <div class="reqMsg">
           <p class="sendRequest">Send request for a consultation to all {{special}} who are online</p>
       </div>
-      <div class="buttons">
-        <button class="button button-block button-assertive" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">
+      <div class="buttons" ng-disabled="true">
+        <button class="button button-block button-assertive" ng-disabled="{{desc.noofonlinedoctors == 0}}" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">
           {{buttonText}}
         </button>
       </div>

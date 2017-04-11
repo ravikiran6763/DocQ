@@ -11,13 +11,11 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
-
 	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
-	console.log($scope.patient_details);
 
-// $window.localStorage['patientDetails'] = JSON.stringify([{
-//   patientAge: 23,
-// }]);
+	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
+
+
 $scope.register = function() {
  console.log('Ionic Push: Registering user');
 
@@ -107,10 +105,15 @@ $scope.register = function() {
 																			image:$rootScope.imgURI,
 																			patientPhone:$rootScope.patient
 																		}
-
+																		$window.localStorage['patientProfileImage'] = JSON.stringify([{
+																		  image: $rootScope.imgURI,
+																		}]);
+																		console.log($rootScope.imgURI)
 																		cameraService.uploadPicture(imageUploadData).then(function(response){
 																			$scope.uploadedData=response;
+																			console.log($scope.uploadedData);
 																			// $ionicLoading.hide();
+																			 $window.location.reload();
 																		$scope.reload = function() {
 																		return $state.transitionTo($state.current, $stateParams, {
 																		reload: true
@@ -155,11 +158,13 @@ $scope.register = function() {
 											image:$rootScope.imgURI,
 											patientPhone:$rootScope.patient
 										}
-
+										$window.localStorage['patientProfileImage'] = JSON.stringify([{
+										  image: $rootScope.imgURI,
+										}]);
 										cameraService.uploadPicture(imageUploadData).then(function(response){
 											$scope.uploadedData=response;
+											console.log($scope.uploadedData);
 											// $ionicLoading.hide();
-
 											$scope.reload = function() {
 											return $state.transitionTo($state.current, $stateParams, {
 											reload: true
@@ -170,7 +175,6 @@ $scope.register = function() {
 											}, 1);
 											});
 											};
-
 									}).catch(function(error){
 									console.log('failure data', error);
 									})
