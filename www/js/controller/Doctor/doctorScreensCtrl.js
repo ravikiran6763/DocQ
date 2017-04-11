@@ -29,12 +29,8 @@ function checkNewMsgs(){
              //alert("Error calling Hello Plugin");
              console.log('error');
             }
-<<<<<<< HEAD
-
             hello.unreadchatfromusers(username,password,success, failure);
-=======
             // hello.unreadchatfromusers(username,password,success, failure);
->>>>>>> 5fed9ecc36f656734a1e87055de46b68fec51af5
   }
 }
 
