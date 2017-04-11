@@ -7,6 +7,9 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 
 				$scope.toggleText = "Accept";
 
+					$rootScope.pushReqId=$stateParams.reqId;
+					alert('reqId',$rootScope.pushReqId)
+
 						$scope.currentPatient={};
 			     $scope.currentPatient = angular.fromJson($localStorage.currentPatient);
 			     console.log($scope.currentPatient);
@@ -18,9 +21,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					 $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
 					 $rootScope.reqId=$scope.currentPatient.id;
 					 $rootScope.patientNum=$scope.currentPatient.patientNum;
-
-
-
 
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
@@ -293,7 +293,6 @@ $scope.popupShown = true;
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
 		 console.log('closethis popup');
-
 		 $scope.callReqPopUp.close();
 		 $scope.isFirstTime = true;
 

@@ -40,37 +40,26 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'angular-circular-progress',
   'ionic-letter-avatar',
   'ionic.cloud'
-
-
 ])
-// DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
-//   $ionicAppProvider.identify({
-//     app_id: 'b578c73c',
-//     api_key: '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
-//     dev_push: true
+// DoctorQuickApp.config(function($ionicCloudProvider) {
+//   $ionicCloudProvider.init({
+//     "core": {
+//       "app_id": "b578c73c"
+//     },
+//     "push": {
+//       "sender_id": "271054721857",
+//       "pluginConfig": {
+//         "ios": {
+//           "badge": true,
+//           "sound": true
+//         },
+//         "android": {
+//           "iconColor": "#343434"
+//         }
+//       }
+//     }
 //   });
-// }])
-
-DoctorQuickApp.config(function($ionicCloudProvider) {
-  $ionicCloudProvider.init({
-    "core": {
-      "app_id": "b578c73c",
-      "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
-    },
-    "push": {
-      "sender_id": "310212728810",
-      "pluginConfig": {
-        "ios": {
-          "badge": true,
-          "sound": true
-        },
-        "android": {
-          "iconColor": "#343434"
-        }
-      }
-    }
-  });
-})
+// })
 DoctorQuickApp.run(function($window, $rootScope) {
   // console.log(navigator.onLine);
       $rootScope.online = navigator.onLine;
@@ -85,11 +74,15 @@ DoctorQuickApp.run(function($window, $rootScope) {
         });
       }, false);
       // console.log($rootScope.online);
-
+//---------------------IONIC PUSH Alerts in APP---------------------------------
+    // $rootScope.$on('cloud:push:notification', function(event, data) {
+    // var msg = data.message;
+    // alert(msg.title + ': ' + msg.text);
+    // });
+//---------------------IONIC PUSH-----------------------------------------------
 })
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
-
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     window.plugin.backgroundMode.enable();
@@ -108,9 +101,6 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.StatusBar) {
       return StatusBar.hide();
     }
-    //
-    console.log('deviceready');
-
   });
 
   $interval(checkConnection, 1000)
@@ -138,7 +128,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
 })
 
-DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout, $ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -162,14 +152,15 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
         }, 1000);
 
     if (ionic.Platform.isAndroid()) {
-      window.addEventListener("native.hidekeyboard", function () {
-      StatusBar.hide();
-      window.AndroidFullScreen.immersiveMode(false, false);
-    });}
+          window.addEventListener("native.hidekeyboard", function () {
+          StatusBar.hide();
+          window.AndroidFullScreen.immersiveMode(false, false);
+        });
+      }
 
       if(window.StatusBar)
       {
-        // StatusBar.styleDefault();
+          // StatusBar.styleDefault();
         StatusBar.hide();
       }
 
@@ -181,9 +172,6 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
             };
       };
       // PushNotificationsService.register();
-
-
-
       // Android customization
       cordova.plugins.backgroundMode.setDefaults({ text:'Keeps you Awailable on DQ.'});
       // Enable background mode
@@ -215,40 +203,53 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
             console.log(value);
           }
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
-  });
+//-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
-  document.addEventListener('deviceready', function ($scope,$state) {
-    // Enable to debug issues.
-    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
-    console.log('onesignal');
-    var notificationOpenedCallback = function(jsonData) {
-      alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-      alert('handle  routing here')
-      // alert('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-           $state.go('templates.patientRequest');
-    };
-    // Set your iOS Settings
-    var iosSettings = {};
-    iosSettings["kOSSettingsKeyAutoPrompt"] = true;
-    iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
-    window.plugins.OneSignal
+
+      var notificationOpenedCallback = function(result) {
+        var data = result.notification.payload.additionalData;
+        if(data.targetUrl == 'patientRequestfromdocotor.html'){
+          console.log('route');
+          // var $injector = angular.injector();
+          // var state = $injector.get($state);
+          state.go('templates.patientRequest');
+        }
+        // alert(data.targetUrl)
+        // if (data && data.targetUrl) {
+        //   var state = $injector.get($state);
+        //   state.go(data.targetUrl);
+        // }
+      };
+
+
+      window.plugins.OneSignal.getIds(function(ids) {
+        console.log('getIds: ' + JSON.stringify(ids));
+        console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+      });
+        window.plugins.OneSignal
         .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
-        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
         .handleNotificationReceived(function(jsonData) {
-        alert("Notification received:\n" + JSON.stringify(jsonData));
-        console.log('didReceiveRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-      })
-      .endInit();
+            // alert("Notification received:\n" + JSON.stringify(jsonData));
+            console.log('Did I receive a notification: ' + JSON.stringify(jsonData));
+        })
+        .endInit();
+  window.plugins.OneSignal
+  .startInit( "6873c259-9a11-4a2a-a3b5-53aea7d59429")
+  .handleNotificationOpened(function(jsonData) {
+    var data = jsonData.notification.payload.additionalData;
+    alert(data.reqId);
+    alert("Notification opened:\n" + JSON.stringify(jsonData));
+    console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+    $state.go('templates.patientRequest',{ "reqId": data.reqId});//,{ "reqId": 'data.reqId'}
+  })
+  .endInit();
 
-  }, false);
-
-
-      function onDeviceReady() {
-          checkConnection();
-          console.log('device ready for network check');
-      }
-
-
+//-------------------------------------ONESIGNAL PUSH SETUP---------------------
+  });
+  function onDeviceReady() {
+      checkConnection();
+      console.log('device ready for network check');
+  }
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
     console.log('toState',toState);
     console.log('toParams',toParams);
@@ -260,63 +261,55 @@ DoctorQuickApp.run(function($ionicPlatform,$ionicPush, $rootScope, $ionicConfig,
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
-          $ionicConfig.views.transition(none);
+          $ionicConfig.views.transition('none');
           $ionicConfig.views.swipeBackEnabled(false);
         }
-        // else{
-        //   $ionicConfig.views.transition(none);
-        // }
+        else{
+          $ionicConfig.views.transition('none');
+        }
           console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
       // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
       }
-
   });
-
-
-
   // press again to exit
-
   $ionicPlatform.registerBackButtonAction(function(e){
-    $rootScope.currState=$ionicHistory.currentStateName();
-    if($rootScope.currState === 'templates.doctor_home' || $rootScope.currState ==='app.patient_home'){
-      // $ionicHistory.clearHistory();
-      $ionicHistory.removeBackView();
-      $interval.cancel(checkAcceptedReq);
-
-    }
+      $rootScope.currState=$ionicHistory.currentStateName();
+      if($rootScope.currState === 'templates.doctor_home' || $rootScope.currState ==='app.patient_home'){
+        // $ionicHistory.clearHistory();
+        $ionicHistory.removeBackView();
+        $interval.cancel(checkAcceptedReq);
+      }
       if ($rootScope.backButtonPressedOnceToExit) {
       ionic.Platform.exitApp();
       }
-
       else if ($ionicHistory.backView()) {
-      $ionicHistory.goBack();
-      console.log('cameback');
-
+        $ionicHistory.goBack();
+        console.log('cameback');
       }
       else {
-      $rootScope.backButtonPressedOnceToExit = true;
+        $rootScope.backButtonPressedOnceToExit = true;
 
-      window.plugins.toast.showWithOptions({
-      message: "Press back button again to exit",
-      duration: "short", // 2000 ms
-      position: "bottom",
-      styling: {
-      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-      backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-      textColor: '#ffffff', // Ditto. Default #FFFFFF
-      textSize: 10.5, // Default is approx. 13.
-      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-      horizontalPadding: 10, // iOS default 16, Android default 50
-      verticalPadding: 6 // iOS default 12, Android default 30
-      }
-      });
-      setTimeout(function(){
-      $rootScope.backButtonPressedOnceToExit = false;
-      },2000);
-      console.log('doNOthing');
+        window.plugins.toast.showWithOptions({
+            message: "Press back button again to exit",
+            duration: "short", // 2000 ms
+            position: "bottom",
+            styling: {
+            opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+            backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+            textColor: '#ffffff', // Ditto. Default #FFFFFF
+            textSize: 10.5, // Default is approx. 13.
+            cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+            horizontalPadding: 10, // iOS default 16, Android default 50
+            verticalPadding: 6 // iOS default 12, Android default 30
+            }
+        });
+        setTimeout(function(){
+          $rootScope.backButtonPressedOnceToExit = false;
+        },2000);
+        console.log('doNOthing');
       }
       e.preventDefault();
       return false;
@@ -645,7 +638,7 @@ $stateProvider
     }
   })
   .state('templates.patientRequest', {
-    url: "/patientRequest",
+    url: "/patientRequest/:reqId",
     views: {
       'menuContent': {
         templateUrl: "views/templates/patientRequestfromdocotor.html",
@@ -749,9 +742,6 @@ $stateProvider
     }
   })
 
-
-
-
   .state('templates.termsOfUse', {
     url: "/termsOfUse",
     views: {
@@ -788,3 +778,33 @@ $stateProvider
   $urlRouterProvider.otherwise('/auth/loginNew');
   $httpProvider.interceptors.push('APIInterceptor');
 });
+
+
+// DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
+//   $ionicAppProvider.identify({
+//     app_id: 'b578c73c',
+//     api_key: '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
+//     dev_push: true
+//   });
+// }])
+
+// DoctorQuickApp.config(function($ionicCloudProvider) {
+//   $ionicCloudProvider.init({
+//     "core": {
+//       "app_id": "b578c73c",
+//       "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
+//     },
+//     "push": {
+//       "sender_id": "310212728810",
+//       "pluginConfig": {
+//         "ios": {
+//           "badge": true,
+//           "sound": true
+//         },
+//         "android": {
+//           "iconColor": "#343434"
+//         }
+//       }
+//     }
+//   });
+// })

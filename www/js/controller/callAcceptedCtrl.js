@@ -100,8 +100,6 @@ $scope.checkWalletBalance = function()
 				console.log($rootScope.accptdDoc);
 				// console.log($localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-
-
 				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc},{reload: true});
 
 				console.log($rootScope.reqId);

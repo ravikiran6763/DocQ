@@ -18,7 +18,7 @@ if(isset($postdata))
 	echo $count=$row['count'];
 		if($count === '0'){
 			$insertionvalues = "INSERT INTO reqForConsultation(patientNum,speciality,requestedTime) VALUES ('$patient_phno','$speciality',now())";
-		 	$retval1 = mysql_query( $insertionvalues, $dbhandle );
+		 	$retval1 = mysql_query($insertionvalues,$dbhandle);
 			 if(!$retval1 )
 			 {
 							 die('Could not enter data: ' . mysql_error());
@@ -27,6 +27,12 @@ if(isset($postdata))
 			 else
 			 {
 							 echo "Query Submitted";
+							 $fiveMins="SELECT id as reqId  FROM reqForConsultation order by id DESC limit 1";
+						 	$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
+						 	while($row = mysql_fetch_array($fiveMinsRet))
+						 	{
+								$reqId=$row['reqId'];
+							}
 			 }
 		}
 		else{
@@ -38,13 +44,15 @@ if(isset($postdata))
 	//  $sendPush="SELECT playerId as playerId from doctorDetails where doctorSpecialityId like '%$speciality%'";
 $sendPush="SELECT playerId as playerId  from doctorDetails where doctorSpecialityId like '%$speciality%' order by playerId";
  $result = mysql_query($sendPush);
- while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)) {
+ while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)){
 		 $myArray[]= $row['playerId'];
  }
 for ($i=0; $i < sizeof($myArray); $i++) {
 		 function sendMessage(){
 		 $Ids =array();
 			$Ids = $GLOBALS['myArray'];
+			$reqId = $GLOBALS['reqId'];
+
 				 $content = array(
 					 "en" => 'You have a new consultation request pending!!!'
 					 );
@@ -52,10 +60,11 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 				 $fields = array(
 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 					 'include_player_ids' => $Ids,
-					 'data' => array("user" => "patient"),
+					 'data' => array("reqId" => $reqId,"targetUrl" => "patientRequestfromdocotor.html"),
 					 'contents' => $content,
 					 'android_sound' => 'android',
-					 'ios_sound' => 'iphone.wav'
+					 'ios_sound' => 'iphone.wav',
+
 				 );
 
 				 $fields = json_encode($fields);

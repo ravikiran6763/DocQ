@@ -86,13 +86,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'doctorActivity':'doctor/doctorActivity.php',
         'updateNotes':'doctor/updateNotes.php',
 
-
-
         'docAccountsBalance' : 'doctor/docAccountsBalance.php',
         'docAccDetails' : 'doctor/docAccDetails.php',
         'reqPatientDetails' : 'doctor/reqPatientDetails.php',
         'updateDocPassword':'doctor/updateDocPassword.php',
-
 
         'testjpegimage' :'prescription/responseasimages.php',
 

@@ -45,6 +45,9 @@ $timeout(function () {
  $ionicLoading.hide();
 }, 5000);
 
+
+
+
 			$scope.medicalSpeciality = function(){
 				$state.go('app.medical_speciality');
 				$ionicLoading.hide();

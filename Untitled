@@ -33,3 +33,13 @@ $ionicHistory.nextViewOptions({
   disableBack: true
 });
 $state.go('templates.doctor_home',{}, {location: "replace", reload: true})
+
+
+
+?///////////////////////////////////////////////////////
+
+Android users are automatically opted into OneSignal push notifications.
+If you would like to ask permission first you can call OneSignal.setSubscription(false);
+after OneSignal.init(...) to keep them from being opted in automatically.
+Then display your own in app prompt where you call OneSignal.setSubscription(true);
+if they accept.

@@ -226,7 +226,7 @@ $scope.$watch('pending', function() { console.log('watch!'); });
    	function callAtInterval() {
       doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
       $scope.pendingRequests = response;
-      $scope.requests=$scope.res.length;
+      $scope.requests=$scope.pendingRequests.length;
       // console.log($localStorage.totalReq);
       // console.log($scope.requests);
 
