@@ -130,14 +130,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         }, 1000);
 
     if (ionic.Platform.isAndroid()) {
-        window.addEventListener("native.hidekeyboard", function () {
-        StatusBar.hide();
-        window.AndroidFullScreen.immersiveMode(false, false);
-        });}
+          window.addEventListener("native.hidekeyboard", function () {
+          StatusBar.hide();
+          window.AndroidFullScreen.immersiveMode(false, false);
+        });
+      }
 
       if(window.StatusBar)
       {
-        // StatusBar.styleDefault();
+          // StatusBar.styleDefault();
         StatusBar.hide();
       }
 
@@ -231,7 +232,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
-      $ionicConfig.views.transition('platform');
+      $ionicConfig.views.transition(none);
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {

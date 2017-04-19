@@ -369,6 +369,34 @@ $scope.popupShown = true;
  $interval(videoOrAudio,1000);
  function videoOrAudio(){
 	 console.log('callType');
+	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
+		 $scope.isFirstTime = false;
+
+		 console.log($rootScope.reqId);
+	 $scope.videoOrAudio=response;
+	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
+		 console.log('closethis popup');
+		 $scope.callReqPopUp.close();
+		 $scope.isFirstTime = true;
+
+		 setTimeout(function () {
+			 console.log('delay 3 sec');
+			 $ionicHistory.nextViewOptions({
+			   disableAnimate: true,
+			   disableBack: true
+			 });
+			 $state.go("templates.notesForPatient",{},{location: "replace", reload: true})
+			 console.log($rootScope.reqPat);
+			 console.log('show accpted doc profile');
+		 }, 5000);
+
+	 }
+
+
+		//  $state.go($state.current, {}, {reload: true});
+	 }).catch(function(error){
+	 console.log('failure data', error);
+	 });
 	 console.log($location.path());
 		 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 			 $scope.isFirstTime = false;

@@ -34,7 +34,7 @@ function checkNewMessages(){
 				 //alert("Error calling unreadchatcount Plugin");
 				 console.log('error');
 				}
-				// hello.unreadchatfromusers(username,password,success, failure);
+		hello.unreadchatfromusers(username,password,success, failure);
 
 	}
 
@@ -44,6 +44,9 @@ $timeout(function () {
 	console.log('timeout');
  $ionicLoading.hide();
 }, 5000);
+
+
+
 
 			$scope.medicalSpeciality = function(){
 				$state.go('app.medical_speciality');

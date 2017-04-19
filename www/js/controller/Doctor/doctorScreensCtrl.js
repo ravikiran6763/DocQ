@@ -13,7 +13,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     HardwareBackButtonManager.disable();
 
 
-
 //$interval(checkNewMsgs,2000);
 $interval(checkConsultations,1000);
 
@@ -26,6 +25,26 @@ function checkConsultations(){
     console.log('failure data', error);
     })
       $interval.cancel($scope.Timer);
+$interval(checkNewMsgs,2000);
+function checkNewMsgs(){
+  if( $rootScope.homePage =='templates.doctor_home')
+  {
+    // console.log($rootScope.homePage);
+        $scope.unreadchatforpatient = 0;
+          var username = "greet+"+$localStorage.user;
+          var password = "DQ_doctor";
+            var success = function(message)
+            {
+                $scope.unreadchatforpatient = message;
+            }
+            var failure = function()
+            {
+             //alert("Error calling Hello Plugin");
+             console.log('error');
+            }
+            hello.unreadchatfromusers(username,password,success, failure);
+            // hello.unreadchatfromusers(username,password,success, failure);
+  }
 }
 
 // function checkNewMsgs(){
@@ -280,10 +299,7 @@ $scope.viewRequest=function(patient){
   //   })
   // }, 1000);
 
-
-
-
-
+}
 })
 
 // $scope.pushNotificationChange = function() {
