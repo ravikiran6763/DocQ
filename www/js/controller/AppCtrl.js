@@ -29,7 +29,7 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 
 // $interval.cancel(checkAcceptedReq,2000);
 
-console.log($location.path());
+// console.log($location.path());
 ion.sound({
     sounds: [
         {
@@ -115,7 +115,7 @@ if(!navigator.onLine ){
 	}
 }
 }
-console.log($localStorage.dataConnection);
+// console.log($localStorage.dataConnection);
 
 document.addEventListener("deviceready", function (){
     var type = $cordovaNetwork.getNetwork()
@@ -1137,7 +1137,7 @@ $scope.sendprescription = function()
 
 $scope.statename = $ionicHistory.currentStateName();
 
-console.log($state.statename);
+// console.log($state.statename);
 if($scope.statename =='app.patient_home')
 {
 

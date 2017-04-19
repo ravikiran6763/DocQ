@@ -72,7 +72,7 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 					 'include_player_ids' => $Ids,
 					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromdocotor.html"),
 					 'contents' => $content,
-					 'android_sound' => 'androidtone',
+					 'android_sound' => 'dqandroidtone',
 					 'ios_sound' => 'iphone.wav',
 				 );
 

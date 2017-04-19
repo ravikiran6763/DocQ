@@ -145,7 +145,7 @@ $scope.lastView = $ionicHistory.backView();
 						});
 						console.log('doctorHome');
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-					// hello.login(uname1,pw1,success, failure);
+				hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){

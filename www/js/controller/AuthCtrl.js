@@ -23,7 +23,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
 
       });
 
-
    if($localStorage.user && $localStorage.pass){
      console.log('user already logged in')
      $ionicLoading.show();
@@ -49,18 +48,14 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           var success = function(message)
           {
             console.log(message);
+            alert(message);
+
           }
           var failure = function()
           {
             alert("Error calling Hello Plugin");
           }
-          // hello.login(uname1,pw1,success, failure);
-          // $ionicPush.register().then(function(t) {
-          //   return $ionicPush.saveToken(t);
-          // }).then(function(t) {
-          //   // alert(t.token);
-          //   console.log('Token saved:', t.token);
-          // });
+          hello.login(uname1,pw1,success, failure);
           $ionicHistory.nextViewOptions({
             disableAnimate: true,
             disableBack: true
@@ -94,16 +89,21 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             var success = function(message)
             {
               console.log(message);
+              alert(message);
             }
             var failure = function()
             {
               alert("Error calling Hello Plugin");
             }
+            alert('user:',uname1);
+            alert('pass:',pw1);
+            hello.login(uname1,pw1,success, failure);
+
             $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
             });
-            $state.go('templates.doctor_home');
+            // $state.go('templates.doctor_home');
 
             window.plugins.OneSignal.getIds(function(ids) {
               //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -128,7 +128,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               // alert(t.token);
               console.log('Token saved:', t.token);
             });
-            // hello.login(uname1,pw1,success, failure);
             $localStorage.onOff=1;
         }
          $ionicLoading.hide();

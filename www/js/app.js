@@ -77,6 +77,9 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.StatusBar) {
       return StatusBar.hide();
     }
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 300);
   });
 
   $interval(checkConnection, 1000)
@@ -92,7 +95,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       states[Connection.NONE]     = 'None';
 
       $localStorage.networkType = states[networkState];
-      console.log('Connection type: ' + $localStorage.networkType);
+      //console.log('Connection type: ' + $localStorage.networkType);
   }
 
   document.addEventListener("offline", onOffline, false);
@@ -222,9 +225,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-    console.log('toState',toState);
-    console.log('toParams',toParams);
-    console.log(toState.name.indexOf('app.patient_home'));
+    // console.log('toState',toState);
+    // console.log('toParams',toParams);
+    // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.

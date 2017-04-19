@@ -188,6 +188,22 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 					console.log(response);
 				})
 			});
+
+			var uname1 = "greet+"+$localStorage.user;
+			var pw1 = "DQ_patient";
+			var success = function(message)
+			{
+				console.log(message);
+				// alert(message);
+
+			}
+			var failure = function()
+			{
+				alert("Error calling Hello Plugin");
+			}
+			hello.login(uname1,pw1,success, failure);
+
+
 			$ionicHistory.nextViewOptions({
 			  disableAnimate: true,
 			  disableBack: true
@@ -209,6 +225,21 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 					console.log(response);
 				})
 			});
+
+			var uname1 = "greet+"+$localStorage.user;
+			var pw1 = "DQ_doctor";
+			var success = function(message)
+			{
+				console.log(message);
+				// alert(message);
+			}
+			var failure = function()
+			{
+				alert("Error calling Hello Plugin");
+			}
+
+			hello.login(uname1,pw1,success, failure);
+
 			$ionicHistory.nextViewOptions({
 			  disableAnimate: true,
 			  disableBack: true
