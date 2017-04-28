@@ -47,9 +47,13 @@
   <preference name="iosPersistentFileLocation" value="Library"/>
   <preference name="iosExtraFilesystems" value="library-nosync"/>
   <preference name="SplashScreen" value="none"/>
-  <preference name="SplashScreenDelay" value="3000"/>
+  <preference name="SplashScreenDelay" value="0"/>
+  <preference name="AutoHideSplashScreen" value="true" />
+  <preference name="FadeSplashScreenDuration" value="0"/>
+  <preference name="FadeSplashScreen" value="false"/>
   <plugin name="cordova-plugin-whitelist" version="1.2.0"/>
   <plugin name="cordova-plugin-device" spec="^1.1.0">
+
     <variable name="MY_VARIABLE" value="my_variable_value"/>
   </plugin>
   <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git"/>

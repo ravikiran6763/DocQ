@@ -42,7 +42,7 @@ function checkNewMsgs(){
              //alert("Error calling Hello Plugin");
              console.log('error');
             }
-            hello.unreadchatfromusers(username,password,success, failure);
+            // hello.unreadchatfromusers(username,password,success, failure);
             // hello.unreadchatfromusers(username,password,success, failure);
   }
 }
@@ -69,7 +69,6 @@ function checkNewMsgs(){
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
     // console.log($ionicHistory.currentStateName());
-      $ionicLoading.show();
 
     $scope.emailNotification = 'Subscribed';
     // console.log($scope.emailNotification);
