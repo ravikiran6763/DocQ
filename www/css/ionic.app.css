@@ -10899,8 +10899,8 @@ ion-spinner.spinner-on-load {
       width: 50% !important;
       position: absolute; }
       .dqLogin-view .login-content .rememberMe .remember input[type="checkbox"] {
-        zoom: 2;
-        margin-top: -5%;
+        zoom: 150%;
+        margin-top: -2%;
         position: absolute; }
       .dqLogin-view .login-content .rememberMe .remember p {
         position: absolute;
