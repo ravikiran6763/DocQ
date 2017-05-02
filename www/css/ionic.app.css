@@ -9877,11 +9877,17 @@ ion-content.scroll-content.ionic-scroll {
     width: 38% !important;
     height: 9% !important;
     position: relative !important;
-    margin-left: -39% !important; }
+    margin-left: -39% !important;
+    transition: all linear 0ms !important;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s; }
   .statusDiv .offlineImg {
     width: 38% !important;
     height: 9% !important;
-    position: relative !important; }
+    position: relative !important;
+    transition: all linear 0ms !important;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s; }
 
 .sideMenuToggle {
   position: absolute;

@@ -929,7 +929,7 @@ $scope.BalanceForVoiceCall=function()
  	// 	window.plugins.OneSignal.registerForPushNotifications(true);
 		};
 		$scope.showNotifications = function (msg) {
-			console.log(msg);
+			alert(msg);
 					$scope.accptNotifications=false;
 					$scope.rejectNotifications=true;
 					window.plugins.OneSignal.getIds(function(ids){
