@@ -79,7 +79,13 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.StatusBar) {
       return StatusBar.hide();
     }
+<<<<<<< HEAD
+    setTimeout(function() {
+        navigator.splashscreen.hide();
+    }, 300);
+=======
 
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
   });
 
   $interval(checkConnection, 1000)
@@ -232,7 +238,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
-      $ionicConfig.views.transition(none);
+      //$ionicConfig.views.transition(none);
       // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {

@@ -7,10 +7,16 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$rootScope.showDocStatus=false;
 
 	$scope.names = {};
-
 	$scope.listofnames = [];
-
 	$scope.myPatients={};
+
+
+	$scope.fromusername = [];
+
+	$scope.listofphones = [];
+
+
+
 
 
 
@@ -19,36 +25,42 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
 
-	var data = $scope.myPatients;
+
+ 	data = $scope.myPatients;
+
 
 	for(var i=0; i<data.length; i++){
-
 
 
 			$scope.patientFname=data[i].patientFname;
 			$scope.patientLname=data[i].patientLname;
 
 
+
 			$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
 
 			$scope.listofnames.push($scope.fullname);
 
+			$scope.listofphones.push(data[i].patientPhone);
+
+
 
 	}
-
 
 	$ionicLoading.hide();
 }).catch(function(error){
 console.log('failure data', error);
 });
 
-	console.log($scope.listofnames.length);
 
 $scope.pagedecision=$ionicHistory.currentStateName();
 
-console.log($scope.pagedecision);
-
 var username = "greet+"+$localStorage.user;
+<<<<<<< HEAD
+
+
+
+=======
 //
 // $interval(checkNewMessages,2000);
 //
@@ -160,6 +172,7 @@ $interval(checkNewMessages,2000);
 
 function checkNewMessages()
 {
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 
 		if($scope.pagedecision === 'templates.consulted_patient')
 		{
@@ -174,35 +187,119 @@ function checkNewMessages()
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 
+ $interval(checkNewMessages,2000);
+
+ function checkNewMessages()
+ {
+
 	var success = function(message)
 	{
+
 
 			if($scope.deviceAndroid)
 			{
 
-
-				$scope.chatlist = message;
-
-				console.log($scope.chatlist);
+				$scope.chatlist1 = message;
 
 
-				$scope.name = $scope.chatlist.split('{');
+
+		var forandroidchatlist = {};
+
+		forandroidchatlist = $scope.chatlist1;
+
+<<<<<<< HEAD
+
+								var dataofandroid = JSON.parse(forandroidchatlist);
 
 
-				usernamefromchat = $scope.name[1];
-				usernamefromchat = usernamefromchat.substring(0,usernamefromchat.length-1);
-
-				$scope.fromusername = usernamefromchat;
-
+								for (var keyandroid in dataofandroid) {
+				if (dataofandroid.hasOwnProperty(keyandroid)) {
+				console.log(keyandroid + " = " + dataofandroid[keyandroid]);
+=======
 				var lengthofnames = $scope.listofnames;
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 
-				console.log(lengthofnames.length);
 
+<<<<<<< HEAD
+						if(keyandroid == "unread")
+=======
 				for(var i=0; i<lengthofnames.length; i++){
 
 						if(lengthofnames[i] == $scope.fromusername)
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 						{
+								$scope.unreadchatcountfromvseeforandroid = dataofandroid[keyandroid];
+						}
+						else if(keyandroid == "message")
+						{
+							$scope.msgforandroid = dataofandroid[keyandroid];
+						}
+						else if(keyandroid == "name")
+						{
+								$scope.nameforandroid = dataofandroid[keyandroid];
 
+<<<<<<< HEAD
+								console.log($scope.nameforandroid);
+
+						}
+						else if(keyandroid == "dateformat")
+						{
+								$scope.datestringforandroid = dataofandroid[keyandroid];
+						}
+						else {
+							console.log('no response from vsee');
+							// noresponse of chat from vsee
+						}
+
+
+}
+}
+
+				//$scope.name = $scope.chatlist.split('{');
+
+
+
+
+					// 	for(var i=0; i<lengthofnames.length; i++){
+					//
+					// 		if(lengthofnames[i] == $scope.fromusername)
+					// 		{
+					//
+					// 			msg = $scope.name[2];
+					// 			msg = msg.substring(0,msg.length-1);
+					// 			$scope.msg = msg;
+					// 			msgdate = $scope.name[3];
+					// 			msgdate = msgdate.substring(0,msgdate.length-3)
+					// 			msgdate = msgdate.split('=');
+					// 			lists = msgdate;
+					//
+					//
+					//
+					// 			dateformation = lists[1].split(' ');
+					// 			datestring = dateformation[1].concat(dateformation[2]);
+					// 			datestring = datestring.concat(dateformation[5]);
+					// 			$scope.datestring = datestring;
+					//
+					//
+					// 		}
+					//
+					// 		else {
+					//
+					//
+					// 				// $scope.otheruser = lengthofnames[i];
+					//
+					//
+					// 			// 	console.log(lengthofnames[i]);
+					// 			//
+					// 		 $scope.datestring1 = "";
+					//
+					//
+					// 		}
+					//
+					//
+					//
+					// }
+=======
 							var msg;
 							var msgdate;
 							var usernamefromchat;
@@ -228,26 +325,41 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 						}
 						else {
-
-								console.log(lengthofnames[i]);
-
-
-								$scope.msg = "";
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 
 
-						}
 
 
+
+			}
+			else
+			{
+
+					$scope.datestring1 = "";
+
+<<<<<<< HEAD
+
+				console.log('my consultation controller called');
+
+
+						console.log(message);
+
+								$scope.chatlist = message;
+
+=======
 				}
 			}
 			else
 			{
 				console.log('this is called');
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 
 					var forioschatlist = {};
 
 						forioschatlist = $scope.chatlist;
-				console.log($scope.chatlist);
+
+
+				console.log(forioschatlist);
 
 
 						var data = JSON.parse(forioschatlist);
@@ -255,7 +367,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 
 						for (var key in data) {
     if (data.hasOwnProperty(key)) {
-        console.log(key + " = " + data[key]);
+    console.log(key + " = " + data[key]);
 
 
 					if(key == "unread")
@@ -269,6 +381,13 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 					else if(key == "name")
 					{
 							$scope.name = data[key];
+
+							$scope.name = $scope.name.substring(6);
+
+							console.log($scope.name);
+
+
+
 					}
 					else if(key == "dateformat")
 					{
@@ -281,6 +400,10 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
     }
 }
 }
+
+
+
+
 }
 
 		var failure = function()
@@ -289,6 +412,10 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 		}
 
 hello.chatcounts(username,password,success, failure);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 }
 
 myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
@@ -332,10 +459,10 @@ $scope.consultationDetails=function(consultedDoc)
 
 $scope.clicktochat = function(pateientPhone)
 {
-		console.log(pateientPhone);
+		//console.log(pateientPhone);
 		$scope.patientToChat=pateientPhone;
 
-console.log('clicked');
+//console.log('clicked');
 
 
 				// myConsultationService.docSummaryDetails($localStorage.consultedDoctor).then(function(response){
@@ -357,9 +484,13 @@ console.log('clicked');
 
 
 	 var persontocall = "greet+" + $scope.patientToChat;
-	 console.log(persontocall);
+	 //console.log(persontocall);
 
-	 console.log($scope.patientToChat);
+	 //console.log($scope.patientToChat);
+
+
+		//cordova.exec(null, null, "ExampleApplicationforchat", "chattoanotherperson", [username,password,persontocall]);
+
 			var success = function(message)
 			{
 				//alert(message);

@@ -17,15 +17,35 @@
           <div class="name" >
             <h2>{{patient.patientFname}}  {{patient.patientLname}}</h2>
           </div>
-          <div class="date">
+
+
+          <div class="date" ng-if="nameforandroid == patient.patientFname + ' ' + patient.patientLname">
             <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
 
 
-              <p>{{datestring}}</p>
+              <p> {{nameforandroid}} </p>
+              <p>{{datestringforandroid}}</p>
 
           </div>
 
+
+          <div class="date" ng-if="nameforandroid !== patient.patientFname + ' ' + patient.patientLname">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+
+
+
+              <p> {{nameforandroid}} </p>
+              <p>{{datestringforandroid1}}</p>
+
+          </div>
+
+
+
+
           <p class="msgContent"><font size=2>{{msg}}</font></p>
+
+
+
           <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
         </div>
 

@@ -12,38 +12,38 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			console.log($scope.currentState);
 
-$interval(checkNewMessages,2000);
-
-function checkNewMessages(){
-
-	if($scope.currentState == 'app.patient_home')
-	{
-
-	  $scope.unreadchatforpatient = 0;
-
-			var username = "greet+"+$localStorage.user;
-			var password = "DQ_patient";
-
-					// console.log(username);
-				var success = function(message)
-				{
-						$scope.unreadchatforpatient = message;
-				}
-				var failure = function()
-				{
-				 //alert("Error calling unreadchatcount Plugin");
-				 console.log('error');
-				}
-		hello.unreadchatfromusers(username,password,success, failure);
-
-	}
-
-
-}
-$timeout(function () {
-	console.log('timeout');
- $ionicLoading.hide();
-}, 5000);
+// $interval(checkNewMessages,2000);
+//
+// function checkNewMessages(){
+//
+// 	if($scope.currentState == 'app.patient_home')
+// 	{
+//
+// 	  $scope.unreadchatforpatient = 0;
+//
+// 			var username = "greet+"+$localStorage.user;
+// 			var password = "DQ_patient";
+//
+// 					// console.log(username);
+// 				var success = function(message)
+// 				{
+// 						$scope.unreadchatforpatient = message;
+// 				}
+// 				var failure = function()
+// 				{
+// 				 //alert("Error calling unreadchatcount Plugin");
+// 				 console.log('error');
+// 				}
+// 		hello.unreadchatfromusers(username,password,success, failure);
+//
+// 	}
+//
+//
+// }
+// $timeout(function () {
+// 	console.log('timeout');
+//  $ionicLoading.hide();
+// }, 5000);
 
 
 
