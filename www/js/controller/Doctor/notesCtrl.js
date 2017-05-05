@@ -40,7 +40,7 @@ setTimeout(function () {
 
 
   //this is used to set notesflag in the database top 2
-
+console.log($rootScope.patientNum);
   patientProfileDetailsService.fetchPatient($rootScope.patientNum).then(function(response){
     $scope.patient_details=response;
     $ionicLoading.hide();

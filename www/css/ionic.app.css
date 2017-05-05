@@ -9877,11 +9877,17 @@ ion-content.scroll-content.ionic-scroll {
     width: 38% !important;
     height: 9% !important;
     position: relative !important;
-    margin-left: -39% !important; }
+    margin-left: -39% !important;
+    transition: all linear 0ms !important;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s; }
   .statusDiv .offlineImg {
     width: 38% !important;
     height: 9% !important;
-    position: relative !important; }
+    position: relative !important;
+    transition: all linear 0ms !important;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s; }
 
 .sideMenuToggle {
   position: absolute;
@@ -10911,8 +10917,7 @@ ion-spinner.spinner-on-load {
       margin: 0 auto; }
       .dqLogin-view .top-content .logoContainer .logo img {
         width: 100% !important;
-        height: 80% !important;
-        margin-top: 10% !important; }
+        margin-top: 15% !important; }
 
 .dqLogin-view .login-content {
   width: 100% !important;
@@ -10944,7 +10949,7 @@ ion-spinner.spinner-on-load {
       width: 80% !important;
       margin: 0 auto; }
       .dqLogin-view .login-content .tAndC .terms h2 {
-        font-size: 78%;
+        font-size: 72%;
         color: #7b736d;
         text-align: center;
         margin-top: 3%;
@@ -10959,8 +10964,8 @@ ion-spinner.spinner-on-load {
       width: 50% !important;
       position: absolute; }
       .dqLogin-view .login-content .rememberMe .remember input[type="checkbox"] {
-        zoom: 2;
-        margin-top: -5%;
+        zoom: 150%;
+        margin-top: -2%;
         position: absolute; }
       .dqLogin-view .login-content .rememberMe .remember p {
         position: absolute;
@@ -11554,7 +11559,7 @@ ion-side-menu .heading-item .message {
         margin-left: 27%; }
         .profile-view .top-content .details .name-content h2 {
           margin-top: -20%;
-          font-size: 104%;
+          font-size: 20px !important;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important; }
   .profile-view .profileDetails {
@@ -11678,7 +11683,8 @@ ion-side-menu .heading-item .message {
         .customercare-view .top-content .queryContent .textBox textarea {
           width: 100% !important;
           height: 94% !important;
-          font-family: inherit; }
+          font-family: inherit;
+          padding: 20px !important; }
       .customercare-view .top-content .queryContent .sendButton {
         height: 26%;
         width: 100%; }

@@ -168,10 +168,14 @@ $scope.lastView = $ionicHistory.backView();
 						});
 						console.log('doctorHome');
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+<<<<<<< HEAD
 					hello.login(uname1,pw1,success, failure);
 
 
 
+=======
+				hello.login(uname1,pw1,success, failure);
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){

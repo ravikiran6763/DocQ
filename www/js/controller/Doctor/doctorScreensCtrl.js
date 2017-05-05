@@ -12,6 +12,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
 
+<<<<<<< HEAD
 // $interval(checkNewMsgs,2000);
 // function checkNewMsgs(){
 //   if( $rootScope.homePage =='templates.doctor_home')
@@ -33,26 +34,81 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 //             // hello.unreadchatfromusers(username,password,success, failure);
 //   }
 // }
+=======
+
+//$interval(checkNewMsgs,2000);
+$interval(checkConsultations,1000);
+
+function checkConsultations(){
+    doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+    $scope.pendingRequests = response;
+    // console.log('pending:',$scope.pendingRequests);
+    $scope.requests=$scope.pendingRequests.length;
+    }).catch(function(error){
+    console.log('failure data', error);
+    })
+      $interval.cancel($scope.Timer);
+$interval(checkNewMsgs,2000);
+function checkNewMsgs(){
+  if( $rootScope.homePage =='templates.doctor_home')
+  {
+    // console.log($rootScope.homePage);
+        $scope.unreadchatforpatient = 0;
+          var username = "greet+"+$localStorage.user;
+          var password = "DQ_doctor";
+            var success = function(message)
+            {
+                $scope.unreadchatforpatient = message;
+            }
+            var failure = function()
+            {
+             //alert("Error calling Hello Plugin");
+             console.log('error');
+            }
+            // hello.unreadchatfromusers(username,password,success, failure);
+            // hello.unreadchatfromusers(username,password,success, failure);
+  }
+}
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
+
+// function checkNewMsgs(){
+//   if( $rootScope.homePage =='templates.doctor_home')
+//   {
+//     // console.log($rootScope.homePage);
+//         $scope.unreadchatforpatient = 0;
+//           var username = "greet+"+$localStorage.user;
+//           var password = "DQ_doctor";
+//             var success = function(message)
+//             {
+//                 $scope.unreadchatforpatient = message;
+//             }
+//             var failure = function()
+//             {
+//              //alert("Error calling Hello Plugin");
+//              console.log('error');
+//             }
+//             // hello.unreadchatfromusers(username,password,success, failure);
+//   }
+// }
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
-    console.log($ionicHistory.currentStateName());
-      $ionicLoading.show();
+    // console.log($ionicHistory.currentStateName());
 
     $scope.emailNotification = 'Subscribed';
-    console.log($scope.emailNotification);
+    // console.log($scope.emailNotification);
 
     $scope.Online = function (message) {
 
           console.log(message);
-          $scope.Timer = $interval(function () {
-            doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-            $scope.pendingRequests = response;
-            console.log('pending:',$scope.pendingRequests);
-            $scope.requests=$scope.pendingRequests.length;
-            }).catch(function(error){
-            console.log('failure data', error);
-            })
-          }, 1000);
+          // $scope.Timer = $interval(function () {
+          //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+          //   $scope.pendingRequests = response;
+          //   console.log('pending:',$scope.pendingRequests);
+          //   $scope.requests=$scope.pendingRequests.length;
+          //   }).catch(function(error){
+          //   console.log('failure data', error);
+          //   })
+          // }, 1000);
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
 
@@ -88,9 +144,9 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
           $scope.docAvailable=false;
           $scope.docNotAvailable=true;
-          if (angular.isDefined($scope.Timer)) {
-              $interval.cancel($scope.Timer);
-          }
+          // if (angular.isDefined($scope.Timer)) {
+          //     $interval.cancel($scope.Timer);
+          // }
           $localStorage.onOff=2
           var whichdoctoronoff = {
               doctorphno : $localStorage.user,
@@ -204,15 +260,15 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     // $interval(pendingConsultations, 1000);
     //$interval(lookForPrescription, 1000);
  $scope.pending=$localStorage.requests;
- console.log($scope.pending);
+ // console.log($scope.pending);
 
 
   $scope.hello = 5;
   $localStorage.totalReq = 0;
 //////////////////////////////
-console.log($location.path());
+// console.log($location.path());
 //////////////////////////////
-$scope.$watch('pending', function() { console.log('watch!'); });
+// $scope.$watch('pending', function() { console.log('watch!'); });
    	function pendingConsultations() {
 
         doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
@@ -230,7 +286,7 @@ $scope.$watch('pending', function() { console.log('watch!'); });
    	}
 
     $scope.$watch('requests', function (newValue, oldValue, scope) {
-        console.log('changed');
+        // console.log('changed');
         // console.log(newValue);
         // console.log(oldValue);
         if(newValue > oldValue){
@@ -266,10 +322,7 @@ $scope.viewRequest=function(patient){
   //   })
   // }, 1000);
 
-
-
-
-
+}
 })
 
 // $scope.pushNotificationChange = function() {

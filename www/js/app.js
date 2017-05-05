@@ -42,8 +42,9 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic.cloud'
 ])
 
-DoctorQuickApp.run(function($window, $rootScope) {
+DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
   // console.log(navigator.onLine);
+      // $cordovaSplashscreen.hide();
       $rootScope.online = navigator.onLine;
       $window.addEventListener("offline", function () {
         $rootScope.$apply(function() {
@@ -58,10 +59,11 @@ DoctorQuickApp.run(function($window, $rootScope) {
 
 })
 
+
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
-    window.plugin.backgroundMode.enable();
+    // window.plugin.backgroundMode.enable();
     function successFunction() {
       console.log("It worked!");
     }
@@ -77,9 +79,13 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     if (window.StatusBar) {
       return StatusBar.hide();
     }
+<<<<<<< HEAD
     setTimeout(function() {
         navigator.splashscreen.hide();
     }, 300);
+=======
+
+>>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
   });
 
   $interval(checkConnection, 1000)
@@ -99,7 +105,6 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   }
 
   document.addEventListener("offline", onOffline, false);
-
   function onOffline() {
       // Handle the offline event
       alert('offline');
@@ -153,19 +158,19 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       // Android customization
       // Enable background mode
 
-      if(cordova.plugins.backgroundMode.isEnabled()){
-           console.log('Hi, I am enabled. Signed : backgroundMode.');
-         }
+      // if(cordova.plugins.backgroundMode.isEnabled()){
+      //      console.log('Hi, I am enabled. Signed : backgroundMode.');
+      //    }
 
       // Called when background mode has been activated
-      cordova.plugins.backgroundMode.onactivate = function (){
-      setTimeout(function () {
-      // Modify the currently displayed notification
-      cordova.plugins.backgroundMode.configure({
-      text:'Running in background for more than 5s now.'
-      });
-      }, 5000);
-      }
+      // cordova.plugins.backgroundMode.onactivate = function (){
+      // setTimeout(function () {
+      // // Modify the currently displayed notification
+      // cordova.plugins.backgroundMode.configure({
+      // text:'Running in background for more than 5s now.'
+      // });
+      // }, 5000);
+      // }
 
           function successFunction()
           {
@@ -181,13 +186,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
           }
       AndroidFullScreen.immersiveMode(successFunction, errorFunction);
 //-------------------------------------ONESIGNAL PUSH SETUP---------------------
-        window.plugins.OneSignal
-        .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
-        .handleNotificationReceived(function(jsonData) {
-            // alert("Notification received:\n" + JSON.stringify(jsonData));
-            console.log('Did I receive a notification: ' + JSON.stringify(jsonData));
-        })
-        .endInit();
+
         window.plugins.OneSignal.getIds(function(ids) {
           // alert('getIds: ' + JSON.stringify(ids));
           console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
@@ -195,6 +194,13 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         var iosSettings = {};
         iosSettings["kOSSettingsKeyAutoPrompt"] = true;
         iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+
+        var notificationOpenedCallback = function(jsonData) {
+              alert("Notification opened:\n" + JSON.stringify(jsonData));
+              console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+            };
+
+            // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
         window.plugins.OneSignal
           .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
@@ -220,15 +226,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
 
 //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
-  function onDeviceReady() {
+  function onDeviceReady(){
       checkConnection();
       console.log('device ready for network check');
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-    console.log('toState',toState);
-    console.log('toParams',toParams);
-    console.log(toState.name.indexOf('app.patient_home'));
+    // console.log('toState',toState);
+    // console.log('toParams',toParams);
+    // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
       // Restore platform default transition. We are just hardcoding android transitions to auth views.

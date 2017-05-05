@@ -100,22 +100,18 @@ $scope.checkWalletBalance = function()
 				console.log($rootScope.accptdDoc);
 				// console.log($localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-				$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc},{reload: true});
 
 				console.log($rootScope.reqId);
-
-				$ionicHistory.nextViewOptions({
-					disableAnimate: true,
-					disableBack: true
-				});
-
 				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
 					console.log(response);
 				 console.log('success');
 			 }).catch(function(error){
 				 console.log('failure data', error);
 			 })
-
+			 $ionicHistory.nextViewOptions({
+			 	disableAnimate: true,
+			 	disableBack: true
+			 });
 			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
 
 		}
@@ -156,7 +152,13 @@ $scope.BalanceForVoiceCall = function()
 							console.log($localStorage.user);
 							console.log($localStorage.Doctocall);
 							callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-						$state.go('app.patient_summary');
+
+
+							$ionicHistory.nextViewOptions({
+ 						 	disableAnimate: true,
+ 						 	disableBack: true
+ 						 });
+ 						 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
 
 				}
 				var failure = function()

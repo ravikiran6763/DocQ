@@ -29,7 +29,7 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 
 // $interval.cancel(checkAcceptedReq,2000);
 
-console.log($location.path());
+// console.log($location.path());
 ion.sound({
     sounds: [
         {
@@ -115,7 +115,7 @@ if(!navigator.onLine ){
 	}
 }
 }
-console.log($localStorage.dataConnection);
+// console.log($localStorage.dataConnection);
 
 document.addEventListener("deviceready", function (){
     var type = $cordovaNetwork.getNetwork()
@@ -921,15 +921,34 @@ $scope.BalanceForVoiceCall=function()
 
 /////////////Show and hide notification////////////////////////////////////////
 
-		$scope.hideNotifications = function () {
+		$scope.hideNotifications = function (msg) {
+			console.log(msg);
 			$scope.accptNotifications=true;
 			$scope.rejectNotifications=false;
- 		window.plugins.OneSignal.registerForPushNotifications(true);
+
+ 	// 	window.plugins.OneSignal.registerForPushNotifications(true);
 		};
-		$scope.showNotifications = function () {
+		$scope.showNotifications = function (msg) {
+			alert(msg);
 					$scope.accptNotifications=false;
 					$scope.rejectNotifications=true;
- 				window.plugins.OneSignal.registerForPushNotifications(false);
+					window.plugins.OneSignal.getIds(function(ids){
+            //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+            //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+            console.log(JSON.stringify(ids['userId']));
+            $scope.playerId=JSON.stringify(ids['userId']);
+						alert('oneSignal')
+            console.log($scope.playerId);
+            var updatePlayer ={
+              palyerId:$scope.playerId,
+              userNum:$localStorage.user,
+              user:'doctor'
+            }
+            alert(updatePlayer);
+            LoginService.updatePlayer(updatePlayer).then(function(response){
+              console.log(response);
+            })
+          });
 				};
 
 ///prescription par
@@ -1137,7 +1156,7 @@ $scope.sendprescription = function()
 
 $scope.statename = $ionicHistory.currentStateName();
 
-console.log($state.statename);
+// console.log($state.statename);
 if($scope.statename =='app.patient_home')
 {
 
