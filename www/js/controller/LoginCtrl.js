@@ -30,7 +30,25 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 			$scope.loginData.phone = $cookies.get('Phone');
 			$scope.loginData.pin = $cookies.get('password');
 
-
+			$(document).ready(function() {
+			    $(".input-group > input").focus(function(e){
+			        $(this).parent().addClass("input-group-focus");
+			    }).blur(function(e){
+			        // $(this).parent().removeClass("input-group-focus");
+			    });
+			});
+			$scope.countries = [
+					{
+					name: "India",
+					dial_code: "+91",
+					code: "IN"
+					},
+					{
+					name: "US",
+					dial_code: "+1",
+					code: "US"
+					}
+				 ]
 	$scope.doLogIn = function()
 	{
 			$rootScope.submitted=true;
@@ -112,7 +130,12 @@ $scope.lastView = $ionicHistory.backView();
 						});
 					$state.go('app.patient_home', {}, {location: "replace", reload: true});
 					hello.login(uname1,pw1,success, failure);
-					hello.background(success, failure);
+
+
+
+
+
+					//hello.background(success, failure);
 					}
 					else if(response === "doctor")
 					{
@@ -145,7 +168,10 @@ $scope.lastView = $ionicHistory.backView();
 						});
 						console.log('doctorHome');
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-					// hello.login(uname1,pw1,success, failure);
+					hello.login(uname1,pw1,success, failure);
+
+
+
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){

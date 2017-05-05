@@ -14,6 +14,10 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     // alert($scope.deviceAndroid);
     $scope.devicePlatform = ionic.Platform.isIOS();
     console.log($ionicHistory.currentStateName());
+
+
+
+
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
@@ -49,12 +53,15 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           var success = function(message)
           {
             console.log(message);
+            alert(message);
+            
+
           }
           var failure = function()
           {
             alert("Error calling Hello Plugin");
           }
-          // hello.login(uname1,pw1,success, failure);
+         hello.login(uname1,pw1,success, failure);
           // $ionicPush.register().then(function(t) {
           //   return $ionicPush.saveToken(t);
           // }).then(function(t) {
@@ -128,7 +135,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               // alert(t.token);
               console.log('Token saved:', t.token);
             });
-            // hello.login(uname1,pw1,success, failure);
+           hello.login(uname1,pw1,success, failure);
             $localStorage.onOff=1;
         }
          $ionicLoading.hide();

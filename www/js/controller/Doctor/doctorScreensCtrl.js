@@ -12,27 +12,27 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
 
-$interval(checkNewMsgs,2000);
-function checkNewMsgs(){
-  if( $rootScope.homePage =='templates.doctor_home')
-  {
-    // console.log($rootScope.homePage);
-        $scope.unreadchatforpatient = 0;
-          var username = "greet+"+$localStorage.user;
-          var password = "DQ_doctor";
-            var success = function(message)
-            {
-                $scope.unreadchatforpatient = message;
-            }
-            var failure = function()
-            {
-             //alert("Error calling Hello Plugin");
-             console.log('error');
-            }
-            hello.unreadchatfromusers(username,password,success, failure);
-            // hello.unreadchatfromusers(username,password,success, failure);
-  }
-}
+// $interval(checkNewMsgs,2000);
+// function checkNewMsgs(){
+//   if( $rootScope.homePage =='templates.doctor_home')
+//   {
+//     // console.log($rootScope.homePage);
+//         $scope.unreadchatforpatient = 0;
+//           var username = "greet+"+$localStorage.user;
+//           var password = "DQ_doctor";
+//             var success = function(message)
+//             {
+//                 $scope.unreadchatforpatient = message;
+//             }
+//             var failure = function()
+//             {
+//              //alert("Error calling Hello Plugin");
+//              console.log('error');
+//             }
+//             hello.unreadchatfromusers(username,password,success, failure);
+//             // hello.unreadchatfromusers(username,password,success, failure);
+//   }
+// }
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
     console.log($ionicHistory.currentStateName());
