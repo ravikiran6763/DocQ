@@ -1,0 +1,215 @@
+var lengthofnames = $scope.listofnames;
+
+//console.log($scope.listofnames);
+
+for(var i=0; i<lengthofnames.length; i++){
+
+
+    if(lengthofnames[i] == $scope.fromusername)
+    {
+
+          console.log(lengthofnames[i]);
+
+
+
+
+          <div class="date" ng-if="{{patient.patientFname}} {{patient.patientLname}} !=== '{{fromusername}}'">
+            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
+
+
+              <p>{{datestring}}</p>
+
+          </div>
+
+
+
+          var msg;
+          var msgdate;
+          var usernamefromchat = [];
+          var usernamefromchat1 = [];
+          var lengthofnames = [];
+
+          var indivisualusercounts;
+          var lists =[];
+
+          var dateformation =[];
+
+          var datestring;
+
+          $scope.chatlist = [];
+
+
+
+          $scope.chatlist = message;
+
+        console.log($scope.chatlist);
+
+          $scope.name = $scope.chatlist.split('{');
+
+          usernamefromchat = $scope.name[1];
+          usernamefromchat = usernamefromchat.substring(0,usernamefromchat.length-1);
+
+
+          usernamefromchat1.push(usernamefromchat);
+
+
+          //$scope.fromusername = usernamefromchat;
+
+
+           lengthofnames = $scope.listofnames;
+
+          var found = false;
+
+
+          console.log(usernamefromchat1.length);
+          console.log(lengthofnames.length);
+
+
+
+          for(var j=0;j<lengthofnames.length;j++)
+          {
+
+
+            for(var i=0; i<usernamefromchat1.length; i++){
+
+                //console.log(lengthofnames[j]);
+
+                if(lengthofnames[j] == usernamefromchat1[i])
+                {
+
+
+                    console.log(usernamefromchat1[i]);
+
+                }
+                else {
+
+
+                    console.log(lengthofnames[j]);
+
+                }
+
+
+
+            }
+
+
+
+
+          }
+
+
+          var fullchatlistfromusers = [];
+          var usernames = [];
+          var lengthofnames = [];
+
+
+
+          $scope.fullchatlistfromusers = {};
+
+
+
+          $scope.fullchatlistfromusers = message;
+
+          console.log($scope.fullchatlistfromusers);
+
+          $scope.name = $scope.fullchatlistfromusers.split('{');
+
+          var usernamefromchat = $scope.name[1];
+          var usernamefromchat = usernamefromchat.substring(0,usernamefromchat.length-1);
+
+             lengthofnames = $scope.listofnames;
+
+
+             console.log(usernamefromchat);
+
+
+
+             //////////////////////////////////////////////////////////////////////////
+             /////////// WORKING CODE ////////////////////////////////////////////////
+
+
+             var msg;
+     				var msgdate;
+     				// var usernamefromchat = [];
+     				// var usernamefromchat1 = [];
+     				 var lengthofnames = [];
+
+     				var indivisualusercounts;
+     				var lists =[];
+
+     				var dateformation =[];
+
+     				var datestring;
+
+     				var found = true;
+
+     				$scope.chatlist = message;
+
+     			console.log($scope.chatlist);
+
+     				$scope.name = $scope.chatlist.split('{');
+
+     				usernamefromchat = $scope.name[1];
+     				usernamefromchat = usernamefromchat.substring(0,usernamefromchat.length-1);
+
+
+     				$scope.fromusername = usernamefromchat;
+
+
+     				 lengthofnames = $scope.listofnames;
+
+
+     				for(var i=0; i<lengthofnames.length; i++){
+
+
+     					if(found)
+     					{
+
+     						if(lengthofnames[i] == $scope.fromusername)
+     						{
+
+     								console.log(lengthofnames[i]);
+
+
+     								found = true;
+
+
+     							msg = $scope.name[2];
+     							msg = msg.substring(0,msg.length-1);
+     							$scope.msg = msg;
+     							msgdate = $scope.name[3];
+     							msgdate = msgdate.substring(0,msgdate.length-3)
+     							msgdate = msgdate.split('=');
+     							lists = msgdate;
+
+
+
+     							dateformation = lists[1].split(' ');
+     							datestring = dateformation[1].concat(dateformation[2]);
+     							datestring = datestring.concat(dateformation[5]);
+     							$scope.datestring = datestring;
+
+
+     						}
+     					}
+     					else {
+
+     						console.log(lengthofnames[i]);
+
+     						$scope.datestring1 = "";
+
+     						found = false;
+
+     					}
+     						// else {
+     						//
+     						//
+     						//
+     						//
+     						//
+     						//
+     						//
+     						// }
+
+
+     				}

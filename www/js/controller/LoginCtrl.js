@@ -65,8 +65,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 $scope.lastView = $ionicHistory.backView();
 				console.log($scope.lastView);
+
+				console.log(userDetails);
+
+
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
+
+					console.log(response);
 
 					if(response === "patient")
 					{
@@ -168,14 +174,11 @@ $scope.lastView = $ionicHistory.backView();
 						});
 						console.log('doctorHome');
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-<<<<<<< HEAD
 					hello.login(uname1,pw1,success, failure);
 
 
 
-=======
 				hello.login(uname1,pw1,success, failure);
->>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){

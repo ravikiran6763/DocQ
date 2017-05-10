@@ -12,7 +12,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
 
-<<<<<<< HEAD
 // $interval(checkNewMsgs,2000);
 // function checkNewMsgs(){
 //   if( $rootScope.homePage =='templates.doctor_home')
@@ -34,7 +33,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 //             // hello.unreadchatfromusers(username,password,success, failure);
 //   }
 // }
-=======
 
 //$interval(checkNewMsgs,2000);
 $interval(checkConsultations,1000);
@@ -69,7 +67,6 @@ function checkNewMsgs(){
             // hello.unreadchatfromusers(username,password,success, failure);
   }
 }
->>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
 
 // function checkNewMsgs(){
 //   if( $rootScope.homePage =='templates.doctor_home')

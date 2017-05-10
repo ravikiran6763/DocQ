@@ -53,17 +53,13 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             console.log(message);
             alert(message);
-<<<<<<< HEAD
-            
-=======
->>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
+
 
           }
           var failure = function()
           {
             alert("Error calling Hello Plugin");
           }
-<<<<<<< HEAD
          hello.login(uname1,pw1,success, failure);
           // $ionicPush.register().then(function(t) {
           //   return $ionicPush.saveToken(t);
@@ -71,9 +67,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           //   // alert(t.token);
           //   console.log('Token saved:', t.token);
           // });
-=======
           hello.login(uname1,pw1,success, failure);
->>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
           $ionicHistory.nextViewOptions({
             disableAnimate: true,
             disableBack: true
@@ -146,10 +140,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               // alert(t.token);
               console.log('Token saved:', t.token);
             });
-<<<<<<< HEAD
            hello.login(uname1,pw1,success, failure);
-=======
->>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
             $localStorage.onOff=1;
         }
          $ionicLoading.hide();
