@@ -117,24 +117,21 @@ $scope.lastView = $ionicHistory.backView();
 						var pw1 = "DQ_patient";
 						var success = function(message)
 						{
-							alert(message);
+							console.log(message);
+							$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							});
+						$state.go('app.patient_home', {}, {location: "replace", reload: true});
 						}
 						var failure = function()
 						{
 						alert("Error calling Hello Plugin");
 						}
 
-						$ionicHistory.nextViewOptions({
-							disableAnimate: true,
-							disableBack: true
-						});
-					$state.go('app.patient_home', {}, {location: "replace", reload: true});
-					hello.login(uname1,pw1,success, failure);
+						$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
-
-
-
-
+						hello.login(uname1,pw1,success, failure);
 					//hello.background(success, failure);
 					}
 					else if(response === "doctor")
@@ -155,27 +152,20 @@ $scope.lastView = $ionicHistory.backView();
 					var success = function(message)
 						{
 							console.log(message);
+							$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							});
+							console.log('doctorHome');
+						$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 						}
 
 						var failure = function()
 						{
 							alert("Error Occurred While Loggin in to DoctoQuick");
 						}
-
-						$ionicHistory.nextViewOptions({
-							disableAnimate: true,
-							disableBack: true
-						});
-						console.log('doctorHome');
-					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-<<<<<<< HEAD
-					hello.login(uname1,pw1,success, failure);
-
-
-
-=======
-				hello.login(uname1,pw1,success, failure);
->>>>>>> 587250e240331f9a30fcb69ed6928fb9f6cc972f
+						$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+						hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){
@@ -215,7 +205,7 @@ $scope.lastView = $ionicHistory.backView();
 			}
 			$timeout(function () {
 			 $ionicLoading.hide();
-		 }, 1000);
+		 }, 5000);
 
 		}
 
