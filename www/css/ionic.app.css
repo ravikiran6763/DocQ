@@ -10946,13 +10946,14 @@ ion-spinner.spinner-on-load {
     height: 10% !important;
     margin: 0 auto; }
     .dqLogin-view .login-content .tAndC .terms {
-      width: 80% !important;
-      margin: 0 auto; }
+      width: 100% !important;
+      margin: 0 auto;
+      font-size: smaller; }
       .dqLogin-view .login-content .tAndC .terms h2 {
-        font-size: 72%;
+        font-size: 97%;
         color: #7b736d;
         text-align: center;
-        margin-top: 3%;
+        margin-top: 1%;
         line-height: 1.5; }
         .dqLogin-view .login-content .tAndC .terms h2 a {
           color: inherit !important;
