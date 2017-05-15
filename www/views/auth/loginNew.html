@@ -15,21 +15,15 @@
 
   <div class="login-content">
     <form  novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
-      <div class="form-group">
-        <!-- <input type="tel" name="tel" ng-model="loginData.phone" ng-intl-tel-input> -->
-        <!-- <span class="intl">+91</span><input class="form-control" ng-init="dial_code='+91'" type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required></input> -->
-               <!-- <input type="tel" ng-init="dial_code='+91'" ng-model="country.dial_code"> -->
-
-               <!-- <input class="form-control" ng-init="dial_code='+91'" type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required></input> -->
-
-      </div>
+    
       <div class="input-group">
+         <select ng-hide="true" ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries"></select>
         <span class="input-group-addon" >+91</span>
         <input class="form-control"  type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required></input>
-
+        <!-- <input type="tel" class="form-control" placeholder="Phone Number" name="user_phone" string-to-number  ng-model="country.dial_code"> -->
       </div>
       <div class="form-group">
-        <input class="form-control" type="password" placeholder="Password" name="user_pin" ng-model="loginData.pin"  required  >
+        <input class="form-control" type="password"  placeholder="Password" name="user_pin" ng-model="loginData.pin"  required  >
       </div>
 
       <button class="button button-block button-assertive" ng-click="doLogIn(loginData);" >

@@ -10091,7 +10091,20 @@ ion-side-menu.menu-left.menu {
 
 .input-group-addon:first-child {
   /* border-right: 0; */
+  border: none;
   background: #fff; }
+
+.input-group-addon:not(:first-child):not(:last-child) {
+  background-color: white;
+  border: none;
+  display: table-caption;
+  position: absolute;
+  margin: 13px 0px 0 7px; }
+
+.input-group .form-control:last-child {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  padding: 0% 0 0 15%; }
 
 .input-group-focus {
   border-radius: 4px;
@@ -10921,14 +10934,16 @@ ion-spinner.spinner-on-load {
 
 .dqLogin-view .login-content {
   width: 100% !important;
-  height: 55% !important; }
+  height: 55% !important;
+  margin-top: 4% !important; }
   .dqLogin-view .login-content .form-group {
     width: 80% !important;
     margin: 0 auto; }
     .dqLogin-view .login-content .form-group input[type="tel"] {
       margin-top: 4% !important;
       height: 16% !important;
-      padding: 0 0 0 13%;
+      padding-left: 15% !important;
+      padding-top: 2% !important;
       width: 100% !important; }
     .dqLogin-view .login-content .form-group input[type="password"] {
       margin-top: 4% !important;

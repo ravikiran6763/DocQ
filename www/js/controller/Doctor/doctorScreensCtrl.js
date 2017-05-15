@@ -12,6 +12,11 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
 
+    $scope.countries = [ {
+               name: "India",
+               dial_code: "+91",
+               code: "IN"
+            }]
 // $interval(checkNewMsgs,2000);
 // function checkNewMsgs(){
 //   if( $rootScope.homePage =='templates.doctor_home')
@@ -170,7 +175,7 @@ function checkConsultations(){
 
       // hello.chatcounts(username,password,success, failure);
 
-      
+
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
     // console.log($ionicHistory.currentStateName());

@@ -301,7 +301,19 @@ ion-side-menu.menu-left.menu {
     border: none;
     background: #fff;
 }
+.input-group-addon:not(:first-child):not(:last-child){
+  background-color: white;
+    border: none;
+    display: table-caption;
+    position: absolute;
+    margin: 13px 0px 0 7px;
+}
 
+.input-group .form-control:last-child{
+  border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    padding: 0% 0 0 15%;
+}
 .input-group-focus {
   border-radius:4px;
   -webkit-transition: box-shadow ease-in-out .15s;
