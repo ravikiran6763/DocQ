@@ -368,7 +368,7 @@ $scope.popupShown = true;
 
  $interval(videoOrAudio,1000);
  function videoOrAudio(){
-	 console.log('callType');
+	//  console.log('callType');
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 		 $scope.isFirstTime = false;
 
@@ -397,7 +397,7 @@ $scope.popupShown = true;
 	 }).catch(function(error){
 	 console.log('failure data', error);
 	 });
-	 console.log($location.path());
+	//  console.log($location.path());
 		 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 			 $scope.isFirstTime = false;
 			//  console.log($rootScope.reqId);

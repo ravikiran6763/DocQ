@@ -164,4 +164,32 @@ this.videoOrAudio = function(consultId){
 
 }
 
+this.createChatHistory = function (chat) {
+  var deferred = $q.defer();
+  // console.log(BASE_URL.url + API.createChatHistory);
+  $http.post(BASE_URL.url + API.createChatHistory,chat)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
+this.fetchChatHistory = function (patient){
+  var deferred = $q.defer();
+  console.log(patient);
+  // console.log(BASE_URL.url + API.createChatHistory);
+  $http.post(BASE_URL.url + API.fetchChatHistory,patient)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
 });

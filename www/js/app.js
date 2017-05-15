@@ -82,7 +82,6 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     setTimeout(function() {
         navigator.splashscreen.hide();
     }, 300);
-
   });
 
   $interval(checkConnection, 1000)

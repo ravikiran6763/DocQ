@@ -33,7 +33,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 //             // hello.unreadchatfromusers(username,password,success, failure);
 //   }
 // }
-
 //$interval(checkNewMsgs,2000);
 $interval(checkConsultations,1000);
 
@@ -42,51 +41,136 @@ function checkConsultations(){
     $scope.pendingRequests = response;
     // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
-    }).catch(function(error){
-    console.log('failure data', error);
     })
+    // .catch(function(error){
+    // console.log('failure data', error);
+    // })
       $interval.cancel($scope.Timer);
-$interval(checkNewMsgs,2000);
-function checkNewMsgs(){
-  if( $rootScope.homePage =='templates.doctor_home')
-  {
-    // console.log($rootScope.homePage);
-        $scope.unreadchatforpatient = 0;
-          var username = "greet+"+$localStorage.user;
-          var password = "DQ_doctor";
-            var success = function(message)
-            {
-                $scope.unreadchatforpatient = message;
-            }
-            var failure = function()
-            {
-             //alert("Error calling Hello Plugin");
-             console.log('error');
-            }
-            // hello.unreadchatfromusers(username,password,success, failure);
-            // hello.unreadchatfromusers(username,password,success, failure);
-  }
+// $interval(checkNewMsgs,2000);
+
+    $interval(checkNewMessages,1000);
+    var username = "greet+"+$localStorage.user;
+    var password = "DQ_doctor";
+
+    $scope.deviceAndroid = ionic.Platform.isAndroid();
+
+      function checkNewMessages()
+      {
+          // console.log('checkingForMessages');
+          var success = function(message)
+          {
+              console.log(message);
+
+              $scope.chatlist1={};
+              if($scope.deviceAndroid)
+              {
+
+                  $scope.chatlist1 = message;
+                  // console.log($scope.chatlist1);
+                  var forandroidchatlist = {};
+                  forandroidchatlist = $scope.chatlist1;
+
+                  var dataofandroid = JSON.parse(forandroidchatlist);
+                  dataofandroid.chatTo=$localStorage.user;
+                  // console.log(dataofandroid);
+                  doctorServices.createChatHistory(dataofandroid).then(function(response){
+                  $scope.chatHistory=response;//store the response array in doctor details
+                  console.log('dataSent :',$scope.chatHistory);
+                  })
+                  //  .catch(function(error){
+                  //  console.log('failure data', error);
+                  //  });
+
+                  for (var keyandroid in dataofandroid)
+                  {
+                      if (dataofandroid.hasOwnProperty(keyandroid))
+                      {
+                          //  console.log(keyandroid + " = " + dataofandroid[keyandroid]);
+                          if(keyandroid == "unread")
+                          {
+                            $scope.unreadcountforandroid = dataofandroid[keyandroid];
+                          }
+
+                          if(keyandroid == "message")
+                          {
+                            $scope.msgforandroid = dataofandroid[keyandroid];
+                          }
+                          else if(keyandroid == "name")
+                          {
+                            $scope.nameforandroid = dataofandroid[keyandroid];
+                            //  console.log($scope.nameforandroid);
+                          }
+                          else if(keyandroid == "dateformat")
+                          {
+
+                          $scope.datestringforandroid = dataofandroid[keyandroid];
+
+                          }
+                          else
+                          {
+
+                          //  console.log('no response from vsee');
+
+                          }
+                          // hello.unreadchatfromusers(username,password,success, failure);
+                      }
+                  }
+
+
+
+              }
+              else
+              {
+                  console.log('this is called');
+                  var forioschatlist = {};
+                  forioschatlist = $scope.chatlist;
+                  console.log(forioschatlist);
+
+                  var data = JSON.parse(forioschatlist);
+                  console.log(data);
+
+                  for (var key in data) {
+                    if (data.hasOwnProperty(key)) {
+                      console.log(key + " = " + data[key]);
+                      if(key == "unread")
+                      {
+                        $scope.unreadchatcountfromvsee = data[key];
+                      }
+                      else if(key == "message")
+                      {
+                        $scope.msg = data[key];
+                      }
+                      else if(key == "name")
+                      {
+                        $scope.name = data[key];
+                        $scope.name = $scope.name.substring(6);
+                        console.log($scope.name);
+                      }
+                      else if(key == "dateformat")
+                      {
+                        $scope.datestring = data[key];
+                      }
+                      else {
+                        console.log('no response from vsee');
+                        // noresponse of chat from vsee
+                      }
+                    }
+                  }
+              }
+          }
+
+      }
+
 }
 
-// function checkNewMsgs(){
-//   if( $rootScope.homePage =='templates.doctor_home')
-//   {
-//     // console.log($rootScope.homePage);
-//         $scope.unreadchatforpatient = 0;
-//           var username = "greet+"+$localStorage.user;
-//           var password = "DQ_doctor";
-//             var success = function(message)
-//             {
-//                 $scope.unreadchatforpatient = message;
-//             }
-//             var failure = function()
-//             {
-//              //alert("Error calling Hello Plugin");
-//              console.log('error');
-//             }
-//             // hello.unreadchatfromusers(username,password,success, failure);
-//   }
-// }
+      var failure = function()
+      {
+      alert("Error calling Hello Plugin");
+      }
+
+      // hello.chatcounts(username,password,success, failure);
+
+      
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
     // console.log($ionicHistory.currentStateName());
@@ -97,15 +181,7 @@ function checkNewMsgs(){
     $scope.Online = function (message) {
 
           console.log(message);
-          // $scope.Timer = $interval(function () {
-          //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-          //   $scope.pendingRequests = response;
-          //   console.log('pending:',$scope.pendingRequests);
-          //   $scope.requests=$scope.pendingRequests.length;
-          //   }).catch(function(error){
-          //   console.log('failure data', error);
-          //   })
-          // }, 1000);
+
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
 
@@ -244,15 +320,6 @@ function checkNewMsgs(){
 
 	}
 
-  $scope.pendingRequests = {};
-    doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-    $scope.pendingRequests = response;
-    $ionicLoading.hide();
-    // console.log($scope.res);
-    }).catch(function(error){
-    console.log('failure data', error);
-    })
-
 
     // $interval(pendingConsultations, 1000);
     //$interval(lookForPrescription, 1000);
@@ -266,21 +333,7 @@ function checkNewMsgs(){
 // console.log($location.path());
 //////////////////////////////
 // $scope.$watch('pending', function() { console.log('watch!'); });
-   	function pendingConsultations() {
 
-        doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-        $scope.pendingRequests = response;
-        console.log('pending:',$scope.pendingRequests);
-        $scope.requests=$scope.pendingRequests.length;
-        }).catch(function(error){
-        console.log('failure data', error);
-        })
-      // else{
-      //   console.log('request not running');
-      //   $interval.cancel(pendingConsultations);
-      // }
-
-   	}
 
     $scope.$watch('requests', function (newValue, oldValue, scope) {
         // console.log('changed');
@@ -309,6 +362,8 @@ $scope.viewRequest=function(patient){
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }
 
+})
+
   // $scope.Timer = $interval(function () {
   //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
   //   $scope.pendingRequests = response;
@@ -319,8 +374,6 @@ $scope.viewRequest=function(patient){
   //   })
   // }, 1000);
 
-}
-})
 
 // $scope.pushNotificationChange = function() {
 //     console.log('docStatus Change', $scope.docStatus.checked);

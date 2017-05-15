@@ -15,9 +15,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     $scope.devicePlatform = ionic.Platform.isIOS();
     console.log($ionicHistory.currentStateName());
 
-
-
-
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
@@ -53,7 +50,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             console.log(message);
             alert(message);
-
+            $ionicHistory.nextViewOptions({
+              disableAnimate: true,
+              disableBack: true
+            });
+            console.log('doctorHome');
+          $state.go('app.patient_home', {}, {location: "replace", reload: true});
 
           }
           var failure = function()
@@ -102,20 +104,20 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             {
               console.log(message);
               alert(message);
+              $ionicHistory.nextViewOptions({
+                disableAnimate: true,
+                disableBack: true
+              });
+              console.log('doctorHome');
+            $state.go('templates.doctor_home', {}, {location: "replace", reload: true});
             }
             var failure = function()
             {
               alert("Error calling Hello Plugin");
             }
-            alert('user:',uname1);
-            alert('pass:',pw1);
+            // alert('user:',uname1);
+            // alert('pass:',pw1);
             hello.login(uname1,pw1,success, failure);
-
-            $ionicHistory.nextViewOptions({
-              disableAnimate: true,
-              disableBack: true
-            });
-            // $state.go('templates.doctor_home');
 
             window.plugins.OneSignal.getIds(function(ids) {
               //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -172,13 +174,7 @@ $scope.sendForm = function($event,form)
   {
       $state.go('auth.patient_reg2');
   }
-
-
-
-
   $scope.otp = "";
-
-
   $scope.goToNextView = function ()
   {
 

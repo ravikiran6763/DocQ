@@ -9,41 +9,29 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$scope.names = {};
 	$scope.listofnames = [];
 	$scope.myPatients={};
-
-
 	$scope.fromusername = [];
-
 	$scope.listofphones = [];
-
-
-
-
-
 
 // for doctors consultationDetails
 
 myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
-
-
  	data = $scope.myPatients;
-
-
 	for(var i=0; i<data.length; i++){
-
 
 			$scope.patientFname=data[i].patientFname;
 			$scope.patientLname=data[i].patientLname;
-
-
-
+			$scope.patientPhone=data[i].patientPhone;
 			$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
-
 			$scope.listofnames.push($scope.fullname);
-
 			$scope.listofphones.push(data[i].patientPhone);
+			console.log($scope.patientPhone);
+			//console.log($localStorage.user);
 
-
+			doctorServices.fetchChatHistory($scope.patientPhone).then(function(response){
+			$scope.lastChat=response;//store the response array in doctor details
+			console.log('lastChat :',$scope.lastChat);
+			})
 
 	}
 
@@ -54,7 +42,6 @@ console.log('failure data', error);
 
 
 $scope.pagedecision=$ionicHistory.currentStateName();
-
 var username = "greet+"+$localStorage.user;
 
 if($scope.pagedecision === 'templates.consulted_patient')
@@ -228,8 +215,6 @@ $scope.consultationDetails=function(consultedDoc)
 		}
 
  hello.chat(username,password,persontocall,success, failure);
-
-
 
 }
 
