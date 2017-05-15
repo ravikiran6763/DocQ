@@ -11,7 +11,7 @@
         $doctorDetails = array();
 
 
-				 $sql = "select patientFname,patientMname,patientLname,patientAge,patientSex,patientEmail,patientDetails.patientPhone,consultDate from patientDetails,myConsultations where patientDetails.patientPhone = myConsultations.patientPhone and myConsultations.doctorPhone='$loginphno'";
+				 $sql = "select image,patientFname,patientMname,patientLname,patientAge,patientSex,patientEmail,patientDetails.patientPhone,consultDate from patientDetails,myConsultations,patientImages where patientDetails.patientPhone = patientImages.patientphone and patientDetails.patientPhone = myConsultations.patientPhone and myConsultations.doctorPhone='$loginphno' group by patientDetails.patientPhone";
 
 				$retval = mysql_query( $sql, $dbhandle );
         while($row = mysql_fetch_array($retval))
