@@ -10,18 +10,10 @@
 
 
     li {
-      height: 15%;
-      border-bottom: 2px solid #dadada;
+      height: 12%;
+    border-bottom: 2px solid #e7e7e7;
       @include clearfix();
 
-      &:first-child {
-        //box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.8);
-      }
-
-      &:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto;
-      }
 
       .profile-img {
         width: 16%;
@@ -32,6 +24,27 @@
           width: 100%;
           border-radius: 50%;
           width: 95%;
+        }
+        .chatCount{
+            float: right;
+            margin: -9vh 0 0 0 !important;
+            background-color: #AF272F;
+            border-radius: 50%;
+            width: 5%;
+            text-align: center;
+            position: absolute;
+            color: #FFFFFF;
+        }
+        .unreadCount{
+          position: relative !important;
+          top: 4% !important;
+          right: 8% !important;
+          background: #007460 !important;
+          width: 4% !important;
+          border-radius: 50% !important;
+          text-align: center !important;
+          color: #fff !important;
+          font-family: inherit !important;
         }
       }
 
@@ -69,15 +82,18 @@
             width: 100% !important;
             text-overflow: ellipsis !important;
           }
-          .chatCount{
-            float: left !important;
-            margin: -9vh 0 0 -20vw !important;
+
+        .message{
+          font-size: 90%;
+          margin: 3% 0 0 3%;
           }
-        p{
-            font-size: 74%;
-            margin: 0% 2%;
-            color: black;
+          .dateTime{
+            position: relative !important;
+            float: right !important;
+            /* right: 4% !important; */
+            top: -30% !important;
           }
+
 
         h2{
             margin: 2%;

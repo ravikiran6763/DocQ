@@ -10099,7 +10099,8 @@ ion-side-menu.menu-left.menu {
   border: none;
   display: table-caption;
   position: absolute;
-  margin: 13px 0px 0 7px; }
+  top: 34% !important;
+  left: 1% !important; }
 
 .input-group .form-control:last-child {
   border-bottom-left-radius: 0;
@@ -11612,8 +11613,8 @@ ion-side-menu .heading-item .message {
     width: 100%;
     overflow: scroll !important; }
     .consultationList-view .myDoctor-list li {
-      height: 15%;
-      border-bottom: 2px solid #dadada;
+      height: 12%;
+      border-bottom: 2px solid #e7e7e7;
       *zoom: 1; }
       .consultationList-view .myDoctor-list li:before, .consultationList-view .myDoctor-list li:after {
         display: table;
@@ -11621,9 +11622,6 @@ ion-side-menu .heading-item .message {
         line-height: 0; }
       .consultationList-view .myDoctor-list li:after {
         clear: both; }
-      .consultationList-view .myDoctor-list li:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto; }
       .consultationList-view .myDoctor-list li .profile-img {
         width: 16%;
         float: left;
@@ -11632,6 +11630,25 @@ ion-side-menu .heading-item .message {
           width: 100%;
           border-radius: 50%;
           width: 95%; }
+        .consultationList-view .myDoctor-list li .profile-img .chatCount {
+          float: right;
+          margin: -9vh 0 0 0 !important;
+          background-color: #AF272F;
+          border-radius: 50%;
+          width: 5%;
+          text-align: center;
+          position: absolute;
+          color: #FFFFFF; }
+        .consultationList-view .myDoctor-list li .profile-img .unreadCount {
+          position: relative !important;
+          top: 4% !important;
+          right: 8% !important;
+          background: #007460 !important;
+          width: 4% !important;
+          border-radius: 50% !important;
+          text-align: center !important;
+          color: #fff !important;
+          font-family: inherit !important; }
       .consultationList-view .myDoctor-list li .next-icon {
         width: 5%;
         float: right;
@@ -11659,13 +11676,14 @@ ion-side-menu .heading-item .message {
           height: 3vh;
           width: 100% !important;
           text-overflow: ellipsis !important; }
-        .consultationList-view .myDoctor-list li .name-content .chatCount {
-          float: left !important;
-          margin: -9vh 0 0 -20vw !important; }
-        .consultationList-view .myDoctor-list li .name-content p {
-          font-size: 74%;
-          margin: 0% 2%;
-          color: black; }
+        .consultationList-view .myDoctor-list li .name-content .message {
+          font-size: 90%;
+          margin: 3% 0 0 3%; }
+        .consultationList-view .myDoctor-list li .name-content .dateTime {
+          position: relative !important;
+          float: right !important;
+          /* right: 4% !important; */
+          top: -30% !important; }
         .consultationList-view .myDoctor-list li .name-content h2 {
           margin: 2%;
           font-size: 125%;

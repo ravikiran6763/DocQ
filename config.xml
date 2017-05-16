@@ -47,7 +47,6 @@
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
     <preference name="SplashScreen" value="none" />
-<<<<<<< HEAD
     <preference name="SplashScreenDelay" value="0" />
     <preference name="AutoHideSplashScreen" value="true" />
     <preference name="FadeSplashScreenDuration" value="0" />
@@ -226,8 +225,6 @@
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
     <preference name="SplashScreen" value="none" />
-=======
->>>>>>> e2d079c163899e6c7ab4e0a80cb7513e7c268694
     <preference name="SplashScreenDelay" value="3000" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
@@ -357,11 +354,7 @@
         </dict>
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
-<<<<<<< HEAD
-    <plugin name="com.example.hello" spec="^0.7.0" />
-=======
     <plugin name="com.example.hello" spec="file:///Users/amittantia/Desktop/VSEE/VseePlugin" />
->>>>>>> e2d079c163899e6c7ab4e0a80cb7513e7c268694
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
     <plugin name="cordova-plugin-device" spec="^1.1.0">
         <variable name="MY_VARIABLE" value="my_variable_value" />

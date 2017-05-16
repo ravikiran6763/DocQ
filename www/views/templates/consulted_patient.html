@@ -7,35 +7,22 @@
 
         <div class="profile-img">
           <img src="{{patient.image}}">
+          <p class="chatCount"> {{patient.unreadCount}} </p>
+
         </div>
 
         <div class="name-content">
           <div class="name" >
-            <h2>{{patient.patientFname}}  {{patient.patientLname}}</h2>
-            <p> {{msgforandroid}} </p>
+            <h2 >{{patient.patientFname}}  {{patient.patientLname}}   </h2>
           </div>
-
-          <div class="date" ng-if="nameforandroid == patient.patientFname + ' ' + patient.patientLname">
-            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
-              <p> {{nameforandroid}} </p>
-              <p>{{datestringforandroid}}</p>
-          </div>
-
-
-          <div class="date" ng-if="nameforandroid !== patient.patientFname + ' ' + patient.patientLname">
-            <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
-              <p> {{nameforandroid}} </p>
-              <p>{{datestringforandroid1}}</p>
-          </div>
-
-          <p class="msgContent"><font size=2>{{msg}}</font></p>
-          <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
+          <div class="dateTime"> {{patient.date }} </div>
+          <div class="message"> {{patient.message}} </div>
         </div>
 
         <div class="next-icon">
           <i class="icon ion-ios-arrow-right"></i>
         </div>
-        
+
       </li>
     </ul>
 
@@ -43,13 +30,6 @@
         <li ng-show="!myPatients.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
       </ul>
     </div>
-          <!-- <a class="item item-avatar item-icon-right" ng-repeat="patient in myPatients" ng-click="clicktochat(patient.patientPhone);">
-            <img src="{{patient.image}}">
-            <h2>{{patient.patientFname}}  {{patient.patientLname}}</h2>
-            <p>Last sent/received msg</p>  <i class="icon ion-ios-arrow-right"></i>
-          </a> -->
 
-          <!--ui-sref="app.doctorprofile"-->
-          <!-- <span>{{patient.consultDate}}</span> -->
   </ion-content>
 </ion-view>
