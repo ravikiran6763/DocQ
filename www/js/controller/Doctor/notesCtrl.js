@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -11,7 +11,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 
   $scope.currentPatient={};
 
-  // $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
+  $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
   console.log($scope.currentPatient);
 
   $rootScope.patientFname=$scope.currentPatient.patientFname;
@@ -26,7 +26,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$rootScope,$localStorage,
 $localStorage.reqPat = $stateParams.reqPat;
 $rootScope.reqId = $stateParams.reqId;
 
-console.log($localStorage.reqId);
 
 setTimeout(function () {
   patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){

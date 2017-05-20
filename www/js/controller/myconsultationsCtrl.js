@@ -183,6 +183,22 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 		$rootScope.ConsultedDoctor=response;//store the response array in doctor details
 		console.log($rootScope.ConsultedDoctor);
+
+		data = $scope.ConsultedDoctor;
+		for(var i=0; i<data.length; i++){
+				$rootScope.doctorFname=data[i].doctorFname;
+				$rootScope.doctorLname=data[i].doctorLname;
+				$rootScope.doctorMname=data[i].doctorMname;
+				$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+				console.log($rootScope.fullname);
+				// $scope.listofnames.push($scope.fullname);
+				// $scope.listofphones.push(data[i].patientPhone);
+				//console.log($localStorage.user);
+
+		}
+
+
+
 		$ionicLoading.hide();
 }).catch(function(error){
 	console.log('failure data', error);

@@ -17,28 +17,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
                dial_code: "+91",
                code: "IN"
             }]
-// $interval(checkNewMsgs,2000);
-// function checkNewMsgs(){
-//   if( $rootScope.homePage =='templates.doctor_home')
-//   {
-//     // console.log($rootScope.homePage);
-//         $scope.unreadchatforpatient = 0;
-//           var username = "greet+"+$localStorage.user;
-//           var password = "DQ_doctor";
-//             var success = function(message)
-//             {
-//                 $scope.unreadchatforpatient = message;
-//             }
-//             var failure = function()
-//             {
-//              //alert("Error calling Hello Plugin");
-//              console.log('error');
-//             }
-//             hello.unreadchatfromusers(username,password,success, failure);
-//             // hello.unreadchatfromusers(username,password,success, failure);
-//   }
-// }
-//$interval(checkNewMsgs,2000);
+
 $interval(checkConsultations,1000);
 
 function checkConsultations(){
@@ -58,12 +37,12 @@ function checkConsultations(){
 
 }
 $scope.deviceAndroid = ionic.Platform.isAndroid();
-$interval(checkNewMessages,2000);
+$interval(checkNewMessagesForPatient,2000);
 var username = "greet+"+$localStorage.user;
 var password = "DQ_doctor";
 
 
-function checkNewMessages()
+function checkNewMessagesForPatient()
 {
 
  var success = function(message)
@@ -76,7 +55,6 @@ function checkNewMessages()
          $scope.chatlist1 = message;
 
          var forandroidchatlist = {};
-
          forandroidchatlist = $scope.chatlist1;
 
          var dataofandroid = JSON.parse(forandroidchatlist);
@@ -85,10 +63,9 @@ function checkNewMessages()
          doctorServices.createChatHistory(dataofandroid).then(function(response){
          $scope.chatHistory=response;//store the response array in doctor details
          // console.log('dataSent :',$scope.chatHistory);
-         })
-         //  .catch(function(error){
-         //  console.log('failure data', error);
-         //  });
+         }).catch(function(error){
+          console.log('failure data', error);
+          });
 
                for (var keyandroid in dataofandroid)
                {
@@ -388,6 +365,9 @@ hello.chatcounts(username,password,success, failure);
 
 $scope.viewRequest=function(patient){
   $rootScope.currentPatient = patient;
+  window.localStorage['currentPatient'] = angular.toJson($rootScope.currentPatient);
+  
+  console.log($rootScope.currentPatient);
   console.log($rootScope.currentPatient.requestedTime);
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }

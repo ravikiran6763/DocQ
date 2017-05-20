@@ -203,7 +203,6 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			}
 			hello.login(uname1,pw1,success, failure);
 
-
 			$ionicHistory.nextViewOptions({
 			  disableAnimate: true,
 			  disableBack: true
@@ -255,7 +254,6 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			// $state.go('auth.loginNew');
 		}
   },10000);
-
   $ionicHistory.clearHistory();
 })
 

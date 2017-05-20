@@ -11677,8 +11677,13 @@ ion-side-menu .heading-item .message {
           width: 100% !important;
           text-overflow: ellipsis !important; }
         .consultationList-view .myDoctor-list li .name-content .message {
-          font-size: 90%;
-          margin: 3% 0 0 3%; }
+          float: left;
+          margin: 0 0 0 2px;
+          padding: 1%;
+          width: 150px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
         .consultationList-view .myDoctor-list li .name-content .dateTime {
           position: relative !important;
           float: right !important;

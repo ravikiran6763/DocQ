@@ -63,7 +63,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					password : $scope.loginData.pin
 				};
 
-$scope.lastView = $ionicHistory.backView();
+				$scope.lastView = $ionicHistory.backView();
 				console.log($scope.lastView);
 
 				console.log(userDetails);
@@ -170,19 +170,10 @@ $scope.lastView = $ionicHistory.backView();
 						{
 							alert("Error Occurred While Loggin in to DoctoQuick");
 						}
-						$ionicHistory.nextViewOptions({
-							disableAnimate: true,
-							disableBack: true
-						});
 						console.log('doctorHome');
+					
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 					hello.login(uname1,pw1,success, failure);
-
-
-
-				hello.login(uname1,pw1,success, failure);
-						$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-						hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
 					}
 					else if(response === "alreadyLoggedIn"){

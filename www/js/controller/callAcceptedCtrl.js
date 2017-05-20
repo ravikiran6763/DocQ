@@ -95,6 +95,20 @@ $scope.checkWalletBalance = function()
 		var success = function(message)
 		{
 				alert(message);
+				if(message){
+					console.log('callEnded');
+					patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
+						console.log(response);
+					 console.log('success');
+				 }).catch(function(error){
+					 console.log('failure data', error);
+				 })
+				 $ionicHistory.nextViewOptions({
+				 	disableAnimate: true,
+				 	disableBack: true
+				 });
+				 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
+				}
 				$scope.enddate = new Date();
 				console.log($localStorage.user);
 				console.log($rootScope.accptdDoc);
@@ -102,17 +116,8 @@ $scope.checkWalletBalance = function()
 				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 
 				console.log($rootScope.reqId);
-				patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){
-					console.log(response);
-				 console.log('success');
-			 }).catch(function(error){
-				 console.log('failure data', error);
-			 })
-			 $ionicHistory.nextViewOptions({
-			 	disableAnimate: true,
-			 	disableBack: true
-			 });
-			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
+
+
 
 		}
 		var failure = function()
