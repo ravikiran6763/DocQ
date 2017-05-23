@@ -144,10 +144,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$rootScope.timer=false;
 
 			var accptdReq = {
-			accpetcode : "2",
-			doctorphno : $localStorage.user,
-			patientphno : $rootScope.reqPat,
-			consultId:$rootScope.reqId
+				accpetcode : "2",
+				doctorphno : $localStorage.user,
+				patientphno : $rootScope.reqPat,
+				consultId:$rootScope.reqId
 			}
 			console.log(accptdReq);
 			patientrequesttodoctor.accpetedbydoctor(accptdReq).then(function(response){
@@ -212,7 +212,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			$scope.counter = 120;
 			$scope.onTimeout = function(){
 				$scope.counter--;
-				console.log($scope.counter);
+				// console.log($scope.counter);
 				docTimeout = $timeout($scope.onTimeout,1000);
 				if($scope.counter == 0){
 				console.log('one minute over');
@@ -325,7 +325,7 @@ $scope.popupShown = true;
 	 var values = $rootScope.path.split("/");
 	//  console.log(values[1]);
 		 doctorServices.doctorActivity(patAct).then(function(response){
-  		 console.log('checking for patient activity:',patAct);
+  		 console.log('patient activity:',patAct);
   		 $scope.consultStatus=response;
   		//  console.log($scope.consultStatus);
   				 if($scope.consultStatus[0][0] == 3 && $scope.popupShown == true){
@@ -365,62 +365,45 @@ $scope.popupShown = true;
 
 
 ////
+	if($localStorage.doctororpatient ==''){
 
- $interval(videoOrAudio,1000);
+	}
+ $interval(videoOrAudio,2000,true);
  function videoOrAudio(){
-	//  console.log('callType');
-	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
-		 $scope.isFirstTime = false;
-		 console.log($rootScope.reqId);
-	 $scope.videoOrAudio=response;
-	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
-		 console.log('closethis popup');
-		 $scope.callReqPopUp.close();
-		 $scope.isFirstTime = true;
+	 if($localStorage.doctororpatient =='doctor'){
+		 console.log('callType');
+  	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
+  		 $scope.isFirstTime = false;
+  		 console.log($rootScope.reqId);
+  	 $scope.videoOrAudio=response;
+  	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
+  		 console.log('closethis popup');
+  		 $scope.callReqPopUp.close();
+  		 $scope.isFirstTime = true;
 
-		 setTimeout(function () {
-			 console.log('delay 3 sec');
-			 $ionicHistory.nextViewOptions({
-			   disableAnimate: true,
-			   disableBack: true
-			 });
-			 $state.go("templates.notesForPatient",{},{location: "replace", reload: true})
-			 console.log($rootScope.reqPat);
-			 console.log('show accpted doc profile');
-		 }, 5000);
+  		 setTimeout(function (){
+  			 console.log('delay 3 sec');
+  			 $ionicHistory.nextViewOptions({
+  			   disableAnimate: true,
+  			   disableBack: true
+  			 });
+  			 $state.go("templates.notesForPatient",{},{location: "replace", reload: true})
+  			 console.log($rootScope.reqPat);
+  			 console.log('show accpted doc profile');
+  		 }, 2000);
+  	 }
+  	 else{
+  		 console.log('videoIntervalStopped');
+  		 $interval.stop(videoOrAudio);
+  	 }
+  		//  $state.go($state.current, {}, {reload: true});
+  	 }).catch(function(error){
+  	 console.log('failure data', error);
 
-	 }
+  	 });
+ 	}
 
 
-		//  $state.go($state.current, {}, {reload: true});
-	 }).catch(function(error){
-	 console.log('failure data', error);
-	 });
-	//  console.log($location.path());
-		 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
-			 $scope.isFirstTime = false;
-			//  console.log($rootScope.reqId);
-		 $scope.videoOrAudio=response;
-		 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){
-			 console.log('closethis popup');
-			 $scope.callReqPopUp.close();
-			 $scope.isFirstTime = true;
-
-			 setTimeout(function () {
-				 console.log('delay 3 sec');
-				 $ionicHistory.nextViewOptions({
-				   disableAnimate: true,
-				   disableBack: true
-				 });
-				 $state.go("templates.notesForPatient",{},{location: "replace", reload: true})
-				//  console.log($rootScope.reqPat);
-				//  console.log('show accpted doc profile');
-			 }, 5000);
-		 }
-			//  $state.go($state.current, {}, {reload: true});
-		 }).catch(function(error){
-		 console.log('failure data', error);
-		 });
  }
 
 

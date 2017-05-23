@@ -94,7 +94,7 @@ $scope.checkWalletBalance = function()
 	{
 		var success = function(message)
 		{
-				alert(message);
+				// alert(message);
 				if(message){
 					console.log('callEnded');
 					patientProfileDetailsService.updatenotesflag($rootScope.callId).then(function(response){

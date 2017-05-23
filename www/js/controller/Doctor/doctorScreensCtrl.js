@@ -11,19 +11,13 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
-
-    $scope.countries = [ {
-               name: "India",
-               dial_code: "+91",
-               code: "IN"
-            }]
-
-$interval(checkConsultations,1000);
+    // $route.reload();
+$interval(checkConsultations,2000,false);
 
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.pendingRequests = response;
-    // console.log('pending:',$scope.pendingRequests);
+    console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
     })
     // .catch(function(error){
@@ -87,23 +81,17 @@ function checkNewMessagesForPatient()
                    else if(keyandroid == "name")
                    {
                        $scope.nameforandroid = dataofandroid[keyandroid];
-
                        console.log($scope.nameforandroid);
 
                    }
                    else if(keyandroid == "dateformat")
                    {
-
                        $scope.datestringforandroid = dataofandroid[keyandroid];
-
                    }
                    else
                    {
-
                      console.log('no response from vsee');
-
                    }
-
                  }
                }
 
@@ -111,52 +99,56 @@ function checkNewMessagesForPatient()
      else
      {
        console.log('this is called');
-
          var forioschatlist = {};
-
            forioschatlist = $scope.chatlist;
+           console.log('iosChatHIstory:',forioschatlist);
+
+           var dataForIos = JSON.parse(forioschatlist);
+           console.log('ChatData:',data);
+
+           dataForIos.chatTo=$localStorage.user;
+           console.log('UpdateChat',dataForIos);
+           doctorServices.createChatHistory(dataForIos).then(function(response){
+           $scope.chatHistory=response;//store the response array in doctor details
+           // console.log('dataSent :',$scope.chatHistory);
+           }).catch(function(error){
+            console.log('failure data', error);
+            });
+
+          for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              console.log(key + " = " + data[key]);
 
 
-       console.log(forioschatlist);
+              if(key == "unread")
+              {
+                $scope.unreadchatcountfromvsee = data[key];
+              }
+              else if(key == "message")
+              {
+                $scope.msg = data[key];
+              }
+              else if(key == "name")
+              {
+                $scope.name = data[key];
 
+                $scope.name = $scope.name.substring(6);
 
-           var data = JSON.parse(forioschatlist);
-           console.log(data);
-
-           for (var key in data) {
-   if (data.hasOwnProperty(key)) {
-   console.log(key + " = " + data[key]);
-
-
-         if(key == "unread")
-         {
-             $scope.unreadchatcountfromvsee = data[key];
-         }
-         else if(key == "message")
-         {
-           $scope.msg = data[key];
-         }
-         else if(key == "name")
-         {
-             $scope.name = data[key];
-
-             $scope.name = $scope.name.substring(6);
-
-             console.log($scope.name);
+                console.log('ChatNAme:',$scope.name);
 
 
 
-         }
-         else if(key == "dateformat")
-         {
-             $scope.datestring = data[key];
-         }
-         else {
-           console.log('no response from vsee');
-           // noresponse of chat from vsee
-         }
-   }
-}
+              }
+              else if(key == "dateformat")
+              {
+                $scope.datestring = data[key];
+              }
+              else {
+                console.log('no response from vsee');
+                // noresponse of chat from vsee
+              }
+            }
+          }
 }
 
 
@@ -366,7 +358,7 @@ hello.chatcounts(username,password,success, failure);
 $scope.viewRequest=function(patient){
   $rootScope.currentPatient = patient;
   window.localStorage['currentPatient'] = angular.toJson($rootScope.currentPatient);
-  
+
   console.log($rootScope.currentPatient);
   console.log($rootScope.currentPatient.requestedTime);
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})

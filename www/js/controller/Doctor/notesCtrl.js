@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService) {
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
@@ -10,9 +10,10 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$window,$rootScope,$local
   $rootScope.prescription={};
 
   $scope.currentPatient={};
-
+  $state.reload();
+  // $window.location.reload();
   $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-  console.log($scope.currentPatient);
+  // console.log($scope.currentPatient);
 
   $rootScope.patientFname=$scope.currentPatient.patientFname;
   $rootScope.patientLname=$scope.currentPatient.patientLname;
@@ -24,10 +25,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$window,$rootScope,$local
   $rootScope.patientNum=$scope.currentPatient.patientNum;
 
 $localStorage.reqPat = $stateParams.reqPat;
-$rootScope.reqId = $stateParams.reqId;
+// console.log($rootScope.reqId);
 
-
-setTimeout(function () {
+setTimeout(function (){
   patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
     console.log(response);
    console.log('success');
@@ -39,7 +39,7 @@ setTimeout(function () {
 
 
   //this is used to set notesflag in the database top 2
-console.log($rootScope.patientNum);
+// console.log($rootScope.patientNum);
   patientProfileDetailsService.fetchPatient($rootScope.patientNum).then(function(response){
     $scope.patient_details=response;
     $ionicLoading.hide();

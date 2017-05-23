@@ -16,6 +16,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				$ionicLoading.hide();
 			}
 
+			// $window.location.reload();
 
 			$scope.searchDoctors=function()
 			{

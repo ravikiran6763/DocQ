@@ -169,7 +169,7 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 
 DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$scope,$state,$ionicHistory,LoginService){
   $timeout(function(){
-		console.log($localStorage.doctororpatient);
+		// console.log($localStorage.doctororpatient);
 		if($localStorage.doctororpatient === 'patient'){
 			window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;

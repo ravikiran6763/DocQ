@@ -1098,12 +1098,14 @@ $scope.sendprescription = function()
     {
       console.log('Please Select Atleast One Tests')
     }
+		$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
+		$rootScope.patientNum=$scope.currentPatient.patientNum;
 
     if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
     {
         var prescriptiondetails = {
           docphno : $localStorage.user,
-          patientphno : $localStorage.reqPat,
+          patientphno : $rootScope.patientNum,
           diagnosis : $scope.diagnosis ,
           tests : $scope.tests ,
           medication : $scope.medication
@@ -1120,7 +1122,7 @@ $scope.sendprescription = function()
         if($scope.pic){
           var auname =  "greet+"+$localStorage.user;
           var apw = "DQ_doctor";
-          var ato = "greet+" + $localStorage.reqPat;
+          var ato = "greet+" + $rootScope.patientNum;
 
           console.log(auname);
           console.log(ato);
@@ -1130,7 +1132,8 @@ $scope.sendprescription = function()
 
             var success = function(message)
             {
-              alert(message);
+              // alert(message);
+							console.log(message);
             }
 
             var failure = function()
