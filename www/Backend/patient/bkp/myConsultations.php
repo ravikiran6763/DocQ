@@ -11,7 +11,7 @@ require 'headers.php';
 		// echo "hello";
 				$loginphno = json_decode($postdata);
 	 				$myConsultation = array();
-					$sql = "select doctorFname,doctorMname,doctorLname,doctorDetails.doctorPhone,consultationId,consultDate,doctorDegrees,practicingSince from doctorDetails,myConsultations where doctorDetails.doctorPhone=myConsultations.doctorPhone and myConsultations.patientPhone='$loginphno'";
+					$sql = "select doctorFname,doctorMname,doctorLname,doctorDetails.doctorPhone,consultationId,consultDate,doctorDegrees,practicingSince from doctorDetails,myConsultations where doctorDetails.doctorPhone=myConsultations.doctorPhone and myConsultations.patientPhone='$loginphno' group by myConsultations.doctorPhone";
 
           $retval = mysql_query( $sql, $dbhandle );
 					while($row = mysql_fetch_array($retval))

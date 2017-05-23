@@ -12,6 +12,7 @@ angular.module('DoctorQuick.filters', [])
   };
 })
 
+
 //the following filter capitalizes the first letter only
 .filter('capitalize', function() {
     return function(input, scope) {

@@ -12,7 +12,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
 	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
-
+	console.log($scope.patient_details);
 	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
 
 

@@ -306,7 +306,8 @@ ion-side-menu.menu-left.menu {
     border: none;
     display: table-caption;
     position: absolute;
-    margin: 13px 0px 0 7px;
+    top: 34% !important;
+    left: 1% !important;
 }
 
 .input-group .form-control:last-child{

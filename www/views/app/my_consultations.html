@@ -7,20 +7,17 @@
           <div class="profile-img">
             <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
             <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+            <p class="chatCount"> {{r.unreadCount}} </p>
           </div>
           <div class="name-content">
             <div class="name">
               <h2>Dr.{{r.doctorFname | capitalize }} {{r.doctorLname | capitalize}}</h2>
             </div>
-            <div class="date">
-              <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
-              <p>{{datestring}}</p>
-            </div>
-
-            <p class="msgContent"><font size=2>{{msg}}</font></p>
-            <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
-
+            <div class="dateTime"> {{r.date }} </div>
+            <div class="message"> {{r.message}} </div>
           </div>
+
+
           <div class="next-icon">
             <i class="icon ion-ios-arrow-right"></i>
           </div>

@@ -22,7 +22,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.sandwich=false;
 // var model = $cordovaDevice.getModel();
 // console.log(model);
-
+console.log('appcalld');
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();

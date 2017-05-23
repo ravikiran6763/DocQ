@@ -11,7 +11,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 					$rootScope.pushReqPat=$stateParams.reqPat;
 					$rootScope.dateAndTime=$stateParams.reqTime;
 
-					alert($rootScope.dateAndTime);
+					// alert($rootScope.dateAndTime);
 					 console.log('reqId',$rootScope.pushReqId)
 					 console.log('reqPat',$rootScope.pushReqPat)
 					 var consltDetails ={
@@ -93,7 +93,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$rootScope,$stat
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
 
-				alert('DateDiff',$scope.CurrentDate);
+				// alert('DateDiff',$scope.CurrentDate);
 				$rootScope.closeDocPopUp=false;
 				////// calculate datedifference////
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
@@ -371,7 +371,6 @@ $scope.popupShown = true;
 	//  console.log('callType');
 	 doctorServices.videoOrAudio($rootScope.reqId).then(function(response){
 		 $scope.isFirstTime = false;
-
 		 console.log($rootScope.reqId);
 	 $scope.videoOrAudio=response;
 	 if($scope.videoOrAudio[0][0] == 2 && $scope.isFirstTime == false){

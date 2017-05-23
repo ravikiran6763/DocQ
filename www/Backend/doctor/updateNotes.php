@@ -7,7 +7,7 @@
 	if(isset($postdata))
 	{
 			$requesteddata = json_decode($postdata);
-     $accpteddoctor = "update reqForConsultation set notesFlag=3 where id='$requesteddata'";
+    echo $accpteddoctor = "update reqForConsultation set notesFlag=3 where id='$requesteddata'";
      // echo $accpteddoctor;
      $retval = mysql_query($accpteddoctor,$dbhandle);
      if(! $retval )
