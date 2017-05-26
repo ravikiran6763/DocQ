@@ -175,7 +175,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						if($scope.prevPage === 'app.patient_summary'){
 							$state.go('app.patient_home');
 						}
-						else if($scope.prevPage === 'templates.notesForPatient'){
+						else if($scope.prevPage === 'templates.prescription'){
 							$state.go('templates.doctor_home');
 						}
 						else if($scope.prevPage === 'templates.requestAccepted'){
@@ -201,7 +201,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							window.history.back();
 
 						}
-						else if($scope.prevPage === 'templates.notesForPatient'){
+						else if($scope.prevPage === 'templates.prescription'){
 							$state.go('templates.doctor_home');
 						}
 						else if($scope.prevPage === 'app.callAccepted'){
@@ -964,7 +964,7 @@ $rootScope.prescription={};
 // 				testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
 // 				$rootScope.chekDiag=true;
 // 				$rootScope.val=$rootScope.prescription.diagnosisforpatient;
-// 				$state.go("templates.notesForPatient");
+// 				$state.go("templates.prescription");
 // 		}
 //
 // 		if($rootScope.prescription.checkedTests)
@@ -972,7 +972,7 @@ $rootScope.prescription={};
 // 				testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
 // 				$rootScope.chekDiag=true;
 // 				$rootScope.val=$rootScope.prescription.checkedTests;
-// 				$state.go("templates.notesForPatient");
+// 				$state.go("templates.prescription");
 // 		}
 //
 //
@@ -990,21 +990,21 @@ $scope.done = function (prescType,sno){
 											testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
 											$rootScope.chekDiag=true;
 											$rootScope.val=$rootScope.prescription.diagnosisforpatient;
-											$state.go("templates.notesForPatient");
+											$state.go("templates.prescription");
                 // console.log("1. Selected Name: "+ prescType);
                 break;
             case 2://for tests
 											testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
 											$rootScope.chekTests=true;
 											$rootScope.val=$rootScope.prescription.checkedTests;
-											$state.go("templates.notesForPatient");
+											$state.go("templates.prescription");
                 console.log("2. Selected Name: " + prescType );
                 break;
 						case 3://for medications
 											testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
 											$rootScope.chekMedi=true;
 											$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
-											$state.go("templates.notesForPatient");
+											$state.go("templates.prescription");
 
                 console.log("3. Selected Name: " + prescType );
                 break;

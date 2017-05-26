@@ -52,27 +52,6 @@ console.log($rootScope.specialId);
 $rootScope.popUpClosed == false;
 $scope.sendrequesttoonlinedoctors = function()
 {
-     //////////
-     /*Send request to all available doctor*/
-
-    //  window.plugins.OneSignal.getIds(function(ids){
-    //  	console.log(ids);
-    //    var notificationObj = {
-    //  		 contents: {en: "You have one new request!!!"},
-    //  		 include_player_ids: [ids.userId],
-    //      android_sound:'tring'
-    //  	 };
-    //    console.log();
-    //    window.plugins.OneSignal.postNotification(notificationObj,
-    //      function(successResponse) {
-    //        console.log("Notification Post Success:", successResponse);
-    //      },
-    //      function (failedResponse) {
-    //        console.log("Notification Post Failed: ", failedResponse);
-    //        alert("Notification Post Failed:\n" + JSON.stringify(failedResponse));
-    //      }
-    //    );
-    //  });
 
      medicalSpecialityService.sendrequesttodoctor($rootScope.special).then(function(response){
        console.log('successfull data', response);
@@ -208,24 +187,3 @@ $scope.sendrequesttoonlinedoctors = function()
    $scope.isFirstTime = false;
 
 });
-//
-// $scope.noResponsePopup = $ionicPopup.show({
-//       template: "<div ng-app='refresh_div' ><p>None of the available doctors have responded to your request.</p></div>",
-//       cssClass: 'requestPopup',
-//       scope: $scope,
-//       buttons: [
-//       {
-//       text: 'OK',
-//       type: 'button-positive',
-//       onTap:function(){
-//         medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
-//         $scope.cancelledReq=response;
-//           $state.go($state.current, {}, {reload: true});
-//         }).catch(function(error){
-//         console.log('failure data', error);
-//         });
-//       }
-//       },
-//
-//     ]
-//     });

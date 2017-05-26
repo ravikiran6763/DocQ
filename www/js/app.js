@@ -434,7 +434,7 @@ $stateProvider
 })
 
 .state('app.patient_summary', {
-  url: "/patient_summary/:calledDoctor",
+  url: "/patient_summary/:calledDoctor/:consultId",
   views: {
     'menuContent': {
       templateUrl: "views/app/patient_summary.html",
@@ -679,11 +679,11 @@ $stateProvider
     }
   })
 
-  .state('templates.notesForPatient', {
+  .state('templates.prescription', {
     url: "/notesForPatient",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/notesForPatient.html",
+        templateUrl: "views/templates/prescription.html",
         controller:'notesCtrl'
       }
     }

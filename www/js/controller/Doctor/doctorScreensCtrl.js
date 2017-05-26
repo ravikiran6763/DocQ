@@ -345,7 +345,7 @@ hello.chatcounts(username,password,success, failure);
 
     },true);
     function lookForPrescription() {
-      // $state.go('templates.notesForPatient');
+      // $state.go('templates.prescription');
       doctorServices.lookForPrescription($localStorage.user).then(function(response){
       $scope.res = response;
       // console.log($scope.res);

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$stateParams,$window, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$stateParams,$window, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -10,10 +10,16 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$sta
 	  $scope.rating.max = 5;
 
 console.log($stateParams.calledDoctor);
-// $ionicLoading.show();
+//$ionicLoading.show();
 //console.log($localStorage.consultedDoctor);
 $ionicLoading.show();
 
+patientProfileDetailsService.updatenotesflag($stateParams.consultId).then(function(response){
+		console.log(response);
+	 console.log('success');
+ }).catch(function(error){
+	 console.log('failure data', error);
+ })
 var key = this;
 
 myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){

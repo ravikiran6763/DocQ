@@ -176,6 +176,17 @@ this.createChatHistory = function (chat) {
   return deferred.promise;
 
 }
+this.callStatus = function (reqId){
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.callStatus,reqId)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
 
 this.fetchChatHistory = function (chatHistory){
   var deferred = $q.defer();
