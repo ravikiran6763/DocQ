@@ -379,7 +379,7 @@ $scope.popupShown = true;
  		console.log('changed');
  		console.log(newValue);
  		console.log(oldValue);
- 		if(newValue == 4){
+ 		if(newValue == 2){
 			//  alert('close prev popup')
 			 $rootScope.callReqPopUp.close();
 			 $state.go("templates.prescription")

@@ -228,8 +228,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-    // console.log('toState',toState);
-    // console.log('toParams',toParams);
+    console.log('toState',toState);
+    console.log('toParams',toParams);
     // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
@@ -249,6 +249,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
+      }
+      if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" ){
+        ionicHistory.removeBackView();
       }
   });
   // press again to exit
