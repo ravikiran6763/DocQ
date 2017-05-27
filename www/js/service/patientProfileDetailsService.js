@@ -35,7 +35,7 @@ this.fetchPatientImage = function(detail){
   this.fetchPatient = function(detail){
     // console.log(detail);
     var deferred = $q.defer();
-    console.log(BASE_URL.url + API.patientDetails);
+    // console.log(BASE_URL.url + API.patientDetails);
 		$http.post(BASE_URL.url + API.patientDetails,detail)
 		.success(function (data, status, headers, config){
 			deferred.resolve(data);

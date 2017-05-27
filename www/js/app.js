@@ -228,8 +228,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-    // console.log('toState',toState);
-    // console.log('toParams',toParams);
+    console.log('toState',toState);
+    console.log('toParams',toParams);
     // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
@@ -249,6 +249,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
+      }
+      if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" || toState.name == "app.patient_summary" || toState.name == "templates.prescription"){
+        ionicHistory.removeBackView();
       }
   });
   // press again to exit
@@ -434,7 +437,7 @@ $stateProvider
 })
 
 .state('app.patient_summary', {
-  url: "/patient_summary/:calledDoctor",
+  url: "/patient_summary/:calledDoctor/:consultId",
   views: {
     'menuContent': {
       templateUrl: "views/app/patient_summary.html",
@@ -679,11 +682,11 @@ $stateProvider
     }
   })
 
-  .state('templates.notesForPatient', {
+  .state('templates.prescription', {
     url: "/notesForPatient",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/notesForPatient.html",
+        templateUrl: "views/templates/prescription.html",
         controller:'notesCtrl'
       }
     }

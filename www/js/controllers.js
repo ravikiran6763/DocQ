@@ -42,7 +42,7 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		// 				testresultbydoctor.testrecommended($scope.notes.checkedTests);
 		// 				$rootScope.chekTests=true;
 		// 				$rootScope.testVal=$scope.notes.checkedTests;
-		// 				$state.go("templates.notesForPatient");
+		// 				$state.go("templates.prescription");
 		// 		}
 		// 		else if ($scope.diagnosis.diagnosisforpatient === '') {
 		// 			alert('kindly Modify the diag');
@@ -82,7 +82,7 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 		// 				testresultbydoctor.medicationdone($scope.medication.medicationforpatient);
 		// 				$rootScope.chekMedi=true;
 		// 				$rootScope.mediVal=$scope.medication.medicationforpatient;
-		// 				$state.go("templates.notesForPatient");
+		// 				$state.go("templates.prescription");
 		// 		}
 		// 		else if ($scope.diagnosis.diagnosisforpatient === '') {
 		// 			alert('kindly Modify the Test');
@@ -169,7 +169,7 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 
 DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$scope,$state,$ionicHistory,LoginService){
   $timeout(function(){
-		console.log($localStorage.doctororpatient);
+		// console.log($localStorage.doctororpatient);
 		if($localStorage.doctororpatient === 'patient'){
 			window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
