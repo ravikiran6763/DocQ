@@ -108,7 +108,6 @@ $scope.checkWalletBalance = function()
 			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId}, {location: "replace", reload: true});
 					console.log('callEnded');
 				//
-
 				$scope.enddate = new Date();
 				console.log($localStorage.user);
 				console.log($rootScope.accptdDoc);
@@ -195,7 +194,7 @@ console.log(checkPatientActivity);
  }
  $scope.$watch('docDeclined', function (newValue, oldValue, scope){
  		console.log('changed');
- 	
+
  		if(newValue > oldValue){
 			setTimeout(function (){
 					 console.log('delay 3 sec');
