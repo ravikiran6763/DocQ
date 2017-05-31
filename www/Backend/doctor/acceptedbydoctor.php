@@ -12,15 +12,31 @@
 			$patientphno = $requesteddata->patientphno;
 			$reqId = $requesteddata->consultId;
 
-			$accpteddoctor = "update reqForConsultation set flag=2,accptedDoctor='$doctorphno',accptedDatetime=now() where patientNum='$patientphno' and id='$reqId' and accptedDoctor is NULL";
-		  // echo $accpteddoctor;
-		 $retval = mysql_query($accpteddoctor,$dbhandle);
-			if (mysql_affected_rows() > 0) {
-				echo "updated!";
+			$sql = "select accptedDoctor as doctor from  reqForConsultation where id='$reqId' and flag=1;";
+      $dretval = mysql_query( $sql, $dbhandle );
+      while($row = mysql_fetch_assoc($dretval)) {
+      //  echo "special :{$row['special']}  ";
+       $sp=$row['doctor'];
+      //  echo $sp;
+				if($sp == $doctorphno){
+					$accpteddoctor = "update reqForConsultation set flag=2,accptedDatetime=now() where patientNum='$patientphno' and id='$reqId' and accptedDoctor='$doctorphno'";
+				}
+				else{
+					$accpteddoctor = "update reqForConsultation set flag=2,accptedDoctor='$doctorphno',accptedDatetime=now() where patientNum='$patientphno' and id='$reqId' and accptedDoctor is NULL";
+				}
+			  // echo $accpteddoctor;
+			 $retval = mysql_query($accpteddoctor,$dbhandle);
+				if (mysql_affected_rows() > 0) {
+					echo "updated!";
+				}
+				else {
+					echo "alreadyUpdated"; // always prints not affected
+				}
+
 			}
-			else {
-				echo "alreadyUpdated"; // always prints not affected
-			}
+
+
+
 
 	}
 

@@ -251,7 +251,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         $rootScope.sideMenuForSearch = false;
       }
       if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" || toState.name == "app.patient_summary" || toState.name == "templates.prescription"){
-        ionicHistory.removeBackView();
+        $ionicHistory.removeBackView();
       }
   });
   // press again to exit

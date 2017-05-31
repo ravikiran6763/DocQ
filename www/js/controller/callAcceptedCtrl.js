@@ -14,12 +14,12 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 		consultId:$stateParams.callId,
 		doctor:$stateParams.accptdDoc
 	}
-console.log(currentConsultation);
- $rootScope.accptdDoc=$stateParams.accptdDoc;
- $rootScope.callId=$stateParams.callId;
- $rootScope.callFlag=$stateParams.callFlag;
- $rootScope.rates=$stateParams.rates;
- $rootScope.totalRates=$stateParams.totalRates;
+	console.log(currentConsultation);
+	 $rootScope.accptdDoc=$stateParams.accptdDoc;
+	 $rootScope.callId=$stateParams.callId;
+	 $rootScope.callFlag=$stateParams.callFlag;
+	 $rootScope.rates=$stateParams.rates;
+	 $rootScope.totalRates=$stateParams.totalRates;
 
  $scope.ratings = [{
  			 current: $rootScope.rates,
