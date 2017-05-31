@@ -12,10 +12,7 @@
         "bcrypt": "^0.8.5",
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
-<<<<<<< HEAD
         "com.example.hello": "^0.7.0",
-=======
->>>>>>> 3c53827919c0f6d8d1d13b7c52dab88ec56f3850
         "com.razorpay.cordova": "https://github.com/razorpay/razorpay-cordova.git",
         "cordova-plugin-device": "^1.1.0",
         "cordova-plugin-whitelist": "1.2.0",
@@ -34,8 +31,7 @@
         "morgan": "~1.5.0",
         "ng-intl-tel-input": "^2.0.0",
         "passport": "^0.3.0",
-        "passport-jwt": "^1.2.1",
-        "com.example.hello": "../VSEE/VseePlugin"
+        "passport-jwt": "^1.2.1"
     },
     "devDependencies": {
         "bower": "^1.3.3",
