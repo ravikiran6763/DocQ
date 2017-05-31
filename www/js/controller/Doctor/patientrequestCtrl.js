@@ -325,9 +325,6 @@ $scope.popupShown = true;
 			 $localStorage.patientDeclined=$scope.consultStatus[0][0];
 			 $scope.patDeclined=$localStorage.patientDeclined;
   		 console.log($scope.consultStatus);
-
-
-  		//  $state.go($state.current, {}, {reload: true});
   	 }).catch(function(error){
   	//  console.log('failure data', error);
   	 });
@@ -376,6 +373,7 @@ $scope.popupShown = true;
 	 });
  }
  $scope.$watch('notes', function (newValue, oldValue, scope){
+
  		console.log('changed');
  		console.log(newValue);
  		console.log(oldValue);

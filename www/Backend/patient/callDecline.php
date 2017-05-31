@@ -12,7 +12,7 @@
 			$callId= $declineDetails->callId;
 
       // $callDetails = array();
-      $sql = "update reqForConsultation set flag=3,status=2 where patientNum='$patient' and id='$callId'";
+      $sql = "update reqForConsultation set flag=3 where patientNum='$patient' and id='$callId'";
       $retval = mysql_query( $sql, $dbhandle );
       while($row = mysql_fetch_array($retval))
       {
