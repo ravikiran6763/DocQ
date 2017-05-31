@@ -53,4 +53,9 @@ DoctorQuickApp.service('searchbyspecialities', function ($http,$q,BASE_URL, API)
       });
       return deferred.promise;
   }
+
+  
+
+
+
 });

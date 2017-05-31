@@ -32,17 +32,25 @@
         </div>
 
       </div>
-      <div class="bottom-content">
+      <div class="bottom-content"  ng-repeat="mydocs in myDocDetail">
         <h4>Request a consultation via</h4>
-          <div class="button-content">
+          <div class="button-content" ng-show="{{mydocs.onoff == 1}}" >
             <div class="">
-                <button type="submit" class=" button button-stable button-block"  ng-click="BalanceForVoiceCall();">
+                <button type="submit" class=" button button-stable button-block"  ng-click="audioCall({{mydocs.doctorPhone}});">
                   Voice Call
                 </button>
               </div>
               <div class="">
-                <button type="submit" class="button button-stable button-block" ng-click="checkWalletBalance();">
+                <button type="submit" class="button button-stable button-block" ng-click="videoCall({{mydocs.doctorPhone}});">
                   Video Call
+                </button>
+              </div>
+          </div>
+          <div class="button-content" ng-show="{{mydocs.onoff == 2}}" >
+              <p style="text-align:center;">Doctor {{mydocs.doctorFname}} is offline <br>you may request a consultation <br>when back online by sending a<br>notification</p>
+              <div class="">
+                <button type="submit" class="button button-stable button-block" >
+                  Send Notification
                 </button>
               </div>
           </div>

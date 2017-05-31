@@ -9,7 +9,7 @@
 			$callId = json_decode($postdata);
 
       // $callDetails = array();
-    echo  $sql = "update reqForConsultation set status=3 where id='$callId'";
+      $sql = "update reqForConsultation set status=3 where id='$callId'";
       $retval = mysql_query( $sql, $dbhandle );
       while($row = mysql_fetch_array($retval))
       {

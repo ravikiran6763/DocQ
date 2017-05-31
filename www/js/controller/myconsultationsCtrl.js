@@ -18,7 +18,7 @@ if($localStorage.doctororpatient == 'doctor'){
 				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 					$scope.myPatients=response;//store the response array in doctor details
 					console.log($scope.myPatients);
-					data = $scope.myPatients;
+					var data = $scope.myPatients;
 					for(var i=0; i<data.length; i++){
 					$scope.patientFname=data[i].patientFname;
 					$scope.patientLname=data[i].patientLname;

@@ -46,6 +46,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchSpecificDoctor'     :'patient/fetchSpecificDoctor.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
+        'requestForCall' : 'patient/requestForCall.php',
+        'cancelOne2oneReq' : 'patient/cancelOne2oneReq.php',
+
+
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
         'docSummary' : 'patient/docSummary.php',
@@ -65,9 +69,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'updateseenView':'patient/updateseenView.php',
         'declinedDuringCall':'patient/declinedDuringCall.php',
         'fetchPatientImage':'patient/fetchPatientImage.php',
-
-
-
+        'checkCallStatus':'patient/checkCallStatus.php',
+        'declineOne2oneReqPatient':'patient/declineOne2oneReqPatient.php',
 
 
         /*DOCTOR APIS*/
@@ -79,6 +82,9 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'consultationRequest' : 'doctor/consultationRequest.php',
+        'fetchOne2OneReq' : 'doctor/fetchOne2OneReq.php',
+
+
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
         'declinedbydoctor':'doctor/declinedbydoctor.php',
         'acceptedbydoctor':'doctor/acceptedbydoctor.php',

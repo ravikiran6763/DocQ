@@ -86,4 +86,66 @@ var tags = [
    return deferred.promise;
  };
 
+ this.requestForCall  = function (patient) {
+   console.log('from service',patient);
+   var deferred = $q.defer();
+   console.log(BASE_URL.url + API.requestForCall);
+   $http.post(BASE_URL.url + API.requestForCall,patient)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+
+   return deferred.promise;
+
+ }
+ this.cancelOne2oneReq  = function (id) {
+   console.log('from service',id);
+   var deferred = $q.defer();
+   console.log(BASE_URL.url + API.cancelOne2oneReq);
+   $http.post(BASE_URL.url + API.cancelOne2oneReq,id)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+
+   return deferred.promise;
+
+ }
+
+ this.checkCallStatus  = function (id) {
+   console.log('from service',id);
+   var deferred = $q.defer();
+   console.log(BASE_URL.url + API.checkCallStatus);
+   $http.post(BASE_URL.url + API.checkCallStatus,id)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+
+   return deferred.promise;
+
+ }
+
+ this.declineOne2oneReqPatient  = function (id) {
+   console.log('from service',id);
+   var deferred = $q.defer();
+   console.log(BASE_URL.url + API.declineOne2oneReqPatient);
+   $http.post(BASE_URL.url + API.declineOne2oneReqPatient,id)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+
+   return deferred.promise;
+
+ }
 });
