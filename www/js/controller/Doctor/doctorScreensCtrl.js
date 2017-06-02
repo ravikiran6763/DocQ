@@ -31,6 +31,7 @@ function checkConsultations(){
     })
 
 }
+<<<<<<< HEAD
 
 //
 // $scope.deviceAndroid = ionic.Platform.isAndroid();
@@ -171,24 +172,19 @@ function checkConsultations(){
 // }
 //
 
+=======
+>>>>>>> 33c1de17d009bd73f001a1b3e5b74ef3ec18d759
 
       // hello.chatcounts(username,password,success, failure);
 
-
-
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
     // console.log($ionicHistory.currentStateName());
-
     $scope.emailNotification = 'Subscribed';
     // console.log($scope.emailNotification);
-
     $scope.Online = function (message) {
-
           console.log(message);
-
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
-
           $localStorage.onOff=1
           var whichdoctoronoff = {
             doctorphno : $localStorage.user,

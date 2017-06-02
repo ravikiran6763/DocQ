@@ -1,5 +1,11 @@
 .profile-view
 {
+  .scroll-view{
+      display: block;
+      overflow: scroll;
+      margin-top: -1px;
+      height: 100% !important;
+  }
   background-color:#e2e2e2 !important;// $profile-bg !important;
   font-family: Ubuntu,bold,sans-serif !important;
   .top-content{
