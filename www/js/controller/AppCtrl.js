@@ -469,8 +469,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var success = function(message)
 		{
 
-				//alert(message)
-
 					console.log(message);
 
 
@@ -478,13 +476,15 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var failure = function()
 		{
 
-			//alert('error calling hello plugin');
+
 			console.log('error calling hello plugin');
 
 
 		}
 
 hello.logout(unametologout,pwtologout,success, failure);
+
+
 
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -703,52 +703,7 @@ $scope.ratingsObject = {
 				 });
 
 		}
-$rootScope.homePage=$ionicHistory.currentStateName();
-		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
-		{
 
-			console.log($rootScope.homePage);
-					console.log('doctor home called');
-
-					$scope.unreadchatforpatient = {};
-						var username = "greet+"+$localStorage.user;
-						if($ionicHistory.currentStateName() =='app.patient_home')
-						{
-								var password = "DQ_patient";
-
-						}
-						else
-						{
-
-								console.log('dcot');
-
-								var password = "DQ_doctor";
-						}
-
-
-
-
-							var success = function(message)
-							{
-
-							 		$scope.unreadchatforpatient = message;
-
-									console.log($scope.unreadchatforpatient);
-
-
-							}
-
-							var failure = function()
-							{
-							 alert("Error calling Hello Plugin");
-							 //console.log('error');
-
-							}
-
-				hello.unreadchatfromusers(username,password,success, failure);
-
-
-		}
 				// console.log('callAtInterval');
 	}
 
