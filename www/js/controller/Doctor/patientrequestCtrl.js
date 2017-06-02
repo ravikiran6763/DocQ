@@ -380,7 +380,11 @@ $scope.popupShown = true;
  		if(newValue == 2){
 			//  alert('close prev popup')
 			 $rootScope.callReqPopUp.close();
-			 $state.go("templates.prescription")
+			 $ionicHistory.nextViewOptions({
+				 disableAnimate: true,
+				 disableBack: true
+			 });
+			 $state.go("templates.prescription",{},{location: "replace", reload: true})
  		}
 
  },true);

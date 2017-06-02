@@ -11556,6 +11556,11 @@ ion-side-menu .heading-item .message {
 .profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
+  .profile-view .scroll-view {
+    display: block;
+    overflow: scroll;
+    margin-top: -1px;
+    height: 100% !important; }
   .profile-view .top-content {
     width: 100% !important;
     height: 17% !important;
@@ -11613,7 +11618,7 @@ ion-side-menu .heading-item .message {
     width: 100%;
     overflow: scroll !important; }
     .consultationList-view .myDoctor-list li {
-      height: 12%;
+      height: 14%;
       border-bottom: 2px solid #e7e7e7;
       *zoom: 1; }
       .consultationList-view .myDoctor-list li:before, .consultationList-view .myDoctor-list li:after {
