@@ -486,10 +486,7 @@ hello.logout(unametologout,pwtologout,success, failure);
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 33c1de17d009bd73f001a1b3e5b74ef3ec18d759
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
 						template: 'Are you sure you want to Signout?',

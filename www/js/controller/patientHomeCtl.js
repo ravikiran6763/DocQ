@@ -23,7 +23,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 					console.log('searc clkd');
 					$state.go('app.searchDoctors');
 			}
-<<<<<<< HEAD
 
 
 			$interval(checkNewMessages,60000);
@@ -210,7 +209,5 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			// hello.chatcounts(username,password,success, failure);
 			//
 			// }
-=======
-			
->>>>>>> 33c1de17d009bd73f001a1b3e5b74ef3ec18d759
+
 })

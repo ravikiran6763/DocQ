@@ -31,7 +31,6 @@ function checkConsultations(){
     })
 
 }
-<<<<<<< HEAD
 
 //
 // $scope.deviceAndroid = ionic.Platform.isAndroid();
@@ -172,8 +171,6 @@ function checkConsultations(){
 // }
 //
 
-=======
->>>>>>> 33c1de17d009bd73f001a1b3e5b74ef3ec18d759
 
       // hello.chatcounts(username,password,success, failure);
 
