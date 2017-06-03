@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities) {
+DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory) {
 
 	$rootScope.headerTxt="Search Doctors";
 	$rootScope.showBackBtn=true;
@@ -7,8 +7,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	$rootScope.showBadge=false;
 
 	console.log('Search controller called');
-
-
 	$scope.audioCall=function(num)
 	{
 		console.log('user:',$localStorage.user);
@@ -187,7 +185,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 									{
 										var success = function(message)
 										{
-											console.log('XCurrent:',currentConsultation);
 												alert(message);
 												$ionicHistory.nextViewOptions({
 												disableAnimate: true,
@@ -200,11 +197,11 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 												console.log($localStorage.user);
 												console.log($rootScope.accptdDoc);
 												// console.log($localStorage.Doctocall);
-												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId);
-
-
-
-
+												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
+													console.log('inserted to consultation',response);
+					              }).catch(function(error){
+					              console.log('failure data', error);
+					              });
 										}
 										var failure = function()
 										{

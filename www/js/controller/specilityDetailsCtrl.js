@@ -166,7 +166,7 @@ $scope.sendrequesttoonlinedoctors = function()
          }
          $scope.callReqPopUp.close();
 
-         setTimeout(function () {
+         setTimeout(function (){
            console.log('delay 3 sec');
            $ionicHistory.nextViewOptions({
              disableAnimate: true,

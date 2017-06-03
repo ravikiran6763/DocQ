@@ -51,8 +51,7 @@ function checkNewMessages()
 		var password = "DQ_patient";
 		console.log('checking for pat messages');
 	}
-	var username = "greet+"+$localStorage.user;
-	var password = "DQ_doctor";
+
 
 		var success = function(message)
 		{
@@ -60,55 +59,54 @@ function checkNewMessages()
 		console.log(message);
 		if($scope.deviceAndroid)
 		{
+						$scope.chatlist1 = message;
 
-		$scope.chatlist1 = message;
+						var forandroidchatlist = {};
+						forandroidchatlist = $scope.chatlist1;
 
-		var forandroidchatlist = {};
-		forandroidchatlist = $scope.chatlist1;
+						var dataofandroid = JSON.parse(forandroidchatlist);
+						dataofandroid.chatTo=$localStorage.user;
+						console.log('UpdateChat',dataofandroid);
+						doctorServices.createChatHistory(dataofandroid).then(function(response){
+						$scope.chatHistory=response;//store the response array in doctor details
+						// console.log('dataSent :',$scope.chatHistory);
+						}).catch(function(error){
+						console.log('failure data', error);
+						});
 
-		var dataofandroid = JSON.parse(forandroidchatlist);
-		dataofandroid.chatTo=$localStorage.user;
-		console.log('UpdateChat',dataofandroid);
-		doctorServices.createChatHistory(dataofandroid).then(function(response){
-		$scope.chatHistory=response;//store the response array in doctor details
-		// console.log('dataSent :',$scope.chatHistory);
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
+						for (var keyandroid in dataofandroid)
+						{
+						if (dataofandroid.hasOwnProperty(keyandroid))
+						{
+						   console.log(keyandroid + " = " + dataofandroid[keyandroid]);
 
-		for (var keyandroid in dataofandroid)
-		{
-		if (dataofandroid.hasOwnProperty(keyandroid))
-		{
-		   console.log(keyandroid + " = " + dataofandroid[keyandroid]);
+						if(keyandroid == "unread")
+						{
+						   $scope.unreadcountforandroid = dataofandroid[keyandroid];
+						}
 
-		if(keyandroid == "unread")
-		{
-		   $scope.unreadcountforandroid = dataofandroid[keyandroid];
-		}
+						if(keyandroid == "message")
+						{
 
-		if(keyandroid == "message")
-		{
+						 $scope.msgforandroid = dataofandroid[keyandroid];
 
-		 $scope.msgforandroid = dataofandroid[keyandroid];
+						}
+						else if(keyandroid == "name")
+						{
+						   $scope.nameforandroid = dataofandroid[keyandroid];
+						   console.log($scope.nameforandroid);
 
-		}
-		else if(keyandroid == "name")
-		{
-		   $scope.nameforandroid = dataofandroid[keyandroid];
-		   console.log($scope.nameforandroid);
-
-		}
-		else if(keyandroid == "dateformat")
-		{
-		   $scope.datestringforandroid = dataofandroid[keyandroid];
-		}
-		else
-		{
-		 console.log('no response from vsee');
-		}
-		}
-		}
+						}
+						else if(keyandroid == "dateformat")
+						{
+						   $scope.datestringforandroid = dataofandroid[keyandroid];
+						}
+						else
+						{
+						 console.log('no response from vsee');
+						}
+						}
+						}
 
 		}
 		else

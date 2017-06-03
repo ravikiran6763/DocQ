@@ -222,7 +222,45 @@ $scope.viewRequest=function(patient){
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }
 
-})
+        $timeout( function(){
+        console.log('interval started');
+        $interval(checkNewMessages,2000);
+        }, 60000 );
+
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_doctor";
+				$rootScope.unreadchatforpatient = 0;
+
+
+				function checkNewMessages()
+				{
+
+
+						var success = function(message)
+						{
+
+							$rootScope.unreadchatforpatient = message;
+
+							console.log($scope.unreadchatforpatient);
+
+
+						}
+
+						var failure = function()
+						{
+							console.log("Error calling Hello Plugin");
+							//console.log(‘error’);
+
+						}
+
+							hello.unreadchatfromusers(username,password,success, failure);
+
+
+				}
+
+
+
+});
 
   // $scope.Timer = $interval(function () {
   //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){

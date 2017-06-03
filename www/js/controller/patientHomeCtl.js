@@ -23,5 +23,46 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 					console.log('searc clkd');
 					$state.go('app.searchDoctors');
 			}
-			
-})
+
+
+			$timeout( function(){
+					console.log('interval started');
+		            $interval(checkNewMessages,2000);
+		         }, 60000 );
+
+
+
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_patient";
+				$rootScope.unreadchatforpatient = 0;
+
+
+				function checkNewMessages()
+				{
+
+
+						var success = function(message)
+						{
+
+							$rootScope.unreadchatforpatient = message;
+
+							console.log($scope.unreadchatforpatient);
+
+
+						}
+
+						var failure = function()
+						{
+							console.log("Error calling Hello Plugin");
+							//console.log(‘error’);
+
+						}
+
+							hello.unreadchatfromusers(username,password,success, failure);
+
+
+				}
+
+
+
+});
