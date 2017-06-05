@@ -17,7 +17,7 @@
     <form  novalidate name="loginForm" ng-submit="sendForm($event)" ng-class={submitted:submitted}>
 
       <div class="input-group">
-         <select ng-hide="true" ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries"></select>
+         <!-- <select ng-hide="true" ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries"></select> -->
         <span class="input-group-addon" ng-model="country.dial_code" >+91</span>
         <input class="form-control"  type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required></input>
         <!-- <input type="tel" class="form-control" placeholder="Phone Number" name="user_phone" string-to-number  ng-model="country.dial_code"> -->

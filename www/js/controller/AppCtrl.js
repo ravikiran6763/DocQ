@@ -208,6 +208,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							// alert('decline call here');
 							// ion.sound.play("bell_ring");
 						}
+						// else if($scope.prevPage === 'auth.patient_reg3'){
+						// 	console.log($scope.otpentered);
+						// 	$state.go('auth.patient_reg2');
+						//
+						// }
 						else{
 							window.history.back();
 							}
@@ -337,10 +342,13 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					{
 						if(val === "Online")
 						{
+							// $scope.onoff = 'Online';
 							$scope.onoff = 1;
+
 						}
 						else
 						{
+							// $scope.onoff = 'Offline';
 							$scope.onoff = 2;
 						}
 					}
@@ -361,6 +369,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					$scope.specialdata =  searchbyspecialities.getSpecialData();
 					$scope.genderdata =  searchbyspecialities.getcategoryData();
 					$scope.statusdata =  searchbyspecialities.getgenderData();
+
 					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
 			}
 			$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
@@ -466,32 +475,10 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 		console.log(unametologout);
 
-		var success = function(message)
-		{
-
-				//alert(message)
-
-					console.log(message);
-
-
-		}
-		var failure = function()
-		{
-
-			//alert('error calling hello plugin');
-			console.log('error calling hello plugin');
-
-
-		}
-
-hello.logout(unametologout,pwtologout,success, failure);
-
-
-
 
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
-						template: 'Are you sure you want to Signout?',
+						template: '<center>Are you sure you want to Signout?</center>',
 						cssClass: 'videoPopup',
 						scope: $scope,
 						buttons: [
@@ -503,7 +490,25 @@ hello.logout(unametologout,pwtologout,success, failure);
 							text: 'Ok',
 							type: 'button-positive',
 							onTap: function(e) {
-							console.log('ok');
+
+								var success = function(message)
+								{
+											console.log(message);
+
+								}
+								var failure = function()
+								{
+
+
+									console.log('error calling hello plugin');
+
+
+								}
+
+						hello.logout(unametologout,pwtologout,success, failure);
+
+
+
 							LoginService.logoutFromDq($localStorage.user).then(function(response){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
@@ -706,52 +711,7 @@ $scope.ratingsObject = {
 				 });
 
 		}
-$rootScope.homePage=$ionicHistory.currentStateName();
-		if($rootScope.homePage =='app.patient_home' || $rootScope.homePage =='templates.doctor_home')
-		{
 
-			console.log($rootScope.homePage);
-					console.log('doctor home called');
-
-					$scope.unreadchatforpatient = {};
-						var username = "greet+"+$localStorage.user;
-						if($ionicHistory.currentStateName() =='app.patient_home')
-						{
-								var password = "DQ_patient";
-
-						}
-						else
-						{
-
-								console.log('dcot');
-
-								var password = "DQ_doctor";
-						}
-
-
-
-
-							var success = function(message)
-							{
-
-							 		$scope.unreadchatforpatient = message;
-
-									console.log($scope.unreadchatforpatient);
-
-
-							}
-
-							var failure = function()
-							{
-							 alert("Error calling Hello Plugin");
-							 //console.log('error');
-
-							}
-
-				hello.unreadchatfromusers(username,password,success, failure);
-
-
-		}
 				// console.log('callAtInterval');
 	}
 
@@ -1037,7 +997,24 @@ $scope.sendprescription = function()
     }
     else if($rootScope.chekDiag && $rootScope.chekTests)
     {
-        alert('You Missed Medication');
+			window.plugins.toast.showWithOptions({
+			message: "You Missed Medication",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
+        // alert('You Missed Medication');
         $scope.diagnosis = testresultbydoctor.getdiagnosis();
         $scope.tests = testresultbydoctor.gettests();
         var diagandtests = {
@@ -1048,7 +1025,24 @@ $scope.sendprescription = function()
     }
     else if($rootScope.chekDiag && $rootScope.chekMedi)
     {
-      alert('You Missed Tests');
+			window.plugins.toast.showWithOptions({
+			message: "You Missed Tests",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
+      // alert('You Missed Tests');
       $scope.diagnosis = testresultbydoctor.getdiagnosis();
       $scope.medication = testresultbydoctor.getmedication();
       var diagandmedication = {
@@ -1059,7 +1053,24 @@ $scope.sendprescription = function()
     }
     else if($rootScope.chekTests && $rootScope.chekMedi)
     {
-      alert('You Missed Diagnosis');
+			window.plugins.toast.showWithOptions({
+			message: "You Missed Diagnosis",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
+      // alert('You Missed Diagnosis');
       $scope.tests = testresultbydoctor.gettests();
       $scope.medication = testresultbydoctor.getmedication();
       var testsandmedication = {
@@ -1070,7 +1081,24 @@ $scope.sendprescription = function()
     }
     else if($rootScope.chekDiag)
     {
-      alert('You have Missed tests and Medication');
+			window.plugins.toast.showWithOptions({
+			message: "You have Missed tests and Medication",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
+      // alert('You have Missed tests and Medication');
       $scope.diagnosis = testresultbydoctor.getdiagnosis();
       var onlydiagnosis = {
       diagnosis : $scope.diagnosis
@@ -1079,7 +1107,24 @@ $scope.sendprescription = function()
     }
     else if($rootScope.chekTests)
     {
-      alert('You have Missed Diagnosis and Medication');
+			window.plugins.toast.showWithOptions({
+			message: "You have Missed Diagnosis and Medication",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
+      // alert('You have Missed Diagnosis and Medication');
       $scope.tests = testresultbydoctor.gettests();
       var onlytests = {
       tests : $scope.tests
@@ -1088,7 +1133,24 @@ $scope.sendprescription = function()
     }
     else if($rootScope.chekMedi)
     {
-      alert('You have Missed Diagnosis and Tests');
+			window.plugins.toast.showWithOptions({
+			message: "You have Missed Diagnosis and Tests",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
+      // alert('You have Missed Diagnosis and Tests');
       $scope.medication = testresultbydoctor.getmedication();
       var onlymedication = {
       medication : $scope.medication
@@ -1097,6 +1159,23 @@ $scope.sendprescription = function()
     }
     else
     {
+			window.plugins.toast.showWithOptions({
+			message: "Please Select Atleast One Tests",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			$timeout(function() {
+				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			}, 1000);
       console.log('Please Select Atleast One Tests')
     }
 		$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
@@ -1133,6 +1212,14 @@ $scope.sendprescription = function()
 
             var success = function(message)
             {
+
+							console.log(message);
+							$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+						 });
+						 $state.go('templates.consulted_patient',{}, {location: "replace", reload: true});
+
               // alert(message);
 							console.log(message);
             }

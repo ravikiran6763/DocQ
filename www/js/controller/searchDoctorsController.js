@@ -382,4 +382,17 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	}
 
+	$scope.sendOfflineMessage=function(num){
+		var sendMessage={
+			patient:$localStorage.user,
+			doctor:num
+		}
+		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
+			console.log(response);
+		}).catch(function(error){
+		console.log('failure data', error);
+		});
+	}
+
+
 })

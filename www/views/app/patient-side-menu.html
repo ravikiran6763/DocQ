@@ -17,7 +17,7 @@
 
       <ion-nav-buttons side="right" >
         <p ng-model="status"></p>
-        <button ng-click="toggleLeftSideMenu()" class="button button-icon button-clear ion-navicon">
+        <button  ng-hide="hideSideMenu" ng-click="toggleLeftSideMenu()" class="button button-icon button-clear ion-navicon">
         </button>
       </ion-nav-buttons>
 
@@ -56,11 +56,11 @@
           <i class="icon ion-gear-a"></i>
           <h2 class="menu-text">Customer Care</h2>
         </ion-item>
-<!--
+
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_summary">
           <i class="icon ion-document"></i>
           <h2 class="menu-text">Summary</h2>
-        </ion-item> -->
+        </ion-item>
 
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
           <i class="icon ion-document"></i>

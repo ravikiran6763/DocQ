@@ -40,7 +40,7 @@ $interval(checkNewMessages,2000);
 
 function checkNewMessages()
 {
-
+console.log('refreshing consultation list for new messages');
 	var username = "greet+"+$localStorage.user;
 
 	if($localStorage.doctororpatient == 'doctor'){
@@ -356,11 +356,11 @@ $scope.consultationDetails=function(consultedDoc)
 
 		var success = function(message)
 		{
-			alert(message);
+			console.log(message);
 		}
 		var failure = function()
 		{
-			alert("Error calling Hello Plugin");
+			console.log("Error calling Hello Plugin");
 		}
 
  hello.chat(username,password,persontocall,success, failure);

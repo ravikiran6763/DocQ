@@ -103,7 +103,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   document.addEventListener("offline", onOffline, false);
   function onOffline() {
       // Handle the offline event
-      alert('offline');
+      console.log('offline');
   }
 })
 
@@ -249,6 +249,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
+      }
+      if (toState.name == "app.callAccepted") {
+        $rootScope.hideSideMenu = true;
       }
       // if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" || toState.name == "app.patient_summary" || toState.name == "templates.prescription"){
       //   $ionicHistory.removeBackView();

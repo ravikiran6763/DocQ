@@ -51,22 +51,27 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				 ]
 	$scope.doLogIn = function()
 	{
-			$rootScope.submitted=true;
+
+
+				$rootScope.submitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
+
+
+
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
+
 				$ionicLoading.show();
+
+
 				var userDetails={
 					userNum : $scope.loginData.phone,
 					password : $scope.loginData.pin
 				};
 
 				$scope.lastView = $ionicHistory.backView();
-				console.log($scope.lastView);
-
-				console.log(userDetails);
 
 
 				LoginService.loginprocess(userDetails).then(function(response){
@@ -76,6 +81,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					if(response === "patient")
 					{
+
 						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
 						sessionStorage.setItem('User', 'Patient');
 
@@ -121,24 +127,36 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
+
+
 						var success = function(message)
 						{
-							console.log(message);
+
 							$ionicHistory.nextViewOptions({
 								disableAnimate: true,
 								disableBack: true
 							});
-						$state.go('app.patient_home', {}, {location: "replace", reload: true});
+							$state.go('app.patient_home', {}, {location: "replace", reload: true});
+
 						}
+
 						var failure = function()
 						{
-						alert("Error calling Hello Plugin");
+
+							alert("Error calling Hello Plugin");
+
 						}
 
 						$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
 						hello.login(uname1,pw1,success, failure);
-					//hello.background(success, failure);
+
+
+						// var myService = cordova.plugins.myService;
+						// 	myService.getStatus();
+
+
+
 					}
 					else if(response === "doctor")
 					{
@@ -171,7 +189,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							alert("Error Occurred While Loggin in to DoctoQuick");
 						}
 						console.log('doctorHome');
-					
+
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 					hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;

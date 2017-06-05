@@ -15,6 +15,7 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 		doctor:$stateParams.accptdDoc
 	}
 	console.log(currentConsultation);
+
 	 $rootScope.accptdDoc=$stateParams.accptdDoc;
 	 $rootScope.callId=$stateParams.callId;
 	 $rootScope.callFlag=$stateParams.callFlag;
@@ -99,6 +100,9 @@ $scope.checkWalletBalance = function()
 	{
 		var success = function(message)
 		{
+
+			$scope.deviceAndroid = ionic.Platform.isAndroid();
+			console.log($scope.deviceAndroid);
 			console.log('XCurrent:',currentConsultation);
 				console.log(message);
 				$ionicHistory.nextViewOptions({

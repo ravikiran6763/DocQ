@@ -148,4 +148,17 @@ var tags = [
    return deferred.promise;
 
  }
+ this.sendOfflineMessage  = function (sendMessage) {
+   console.log('MessageDAta',sendMessage);
+   var deferred = $q.defer();
+   $http.post(BASE_URL.url + API.sendOfflineMessage,sendMessage)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+   return deferred.promise;
+
+ }
 });

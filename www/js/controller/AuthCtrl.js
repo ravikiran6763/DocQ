@@ -5,7 +5,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     $rootScope.PatientDetail2 = {};
 
     $rootScope.Doctor = {};
-    $scope.PatientDetail = {};
+    $rootScope.PatientDetail = {};
     $scope.Doctor = {};
 
     $scope.submitted = false;
@@ -166,8 +166,8 @@ $scope.sendForm = function($event,form)
   $scope.goToNextView = function ()
   {
 
-      $scope.phoneno = $scope.PatientDetail.patient_mob;
-        patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+      $scope.phoneno = $rootScope.PatientDetail.patient_mob;
+        patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
         {
             $scope.otp=response;
           console.log($scope.otp);
@@ -184,15 +184,14 @@ $scope.sendForm = function($event,form)
   $scope.resendOtp = function()
   {
 
-      $scope.OTP1 = "";
-      $scope.OTP2 = "";
-      $scope.OTP3 = "";
-      $scope.OTP4 = "";
 
 
 
-    patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+
+    patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
     {
+      $scope.otpentered = {};
+
         $scope.otp=response;
         window.plugins.toast.showWithOptions({
         message: "OTP has been sent to your mobile number",
@@ -244,19 +243,19 @@ $scope.patientRegistration = function()
         {
               patientDetails=
                 {
-                  pateientFname : $scope.PatientDetail.patient_fname,
-                  pateientMname : $scope.PatientDetail.patient_mname,
-                  pateientLname:$scope.PatientDetail.patient_lname,
-                  pateientAge :$scope.PatientDetail.patient_age,
-                  pateientPhone:$scope.PatientDetail.patient_mob,
-                  pateientEmail:$scope.PatientDetail.pat_email,
-                  pateientSex:$scope.PatientDetail.gender,
-                  pateientPwd:$scope.PatientDetail.pat_password,
+                  pateientFname : $rootScope.PatientDetail.patient_fname,
+                  pateientMname : $rootScope.PatientDetail.patient_mname,
+                  pateientLname:$rootScope.PatientDetail.patient_lname,
+                  pateientAge :$rootScope.PatientDetail.patient_age,
+                  pateientPhone:$rootScope.PatientDetail.patient_mob,
+                  pateientEmail:$rootScope.PatientDetail.pat_email,
+                  pateientSex:$rootScope.PatientDetail.gender,
+                  pateientPwd:$rootScope.PatientDetail.pat_password,
                   patientImage:$rootScope.imageData
                 };
                 var loginData = {
-                  'phone': $scope.PatientDetail.patient_mob,
-                  'password': $scope.PatientDetail.pat_password
+                  'phone': $rootScope.PatientDetail.patient_mob,
+                  'password': $rootScope.PatientDetail.pat_password
                 };
 
                 console.log(patientDetails);
@@ -265,23 +264,23 @@ $scope.patientRegistration = function()
             console.log(response);
             if(response){
               $window.localStorage.clear();
-
+              $scope.otpentered={};
+              $rootScope.PatientDetail={};
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
               });
-
               $state.go('auth.loginNew', {}, {location: "replace", reload: true});
 
               var details = {
-                'phone': $scope.PatientDetail.patient_mob,
-                'password': $scope.PatientDetail.pat_password
+                'phone': $rootScope.PatientDetail.patient_mob,
+                'password': $rootScope.PatientDetail.pat_password
               }
 
             }
             else{
               // $state.go('app.patient_home');
-              // $scope.PatientDetail =  {};
+              // $rootScope.PatientDetail =  {};
               /*
               showShortTop(message)
               showShortCenter(message)
@@ -338,10 +337,10 @@ $scope.patientRegistration = function()
       $scope.submitted = true;
 
 
-      // console.log($scope.PatientDetail);
+      // console.log($rootScope.PatientDetail);
       if(isFormValid) {
         console.log(isFormValid);
-        if($scope.PatientDetail.patient_age<18){
+        if($rootScope.PatientDetail.patient_age<18){
           $scope.submittedAge = true;
           // alert('You Should be 18+ to use this app')
               window.plugins.toast.showWithOptions({
@@ -372,12 +371,12 @@ $scope.patientRegistration = function()
     console.log('clicked');
     $rootScope.validInput=false;
     $scope.submitted2ndPage = true;
-    // console.log($scope.PatientDetail.patient_mob);
+    // console.log($rootScope.PatientDetail.patient_mob);
 
-    if(!$scope.PatientDetail.patient_mob){
-      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+    if(!$rootScope.PatientDetail.patient_mob){
+      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedMob = true;
-      console.log($scope.PatientDetail.patient_mob);
+      console.log($rootScope.PatientDetail.patient_mob);
 
       // $scope.myPopup = $ionicPopup.show({
       //   // title: 'Invalid Credentials',
@@ -391,8 +390,8 @@ $scope.patientRegistration = function()
       // $scope.myPopup.close();
       // };
     }
-    else if(!$scope.PatientDetail.gender){
-      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+    else if(!$rootScope.PatientDetail.gender){
+      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
 
       $scope.submittedSex = true;
       // $scope.myPopup = $ionicPopup.show({
@@ -407,8 +406,8 @@ $scope.patientRegistration = function()
       // $scope.myPopup.close();
       // };
     }
-    else if(!$scope.PatientDetail.pat_email){
-      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+    else if(!$rootScope.PatientDetail.pat_email){
+      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedMail = true;
       // $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
       // // success
@@ -416,8 +415,8 @@ $scope.patientRegistration = function()
       // // error
       // });
     }
-    else if(!$scope.PatientDetail.pat_password){
-      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+    else if(!$rootScope.PatientDetail.pat_password){
+      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedPwd = true;
 
       window.plugins.toast.showWithOptions({
@@ -441,7 +440,7 @@ $scope.patientRegistration = function()
     }
 
     if(isForm1Valid) {
-      // console.log($scope.PatientDetail.pat_password.length());
+      // console.log($rootScope.PatientDetail.pat_password.length());
       if($scope.firstNum < 7){
         console.log($scope.firstNum);
         window.plugins.toast.showWithOptions({
@@ -461,7 +460,7 @@ $scope.patientRegistration = function()
       }
       else{
         //check for existing patient
-          patientRegistrationService.existingPatient($scope.PatientDetail.patient_mob).then(function(response)
+          patientRegistrationService.existingPatient($rootScope.PatientDetail.patient_mob).then(function(response)
           {
             $scope.patientExist=response;
             console.log($scope.patientExist);
@@ -483,10 +482,10 @@ $scope.patientRegistration = function()
               };
             }
               else{
-                $scope.phoneno = $scope.PatientDetail.patient_mob;
+                $scope.phoneno = $rootScope.PatientDetail.patient_mob;
                 $rootScope.imageData=$base64.encode('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHkDSrh4dvgrpmNFkYQOOmumy9dIBRAuKZmuuAm4V-DNeti04O');
                 // console.log($rootScope.imageData);
-                patientRegistrationService.sendotp($scope.PatientDetail.patient_mob).then(function(response)
+                patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
                 {
                   $scope.otp=response;
                   console.log($scope.otp);
@@ -519,7 +518,7 @@ $scope.patientRegistration = function()
 
 
       if(!$scope.Doctor.doc_fname){
-        // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+        // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
         $scope.submitted = true;
         //
         // $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
@@ -529,7 +528,7 @@ $scope.patientRegistration = function()
         // });
       }
       else if(!$scope.Doctor.doc_lname){
-        // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+        // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
         $scope.submittedLname = true;
 
         // $cordovaToast.showLongCenter('Valid Name be entered', 'short', 'center').then(function(success){
@@ -557,7 +556,7 @@ $scope.patientRegistration = function()
     console.log('isDocForm1Valid ', isDocForm1Valid)
 
     if(!$scope.Doctor.doc_email){
-      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       console.log('enter mail');
       $scope.submittedMail = true;
       console.log($scope.Doctor.doc_email);
@@ -568,7 +567,7 @@ $scope.patientRegistration = function()
       });
     }
     else if(!$scope.Doctor.doc_phone){
-      // $scope.firstNum=$scope.PatientDetail.patient_mob.charAt(0);
+      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       console.log('enter mail');
       $scope.submittedMob = true;
       console.log($scope.Doctor.doc_phone);

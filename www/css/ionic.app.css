@@ -11137,8 +11137,35 @@ ion-spinner.spinner-on-load {
       .forgotPassword-view .form-content .form-group input[type="number"] {
         margin-top: 8% !important;
         height: 50% !important;
-        padding-left: 7%;
+        padding-left: 14%;
         width: 100% !important; }
+      .forgotPassword-view .form-content .form-group .input-group-addon {
+        border: none;
+        padding: 2px 4px 2px 4px !important;
+        -webkit-transition: border-color ease-in-out .15s;
+        transition: border-color ease-in-out .15s; }
+      .forgotPassword-view .form-content .form-group .input-group-addon:first-child {
+        position: absolute !important;
+        border: none;
+        background: #fff;
+        display: table;
+        top: 42% !important;
+        left: 11% !important; }
+      .forgotPassword-view .form-content .form-group .input-group-addon:not(:first-child):not(:last-child) {
+        background-color: white;
+        border: none;
+        display: table-caption;
+        position: absolute;
+        top: 34% !important;
+        left: 1% !important; }
+      .forgotPassword-view .form-content .form-group .input-group-focus .input-group-addon {
+        border-color: none !important; }
+      .forgotPassword-view .form-content .form-group .has-error .input-group-addon {
+        border-color: #843534 !important; }
+      .forgotPassword-view .form-content .form-group .has-success .input-group-addon {
+        border-color: #2b542c !important; }
+      .forgotPassword-view .form-content .form-group .has-warning .input-group-addon {
+        border-color: #66512c !important; }
   .forgotPassword-view .bottom-content {
     width: 90%;
     margin: 0 auto; }

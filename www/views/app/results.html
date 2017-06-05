@@ -49,7 +49,7 @@
           <div class="button-content" ng-show="{{mydocs.onoff == 2}}" >
               <p style="text-align:center;">Doctor {{mydocs.doctorFname}} is offline <br>you may request a consultation <br>when back online by sending a<br>notification</p>
               <div class="">
-                <button type="submit" class="button button-stable button-block" >
+                <button type="submit" class="button button-stable button-block"  ng-click="sendOfflineMessage({{mydocs.doctorPhone}})";>
                   Send Notification
                 </button>
               </div>
