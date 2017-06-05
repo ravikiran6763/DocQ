@@ -12,7 +12,7 @@
         "bcrypt": "^0.8.5",
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
-        "com.example.hello": "file:///Users/amittantia/Desktop/VSEE/VseePlugin",
+        "com.example.hello": "^0.7.0",
         "com.razorpay.cordova": "https://github.com/razorpay/razorpay-cordova.git",
         "cordova-plugin-device": "^1.1.0",
         "cordova-plugin-whitelist": "1.2.0",
