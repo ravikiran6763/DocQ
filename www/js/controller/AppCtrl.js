@@ -474,13 +474,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var pwtologout = "DQ_patient";
 
 		console.log(unametologout);
-
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 7660bf549745dc274c606599e3f9fad488a09c91
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
 						template: '<center>Are you sure you want to Signout?</center>',

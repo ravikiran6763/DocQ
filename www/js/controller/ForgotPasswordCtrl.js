@@ -24,8 +24,6 @@ $scope.user = {};
         verticalPadding: 12 // iOS default 12, Android default 30
         }
         });
-        })
-
 
     }).catch(function(error){
       console.log('failure data', error);

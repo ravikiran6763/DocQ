@@ -171,10 +171,6 @@ function checkConsultations(){
 // }
 //
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7660bf549745dc274c606599e3f9fad488a09c91
       // hello.chatcounts(username,password,success, failure);
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding

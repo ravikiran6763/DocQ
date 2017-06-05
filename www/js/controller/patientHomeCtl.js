@@ -242,8 +242,4 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			//
 			// }
 
-<<<<<<< HEAD
 });
-=======
-})
->>>>>>> 7660bf549745dc274c606599e3f9fad488a09c91
