@@ -129,11 +129,11 @@ $scope.addToFavorite=function(fav){
 	$scope.favorite=fav;
 if($scope.favorite == true){
 	$scope.favorite=1;
-	console.log($scope.favorite);
+
 	}
 	else{
 		$scope.favorite=2;
-		console.log($scope.favorite);
+
 	}
 
 	var favoriteDoc={
@@ -141,12 +141,22 @@ if($scope.favorite == true){
 		ratedTo:$stateParams.calledDoctor,
 		favorite:$scope.favorite
 	};
+
+	console.log(favoriteDoc);
 $scope.added={};
    // Do whatever you want here
 	 rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
+
+
 		 $scope.added=response;
+
+
+		 console.log(response);
+
+		 //console.log($scope.added.favorite);
+
 		 if($scope.added.favorite == 1){
-			 console.log($scope.added.favorite);
+			 //console.log($scope.added.favorite);
 
 			 window.plugins.toast.showWithOptions({
 			 message: "Doctor Added to favorites",
@@ -164,20 +174,22 @@ $scope.added={};
 			 });
 		 }
 		 else{
-			 window.plugins.toast.showWithOptions({
-			 message: "Doctor removed from favorites",
-			 duration: "short", // 2000 ms
-			 position: "bottom",
-			 styling: {
-			 opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-			 backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-			 textColor: '#ffffff', // Ditto. Default #FFFFFF
-			 textSize: 10.5, // Default is approx. 13.
-			 cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-			 horizontalPadding: 10, // iOS default 16, Android default 50
-			 verticalPadding: 6 // iOS default 12, Android default 30
-			 }
-			 });
+
+
+					 window.plugins.toast.showWithOptions({
+					 message: "Doctor removed from favorites",
+					 duration: "short", // 2000 ms
+					 position: "bottom",
+					 styling: {
+					 opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					 backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					 textColor: '#ffffff', // Ditto. Default #FFFFFF
+					 textSize: 10.5, // Default is approx. 13.
+					 cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					 horizontalPadding: 10, // iOS default 16, Android default 50
+					 verticalPadding: 6 // iOS default 12, Android default 30
+					 }
+					 });
 
 		 }
 	 }).catch(function(error){

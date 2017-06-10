@@ -470,10 +470,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 	//signout
 
 	$scope.confirmSignout = function() {
+
 		var unametologout = "greet+"+$localStorage.user;
 		var pwtologout = "DQ_patient";
 
-		console.log(unametologout);
+
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
 						template: '<center>Are you sure you want to Signout?</center>',
@@ -489,22 +490,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							type: 'button-positive',
 							onTap: function(e) {
 
-								var success = function(message)
-								{
-											console.log(message);
-
-								}
-								var failure = function()
-								{
-
-
-									console.log('error calling hello plugin');
-
-
-								}
-
-						hello.logout(unametologout,pwtologout,success, failure);
-
 
 
 							LoginService.logoutFromDq($localStorage.user).then(function(response){
@@ -514,6 +499,24 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									$ionicHistory.clearCache();
 									$ionicHistory.clearHistory();
 									$window.localStorage.clear();
+
+
+									var success = function(message)
+									{
+												console.log(message);
+
+									}
+									var failure = function()
+									{
+
+
+										console.log('error calling hello plugin');
+
+
+									}
+
+							hello.logout(unametologout,pwtologout,success, failure);
+
 									$state.go('auth.loginNew');
 								}
 							}).catch(function(error){
@@ -525,9 +528,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					},
 					]
 					});
-
-//popup modification
-
 
 
 
@@ -910,8 +910,9 @@ $scope.BalanceForVoiceCall=function()
           });
 				};
 
-///prescription par
-$rootScope.prescription={};
+
+
+
 
 
 //
@@ -942,28 +943,141 @@ $rootScope.prescription={};
 // 		}
 // }
 
+
+///prescription par
+$rootScope.prescription={};
+
 $scope.done = function (prescType,sno){
+
+
+
 
         switch(sno){
             case 1://for diagnosis
-											testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
-											$rootScope.chekDiag=true;
-											$rootScope.val=$rootScope.prescription.diagnosisforpatient;
-											$state.go("templates.prescription");
-                // console.log("1. Selected Name: "+ prescType);
+
+
+
+
+											if($rootScope.prescription.diagnosisforpatient)
+											{
+
+
+												testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
+												$rootScope.chekDiag=true;
+												$rootScope.val=$rootScope.prescription.diagnosisforpatient;
+												$state.go("templates.prescription");
+
+
+
+											}
+											else
+											{
+
+												//alert('please enter medication');
+
+												window.plugins.toast.showWithOptions({
+												message: "Please Enter Diagnosis",
+												duration: "short", // 2000 ms
+												position: "bottom",
+												styling: {
+												opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+												backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+												textColor: '#ffffff', // Ditto. Default #FFFFFF
+												textSize: 13, // Default is approx. 13.
+												cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+												horizontalPadding: 16, // iOS default 16, Android default 50
+												verticalPadding: 12 // iOS default 12, Android default 30
+												}
+												});
+												$timeout(function() {
+													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+												}, 1000);
+
+
+											 }
+
+
+
                 break;
             case 2://for tests
-											testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
-											$rootScope.chekTests=true;
-											$rootScope.val=$rootScope.prescription.checkedTests;
-											$state.go("templates.prescription");
+
+											if($rootScope.prescription.checkedTests)
+											{
+
+												testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
+												$rootScope.chekTests=true;
+												$rootScope.testVal=$rootScope.prescription.checkedTests;
+												$state.go("templates.prescription");
+
+
+											}
+											else {
+
+
+												window.plugins.toast.showWithOptions({
+												message: "Please Enter Tests",
+												duration: "short", // 2000 ms
+												position: "bottom",
+												styling: {
+												opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+												backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+												textColor: '#ffffff', // Ditto. Default #FFFFFF
+												textSize: 13, // Default is approx. 13.
+												cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+												horizontalPadding: 16, // iOS default 16, Android default 50
+												verticalPadding: 12 // iOS default 12, Android default 30
+												}
+												});
+												$timeout(function() {
+													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+												}, 1000);
+
+												//alert('please enter tests details');
+
+
+
+											}
+
+
                 console.log("2. Selected Name: " + prescType );
                 break;
 						case 3://for medications
-											testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
-											$rootScope.chekMedi=true;
-											$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
-											$state.go("templates.prescription");
+
+												if($rootScope.prescription.medicationforpatient)
+												{
+
+													testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
+													$rootScope.chekMedi=true;
+													$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
+													$state.go("templates.prescription");
+
+
+												}
+												else {
+
+
+													window.plugins.toast.showWithOptions({
+													message: "Please Enter Medication",
+													duration: "short", // 2000 ms
+													position: "bottom",
+													styling: {
+													opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+													backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+													textColor: '#ffffff', // Ditto. Default #FFFFFF
+													textSize: 13, // Default is approx. 13.
+													cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+													horizontalPadding: 16, // iOS default 16, Android default 50
+													verticalPadding: 12 // iOS default 12, Android default 30
+													}
+													});
+													$timeout(function() {
+														 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+													}, 1000);
+
+
+												}
+
+
 
                 console.log("3. Selected Name: " + prescType );
                 break;
@@ -971,16 +1085,13 @@ $scope.done = function (prescType,sno){
 
         }
     }
-$scope.clear=function()
-{
-		$scope.diagnosis.diagnosisforpatient="";
-		$rootScope.chekDiag=false;
-}
+
 
 
 $scope.sendprescription = function()
 {
-  console.log($rootScope.prescription.checkedTests);
+
+
     $scope.diagnosis = testresultbydoctor.getdiagnosis();
     $scope.tests = testresultbydoctor.gettests();
     $scope.medication = testresultbydoctor.getmedication();
@@ -1239,6 +1350,9 @@ $scope.sendprescription = function()
         });
 
     }
+
+		$rootScope.prescription={};
+
     // console.log(URL);
 }
 

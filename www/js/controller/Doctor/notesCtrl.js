@@ -7,7 +7,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
-  $rootScope.prescription={};
+  //$rootScope.prescription={};
 
   $scope.currentPatient={};
   // $window.location.reload();

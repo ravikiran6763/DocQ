@@ -10,10 +10,10 @@
 		$ratingDetails = json_decode($postdata);
 		 $ratedBy= $ratingDetails->ratedBy;
      $ratedTo= $ratingDetails->ratedTo;
-		 echo $favorite = $ratingDetails->favorite;
+		 $favorite = $ratingDetails->favorite;
 
 		 if($favorite == 1){
-			$fav = "INSERT INTO favDoctors(patientNum,doctorNum) VALUES ('$patient_phno', '$doctor_phno')";
+			$fav = "INSERT INTO favDoctors(patientNum,doctorNum) VALUES ('$ratedBy', '$ratedTo')";
 	 		$retvalmyconsulation = mysql_query( $fav, $dbhandle );
 	 		if(!$retvalmyconsulation)
 	 		{
@@ -22,11 +22,11 @@
 	 		}
 	 		else
 	 		{
-	 		echo "added";
+	 		//echo "added";
 	 		}
 		 }
 		 else{
-			 $del = "delete from favDoctors where patientNum='$patient_phno' and doctorNum='$doctor_phno'";
+			 $del = "delete from favDoctors where patientNum='$ratedBy' and doctorNum='$ratedTo'";
  	 		$retval = mysql_query( $del, $dbhandle );
  	 		if(!$retval)
  	 		{

@@ -11,7 +11,7 @@
       <div class="myDoctor-list" >
         <ul>
           <!-- <li  ui-sref="app.viewdoctor_profile({myDocFname:doctor.doctorFname,myDocLname:doctor.doctorLname,myDocNum:doctor.doctorPhone,myDocDegree:doctor.doctorDegrees})"> -->
-        <li  ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.doctorPhone}},{{doctor.totalRating}},{{doctor.totalCount}});">
+        <li  ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.doctorPhone}} {{doctor.totalRating}} {{doctor.totalCount}});">
           <div class="profile-img">
             <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
             <ionic-letter-avatar data={{doctor.doctorFname}}  shape="round" charcount='1'></ionic-letter-avatar>
