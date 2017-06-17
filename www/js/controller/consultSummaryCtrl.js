@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$stateParams,$window, $scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$stateParams,$window,$timeout,$scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -10,8 +10,7 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$sta
 	  $scope.rating.max = 5;
 
 console.log($stateParams.calledDoctor);
-//$ionicLoading.show();
-//console.log($localStorage.consultedDoctor);
+
 $ionicLoading.show();
 
 patientProfileDetailsService.updatenotesflag($stateParams.consultId).then(function(response){
@@ -21,6 +20,48 @@ patientProfileDetailsService.updatenotesflag($stateParams.consultId).then(functi
 	 console.log('failure data', error);
  })
 var key = this;
+
+
+
+$scope.setRating = function(ratings,val) {
+	var rtgs = $scope.ratingArr;
+	for (var i = 0; i < rtgs.length; i++) {
+		if (i < val) {
+			rtgs[i].icon = 'ion-ios-star';
+		} else {
+			rtgs[i].icon = 'ion-ios-star-outline';
+		}
+	};
+
+	$rootScope.ratingValue = ratings;
+
+
+
+	console.log(ratings);
+	if(ratings <= 3)
+	{
+			$scope.unhappy = true;
+			$scope.happy = false;
+			console.log($scope.unhappy);
+	}
+	else if (ratings >= 4)
+	{
+			$scope.happy = true;
+			$scope.unhappy = false;
+	}
+	else
+	{
+			$scope.unhappy = true;
+			$scope.happy = false;
+	}
+}
+
+	$scope.ratingss = [{
+		 current: 4,
+		 max: 5
+ }];
+
+
 
 myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
 		$scope.myDoctor=response;//store the response array in doctor details
@@ -46,7 +87,7 @@ $scope.ratingsObject = {
         console.log('Selected rating is : ', rating);
       };
 
-			var rating={};
+
 			$rootScope.ratingValue;
 			$scope.ratingsCallback = function(rating) {
 				$rootScope.ratingValue=rating;
@@ -72,28 +113,72 @@ $scope.ratingsObject = {
 
 			$scope.ratingComments={};
 
-			$scope.sendRatings=function(){
+			$scope.sendRatings=function()
+			{
+
 					$scope.patient_details ={};
 					$scope.userPhone=LoginService.returnUserPhone();
 
-					var ratedValues={
-						rates:$rootScope.ratingValue,
-						ratedBy:$localStorage.user,
-				 		ratedTo:$localStorage.docPhone,
-						// ratedTo:$localStorage.consultedDoctor,
-						ratingComments:$scope.ratingComments.comment
-					};
-					console.log(ratedValues);
-					rateDoctorServices.rateDoctor(ratedValues).then(function(response){
-						// console.log(ratedValues);
-						$scope.rated=response;
-						console.log($scope.rated);
-						$scope.ratingComments.comment="";
-						// $state.go('app.patient_home');
-						$state.go('app.patient_home', {}, {reload: true});
-					}).catch(function(error){
-						console.log('failure data', error);
-					});
+
+
+
+					if($scope.ratingComments.comment)
+					{
+
+
+						var ratedValues={
+							rates:$rootScope.ratingValue,
+							ratedBy:$localStorage.user,
+							ratedTo:$stateParams.calledDoctor,
+							ratingComments:$scope.ratingComments.comment
+						};
+						console.log(ratedValues);
+						rateDoctorServices.rateDoctor(ratedValues).then(function(response){
+							// console.log(ratedValues);
+							$scope.rated=response;
+							console.log($scope.rated);
+							$scope.ratingComments.comment="";
+
+							//$state.go('app.patient_home', {}, {reload: true});
+
+							$state.go("app.patient_home");
+
+
+						}).catch(function(error){
+							console.log('failure data', error);
+						});
+
+
+					}
+					else
+					{
+
+						window.plugins.toast.showWithOptions({
+						message: "Please Enter Rating Comments",
+						duration: "short", // 2000 ms
+						position: "bottom",
+						styling: {
+						opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+						backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+						textColor: '#ffffff', // Ditto. Default #FFFFFF
+						textSize: 13, // Default is approx. 13.
+						cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+						horizontalPadding: 16, // iOS default 16, Android default 50
+						verticalPadding: 12 // iOS default 12, Android default 30
+						}
+						});
+						$timeout(function() {
+							 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+						}, 1000);
+
+
+
+					}
+
+
+
+
+
 				}
 
 		var myDocratedValues={
@@ -219,38 +304,7 @@ $scope.ratingArr = [{
     ratings: 5
   }];
 
-  $scope.setRating = function(ratings,val) {
-    var rtgs = $scope.ratingArr;
-    for (var i = 0; i < rtgs.length; i++) {
-      if (i < val) {
-        rtgs[i].icon = 'ion-ios-star';
-      } else {
-        rtgs[i].icon = 'ion-ios-star-outline';
-      }
-    };
-    console.log(ratings);
-		if(ratings <= 3)
-		{
-				$scope.unhappy = true;
-				$scope.happy = false;
-				console.log($scope.unhappy);
-		}
-		else if (ratings >= 4)
-		{
-				$scope.happy = true;
-				$scope.unhappy = false;
-		}
-		else
-		{
-				$scope.unhappy = true;
-				$scope.happy = false;
-		}
-  }
 
-		$scope.ratingss = [{
-			 current: 4,
-			 max: 5
-	 }];
 
 
 })

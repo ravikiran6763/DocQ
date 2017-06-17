@@ -4,9 +4,9 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     var diagnosisbydoctor = "";
     var testsbydoctor = "";
     var medicationbydoctor = "";
-    // var diagnosis = "";
-    // var tests = "";
-    // var medication = "";
+    var diagnosis = "";
+    var tests = "";
+    var medication = "";
 
 
 
@@ -39,7 +39,6 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
       }
 
 
-      var diagnosisbydoctor = "";
 
   }
 
@@ -56,7 +55,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     }
 
 
-    var testsbydoctor = "";
+
 
   }
 
@@ -76,7 +75,6 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
     }
 
-    var medicationbydoctor = "";
 
   }
 
@@ -88,16 +86,12 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     .success(function (data, status, headers, config){
       deferred.resolve(data);
 
+
     })
     .error(function (){
       deferred.reject('Error while getting data');
     });
     return deferred.promise;
-
-
-
-
-
 
   }
 });

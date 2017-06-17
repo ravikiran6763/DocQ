@@ -956,8 +956,6 @@ $scope.done = function (prescType,sno){
             case 1://for diagnosis
 
 
-
-
 											if($rootScope.prescription.diagnosisforpatient)
 											{
 
@@ -1295,8 +1293,8 @@ $scope.sendprescription = function()
         var prescriptiondetails = {
           docphno : $localStorage.user,
           patientphno : $rootScope.patientNum,
-          diagnosis : $scope.diagnosis ,
-          tests : $scope.tests ,
+          diagnosis : $scope.diagnosis,
+          tests : $scope.tests,
           medication : $scope.medication
         };
 
@@ -1317,17 +1315,29 @@ $scope.sendprescription = function()
           console.log(ato);
           var prescImg=$scope.pic;
 
-
+					console.log(prescImg);
 
             var success = function(message)
             {
 
-							console.log(message);
-							$ionicHistory.nextViewOptions({
-							disableAnimate: true,
-							disableBack: true
-						 });
-						 $state.go('templates.consulted_patient',{}, {location: "replace", reload: true});
+
+								console.log('prescription clicked');
+								console.log(message);
+
+
+						// 	$rootScope.prescription = {};
+						 //
+						 //
+						// 	console.log(message);
+						// 	$ionicHistory.nextViewOptions({
+						// 	disableAnimate: true,
+						// 	disableBack: true
+						//  });
+
+						 //$state.go('templates.consulted_patient',{}, {location: "replace", reload: true});
+
+						 $state.go('templates.consulted_patient');
+
 
               // alert(message);
 							console.log(message);
@@ -1351,9 +1361,6 @@ $scope.sendprescription = function()
 
     }
 
-		$rootScope.prescription={};
-
-    // console.log(URL);
 }
 
 

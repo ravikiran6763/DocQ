@@ -384,7 +384,12 @@ $scope.popupShown = true;
 				 disableAnimate: true,
 				 disableBack: true
 			 });
-			 $state.go("templates.prescription",{},{location: "replace", reload: true})
+
+			// $state.go("templates.prescription",{},{location: "replace", reload: true})
+
+
+			 $state.go("templates.prescription");
+			 
  		}
 
  },true);
