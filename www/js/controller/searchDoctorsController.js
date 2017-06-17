@@ -185,13 +185,13 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 									{
 										var success = function(message)
 										{
-												alert(message);
+
 												$ionicHistory.nextViewOptions({
 												disableAnimate: true,
 												disableBack: true
 											 });
 											 $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: true});
-													console.log('callEnded');
+													
 												//
 												$scope.enddate = new Date();
 												console.log($localStorage.user);

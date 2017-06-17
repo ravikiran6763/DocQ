@@ -1,4 +1,6 @@
 DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, $cordovaFileTransfer,$cordovaFile) {
+
+
     var diagnosisbydoctor = "";
     var testsbydoctor = "";
     var medicationbydoctor = "";
@@ -6,9 +8,12 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     var tests = "";
     var medication = "";
 
+
+
+
   this.diagnosisdone = function(diagnosis)
   {
-    console.log(diagnosis);
+
        diagnosisbydoctor = diagnosis;
   }
 
@@ -33,7 +38,8 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
           return "";
       }
 
-      //return diagnosisbydoctor;
+
+
   }
 
   this.gettests = function()
@@ -48,7 +54,9 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
           return "";
     }
 
-      //return testsbydoctor;
+
+
+
   }
 
   this.getmedication = function()
@@ -66,7 +74,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
 
     }
-        //return medicationbydoctor;
+
 
   }
 
@@ -78,22 +86,12 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     .success(function (data, status, headers, config){
       deferred.resolve(data);
 
+
     })
     .error(function (){
       deferred.reject('Error while getting data');
     });
     return deferred.promise;
-
-
-
-    //
-    // $scope.doctorphoneno = options.docphno;
-    // $scope.patientphoneno = options.patientphno;
-
-
-
-
-
 
   }
 });

@@ -34,13 +34,14 @@ if($localStorage.doctororpatient == 'doctor'){
 				});
 }
 $scope.deviceAndroid = ionic.Platform.isAndroid();
+
 $interval(checkNewMessages,2000);
 
 
 
 function checkNewMessages()
 {
-console.log('refreshing consultation list for new messages');
+	console.log('refreshing consultation list for new messages');
 	var username = "greet+"+$localStorage.user;
 
 	if($localStorage.doctororpatient == 'doctor'){

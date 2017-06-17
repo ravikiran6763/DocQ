@@ -1,7 +1,7 @@
 // APP
 DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,$localStorage,testresultbydoctor) {
 
-		$scope.diagnosis={};
+
 		$scope.toggle = true;
 		$rootScope.headerTxt="Diagnosis";
 		$rootScope.showBackBtn=true;
@@ -13,8 +13,20 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$scope.patientlname = $stateParams.ptLname;
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
-		console.log($scope.patientfname);
-		// $rootScope.val=$scope.diagnosis.diagnosisforpatient;
+
+
+
+		$rootScope.prescription={};
+
+		$scope.clear=function()
+		{
+				$rootScope.prescription.diagnosisforpatient="";
+				$rootScope.chekDiag=false;
+				$rootScope.val= "";
+		}
+
+
+
 
 
 })
@@ -34,6 +46,16 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
 
+		$rootScope.prescription={};
+
+		$scope.clear=function()
+		{
+				$rootScope.prescription.checkedTests="";
+				$rootScope.chekTests=false;
+				$rootScope.testVal= "";
+
+
+		}
 
 		// $scope.done=function()
 		// {
@@ -93,13 +115,21 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 		// 		}
 		// }
 
+
+		$rootScope.prescription={};
+
 		$scope.clear=function()
 		{
 
-			$scope.medication.medicationforpatient="";
+			$rootScope.prescription.medicationforpatient="";
 			$rootScope.chekMedi=false;
+			$rootScope.mediVal = "";
+
 
 		}
+
+
+
 })
 
 DoctorQuickApp.controller('doc_customercareCtrl', function($scope,$rootScope, $ionicConfig) {

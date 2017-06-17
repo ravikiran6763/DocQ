@@ -11,18 +11,18 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
  var username = "greet+"+$localStorage.user;
  var password = "DQ_patient";
-
-$rootScope.chatCount='';
-  var success = function(message)
-  {
-		$rootScope.chatCount=message
- 	 console.log($rootScope.chatCount);
-  }
-
-  var failure = function()
-  {
- 	 alert("Error calling Hello Plugin");
-  }
+// 
+// $rootScope.chatCount='';
+//   var success = function(message)
+//   {
+// 		$rootScope.chatCount=message
+//  	 console.log($rootScope.chatCount);
+//   }
+//
+//   var failure = function()
+//   {
+//  	 alert("Error calling Hello Plugin");
+//   }
 
  // hello.unreadchatfromusers(username,password,success, failure);
 
