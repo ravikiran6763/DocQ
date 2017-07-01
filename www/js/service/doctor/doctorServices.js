@@ -169,6 +169,9 @@ this.createChatHistory = function (chat) {
   $http.post(BASE_URL.url + API.createChatHistory,chat)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
+
+
+
   })
   .error(function (){
     deferred.reject('Error while getting data');
@@ -176,6 +179,27 @@ this.createChatHistory = function (chat) {
   return deferred.promise;
 
 }
+
+
+
+this.createChatHistoryIos = function (chat) {
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.createChatHistoryIos,chat)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+
+
+
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
+
+
 this.callStatus = function (reqId){
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.callStatus,reqId)

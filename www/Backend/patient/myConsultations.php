@@ -11,6 +11,10 @@ require 'headers.php';
 		// echo "hello";
 				 $loginphno = json_decode($postdata);
 	 				$myConsultation = array();
+
+          echo $loginphno;
+          
+
           // $sql = "select doctorFname,doctorMname,doctorLname,doctorDetails.doctorPhone,consultationId,consultDate,doctorDegrees,practicingSince,message,date(dateAndTime) as date,unreadCount from doctorDetails,myConsultations,chatHistory where doctorDetails.doctorPhone  = myConsultations.doctorPhone and chatHistory.chatFrom=myConsultations.patientPhone and myConsultations.patientPhone='$loginphno' and dateAndTime=(select max(dateAndTime) from chatHistory where  chatFrom=myConsultations.patientPhone and chatTo=myConsultations.doctorPhone) group by doctorDetails.doctorPhone";
 
         $sql="select doctorFname,doctorMname,doctorLname,doctorDetails.doctorPhone,consultationId,consultDate,message,date(dateAndTime) as date,unreadCount from myConsultations,doctorDetails,chatHistory where patientPhone='$loginphno' and myConsultations.doctorPhone=doctorDetails.doctorPhone and chatHistory.chatFrom=myConsultations.doctorPhone and chatHistory.chatTo=myConsultations.patientPhone and dateAndTime=(select max(dateAndTime) from chatHistory where  chatFrom=myConsultations.doctorPhone and chatTo=myConsultations.patientPhone) group by myConsultations.doctorPhone";

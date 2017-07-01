@@ -14,26 +14,12 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 // for doctors consultationDetails
 $ionicLoading.show();
 console.log('consultations');
-if($localStorage.doctororpatient == 'doctor'){
-				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
-					$scope.myPatients=response;//store the response array in doctor details
-					console.log($scope.myPatients);
-					var data = $scope.myPatients;
-					for(var i=0; i<data.length; i++){
-					$scope.patientFname=data[i].patientFname;
-					$scope.patientLname=data[i].patientLname;
-					$scope.patientPhone=data[i].patientPhone;
-					$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
-					$scope.listofnames.push($scope.fullname);
-					$scope.listofphones.push(data[i].patientPhone);
-					//console.log($localStorage.user);
-				}
-				$ionicLoading.hide();
-				}).catch(function(error){
-				console.log('failure data', error);
-				});
-}
+
 $scope.deviceAndroid = ionic.Platform.isAndroid();
+
+
+
+
 
 $interval(checkNewMessages,2000);
 
@@ -41,8 +27,9 @@ $interval(checkNewMessages,2000);
 
 function checkNewMessages()
 {
+
 	console.log('refreshing consultation list for new messages');
-	var username = "greet+"+$localStorage.user;
+	var username = $localStorage.user;
 
 	if($localStorage.doctororpatient == 'doctor'){
 		var password = "DQ_doctor";
@@ -52,7 +39,6 @@ function checkNewMessages()
 		var password = "DQ_patient";
 		console.log('checking for pat messages');
 	}
-
 
 		var success = function(message)
 		{
@@ -70,112 +56,240 @@ function checkNewMessages()
 						console.log('UpdateChat',dataofandroid);
 						doctorServices.createChatHistory(dataofandroid).then(function(response){
 						$scope.chatHistory=response;//store the response array in doctor details
-						// console.log('dataSent :',$scope.chatHistory);
+						console.log('dataSent :',response);
 						}).catch(function(error){
 						console.log('failure data', error);
 						});
 
-						for (var keyandroid in dataofandroid)
-						{
-						if (dataofandroid.hasOwnProperty(keyandroid))
-						{
-						   console.log(keyandroid + " = " + dataofandroid[keyandroid]);
 
-						if(keyandroid == "unread")
-						{
-						   $scope.unreadcountforandroid = dataofandroid[keyandroid];
+
+						if($localStorage.doctororpatient == 'patient'){
+							myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+									$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+									//	console.log($rootScope.ConsultedDoctor);
+
+									var data = response;
+
+
+										console.log(response);
+
+									for(var i=0; i<data.length; i++){
+
+
+
+											$rootScope.doctorFname=data[i].doctorFname;
+											$rootScope.doctorLname=data[i].doctorLname;
+											$rootScope.doctorMname=data[i].doctorMname;
+											$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+											console.log($rootScope.fullname);
+											// $scope.listofnames.push($scope.fullname);
+											// $scope.listofphones.push(data[i].patientPhone);
+											//console.log($localStorage.user);
+
+									}
+									$ionicLoading.hide();
+							}).catch(function(error){
+								console.log('failure data', error);
+							});
 						}
 
-						if(keyandroid == "message")
-						{
 
-						 $scope.msgforandroid = dataofandroid[keyandroid];
 
-						}
-						else if(keyandroid == "name")
-						{
-						   $scope.nameforandroid = dataofandroid[keyandroid];
-						   console.log($scope.nameforandroid);
 
+						if($localStorage.doctororpatient == 'doctor'){
+										myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+											$scope.myPatients=response;//store the response array in doctor details
+											console.log($scope.myPatients);
+											var data = $scope.myPatients;
+											for(var i=0; i<data.length; i++){
+											$scope.patientFname=data[i].patientFname;
+											$scope.patientLname=data[i].patientLname;
+											$scope.patientPhone=data[i].patientPhone;
+											$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+											$scope.listofnames.push($scope.fullname);
+											$scope.listofphones.push(data[i].patientPhone);
+											//console.log($localStorage.user);
+										}
+										$ionicLoading.hide();
+										}).catch(function(error){
+										console.log('failure data', error);
+										});
 						}
-						else if(keyandroid == "dateformat")
-						{
-						   $scope.datestringforandroid = dataofandroid[keyandroid];
-						}
-						else
-						{
-						 console.log('no response from vsee');
-						}
-						}
-						}
+
+
+
+
+
+
+						// for (var keyandroid in dataofandroid)
+						// {
+						// if (dataofandroid.hasOwnProperty(keyandroid))
+						// {
+						//    console.log(keyandroid + " = " + dataofandroid[keyandroid]);
+						//
+						// if(keyandroid == "unread")
+						// {
+						//    $scope.unreadcountforandroid = dataofandroid[keyandroid];
+						// }
+						//
+						// if(keyandroid == "message")
+						// {
+						//
+						//  $scope.msgforandroid = dataofandroid[keyandroid];
+						//
+						// }
+						// else if(keyandroid == "name")
+						// {
+						//    $scope.nameforandroid = dataofandroid[keyandroid];
+						//    console.log($scope.nameforandroid);
+						//
+						// }
+						// else if(keyandroid == "dateformat")
+						// {
+						//    $scope.datestringforandroid = dataofandroid[keyandroid];
+						// }
+						// else
+						// {
+						//  console.log('no response from vsee');
+						// }
+						// }
+						// }
 
 		}
 		else
 		{
-		console.log('this is called');
+
+		$scope.ios = message;
+
+
+
+
+
 		var forioschatlist = {};
-		forioschatlist = $scope.chatlist;
-		console.log('iosChatHIstory:',forioschatlist);
+		forioschatlist = $scope.ios;
+
+		var res = forioschatlist.slice(1,-1);
+
+		console.log('after slicing:',res);
+
 
 		var dataForIos = JSON.parse(forioschatlist);
-		console.log('ChatData:',data);
+		console.log('ChatData:',dataForIos);
 
-		dataForIos.chatTo=$localStorage.user;
-		console.log('UpdateChat',dataForIos);
-		doctorServices.createChatHistory(dataForIos).then(function(response){
-		$scope.chatHistory=response;//store the response array in doctor details
-		// console.log('dataSent :',$scope.chatHistory);
+
+		doctorServices.createChatHistoryIos(dataForIos).then(function(response){
+		$scope.chatHistoryios=response;//store the response array in doctor details
+		console.log('dataSent :',$scope.chatHistoryios);
 		}).catch(function(error){
 		console.log('failure data', error);
+	});
+
+
+
+	if($localStorage.doctororpatient == 'patient'){
+		myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+				$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+				//	console.log($rootScope.ConsultedDoctor);
+
+				var data = response;
+
+
+					console.log(response);
+
+				for(var i=0; i<data.length; i++){
+
+
+
+						$rootScope.doctorFname=data[i].doctorFname;
+						$rootScope.doctorLname=data[i].doctorLname;
+						$rootScope.doctorMname=data[i].doctorMname;
+						$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+						console.log($rootScope.fullname);
+						// $scope.listofnames.push($scope.fullname);
+						// $scope.listofphones.push(data[i].patientPhone);
+						//console.log($localStorage.user);
+
+				}
+				$ionicLoading.hide();
+		}).catch(function(error){
+			console.log('failure data', error);
 		});
-
-		for (var key in data) {
-		if (data.hasOwnProperty(key)) {
-		console.log(key + " = " + data[key]);
-
-
-		if(key == "unread")
-		{
-		$scope.unreadchatcountfromvsee = data[key];
-		}
-		else if(key == "message")
-		{
-		$scope.msg = data[key];
-		}
-		else if(key == "name")
-		{
-		$scope.name = data[key];
-
-		$scope.name = $scope.name.substring(6);
-
-		console.log('ChatNAme:',$scope.name);
-
-
-
-		}
-		else if(key == "dateformat")
-		{
-		$scope.datestring = data[key];
-		}
-		else {
-		console.log('no response from vsee');
-		// noresponse of chat from vsee
-		}
-		}
-		}
-		}
+	}
 
 
 
 
-		}
+	if($localStorage.doctororpatient == 'doctor'){
+					myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+						$scope.myPatients=response;//store the response array in doctor details
+						console.log($scope.myPatients);
+						var data = $scope.myPatients;
+						for(var i=0; i<data.length; i++){
+						$scope.patientFname=data[i].patientFname;
+						$scope.patientLname=data[i].patientLname;
+						$scope.patientPhone=data[i].patientPhone;
+						$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+						$scope.listofnames.push($scope.fullname);
+						$scope.listofphones.push(data[i].patientPhone);
+						//console.log($localStorage.user);
+					}
+					$ionicLoading.hide();
+					}).catch(function(error){
+					console.log('failure data', error);
+					});
+	}
 
+		// for (var key in data) {
+		// if (data.hasOwnProperty(key)) {
+		// console.log(key + " = " + data[key]);
+		//
+		//
+		// if(key == "unread")
+		// {
+		// $scope.unreadchatcountfromvsee = data[key];
+		// }
+		// else if(key == "message")
+		// {
+		// $scope.msg = data[key];
+		// }
+		// else if(key == "name")
+		// {
+		// $scope.name = data[key];
+		//
+		// $scope.name = $scope.name.substring(6);
+		//
+		// console.log('ChatNAme:',$scope.name);
+		//
+		//
+		//
+		// }
+		// else if(key == "dateformat")
+		// {
+		// $scope.datestring = data[key];
+		// }
+		// else {
+		// console.log('no response from vsee');
+		// // noresponse of chat from vsee
+		// }
+		// }
+		// }
+		// }
+		//
+	}
+
+
+}
    var failure = function()
    {
      alert("Error calling Hello Plugin");
    }
 
 hello.chatcounts(username,password,success, failure);
+
+
+
+
+
 
 }
 
@@ -324,28 +438,35 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 // hello.chatcounts(username,password,success, failure);
 //
 // }
-if($localStorage.doctororpatient == 'patient'){
-	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-			$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-			console.log($rootScope.ConsultedDoctor);
-
-			data = $scope.ConsultedDoctor;
-			for(var i=0; i<data.length; i++){
-					$rootScope.doctorFname=data[i].doctorFname;
-					$rootScope.doctorLname=data[i].doctorLname;
-					$rootScope.doctorMname=data[i].doctorMname;
-					$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
-					console.log($rootScope.fullname);
-					// $scope.listofnames.push($scope.fullname);
-					// $scope.listofphones.push(data[i].patientPhone);
-					//console.log($localStorage.user);
-
-			}
-			$ionicLoading.hide();
-	}).catch(function(error){
-		console.log('failure data', error);
-	});
-}
+// if($localStorage.doctororpatient == 'patient'){
+// 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+// 			$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+// 			//	console.log($rootScope.ConsultedDoctor);
+//
+// 			var data = response;
+//
+//
+// 				console.log(response);
+//
+// 			for(var i=0; i<data.length; i++){
+//
+//
+//
+// 					$rootScope.doctorFname=data[i].doctorFname;
+// 					$rootScope.doctorLname=data[i].doctorLname;
+// 					$rootScope.doctorMname=data[i].doctorMname;
+// 					$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+// 					console.log($rootScope.fullname);
+// 					// $scope.listofnames.push($scope.fullname);
+// 					// $scope.listofphones.push(data[i].patientPhone);
+// 					//console.log($localStorage.user);
+//
+// 			}
+// 			$ionicLoading.hide();
+// 	}).catch(function(error){
+// 		console.log('failure data', error);
+// 	});
+// }
 
 $scope.consultationDetails=function(consultedDoc)
 {

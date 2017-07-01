@@ -7,6 +7,8 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	$rootScope.showBadge=false;
 
 	console.log('Search controller called');
+
+
 	$scope.audioCall=function(num)
 	{
 		console.log('user:',$localStorage.user);
@@ -191,7 +193,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 												disableBack: true
 											 });
 											 $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: true});
-													
+
 												//
 												$scope.enddate = new Date();
 												console.log($localStorage.user);

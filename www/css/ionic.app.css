@@ -10105,7 +10105,7 @@ ion-side-menu.menu-left.menu {
 .input-group .form-control:last-child {
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-  padding: 0% 0 0 15%; }
+  padding: 0% 0 0 0%; }
 
 .input-group-focus {
   border-radius: 4px;
@@ -11135,9 +11135,9 @@ ion-spinner.spinner-on-load {
       width: 80% !important;
       margin: 0 auto; }
       .forgotPassword-view .form-content .form-group input[type="number"] {
-        margin-top: 8% !important;
+        margin-top: 7% !important;
         height: 50% !important;
-        padding-left: 14%;
+        padding-left: 15%;
         width: 100% !important; }
       .forgotPassword-view .form-content .form-group .input-group-addon {
         border: none;

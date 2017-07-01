@@ -101,6 +101,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'reqPatientDetails' : 'doctor/reqPatientDetails.php',
         'updateDocPassword':'doctor/updateDocPassword.php',
         'createChatHistory':'doctor/createChatHistory.php',
+        'createChatHistoryIos':'doctor/createChatHistoryios.php',
         'fetchChatHistory':'doctor/fetchChatHistory.php',
         'callStatus':'doctor/callStatus.php',
 
