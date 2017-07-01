@@ -20,8 +20,11 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			$scope.searchDoctors=function()
 			{
-					console.log('searc clkd');
+					console.log('search clicked');
 					$state.go('app.searchDoctors');
+
+				
+
 			}
 
 
@@ -41,6 +44,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				{
 
 
+<<<<<<< HEAD
 					var success = function(message)
 					{
 
@@ -48,6 +52,16 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							console.log($scope.unreadchatforpatient);
 
 					}
+=======
+							var success = function(message)
+							{
+
+								$rootScope.unreadchatforpatient = message;
+
+								console.log($scope.unreadchatforpatient);
+
+							}
+>>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 
 						var failure = function()
 						{
@@ -58,7 +72,10 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 				}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 
 
 			// $scope.deviceAndroid = ionic.Platform.isAndroid();

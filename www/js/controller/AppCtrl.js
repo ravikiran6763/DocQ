@@ -12,6 +12,16 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 
+
+var specialitywise = "";
+var catwise = "";
+var genderwise = "";
+var languagewise = "";
+
+
+
+
+
 	$rootScope.chekDiag=false;
 	$rootScope.chekTests=false;
 	$rootScope.chekMedi=false;
@@ -168,8 +178,12 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 
-		$rootScope.goBack = function ()
+		$rootScope.goBack = function()
 		{
+
+
+
+
 						$scope.prevPage=$ionicHistory.currentStateName();
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
@@ -190,12 +204,22 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							window.history.back();
 
 						}
-						else if($scope.prevPage === 'app.results'){
+						else if($scope.prevPage === 'app.searchDoctors'){
 							console.log('clear search values here');
-							$scope.specialdata='';
-							$scope.genderdata='';
-							$scope.statusdata='';
-							$scope.languagedataselected='';
+							$scope.specialdata=null;
+							$scope.genderdata= null;
+							$scope.statusdata=null;
+							$scope.languagedataselected=null;
+
+							$rootScope.specialityList.sex = "";
+							$rootScope.specialityList.search = "";
+							$rootScope.specialityList.stat = "";
+							$rootScope.specialityList.language = "";
+
+							var specialitywise = "";
+							var catwise = "";
+							var genderwise = "";
+							var languagewise = "";
 
 							console.log($scope.specialdata);
 							window.history.back();
@@ -252,7 +276,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 			$scope.showSideMenu = function (selectedSearch){
-				console.log(selectedSearch);
+
+
 					if (selectedSearch == "gender")
 					{
 
@@ -260,16 +285,19 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 								{'sex': 'Male'},
 								{'sex': 'Female'}
 							]
+
+
 							$rootScope.SearchHeader='Gender';
 							$rootScope.showSPecialities=false;
 							$rootScope.showSex=true;
 							$rootScope.showStatus=false;
 							$rootScope.showLanguage=false;
 
-								console.log($rootScope.sexList);
-				};
-				if (selectedSearch == "language") {
 
+				}
+
+				if (selectedSearch == "language")
+				{
 
 
 					$scope.LanguageList = angular.fromJson($window.localStorage['languages']);
@@ -280,7 +308,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					$rootScope.showSex=false;
 					$rootScope.showStatus=false;
 					$rootScope.showLanguage=true;
-				};
+
+				}
 
 				if (selectedSearch == "onlineOffline") {
 					$rootScope.showSearchOption=true;
@@ -371,13 +400,47 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					$scope.statusdata =  searchbyspecialities.getgenderData();
 
 					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
+
+
+
 			}
+
+
+
 			$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
 			{
-					$scope.doclist = {};
+
+						$scope.doclist = {};
+
+						//PUT ONE ERROR MESSAGE HERE
 						if(specialitywise == null && catwise == null && genderwise == null && languagewise == null)
 						{
+
+
+
 							console.log('Please Select Atlease One Search Criteria');
+
+
+							window.plugins.toast.showWithOptions({
+							message: "Please Select Atlease One Search Criteria",
+							duration: "short", // 2000 ms
+							position: "bottom",
+							styling: {
+							opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+							backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+							textColor: '#ffffff', // Ditto. Default #FFFFFF
+							textSize: 13, // Default is approx. 13.
+							cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+							horizontalPadding: 16, // iOS default 16, Android default 50
+							verticalPadding: 12 // iOS default 12, Android default 30
+							}
+							});
+							$timeout(function() {
+								 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+							}, 1000);
+
+
+
 						}
 						else
 						{
@@ -389,6 +452,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									bystatus:genderwise,
 									bylanguage:languagewise
 								};
+
+
 								console.log(searchdoctor);
 								$rootScope.rates=0;
 								$rootScope.totalRates=0;
@@ -456,6 +521,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									}
 									else {
 										$scope.doclist = response;
+
+
 											console.log(response);
 											$state.go('app.doctorsearch');
 
@@ -509,6 +576,10 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 												$state.go('auth.loginNew');
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 									}
 									var failure = function()
 									{
@@ -1332,7 +1403,15 @@ $scope.sendprescription = function()
 								console.log(message);
 
 
-						// 	$rootScope.prescription = {};
+							$rootScope.prescription = {};
+
+
+							$rootScope.val = "";
+
+							$rootScope.testVal = "";
+							$rootScope.mediVal = "";
+
+
 						 //
 						 //
 						// 	console.log(message);

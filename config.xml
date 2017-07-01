@@ -354,12 +354,13 @@
         </dict>
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
-    <plugin name="com.example.hello" spec="file:///Users/amittantia/Desktop/VSEE/VseePlugin" />
+    <plugin name="com.example.hello" spec="^0.7.0" />
     <plugin name="com.razorpay.cordova" spec="https://github.com/razorpay/razorpay-cordova.git" />
     <plugin name="com.red_folder.phonegap.plugin.backgroundservice" spec="../veeresh mac data/bgs-core" />
     <plugin name="cordova-plugin-device" spec="^1.1.0">
         <variable name="MY_VARIABLE" value="my_variable_value" />
     </plugin>
+    <plugin name="cordova-plugin-shared-preferences" spec="0.0.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.2.0" />
     <plugin name="ionic-plugin-deploy" spec="~0.6.5" />
 </widget>

@@ -49,6 +49,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					code: "US"
 					}
 				 ]
+
+
 	$scope.doLogIn = function()
 	{
 
@@ -81,6 +83,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					if(response === "patient")
 					{
+
+
+
+
+
 
 						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
 						sessionStorage.setItem('User', 'Patient');
@@ -136,10 +143,16 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								disableAnimate: true,
 								disableBack: true
 							});
+<<<<<<< HEAD
 							//$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
 							$state.go('app.patient_home');
 
+=======
+
+
+							$state.go('app.patient_home', {}, {location: "replace", reload: true});
+>>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 
 						}
 
@@ -154,41 +167,128 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						hello.login(uname1,pw1,success, failure);
 
+						$rootScope.logOb={};
 
-						// var myService = cordova.plugins.myService;
-						// 	myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+						window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
+						console.log("got main dir",dir);
+						dir.getFile("log.txt", {create:true}, function(file) {
+						console.log("got the file", file);
+						logOb = file;
+						writeLog("App started");
+						});
+						});
 
-					// 							function go() {
-					//    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
-					// };
-					//
-					// function startService(data) {
-					//    if (data.ServiceRunning) {
-					//       enableTimer(data);
-					//    } else {
-					//       myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-					//    }
-					// }
-					//
+						function writeLog(str) {
+									if(!logOb) return;
+									var log = str + " [" + (new Date()) + "]\n";
+									console.log("going to log "+log);
+									logOb.createWriter(function(fileWriter) {
 
-					//
-					// function enableTimer(data) {
-					//    if (data.TimerEnabled) {
-					//       allDone();
-					//    } else {
-					//       myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
-					//    }
-					// }
-					//
-					// function allDone() {
-					//    alert("Service now running");
-					// }
+									fileWriter.seek(fileWriter.length);
+
+									var blob = new Blob([log], {type:'text/plain'});
+									fileWriter.write(blob);
+									console.log("ok, in theory i worked");
+									}, fail);
+									}
+
+
+						// var config = {
+						// 				"uname" : uname1,
+						// 				"password":pw1
+						//
+						// 			};
+						//
+						//
+						//
+						// function handleSuccess(data) {
+						// 	alert(data);
+						// }
+						//
+						// function handleError(data) {
+						// 	alert("Error: " + data.ErrorMessage);
+						// 	//alert(JSON.stringify(data));
+						// 	//updateView(data);
+						// }
+						//
+						//
+						//
+						// function setConfig() {
+						//
+						//
+						// 		console.log('setconfig called');
+						//
+						// 										var config = {
+						// 														"uname" : uname1,
+						// 														"password":pw1
+						//
+						// 													};
+						//
+						//
+						// 														console.log(config);
+						//
+						// 										myService.setConfiguration(	config,
+						// 																	function(r){handleSuccess(r)},
+						// 																	function(e){handleError(e)});
+						//
+						// 	}
+						//
+						// 	var myService = cordova.plugins.myService;
+						//
+						// 		myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+						//
+						// 								function go() {
+						// 		 myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
+						// 	};
+						//
+						//
+						//
+						// 	function startService(data) {
+						// 	 if (data.ServiceRunning) {
+						// 	    enableTimer(data);
+						// 			setConfig();
+						//
+						//
+						// 	 } else {
+						// 	    myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+						// 	 }
+						// 	}
+						//
+						//
+						//
+						// 	function enableTimer(data) {
+						// 	 if (data.TimerEnabled) {
+						// 	    allDone();
+						// 	 } else {
+						// 	    myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
+						// 	 }
+						// 	}
+						//
+						//
+						// 	function allDone() {
+						// 	 alert("Service now running");
+						// 	}
+
+
+
+						// const prefs = window.plugins.SharedPreferences
+						// prefs.getSharedPreferences('shared_preferences', 'MODE_PRIVATE', () => {
+						// 	prefs.putString('username', uname1);
+						// 	prefs.putString('password', pw1);
+						//
+						// }, (error) => {
+						// 	// handle error
+						// })
+
 
 
 
 					}
 					else if(response === "doctor")
 					{
+
+console.log('doctor screen should entered');
+
 						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
 						sessionStorage.setItem('User', 'Doctor');
 						$localStorage.doctororpatient = response;
@@ -202,8 +302,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					  });
 					var uname1 = "greet+"+$scope.loginData.phone;
 					var pw1 = "DQ_doctor";
-					var success = function(message)
+
+					console.log(uname1);
+
+						var success = function(message)
 						{
+
+
 							console.log(message);
 							$ionicHistory.nextViewOptions({
 								disableAnimate: true,
@@ -213,20 +318,28 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						//$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 
+<<<<<<< HEAD
 						$state.go('templates.doctor_home');
+=======
+						//$state.go('templates.doctor_home');
+>>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 
 
 						}
 
 						var failure = function()
 						{
+
 							alert("Error Occurred While Loggin in to DoctoQuick");
+
 						}
-						console.log('doctorHome');
+
 
 					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 					hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
+
+
 					}
 					else if(response === "alreadyLoggedIn"){
 						$scope.myPopup = $ionicPopup.show({

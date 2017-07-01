@@ -1,9 +1,9 @@
 DoctorQuickApp.service('searchbyspecialities', function ($http,$q,BASE_URL, API) {
 
-  var selectedspecial;
-  var selectedcategory;
-  var selectedgender;
-  var selectedlanguage;
+  var selectedspecial = "";
+  var selectedcategory = "";
+  var selectedgender = "";
+  var selectedlanguage = "";
 
   this.specialitywisesearch = function(specialfromsearch)
   {
@@ -35,11 +35,16 @@ DoctorQuickApp.service('searchbyspecialities', function ($http,$q,BASE_URL, API)
   this.getgenderData = function()
   {
     return selectedgender;
+
+
   }
   this.getlanguageData = function()
   {
     return selectedlanguage;
   }
+
+
+
   this.getlistofspecialist = function(searchdoctor)
   {
       var deferred = $q.defer();
@@ -54,7 +59,6 @@ DoctorQuickApp.service('searchbyspecialities', function ($http,$q,BASE_URL, API)
       return deferred.promise;
   }
 
-  
 
 
 

@@ -38,7 +38,7 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
           return "";
       }
 
-
+    
 
   }
 
@@ -74,6 +74,8 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
 
 
     }
+
+
 
 
   }

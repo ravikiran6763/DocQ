@@ -141,7 +141,7 @@ $scope.ratingsObject = {
 
 							//$state.go('app.patient_home', {}, {reload: true});
 
-							$state.go("app.patient_home");
+							$state.go('app.patient_home');
 
 
 						}).catch(function(error){
