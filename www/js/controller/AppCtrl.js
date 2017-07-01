@@ -576,10 +576,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 												$state.go('auth.loginNew');
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 									}
 									var failure = function()
 									{

@@ -287,7 +287,6 @@ function checkNewMessages()
 hello.chatcounts(username,password,success, failure);
 
 
-<<<<<<< HEAD
 if($localStorage.doctororpatient == 'patient'){
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 			$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -333,10 +332,6 @@ if($localStorage.doctororpatient == 'doctor'){
 				console.log('failure data', error);
 				});
 }
-=======
-
-
->>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 
 
 }
@@ -486,9 +481,6 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 // hello.chatcounts(username,password,success, failure);
 //
 // }
-<<<<<<< HEAD
-
-=======
 // if($localStorage.doctororpatient == 'patient'){
 // 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 // 			$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -518,7 +510,6 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 // 		console.log('failure data', error);
 // 	});
 // }
->>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
 
 $scope.consultationDetails=function(consultedDoc)
 {

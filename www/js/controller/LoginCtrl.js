@@ -143,17 +143,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								disableAnimate: true,
 								disableBack: true
 							});
-<<<<<<< HEAD
 							//$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
-							$state.go('app.patient_home');
-
-=======
-
-
+							// $state.go('app.patient_home');
 							$state.go('app.patient_home', {}, {location: "replace", reload: true});
->>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
-
 						}
 
 						var failure = function()
@@ -318,12 +311,8 @@ console.log('doctor screen should entered');
 
 						//$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 
-<<<<<<< HEAD
 						$state.go('templates.doctor_home');
-=======
 						//$state.go('templates.doctor_home');
->>>>>>> 8493703e46ff3fdb380f28ecb5922baadbfecc01
-
 
 						}
 
