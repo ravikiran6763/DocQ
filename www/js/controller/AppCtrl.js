@@ -492,6 +492,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 
+
+
 							LoginService.logoutFromDq($localStorage.user).then(function(response){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
@@ -505,6 +507,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									{
 												console.log(message);
 
+												$state.go('auth.loginNew');
+
 									}
 									var failure = function()
 									{
@@ -517,8 +521,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 							hello.logout(unametologout,pwtologout,success, failure);
 
-									$state.go('auth.loginNew');
+
 								}
+
+
+
 							}).catch(function(error){
 							console.log('failure data', error);
 							});
@@ -1367,32 +1374,32 @@ $scope.sendprescription = function()
 $scope.statename = $ionicHistory.currentStateName();
 
 // console.log($state.statename);
-if($scope.statename =='app.patient_home')
-{
-
-
-		console.log('unread chat count for android called');
-
-
-			$scope.unreadchatforpatient = {};
-				var username = "greet+"+$localStorage.user;
-
-						var password = "DQ_patient";
-
-					var success = function(message)
-					{
-							$scope.unreadchatforpatient = message;
-					}
-
-					var failure = function()
-					{
-					 alert("Error calling Hello Plugin");
-					 //console.log('error');
-
-					}
-
-		hello.unreadchatfromusers(username,password,success, failure);
-}
+// if($scope.statename =='app.patient_home')
+// {
+//
+//
+// 		console.log('unread chat count for android called');
+//
+//
+// 			$scope.unreadchatforpatient = {};
+// 				var username = "greet+"+$localStorage.user;
+//
+// 						var password = "DQ_patient";
+//
+// 					var success = function(message)
+// 					{
+// 							$scope.unreadchatforpatient = message;
+// 					}
+//
+// 					var failure = function()
+// 					{
+// 					 alert("Error calling Hello Plugin");
+// 					 //console.log('error');
+//
+// 					}
+//
+// 		hello.unreadchatfromusers(username,password,success, failure);
+// }
 
 
 });

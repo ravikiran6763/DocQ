@@ -41,69 +41,24 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				{
 
 
-						var success = function(message)
-						{
-
-			$interval(checkNewMessages,60000);
-
-			var username = "greet+"+$localStorage.user;
-			var password = "DQ_patient";
-			$rootScope.unreadchatforpatient = 0;
-
-
-			function checkNewMessages()
-			{
-
-
-				//
-				// if($ionicHistory.currentStateName() =='app.patient_home')
-				// {
-				//
-				//
-				// }
-				// else
-				// {
-				//
-				// 		console.log('dcot');
-				//
-				// 		var password = "DQ_doctor";
-				// }
-
-
 					var success = function(message)
 					{
 
 							$rootScope.unreadchatforpatient = message;
-
 							console.log($scope.unreadchatforpatient);
 
-
-						}
+					}
 
 						var failure = function()
 						{
-							console.log("Error calling Hello Plugin");
-							//console.log(‘error’);
-
+								alert('this is from patient home CTRL');
 						}
 
 							hello.unreadchatfromusers(username,password,success, failure);
 
 
 				}
-		}
 
-					var failure = function()
-					{
-					 alert("Error calling Hello Plugin");
-					 //console.log('error');
-
-					}
-
-		hello.unreadchatfromusers(username,password,success, failure);
-
-
-}
 
 
 			// $scope.deviceAndroid = ionic.Platform.isAndroid();

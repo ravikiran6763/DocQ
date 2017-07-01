@@ -280,8 +280,8 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			  disableAnimate: true,
 			  disableBack: true
 			});
-			$state.go('auth.loginNew',{}, {location: "replace", reload: true})
-			// $state.go('auth.loginNew');
+			//$state.go('auth.loginNew',{}, {location: "replace", reload: true})
+			 $state.go('auth.loginNew');
 		}
   },10000);
   $ionicHistory.clearHistory();

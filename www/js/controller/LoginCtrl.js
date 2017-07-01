@@ -136,7 +136,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								disableAnimate: true,
 								disableBack: true
 							});
-							$state.go('app.patient_home', {}, {location: "replace", reload: true});
+							//$state.go('app.patient_home', {}, {location: "replace", reload: true});
+
+							$state.go('app.patient_home');
+
 
 						}
 
@@ -207,7 +210,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								disableBack: true
 							});
 							console.log('doctorHome');
-						$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+
+						//$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+
+						$state.go('templates.doctor_home');
+
+
 						}
 
 						var failure = function()
