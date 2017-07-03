@@ -16,7 +16,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 
 
 
-		$rootScope.prescription={};
+		// $rootScope.prescription={};
 
 		$scope.clear=function()
 		{
@@ -46,7 +46,7 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
 
-		$rootScope.prescription={};
+		// $rootScope.prescription={};
 
 		$scope.clear=function()
 		{
@@ -116,7 +116,7 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 		// }
 
 
-		$rootScope.prescription={};
+		// $rootScope.prescription={};
 
 		$scope.clear=function()
 		{
