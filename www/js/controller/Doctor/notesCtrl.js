@@ -8,7 +8,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   $rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
-  $rootScope.prescription={};
+  // $rootScope.prescription={};
 
   $scope.currentPatient={};
   // $window.location.reload();

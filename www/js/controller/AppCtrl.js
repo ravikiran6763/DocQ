@@ -1029,6 +1029,7 @@ $scope.done = function (prescType,sno){
 
 
 
+
         switch(sno){
             case 1://for diagnosis
 
@@ -1048,7 +1049,7 @@ $scope.done = function (prescType,sno){
 											else
 											{
 
-												//alert('please enter medication');
+												// alert('please enter diagnosis');
 
 												window.plugins.toast.showWithOptions({
 												message: "Please Enter Diagnosis",
@@ -1107,7 +1108,7 @@ $scope.done = function (prescType,sno){
 													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
 												}, 1000);
 
-												//alert('please enter tests details');
+												// alert('please enter tests details');
 
 
 
@@ -1129,6 +1130,8 @@ $scope.done = function (prescType,sno){
 
 												}
 												else {
+
+														// alert('please enter medication');
 
 
 													window.plugins.toast.showWithOptions({
