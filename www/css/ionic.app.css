@@ -12664,7 +12664,7 @@ ion-side-menu .heading-item .message {
     height: 30%;
     margin-top: 6%; }
     .summary-view .rateClass .row {
-      padding: 5% !important; }
+      padding: 3% !important; }
     .summary-view .rateClass .card {
       width: 95% !important;
       padding-top: 0;
@@ -12687,8 +12687,9 @@ ion-side-menu .heading-item .message {
       font-size: 100%; }
     .summary-view .lowRatesComment textarea {
       width: 100% !important;
-      height: 38% !important;
-      font-family: inherit; }
+      height: 50% !important;
+      font-family: inherit;
+      padding: 0 0 0 4% !important; }
     .summary-view .lowRatesComment .button {
       width: 30%;
       float: right;

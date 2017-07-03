@@ -18,14 +18,7 @@ console.log('consultations');
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 
-
-
-
-
 $interval(checkNewMessages,2000);
-
-
-
 function checkNewMessages()
 {
 
@@ -43,7 +36,7 @@ function checkNewMessages()
 
 		var success = function(message)
 		{
-
+		$ionicLoading.hide();
 		console.log(message);
 		if($scope.deviceAndroid)
 		{
@@ -62,8 +55,6 @@ function checkNewMessages()
 						console.log('failure data', error);
 						});
 
-
-
 						if($localStorage.doctororpatient == 'patient'){
 							myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 									$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -75,9 +66,6 @@ function checkNewMessages()
 										console.log(response);
 
 									for(var i=0; i<data.length; i++){
-
-
-
 											$rootScope.doctorFname=data[i].doctorFname;
 											$rootScope.doctorLname=data[i].doctorLname;
 											$rootScope.doctorMname=data[i].doctorMname;
@@ -161,10 +149,6 @@ function checkNewMessages()
 		{
 
 		$scope.ios = message;
-
-
-
-
 
 		var forioschatlist = {};
 		forioschatlist = $scope.ios;

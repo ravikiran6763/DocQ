@@ -178,9 +178,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		$rootScope.goBack = function()
 		{
 
-
-
-
 						$scope.prevPage=$ionicHistory.currentStateName();
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
@@ -229,6 +226,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							// alert('decline call here');
 							// ion.sound.play("bell_ring");
 						}
+						else if($scope.prevPage === 'templates.consulted_patient'){
+							$state.go('templates.doctor_home');
+							$ionicHistory.clearHistory();
+						}
+
 						// else if($scope.prevPage === 'auth.patient_reg3'){
 						// 	console.log($scope.otpentered);
 						// 	$state.go('auth.patient_reg2');
