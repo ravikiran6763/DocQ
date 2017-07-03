@@ -5,6 +5,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showDocStatus=false;
 			$rootScope.showNotification=true;
 			$rootScope.showBadge=true;
+			$rootScope.hideSideMenu = true;
 
 			HardwareBackButtonManager.disable();
 

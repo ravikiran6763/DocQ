@@ -5,6 +5,7 @@ console.log($localStorage.user);
   $rootScope.showBackBtn=true;
   $rootScope.checkedValue = false;
   $rootScope.showNotification=false;
+  $rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){

@@ -6,6 +6,7 @@ DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicC
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.sandwich=true;
+	$rootScope.hideSideMenu = false;
 
 	HardwareBackButtonManager.disable();
 	$ionicSideMenuDelegate.canDragContent(false)

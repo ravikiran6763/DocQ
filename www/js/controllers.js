@@ -6,6 +6,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$rootScope.headerTxt="Diagnosis";
 		$rootScope.showBackBtn=true;
 		$rootScope.showNotification=false;
+		$rootScope.hideSideMenu = true;
 		$rootScope.showBadge=false;
 
 

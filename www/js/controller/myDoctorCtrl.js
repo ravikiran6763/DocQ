@@ -4,6 +4,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
+	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
  // $interval(callAtInterval, 5000);
@@ -11,7 +12,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
  var username = "greet+"+$localStorage.user;
  var password = "DQ_patient";
-// 
+//
 // $rootScope.chatCount='';
 //   var success = function(message)
 //   {

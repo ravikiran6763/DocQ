@@ -5,22 +5,19 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
+	$rootScope.hideSideMenu = true;
 	$scope.myDocDetail = {};
 
 	$rootScope.showSPecialities=false;
 	$rootScope.showSex=false;
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
+	$rootScope.hideSideMenu = true;
 
-
-var specialitywise = "";
-var catwise = "";
-var genderwise = "";
-var languagewise = "";
-
-
-
-
+	var specialitywise = "";
+	var catwise = "";
+	var genderwise = "";
+	var languagewise = "";
 
 	$rootScope.chekDiag=false;
 	$rootScope.chekTests=false;

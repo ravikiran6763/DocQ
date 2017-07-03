@@ -3,6 +3,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$rootScope.headerTxt="My Consultaions";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
+	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 

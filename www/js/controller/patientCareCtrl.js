@@ -4,6 +4,7 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope, $rootScope, $timeo
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
+	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 	$rootScope.cc={};
 $scope.submitted = false;
