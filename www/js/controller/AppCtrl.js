@@ -182,12 +182,15 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
 							$state.go('app.patient_home');
+							$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'templates.prescription'){
 							$state.go('templates.doctor_home');
+							$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'templates.requestAccepted'){
 							$state.go('templates.doctor_home');
+							$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
 							// $state.go('templates.doctor_home');
@@ -221,6 +224,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						}
 						else if($scope.prevPage === 'templates.prescription'){
 							$state.go('templates.doctor_home');
+							$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'app.callAccepted'){
 							// alert('decline call here');
@@ -421,7 +425,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 							window.plugins.toast.showWithOptions({
-							message: "Please Select Atlease One Search Criteria",
+							message: "Please Select Atleast One Search Criteria",
 							duration: "short", // 2000 ms
 							position: "bottom",
 							styling: {
