@@ -4,6 +4,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
+	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
 	$scope.paymentid= "";

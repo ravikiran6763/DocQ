@@ -6,6 +6,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$rootScope.headerTxt="Diagnosis";
 		$rootScope.showBackBtn=true;
 		$rootScope.showNotification=false;
+		$rootScope.hideSideMenu = true;
 		$rootScope.showBadge=false;
 
 
@@ -280,8 +281,8 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			  disableAnimate: true,
 			  disableBack: true
 			});
-			$state.go('auth.loginNew',{}, {location: "replace", reload: true})
-			// $state.go('auth.loginNew');
+			//$state.go('auth.loginNew',{}, {location: "replace", reload: true})
+			 $state.go('auth.loginNew');
 		}
   },10000);
   $ionicHistory.clearHistory();

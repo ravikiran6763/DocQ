@@ -3,6 +3,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
 				$rootScope.showNotification=false;
+				$rootScope.hideSideMenu = true;
 				$rootScope.showBadge=false;
 
 				$scope.toggleText = "Accept";
@@ -389,7 +390,7 @@ $scope.popupShown = true;
 
 
 			 $state.go("templates.prescription");
-			 
+
  		}
 
  },true);

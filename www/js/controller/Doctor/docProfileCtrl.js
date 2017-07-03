@@ -4,6 +4,7 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope, $ionicCo
 	$rootScope.headerTxt="Profile";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
+  $rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
   $scope.userDoctor = angular.fromJson($window.localStorage['doctorDetails']);

@@ -5,6 +5,7 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.showBackBtn=true;
     $rootScope.checkedValue = false;
     $rootScope.showNotification=false;
+    $rootScope.hideSideMenu = true;
     $rootScope.showBadge=false;
 
     $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);

@@ -3,6 +3,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$rootScope.headerTxt="My Consultaions";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
+	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 
@@ -17,14 +18,7 @@ console.log('consultations');
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 
-
-
-
-
 $interval(checkNewMessages,2000);
-
-
-
 function checkNewMessages()
 {
 
@@ -42,7 +36,7 @@ function checkNewMessages()
 
 		var success = function(message)
 		{
-
+		$ionicLoading.hide();
 		console.log(message);
 		if($scope.deviceAndroid)
 		{
@@ -64,7 +58,59 @@ function checkNewMessages()
 						console.log('failure data', error);
 						});
 
+<<<<<<< HEAD
 
+=======
+						if($localStorage.doctororpatient == 'patient'){
+							myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+									$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+									//	console.log($rootScope.ConsultedDoctor);
+
+									var data = response;
+
+
+										console.log(response);
+
+									for(var i=0; i<data.length; i++){
+											$rootScope.doctorFname=data[i].doctorFname;
+											$rootScope.doctorLname=data[i].doctorLname;
+											$rootScope.doctorMname=data[i].doctorMname;
+											$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+											console.log($rootScope.fullname);
+											// $scope.listofnames.push($scope.fullname);
+											// $scope.listofphones.push(data[i].patientPhone);
+											//console.log($localStorage.user);
+
+									}
+									$ionicLoading.hide();
+							}).catch(function(error){
+								console.log('failure data', error);
+							});
+						}
+
+
+
+
+						if($localStorage.doctororpatient == 'doctor'){
+										myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+											$scope.myPatients=response;//store the response array in doctor details
+											console.log($scope.myPatients);
+											var data = $scope.myPatients;
+											for(var i=0; i<data.length; i++){
+											$scope.patientFname=data[i].patientFname;
+											$scope.patientLname=data[i].patientLname;
+											$scope.patientPhone=data[i].patientPhone;
+											$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+											$scope.listofnames.push($scope.fullname);
+											$scope.listofphones.push(data[i].patientPhone);
+											//console.log($localStorage.user);
+										}
+										$ionicLoading.hide();
+										}).catch(function(error){
+										console.log('failure data', error);
+										});
+						}
+>>>>>>> 9102b3fb0884487d0c9f090e2a73f54d74f8d1b5
 
 
 
@@ -110,10 +156,6 @@ function checkNewMessages()
 		{
 
 		$scope.ios = message;
-
-
-
-
 
 		var forioschatlist = {};
 		forioschatlist = $scope.ios;
@@ -239,8 +281,51 @@ if($localStorage.doctororpatient == 'doctor'){
 }
 
 
+if($localStorage.doctororpatient == 'patient'){
+	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+			$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+			console.log($rootScope.ConsultedDoctor);
+
+			data = $scope.ConsultedDoctor;
+			for(var i=0; i<data.length; i++){
+					$rootScope.doctorFname=data[i].doctorFname;
+					$rootScope.doctorLname=data[i].doctorLname;
+					$rootScope.doctorMname=data[i].doctorMname;
+					$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+					console.log($rootScope.fullname);
+					// $scope.listofnames.push($scope.fullname);
+					// $scope.listofphones.push(data[i].patientPhone);
+					//console.log($localStorage.user);
+
+			}
+			$ionicLoading.hide();
+	}).catch(function(error){
+		console.log('failure data', error);
+	});
+}
 
 
+
+
+if($localStorage.doctororpatient == 'doctor'){
+				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+					$scope.myPatients=response;//store the response array in doctor details
+					console.log($scope.myPatients);
+					var data = $scope.myPatients;
+					for(var i=0; i<data.length; i++){
+					$scope.patientFname=data[i].patientFname;
+					$scope.patientLname=data[i].patientLname;
+					$scope.patientPhone=data[i].patientPhone;
+					$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+					$scope.listofnames.push($scope.fullname);
+					$scope.listofphones.push(data[i].patientPhone);
+					//console.log($localStorage.user);
+				}
+				$ionicLoading.hide();
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+}
 
 
 }

@@ -5,6 +5,7 @@ DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope, $
     $rootScope.showBackBtn=true;
     $rootScope.checkedValue = false;
     $rootScope.showNotification=false;
+    $rootScope.hideSideMenu = true;
     $rootScope.showBadge=false;
 
 	$rootScope.specialId = $stateParams.specialId;

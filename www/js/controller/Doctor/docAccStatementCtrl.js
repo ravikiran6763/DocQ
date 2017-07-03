@@ -5,6 +5,7 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+  $rootScope.hideSideMenu = true;
 console.log($localStorage.user);
 
 accountsService.docAccountsBalance($localStorage.user).then(function(response){

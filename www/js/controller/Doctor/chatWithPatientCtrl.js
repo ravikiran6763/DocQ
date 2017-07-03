@@ -3,6 +3,7 @@ DoctorQuickApp.controller('chatWithPatientCtrl', function($scope, $rootScope, $l
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+	$rootScope.hideSideMenu = true;
 
 	$scope.showActionsheet = function() {
 

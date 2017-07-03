@@ -5,22 +5,19 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
+	$rootScope.hideSideMenu = true;
 	$scope.myDocDetail = {};
 
 	$rootScope.showSPecialities=false;
 	$rootScope.showSex=false;
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
+	$rootScope.hideSideMenu = true;
 
-
-var specialitywise = "";
-var catwise = "";
-var genderwise = "";
-var languagewise = "";
-
-
-
-
+	var specialitywise = "";
+	var catwise = "";
+	var genderwise = "";
+	var languagewise = "";
 
 	$rootScope.chekDiag=false;
 	$rootScope.chekTests=false;
@@ -181,9 +178,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		$rootScope.goBack = function()
 		{
 
-
-
-
 						$scope.prevPage=$ionicHistory.currentStateName();
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
@@ -232,6 +226,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							// alert('decline call here');
 							// ion.sound.play("bell_ring");
 						}
+						else if($scope.prevPage === 'templates.consulted_patient'){
+							$state.go('templates.doctor_home');
+							$ionicHistory.clearHistory();
+						}
+
 						// else if($scope.prevPage === 'auth.patient_reg3'){
 						// 	console.log($scope.otpentered);
 						// 	$state.go('auth.patient_reg2');
@@ -559,6 +558,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 
+
+
 							LoginService.logoutFromDq($localStorage.user).then(function(response){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
@@ -574,7 +575,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 												$state.go('auth.loginNew');
 
-
 									}
 									var failure = function()
 									{
@@ -589,6 +589,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 								}
+
+
+
 							}).catch(function(error){
 							console.log('failure data', error);
 							});
@@ -1448,32 +1451,32 @@ $scope.sendprescription = function()
 $scope.statename = $ionicHistory.currentStateName();
 
 // console.log($state.statename);
-if($scope.statename =='app.patient_home')
-{
-
-
-		console.log('unread chat count for android called');
-
-
-			$scope.unreadchatforpatient = {};
-				var username = "greet+"+$localStorage.user;
-
-						var password = "DQ_patient";
-
-					var success = function(message)
-					{
-							$scope.unreadchatforpatient = message;
-					}
-
-					var failure = function()
-					{
-					 alert("Error calling Hello Plugin");
-					 //console.log('error');
-
-					}
-
-		hello.unreadchatfromusers(username,password,success, failure);
-}
+// if($scope.statename =='app.patient_home')
+// {
+//
+//
+// 		console.log('unread chat count for android called');
+//
+//
+// 			$scope.unreadchatforpatient = {};
+// 				var username = "greet+"+$localStorage.user;
+//
+// 						var password = "DQ_patient";
+//
+// 					var success = function(message)
+// 					{
+// 							$scope.unreadchatforpatient = message;
+// 					}
+//
+// 					var failure = function()
+// 					{
+// 					 alert("Error calling Hello Plugin");
+// 					 //console.log('error');
+//
+// 					}
+//
+// 		hello.unreadchatfromusers(username,password,success, failure);
+// }
 
 
 });

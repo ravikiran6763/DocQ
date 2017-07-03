@@ -7,6 +7,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
+	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
 	$scope.loginData={};

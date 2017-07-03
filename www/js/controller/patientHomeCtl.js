@@ -5,6 +5,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showDocStatus=false;
 			$rootScope.showNotification=true;
 			$rootScope.showBadge=true;
+			$rootScope.hideSideMenu = true;
 
 			HardwareBackButtonManager.disable();
 
@@ -23,7 +24,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 					console.log('search clicked');
 					$state.go('app.searchDoctors');
 
-				
+
 
 			}
 
@@ -42,8 +43,13 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 				function checkNewMessages()
 				{
+					var success = function(message)
+					{
 
+							$rootScope.unreadchatforpatient = message;
+							console.log($scope.unreadchatforpatient);
 
+					}
 							var success = function(message)
 							{
 
@@ -55,9 +61,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 						var failure = function()
 						{
-							console.log("Error calling Hello Plugin");
-							//console.log(‘error’);
-
+								alert('this is from patient home CTRL');
 						}
 
 							hello.unreadchatfromusers(username,password,success, failure);

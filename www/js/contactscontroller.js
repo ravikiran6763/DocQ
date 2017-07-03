@@ -4,6 +4,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
+  $rootScope.hideSideMenu = true;
 
   $ionicLoading.show({
         template: '<p>Fetching all your contacts...</p><ion-spinner></ion-spinner>'
