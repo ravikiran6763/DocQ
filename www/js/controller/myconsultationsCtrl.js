@@ -58,9 +58,6 @@ function checkNewMessages()
 						console.log('failure data', error);
 						});
 
-<<<<<<< HEAD
-
-=======
 						if($localStorage.doctororpatient == 'patient'){
 							myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 									$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -110,13 +107,6 @@ function checkNewMessages()
 										console.log('failure data', error);
 										});
 						}
->>>>>>> 9102b3fb0884487d0c9f090e2a73f54d74f8d1b5
-
-
-
-
-
-
 						// for (var keyandroid in dataofandroid)
 						// {
 						// if (dataofandroid.hasOwnProperty(keyandroid))
@@ -150,7 +140,6 @@ function checkNewMessages()
 						// }
 						// }
 						// }
-
 		}
 		else
 		{
@@ -175,10 +164,6 @@ function checkNewMessages()
 		}).catch(function(error){
 		console.log('failure data', error);
 	});
-
-
-
-
 
 		// for (var key in data) {
 		// if (data.hasOwnProperty(key)) {
@@ -256,9 +241,6 @@ if($localStorage.doctororpatient == 'patient'){
 		console.log('failure data', error);
 	});
 }
-
-
-
 
 if($localStorage.doctororpatient == 'doctor'){
 				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
@@ -543,20 +525,15 @@ $scope.clicktochat = function(pateientPhone)
 			var success = function(message)
 			{
 				//alert(message);
-
 				console.log(message);
-
 			}
 
 			var failure = function()
 			{
 				//alert("Error calling Hello Plugin");
-
 					console.log('error');
 
 			}
-
-
 			//cordova.exec(null,null, "ExampleApplicationforchat", "chattoanotherperson", [username,password,persontocall]);
 
 		hello.chat(username,password,persontocall,success, failure);

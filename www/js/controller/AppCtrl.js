@@ -443,7 +443,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}, 1000);
 
 
-
 						}
 						else
 						{
@@ -738,7 +737,6 @@ $scope.ratingsObject = {
 										$rootScope.popupSeen=data[i].popupSeen,
 										$rootScope.accptdDocFname=data[i].doctorFname,
 										$rootScope.accptdDocLname=data[i].doctorLname,
-
 
 								console.log($rootScope.popupSeen);
 
