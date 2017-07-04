@@ -37,7 +37,6 @@ DoctorQuickApp.service('doctoronoffdetails', function ($http,$q, BASE_URL, API) 
   this.fetchOne2OneReq = function(doctorphno)
   {
     var deferred = $q.defer();
-    console.log(BASE_URL.url + API.fetchOne2OneReq);
     $http.post(BASE_URL.url + API.fetchOne2OneReq,doctorphno)
     .success(function (data, status, headers, config){
       // console.log(data);

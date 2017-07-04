@@ -65,7 +65,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
     function successFunction() {
-      console.log("It worked!");
+      // console.log("It worked!");
     }
     function errorFunction(error) {
         console.log(error);
@@ -228,10 +228,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
-    console.log('toState',toState);
-    console.log('toParams',toParams);
-    console.log('toParams',fromState);
-    console.log('toParams',fromParams);
+    // console.log('toState',toState);
+    // console.log('toParams',toParams);
+    // console.log('toParams',fromState);
+    // console.log('toParams',fromParams);
 
     // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)

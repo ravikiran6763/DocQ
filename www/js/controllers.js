@@ -243,7 +243,7 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 		else if($localStorage.doctororpatient === 'doctor'){
 			window.plugins.OneSignal.getIds(function(ids) {
 				$scope.playerId=JSON.stringify(ids['userId']);
-				console.log($scope.playerId);
+				// console.log($scope.playerId);
 
 				var updatePlayer ={
 					palyerId:$scope.playerId,

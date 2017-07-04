@@ -65,7 +65,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
 
-				$ionicLoading.show();
+				$ionicLoading.show({
+			        template: '<p>Please wait until we log you in...</p><ion-spinner></ion-spinner>'
+			      });
 
 
 				var userDetails={
@@ -133,14 +135,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						var success = function(message)
 						{
+							$ionicLoading.hide();
+							$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							});
+							$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
-							// $ionicHistory.nextViewOptions({
-							// 	disableAnimate: true,
-							// 	disableBack: true
-							// });
-							// $state.go('app.patient_home', {}, {location: "replace", reload: false});
-
-							$state.go('app.patient_home');
 						}
 
 						var failure = function()
@@ -156,28 +157,28 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						$rootScope.logOb={};
 
-						window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
-						console.log("got main dir",dir);
-						dir.getFile("log.txt", {create:true}, function(file) {
-						console.log("got the file", file);
-						logOb = file;
-						writeLog("App started");
-						});
-						});
+						// window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
+						// console.log("got main dir",dir);
+						// dir.getFile("log.txt", {create:true}, function(file) {
+						// console.log("got the file", file);
+						// logOb = file;
+						// writeLog("App started");
+						// });
+						// });
 
-						function writeLog(str) {
-									if(!logOb) return;
-									var log = str + " [" + (new Date()) + "]\n";
-									console.log("going to log "+log);
-									logOb.createWriter(function(fileWriter) {
-
-									fileWriter.seek(fileWriter.length);
-
-									var blob = new Blob([log], {type:'text/plain'});
-									fileWriter.write(blob);
-									console.log("ok, in theory i worked");
-									}, fail);
-									}
+						// function writeLog(str) {
+						// 			if(!logOb) return;
+						// 			var log = str + " [" + (new Date()) + "]\n";
+						// 			console.log("going to log "+log);
+						// 			logOb.createWriter(function(fileWriter) {
+						//
+						// 			fileWriter.seek(fileWriter.length);
+						//
+						// 			var blob = new Blob([log], {type:'text/plain'});
+						// 			fileWriter.write(blob);
+						// 			console.log("ok, in theory i worked");
+						// 			}, fail);
+						// 			}
 
 					}
 					else if(response === "doctor")
@@ -205,11 +206,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						{
 
 
-							// console.log(message);
-							// $ionicHistory.nextViewOptions({
-							// 	disableAnimate: true,
-							// 	disableBack: true
-							// });
+							console.log(message);
+							$ionicLoading.hide();
+							$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							});
 							$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
 							// $state.go('templates.doctor_home');
 
@@ -264,9 +266,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				// "Valid phone number and password must be entered",function(a){},function(b){}
 				// );
 			}
-			$timeout(function () {
-			 $ionicLoading.hide();
-		 }, 5000);
+		// 	$timeout(function () {
+		// 	 $ionicLoading.hide();
+		//  }, 5000);
 
 		}
 
