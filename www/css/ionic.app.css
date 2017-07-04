@@ -11823,10 +11823,9 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .mydoctor-profile-view .myDoctor-list {
     width: 100%;
-    height: 90%;
     overflow: scroll !important; }
     .mydoctor-profile-view .myDoctor-list li {
-      height: 19%;
+      height: 16%;
       border-bottom: 2px solid #dadada;
       *zoom: 1; }
       .mydoctor-profile-view .myDoctor-list li:before, .mydoctor-profile-view .myDoctor-list li:after {
@@ -11841,7 +11840,7 @@ ion-side-menu .heading-item .message {
       .mydoctor-profile-view .myDoctor-list li .profile-img {
         width: 18%;
         float: left;
-        margin: 3% 0 0 2%; }
+        margin: 5% 0 0 2%; }
         .mydoctor-profile-view .myDoctor-list li .profile-img img {
           border-radius: 100% !important;
           width: 100% !important; }
@@ -11856,7 +11855,7 @@ ion-side-menu .heading-item .message {
           font-size: 1.8em; }
       .mydoctor-profile-view .myDoctor-list li .name-content {
         float: left;
-        padding: 5% 0%;
+        padding: 4% 0%;
         height: 100%;
         width: 70%; }
         .mydoctor-profile-view .myDoctor-list li .name-content p {
@@ -11865,7 +11864,7 @@ ion-side-menu .heading-item .message {
           color: black; }
         .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
           margin-left: 43%;
-          margin-top: -2%;
+          margin-top: -1%;
           text-overflow: ellipsis; }
         .mydoctor-profile-view .myDoctor-list li .name-content h2 {
           margin: 2%;

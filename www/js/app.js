@@ -216,7 +216,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
             disableAnimate: true,
             disableBack: true
           });
-          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: true});
+          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
         })
         .endInit();
 
@@ -230,6 +230,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
     console.log('toState',toState);
     console.log('toParams',toParams);
+    console.log('toParams',fromState);
+    console.log('toParams',fromParams);
+
     // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
@@ -250,9 +253,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       if (toState.name != "app.searchDoctors") {
         $rootScope.sideMenuForSearch = false;
       }
-      // if (toState.name == "app.callAccepted") {
-      //   $rootScope.hideSideMenu = true;
-      // }
+      if (toState.name == "app.patient_summary") {
+        // $rootScope.hideSideMenu = true;
+        console.log('summary');
+      }
       // if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" || toState.name == "app.patient_summary" || toState.name == "templates.prescription"){
       //   $ionicHistory.removeBackView();
       // }

@@ -53,7 +53,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               disableAnimate: true,
               disableBack: true
             });
-          $state.go('app.patient_home', {}, {location: "replace", reload: true});
+          $state.go('app.patient_home', {}, {location: "replace", reload: false});
 
           }
           var failure = function()
@@ -97,7 +97,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
                 disableAnimate: true,
                 disableBack: true
               });
-            $state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+            $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             }
             var failure = function()
             {
@@ -270,7 +270,7 @@ $scope.patientRegistration = function()
               disableAnimate: true,
               disableBack: true
               });
-              $state.go('auth.loginNew', {}, {location: "replace", reload: true});
+              $state.go('auth.loginNew', {}, {location: "replace", reload: false});
 
               var details = {
                 'phone': $rootScope.PatientDetail.patient_mob,

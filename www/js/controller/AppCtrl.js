@@ -181,6 +181,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						$scope.prevPage=$ionicHistory.currentStateName();
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
+							// alert('summary page')
 							$state.go('app.patient_home');
 							$ionicHistory.clearHistory();
 						}
@@ -1415,15 +1416,12 @@ $scope.sendprescription = function()
 						 //
 						 //
 						// 	console.log(message);
-						// 	$ionicHistory.nextViewOptions({
-						// 	disableAnimate: true,
-						// 	disableBack: true
-						//  });
+							$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+						 });
 
-						 //$state.go('templates.consulted_patient',{}, {location: "replace", reload: true});
-
-						 $state.go('templates.consulted_patient');
-
+						 $state.go('templates.consulted_patient',{}, {location: "replace", reload: false});
 
               // alert(message);
 							console.log(message);

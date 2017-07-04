@@ -238,7 +238,7 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			  disableAnimate: true,
 			  disableBack: true
 			});
-			$state.go('app.patient_home',{}, {location: "replace", reload: true})
+			$state.go('app.patient_home',{}, {location: "replace", reload: false})
 		}
 		else if($localStorage.doctororpatient === 'doctor'){
 			window.plugins.OneSignal.getIds(function(ids) {
@@ -274,15 +274,14 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			  disableAnimate: true,
 			  disableBack: true
 			});
-			$state.go('templates.doctor_home',{}, {location: "replace", reload: true})
+			$state.go('templates.doctor_home',{}, {location: "replace", reload: false})
 		}
 		else{
 			$ionicHistory.nextViewOptions({
 			  disableAnimate: true,
 			  disableBack: true
 			});
-			//$state.go('auth.loginNew',{}, {location: "replace", reload: true})
-			 $state.go('auth.loginNew');
+			$state.go('auth.loginNew',{}, {location: "replace", reload: false})
 		}
   },10000);
   $ionicHistory.clearHistory();

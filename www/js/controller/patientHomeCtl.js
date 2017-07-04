@@ -55,7 +55,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 								$rootScope.unreadchatforpatient = message;
 
-								console.log($scope.unreadchatforpatient);
+								// console.log($scope.unreadchatforpatient);
 
 							}
 

@@ -173,7 +173,7 @@ $scope.sendrequesttoonlinedoctors = function()
              disableAnimate: true,
              disableBack: true
            });
-           $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag,rates:$rootScope.rates,totalRates:$rootScope.totalRates},{location: "replace", reload: true});
+           $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag,rates:$rootScope.rates,totalRates:$rootScope.totalRates},{location: "replace", reload: false});
            console.log('show accpted doc profile');
          }, 1000);
 
