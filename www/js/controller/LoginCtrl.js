@@ -1,5 +1,6 @@
 DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
 {
+		var loggedIn=false;
 
 		$scope.user = {};
 		$scope.user.rememberMe = false;
@@ -64,9 +65,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
-
+				$rootScope.logginMessage="Logging into DoctorQuick...";
 				$ionicLoading.show({
-			        template: '<p>Please wait until we log you in...</p><ion-spinner></ion-spinner>'
+			        template: '<ion-spinner></ion-spinner><br><br>{{logginMessage}}'
 			      });
 
 
@@ -135,12 +136,22 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						var success = function(message)
 						{
-							$ionicLoading.hide();
-							$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-							});
-							$state.go('app.patient_home', {}, {location: "replace", reload: false});
+							loggedIn=true;
+								// $ionicLoading.hide();
+								// $state.go('app.patient_home');
+								$rootScope.logginMessage="Connecting to Server";
+								$ionicLoading.hide().then(function(){
+									console.log("The loading indicator is now hidden");
+
+									$ionicHistory.nextViewOptions({
+										disableAnimate: true,
+										disableBack: true
+									});
+									$state.go('app.patient_home', {}, {location: "replace", reload: false});
+
+
+								});
+
 
 						}
 
@@ -151,7 +162,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						}
 
-						$state.go('app.patient_home');//for browser login
+						// $state.go('app.patient_home');//for browser login
 
 						hello.login(uname1,pw1,success, failure);
 
@@ -205,7 +216,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var success = function(message)
 						{
 
-
+							$rootScope.logginMessage="Connecting to Server";
 							console.log(message);
 							$ionicLoading.hide();
 							$ionicHistory.nextViewOptions({
@@ -225,7 +236,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						}
 
 
-					$state.go('templates.doctor_home');//for logging in from browser
+					// $state.go('templates.doctor_home');//for logging in from browser
 					hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
 
