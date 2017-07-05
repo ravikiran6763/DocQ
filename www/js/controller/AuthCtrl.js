@@ -53,7 +53,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               disableAnimate: true,
               disableBack: true
             });
-          $state.go('app.patient_home', {}, {location: "replace", reload: true});
+          $state.go('app.patient_home', {}, {location: "replace", reload: false});
 
           }
           var failure = function()
@@ -61,11 +61,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             alert("Error calling Hello Plugin");
           }
          hello.login(uname1,pw1,success, failure);
-          $ionicHistory.nextViewOptions({
-            disableAnimate: true,
-            disableBack: true
-          });
-          $state.go('app.patient_home');
+        
           window.plugins.OneSignal.getIds(function(ids){
             //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
             //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
@@ -97,7 +93,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
                 disableAnimate: true,
                 disableBack: true
               });
-            $state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+            $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             }
             var failure = function()
             {
@@ -270,7 +266,7 @@ $scope.patientRegistration = function()
               disableAnimate: true,
               disableBack: true
               });
-              $state.go('auth.loginNew', {}, {location: "replace", reload: true});
+              $state.go('auth.loginNew', {}, {location: "replace", reload: false});
 
               var details = {
                 'phone': $rootScope.PatientDetail.patient_mob,

@@ -1,5 +1,6 @@
 DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
 {
+		var loggedIn=false;
 
 		$scope.user = {};
 		$scope.user.rememberMe = false;
@@ -64,8 +65,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
-
-				$ionicLoading.show();
+				$rootScope.logginMessage="Logging into DoctorQuick...";
+				$ionicLoading.show({
+			        template: '<ion-spinner></ion-spinner><br><br>{{logginMessage}}'
+			      });
 
 
 				var userDetails={
@@ -83,11 +86,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					if(response === "patient")
 					{
-
-
-
-
-
 
 						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
 						sessionStorage.setItem('User', 'Patient');
@@ -138,15 +136,23 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						var success = function(message)
 						{
+							loggedIn=true;
+								// $ionicLoading.hide();
+								// $state.go('app.patient_home');
+								$rootScope.logginMessage="Connecting to Server";
+								$ionicLoading.hide().then(function(){
+									console.log("The loading indicator is now hidden");
 
-							$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-							});
-							//$state.go('app.patient_home', {}, {location: "replace", reload: true});
+									$ionicHistory.nextViewOptions({
+										disableAnimate: true,
+										disableBack: true
+									});
+									$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
-							// $state.go('app.patient_home');
-							$state.go('app.patient_home', {}, {location: "replace", reload: true});
+
+								});
+
+
 						}
 
 						var failure = function()
@@ -156,131 +162,40 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						}
 
-						$state.go('app.patient_home', {}, {location: "replace", reload: true});
+						// $state.go('app.patient_home');//for browser login
 
 						hello.login(uname1,pw1,success, failure);
 
 						$rootScope.logOb={};
 
-						window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
-						console.log("got main dir",dir);
-						dir.getFile("log.txt", {create:true}, function(file) {
-						console.log("got the file", file);
-						logOb = file;
-						writeLog("App started");
-						});
-						});
+						// window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
+						// console.log("got main dir",dir);
+						// dir.getFile("log.txt", {create:true}, function(file) {
+						// console.log("got the file", file);
+						// logOb = file;
+						// writeLog("App started");
+						// });
+						// });
 
-						function writeLog(str) {
-									if(!logOb) return;
-									var log = str + " [" + (new Date()) + "]\n";
-									console.log("going to log "+log);
-									logOb.createWriter(function(fileWriter) {
-
-									fileWriter.seek(fileWriter.length);
-
-									var blob = new Blob([log], {type:'text/plain'});
-									fileWriter.write(blob);
-									console.log("ok, in theory i worked");
-									}, fail);
-									}
-
-
-						// var config = {
-						// 				"uname" : uname1,
-						// 				"password":pw1
+						// function writeLog(str) {
+						// 			if(!logOb) return;
+						// 			var log = str + " [" + (new Date()) + "]\n";
+						// 			console.log("going to log "+log);
+						// 			logOb.createWriter(function(fileWriter) {
 						//
-						// 			};
+						// 			fileWriter.seek(fileWriter.length);
 						//
-						//
-						//
-						// function handleSuccess(data) {
-						// 	alert(data);
-						// }
-						//
-						// function handleError(data) {
-						// 	alert("Error: " + data.ErrorMessage);
-						// 	//alert(JSON.stringify(data));
-						// 	//updateView(data);
-						// }
-						//
-						//
-						//
-						// function setConfig() {
-						//
-						//
-						// 		console.log('setconfig called');
-						//
-						// 										var config = {
-						// 														"uname" : uname1,
-						// 														"password":pw1
-						//
-						// 													};
-						//
-						//
-						// 														console.log(config);
-						//
-						// 										myService.setConfiguration(	config,
-						// 																	function(r){handleSuccess(r)},
-						// 																	function(e){handleError(e)});
-						//
-						// 	}
-						//
-						// 	var myService = cordova.plugins.myService;
-						//
-						// 		myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-						//
-						// 								function go() {
-						// 		 myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
-						// 	};
-						//
-						//
-						//
-						// 	function startService(data) {
-						// 	 if (data.ServiceRunning) {
-						// 	    enableTimer(data);
-						// 			setConfig();
-						//
-						//
-						// 	 } else {
-						// 	    myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-						// 	 }
-						// 	}
-						//
-						//
-						//
-						// 	function enableTimer(data) {
-						// 	 if (data.TimerEnabled) {
-						// 	    allDone();
-						// 	 } else {
-						// 	    myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
-						// 	 }
-						// 	}
-						//
-						//
-						// 	function allDone() {
-						// 	 alert("Service now running");
-						// 	}
-
-
-
-						// const prefs = window.plugins.SharedPreferences
-						// prefs.getSharedPreferences('shared_preferences', 'MODE_PRIVATE', () => {
-						// 	prefs.putString('username', uname1);
-						// 	prefs.putString('password', pw1);
-						//
-						// }, (error) => {
-						// 	// handle error
-						// })
-
-
-
+						// 			var blob = new Blob([log], {type:'text/plain'});
+						// 			fileWriter.write(blob);
+						// 			console.log("ok, in theory i worked");
+						// 			}, fail);
+						// 			}
 
 					}
 					else if(response === "doctor")
 					{
 
-console.log('doctor screen should entered');
+						console.log('doctor screen should entered');
 
 						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
 						sessionStorage.setItem('User', 'Doctor');
@@ -301,18 +216,15 @@ console.log('doctor screen should entered');
 						var success = function(message)
 						{
 
-
+							$rootScope.logginMessage="Connecting to Server";
 							console.log(message);
+							$ionicLoading.hide();
 							$ionicHistory.nextViewOptions({
 								disableAnimate: true,
 								disableBack: true
 							});
-							console.log('doctorHome');
-
-						//$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
-
-						$state.go('templates.doctor_home');
-						//$state.go('templates.doctor_home');
+							$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+							// $state.go('templates.doctor_home');
 
 						}
 
@@ -324,7 +236,7 @@ console.log('doctor screen should entered');
 						}
 
 
-					$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+					// $state.go('templates.doctor_home');//for logging in from browser
 					hello.login(uname1,pw1,success, failure);
 					$localStorage.onOff=1;
 
@@ -365,9 +277,9 @@ console.log('doctor screen should entered');
 				// "Valid phone number and password must be entered",function(a){},function(b){}
 				// );
 			}
-			$timeout(function () {
-			 $ionicLoading.hide();
-		 }, 5000);
+		// 	$timeout(function () {
+		// 	 $ionicLoading.hide();
+		//  }, 5000);
 
 		}
 

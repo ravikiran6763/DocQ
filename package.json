@@ -13,9 +13,9 @@
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
         "com.example.hello": "^0.7.0",
-        "com.razorpay.cordova": "^1.2.1",
         "com.red_folder.phonegap.plugin.backgroundservice": "../veeresh mac data/bgs-core",
         "com.red_folder.phonegap.plugin.backgroundservice.sample": "^2.0.0",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-device": "^1.1.0",
         "cordova-plugin-shared-preferences": "0.0.1",
         "cordova-plugin-whitelist": "1.2.0",
@@ -66,8 +66,10 @@
             "ionic-plugin-deploy": {},
             "com.red_folder.phonegap.plugin.backgroundservice": {},
             "cordova-plugin-shared-preferences": {},
-            "com.example.hello": {},
-            "com.razorpay.cordova": {}
-        }
+            "com.example.hello": {}
+        },
+        "platforms": [
+            "ios"
+        ]
     }
 }

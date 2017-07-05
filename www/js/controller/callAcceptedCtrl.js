@@ -110,9 +110,9 @@ $scope.checkWalletBalance = function()
 				disableBack: true
 			 });
 
-			 //$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId}, {location: "replace", reload: true});
+			 //$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId}, {location: "replace", reload: false});
 
-			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId});
+			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
 
 
 			 	console.log('callEnded');
@@ -171,7 +171,7 @@ $scope.BalanceForVoiceCall = function()
  						 	disableAnimate: true,
  						 	disableBack: true
  						 });
- 						 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
+ 						 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: false});
 
 				}
 				var failure = function()
@@ -196,7 +196,7 @@ console.log(checkPatientActivity);
 	 $scope.consultStatus=response;
 	 $localStorage.declinedByDoc = $scope.consultStatus[0][0];
 	 $scope.docDeclined=$localStorage.declinedByDoc;
-	 console.log($scope.consultStatus);
+	//  console.log($scope.consultStatus);
 	 }).catch(function(error){
 	//  console.log('failure data', error);
 	 });

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $rootScope,$stateParams,$window,$timeout,$scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $ionicHistory,$rootScope,$stateParams,$window,$timeout,$scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -15,16 +15,14 @@ console.log($stateParams.calledDoctor);
 $ionicLoading.show();
 
 patientProfileDetailsService.updatenotesflag($stateParams.consultId).then(function(response){
-		console.log(response);
+		// console.log(response);
 	 console.log('success');
  }).catch(function(error){
 	 console.log('failure data', error);
  })
 var key = this;
 
-
-
-$scope.setRating = function(ratings,val) {
+$scope.setRating = function(ratings,val){
 	var rtgs = $scope.ratingArr;
 	for (var i = 0; i < rtgs.length; i++) {
 		if (i < val) {
@@ -35,8 +33,6 @@ $scope.setRating = function(ratings,val) {
 	};
 
 	$rootScope.ratingValue = ratings;
-
-
 
 	console.log(ratings);
 	if(ratings <= 3)
@@ -64,8 +60,14 @@ $scope.setRating = function(ratings,val) {
 			verticalPadding: 6 // iOS default 12, Android default 30
 			}
 			});
-			$state.go("app.patient_home")
-			$ionicHistory.clearHistory();
+			// $ionicHistory.clearCache();
+			$ionicHistory.nextViewOptions({
+			disableAnimate: true,
+			disableBack: true,
+			historyRoot:true
+			});
+			$state.go("app.patient_home",{},{location: "replace", reload: false})
+
 	}
 	else
 	{
@@ -137,9 +139,6 @@ $scope.ratingsObject = {
 					$scope.patient_details ={};
 					$scope.userPhone=LoginService.returnUserPhone();
 
-
-
-
 					if($scope.ratingComments.comment)
 					{
 
@@ -158,8 +157,12 @@ $scope.ratingsObject = {
 							$scope.ratingComments.comment="";
 
 							//$state.go('app.patient_home', {}, {reload: true});
-
-							$state.go('app.patient_home');
+							$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true,
+							historyRoot:true
+							});
+							$state.go('app.patient_home',{},{location: "replace", reload: false});
 
 
 						}).catch(function(error){

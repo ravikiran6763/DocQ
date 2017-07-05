@@ -193,7 +193,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 												disableAnimate: true,
 												disableBack: true
 											 });
-											 $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: true});
+											 $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
 
 												//
 												$scope.enddate = new Date();

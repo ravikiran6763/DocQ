@@ -171,7 +171,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 													disableAnimate: true,
 													disableBack: true
 												});
-													$state.go('templates.doctor_home',{}, {location: "replace", reload: true})
+													$state.go('templates.doctor_home',{}, {location: "replace", reload: false})
 												}
 												},
 												]
@@ -386,10 +386,7 @@ $scope.popupShown = true;
 				 disableBack: true
 			 });
 
-			// $state.go("templates.prescription",{},{location: "replace", reload: true})
-
-
-			 $state.go("templates.prescription");
+			$state.go("templates.prescription",{},{location: "replace", reload: false})
 
  		}
 

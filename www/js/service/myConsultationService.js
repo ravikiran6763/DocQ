@@ -4,7 +4,6 @@ DoctorQuickApp.service('myConsultationService', function ($http,$q, BASE_URL, AP
 this.myConsultedDoctors = function (patient_phone) {
 // console.log(patient_phone);
   var deferred = $q.defer();
-  console.log(BASE_URL.url + API.myConsultations);
   $http.post(BASE_URL.url + API.myConsultations,patient_phone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
@@ -18,7 +17,7 @@ this.myConsultedDoctors = function (patient_phone) {
 }
 
 this.docSummaryDetails = function (doc_phone) {
-console.log(doc_phone);
+// console.log(doc_phone);
   var deferred = $q.defer();
   // console.log(BASE_URL.url + API.docSummary);
   $http.post(BASE_URL.url + API.docSummary,doc_phone)
@@ -39,7 +38,6 @@ console.log(doc_phone);
 this.myConsultedPatients = function (doctor_phone) {
 // console.log(patient_phone);
   var deferred = $q.defer();
-  console.log(BASE_URL.url + API.myConsultedPatients);
   $http.post(BASE_URL.url + API.myConsultedPatients,doctor_phone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
