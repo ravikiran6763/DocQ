@@ -58,9 +58,7 @@ function checkNewMessages()
 						console.log('failure data', error);
 						});
 
-<<<<<<< HEAD
 
-=======
 						if($localStorage.doctororpatient == 'patient'){
 							myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 									$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -110,7 +108,6 @@ function checkNewMessages()
 										console.log('failure data', error);
 										});
 						}
->>>>>>> 9102b3fb0884487d0c9f090e2a73f54d74f8d1b5
 
 
 
