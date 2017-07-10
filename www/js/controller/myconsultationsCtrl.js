@@ -58,10 +58,6 @@ function checkNewMessages()
 						console.log('failure data', error);
 						});
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 584c727c7c2256027beeb14d498a4940606d6de2
 						if($localStorage.doctororpatient == 'patient'){
 							myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 									$rootScope.ConsultedDoctor=response;//store the response array in doctor details
@@ -111,15 +107,6 @@ function checkNewMessages()
 										console.log('failure data', error);
 										});
 						}
-<<<<<<< HEAD
-
-
-
-
-
-
-=======
->>>>>>> 584c727c7c2256027beeb14d498a4940606d6de2
 						// for (var keyandroid in dataofandroid)
 						// {
 						// if (dataofandroid.hasOwnProperty(keyandroid))
