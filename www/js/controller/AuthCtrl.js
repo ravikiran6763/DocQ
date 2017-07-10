@@ -100,13 +100,17 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               });
             $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             }
+            $ionicHistory.nextViewOptions({
+              disableAnimate: true,
+              disableBack: true
+            });
+          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             var failure = function()
             {
               alert("Error calling Hello Plugin");
             }
-            // alert('user:',uname1);
-            // alert('pass:',pw1);
-            hello.login(uname1,pw1,success, failure);
+    
+            // hello.login(uname1,pw1,success, failure);
 
             window.plugins.OneSignal.getIds(function(ids) {
               //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;

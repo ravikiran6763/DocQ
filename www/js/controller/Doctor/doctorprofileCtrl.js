@@ -47,7 +47,7 @@ var data=$scope.myDocDetails1;//take all json data into this variable
         console.log('doc',$rootScope.DocRates);
 
         $scope.ratings = [{
-               current: $rootScope.DocRates,
+               current: $rootScope.rates,
                max: 5,
                total:$rootScope.totalRates
              }, ];

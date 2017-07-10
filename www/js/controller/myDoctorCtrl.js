@@ -27,21 +27,21 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
  // hello.unreadchatfromusers(username,password,success, failure);
 
-	function callAtInterval() {
-		doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
-			$scope.myConsultedDoctors=response;
-			console.log($scope.myConsultedDoctors);
-			$scope.ratings = [{
-						current: 1,
-						max: 5
-				}, ];
-			// console.log($scope.myConsultedDoctors);
-			$ionicLoading.hide();
-		}).catch(function(error){
-		console.log('failure data', error);
-		});
-		// console.log('callAtInterval');
-	}
+	// function callAtInterval() {
+	// 	doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+	// 		$scope.myConsultedDoctors=response;
+	// 		console.log($scope.myConsultedDoctors);
+	// 		$scope.ratings = [{
+	// 					current: 0,
+	// 					max: 5
+	// 			}, ];
+	// 		console.log($scope.myConsultedDoctors);
+	// 		$ionicLoading.hide();
+	// 	}).catch(function(error){
+	// 	console.log('failure data', error);
+	// 	});
+	// 	// console.log('callAtInterval');
+	// }
 
 	$scope.getDocRatingsAll = function(doctorPhone) {
 			// alert("Loaded!");
@@ -67,12 +67,13 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		});
 
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+		// alert('list');
     $scope.myConsultedDoctors=response;
 		console.log($scope.myConsultedDoctors);
 		$scope.ratings = [{
-					current: 1,
+					current: 3,
 					max: 5
-			}, ];
+			}];
 		$ionicLoading.hide();
   }).catch(function(error){
   console.log('failure data', error);
