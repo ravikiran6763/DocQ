@@ -79,7 +79,7 @@ $scope.checkWalletBalance = function()
 						]
 					});
 	}
-	else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
+	else if($localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
 	{
 		var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
@@ -97,15 +97,14 @@ $scope.checkWalletBalance = function()
 						]
 					});
 	}
-	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
+	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi' || $localStorage.networkType == 'Unknown')
 	{
 		var success = function(message)
 		{
 
-			$scope.deviceAndroid = ionic.Platform.isAndroid();
-			console.log($scope.deviceAndroid);
-			console.log('XCurrent:',currentConsultation);
-				console.log(message);
+					alert(message);
+					
+
 				$ionicHistory.nextViewOptions({
 				disableAnimate: true,
 				disableBack: true
