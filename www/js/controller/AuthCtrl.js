@@ -60,8 +60,13 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             alert("Error calling Hello Plugin");
           }
+          $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+          });
+        $state.go('app.patient_home', {}, {location: "replace", reload: false});
          hello.login(uname1,pw1,success, failure);
-        
+
           window.plugins.OneSignal.getIds(function(ids){
             //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
             //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
@@ -259,6 +264,8 @@ $scope.patientRegistration = function()
           {
             console.log(response);
             if(response){
+              $ionicHistory.clearCache();
+              $ionicHistory.clearHistory();
               $window.localStorage.clear();
               $scope.otpentered={};
               $rootScope.PatientDetail={};
@@ -485,8 +492,7 @@ $scope.patientRegistration = function()
                 {
                   $scope.otp=response;
                   console.log($scope.otp);
-                })
-                .catch(function(error)
+                }).catch(function(error)
                 {
                   console.log('failure data', error);
                 });

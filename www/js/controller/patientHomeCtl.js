@@ -26,6 +26,13 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			}
 
+			$rootScope.$on('$stateChangeStart', function (event, toState, fromState){
+
+		     console.log(fromState); // -> Object {url: "/program", templateUrl: "views/program.html", resolve: Object, name: "program"}
+		    //  console.log(toState); // -> Object {} when clicking on e.g. 'news'
+
+		   });
+
 
 			$timeout( function(){
 					console.log('interval started');
@@ -56,8 +63,56 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 							hello.unreadchatfromusers(username,password,success, failure);
 
+				}
+				$scope.statename = $ionicHistory.currentStateName();
+				$scope.iphone=$localStorage.iosLogin;
 
+				$scope.deviceAndroid = ionic.Platform.isAndroid();
+				console.log();
+				if($scope.deviceAndroid === false){
+					$ionicLoading.show({
+				        template: '<ion-spinner></ion-spinner><br><br>connecting..'
+				      });
+
+
+					var success = function(message)
+					{
+							alert(message)
+
+							$ionicLoading.hide().then(function(){
+							console.log("The loading indicator is now hidden");
+							$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							});
+							$state.go('app.patient_home', {}, {location: "replace", reload: false});
+							$localStorage.iosLogin = "NA";
+						});
+
+					}
+
+					var failure = function()
+					{
+						alert("Error Occurred While Loggin in to DoctoQuick");
+					}
+					hello.loginstatus(success,failure);
+					
+					$localStorage.iphoneLogin=0;
 				}
 
+										// $scope.$watch('iphone', function (newValue, oldValue, scope){
+										//
+										// 		alert('newValue',newValue);
+										// 		alert('oldValue',oldValue);
+										// 		if(newValue == "OK"){
+										//
+										// 			alert("Checking loggin status");
+										//
+										// 			// alert('check login status and route from here');
+										//
+										//
+										// 		}
+										//
+										// },true);
 
 });

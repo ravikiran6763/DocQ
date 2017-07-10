@@ -55,13 +55,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 	$scope.doLogIn = function()
 	{
 
-
 				$rootScope.submitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
-
-
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
@@ -87,8 +84,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					if(response === "patient")
 					{
 
-						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
-						sessionStorage.setItem('User', 'Patient');
+						// sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
+						// sessionStorage.setItem('User', 'Patient');
 
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
@@ -133,38 +130,65 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
+						$scope.deviceAndroid = ionic.Platform.isAndroid();
+						console.log($scope.deviceAndroid);
+						if($scope.deviceAndroid === true){
+							var success = function(message)
+							{
+								loggedIn=true;
+									// $ionicLoading.hide();
+									// $state.go('app.patient_home');
+									$rootScope.logginMessage="Connecting to Server";
+									$ionicLoading.hide().then(function(){
+										console.log("The loading indicator is now hidden");
 
-						var success = function(message)
-						{
-							loggedIn=true;
-								// $ionicLoading.hide();
-								// $state.go('app.patient_home');
-								$rootScope.logginMessage="Connecting to Server";
-								$ionicLoading.hide().then(function(){
-									console.log("The loading indicator is now hidden");
+										$ionicHistory.nextViewOptions({
+											disableAnimate: true,
+											disableBack: true
+										});
+										$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
-									$ionicHistory.nextViewOptions({
-										disableAnimate: true,
-										disableBack: true
 									});
-									$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
 
+							}
+							var failure = function()
+							{
+
+								alert("Error calling Hello Plugin");
+
+							}
+
+							// $state.go('app.patient_home');//for browser login
+
+							hello.login(uname1,pw1,success, failure);
+						}
+						else{
+
+							var success = function(message)
+							{
+										// alert(message);
+								$scope.iosLoggin=message;
+								$localStorage.iosLogin=$scope.iosLoggin;
+								$ionicLoading.hide();
+								$ionicHistory.nextViewOptions({
+									disableAnimate: true,
+									disableBack: true
 								});
+								$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
+							}
+							var failure = function()
+							{
 
+								alert("Error calling Hello Plugin");
+
+							}
+
+							// $state.go('app.patient_home');//for browser login
+
+							hello.login(uname1,pw1,success, failure);
 						}
-
-						var failure = function()
-						{
-
-							alert("Error calling Hello Plugin");
-
-						}
-
-						// $state.go('app.patient_home');//for browser login
-
-						hello.login(uname1,pw1,success, failure);
 
 						$rootScope.logOb={};
 
@@ -243,6 +267,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					}
 					else if(response === "alreadyLoggedIn"){
+						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
 							template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Already Logged In</p></div><div class="errorContent"><p>The user is alreaady Logged in</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
@@ -255,7 +280,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
-
+							$ionicLoading.hide();
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
