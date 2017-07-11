@@ -6,11 +6,10 @@
 
 	ion-content{
 		width: auto;
+		height: 100%;
 		overflow: hidden !important;
 	}
-	.scroll-content{
-	  position: relative !important;
-	}
+	
 	.bar-header .bar-light{
 		background: transparent !important;
 	}

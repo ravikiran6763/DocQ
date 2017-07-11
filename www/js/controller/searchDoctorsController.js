@@ -20,7 +20,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    $scope.myBalance=response[0][0];
 	    var uname = "greet+"+$localStorage.user;
 	     var pw = "DQ_patient";
-
 	     var persontocall = "greet+" + $rootScope.docNumToCall;
 			 console.log(persontocall);
 	    //  var persontocall = "greet+" + $localStorage.consultedDoctor;

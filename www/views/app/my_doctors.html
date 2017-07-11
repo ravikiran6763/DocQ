@@ -8,10 +8,10 @@
 
         </ion-refresher>
     <div>
-      <div class="myDoctor-list" ng-repeat="doctor in myConsultedDoctors">
+      <div class="myDoctor-list" >
         <ul>
           <!-- <li  ui-sref="app.viewdoctor_profile({myDocFname:doctor.doctorFname,myDocLname:doctor.doctorLname,myDocNum:doctor.doctorPhone,myDocDegree:doctor.doctorDegrees})"> -->
-        <li   ng-click="viewDocProfile({{doctor.doctorPhone}},{{doctor.totalRating}},{{doctor.totalCount}});">
+        <li  ng-repeat="doctor in myConsultedDoctors" ng-click="viewDocProfile({{doctor.doctorPhone}},{{doctor.totalRating}},{{doctor.totalCount}});">
           <div class="profile-img">
             <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
             <ionic-letter-avatar data={{doctor.doctorFname}}  shape="round" charcount='1'></ionic-letter-avatar>
@@ -35,7 +35,11 @@
             <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doctor.onoff == 2}}"></i>
           </div>
         </li>
-        <li ng-hide="myConsultedDoctors.length" style="margin-top: 8vh;"><center><b style="color:teal;">No Favorite Doctor</b></center></li>
+
+
+      </ul>
+      <ul>
+        <li ng-show="!myConsultedDoctors.length" style="margin-top: 8vh;"><center><b style="color:teal;">No Favorite Doctors</b></center></li>
 
       </ul>
 

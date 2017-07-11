@@ -7,41 +7,10 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
- // $interval(callAtInterval, 5000);
 
 
  var username = "greet+"+$localStorage.user;
  var password = "DQ_patient";
-//
-// $rootScope.chatCount='';
-//   var success = function(message)
-//   {
-// 		$rootScope.chatCount=message
-//  	 console.log($rootScope.chatCount);
-//   }
-//
-//   var failure = function()
-//   {
-//  	 alert("Error calling Hello Plugin");
-//   }
-
- // hello.unreadchatfromusers(username,password,success, failure);
-
-	// function callAtInterval() {
-	// 	doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
-	// 		$scope.myConsultedDoctors=response;
-	// 		console.log($scope.myConsultedDoctors);
-	// 		$scope.ratings = [{
-	// 					current: 0,
-	// 					max: 5
-	// 			}, ];
-	// 		console.log($scope.myConsultedDoctors);
-	// 		$ionicLoading.hide();
-	// 	}).catch(function(error){
-	// 	console.log('failure data', error);
-	// 	});
-	// 	// console.log('callAtInterval');
-	// }
 
 	$scope.getDocRatingsAll = function(doctorPhone) {
 			// alert("Loaded!");
@@ -69,7 +38,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
 		// alert('list');
     $scope.myConsultedDoctors=response;
-		console.log($scope.myConsultedDoctors);
+		console.log($scope.myConsultedDoctors.length);
 		$scope.ratings = [{
 					current: 3,
 					max: 5
@@ -95,25 +64,3 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 
 })
-// $scope.doRefresh = function() {
-// 	console.log('Refreshing!');
-// 	$timeout( function() {
-// 		//simulate async response
-// 		// $scope.items.push('New Item ' + Math.floor(Math.random() * 1000) + 4);
-// 		//Stop the ion-refresher from spinning
-// 		doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
-// 			$scope.myConsultedDoctors=response;
-// 			$scope.ratings = [{
-// 						current: 1,
-// 						max: 5
-// 				}, ];
-// 			console.log($scope.myConsultedDoctors);
-// 			$ionicLoading.hide();
-// 		}).catch(function(error){
-// 		console.log('failure data', error);
-// 		});
-// 		$scope.$broadcast('scroll.refreshComplete');
-//
-// 	}, 1000);
-//
-// };

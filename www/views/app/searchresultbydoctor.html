@@ -23,12 +23,13 @@
               <span ng-repeat="rating in ratings">
                 <!-- <div    star-rating rating-value="doc.ratings / doc.totalRates" max=5 >
                 </div> -->
-                <div    star-rating rating-value="rating.current" max=5 >
+                <div    star-rating rating-value="doc.ratings" max=5 >
                 </div>
-              </span>
+
               <p class="totalReview">
                   ({{doc.totalRates}} Reviews)
               </p>
+                </span>
             </div>
 
 
@@ -40,28 +41,9 @@
       </li>
     </ul>
 
-
-
-          <!-- <a class="item item-avatar item-icon-right" >
-            <img src="img/doc.jpg">
-            <i class="icon ion-android-add-circle" ng-show="{{doc.onoff == 1}}"></i>
-            <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{doc.onoff == 2}}"></i>
-            <p>Practicing since {{doc.practicingSince}}
-              <div class="ratingContainer">
-                  <span ng-repeat="rating in ratings">
-                    <div star-rating rating-value="rating.current" max="rating.max" ></div>
-                  </span>
-              </div>
-            </p>
-          </a> -->
-
       </div>
 <!--
-     <ul>
-    <li ng-repeat="doc in doclist">
-      {{ doc.doctorFname }}
-    </li>
-  </ul> -->
+
 
   </ion-content>
 </ion-view>

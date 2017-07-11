@@ -102,8 +102,8 @@ $scope.checkWalletBalance = function()
 		var success = function(message)
 		{
 
-					alert(message);
-					
+					console.log(message);
+
 
 				$ionicHistory.nextViewOptions({
 				disableAnimate: true,

@@ -14003,9 +14003,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
+    height: 100%;
     overflow: hidden !important; }
-  .patient-reg-1-view .scroll-content {
-    position: relative !important; }
   .patient-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-1-view .top-content {

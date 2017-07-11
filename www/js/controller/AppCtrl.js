@@ -470,26 +470,22 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 	var data=$scope.doclist;//take all json data into this variable
 											 		for(var i=0; i<data.length; i++){
 
-																$rootScope.rates=data[i].ratings,
+																$rootScope.rate=data[i].ratings,
 																$rootScope.totalRates=data[i].totalRates
 
-																if($rootScope.rates == null ){
-																	$rootScope.rates=''
+																if($rootScope.rate == null ){
+																	$rootScope.rates= 0;
 																}
 																if($rootScope.totalRates == null ){
-																	$rootScope.totalRates=''
+																	$rootScope.totalRates= 0;
 																}
-																console.log($rootScope.rates);
-
-																$rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
-																console.log('rates',$rootScope.DocRates);
-																console.log('total',$rootScope.totalRates);
-
-															$scope.ratings = [{
-			 															 current: $rootScope.DocRates,
-			 															 max: 5,
-																		 total:$rootScope.totalRates
-																	 }, ];
+																console.log($rootScope.rate);
+																$scope.ratings = [{
+																			 current: $rootScope.rate,
+																			 max: 5,
+																			 total:$rootScope.totalRates
+																		 }];
+																// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
 
 											 			}
 

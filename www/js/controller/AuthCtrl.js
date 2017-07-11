@@ -60,11 +60,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             alert("Error calling Hello Plugin");
           }
-          $ionicHistory.nextViewOptions({
-            disableAnimate: true,
-            disableBack: true
-          });
-        $state.go('app.patient_home', {}, {location: "replace", reload: false});
+
          hello.login(uname1,pw1,success, failure);
 
           window.plugins.OneSignal.getIds(function(ids){
@@ -100,16 +96,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               });
             $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             }
-            $ionicHistory.nextViewOptions({
-              disableAnimate: true,
-              disableBack: true
-            });
-          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+          
             var failure = function()
             {
               alert("Error calling Hello Plugin");
             }
-    
+
             // hello.login(uname1,pw1,success, failure);
 
             window.plugins.OneSignal.getIds(function(ids) {

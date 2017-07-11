@@ -70,9 +70,9 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				console.log();
 				if($scope.deviceAndroid === false){
-					$ionicLoading.show({
-				        template: '<ion-spinner></ion-spinner><br><br>connecting..'
-				      });
+					// $ionicLoading.show({
+				  //       template: '<ion-spinner></ion-spinner><br><br>connecting..'
+				  //     });
 
 
 					var success = function(message)
@@ -96,7 +96,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 						alert("Error Occurred While Loggin in to DoctoQuick");
 					}
 					hello.loginstatus(success,failure);
-					
+
 					$localStorage.iphoneLogin=0;
 				}
 
