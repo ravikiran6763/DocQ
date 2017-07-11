@@ -228,21 +228,21 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
-    // console.log('toState',toState);
-    // console.log('toParams',toParams);
-    // $localStorage.prevState = fromState.url;
-    console.log('from',fromState.url);
-    console.log('fromParams',fromParams);
-      // if(fromState.url == '/loginNew'){
-      //   $localStorage.iphoneLogin = 1;
-      // }
+        // console.log('toState',toState);
+        // console.log('toParams',toParams);
+        // $localStorage.prevState = fromState.url;
+        // console.log('from',fromState.url);
+        // console.log('fromParams',fromParams);
+        // if(fromState.url == '/loginNew'){
+        //   $localStorage.iphoneLogin = 1;
+        // }
 
-    // console.log(toState.name.indexOf('app.patient_home'));
+        // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
-      // Restore platform default transition. We are just hardcoding android transitions to auth views.
-      //$ionicConfig.views.transition(none);
-      // If it's ios, then enable swipe back again
+        // Restore platform default transition. We are just hardcoding android transitions to auth views.
+        //$ionicConfig.views.transition(none);
+        // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
           $ionicConfig.views.transition('none');

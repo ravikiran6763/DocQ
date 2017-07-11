@@ -37,12 +37,11 @@ function checkNewMessages()
 		var success = function(message)
 		{
 		$ionicLoading.hide();
-		// console.log(message);
 		if($scope.deviceAndroid)
 		{
 						$scope.chatlist1 = message;
 
-						console.log(message);
+						// console.log(message);
 
 						var forandroidchatlist = {};
 						forandroidchatlist = $scope.chatlist1;
@@ -50,9 +49,6 @@ function checkNewMessages()
 						var dataofandroid = JSON.parse(forandroidchatlist);
 						dataofandroid.chatTo=$localStorage.user;
 
-						// console.log(dataofandroid.chatTo);
-
-						// console.log('UpdateChat',dataofandroid);
 						doctorServices.createChatHistory(dataofandroid).then(function(response){
 						$scope.chatHistory=response;//store the response array in doctor details
 						// console.log('dataSent :',response);

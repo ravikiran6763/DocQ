@@ -153,6 +153,7 @@ $scope.sendForm = function($event,form)
   $scope.registerPatient=function()
   {
       var patientDetails = {};
+      $scope.loginDatasubmitted=false;
       $state.go('auth.patient_reg1');
   }
 
@@ -266,12 +267,16 @@ $scope.patientRegistration = function()
               $window.localStorage.clear();
               $scope.otpentered={};
               $rootScope.PatientDetail={};
+
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
               });
-              $state.go('auth.loginNew', {}, {location: "replace", reload: false});
+              $scope.submitted = false;
+              $scope.submitted2ndPage = false;
 
+
+              $state.go('auth.loginNew', {}, {location: "replace", reload: true});
               var details = {
                 'phone': $rootScope.PatientDetail.patient_mob,
                 'password': $rootScope.PatientDetail.pat_password

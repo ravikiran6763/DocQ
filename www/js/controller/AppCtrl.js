@@ -233,11 +233,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$ionicHistory.clearHistory();
 						}
 
-						// else if($scope.prevPage === 'auth.patient_reg3'){
-						// 	console.log($scope.otpentered);
-						// 	$state.go('auth.patient_reg2');
-						//
-						// }
+						else if($scope.prevPage === 'auth.patient_reg3'){
+							console.log($scope.otpentered);
+							$state.go('auth.patient_reg2');
+
+						}
 						else{
 							window.history.back();
 							}
@@ -609,8 +609,16 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
  }
 
  $scope.clearAllHistory = function(){
- 		$state.go('app.patient_home');
+	 if($localStorage.doctororpatient === 'patient'){
+		 $state.go('app.patient_home');
+
+	 }
+	 if($localStorage.doctororpatient === 'doctor'){
+		$state.go('templpates.doctor_home');
+	}
 		$ionicHistory.clearHistory();
+		$ionicHistory.clearCache();
+
 					console.log($ionicHistory.clearHistory());
  }
 	$scope.getPatientDetails = function(){
@@ -638,24 +646,24 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			patientProfileDetailsService.changePwd2(newPwd)
 			.then(function(response){
 			console.log(response);
+				$scope.login='';
 
+				// window.plugins.toast.showWithOptions({
+				// 	message: "Your password has been updated.",
+				// 	duration: "short", // 2000 ms
+				// 	position: "bottom",
+				// 	styling: {
+				// 	opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+				// 	backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+				// 	textColor: '#ffffff', // Ditto. Default #FFFFFF
+				// 	textSize: 13, // Default is approx. 13.
+				// 	cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+				// 	horizontalPadding: 16, // iOS default 16, Android default 50
+				// 	verticalPadding: 12 // iOS default 12, Android default 30
+				// }
+				// });
 
-				window.plugins.toast.showWithOptions({
-					message: "Your password has been updated.",
-					duration: "short", // 2000 ms
-					position: "bottom",
-					styling: {
-					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-					textColor: '#ffffff', // Ditto. Default #FFFFFF
-					textSize: 13, // Default is approx. 13.
-					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-					horizontalPadding: 16, // iOS default 16, Android default 50
-					verticalPadding: 12 // iOS default 12, Android default 30
-				}
-				});
-
-	// window.history.back();
+				window.history.goback();
 
 			}).catch(function(error){
 			console.log('failure data', error);
@@ -670,9 +678,24 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			userPhone:$localStorage.user
 			};
 			console.log(newPwd);
-			doctorServices.changeDocPwd(newPwd)
-			.then(function(response){
+			doctorServices.changeDocPwd(newPwd).then(function(response){
 			console.log(response);
+			$scope.login='';
+			window.plugins.toast.showWithOptions({
+				message: "Your password has been updated.",
+				duration: "short", // 2000 ms
+				position: "bottom",
+				styling: {
+				opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+				backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+				textColor: '#ffffff', // Ditto. Default #FFFFFF
+				textSize: 13, // Default is approx. 13.
+				cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+				horizontalPadding: 16, // iOS default 16, Android default 50
+				verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+			window.history.goback();
 
 			}).catch(function(error){
 			console.log('failure data', error);

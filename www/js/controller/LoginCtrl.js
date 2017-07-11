@@ -22,7 +22,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 		$scope.sendForm = function($event,form)
 		{
 	       $event.preventDefault()
-	       $scope.submitted = true
+	       $scope.loginDatasubmitted = true
 				//  console.log($scope.submitted);
 	  };
 
@@ -55,7 +55,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 	$scope.doLogIn = function()
 	{
 
-				$rootScope.submitted=true;
+				$rootScope.loginDatasubmitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
