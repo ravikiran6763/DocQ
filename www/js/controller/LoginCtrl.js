@@ -185,34 +185,89 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
+<<<<<<< HEAD
+// 							var myService;
+// 							myService = cordova.plugins.myService;
+//
+// 							myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+//
+//
+// 							function go() {
+//    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
+// };
+//
+// 					function startService(data) {
+// 					   if (data.ServiceRunning) {
+// 					      enableTimer(data);
+// 					   } else {
+// 					      myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+// 					   }
+// 					}
+//
+// 					function enableTimer(data) {
+// 					   if (data.TimerEnabled) {
+// 					      allDone();
+// 					   } else {
+// 					      myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
+// 					   }
+// 					}
+//
+// 					function allDone() {
+// 					   alert("Service now running");
+// 					}
+
+
+
+						// $state.go('app.patient_home');//for browser login
+=======
 							// $state.go('app.patient_home');//for browser login
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 
 							hello.login(uname1,pw1,success, failure);
 						}
 
-						$rootScope.logOb={};
-
-						// window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function(dir) {
+						// $rootScope.logOb={};
+						//
+						// window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir) {
 						// console.log("got main dir",dir);
 						// dir.getFile("log.txt", {create:true}, function(file) {
 						// console.log("got the file", file);
 						// logOb = file;
-						// writeLog("App started");
+						// writeLog(userDetails);
 						// });
 						// });
-
-						// function writeLog(str) {
-						// 			if(!logOb) return;
-						// 			var log = str + " [" + (new Date()) + "]\n";
-						// 			console.log("going to log "+log);
-						// 			logOb.createWriter(function(fileWriter) {
 						//
-						// 			fileWriter.seek(fileWriter.length);
+						// function writeLog(str)
+						// {
 						//
-						// 			var blob = new Blob([log], {type:'text/plain'});
-						// 			fileWriter.write(blob);
-						// 			console.log("ok, in theory i worked");
-						// 			}, fail);
+						//
+						// 		console.log(str.password);
+						//
+						// 						if(!logOb) return;
+						// 						var log = str.userNum + "\n" + str.password;
+						//
+						//
+						//
+						// 						console.log("going to log "+log);
+						// 						logOb.createWriter(function(fileWriter) {
+						//
+						// 						fileWriter.seek(fileWriter.length);
+						//
+						// 						var blob = new Blob([log], {type:'text/plain'});
+						//
+						//
+						// 						fileWriter.write(blob);
+						//
+						// 						console.log("ok, in theory i worked");
+						// 						}, fail);
+						// }
+						//
+						//
+						// 			function fail()
+						// 			{
+						//
+						// 					console.log('failure called');
+						//
 						// 			}
 
 					}
@@ -267,7 +322,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					}
 					else if(response === "alreadyLoggedIn"){
+<<<<<<< HEAD
+
 						$ionicLoading.hide();
+
+=======
+						$ionicLoading.hide();
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
 							template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Already Logged In</p></div><div class="errorContent"><p>The user is alreaady Logged in</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
@@ -280,7 +341,15 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
+<<<<<<< HEAD
+
+								$ionicLoading.hide();
+
+
+
+=======
 							$ionicLoading.hide();
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',

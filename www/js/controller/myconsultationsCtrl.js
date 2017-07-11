@@ -61,6 +61,8 @@ function checkNewMessages()
 						});
 
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -97,6 +99,7 @@ function checkNewMessages()
 						// }
 						// }
 						// }
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 		}
 		else
 		{
@@ -108,11 +111,8 @@ function checkNewMessages()
 
 		var res = forioschatlist.slice(1,-1);
 
-		// console.log('after slicing:',res);
-
-
 		var dataForIos = JSON.parse(forioschatlist);
-		// console.log('ChatData:',dataForIos);
+
 
 
 		doctorServices.createChatHistoryIos(dataForIos).then(function(response){
@@ -122,42 +122,7 @@ function checkNewMessages()
 		console.log('failure data', error);
 	});
 
-		// for (var key in data) {
-		// if (data.hasOwnProperty(key)) {
-		// console.log(key + " = " + data[key]);
-		//
-		//
-		// if(key == "unread")
-		// {
-		// $scope.unreadchatcountfromvsee = data[key];
-		// }
-		// else if(key == "message")
-		// {
-		// $scope.msg = data[key];
-		// }
-		// else if(key == "name")
-		// {
-		// $scope.name = data[key];
-		//
-		// $scope.name = $scope.name.substring(6);
-		//
-		// console.log('ChatNAme:',$scope.name);
-		//
-		//
-		//
-		// }
-		// else if(key == "dateformat")
-		// {
-		// $scope.datestring = data[key];
-		// }
-		// else {
-		// console.log('no response from vsee');
-		// // noresponse of chat from vsee
-		// }
-		// }
-		// }
-		// }
-		//
+
 	}
 
 
@@ -220,7 +185,10 @@ if($localStorage.doctororpatient == 'doctor'){
 }
 
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 }
 
 $scope.pagedecision=$ionicHistory.currentStateName();
