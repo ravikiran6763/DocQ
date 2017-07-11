@@ -273,10 +273,15 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 				var docpatphno = {
 				accpetcode : "2",
 				doctorphno : $localStorage.user,
-				patientphno : $stateParams.pphno,
+				patientphno :$stateParams.reqPat,
 				consultId:$rootScope.reqId
 				}
-				patientrequesttodoctor.declinedbydoctor(docpatphno);
+				patientrequesttodoctor.declinedbydoctor(docpatphno).then(function(response){
+	   		console.log(response);
+
+	   	 }).catch(function(error){
+	   	//  console.log('failure data', error);
+	   	 });
 			}
 			$state.go('templates.doctor_home');
 

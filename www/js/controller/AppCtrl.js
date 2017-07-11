@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -662,7 +662,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 				// 	verticalPadding: 12 // iOS default 12, Android default 30
 				// }
 				// });
-
+				// $state.go("app.patient_home",())
 				window.history.goback();
 
 			}).catch(function(error){
@@ -1045,10 +1045,6 @@ $scope.BalanceForVoiceCall=function()
 $rootScope.prescription={};
 
 $scope.done = function (prescType,sno){
-
-
-
-
 
         switch(sno){
             case 1://for diagnosis
