@@ -608,6 +608,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 	 $ionicSideMenuDelegate.toggleRight();
  }
 
+ $scope.clearAllHistory = function(){
+ 		$state.go('app.patient_home');
+		$ionicHistory.clearHistory();
+					console.log($ionicHistory.clearHistory());
+ }
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');
 						$scope.patient_details ={};

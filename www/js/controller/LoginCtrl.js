@@ -62,7 +62,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
-				$rootScope.logginMessage="Logging into DoctorQuick...";
+				$rootScope.logginMessage="Logging into DoctorQuick";
 				$ionicLoading.show({
 			        template: '<ion-spinner></ion-spinner><br><br>{{logginMessage}}'
 			      });

@@ -32,6 +32,10 @@
     <ion-content class="sidemenu-padding" ng-class="{'search-side-menu' : sideMenuForSearch}">
 
       <ion-list ng-hide="sideMenuForSearch">
+        <ion-item class="item-icon-left" ng-click="clearAllHistory();"  ui-sref="app.patient_home" menu-close>
+          <i class="icon ion-ios-home"></i>
+          <h2 class="menu-text">Home</h2>
+        </ion-item>
         <ion-item class="item-icon-left" ng-click="getPatientDetails();"  ui-sref="app.patient_profile" menu-close>
           <i class="icon ion-android-bookmark"></i>
           <h2 class="menu-text">Profile</h2>

@@ -68,37 +68,37 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				$scope.iphone=$localStorage.iosLogin;
 
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
-				console.log();
-				if($scope.deviceAndroid === false){
-					// $ionicLoading.show({
-				  //       template: '<ion-spinner></ion-spinner><br><br>connecting..'
-				  //     });
-
-
-					var success = function(message)
-					{
-							alert(message)
-
-							$ionicLoading.hide().then(function(){
-							console.log("The loading indicator is now hidden");
-							$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-							});
-							$state.go('app.patient_home', {}, {location: "replace", reload: false});
-							$localStorage.iosLogin = "NA";
-						});
-
-					}
-
-					var failure = function()
-					{
-						alert("Error Occurred While Loggin in to DoctoQuick");
-					}
-					hello.loginstatus(success,failure);
-
-					$localStorage.iphoneLogin=0;
-				}
+				// console.log();
+				// if($scope.deviceAndroid === false){
+				// 	// $ionicLoading.show({
+				//   //       template: '<ion-spinner></ion-spinner><br><br>connecting..'
+				//   //     });
+				//
+				//
+				// 	var success = function(message)
+				// 	{
+				// 			// alert(message)
+				//
+				// 			$ionicLoading.hide().then(function(){
+				// 			console.log("The loading indicator is now hidden");
+				// 			$ionicHistory.nextViewOptions({
+				// 				disableAnimate: true,
+				// 				disableBack: true
+				// 			});
+				// 			$state.go('app.patient_home', {}, {location: "replace", reload: false});
+				// 			$localStorage.iosLogin = "NA";
+				// 		});
+				//
+				// 	}
+				//
+				// 	var failure = function()
+				// 	{
+				// 		alert("Error Occurred While Loggin in to DoctoQuick");
+				// 	}
+				// 	hello.loginstatus(success,failure);
+				//
+				// 	$localStorage.iphoneLogin=0;
+				// }
 
 										// $scope.$watch('iphone', function (newValue, oldValue, scope){
 										//
