@@ -42,6 +42,8 @@ function checkNewMessages()
 		{
 						$scope.chatlist1 = message;
 
+						console.log(message);
+
 						var forandroidchatlist = {};
 						forandroidchatlist = $scope.chatlist1;
 
@@ -59,6 +61,45 @@ function checkNewMessages()
 						});
 
 
+<<<<<<< HEAD
+=======
+
+
+
+						// for (var keyandroid in dataofandroid)
+						// {
+						// if (dataofandroid.hasOwnProperty(keyandroid))
+						// {
+						//    console.log(keyandroid + " = " + dataofandroid[keyandroid]);
+						//
+						// if(keyandroid == "unread")
+						// {
+						//    $scope.unreadcountforandroid = dataofandroid[keyandroid];
+						// }
+						//
+						// if(keyandroid == "message")
+						// {
+						//
+						//  $scope.msgforandroid = dataofandroid[keyandroid];
+						//
+						// }
+						// else if(keyandroid == "name")
+						// {
+						//    $scope.nameforandroid = dataofandroid[keyandroid];
+						//    console.log($scope.nameforandroid);
+						//
+						// }
+						// else if(keyandroid == "dateformat")
+						// {
+						//    $scope.datestringforandroid = dataofandroid[keyandroid];
+						// }
+						// else
+						// {
+						//  console.log('no response from vsee');
+						// }
+						// }
+						// }
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 		}
 		else
 		{
@@ -144,6 +185,10 @@ if($localStorage.doctororpatient == 'doctor'){
 }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 }
 
 $scope.pagedecision=$ionicHistory.currentStateName();

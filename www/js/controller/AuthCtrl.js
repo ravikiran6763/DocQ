@@ -60,8 +60,9 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             alert("Error calling Hello Plugin");
           }
+
          hello.login(uname1,pw1,success, failure);
-        
+
           window.plugins.OneSignal.getIds(function(ids){
             //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
             //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
@@ -95,13 +96,13 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               });
             $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             }
+          
             var failure = function()
             {
               alert("Error calling Hello Plugin");
             }
-            // alert('user:',uname1);
-            // alert('pass:',pw1);
-            hello.login(uname1,pw1,success, failure);
+
+            // hello.login(uname1,pw1,success, failure);
 
             window.plugins.OneSignal.getIds(function(ids) {
               //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -259,6 +260,8 @@ $scope.patientRegistration = function()
           {
             console.log(response);
             if(response){
+              $ionicHistory.clearCache();
+              $ionicHistory.clearHistory();
               $window.localStorage.clear();
               $scope.otpentered={};
               $rootScope.PatientDetail={};
@@ -485,8 +488,7 @@ $scope.patientRegistration = function()
                 {
                   $scope.otp=response;
                   console.log($scope.otp);
-                })
-                .catch(function(error)
+                }).catch(function(error)
                 {
                   console.log('failure data', error);
                 });

@@ -227,11 +227,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       console.log('device ready for network check');
   }
 
-  $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams){
+  $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
     // console.log('toState',toState);
     // console.log('toParams',toParams);
-    // console.log('toParams',fromState);
-    // console.log('toParams',fromParams);
+    // $localStorage.prevState = fromState.url;
+    console.log('from',fromState.url);
+    console.log('fromParams',fromParams);
+      // if(fromState.url == '/loginNew'){
+      //   $localStorage.iphoneLogin = 1;
+      // }
 
     // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)

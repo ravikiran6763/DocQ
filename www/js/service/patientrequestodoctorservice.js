@@ -21,7 +21,23 @@ DoctorQuickApp.service('patientrequesttodoctor', function ($http,$q, BASE_URL, A
       {
         console.log(docpatphno);
         var deferred = $q.defer();
-        $http.post(BASE_URL.url + API.declinedbydoctor,docpatphno)
+        $http.post(BASE_URL.url + API.sendNotification,docpatphno)
+        .success(function (data, status, headers, config){
+        console.log(data);
+        deferred.resolve(data);
+        })
+        .error(function (){
+        deferred.reject('Error while getting data');
+        });
+
+        return deferred.promise;
+
+      }
+
+      this.sendNotification = function(patient)
+      {
+        var deferred = $q.defer();
+        $http.post(BASE_URL.url + API.sendNotification,patient)
         .success(function (data, status, headers, config){
         console.log(data);
         deferred.resolve(data);

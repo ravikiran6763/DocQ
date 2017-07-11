@@ -38,7 +38,7 @@
           <button type="submit" class=" button button-block button-assertive"  ng-click="BalanceForVoiceCall(); ">
             Voice Call
           </button>
-          <button type="submit" class="button button-block button-assertive" ng-click="checkWalletBalance();">
+          <button type="submit" class="button button-block button-assertive" ng-click="videoCallMydoc({{mydocs.doctorPhone}});">
             Video Call
           </button>
         </div>
@@ -48,7 +48,7 @@
         <h4>Dr.{{mydocs.doctorfname |capitalize}} is offline<br>you may request a consultatiion <br>when back online by sending a<br>notification</h4>
         <div class="buttons">
 
-          <button type="submit" class="button button-block button-assertive" ng-click="checkWalletBalance();">
+          <button type="submit" class="button button-block button-assertive" ng-click="sendOfflineMessage({{mydocs.doctorPhone}});">
             Send Notification
           </button>
         </div>

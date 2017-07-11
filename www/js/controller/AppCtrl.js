@@ -172,9 +172,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 	};
 
 
-
-
-
 		$rootScope.goBack = function()
 		{
 
@@ -473,26 +470,22 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 	var data=$scope.doclist;//take all json data into this variable
 											 		for(var i=0; i<data.length; i++){
 
-																$rootScope.rates=data[i].ratings,
+																$rootScope.rate=data[i].ratings,
 																$rootScope.totalRates=data[i].totalRates
 
-																if($rootScope.rates == null ){
-																	$rootScope.rates=''
+																if($rootScope.rate == null ){
+																	$rootScope.rates= 0;
 																}
 																if($rootScope.totalRates == null ){
-																	$rootScope.totalRates=''
+																	$rootScope.totalRates= 0;
 																}
-																console.log($rootScope.rates);
-
-																$rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
-																console.log('rates',$rootScope.DocRates);
-																console.log('total',$rootScope.totalRates);
-
-															$scope.ratings = [{
-			 															 current: $rootScope.DocRates,
-			 															 max: 5,
-																		 total:$rootScope.totalRates
-																	 }, ];
+																console.log($rootScope.rate);
+																$scope.ratings = [{
+																			 current: $rootScope.rate,
+																			 max: 5,
+																			 total:$rootScope.totalRates
+																		 }];
+																// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
 
 											 			}
 
@@ -1448,69 +1441,7 @@ $scope.sendprescription = function()
 }
 
 
-$scope.statename = $ionicHistory.currentStateName();
 
-// console.log($state.statename);
-// if($scope.statename =='app.patient_home')
-// {
-//
-//
-// 		console.log('unread chat count for android called');
-//
-//
-// 			$scope.unreadchatforpatient = {};
-// 				var username = "greet+"+$localStorage.user;
-//
-// 						var password = "DQ_patient";
-//
-// 					var success = function(message)
-// 					{
-// 							$scope.unreadchatforpatient = message;
-// 					}
-//
-// 					var failure = function()
-// 					{
-// 					 alert("Error calling Hello Plugin");
-// 					 //console.log('error');
-//
-// 					}
-//
-// 		hello.unreadchatfromusers(username,password,success, failure);
-// }
 
 
 });
-
-
-///Firebase appraoch of push notification getting token with some service worker error
-
-// var config = {
-// 	apiKey: "AIzaSyBPldeHuqE5O3GGqS2jWIkR5s8JKNnfxDE",
-// 	authDomain: "doctorquick-158607.firebaseapp.com",
-// 	databaseURL: "https://doctorquick-158607.firebaseio.com",
-// 	storageBucket: "doctorquick-158607.appspot.com",
-// 	messagingSenderId: "271054721857"
-// };
-// console.log(config);
-// firebase.initializeApp(config);
-// console.log(firebase.app().name);
-//
-// // Retrieve Firebase Messaging object.
-// const messaging = firebase.messaging();
-//
-// 	messaging.requestPermission()
-// 	.then(function() {
-// 	console.log('Notification permission granted.');
-//
-// 	return messaging.getToken();
-// 	})
-// 	.then(function(token){
-// 		console.log(token);
-// 	})
-// 	.catch(function(err) {
-// 	console.log('Unable to get permission to notify.', err);
-// 	});
-//
-// 	messaging.onMessage(function(payload){
-// 		console.log('onMessage',payload);
-// 	});

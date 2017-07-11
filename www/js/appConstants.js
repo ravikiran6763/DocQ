@@ -49,6 +49,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'requestForCall' : 'patient/requestForCall.php',
         'cancelOne2oneReq' : 'patient/cancelOne2oneReq.php',
         'sendOfflineMessage' : 'patient/sendOfflineMessage.php',
+        'sendNotification' : 'patient/sendNotification.php',
+
 
 
 
