@@ -59,13 +59,6 @@ function checkNewMessages()
 						}).catch(function(error){
 						console.log('failure data', error);
 						});
-
-
-<<<<<<< HEAD
-=======
-
-
-
 						// for (var keyandroid in dataofandroid)
 						// {
 						// if (dataofandroid.hasOwnProperty(keyandroid))
@@ -99,7 +92,6 @@ function checkNewMessages()
 						// }
 						// }
 						// }
->>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 		}
 		else
 		{
@@ -183,12 +175,6 @@ if($localStorage.doctororpatient == 'doctor'){
 				console.log('failure data', error);
 				});
 }
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 }
 
 $scope.pagedecision=$ionicHistory.currentStateName();
