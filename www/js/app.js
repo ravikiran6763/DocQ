@@ -228,15 +228,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
-        // console.log('toState',toState);
-        // console.log('toParams',toParams);
-        // $localStorage.prevState = fromState.url;
-        // console.log('from',fromState.url);
-        // console.log('fromParams',fromParams);
-        // if(fromState.url == '/loginNew'){
-        //   $localStorage.iphoneLogin = 1;
-        // }
 
+        $rootScope.previousState = fromState;
         // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
@@ -261,10 +254,29 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         // $rootScope.hideSideMenu = true;
         console.log('summary');
       }
-      // if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" || toState.name == "app.patient_summary" || toState.name == "templates.prescription"){
-      //   $ionicHistory.removeBackView();
-      // }
+      console.log($rootScope.previousState.name);
+      $ionicPlatform.registerBackButtonAction(function (event) {
+        if ( ($rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
+            alert('route to home page and set the root to homepage');
+
+              $ionicPlatform.registerBackButtonAction(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("Stop");
+              }, 100);
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states.
+                // Do nothing here to disable H/W back button.
+                // navigator.app.exitAspp();
+            } else {
+                // For all other states, the H/W BACK button is enabled
+                navigator.app.backHistory();
+            }
+        }, 1000);
+
   });
+
+
   // press again to exit
   $ionicPlatform.registerBackButtonAction(function(e){
       $rootScope.currState=$ionicHistory.currentStateName();
@@ -307,8 +319,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   },101);
 
   })
-
-
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';

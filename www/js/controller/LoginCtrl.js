@@ -185,87 +185,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
-// 							var myService;
-// 							myService = cordova.plugins.myService;
-//
-// 							myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-//
-//
-// 							function go() {
-//    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
-// };
-//
-// 					function startService(data) {
-// 					   if (data.ServiceRunning) {
-// 					      enableTimer(data);
-// 					   } else {
-// 					      myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-// 					   }
-// 					}
-//
-// 					function enableTimer(data) {
-// 					   if (data.TimerEnabled) {
-// 					      allDone();
-// 					   } else {
-// 					      myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
-// 					   }
-// 					}
-//
-// 					function allDone() {
-// 					   alert("Service now running");
-// 					}
-
-
-
-						// $state.go('app.patient_home');//for browser login
-							// $state.go('app.patient_home');//for browser login
-
 							hello.login(uname1,pw1,success, failure);
 						}
 
-						// $rootScope.logOb={};
-						//
-						// window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir) {
-						// console.log("got main dir",dir);
-						// dir.getFile("log.txt", {create:true}, function(file) {
-						// console.log("got the file", file);
-						// logOb = file;
-						// writeLog(userDetails);
-						// });
-						// });
-						//
-						// function writeLog(str)
-						// {
-						//
-						//
-						// 		console.log(str.password);
-						//
-						// 						if(!logOb) return;
-						// 						var log = str.userNum + "\n" + str.password;
-						//
-						//
-						//
-						// 						console.log("going to log "+log);
-						// 						logOb.createWriter(function(fileWriter) {
-						//
-						// 						fileWriter.seek(fileWriter.length);
-						//
-						// 						var blob = new Blob([log], {type:'text/plain'});
-						//
-						//
-						// 						fileWriter.write(blob);
-						//
-						// 						console.log("ok, in theory i worked");
-						// 						}, fail);
-						// }
-						//
-						//
-						// 			function fail()
-						// 			{
-						//
-						// 					console.log('failure called');
-						//
-						// 			}
+
 
 					}
 					else if(response === "doctor")

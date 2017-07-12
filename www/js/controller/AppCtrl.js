@@ -614,7 +614,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
-		$state.go('templpates.doctor_home');
+		$state.go('templates.doctor_home');
 	}
 		$ionicHistory.clearHistory();
 		$ionicHistory.clearCache();
@@ -642,32 +642,54 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			newPwd1:$scope.login.password,
 			userPhone:$localStorage.user
 			};
-			console.log(newPwd);
-			patientProfileDetailsService.changePwd2(newPwd)
-			.then(function(response){
-			console.log(response);
-				$scope.login='';
+			console.log($scope.login.password);
+			console.log($scope.login.verify);
 
-				// window.plugins.toast.showWithOptions({
-				// 	message: "Your password has been updated.",
-				// 	duration: "short", // 2000 ms
-				// 	position: "bottom",
-				// 	styling: {
-				// 	opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-				// 	backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-				// 	textColor: '#ffffff', // Ditto. Default #FFFFFF
-				// 	textSize: 13, // Default is approx. 13.
-				// 	cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-				// 	horizontalPadding: 16, // iOS default 16, Android default 50
-				// 	verticalPadding: 12 // iOS default 12, Android default 30
-				// }
-				// });
-				// $state.go("app.patient_home",())
-				window.history.goback();
+			if($scope.login.password === $scope.login.verify){
+				patientProfileDetailsService.changePwd2(newPwd).then(function(response){
+				console.log(response);
+					$scope.login='';
 
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
+					window.plugins.toast.showWithOptions({
+						message: "Your password has been updated.",
+						duration: "short", // 2000 ms
+						position: "bottom",
+						styling: {
+						opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+						backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+						textColor: '#ffffff', // Ditto. Default #FFFFFF
+						textSize: 13, // Default is approx. 13.
+						cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+						horizontalPadding: 16, // iOS default 16, Android default 50
+						verticalPadding: 12 // iOS default 12, Android default 30
+					}
+					});
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+
+				$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true
+			 });
+				$state.go("app.patient_home",{}, {location: "replace", reload: false});
+			}
+			else{
+				window.plugins.toast.showWithOptions({
+					message: "Password did not match.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+			}
 
 		}
 		$scope.updateDocPwd=function(){
@@ -677,29 +699,56 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			newPwd1:$scope.login.password,
 			userPhone:$localStorage.user
 			};
-			console.log(newPwd);
-			doctorServices.changeDocPwd(newPwd).then(function(response){
-			console.log(response);
-			$scope.login='';
-			window.plugins.toast.showWithOptions({
-				message: "Your password has been updated.",
-				duration: "short", // 2000 ms
-				position: "bottom",
-				styling: {
-				opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-				backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-				textColor: '#ffffff', // Ditto. Default #FFFFFF
-				textSize: 13, // Default is approx. 13.
-				cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-				horizontalPadding: 16, // iOS default 16, Android default 50
-				verticalPadding: 12 // iOS default 12, Android default 30
-			}
-			});
-			window.history.goback();
+			console.log($scope.login.password);
+			console.log($scope.login.verify);
 
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
+			console.log(newPwd);
+			if($scope.login.password === $scope.login.verify){
+				doctorServices.changeDocPwd(newPwd).then(function(response){
+				console.log(response);
+				$scope.login='';
+				window.plugins.toast.showWithOptions({
+					message: "Your password has been updated.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+
+				$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true
+			 });
+
+				$state.go("templates.doctor_home",{}, {location: "replace", reload: false});
+
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+			}
+			else{
+				window.plugins.toast.showWithOptions({
+					message: "Password did not match.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+			}
 
 		}
 	$scope.myDoctors=function(){

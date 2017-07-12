@@ -43,3 +43,9 @@ If you would like to ask permission first you can call OneSignal.setSubscription
 after OneSignal.init(...) to keep them from being opted in automatically.
 Then display your own in app prompt where you call OneSignal.setSubscription(true);
 if they accept.
+
+
+
+/////////////////////
+red:-#9d2122
+teal:-#026451

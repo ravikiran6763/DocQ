@@ -14,11 +14,25 @@ $scope.submitted = false;
 		console.log($scope.submitted);
 		if(!$rootScope.cc.query){
 			console.log($rootScope.cc.query);
-			$scope.queryPopup =$ionicPopup.show({
-	     template: 'Please Enter your query',
-			 cssClass: 'dqAlerts',
-			 scope: $scope,
-	   	});
+			// $scope.queryPopup =$ionicPopup.show({
+	    //  template: 'Please Enter your query',
+			//  cssClass: 'dqAlerts',
+			//  scope: $scope,
+			//  	});
+			window.plugins.toast.showWithOptions({
+			message: "Please Enter your query",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
 			$timeout(function() {
 		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
 		  }, 1000);
@@ -31,7 +45,7 @@ $scope.submitted = false;
 	    patientCareService.submitQuery(patientQuery).then(function(response){
 	        $rootScope.cc.query="";
 
-					window.plugins.toast.showWithOptions({
+				window.plugins.toast.showWithOptions({
         message: "Your query has been submitted.",
         duration: "short", // 2000 ms
         position: "bottom",
@@ -67,7 +81,7 @@ $scope.submitted = false;
 				console.log('timeout');
 				$ionicLoading.hide();
 
-				window.plugins.toast.showWithOptions({
+			window.plugins.toast.showWithOptions({
 			message: "Someone will contact you from DoctorQuick.",
 			duration: "short", // 2000 ms
 			position: "bottom",
@@ -84,7 +98,7 @@ $scope.submitted = false;
 
 
 
-			}, 5000);
+		}, 2000);
 
 			}
 			else{
