@@ -150,23 +150,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
               toast.show("Internet is disconnected on your device");
             };
       };
-      // PushNotificationsService.register();
-      // Android customization
-      // Enable background mode
-
-      // if(cordova.plugins.backgroundMode.isEnabled()){
-      //      console.log('Hi, I am enabled. Signed : backgroundMode.');
-      //    }
-
-      // Called when background mode has been activated
-      // cordova.plugins.backgroundMode.onactivate = function (){
-      // setTimeout(function () {
-      // // Modify the currently displayed notification
-      // cordova.plugins.backgroundMode.configure({
-      // text:'Running in background for more than 5s now.'
-      // });
-      // }, 5000);
-      // }
 
           function successFunction()
           {
@@ -258,7 +241,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       $ionicPlatform.registerBackButtonAction(function (event) {
         if ( ($rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
             alert('route to home page and set the root to homepage');
-
+            $state.go("templates.doctor_home");
               $ionicPlatform.registerBackButtonAction(function (event) {
                 event.preventDefault();
                 event.stopPropagation();
@@ -280,9 +263,11 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   // press again to exit
   $ionicPlatform.registerBackButtonAction(function(e){
       $rootScope.currState=$ionicHistory.currentStateName();
-      if($rootScope.currState === 'templates.doctor_home' || $rootScope.currState ==='app.patient_home'){
-        // $ionicHistory.clearHistory();
+      if($state.$current.name === 'templates.doctor_home' || $state.$current.name ==='app.patient_home'){
+        $ionicHistory.clearHistory();
+        $ionicHistory.clearCache();
         $ionicHistory.removeBackView();
+        console.log('H/W back disabled');
         $interval.cancel(checkAcceptedReq);
       }
       if ($rootScope.backButtonPressedOnceToExit) {

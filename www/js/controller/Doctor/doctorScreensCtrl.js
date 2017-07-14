@@ -358,6 +358,38 @@ $scope.viewRequest=function(patient){
 
   console.log($rootScope.currentPatient);
   console.log($rootScope.currentPatient.requestedTime);
+   $rootScope.intervalPromise = $interval(function () {
+
+      // alert('testinterval');
+
+      doctorServices.checkIdStatus($rootScope.currentPatient.id).then(function(response){
+      $rootScope.existingId=response;
+
+      $scope.existingId=response;
+     		 $localStorage.existingId=$scope.existingId;
+         $rootScope.expired=$localStorage.existingId;
+          $scope.$watch('expired', function (newValue, oldValue, scope) {
+         		 console.log('changed');
+         		 console.log(newValue);
+         		 console.log(oldValue);
+         		 if(newValue == 0){
+         			 alert('ting');
+         			 // ion.sound.play('bell_ring');
+         		 }
+
+          },true);
+
+        console.log('existingId::',response);
+
+      $ionicLoading.hide();
+       //  $state.go($state.current, {}, {reload: true});
+      }).catch(function(error){
+      console.log('failure data', error);
+      });
+
+
+    }, 1000);
+  // $rootScope.testInterval=$interval(function () { console.log('testINtervalStarted'); }, 1000);
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }
 

@@ -86,6 +86,8 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
 
         else if(response === "doctor")
         {
+          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+
             var uname1 = "greet+"+$localStorage.user;
             var pw1 = "DQ_doctor";
             var success = function(message)
