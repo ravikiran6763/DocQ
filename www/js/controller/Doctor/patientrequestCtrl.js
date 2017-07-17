@@ -155,7 +155,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 			patientrequesttodoctor.accpetedbydoctor(accptdReq).then(function(response){
 				$scope.reqStatus=response;
 				console.log('updatedResponse:',response);
-									if($scope.reqStatus == 'alreadyUpdated'){
+									if($scope.reqStatus === 'updated'){
 												$rootScope.callReqPopUp = $ionicPopup.show({
 												title:"Sorry!!!",
 												template: "<div >This Request has been served already</b></div>",

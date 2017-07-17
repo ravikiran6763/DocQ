@@ -61,10 +61,6 @@ function checkNewMessages()
 						});
 
 
-<<<<<<< HEAD
-=======
-
-
 
 						// for (var keyandroid in dataofandroid)
 						// {
@@ -99,7 +95,6 @@ function checkNewMessages()
 						// }
 						// }
 						// }
->>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 		}
 		else
 		{
@@ -185,10 +180,7 @@ if($localStorage.doctororpatient == 'doctor'){
 }
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 1ace12de26807cbf21409b7f90d6e95831baab9c
 }
 
 $scope.pagedecision=$ionicHistory.currentStateName();
