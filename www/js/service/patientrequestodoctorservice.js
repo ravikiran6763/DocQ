@@ -21,7 +21,7 @@ DoctorQuickApp.service('patientrequesttodoctor', function ($http,$q, BASE_URL, A
       {
         console.log(docpatphno);
         var deferred = $q.defer();
-        $http.post(BASE_URL.url + API.sendNotification,docpatphno)
+        $http.post(BASE_URL.url + API.declinedbydoctor,docpatphno)
         .success(function (data, status, headers, config){
         console.log(data);
         deferred.resolve(data);

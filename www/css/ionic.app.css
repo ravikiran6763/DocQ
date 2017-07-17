@@ -10050,6 +10050,12 @@ ion-side-menu.menu-left.menu {
 .css-form input.ng-valid.ng-touched {
   border-color: #78FA89; }
 
+.loginDatasubmitted input.ng-invalid:not(:focus) {
+  border: 2px solid red; }
+
+.loginDatasubmitted label input.ng-invalid:not(:focus) {
+  border: 2px solid red; }
+
 .submitted input.ng-invalid:not(:focus) {
   border: 2px solid red; }
 
@@ -11302,6 +11308,10 @@ ion-side-menu .heading-item .message {
 
 .ion-android-bookmark::before {
   content: url("../img/dq_icon_small_profile_540x960.png"); }
+
+.ion-ios-home::before {
+  color: #6aa433;
+  font-size: 80%; }
 
 .ion-radio-waves::before {
   content: url("../img/dq_icon_small_mydoctors_540x960.png"); }

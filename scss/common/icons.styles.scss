@@ -2,6 +2,12 @@
     content: url('../img/dq_icon_small_profile_540x960.png');
 }
 
+.ion-ios-home::before {
+    // content: url('../img/dq_icon_small_profile_540x960.png');
+    color: #6aa433;
+    font-size: 80%;
+}
+
 .ion-radio-waves::before {
     content: url('../img/dq_icon_small_mydoctors_540x960.png');
 }
@@ -120,7 +126,7 @@
 .ion-ios-star::before{
   color: #fbb03a !important;
   font-size: 130% !important;
-  
+
 }
 .ion-ios-star-outline::before{
   color: black;

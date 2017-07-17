@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -233,11 +233,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$ionicHistory.clearHistory();
 						}
 
-						// else if($scope.prevPage === 'auth.patient_reg3'){
-						// 	console.log($scope.otpentered);
-						// 	$state.go('auth.patient_reg2');
-						//
-						// }
+						else if($scope.prevPage === 'auth.patient_reg3'){
+							console.log($scope.otpentered);
+							$state.go('auth.patient_reg2');
+
+						}
 						else{
 							window.history.back();
 							}
@@ -611,11 +611,22 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
  $scope.clearAllHistory = function(){
 	 if($localStorage.doctororpatient === 'patient'){
 		 $state.go('app.patient_home');
+<<<<<<< HEAD
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
 		$state.go('app.doctor_home');
 	}
 		$ionicHistory.clearHistory();
+=======
+
+	 }
+	 if($localStorage.doctororpatient === 'doctor'){
+		$state.go('templates.doctor_home');
+	}
+		$ionicHistory.clearHistory();
+		$ionicHistory.clearCache();
+
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 					console.log($ionicHistory.clearHistory());
  }
 	$scope.getPatientDetails = function(){
@@ -639,12 +650,71 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			newPwd1:$scope.login.password,
 			userPhone:$localStorage.user
 			};
+			console.log($scope.login.password);
+			console.log($scope.login.verify);
+
+			if($scope.login.password === $scope.login.verify){
+				patientProfileDetailsService.changePwd2(newPwd).then(function(response){
+				console.log(response);
+					$scope.login='';
+
+					window.plugins.toast.showWithOptions({
+						message: "Your password has been updated.",
+						duration: "short", // 2000 ms
+						position: "bottom",
+						styling: {
+						opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+						backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+						textColor: '#ffffff', // Ditto. Default #FFFFFF
+						textSize: 13, // Default is approx. 13.
+						cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+						horizontalPadding: 16, // iOS default 16, Android default 50
+						verticalPadding: 12 // iOS default 12, Android default 30
+					}
+					});
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+
+				$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true
+			 });
+				$state.go("app.patient_home",{}, {location: "replace", reload: false});
+			}
+			else{
+				window.plugins.toast.showWithOptions({
+					message: "Password did not match.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+			}
+
+		}
+		$scope.updateDocPwd=function(){
+			$rootScope.ratedBy=$scope.login.userPhone;
+			console.log('dddd');
+			var newPwd={
+			newPwd1:$scope.login.password,
+			userPhone:$localStorage.user
+			};
+			console.log($scope.login.password);
+			console.log($scope.login.verify);
+
 			console.log(newPwd);
-			patientProfileDetailsService.changePwd2(newPwd)
-			.then(function(response){
-			console.log(response);
-
-
+			if($scope.login.password === $scope.login.verify){
+				doctorServices.changeDocPwd(newPwd).then(function(response){
+				console.log(response);
+				$scope.login='';
 				window.plugins.toast.showWithOptions({
 					message: "Your password has been updated.",
 					duration: "short", // 2000 ms
@@ -660,28 +730,33 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 				}
 				});
 
-	// window.history.back();
+				$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true
+			 });
 
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
+				$state.go("templates.doctor_home",{}, {location: "replace", reload: false});
 
-		}
-		$scope.updateDocPwd=function(){
-			$rootScope.ratedBy=$scope.login.userPhone;
-			console.log('dddd');
-			var newPwd={
-			newPwd1:$scope.login.password,
-			userPhone:$localStorage.user
-			};
-			console.log(newPwd);
-			doctorServices.changeDocPwd(newPwd)
-			.then(function(response){
-			console.log(response);
-
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+			}
+			else{
+				window.plugins.toast.showWithOptions({
+					message: "Password did not match.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+			}
 
 		}
 	$scope.myDoctors=function(){
@@ -1027,10 +1102,6 @@ $scope.BalanceForVoiceCall=function()
 $rootScope.prescription={};
 
 $scope.done = function (prescType,sno){
-
-
-
-
 
         switch(sno){
             case 1://for diagnosis

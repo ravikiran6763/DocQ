@@ -22,7 +22,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 		$scope.sendForm = function($event,form)
 		{
 	       $event.preventDefault()
-	       $scope.submitted = true
+	       $scope.loginDatasubmitted = true
 				//  console.log($scope.submitted);
 	  };
 
@@ -55,14 +55,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 	$scope.doLogIn = function()
 	{
 
-				$rootScope.submitted=true;
+				$rootScope.loginDatasubmitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
-				$rootScope.logginMessage="Logging into DoctorQuick...";
+				$rootScope.logginMessage="Logging into DoctorQuick";
 				$ionicLoading.show({
 			        template: '<ion-spinner></ion-spinner><br><br>{{logginMessage}}'
 			      });
@@ -185,6 +185,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
+<<<<<<< HEAD
 // 							var myService;
 // 							myService = cordova.plugins.myService;
 //
@@ -220,52 +221,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						// $state.go('app.patient_home');//for browser login
 							// $state.go('app.patient_home');//for browser login
 
+=======
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 							hello.login(uname1,pw1,success, failure);
 						}
 
-						// $rootScope.logOb={};
-						//
-						// window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir) {
-						// console.log("got main dir",dir);
-						// dir.getFile("log.txt", {create:true}, function(file) {
-						// console.log("got the file", file);
-						// logOb = file;
-						// writeLog(userDetails);
-						// });
-						// });
-						//
-						// function writeLog(str)
-						// {
-						//
-						//
-						// 		console.log(str.password);
-						//
-						// 						if(!logOb) return;
-						// 						var log = str.userNum + "\n" + str.password;
-						//
-						//
-						//
-						// 						console.log("going to log "+log);
-						// 						logOb.createWriter(function(fileWriter) {
-						//
-						// 						fileWriter.seek(fileWriter.length);
-						//
-						// 						var blob = new Blob([log], {type:'text/plain'});
-						//
-						//
-						// 						fileWriter.write(blob);
-						//
-						// 						console.log("ok, in theory i worked");
-						// 						}, fail);
-						// }
-						//
-						//
-						// 			function fail()
-						// 			{
-						//
-						// 					console.log('failure called');
-						//
-						// 			}
+
 
 					}
 					else if(response === "doctor")
@@ -319,9 +280,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					}
 					else if(response === "alreadyLoggedIn"){
+<<<<<<< HEAD
 
 						$ionicLoading.hide();
 
+=======
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
@@ -335,11 +299,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
+<<<<<<< HEAD
 
 								$ionicLoading.hide();
 
 
 
+=======
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 							$ionicLoading.hide();
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',

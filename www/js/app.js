@@ -150,23 +150,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
               toast.show("Internet is disconnected on your device");
             };
       };
-      // PushNotificationsService.register();
-      // Android customization
-      // Enable background mode
-
-      // if(cordova.plugins.backgroundMode.isEnabled()){
-      //      console.log('Hi, I am enabled. Signed : backgroundMode.');
-      //    }
-
-      // Called when background mode has been activated
-      // cordova.plugins.backgroundMode.onactivate = function (){
-      // setTimeout(function () {
-      // // Modify the currently displayed notification
-      // cordova.plugins.backgroundMode.configure({
-      // text:'Running in background for more than 5s now.'
-      // });
-      // }, 5000);
-      // }
 
           function successFunction()
           {
@@ -228,21 +211,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
-    // console.log('toState',toState);
-    // console.log('toParams',toParams);
-    // $localStorage.prevState = fromState.url;
-    console.log('from',fromState.url);
-    console.log('fromParams',fromParams);
-      // if(fromState.url == '/loginNew'){
-      //   $localStorage.iphoneLogin = 1;
-      // }
 
-    // console.log(toState.name.indexOf('app.patient_home'));
+        $rootScope.previousState = fromState;
+        // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
-      // Restore platform default transition. We are just hardcoding android transitions to auth views.
-      //$ionicConfig.views.transition(none);
-      // If it's ios, then enable swipe back again
+        // Restore platform default transition. We are just hardcoding android transitions to auth views.
+        //$ionicConfig.views.transition(none);
+        // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
           $ionicConfig.views.transition('none');
@@ -261,16 +237,37 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         // $rootScope.hideSideMenu = true;
         console.log('summary');
       }
-      // if(toState.name == "templates.patientRequest" || toState.name == "splash" || toState.name == "auth.loginNew" || toState.name == "app.patient_summary" || toState.name == "templates.prescription"){
-      //   $ionicHistory.removeBackView();
-      // }
+      console.log($rootScope.previousState.name);
+      $ionicPlatform.registerBackButtonAction(function (event) {
+        if ( ($rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
+            alert('route to home page and set the root to homepage');
+            $state.go("templates.doctor_home");
+              $ionicPlatform.registerBackButtonAction(function (event) {
+                event.preventDefault();
+                event.stopPropagation();
+                alert("Stop");
+              }, 100);
+                // H/W BACK button is disabled for these states (these views)
+                // Do not go to the previous state (or view) for these states.
+                // Do nothing here to disable H/W back button.
+                // navigator.app.exitAspp();
+            } else {
+                // For all other states, the H/W BACK button is enabled
+                navigator.app.backHistory();
+            }
+        }, 1000);
+
   });
+
+
   // press again to exit
   $ionicPlatform.registerBackButtonAction(function(e){
       $rootScope.currState=$ionicHistory.currentStateName();
-      if($rootScope.currState === 'templates.doctor_home' || $rootScope.currState ==='app.patient_home'){
-        // $ionicHistory.clearHistory();
+      if($state.$current.name === 'templates.doctor_home' || $state.$current.name ==='app.patient_home'){
+        $ionicHistory.clearHistory();
+        $ionicHistory.clearCache();
         $ionicHistory.removeBackView();
+        console.log('H/W back disabled');
         $interval.cancel(checkAcceptedReq);
       }
       if ($rootScope.backButtonPressedOnceToExit) {
@@ -307,8 +304,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   },101);
 
   })
-
-
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';

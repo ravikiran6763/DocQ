@@ -87,13 +87,13 @@ DoctorQuickApp.constant('BASE_URL', {
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'consultationRequest' : 'doctor/consultationRequest.php',
         'fetchOne2OneReq' : 'doctor/fetchOne2OneReq.php',
-
-
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
         'declinedbydoctor':'doctor/declinedbydoctor.php',
         'acceptedbydoctor':'doctor/acceptedbydoctor.php',
         'cancelByDoc':'doctor/cancelByDoc.php',
         'patientActivity':'doctor/patientActivity.php',
+        'checkIdStatus':'doctor/checkIdStatus.php',
+
         'videoOrAudio':'doctor/videoOrAudio.php',
         'doctorActivity':'doctor/doctorActivity.php',
         'updateNotes':'doctor/updateNotes.php',

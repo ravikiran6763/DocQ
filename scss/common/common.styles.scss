@@ -257,6 +257,13 @@ ion-side-menu.menu-left.menu {
     border-color: #78FA89;
   }
 
+  .loginDatasubmitted input.ng-invalid:not(:focus) {
+    border:2px solid red;
+  }
+  .loginDatasubmitted label input.ng-invalid:not(:focus) {
+    border:2px solid red;
+  }
+
 .submitted input.ng-invalid:not(:focus) {
   border:2px solid red;
 }

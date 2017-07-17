@@ -38,6 +38,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			// 		console.log('interval started');
 		  //           $interval(checkNewMessages,2000);
 		  //        }, 60000 );
+<<<<<<< HEAD
 			//
 			//
 			//
@@ -67,30 +68,50 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 
+=======
+
+
+
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_patient";
+				$rootScope.unreadchatforpatient = 0;
+
+				//
+				// function checkNewMessages()
+				// {
+				// 	var success = function(message)
+				// 	{
+				//
+				// 			$rootScope.unreadchatforpatient = message;
+				// 			console.log($scope.unreadchatforpatient);
+				//
+				// 	}
+				//
+				// 		var failure = function()
+				// 		{
+				// 				console.log('this is from patient home CTRL');
+				// 		}
+				//
+				// 			// hello.unreadchatfromusers(username,password,success, failure);
+				//
+				// }
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 				$scope.statename = $ionicHistory.currentStateName();
 				$scope.iphone=$localStorage.iosLogin;
 
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
-				console.log();
+				// console.log();
 				if($scope.deviceAndroid === false){
 					// $ionicLoading.show({
-				  //       template: '<ion-spinner></ion-spinner><br><br>connecting..'
+				  //       template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
 				  //     });
 
 
 					var success = function(message)
 					{
-							alert(message)
+							alert(message);
 
-							$ionicLoading.hide().then(function(){
-							console.log("The loading indicator is now hidden");
-							$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-							});
-							$state.go('app.patient_home', {}, {location: "replace", reload: false});
-							$localStorage.iosLogin = "NA";
-						});
+							$ionicLoading.hide();
 
 					}
 

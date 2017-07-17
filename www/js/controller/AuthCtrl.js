@@ -60,6 +60,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             alert("Error calling Hello Plugin");
           }
+          $state.go('app.patient_home', {}, {location: "replace", reload: false});
 
          hello.login(uname1,pw1,success, failure);
 
@@ -85,6 +86,8 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
 
         else if(response === "doctor")
         {
+          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+
             var uname1 = "greet+"+$localStorage.user;
             var pw1 = "DQ_doctor";
             var success = function(message)
@@ -96,7 +99,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
               });
             $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
             }
-          
+
             var failure = function()
             {
               alert("Error calling Hello Plugin");
@@ -152,6 +155,7 @@ $scope.sendForm = function($event,form)
   $scope.registerPatient=function()
   {
       var patientDetails = {};
+      $scope.loginDatasubmitted=false;
       $state.go('auth.patient_reg1');
   }
 
@@ -265,12 +269,16 @@ $scope.patientRegistration = function()
               $window.localStorage.clear();
               $scope.otpentered={};
               $rootScope.PatientDetail={};
+
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
               });
-              $state.go('auth.loginNew', {}, {location: "replace", reload: false});
+              $scope.submitted = false;
+              $scope.submitted2ndPage = false;
 
+
+              $state.go('auth.loginNew', {}, {location: "replace", reload: true});
               var details = {
                 'phone': $rootScope.PatientDetail.patient_mob,
                 'password': $rootScope.PatientDetail.pat_password
