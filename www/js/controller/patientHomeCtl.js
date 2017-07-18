@@ -38,6 +38,37 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			// 		console.log('interval started');
 		  //           $interval(checkNewMessages,2000);
 		  //        }, 60000 );
+<<<<<<< HEAD
+			//
+			//
+			//
+			// 	var username = "greet+"+$localStorage.user;
+			// 	var password = "DQ_patient";
+			// 	$rootScope.unreadchatforpatient = 0;
+			//
+			//
+			// 	function checkNewMessages()
+			// 	{
+			// 		var success = function(message)
+			// 		{
+			//
+			// 				$rootScope.unreadchatforpatient = message;
+			// 				console.log($scope.unreadchatforpatient);
+			//
+			// 		}
+			//
+			// 			var failure = function()
+			// 			{
+			// 					console.log('this is from patient home CTRL');
+			// 			}
+			//
+			// 				hello.unreadchatfromusers(username,password,success, failure);
+			//
+			// 	}
+
+
+
+=======
 
 
 
@@ -64,6 +95,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				// 			// hello.unreadchatfromusers(username,password,success, failure);
 				//
 				// }
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 				$scope.statename = $ionicHistory.currentStateName();
 				$scope.iphone=$localStorage.iosLogin;
 
@@ -92,19 +124,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 					$localStorage.iphoneLogin=0;
 				}
 
-										// $scope.$watch('iphone', function (newValue, oldValue, scope){
-										//
-										// 		alert('newValue',newValue);
-										// 		alert('oldValue',oldValue);
-										// 		if(newValue == "OK"){
-										//
-										// 			alert("Checking loggin status");
-										//
-										// 			// alert('check login status and route from here');
-										//
-										//
-										// 		}
-										//
-										// },true);
+
 
 });

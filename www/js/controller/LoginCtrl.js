@@ -185,6 +185,44 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
+<<<<<<< HEAD
+// 							var myService;
+// 							myService = cordova.plugins.myService;
+//
+// 							myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+//
+//
+// 							function go() {
+//    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
+// };
+//
+// 					function startService(data) {
+// 					   if (data.ServiceRunning) {
+// 					      enableTimer(data);
+// 					   } else {
+// 					      myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
+// 					   }
+// 					}
+//
+// 					function enableTimer(data) {
+// 					   if (data.TimerEnabled) {
+// 					      allDone();
+// 					   } else {
+// 					      myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
+// 					   }
+// 					}
+//
+// 					function allDone() {
+// 					   alert("Service now running");
+// 					}
+
+
+
+						// $state.go('app.patient_home');//for browser login
+							// $state.go('app.patient_home');//for browser login
+
+=======
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 							hello.login(uname1,pw1,success, failure);
 						}
 
@@ -242,6 +280,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					}
 					else if(response === "alreadyLoggedIn"){
+<<<<<<< HEAD
+
+						$ionicLoading.hide();
+
+=======
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
@@ -255,6 +299,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
+<<<<<<< HEAD
+
+								$ionicLoading.hide();
+
+
+
+=======
+>>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 							$ionicLoading.hide();
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
