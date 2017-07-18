@@ -112,14 +112,11 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
       $ionicPlatform.registerBackButtonAction(function (event) {
+        console.log(  $ionicHistory.backView());
         if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.patient_home")){
             console.log('back button disabled');
+            $ionicHistory.backView();
 
-              $ionicPlatform.registerBackButtonAction(function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                alert("Stop");
-              }, 100);
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
@@ -239,19 +236,23 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       }
       console.log($rootScope.previousState.name);
       $ionicPlatform.registerBackButtonAction(function (event) {
-        if ( ($rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
+        if ( ( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
             alert('route to home page and set the root to homepage');
             $state.go("templates.doctor_home");
-              $ionicPlatform.registerBackButtonAction(function (event) {
-                event.preventDefault();
-                event.stopPropagation();
-                alert("Stop");
-              }, 100);
+              // $ionicPlatform.registerBackButtonAction(function (event) {
+              //   event.preventDefault();
+              //   event.stopPropagation();
+              //   alert("Stop");
+              // }, 100);
                 // H/W BACK button is disabled for these states (these views)
                 // Do not go to the previous state (or view) for these states.
                 // Do nothing here to disable H/W back button.
                 // navigator.app.exitAspp();
-            } else {
+            }
+            else if($rootScope.previousState.name == "app.patient_summary" || $rootScope.previousState.name == "app.callAccepted") {
+              $state.go("app.patient_home");
+            }
+            else {
                 // For all other states, the H/W BACK button is enabled
                 navigator.app.backHistory();
             }
@@ -263,10 +264,13 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   // press again to exit
   $ionicPlatform.registerBackButtonAction(function(e){
       $rootScope.currState=$ionicHistory.currentStateName();
+      console.log($rootScope.previousState.name);
+
       if($state.$current.name === 'templates.doctor_home' || $state.$current.name ==='app.patient_home'){
         $ionicHistory.clearHistory();
         $ionicHistory.clearCache();
-        $ionicHistory.removeBackView();
+        // $ionicHistory.removeBackView();
+        console.log($ionicHistory.backView());
         console.log('H/W back disabled');
         $interval.cancel(checkAcceptedReq);
       }

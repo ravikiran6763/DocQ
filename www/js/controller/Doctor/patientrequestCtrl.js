@@ -318,12 +318,14 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 				}
 				patientrequesttodoctor.declinedbydoctor(docpatphno).then(function(response){
 	   		console.log(response);
+				if(response){
+					$state.go('templates.doctor_home');
 
+				}
 	   	 }).catch(function(error){
 	   	//  console.log('failure data', error);
 	   	 });
 			}
-			$state.go('templates.doctor_home');
 
 		}
 		else{
@@ -452,7 +454,7 @@ $scope.popupShown = true;
 				 disableBack: true
 			 });
 
-			$state.go("templates.prescription",{},{location: "replace", reload: true})
+			$state.go("templates.prescription",{},{location: "replace", reload: false})
 
  		}
 

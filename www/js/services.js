@@ -148,8 +148,8 @@ angular.module('DoctorQuick.services', [])
 
   this.disable = function(){
     this.deregister = $ionicPlatform.registerBackButtonAction(function(e){
-	e.preventDefault();
-	return false;
+    e.preventDefault();
+    return false;
     }, 101);
   }
 
