@@ -38,7 +38,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			// 		console.log('interval started');
 		  //           $interval(checkNewMessages,2000);
 		  //        }, 60000 );
-<<<<<<< HEAD
 			//
 			//
 			//
@@ -65,13 +64,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			// 				hello.unreadchatfromusers(username,password,success, failure);
 			//
 			// 	}
-
-
-
-=======
-
-
-
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;
@@ -95,7 +87,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				// 			// hello.unreadchatfromusers(username,password,success, failure);
 				//
 				// }
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 				$scope.statename = $ionicHistory.currentStateName();
 				$scope.iphone=$localStorage.iosLogin;
 

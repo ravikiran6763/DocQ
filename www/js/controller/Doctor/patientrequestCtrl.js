@@ -158,11 +158,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 			patientrequesttodoctor.accpetedbydoctor(accptdReq).then(function(response){
 				$scope.reqStatus=response;
 				console.log('updatedResponse:',response);
-<<<<<<< HEAD
-									if($scope.reqStatus === 'updated'){
-=======
 									if($scope.reqStatus == 'alreadyupdated'){
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 												$rootScope.callReqPopUp = $ionicPopup.show({
 												title:"Sorry!!!",
 												template: "<div >This Request has been served already</b></div>",
@@ -218,9 +214,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 										 console.log('failure data', error);
 										});
 									 }, 2000);
-
-
-
 									 $rootScope.callReqPopUp = $ionicPopup.show({
 							     template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
 							     cssClass: 'requestPopup',

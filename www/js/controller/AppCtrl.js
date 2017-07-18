@@ -609,20 +609,13 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
  }
 
  $scope.clearAllHistory = function(){
-<<<<<<< HEAD
-=======
 	 if($localStorage.doctororpatient === 'patient'){
 		 $state.go('app.patient_home');
-<<<<<<< HEAD
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
 		$state.go('app.doctor_home');
 	}
 		$ionicHistory.clearHistory();
-=======
->>>>>>> 86beabd1e154ab5cea7fad0ba8e6071e7472d3c1
-
-
 		if($localStorage.doctororpatient === 'patient'){
 			$state.go('app.patient_home');
 		}
@@ -631,13 +624,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		}
 		$ionicHistory.clearHistory();
 		$ionicHistory.clearCache();
-<<<<<<< HEAD
 		console.log($ionicHistory.viewHistory());
-=======
-
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
-					console.log($ionicHistory.clearHistory());
->>>>>>> 86beabd1e154ab5cea7fad0ba8e6071e7472d3c1
  }
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');

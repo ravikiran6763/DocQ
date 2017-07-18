@@ -6,7 +6,7 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$rootScope.headerTxt="Diagnosis";
 		$rootScope.showBackBtn=true;
 		$rootScope.showNotification=false;
-		$rootScope.hideSideMenu = true;
+		$rootScope.hideSideMenu = false;
 		$rootScope.showBadge=false;
 
 
@@ -41,6 +41,7 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$scope.toggle = true;
 		$rootScope.headerTxt="Tests";
 		$rootScope.showBackBtn=true;
+		$rootScope.hideSideMenu = false;
 
 		$scope.patientfname = $stateParams.ptFname;
 		$scope.patientlname = $stateParams.ptLname;
@@ -91,6 +92,7 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 		$rootScope.showBackBtn=true;
 		$rootScope.showNotification=false;
 		$rootScope.showBadge=false;
+		$rootScope.hideSideMenu = false;
 		$scope.medication={};
 
 		$scope.patientfname = $stateParams.ptFname;
@@ -198,15 +200,22 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 
 })
 
-DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$scope,$state,$ionicHistory,LoginService){
+DoctorQuickApp.controller('splashCtrl',function($timeout,$ionicLoading,$localStorage,$window,$scope,$state,$ionicHistory,LoginService){
+
+
   $timeout(function(){
 		// console.log($localStorage.doctororpatient);
+		$ionicLoading.show({
+		template: '<ion-spinner></ion-spinner><br><br>Connecting to server'
+		});
 		if($localStorage.doctororpatient === 'patient'){
 			window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
 				//document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
 				console.log(JSON.stringify(ids['userId']));
 				$scope.playerId=JSON.stringify(ids['userId']);
+
+
 
 				console.log($scope.playerId);
 				var updatePlayer ={
@@ -224,6 +233,7 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			var pw1 = "DQ_patient";
 			var success = function(message)
 			{
+				$ionicLoading.hide();
 				console.log(message);
 				// alert(message);
 
@@ -260,6 +270,7 @@ DoctorQuickApp.controller('splashCtrl',function($timeout,$localStorage,$window,$
 			var pw1 = "DQ_doctor";
 			var success = function(message)
 			{
+				$ionicLoading.hide();
 				console.log(message);
 				// alert(message);
 			}

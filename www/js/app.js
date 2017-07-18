@@ -236,9 +236,34 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       }
       console.log($rootScope.previousState.name);
       $ionicPlatform.registerBackButtonAction(function (event) {
+        console.log($state.$current.name);
         if ( ( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
-            alert('route to home page and set the root to homepage');
-            $state.go("templates.doctor_home");
+            // alert('route to home page and set the root to homepage');
+
+            $rootScope.completeConsultation = $ionicPopup.show({
+            title:"Alert!!!",
+            template: "<div >PLease send the prescription and complete the consultation</b></div>",
+            cssClass: 'requestPopup',
+            buttons: [
+            {
+            text: 'Ok',
+            type: 'button-royal',
+            onTap:function(){
+            console.log('cancel');
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
+            $ionicHistory.nextViewOptions({
+              disableAnimate: true,
+              disableBack: true
+            });
+              // $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+            }
+            },
+            ]
+            });
+
+
+            // $state.go("templates.doctor_home");
               // $ionicPlatform.registerBackButtonAction(function (event) {
               //   event.preventDefault();
               //   event.stopPropagation();
@@ -249,8 +274,46 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
                 // Do nothing here to disable H/W back button.
                 // navigator.app.exitAspp();
             }
-            else if($rootScope.previousState.name == "app.patient_summary" || $rootScope.previousState.name == "app.callAccepted") {
+            else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted") {
+              $ionicHistory.clearCache();
+              $ionicHistory.clearHistory();
+              $ionicHistory.nextViewOptions({
+                disableBack: true,
+                historyRoot: true
+              });
               $state.go("app.patient_home");
+            }
+            else if($rootScope.previousState.name === "templates.prescription" && $state.$current.name === "templates.consulted_patient"){
+              $ionicHistory.clearCache();
+              $ionicHistory.clearHistory();
+              $ionicHistory.nextViewOptions({
+                disableBack: true,
+                historyRoot: true
+              });
+              $state.go("templates.doctor_home");
+            }
+            else if($state.$current.name === "templates.prescription"){
+              $rootScope.prescriptioAlert = $ionicPopup.show({
+              title:"Alert!!!",
+              template: "<div >PLease send the prescription to the Patient</b></div>",
+              cssClass: 'requestPopup',
+              buttons: [
+              {
+              text: 'Ok',
+              type: 'button-royal',
+              onTap:function(){
+              console.log('cancel');
+              $ionicHistory.clearCache();
+              $ionicHistory.clearHistory();
+              $ionicHistory.nextViewOptions({
+                disableAnimate: true,
+                disableBack: true
+              });
+                // $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+              }
+              },
+              ]
+              });
             }
             else {
                 // For all other states, the H/W BACK button is enabled
@@ -740,7 +803,6 @@ $stateProvider
       'menuContent': {
         templateUrl: "views/templates/inviteresult.html",
         controller : 'inviteresultCtrl'
-
       }
     }
   })
@@ -770,7 +832,6 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/templates/updatePassword.html"
-
       }
     }
   })

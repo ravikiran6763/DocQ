@@ -184,8 +184,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								alert("Error calling Hello Plugin");
 
 							}
-
-<<<<<<< HEAD
 // 							var myService;
 // 							myService = cordova.plugins.myService;
 //
@@ -221,13 +219,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						// $state.go('app.patient_home');//for browser login
 							// $state.go('app.patient_home');//for browser login
 
-=======
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 							hello.login(uname1,pw1,success, failure);
 						}
-
-
-
 					}
 					else if(response === "doctor")
 					{
@@ -280,12 +273,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					}
 					else if(response === "alreadyLoggedIn"){
-<<<<<<< HEAD
-
-						$ionicLoading.hide();
-
-=======
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
@@ -299,15 +286,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
-<<<<<<< HEAD
-
 								$ionicLoading.hide();
-
-
-
-=======
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
-							$ionicLoading.hide();
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
