@@ -214,9 +214,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 										 console.log('failure data', error);
 										});
 									 }, 2000);
-
-
-
 									 $rootScope.callReqPopUp = $ionicPopup.show({
 							     template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
 							     cssClass: 'requestPopup',
@@ -318,12 +315,14 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 				}
 				patientrequesttodoctor.declinedbydoctor(docpatphno).then(function(response){
 	   		console.log(response);
+				if(response){
+					$state.go('templates.doctor_home');
 
+				}
 	   	 }).catch(function(error){
 	   	//  console.log('failure data', error);
 	   	 });
 			}
-			$state.go('templates.doctor_home');
 
 		}
 		else{
@@ -452,7 +451,7 @@ $scope.popupShown = true;
 				 disableBack: true
 			 });
 
-			$state.go("templates.prescription",{},{location: "replace", reload: true})
+			$state.go("templates.prescription",{},{location: "replace", reload: false})
 
  		}
 

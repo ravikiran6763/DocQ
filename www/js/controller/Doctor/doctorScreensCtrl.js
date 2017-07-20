@@ -12,18 +12,19 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
     // $route.reload();
-$interval(checkConsultations,2000,false);
+    console.log($ionicHistory.viewHistory());
+    $interval(checkConsultations,2000,false);
 
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.pendingRequests = response;
-    // console.log('pending:',$scope.pendingRequests);
+    //console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
     // .catch(function(error){
     // console.log('failure data', error);
     // })
-// $interval(checkNewMsgs,2000);
+    //$interval(checkNewMsgs,2000);
     doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
     $scope.one2oneRequests = response;
     // console.log('one2onePending:',$scope.one2oneRequests);
@@ -369,7 +370,11 @@ $scope.viewRequest=function(patient){
         if($rootScope.id === 0){
           console.log('DOnoThing');
         }else{
-          doctorServices.checkIdStatus($rootScope.id).then(function(response){
+          var idStatus={
+            declinedDoc:$localStorage.user,
+            id:$rootScope.id
+          }
+          doctorServices.checkIdStatus(idStatus).then(function(response){
 
           console.log('existingId::',response);
           if(response == 0){
@@ -378,6 +383,7 @@ $scope.viewRequest=function(patient){
             $rootScope.ExpiredAlert= true;
             $rootScope.expired=response;
           }
+<<<<<<< HEAD
           // if($rootScope.ExpiredAlert === true){
           //
           //   $timeout( function(){
@@ -396,6 +402,42 @@ $scope.viewRequest=function(patient){
           //
           //     $interval.cancel(myInterval);
           // }
+=======
+          if($rootScope.ExpiredAlert === true){
+
+            $timeout( function(){
+            console.log('interval started');
+              $ionicLoading.show({
+              template: '<ion-spinner></ion-spinner><br><br>Consultation Expired',
+              duration: 4000
+              });
+            //   $scope.name='Consultation Expired';
+            //   $ionicLoading.show({
+            //     content: "<div class='loading-text'>" +
+            //     "<div class='row'> " +
+            //     "<div class='col col-33 loading-thumb-container'>" +
+            //     // "<img class='rec-loading-thumb' src='" + $scope.thumbs.small + "' />" +
+            //     "</div> <div class='col col-66'>" +
+            //     "<h4 > Expired </h4>" +
+            //     "</div> </div>" +
+            //     "</div>",
+            //     animation: 'fade-in',
+            //     showBackdrop: false,
+            //     maxWidth: 200,
+            //     showDelay: 500
+            // });
+            console.log('show a Toast message here');
+            $ionicHistory.nextViewOptions({
+              disableAnimate: true,
+              disableBack: true
+            });
+              $state.go('templates.doctor_home',{}, {location: "replace", reload: false});
+              $rootScope.ExpiredAlert === false;
+          }, 1000 );
+
+              $interval.cancel(myInterval);
+          }
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
           //  $state.go($state.current, {}, {reload: true});
           }).catch(function(error){
           console.log('failure data', error);

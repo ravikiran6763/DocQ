@@ -75,7 +75,10 @@ $scope.register = function() {
 
 				}
 
+				$scope.changeProfilePhoto = function() {
+					console.log('change pic');
 
+				}
 				$scope.changePhoto = function() {
 					// $state.go('app.capture');
 				var myPopup=	$ionicPopup.show({
@@ -116,9 +119,7 @@ $scope.register = function() {
 																			// $ionicLoading.hide();
 																			 $window.location.reload();
 																		$scope.reload = function() {
-																		return $state.transitionTo($state.current, $stateParams, {
-																		reload: true
-																		}).then(function() {
+																		return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
 																		$scope.hideContent = true;
 																		return $timeout(function() {
 																		return $scope.hideContent = false;
@@ -150,6 +151,7 @@ $scope.register = function() {
 								targetWidth: 300,
 								targetHeight: 300,
 								popoverOptions: CameraPopoverOptions,
+								mediaType:0,
 								saveToPhotoAlbum: false
 						};
 
@@ -167,9 +169,7 @@ $scope.register = function() {
 											console.log($scope.uploadedData);
 											// $ionicLoading.hide();
 											$scope.reload = function() {
-											return $state.transitionTo($state.current, $stateParams, {
-											reload: true
-											}).then(function() {
+											return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
 											$scope.hideContent = true;
 											return $timeout(function() {
 											return $scope.hideContent = false;

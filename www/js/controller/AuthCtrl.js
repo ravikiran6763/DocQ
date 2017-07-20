@@ -42,6 +42,9 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
        LoginService.alreadyLoggedIn(preLoginDetails).then(function(response){
         $scope.LoginStatus=response;
         console.log($scope.LoginStatus);
+        $ionicLoading.show({
+			        template: '<ion-spinner></ion-spinner><br><br>Connecting to server'
+			      });
         if(response === "patient")
         {
           var uname1 = "greet+"+$localStorage.user;
@@ -49,6 +52,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           var success = function(message)
           {
             console.log(message);
+            $ionicLoading.hide();
             $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
@@ -60,7 +64,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
           {
             alert("Error calling Hello Plugin");
           }
-          $state.go('app.patient_home', {}, {location: "replace", reload: false});
+          // $state.go('app.patient_home', {}, {location: "replace", reload: false});
 
          hello.login(uname1,pw1,success, failure);
 
@@ -86,12 +90,12 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
 
         else if(response === "doctor")
         {
-          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
 
             var uname1 = "greet+"+$localStorage.user;
             var pw1 = "DQ_doctor";
             var success = function(message)
             {
+              $ionicLoading.hide();
               console.log(message);
               $ionicHistory.nextViewOptions({
                 disableAnimate: true,
@@ -104,8 +108,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
             {
               alert("Error calling Hello Plugin");
             }
-
-            // hello.login(uname1,pw1,success, failure);
 
             window.plugins.OneSignal.getIds(function(ids) {
               //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -133,7 +135,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
            hello.login(uname1,pw1,success, failure);
             $localStorage.onOff=1;
         }
-         $ionicLoading.hide();
+        //  $ionicLoading.hide();
        }).catch(function(error){
        console.log('failure data', error);
        });

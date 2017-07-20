@@ -3,9 +3,9 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 
   $scope.toggle = true;
 	$rootScope.headerTxt="Notes";
-	$rootScope.showBackBtn=true;
+	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
-  $rootScope.hideSideMenu = true;
+  $rootScope.hideSideMenu = false;
 	$rootScope.showBadge=false;
 
   // $rootScope.prescription={};

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
 {
 		var loggedIn=false;
 
@@ -83,10 +83,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					if(response === "patient")
 					{
-
-						// sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
-						// sessionStorage.setItem('User', 'Patient');
-
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
 						}).catch(function(error){
@@ -213,9 +209,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							var success = function(message)
 							{
 								loggedIn=true;
-									// $ionicLoading.hide();
-									// $state.go('app.patient_home');
-									$rootScope.logginMessage="Connecting to Server";
 									$ionicLoading.hide().then(function(){
 										console.log("The loading indicator is now hidden");
 
@@ -241,18 +234,15 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							hello.login(uname1,pw1,success, failure);
 						}
 						else{
-
+							$ionicLoading.show({
+						        template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+						      });
 							var success = function(message)
 							{
 										// alert(message);
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
-								$ionicLoading.hide();
-								$ionicHistory.nextViewOptions({
-									disableAnimate: true,
-									disableBack: true
-								});
-								$state.go('app.patient_home', {}, {location: "replace", reload: false});
+
 
 							}
 							var failure = function()
@@ -262,6 +252,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
+<<<<<<< HEAD
 // 							var myService;
 // 							myService = cordova.plugins.myService;
 //
@@ -291,72 +282,162 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 // 					function allDone() {
 // 					   alert("Service now running");
 // 					}
-
-
-
+=======
 						// $state.go('app.patient_home');//for browser login
 							// $state.go('app.patient_home');//for browser login
+							hello.login(uname1,pw1,success, failure);
 
+							$timeout( function(){
+									console.log('interval started');
+						            $interval($rootScope.loginInterval,2000);
+						         }, 2000 );
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
+
+								 $rootScope.loginInterval = function () {
+									 var success = function(message)
+	 								{
+
+	 									$ionicLoading.hide().then(function(){
+	 										console.log("The loading indicator is now hidden");
+											// 	alert('loggedin');
+											$ionicHistory.nextViewOptions({
+												disableAnimate: true,
+												disableBack: true
+											});
+											$state.go('app.patient_home', {}, {location: "replace", reload: false});
+											$interval.cancel(loginStatus);
+	 									});
+
+	 								}
+
+<<<<<<< HEAD
 							//hello.login(uname1,pw1,success, failure);
 						}
+=======
+	 								var failure = function()
+	 								{
+	 									alert("Error Occurred While Loggin in to DoctoQuick");
+	 								}
+	 								hello.loginstatus(success,failure);
+								  }
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 
+						}
 
 					}
 					else if(response === "doctor")
 					{
 
-						console.log('doctor screen should entered');
 
-						sessionStorage.setItem('loggedin_phone', $scope.loginData.phone);
-						sessionStorage.setItem('User', 'Doctor');
-						$localStorage.doctororpatient = response;
-						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
-					    $rootScope.doctor_details=response;//store the response array in doctor details
-					    console.log($rootScope.doctor_details);
-					    window.localStorage['doctorDetails'] = angular.toJson(response);
+						$scope.deviceAndroid = ionic.Platform.isAndroid();
+						console.log($scope.deviceAndroid);
+						if($scope.deviceAndroid === true){
 
-					  }).catch(function(error){
-					    console.log('failure data', error);
-					  });
-					var uname1 = "greet+"+$scope.loginData.phone;
-					var pw1 = "DQ_doctor";
+													$localStorage.doctororpatient = response;
+													doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
+												    $rootScope.doctor_details=response;//store the response array in doctor details
+												    console.log($rootScope.doctor_details);
+												    window.localStorage['doctorDetails'] = angular.toJson(response);
 
-					console.log(uname1);
+												  }).catch(function(error){
+												    console.log('failure data', error);
+												  });
+												var uname1 = "greet+"+$scope.loginData.phone;
+												var pw1 = "DQ_doctor";
 
-						var success = function(message)
-						{
+												console.log(uname1);
 
-							$rootScope.logginMessage="Connecting to Server";
-							console.log(message);
-							$ionicLoading.hide();
-							$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-							});
-							$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-							// $state.go('templates.doctor_home');
+													var success = function(message)
+													{
+														$rootScope.logginMessage="Connecting to Server";
+														console.log(message);
+														$ionicLoading.hide();
+														$ionicHistory.nextViewOptions({
+															disableAnimate: true,
+															disableBack: true
+														});
+														$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+														// $state.go('templates.doctor_home');
+
+													}
+
+													var failure = function()
+													{
+
+														alert("Error Occurred While Loggin in to DoctoQuick");
+
+													}
+												// $state.go('templates.doctor_home');//for logging in from browser
+												hello.login(uname1,pw1,success, failure);
+												$localStorage.onOff=1;
 
 						}
-
-						var failure = function()
-						{
-
-							alert("Error Occurred While Loggin in to DoctoQuick");
-
-						}
-
-
-					// $state.go('templates.doctor_home');//for logging in from browser
-					hello.login(uname1,pw1,success, failure);
-					$localStorage.onOff=1;
+						else{
+							$ionicLoading.show({
+						        template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+						      });
+							var success = function(message)
+							{
+										// alert(message);
+								$scope.iosLoggin=message;
+								$localStorage.iosLogin=$scope.iosLoggin;
 
 
+							}
+							var failure = function()
+							{
+
+								alert("Error calling Hello Plugin");
+
+<<<<<<< HEAD
 					}
 					else if(response === "alreadyLoggedIn"){
+=======
+							}
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
-						$ionicLoading.hide();
+						// $state.go('app.patient_home');//for browser login
+							// $state.go('app.patient_home');//for browser login
+							hello.login(uname1,pw1,success, failure);
 
+							$timeout( function(){
+									console.log('interval started');
+						            $interval(loginStatus,2000);
+						         }, 2000 );
+
+								 function loginStatus() {
+									 var success = function(message)
+	 								{
+										// alert(message);
+	 									$ionicLoading.hide().then(function(){
+	 										console.log("The loading indicator is now hidden");
+											// 	alert('loggedin');
+											$ionicHistory.nextViewOptions({
+												disableAnimate: true,
+												disableBack: true
+											});
+											$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+											$interval.cancel(loginStatus);
+	 									});
+
+	 								}
+
+	 								var failure = function()
+	 								{
+	 									alert("Error Occurred While Loggin in to DoctoQuick");
+	 								}
+	 								hello.loginstatus(success,failure);
+								  }
+
+						}
+						console.log('doctor screen should entered');
+
+<<<<<<< HEAD
+=======
+					}
+					else if(response === "alreadyLoggedIn"){
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
@@ -370,6 +451,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
+<<<<<<< HEAD
 
 								$ionicLoading.hide();
 
@@ -377,6 +459,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 
 							$ionicLoading.hide();
+=======
+								$ionicLoading.hide();
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',

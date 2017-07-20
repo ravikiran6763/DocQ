@@ -611,6 +611,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
  $scope.clearAllHistory = function(){
 	 if($localStorage.doctororpatient === 'patient'){
 		 $state.go('app.patient_home');
+<<<<<<< HEAD
 
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
@@ -620,10 +621,26 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		$ionicHistory.clearCache();
 
 					console.log($ionicHistory.clearHistory());
+=======
+	 }
+	 if($localStorage.doctororpatient === 'doctor'){
+		$state.go('app.doctor_home');
+	}
+		$ionicHistory.clearHistory();
+		if($localStorage.doctororpatient === 'patient'){
+			$state.go('app.patient_home');
+		}
+		if($localStorage.doctororpatient === 'doctor'){
+			$state.go('templates.doctor_home');
+		}
+		$ionicHistory.clearHistory();
+		$ionicHistory.clearCache();
+		console.log($ionicHistory.viewHistory());
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
  }
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');
-						$scope.patient_details ={};
+						// $scope.patient_details ={};
 	}
 
 	$scope.changePwd=function(){

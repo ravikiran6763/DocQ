@@ -34,6 +34,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 		   });
 
 
+<<<<<<< HEAD
 			// $timeout( function(){
 			// 		console.log('interval started');
 		  //           $interval(checkNewMessages,2000);
@@ -67,6 +68,12 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 
+=======
+			$timeout( function(){
+					console.log('interval started');
+		            $interval(checkNewMessages,2000);
+		         }, 60000 );
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 
 
@@ -74,6 +81,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;
 
+<<<<<<< HEAD
 				//
 				// function checkNewMessages()
 				// {
@@ -103,21 +111,37 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				  //       template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
 				  //     });
 
+=======
+>>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
+				function checkNewMessages()
+				{
 					var success = function(message)
 					{
-							alert(message);
 
-							$ionicLoading.hide();
+							$rootScope.unreadchatforpatient = message;
+							console.log($scope.unreadchatforpatient);
 
 					}
 
-					var failure = function()
-					{
-						alert("Error Occurred While Loggin in to DoctoQuick");
-					}
-					hello.loginstatus(success,failure);
+						var failure = function()
+						{
+								console.log('this is from patient home CTRL');
+						}
 
+							hello.unreadchatfromusers(username,password,success, failure);
+
+				}
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_patient";
+				$rootScope.unreadchatforpatient = 0;
+
+				$scope.statename = $ionicHistory.currentStateName();
+				$scope.iphone=$localStorage.iosLogin;
+
+				$scope.deviceAndroid = ionic.Platform.isAndroid();
+				// console.log();
+				if($scope.deviceAndroid === false){
 					$localStorage.iphoneLogin=0;
 				}
 
