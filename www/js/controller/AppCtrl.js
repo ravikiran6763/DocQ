@@ -483,7 +483,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 																$scope.ratings = [{
 																			 current: $rootScope.rate,
 																			 max: 5,
-																			 total:$rootScope.totalRates
+																			total:$rootScope.totalRates
 																		 }];
 																// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
 
@@ -611,13 +611,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
  $scope.clearAllHistory = function(){
 	 if($localStorage.doctororpatient === 'patient'){
 		 $state.go('app.patient_home');
-<<<<<<< HEAD
-	 }
-	 if($localStorage.doctororpatient === 'doctor'){
-		$state.go('app.doctor_home');
-	}
-		$ionicHistory.clearHistory();
-=======
 
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
@@ -626,7 +619,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		$ionicHistory.clearHistory();
 		$ionicHistory.clearCache();
 
->>>>>>> 9aecda7d5d82198eac622c4cf27f2a9bbb5757be
 					console.log($ionicHistory.clearHistory());
  }
 	$scope.getPatientDetails = function(){
