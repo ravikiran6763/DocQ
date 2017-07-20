@@ -7,7 +7,7 @@ if(isset($postdata))
 {
 
 	$request_from_patient = json_decode($postdata);
-	echo $patient_phno = $request_from_patient->patientphno;
+	$patient_phno = $request_from_patient->patientphno;
 	$speciality = $request_from_patient->speciality;
 	// $patient_phno = '9845000753';
 	// $speciality = 'Dentist';
@@ -27,7 +27,7 @@ if(isset($postdata))
 			 }
 			 else
 			 {
-							 echo "Query Submitted";
+							 echo "Inserted";
 							$fiveMins="SELECT id as reqId,requestedTime as reqTime  FROM reqForConsultation order by id DESC limit 1";
 						 	$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
 						 	while($row = mysql_fetch_array($fiveMinsRet))
@@ -39,7 +39,7 @@ if(isset($postdata))
 			 }
 		}
 		else{
-			echo "wait";
+			echo "Error";
 		}
 	}
 
@@ -77,8 +77,8 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 				 );
 
 				 $fields = json_encode($fields);
-					 print("\nJSON sent:\n");
-					 print($fields);
+					//  print("\nJSON sent:\n");
+					//  print($fields);
 
 				 $rk = curl_init();
 				 curl_setopt($rk, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
@@ -99,9 +99,9 @@ for ($i=0; $i < sizeof($myArray); $i++) {
 			 $response = sendMessage();
 			 $return["allresponses"] = $response;
 			 $return = json_encode( $return);
-			 print("\n\nJSON received:\n");
-			 print($return);
-			 print("\n");
+			//  print("\n\nJSON received:\n");
+			//  print($return);
+			//  print("\n");
  }
 
 }

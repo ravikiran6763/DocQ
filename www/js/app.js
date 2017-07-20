@@ -42,6 +42,13 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic.cloud'
 ])
 
+DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval) {
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+  //print here
+  $interval.cancel($rootScope.loginInterval);
+});
+}])
+
 DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
   // console.log(navigator.onLine);
       // $cordovaSplashscreen.hide();
@@ -206,6 +213,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
       checkConnection();
       console.log('device ready for network check');
   }
+
+
+
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 

@@ -34,84 +34,46 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 		   });
 
 
-			// $timeout( function(){
-			// 		console.log('interval started');
-		  //           $interval(checkNewMessages,2000);
-		  //        }, 60000 );
-			//
-			//
-			//
-			// 	var username = "greet+"+$localStorage.user;
-			// 	var password = "DQ_patient";
-			// 	$rootScope.unreadchatforpatient = 0;
-			//
-			//
-			// 	function checkNewMessages()
-			// 	{
-			// 		var success = function(message)
-			// 		{
-			//
-			// 				$rootScope.unreadchatforpatient = message;
-			// 				console.log($scope.unreadchatforpatient);
-			//
-			// 		}
-			//
-			// 			var failure = function()
-			// 			{
-			// 					console.log('this is from patient home CTRL');
-			// 			}
-			//
-			// 				hello.unreadchatfromusers(username,password,success, failure);
-			//
-			// 	}
+			$timeout( function(){
+					console.log('interval started');
+		            $interval(checkNewMessages,2000);
+		         }, 60000 );
+
+
+
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;
 
-				//
-				// function checkNewMessages()
-				// {
-				// 	var success = function(message)
-				// 	{
-				//
-				// 			$rootScope.unreadchatforpatient = message;
-				// 			console.log($scope.unreadchatforpatient);
-				//
-				// 	}
-				//
-				// 		var failure = function()
-				// 		{
-				// 				console.log('this is from patient home CTRL');
-				// 		}
-				//
-				// 			// hello.unreadchatfromusers(username,password,success, failure);
-				//
-				// }
+
+				function checkNewMessages()
+				{
+					var success = function(message)
+					{
+
+							$rootScope.unreadchatforpatient = message;
+							console.log($scope.unreadchatforpatient);
+
+					}
+
+						var failure = function()
+						{
+								console.log('this is from patient home CTRL');
+						}
+
+							hello.unreadchatfromusers(username,password,success, failure);
+
+				}
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_patient";
+				$rootScope.unreadchatforpatient = 0;
+
 				$scope.statename = $ionicHistory.currentStateName();
 				$scope.iphone=$localStorage.iosLogin;
 
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				// console.log();
 				if($scope.deviceAndroid === false){
-					// $ionicLoading.show({
-				  //       template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
-				  //     });
-
-
-					var success = function(message)
-					{
-							alert(message);
-
-							$ionicLoading.hide();
-
-					}
-
-					var failure = function()
-					{
-						alert("Error Occurred While Loggin in to DoctoQuick");
-					}
-					hello.loginstatus(success,failure);
-
 					$localStorage.iphoneLogin=0;
 				}
 

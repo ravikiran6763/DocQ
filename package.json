@@ -12,6 +12,7 @@
         "bcrypt": "^0.8.5",
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
+        "com.example.hello": "file:///Users/amittantia/Desktop/VSEE/VseePlugin",
         "com.red_folder.phonegap.plugin.backgroundservice": "../veeresh mac data/bgs-core",
         "com.red_folder.phonegap.plugin.backgroundservice.sample": "^2.0.0",
         "cordova-ios": "^4.4.0",
@@ -33,8 +34,7 @@
         "morgan": "~1.5.0",
         "ng-intl-tel-input": "^2.0.0",
         "passport": "^0.3.0",
-        "passport-jwt": "^1.2.1",
-        "com.example.hello": "../newpluginforandroid/cordova-plugin-hello"
+        "passport-jwt": "^1.2.1"
     },
     "devDependencies": {
         "bower": "^1.3.3",

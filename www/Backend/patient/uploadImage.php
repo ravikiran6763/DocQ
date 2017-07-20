@@ -8,7 +8,7 @@
 
       $uploadData = json_decode($postdata);
 
-  	   $image= $uploadData->image;
+  	    $image= $uploadData->image;
        $patientPhone= $uploadData->patientPhone;
       // $callDetails = array();
 
@@ -16,6 +16,9 @@
       $retval = mysql_query( $sql, $dbhandle );
       while($row = mysql_fetch_array($retval))
       {
+					//echo $row;
+
+
 				echo "updated";
       }
 
@@ -23,7 +26,7 @@
       {
         die('Could not get data: ' . mysql_error());
       }
-       echo json_encode($callDetails);
+       //echo json_encode($callDetails);
       // echo $fromDate;
 		}
 	 mysql_close($dbhandle);
