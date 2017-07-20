@@ -34,46 +34,10 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 		   });
 
 
-<<<<<<< HEAD
-			// $timeout( function(){
-			// 		console.log('interval started');
-		  //           $interval(checkNewMessages,2000);
-		  //        }, 60000 );
-			//
-			//
-			//
-			// 	var username = "greet+"+$localStorage.user;
-			// 	var password = "DQ_patient";
-			// 	$rootScope.unreadchatforpatient = 0;
-			//
-			//
-			// 	function checkNewMessages()
-			// 	{
-			// 		var success = function(message)
-			// 		{
-			//
-			// 				$rootScope.unreadchatforpatient = message;
-			// 				console.log($scope.unreadchatforpatient);
-			//
-			// 		}
-			//
-			// 			var failure = function()
-			// 			{
-			// 					console.log('this is from patient home CTRL');
-			// 			}
-			//
-			// 				hello.unreadchatfromusers(username,password,success, failure);
-			//
-			// 	}
-
-
-
-=======
 			$timeout( function(){
 					console.log('interval started');
 		            $interval(checkNewMessages,2000);
 		         }, 60000 );
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 
 
@@ -81,38 +45,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;
 
-<<<<<<< HEAD
-				//
-				// function checkNewMessages()
-				// {
-				// 	var success = function(message)
-				// 	{
-				//
-				// 			$rootScope.unreadchatforpatient = message;
-				// 			console.log($scope.unreadchatforpatient);
-				//
-				// 	}
-				//
-				// 		var failure = function()
-				// 		{
-				// 				console.log('this is from patient home CTRL');
-				// 		}
-				//
-				// 			// hello.unreadchatfromusers(username,password,success, failure);
-				//
-				// }
-				$scope.statename = $ionicHistory.currentStateName();
-				$scope.iphone=$localStorage.iosLogin;
-
-				$scope.deviceAndroid = ionic.Platform.isAndroid();
-				// console.log();
-				if($scope.deviceAndroid === false){
-					// $ionicLoading.show({
-				  //       template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
-				  //     });
-
-=======
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 				function checkNewMessages()
 				{

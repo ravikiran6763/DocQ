@@ -383,7 +383,6 @@ $scope.viewRequest=function(patient){
             $rootScope.ExpiredAlert= true;
             $rootScope.expired=response;
           }
-<<<<<<< HEAD
           // if($rootScope.ExpiredAlert === true){
           //
           //   $timeout( function(){
@@ -402,7 +401,6 @@ $scope.viewRequest=function(patient){
           //
           //     $interval.cancel(myInterval);
           // }
-=======
           if($rootScope.ExpiredAlert === true){
 
             $timeout( function(){
@@ -437,7 +435,6 @@ $scope.viewRequest=function(patient){
 
               $interval.cancel(myInterval);
           }
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
           //  $state.go($state.current, {}, {reload: true});
           }).catch(function(error){
           console.log('failure data', error);

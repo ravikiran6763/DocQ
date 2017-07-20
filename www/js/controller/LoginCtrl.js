@@ -126,83 +126,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
-						//CODE TO RUN CHAT NOTIFICATIONS IN BACKGROUND
-
-						$rootScope.logOb = "";
-
-
-						window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir) {
-        console.log("got main dir",dir);
-        dir.getFile("log.txt", {create:true}, function(file) {
-            console.log("got the file", file);
-            logOb = file;
-            writeLog("App started");
-        });
-    });
-
-		function writeLog(str) {
-    if(!logOb) return;
-    //var log = str + " [" + (new Date()) + "]\n";
-
-		var log = uname1 + "\n" + pw1;
-		//var log = pw1;
-
-
-		console.log("going to log "+log);
-    logOb.createWriter(function(fileWriter) {
-
-        fileWriter.seek(fileWriter.length);
-
-        var blob = new Blob([log], {type:'text/plain'});
-        fileWriter.write(blob);
-        console.log("ok, in theory i worked");
-    }, fail);
-
-
-		function fail()
-		{
-
-
-				console.log('failure function called');
-
-
-		}
-}
-
-
-						var myService;
-							myService = cordova.plugins.myService;
-
-							myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-
-
-							function go() {
-   myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
-};
-
-					function startService(data) {
-					   if (data.ServiceRunning) {
-					      enableTimer(data);
-					   } else {
-					      myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-					   }
-					}
-
-					function enableTimer(data) {
-					   if (data.TimerEnabled) {
-					      allDone();
-					   } else {
-					      myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
-					   }
-					}
-
-					function allDone() {
-					   alert("Service now running");
-					}
-
-
-
-
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
@@ -252,37 +175,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
-<<<<<<< HEAD
-// 							var myService;
-// 							myService = cordova.plugins.myService;
-//
-// 							myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-//
-//
-// 							function go() {
-//    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
-// };
-//
-// 					function startService(data) {
-// 					   if (data.ServiceRunning) {
-// 					      enableTimer(data);
-// 					   } else {
-// 					      myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
-// 					   }
-// 					}
-//
-// 					function enableTimer(data) {
-// 					   if (data.TimerEnabled) {
-// 					      allDone();
-// 					   } else {
-// 					      myService.enableTimer(60000, function(r){allDone(r)}, function(e){handleError(e)});
-// 					   }
-// 					}
-//
-// 					function allDone() {
-// 					   alert("Service now running");
-// 					}
-=======
 						// $state.go('app.patient_home');//for browser login
 							// $state.go('app.patient_home');//for browser login
 							hello.login(uname1,pw1,success, failure);
@@ -291,7 +183,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 									console.log('interval started');
 						            $interval($rootScope.loginInterval,2000);
 						         }, 2000 );
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
@@ -310,17 +201,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 	 								}
 
-<<<<<<< HEAD
-							//hello.login(uname1,pw1,success, failure);
-						}
-=======
 	 								var failure = function()
 	 								{
 	 									alert("Error Occurred While Loggin in to DoctoQuick");
 	 								}
 	 								hello.loginstatus(success,failure);
 								  }
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 
 						}
@@ -390,12 +276,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 								alert("Error calling Hello Plugin");
 
-<<<<<<< HEAD
-					}
-					else if(response === "alreadyLoggedIn"){
-=======
 							}
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 
 						// $state.go('app.patient_home');//for browser login
 							// $state.go('app.patient_home');//for browser login
@@ -433,11 +314,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						}
 						console.log('doctor screen should entered');
 
-<<<<<<< HEAD
-=======
 					}
 					else if(response === "alreadyLoggedIn"){
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
@@ -451,17 +329,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						};
 					}
 						else{
-<<<<<<< HEAD
-
 								$ionicLoading.hide();
-
-
-
-
-							$ionicLoading.hide();
-=======
-								$ionicLoading.hide();
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 							$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',

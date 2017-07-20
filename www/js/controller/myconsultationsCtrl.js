@@ -55,10 +55,6 @@ function checkNewMessages()
 						}).catch(function(error){
 						console.log('failure data', error);
 						});
-<<<<<<< HEAD
-
-=======
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 						// for (var keyandroid in dataofandroid)
 						// {
 						// if (dataofandroid.hasOwnProperty(keyandroid))
@@ -175,10 +171,6 @@ if($localStorage.doctororpatient == 'doctor'){
 				console.log('failure data', error);
 				});
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> e89cef203cf8c6858837e45063db5ae034f3f157
 }
 
 $scope.pagedecision=$ionicHistory.currentStateName();
