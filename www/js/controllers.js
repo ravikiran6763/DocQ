@@ -200,9 +200,7 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 
 })
 
-DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoading,$localStorage,$window,$scope,$state,$ionicHistory,LoginService){
-
-
+DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoading,$localStorage,$interval,$window,$scope,$state,$ionicHistory,LoginService){
 
   $timeout(function(){
 		// console.log($localStorage.doctororpatient);
@@ -210,8 +208,8 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to server'
 		});
 		if($localStorage.doctororpatient === 'patient'){
-			$ionicLoading.hide();
-			$state.go('app.patient_home',{}, {location: "replace", reload: false})
+			// $ionicLoading.hide();
+			// $state.go('app.patient_home',{}, {location: "replace", reload: false})
 
 			window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -239,28 +237,36 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 					$ionicLoading.hide();
 					console.log(message);
 					// alert(message);
+					$ionicHistory.nextViewOptions({
+					  disableAnimate: true,
+					  disableBack: true
+					});
+					$state.go('app.patient_home',{}, {location: "replace", reload: false})
 				}
 				var failure = function()
 				{
 					alert("Error calling Hello Plugin");
 				}
 				hello.login(uname1,pw1,success, failure);
-				$ionicHistory.nextViewOptions({
-				  disableAnimate: true,
-				  disableBack: true
-				});
-				$state.go('app.patient_home',{}, {location: "replace", reload: false})
+
 			}
 			else{
+				var uname1 = "greet+"+$localStorage.user;
+				var pw1 = "DQ_patient";
 				$ionicLoading.show({
 							template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
 						});
 				var success = function(message)
 				{
-							// alert(message);
+							console.log(message);
 					$scope.iosLoggin=message;
 					$localStorage.iosLogin=$scope.iosLoggin;
-
+					$ionicHistory.nextViewOptions({
+						disableAnimate: true,
+						disableBack: true
+					});
+					// $interval.cancel($rootScope.loginInterval);
+					$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
 				}
 				var failure = function()
@@ -276,7 +282,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 				$timeout( function(){
 						console.log('interval started');
-									$interval($rootScope.loginInterval,2000);
+									$interval($rootScope.loginInterval,2000,1);
 							 }, 10000 );
 
 					 $rootScope.loginInterval = function() {
@@ -290,8 +296,8 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 									disableAnimate: true,
 									disableBack: true
 								});
+								$interval.cancel($rootScope.loginInterval);
 								$state.go('app.patient_home', {}, {location: "replace", reload: false});
-								$interval.cancel(loginStatus);
 							});
 
 						}
@@ -329,6 +335,11 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				{
 					$ionicLoading.hide();
 					console.log(message);
+					$ionicHistory.nextViewOptions({
+					  disableAnimate: true,
+					  disableBack: true
+					});
+					$state.go('templates.doctor_home',{}, {location: "replace", reload: false});
 					// alert(message);
 				}
 				var failure = function()
@@ -337,13 +348,11 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				}
 
 				hello.login(uname1,pw1,success, failure);
-				$ionicHistory.nextViewOptions({
-				  disableAnimate: true,
-				  disableBack: true
-				});
-				$state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+
 			}
 			else{
+				var uname1 = "greet+"+$localStorage.user;
+				var pw1 = "DQ_doctor";
 				$ionicLoading.show({
 							template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
 						});
@@ -352,7 +361,6 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 							// alert(message);
 					$scope.iosLoggin=message;
 					$localStorage.iosLogin=$scope.iosLoggin;
-
 
 				}
 				var failure = function()
@@ -368,7 +376,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 				$timeout( function(){
 						console.log('interval started');
-									$interval(loginStatus,2000);
+									$interval(loginStatus,2000,1);
 							 }, 10000 );
 
 					 function loginStatus() {
@@ -382,8 +390,9 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 									disableAnimate: true,
 									disableBack: true
 								});
-								$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
 								$interval.cancel(loginStatus);
+
+								$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
 							});
 
 						}

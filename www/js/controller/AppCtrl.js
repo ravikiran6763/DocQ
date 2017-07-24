@@ -537,7 +537,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var unametologout = "greet+"+$localStorage.user;
 		var pwtologout = "DQ_patient";
 
-
    	var confirmPopup = $ionicPopup.confirm({
 						title: 'DoctorQuick',
 						template: '<center>Are you sure you want to Signout?</center>',
@@ -553,53 +552,32 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							type: 'button-positive',
 							onTap: function(e) {
 
-
-
-
-
 							LoginService.logoutFromDq($localStorage.user).then(function(response){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
 								if($scope.loggedOut){
-									$ionicHistory.clearCache();
-									$ionicHistory.clearHistory();
-									$window.localStorage.clear();
-
-
-									var success = function(message)
-									{
-												console.log(message);
-
-												$state.go('auth.loginNew');
-
-									}
-									var failure = function()
-									{
-
-
-										console.log('error calling hello plugin');
-
-
-									}
-
-							hello.logout(unametologout,pwtologout,success, failure);
-
-
+										$ionicHistory.clearCache();
+										$ionicHistory.clearHistory();
+										$window.localStorage.clear();
+										$scope.submitted = false;
+										var success = function(message)
+										{
+													console.log(message);
+													$state.go('auth.loginNew');
+										}
+										var failure = function()
+										{
+											console.log('error calling hello plugin');
+										}
+										hello.logout(unametologout,pwtologout,success, failure);
 								}
-
-
-
 							}).catch(function(error){
 							console.log('failure data', error);
 							});
-
-
 						}
 					},
 					]
 					});
-
-
 
  }
 
@@ -642,7 +620,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 	$rootScope.ratedBy;
 		$scope.updatePwd=function(){
 			$rootScope.ratedBy=$scope.login.userPhone;
-
 			var newPwd={
 			newPwd1:$scope.login.password,
 			userPhone:$localStorage.user
@@ -654,7 +631,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 				patientProfileDetailsService.changePwd2(newPwd).then(function(response){
 				console.log(response);
 					$scope.login='';
-
 					window.plugins.toast.showWithOptions({
 						message: "Your password has been updated.",
 						duration: "short", // 2000 ms

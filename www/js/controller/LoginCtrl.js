@@ -181,8 +181,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							$timeout( function(){
 									console.log('interval started');
-						            $interval($rootScope.loginInterval,2000);
-						         }, 2000 );
+						            $interval($rootScope.loginInterval,2000,1);
+						         }, 5000 );
 
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
@@ -218,17 +218,20 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
+						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
+							$rootScope.doctor_details=response;//store the response array in doctor details
+							console.log($rootScope.doctor_details);
+							window.localStorage['doctorDetails'] = angular.toJson(response);
+
+						}).catch(function(error){
+							console.log('failure data', error);
+						});
 						if($scope.deviceAndroid === true){
-
+							$ionicLoading.show({
+										template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+									});
 													$localStorage.doctororpatient = response;
-													doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
-												    $rootScope.doctor_details=response;//store the response array in doctor details
-												    console.log($rootScope.doctor_details);
-												    window.localStorage['doctorDetails'] = angular.toJson(response);
 
-												  }).catch(function(error){
-												    console.log('failure data', error);
-												  });
 												var uname1 = "greet+"+$scope.loginData.phone;
 												var pw1 = "DQ_doctor";
 
@@ -263,6 +266,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							$ionicLoading.show({
 						        template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
 						      });
+									var uname1 = "greet+"+$scope.loginData.phone;
+									var pw1 = "DQ_doctor";
 							var success = function(message)
 							{
 										// alert(message);
@@ -284,8 +289,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							$timeout( function(){
 									console.log('interval started');
-						            $interval(loginStatus,2000);
-						         }, 2000 );
+						            $interval(loginStatus,2000,1);
+						         }, 5000 );
 
 								 function loginStatus() {
 									 var success = function(message)
@@ -330,7 +335,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					}
 						else{
 								$ionicLoading.hide();
-							$scope.myPopup = $ionicPopup.show({
+								$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
 								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on "Forgot Password" to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 								cssClass: 'loginPopup',

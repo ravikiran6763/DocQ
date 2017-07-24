@@ -272,17 +272,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
             ]
             });
 
-
-            // $state.go("templates.doctor_home");
-              // $ionicPlatform.registerBackButtonAction(function (event) {
-              //   event.preventDefault();
-              //   event.stopPropagation();
-              //   alert("Stop");
-              // }, 100);
-                // H/W BACK button is disabled for these states (these views)
-                // Do not go to the previous state (or view) for these states.
-                // Do nothing here to disable H/W back button.
-                // navigator.app.exitAspp();
             }
             else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted") {
               $ionicHistory.clearCache();
