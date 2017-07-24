@@ -383,6 +383,24 @@ $scope.viewRequest=function(patient){
             $rootScope.ExpiredAlert= true;
             $rootScope.expired=response;
           }
+          // if($rootScope.ExpiredAlert === true){
+          //
+          //   $timeout( function(){
+          //   console.log('interval started');
+          //     $ionicLoading.show({
+          //     template: '<ion-spinner></ion-spinner><br><br>Consultation Expired',
+          //     duration: 4000
+          //     });
+          //   console.log('show a Toast message here');
+          //   $ionicHistory.nextViewOptions({
+          //     disableAnimate: true,
+          //     disableBack: true
+          //   });
+          //     $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+          // }, 1000 );
+          //
+          //     $interval.cancel(myInterval);
+          // }
           if($rootScope.ExpiredAlert === true){
 
             $timeout( function(){
