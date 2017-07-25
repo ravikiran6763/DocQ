@@ -260,13 +260,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				{
 							console.log(message);
 					$scope.iosLoggin=message;
-					$localStorage.iosLogin=$scope.iosLoggin;
-					$ionicHistory.nextViewOptions({
-						disableAnimate: true,
-						disableBack: true
-					});
-					// $interval.cancel($rootScope.loginInterval);
-					$state.go('app.patient_home', {}, {location: "replace", reload: false});
+
 
 				}
 				var failure = function()
