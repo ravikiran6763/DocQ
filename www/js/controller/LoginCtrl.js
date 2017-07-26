@@ -123,7 +123,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
+<<<<<<< HEAD
 
+=======
+//
+>>>>>>> d14b03f93e24b5d1bd9ba778a82caeb1c20e9a2e
 // 						$rootScope.logOb = "";
 //
 //

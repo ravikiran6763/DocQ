@@ -145,9 +145,9 @@ $scope.ratingsObject = {
 
 						var ratedValues={
 							rates:$rootScope.ratingValue,
-							ratedBy:$localStorage.user,
-							ratedTo:$stateParams.calledDoctor,
-							ratingComments:$scope.ratingComments.comment
+							//ratedBy:$localStorage.user,
+							ratedTo:$stateParams.calledDoctor
+							//ratingComments:$scope.ratingComments.comment
 						};
 						console.log(ratedValues);
 						rateDoctorServices.rateDoctor(ratedValues).then(function(response){

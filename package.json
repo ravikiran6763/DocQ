@@ -12,7 +12,11 @@
         "bcrypt": "^0.8.5",
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
+<<<<<<< HEAD
         "com.example.hello": "file:///Users/amittantia/Desktop/VSEE/VseePlugin",
+=======
+        "com.example.hello": "^0.7.0",
+>>>>>>> d14b03f93e24b5d1bd9ba778a82caeb1c20e9a2e
         "com.red_folder.phonegap.plugin.backgroundservice": "../veeresh mac data/bgs-core",
         "com.red_folder.phonegap.plugin.backgroundservice.sample": "^2.0.0",
         "cordova-ios": "^4.4.0",
