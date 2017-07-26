@@ -21,10 +21,8 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 $interval(checkNewMessages,2000);
 function checkNewMessages()
 {
-
 	// console.log('refreshing consultation list for new messages');
 	var username = $localStorage.user;
-
 	if($localStorage.doctororpatient == 'doctor'){
 		var password = "DQ_doctor";
 		console.log('checking for doc messages');
@@ -40,75 +38,32 @@ function checkNewMessages()
 		if($scope.deviceAndroid)
 		{
 						$scope.chatlist1 = message;
-
 						// console.log(message);
-
 						var forandroidchatlist = {};
 						forandroidchatlist = $scope.chatlist1;
-
 						var dataofandroid = JSON.parse(forandroidchatlist);
 						dataofandroid.chatTo=$localStorage.user;
-
 						doctorServices.createChatHistory(dataofandroid).then(function(response){
 						$scope.chatHistory=response;//store the response array in doctor details
 						// console.log('dataSent :',response);
 						}).catch(function(error){
 						console.log('failure data', error);
 						});
-						// for (var keyandroid in dataofandroid)
-						// {
-						// if (dataofandroid.hasOwnProperty(keyandroid))
-						// {
-						//    console.log(keyandroid + " = " + dataofandroid[keyandroid]);
-						//
-						// if(keyandroid == "unread")
-						// {
-						//    $scope.unreadcountforandroid = dataofandroid[keyandroid];
-						// }
-						//
-						// if(keyandroid == "message")
-						// {
-						//
-						//  $scope.msgforandroid = dataofandroid[keyandroid];
-						//
-						// }
-						// else if(keyandroid == "name")
-						// {
-						//    $scope.nameforandroid = dataofandroid[keyandroid];
-						//    console.log($scope.nameforandroid);
-						//
-						// }
-						// else if(keyandroid == "dateformat")
-						// {
-						//    $scope.datestringforandroid = dataofandroid[keyandroid];
-						// }
-						// else
-						// {
-						//  console.log('no response from vsee');
-						// }
-						// }
-						// }
 		}
 		else
 		{
 
-		$scope.ios = message;
-
-		var forioschatlist = {};
-		forioschatlist = $scope.ios;
-
-		var res = forioschatlist.slice(1,-1);
-
-		var dataForIos = JSON.parse(forioschatlist);
-
-
-
-		doctorServices.createChatHistoryIos(dataForIos).then(function(response){
-		$scope.chatHistoryios=response;//store the response array in doctor details
-		// console.log('dataSent :',$scope.chatHistoryios);
-		}).catch(function(error){
-		console.log('failure data', error);
-	});
+				$scope.ios = message;
+				var forioschatlist = {};
+				forioschatlist = $scope.ios;
+				var res = forioschatlist.slice(1,-1);
+				var dataForIos = JSON.parse(forioschatlist);
+				doctorServices.createChatHistoryIos(dataForIos).then(function(response){
+				$scope.chatHistoryios=response;//store the response array in doctor details
+				console.log('dataSent :',$scope.chatHistoryios);
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
 
 
 	}
@@ -126,16 +81,9 @@ if($localStorage.doctororpatient == 'patient'){
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 			$rootScope.ConsultedDoctor=response;//store the response array in doctor details
 			//	console.log($rootScope.ConsultedDoctor);
-
 			var data = response;
-
-
 				// console.log(response);
-
 			for(var i=0; i<data.length; i++){
-
-
-
 					$rootScope.doctorFname=data[i].doctorFname;
 					$rootScope.doctorLname=data[i].doctorLname;
 					$rootScope.doctorMname=data[i].doctorMname;
@@ -144,7 +92,6 @@ if($localStorage.doctororpatient == 'patient'){
 					// $scope.listofnames.push($scope.fullname);
 					// $scope.listofphones.push(data[i].patientPhone);
 					//console.log($localStorage.user);
-
 			}
 			$ionicLoading.hide();
 	}).catch(function(error){
@@ -207,42 +154,31 @@ $scope.consultationDetails=function(consultedDoc)
  hello.chat(username,password,persontocall,success, failure);
 
 }
-
-
 $scope.clicktochat = function(pateientPhone)
 {
 		//console.log(pateientPhone);
 		$scope.patientToChat=pateientPhone;
 
-
-
 		var username = "greet+"+$localStorage.user;
 		var password = "DQ_doctor";
+	 	var persontocall = "greet+" + $scope.patientToChat;
+		var success = function(message)
+		{
+			//alert(message);
+			console.log(message);
+		}
 
+		var failure = function()
+		{
+			//alert("Error calling Hello Plugin");
+			console.log('error');
 
-	 var persontocall = "greet+" + $scope.patientToChat;
-
-			var success = function(message)
-			{
-				//alert(message);
-				console.log(message);
-			}
-
-			var failure = function()
-			{
-				//alert("Error calling Hello Plugin");
-					console.log('error');
-
-			}
+		}
 			//cordova.exec(null,null, "ExampleApplicationforchat", "chattoanotherperson", [username,password,persontocall]);
-
 		hello.chat(username,password,persontocall,success, failure);
 
 }
 
 console.log($state.$current.name);
 console.log($rootScope.previousState.name);
-
-
-
 });
