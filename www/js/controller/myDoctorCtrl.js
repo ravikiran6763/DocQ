@@ -40,7 +40,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
     $scope.myConsultedDoctors=response;
 		console.log($scope.myConsultedDoctors.length);
 		$scope.ratings = [{
-					current: 3,
+					current: 0,
 					max: 5
 			}];
 		$ionicLoading.hide();

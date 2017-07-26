@@ -78,11 +78,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
-
 					console.log(response);
 
 					if(response === "patient")
 					{
+						$localStorage.doctororpatient = response;
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
 						}).catch(function(error){
@@ -119,9 +119,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				      }).catch(function(error){
 				          console.log('failure data', error);
 				      });
-
-
-						$localStorage.doctororpatient = response;
 
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
@@ -283,8 +280,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					}
 					else if(response === "doctor")
 					{
-
-
+						$localStorage.doctororpatient = response;
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
@@ -297,9 +293,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						});
 						if($scope.deviceAndroid === true){
 							$ionicLoading.show({
-										template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+										template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
 									});
-													$localStorage.doctororpatient = response;
+
 
 												var uname1 = "greet+"+$scope.loginData.phone;
 												var pw1 = "DQ_doctor";
@@ -333,7 +329,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						}
 						else{
 							$ionicLoading.show({
-						        template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+						        template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
 						      });
 									var uname1 = "greet+"+$scope.loginData.phone;
 									var pw1 = "DQ_doctor";
@@ -358,13 +354,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							$timeout( function(){
 									console.log('interval started');
-						            $interval(loginStatus,2000,1);
+						            $interval($rootScope.loginInterval,2000,1);
 						         }, 5000 );
 
-								 function loginStatus() {
+								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
-										// alert(message);
+
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
 											// 	alert('loggedin');
@@ -421,13 +417,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				});
 			}
 			else{
-				// window.plugins.toast.showShortCenter(
-				// "Valid phone number and password must be entered",function(a){},function(b){}
-				// );
+				// alert('Number Doesnot exist in our database')
 			}
-		// 	$timeout(function () {
-		// 	 $ionicLoading.hide();
-		//  }, 5000);
+
 
 		}
 

@@ -110,8 +110,15 @@ $scope.checkWalletBalance = function()
 				disableBack: true
 			 });
 
+			 $scope.deviceAndroid = ionic.Platform.isAndroid();
+			 console.log($scope.deviceAndroid);
 			 //$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId}, {location: "replace", reload: false});
-
+			 if($scope.deviceAndroid === false){
+				 $ionicLoading.show({
+	        template: 'Connecting...',
+	        duration: 3000
+	  			})
+			 }
 			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
 
 

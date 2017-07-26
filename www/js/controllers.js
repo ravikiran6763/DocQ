@@ -205,7 +205,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
   $timeout(function(){
 		// console.log($localStorage.doctororpatient);
 		$ionicLoading.show({
-		template: '<ion-spinner></ion-spinner><br><br>Connecting to server'
+		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 		});
 		if($localStorage.doctororpatient === 'patient'){
 			// $ionicLoading.hide();
@@ -229,9 +229,10 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 			});
 			$scope.deviceAndroid = ionic.Platform.isAndroid();
 			console.log($scope.deviceAndroid);
+			var uname1 = "greet+"+$localStorage.user;
+			var pw1 = "DQ_patient";
 			if($scope.deviceAndroid === true){
-				var uname1 = "greet+"+$localStorage.user;
-				var pw1 = "DQ_patient";
+
 				var success = function(message)
 				{
 					$ionicLoading.hide();
@@ -251,10 +252,9 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 			}
 			else{
-				var uname1 = "greet+"+$localStorage.user;
-				var pw1 = "DQ_patient";
+
 				$ionicLoading.show({
-							template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+							template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
 						});
 				var success = function(message)
 				{
@@ -322,9 +322,10 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 			});
 			$scope.deviceAndroid = ionic.Platform.isAndroid();
 			console.log($scope.deviceAndroid);
+			var uname1 = "greet+"+$localStorage.user;
+			var pw1 = "DQ_doctor";
 			if($scope.deviceAndroid === true){
-				var uname1 = "greet+"+$localStorage.user;
-				var pw1 = "DQ_doctor";
+
 				var success = function(message)
 				{
 					$ionicLoading.hide();
@@ -345,10 +346,9 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 			}
 			else{
-				var uname1 = "greet+"+$localStorage.user;
-				var pw1 = "DQ_doctor";
+
 				$ionicLoading.show({
-							template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+							template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
 						});
 				var success = function(message)
 				{

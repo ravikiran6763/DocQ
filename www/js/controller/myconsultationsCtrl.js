@@ -9,7 +9,6 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 
 	$scope.names = {};
 	$scope.listofnames = [];
-	$scope.myPatients={};
 	$scope.fromusername = [];
 	$scope.listofphones = [];
 // for doctors consultationDetails
@@ -102,7 +101,7 @@ if($localStorage.doctororpatient == 'patient'){
 if($localStorage.doctororpatient == 'doctor'){
 				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 					$scope.myPatients=response;//store the response array in doctor details
-					// console.log($scope.myPatients);
+					console.log($scope.myPatients);
 					var data = $scope.myPatients;
 					for(var i=0; i<data.length; i++){
 					$scope.patientFname=data[i].patientFname;
