@@ -356,7 +356,6 @@
     </config-file>
     <engine name="ios" spec="^4.4.0" />
     <plugin name="com.example.hello" spec="^0.7.0" />
-    <plugin name="com.example.hello" spec="file:///Users/amittantia/Desktop/VSEE/VseePlugin" />
     <plugin name="com.red_folder.phonegap.plugin.backgroundservice" spec="../veeresh mac data/bgs-core" />
     <plugin name="cordova-plugin-device" spec="^1.1.0">
         <variable name="MY_VARIABLE" value="my_variable_value" />
