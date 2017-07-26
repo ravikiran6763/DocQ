@@ -24,7 +24,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
 
       });
 
-   
+
 
 $scope.sendForm = function($event,form)
 {
@@ -69,10 +69,6 @@ $scope.sendForm = function($event,form)
 
   $scope.resendOtp = function()
   {
-
-
-
-
 
     patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
     {
@@ -487,12 +483,10 @@ $scope.patientRegistration = function()
         //Alert Popup goes healthcare
         $scope.myPopup=$ionicPopup.show({
           title: 'Doctor Already Exist',
-
           template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please try again if the problem persists call us directly.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-
           cssClass: 'loginPopup',
           scope: $scope,
-                    });
+        });
 
         $scope.closethis = function()
         {
@@ -514,12 +508,10 @@ $scope.patientRegistration = function()
           title: 'Thank You',
           cssClass: 'videoPopup',
           buttons: [
-          //  { text: 'Cancel',
-          // 	 //  type: 'button-positive',
-          // 	},
+        
            {
-             text: '<b>Close</b>',
-             type: 'button-royal',
+             text: 'Close',
+             type: 'button-positive',
              onTap: function() {
                console.log('Doctor Registered Successfully');
                $state.go('auth.loginNew');

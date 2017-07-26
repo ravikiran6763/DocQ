@@ -233,11 +233,11 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$ionicHistory.clearHistory();
 						}
 
-						else if($scope.prevPage === 'auth.patient_reg3'){
-							console.log($scope.otpentered);
-							$state.go('auth.patient_reg2');
-
-						}
+						// else if($scope.prevPage === 'auth.patient_reg3'){
+						// 	console.log($scope.otpentered);
+						// 	$state.go('auth.patient_reg2');
+						//
+						// }
 						else{
 							window.history.back();
 							}
@@ -559,7 +559,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$ionicHistory.clearCache();
 										$ionicHistory.clearHistory();
 										$window.localStorage.clear();
-										$scope.submitted = false;
+										$scope.loginDatasubmitted = false;
 										var success = function(message)
 										{
 													console.log(message);

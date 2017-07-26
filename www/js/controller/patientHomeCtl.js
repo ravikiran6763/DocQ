@@ -26,12 +26,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			}
 
-			$rootScope.$on('$stateChangeStart', function (event, toState, fromState){
 
-		     console.log(fromState); // -> Object {url: "/program", templateUrl: "views/program.html", resolve: Object, name: "program"}
-		    //  console.log(toState); // -> Object {} when clicking on e.g. 'news'
-
-		   });
 
 
 			$timeout( function(){
