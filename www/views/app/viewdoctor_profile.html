@@ -5,7 +5,9 @@
       <div class="imageContainer">
         <i class="icon ion-android-add-circle" ng-show="{{mydocs.onoff == 1}}"></i>
         <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{mydocs.onoff == 2}}"></i>
-        <img class="item-icon-right" ng-src="img/doc.jpg" >
+        <!-- <img class="item-icon-right" ng-src="img/doc.jpg" > -->
+        <img  ng-hide="mydocs.docImage2 == null "ng-src="{{mydocs.docImage2}}"   >
+        <img  ng-show="mydocs.docImage2 == null " ng-src="img/doc.jpg" >
       </div>
       <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname |capitalize}} {{ mydocs.doctorLname |capitalize}} </h1>
       <h2>{{mydocs.doctorDegrees}}, Degrees<br>practicing since {{mydocs.practicingSince}}</h2>
@@ -13,7 +15,7 @@
 
     </div>
 
-    <div class="middle-content">
+    <div class="middle-content" ng-repeat="mydocs in myDocDetails1">
       <div class="card ">
         <div class="row">
           <div class="  col">
@@ -22,12 +24,22 @@
           <div class=" col" ng-repeat="mydocs in myDocDetails1">
             {{mydocs.ratings/mydocs.ratingCount | number }}/{{mydocs.ratingCount}}
           </div>
-          <div class=" col"  style="margin-top: 3% !important;">
-            <span ng-repeat="rating in ratings" class="ratingContainer">
-              <div class="ratingStars" star-rating rating-value="rating.current" max="rating.max" >
-              </div>
+
+
+          <div class="col ">
+
+            <span class="stars " ng-show="{{mydocs.ratingCount == 0}}">
+              <span ng-style="{ 'width': getStars(0) }"></span>
             </span>
+            <span class="stars " ng-show="{{mydocs.ratingCount != 0}}">
+              <span ng-style="{ 'width': getStars(mydocs.ratings/mydocs.ratingCount) }"></span>
+            </span>
+
+              <!-- <span ng-repeat="rating in ratings">
+                <div star-rating rating-value="mydocs.ratings/mydocs.ratingCount" max="rating.max" style="margin:0 !important;"></div>
+              </span> -->
           </div>
+
         </div>
       </div>
     </div>

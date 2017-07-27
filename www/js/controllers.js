@@ -174,6 +174,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 			var uname1 = "greet+"+$localStorage.user;
 			var pw1 = "DQ_patient";
 			if($scope.deviceAndroid === true){
+
 				var success = function(message)
 				{
 					$ionicLoading.hide();

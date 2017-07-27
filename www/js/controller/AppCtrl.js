@@ -243,6 +243,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}
 		}
 
+
+
+
 			$scope.viewDoc2=function(docPhone){
 				console.log(docPhone);
 			doctorServices.specificSearch(docPhone).then(function(response){
@@ -474,13 +477,15 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 																$rootScope.rate=data[i].ratings,
 																//$rootScope.totalRates=data[i].totalRates
-
 																$rootScope.totalRates=data[i].ratingCount
 
 
 																		console.log($rootScope.rate);
 																		console.log($rootScope.totalRates);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 97282ab13109145332867b48fcdef2fc45bd6817
 																$rootScope.totalRates=data[i].ratingCount
 
 																if($rootScope.rate == 0 || $rootScope.totalRates == 0){
