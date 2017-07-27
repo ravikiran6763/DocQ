@@ -11,13 +11,19 @@ console.log('docprofileview');
 $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
-$rootScope.devideRates=$rootScope.docRates/$rootScope.docTotalRates;
-$rootScope.ratingsToDoc=$rootScope.devideRates.toFixed(1)
-console.log($rootScope.ratingsToDoc);
+
+//
+// $rootScope.devideRates=$rootScope.docRates/$rootScope.docTotalRates;
+// $rootScope.ratingsToDoc=$rootScope.devideRates.toFixed(1);
+//
+// console.log($rootScope.ratingsToDoc);
+
+
+
 
 $ionicLoading.show();
 
-console.log('called');
+
 
 // $interval(checkDocStatus, 6000);
 
@@ -30,7 +36,7 @@ var data=$scope.myDocDetails1;//take all json data into this variable
   for(var i=0; i<data.length; i++){
 
         $rootScope.rates=data[i].ratings,
-        $rootScope.totalRates=data[i].totalRates
+        $rootScope.totalRates=data[i].ratingCount
 
         if($rootScope.rates == null ){
           $rootScope.rates=''
@@ -47,7 +53,7 @@ var data=$scope.myDocDetails1;//take all json data into this variable
         console.log('doc',$rootScope.DocRates);
 
         $scope.ratings = [{
-               current: $rootScope.rates,
+               current: $rootScope.DocRates,
                max: 5,
                total:$rootScope.totalRates
              }, ];

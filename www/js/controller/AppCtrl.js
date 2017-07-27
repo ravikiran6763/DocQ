@@ -471,7 +471,14 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 		for(var i=0; i<data.length; i++){
 
 																$rootScope.rate=data[i].ratings,
-																$rootScope.totalRates=data[i].totalRates
+																//$rootScope.totalRates=data[i].totalRates
+
+																$rootScope.totalRates=data[i].ratingCount
+
+
+																		console.log($rootScope.rate);
+																		console.log($rootScope.totalRates);
+
 
 																if($rootScope.rate == null ){
 																	$rootScope.rates= 0;

@@ -7,7 +7,7 @@
         <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{mydocs.onoff == 2}}"></i>
         <img class="item-icon-right" ng-src="img/doc.jpg" >
       </div>
-      <h1>Dr.{{mydocs.doctorfname |capitalize}} {{mydocs.doctorMname |capitalize}} {{ mydocs.doctorLname |capitalize}} </h1>
+      <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname |capitalize}} {{ mydocs.doctorLname |capitalize}} </h1>
       <h2>{{mydocs.doctorDegrees}}, Degrees<br>practicing since {{mydocs.practicingSince}}</h2>
       <h2></h2>
 
@@ -20,7 +20,7 @@
             Rating
           </div>
           <div class=" col" ng-repeat="mydocs in myDocDetails1">
-            {{mydocs.ratings | number }}/{{mydocs.totalRates}}
+            {{mydocs.ratings/mydocs.ratingCount | number }}/{{mydocs.ratingCount}}
           </div>
           <div class=" col"  style="margin-top: 3% !important;">
             <span ng-repeat="rating in ratings" class="ratingContainer">

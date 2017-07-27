@@ -38,7 +38,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
 		// alert('list');
     $scope.myConsultedDoctors=response;
-		console.log($scope.myConsultedDoctors.length);
+		console.log($scope.myConsultedDoctors);
 		$scope.ratings = [{
 					current: 0,
 					max: 5
@@ -53,12 +53,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		$localStorage.docPhone=docPhone
 		$rootScope.ratesForDoc=rates
 		$rootScope.totalRate=total
-		console.log($localStorage.ratesForDoc);
-		console.log($localStorage.totalRate);
+
 
 	$state.go('app.viewdoctor_profile', {rates: $rootScope.ratesForDoc,totalRates: $rootScope.totalRate})
 		// $state.go('app.viewdoctor_profile');
-		console.log($localStorage.docPhone);
+		
 
 	}
 

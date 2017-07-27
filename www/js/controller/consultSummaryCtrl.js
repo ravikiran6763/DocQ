@@ -66,7 +66,35 @@ $scope.setRating = function(ratings,val){
 			disableBack: true,
 			historyRoot:true
 			});
-			$state.go("app.patient_home",{},{location: "replace", reload: false})
+
+
+			var ratedValues={
+				rates:$rootScope.ratingValue,
+				//ratedBy:$localStorage.user,
+				ratedTo:$stateParams.calledDoctor
+				//ratingComments:$scope.ratingComments.comment
+			};
+			console.log(ratedValues);
+			rateDoctorServices.rateDoctor(ratedValues).then(function(response){
+				// // console.log(ratedValues);
+				// $scope.rated=response;
+				// console.log($scope.rated);
+				// $scope.ratingComments.comment="";
+
+				//$state.go('app.patient_home', {}, {reload: true});
+				$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true,
+				historyRoot:true
+				});
+				$state.go('app.patient_home',{},{location: "replace", reload: false});
+
+
+			}).catch(function(error){
+				console.log('failure data', error);
+			});
+
+
 
 	}
 	else

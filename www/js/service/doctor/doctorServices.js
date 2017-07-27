@@ -182,6 +182,25 @@ this.createChatHistory = function (chat) {
 
 
 
+this.createChatHistoryforDoctor = function (chat) {
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.createChatHistoryforDoctor,chat)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+
+
+
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
+
+
+
 this.createChatHistoryIos = function (chat) {
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.createChatHistoryIos,chat)
