@@ -233,38 +233,39 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$ionicHistory.clearHistory();
 						}
 
-						else if($scope.prevPage === 'auth.patient_reg3'){
-							console.log($scope.otpentered);
-							$state.go('auth.patient_reg2');
-
-						}
+						// else if($scope.prevPage === 'auth.patient_reg3'){
+						// 	console.log($scope.otpentered);
+						// 	$state.go('auth.patient_reg2');
+						//
+						// }
 						else{
 							window.history.back();
 							}
 		}
 
 			$scope.viewDoc2=function(docPhone){
-
-			doctorServices.myDoctorsDetails(docPhone).then(function(response){
+				console.log(docPhone);
+			doctorServices.specificSearch(docPhone).then(function(response){
 						$scope.myDocDetail=response;
 						console.log(response);
 						$state.go('app.results');
 					}).catch(function(error){
 					console.log('failure data', error);
 					});
-
+				// $state.go('app.results');
 					$scope.myDoctorRatings={}
-					rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
-				 	$scope.myDoctorRatings=response;//store the response array in doctor details
-					$scope.ratings = [{
-								 current: $scope.myDoctorRatings,
-								 max: 5,
-								 total:0
-						 }, ];
-						 console.log($scope.ratings);
-				  }).catch(function(error){
-				  console.log('failure data', error);
-				  });
+					// rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
+					// 	$scope.myDoctorRatings=response;//store the response array in doctor details
+					// console.log($scope.myDoctorRatings);
+					// $scope.ratings = [{
+					// 			 current: $scope.myDoctorRatings,
+					// 			 max: 5,
+					// 			 total:0
+					// 	 }, ];
+					// 	 console.log($scope.ratings);
+				  // }).catch(function(error){
+				  // console.log('failure data', error);
+				  // });
 
 				}
 
@@ -458,6 +459,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 								$rootScope.rates=0;
 								$rootScope.totalRates=0;
 								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
+									console.log(response);
 									if(Object.keys(response).length)
 									{
 										$state.go('app.doctorsearch');
@@ -471,6 +473,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											 		for(var i=0; i<data.length; i++){
 
 																$rootScope.rate=data[i].ratings,
+<<<<<<< HEAD
 																//$rootScope.totalRates=data[i].totalRates
 
 																$rootScope.totalRates=data[i].ratingCount
@@ -479,19 +482,24 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 																		console.log($rootScope.rate);
 																		console.log($rootScope.totalRates);
 
+=======
+																$rootScope.totalRates=data[i].ratingCount
+>>>>>>> bfa1f6427c47c5d17ce97adbadba02343e4e42a6
 
-																if($rootScope.rate == null ){
-																	$rootScope.rates= 0;
+																if($rootScope.rate == 0 || $rootScope.totalRates == 0){
+																	$rootScope.overallRating= 1;
 																}
-																if($rootScope.totalRates == null ){
-																	$rootScope.totalRates= 0;
+
+																else{
+																	$rootScope.overallRating = $rootScope.rate/$rootScope.totalRates;
+
 																}
-																console.log($rootScope.rate);
+																// console.log($rootScope.overallRating);
 																$scope.ratings = [{
-																			 current: $rootScope.rate,
-																			 max: 5,
-																			 total:$rootScope.totalRates
+																			 current: $rootScope.overallRating,
+																			 max: 5
 																		 }];
+																		 console.log($scope.ratings);
 																// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
 
 											 			}
@@ -524,11 +532,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									}
 									else {
 										$scope.doclist = response;
-
-
 											console.log(response);
 											$state.go('app.doctorsearch');
-
 										$rootScope.doclist = "no doctors found";
 									}
 								}).catch(function (response, data, status, header) {
@@ -566,7 +571,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$ionicHistory.clearCache();
 										$ionicHistory.clearHistory();
 										$window.localStorage.clear();
-										$scope.submitted = false;
+										$scope.loginDatasubmitted = false;
 										var success = function(message)
 										{
 													console.log(message);
@@ -750,7 +755,7 @@ $scope.ratingsObject = {
 	iconOff: 'ion-ios-star-outline',   //Optional
 	rating:  $scope.myRating, //fetch value from database if already rated
 	minRating:0,    //Optional
-	//	readOnly: true, //Optional
+	readOnly: true, //Optional
 	callback: function(rating) {    //Mandatory
 		$scope.ratingsCallback(rating);
 	}

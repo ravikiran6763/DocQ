@@ -6,7 +6,7 @@ DoctorQuickApp.controller('ionicRatings', ['$scope', function($scope) {
         iconOnColor: 'rgb(200, 200, 100)',  //Optional
         iconOffColor:  'rgb(200, 100, 100)',    //Optional
         rating:  2, //Optional
-        minRating:1,    //Optional
+        minRating:0,    //Optional
         readOnly: true, //Optional
         callback: function(rating) {    //Mandatory
           $scope.ratingsCallback(rating);

@@ -9824,6 +9824,20 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+span.stars, span.stars span {
+  display: block;
+  /* Download the star image here: http://stackoverflow.com/questions/1987524/turn-a-number-into-star-rating-display-using-jquery-and-css */
+  background: url("../img/stars123.png") 0 -16px repeat-x;
+  width: 80px;
+  height: 16px;
+  margin-left: 2px; }
+
+span.stars span {
+  background-position: 0 0; }
+
+.alignright {
+  float: right; }
+
 .intl {
   position: absolute !important;
   margin: -11% 0 0 2% !important;
@@ -11875,7 +11889,9 @@ ion-side-menu .heading-item .message {
         .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
           margin-left: 43%;
           margin-top: -1%;
-          text-overflow: ellipsis; }
+          text-overflow: ellipsis;
+          position: relative;
+          margin-top: -15px; }
         .mydoctor-profile-view .myDoctor-list li .name-content h2 {
           margin: 2%;
           font-size: 125%;
@@ -14081,7 +14097,6 @@ ion-side-menu .heading-item .message {
       height: 20% !important;
       margin: 0 auto; }
       .patient-reg-1-view .bottom-content .tAndC .terms {
-        width: 80% !important;
         height: 100%;
         margin: 0 auto; }
         .patient-reg-1-view .bottom-content .tAndC .terms h2 {
@@ -14312,7 +14327,6 @@ ion-side-menu .heading-item .message {
       height: 20% !important;
       margin: 0 auto; }
       .patient-reg-2-view .bottom-content .tAndC .terms {
-        width: 80% !important;
         height: 100%;
         margin: 0 auto; }
         .patient-reg-2-view .bottom-content .tAndC .terms h2 {

@@ -578,6 +578,7 @@ return {
         scope: {
             ratingValue: '=',
             max: '=',
+						min: '=',
             onRatingSelected: '&'
         },
         link: function (scope, elem, attrs) {

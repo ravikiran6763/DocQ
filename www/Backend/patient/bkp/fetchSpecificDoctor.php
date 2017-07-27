@@ -10,8 +10,10 @@
 				$loginphno = json_decode($postdata);
         $doctorDetails = array();
 
- 				$sql = "select doctorfname,doctorMname,doctorLname,doctorEmail,doctorPhone,doctorPwd,doctorDegrees,practicingSince,doctorAge,doctorSex,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode,doctorLanguage1,doctorLanguage2,doctorBankName,doctorAccountNum,doctorBankIfsc,doctorFee,doctorSpecialityId,doctorMedFlag,doctorMedNum,onoff from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorPhone='$loginphno'";
-				$retval = mysql_query( $sql, $dbhandle );
+ 				//$sql = "select doctorfname,doctorMname,doctorLname,doctorPhone,doctorDegrees,practicingSince,doctorSex,doctorCountry,doctorCity,doctorFee,doctorSpecialityId,onoff,(select avg(rating) from doctorRatings where doctorRatings.ratingTo=doctorDetails.doctorPhone) as ratings, (select count(*) from doctorRatings where doctorRatings.ratingTo=doctorDetails.doctorPhone) as totalRates from doctorRatings,doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorPhone='$loginphno' group by doctorDetails.doctorPhone";
+				
+	
+		$sql = "select doctorFname,doctorMname,doctorLname,doctorDegrees,practicingSince,ratings,ratingCount,donoff.onoff from doctorDetails,doctor_onoff as donoff,favDoctors as fav where donoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$loginphno'";	$retval = mysql_query( $sql, $dbhandle );
         while($row = mysql_fetch_array($retval))
         {
           $doctorDetails[] = $row;

@@ -47,7 +47,7 @@ if (isset($postdata))
       }
     }
 
-        $ch = curl_init('http://www.txtguru.in/imobile/api.php?');
+        $ch = curl_init('https://www.txtguru.in/imobile/api.php?');
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "username=tallysolutions&password=49332602&source=TALLYS&dmobile=91".$userNum."&message=Your+Password+for+Logging+into+DoctorQuick+is:$userPass");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
