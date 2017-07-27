@@ -14,19 +14,30 @@
         <li   ng-click="viewDocProfile(doctor.doctorPhone,doctor.ratings/doctor.ratingCount,doctor.ratingCount)">
           <div class="profile-img">
             <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
-            <ionic-letter-avatar data={{doctor.doctorFname}}  shape="round" charcount='1'></ionic-letter-avatar>
+            <img  ng-hide="doctor.docImage2 == null "ng-src="{{doctor.docImage2}}"   >
+            <img  ng-show="doctor.docImage2 == null " ng-src="img/doc.jpg" >
+            <!-- <ionic-letter-avatar data={{doctor.doctorFname}}  shape="round" charcount='1'></ionic-letter-avatar> -->
           </div>
           <div class="name-content">
             <h2 >Dr.{{doctor.doctorFname | capitalize }} {{doctor.doctorLname | capitalize}} </h2>
             <p>{{doctor.doctorDegrees}} Degrees</p>
             <p>Practicing since {{doctor.practicingSince}}</p>
-            <span ng-repeat="rating in ratings" >
+            <span class="stars " ng-show="{{doctor.ratingCount == 0}}">
+              <span ng-style="{ 'width': getStars(0) }"></span>
+            </span>
+            <span class="stars " ng-show="{{doctor.ratingCount != 0}}">
+              <span ng-style="{ 'width': getStars(doctor.ratings/doctor.ratingCount) }"></span>
+            </span>
+            <p class="totalReview">
+                ({{doctor.ratingCount}} Reviews)
+            </p>
+            <!-- <span ng-repeat="rating in ratings" >
               <div  star-rating rating-value="doctor.ratings/doctor.ratingCount" max="rating.max" >
               </div>
               <p class="totalReview">
-                ({{doctor.ratingCount}} Reviews) 
+                ({{doctor.ratingCount}} Reviews)
               </p>
-            </span>
+            </span> -->
 
           </div>
 

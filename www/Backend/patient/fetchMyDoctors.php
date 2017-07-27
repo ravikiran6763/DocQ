@@ -20,12 +20,12 @@
         {
 
 
-
-					$sql1="select onoff,doctorPhone,doctorFname,doctorLname,doctorDegrees,practicingSince,round(avg(rating),0) as totalRating,count(*) as totalCount from doctorRatings,doctorDetails,doctor_onoff where doctorRatings.ratingTo=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$row[doctorNum]' and doctorDetails.doctorPhone=doctor_onoff.doctor_phno group by doctorRatings.ratingTo";
-
-						 //  $sql1="select sum(rating) as totalRating,count(*) as totalCount,onoff,ratingTo,dd.doctorFname,dd.doctorMname,dd.doctorLname,dd.doctorDegrees,dd.practicingSince from doctor_onoff,doctorRatings,doctorDetails as dd where dd.doctorPhone=doctorRatings.ratingTo or doctor_onoff.doctor_phno=doctorRatings.ratingTo or dd.doctorPhone=$row[ratingTo]";
-					 $retval1 = mysql_query( $sql1, $dbhandle );
-					 while($row1 = mysql_fetch_assoc($retval1))
+					$doctorphone = $row['doctorNum'];
+					//$sql1="select onoff,doctorPhone,doctorFname,doctorLname,doctorDegrees,practicingSince,round(avg(rating),0) as totalRating,count(*) as totalCount from doctorRatings,doctorDetails,doctor_onoff where doctorRatings.ratingTo=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$row[doctorNum]' and doctorDetails.doctorPhone=doctor_onoff.doctor_phno group by doctorRatings.ratingTo";
+					$sql1 ="select docImage2,doctorPhone,doctorFname,doctorMname,doctorLname,doctorDegrees,practicingSince,ratings,ratingCount from doctorDetails,favDoctors,doctorImages where doctorImages.docPhone=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$doctorphone' group by doctorDetails.doctorPhone";
+					//  $sql1="select sum(rating) as totalRating,count(*) as totalCount,onoff,ratingTo,dd.doctorFname,dd.doctorMname,dd.doctorLname,dd.doctorDegrees,dd.practicingSince from doctor_onoff,doctorRatings,doctorDetails as dd where dd.doctorPhone=doctorRatings.ratingTo or doctor_onoff.doctor_phno=doctorRatings.ratingTo or dd.doctorPhone=$row[ratingTo]";
+					$retval1 = mysql_query( $sql1, $dbhandle );
+					while($row1 = mysql_fetch_assoc($retval1))
 					 {
 
 
