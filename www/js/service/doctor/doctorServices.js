@@ -46,10 +46,23 @@ this.myDoctorsFetched = function (userPhone){
 }
 
 this.myDoctorsDetails = function (mydocPhone) {
-
   var deferred = $q.defer();
   // console.log(BASE_URL.url + API.fetchSpecificDoctor);
   $http.post(BASE_URL.url + API.fetchSpecificDoctor,mydocPhone)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
+this.specificSearch = function (mydocPhone) {
+  console.log('mysearch',mydocPhone);
+  var deferred = $q.defer();
+  // console.log(BASE_URL.url + API.specificSearch);
+  $http.post(BASE_URL.url + API.specificSearch,mydocPhone)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
   })

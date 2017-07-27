@@ -30,9 +30,6 @@ DoctorQuickApp.constant('BASE_URL', {
         'updatePlayer': 'common/updatePlayer.php',
         'alreadyLoggedIn': 'common/alreadyLoggedIn.php',
 
-
-
-
         /*PATIENT APIS*/
         'patientRegistration' :'patient/patientRegistration.php',
         'patientDetails'      :'patient/patientDetails.php',
@@ -44,16 +41,13 @@ DoctorQuickApp.constant('BASE_URL', {
         'getMedicalSpecialist' : 'patient/listallspecialities.php',
         'fetchSpecificSpeciality' : 'patient/fetchSpecificSpeciality.php',
         'fetchSpecificDoctor'     :'patient/fetchSpecificDoctor.php',
+        'specificSearch'     :'patient/specificSearch.php',
         'doctorbydifferentscenario' : 'patient/doctorlist.php',
         'sendrequesttodoctor' : 'patient/sendrequesttodoctor.php',
         'requestForCall' : 'patient/requestForCall.php',
         'cancelOne2oneReq' : 'patient/cancelOne2oneReq.php',
         'sendOfflineMessage' : 'patient/sendOfflineMessage.php',
         'sendNotification' : 'patient/sendNotification.php',
-
-
-
-
         'getMyDoctorRatings':'patient/getMyDoctorRatings.php',
         'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
         'docSummary' : 'patient/docSummary.php',
@@ -68,7 +62,6 @@ DoctorQuickApp.constant('BASE_URL', {
         'existingPatient' : 'patient/existingPatient.php',
         'sendotp' : 'textgurutest.php',
         //'rateMyDoctor':'patient/rateMyDoctor.php',
-
         'rateMyDoctor':'patient/rateMyDoctortodoctordetails.php',
         'addToFavorite':'patient/addToFavorite.php',
         'checkForAccptedReq':'patient/checkForAccptedReq.php',
@@ -95,11 +88,9 @@ DoctorQuickApp.constant('BASE_URL', {
         'cancelByDoc':'doctor/cancelByDoc.php',
         'patientActivity':'doctor/patientActivity.php',
         'checkIdStatus':'doctor/checkIdStatus.php',
-
         'videoOrAudio':'doctor/videoOrAudio.php',
         'doctorActivity':'doctor/doctorActivity.php',
         'updateNotes':'doctor/updateNotes.php',
-
         'docAccountsBalance' : 'doctor/docAccountsBalance.php',
         'docAccDetails' : 'doctor/docAccDetails.php',
         'reqPatientDetails' : 'doctor/reqPatientDetails.php',
@@ -108,13 +99,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'createChatHistoryIos':'doctor/createChatHistoryios.php',
         'fetchChatHistory':'doctor/fetchChatHistory.php',
         'callStatus':'doctor/callStatus.php',
-
         'testjpegimage' :'prescription/responseasimages.php',
-
         'fetchAllDoctors':'DQ/fetchDoctors.php',
         'sidemenulist':'DQ/sidemenulist.php',
         'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',
-
 
         /*  DOCTOR ON OFF API */
         'doctoronoffconditions':'doctor/doctoronoffline.php'

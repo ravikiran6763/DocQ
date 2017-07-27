@@ -1,22 +1,16 @@
 // APP
 DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,$localStorage,testresultbydoctor) {
 
-
 		$scope.toggle = true;
 		$rootScope.headerTxt="Diagnosis";
 		$rootScope.showBackBtn=true;
 		$rootScope.showNotification=false;
 		$rootScope.hideSideMenu = false;
 		$rootScope.showBadge=false;
-
-
 		$scope.patientfname = $stateParams.ptFname;
 		$scope.patientlname = $stateParams.ptLname;
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
-
-
-
 		// $rootScope.prescription={};
 
 		$scope.clear=function()
@@ -25,11 +19,6 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 				$rootScope.chekDiag=false;
 				$rootScope.val= "";
 		}
-
-
-
-
-
 })
 
 DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,testresultbydoctor) {
@@ -59,30 +48,6 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 
 		}
 
-		// $scope.done=function()
-		// {
-		// 		if($scope.notes.checkedTests || $rootScope.testVal)
-		// 		{
-		// 				testresultbydoctor.testr-ecommended($scope.notes.checkedTests);
-		// 				$rootScope.chekTests=true;
-		// 				$rootScope.testVal=$scope.notes.checkedTests;
-		// 				$state.go("templates.prescription");
-		// 		}
-		// 		else if ($scope.diagnosis.diagnosisforpatient === '') {
-		// 			alert('kindly Modify the diag');
-		// 		}
-		// 		else
-		// 		{
-		// 					alert('Please Enter Something')
-		// 		}
-		// }
-		//
-		// $scope.clear=function()
-		// {
-		// 	$scope.notes.checkedTests="";
-		// 	$rootScope.chekTests=false;
-		//
-		// }
 })
 
 DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $stateParams,$state,$ionicConfig,testresultbydoctor) {
@@ -99,26 +64,6 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 		$scope.patientlname = $stateParams.ptLname;
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
-
-		// $scope.done=function()
-		// {
-		// 		if($scope.medication.medicationforpatient || $rootScope.testVal)
-		// 		{
-		// 				testresultbydoctor.medicationdone($scope.medication.medicationforpatient);
-		// 				$rootScope.chekMedi=true;
-		// 				$rootScope.mediVal=$scope.medication.medicationforpatient;
-		// 				$state.go("templates.prescription");
-		// 		}
-		// 		else if ($scope.diagnosis.diagnosisforpatient === '') {
-		// 			alert('kindly Modify the Test');
-		// 		}
-		// 		else
-		// 		{
-		// 					alert('Please Enter Something')
-		// 		}
-		// }
-
-
 		// $rootScope.prescription={};
 
 		$scope.clear=function()
@@ -128,10 +73,7 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 			$rootScope.chekMedi=false;
 			$rootScope.mediVal = "";
 
-
 		}
-
-
 
 })
 
@@ -211,28 +153,27 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 			// $ionicLoading.hide();
 			// $state.go('app.patient_home',{}, {location: "replace", reload: false})
 
-			window.plugins.OneSignal.getIds(function(ids){
-				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
-				//document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
-				console.log(JSON.stringify(ids['userId']));
-				$scope.playerId=JSON.stringify(ids['userId']);
-				console.log($scope.playerId);
-				var updatePlayer ={
-					palyerId:$scope.playerId,
-					userNum:$localStorage.user,
-					user:'patient'
-				}
-				console.log(updatePlayer);
-				LoginService.updatePlayer(updatePlayer).then(function(response){
-					console.log(response);
-				})
-			});
+			// window.plugins.OneSignal.getIds(function(ids){
+			// 	//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+			// 	//document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+			// 	console.log(JSON.stringify(ids['userId']));
+			// 	$scope.playerId=JSON.stringify(ids['userId']);
+			// 	console.log($scope.playerId);
+			// 	var updatePlayer ={
+			// 		palyerId:$scope.playerId,
+			// 		userNum:$localStorage.user,
+			// 		user:'patient'
+			// 	}
+			// 	console.log(updatePlayer);
+			// 	LoginService.updatePlayer(updatePlayer).then(function(response){
+			// 		console.log(response);
+			// 	})
+			// });
 			$scope.deviceAndroid = ionic.Platform.isAndroid();
 			console.log($scope.deviceAndroid);
 			var uname1 = "greet+"+$localStorage.user;
 			var pw1 = "DQ_patient";
 			if($scope.deviceAndroid === true){
-
 				var success = function(message)
 				{
 					$ionicLoading.hide();
@@ -248,7 +189,8 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				{
 					alert("Error calling Hello Plugin");
 				}
-				hello.login(uname1,pw1,success, failure);
+				// hello.login(uname1,pw1,success, failure);
+				$state.go('app.patient_home',{}, {location: "replace", reload: false})
 
 			}
 			else{
