@@ -482,6 +482,10 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 																		console.log($rootScope.rate);
 																		console.log($rootScope.totalRates);
+<<<<<<< HEAD
+
+=======
+>>>>>>> 97282ab13109145332867b48fcdef2fc45bd6817
 																$rootScope.totalRates=data[i].ratingCount
 
 																if($rootScope.rate == 0 || $rootScope.totalRates == 0){
