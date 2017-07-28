@@ -39,6 +39,7 @@ console.log($rootScope.callFlag,$rootScope.callId);
 
  doctorServices.doctorDetails($rootScope.accptdDoc).then(function(response){
  $scope.calledDetails=response;
+ console.log($scope.calledDetails);
  }).catch(function(error){
  console.log('failure data', error);
  });

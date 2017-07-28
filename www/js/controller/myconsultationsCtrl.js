@@ -130,12 +130,66 @@ function checkNewMessages()
 		else
 		{
 
+			if($localStorage.doctororpatient == 'patient')
+			{
+
+
+
+						$scope.ios = message;
+
+						var forioschatlist = {};
+						forioschatlist = $scope.ios;
+						var res = forioschatlist.slice(1,-1);
+						var dataForIos = JSON.parse(forioschatlist);
+
+
+
+						doctorServices.createChatHistoryIos(dataForIos).then(function(response){
+						$scope.chatHistoryios=response;//store the response array in doctor details
+						console.log('dataSent :',$scope.chatHistoryios);
+						}).catch(function(error){
+						console.log('failure data', error);
+						});
+
+
+
+
+						myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+								$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+									// console.log($rootScope.ConsultedDoctor);
+								var data = response;
+									// console.log(response);
+								for(var i=0; i<data.length; i++){
+										$rootScope.doctorFname=data[i].doctorFname;
+										$rootScope.doctorLname=data[i].doctorLname;
+										$rootScope.doctorMname=data[i].doctorMname;
+										$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+										// console.log($rootScope.fullname);
+										// $scope.listofnames.push($scope.fullname);
+										// $scope.listofphones.push(data[i].patientPhone);
+										//console.log($localStorage.user);
+								}
+								$ionicLoading.hide();
+						}).catch(function(error){
+							console.log('failure data', error);
+						});
+
+
+
+
+
+			}
+			else {
+
+
 				$scope.ios = message;
+
 				var forioschatlist = {};
 				forioschatlist = $scope.ios;
 				var res = forioschatlist.slice(1,-1);
 				var dataForIos = JSON.parse(forioschatlist);
-				doctorServices.createChatHistoryIos(dataForIos).then(function(response){
+
+				doctorServices.createChatHistoryIosforDoctor(dataForIos).then(function(response){
 				$scope.chatHistoryios=response;//store the response array in doctor details
 				console.log('dataSent :',$scope.chatHistoryios);
 				}).catch(function(error){
@@ -143,9 +197,27 @@ function checkNewMessages()
 				});
 
 
+								myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+													$scope.myPatients=response;//store the response array in doctor details
+													console.log($scope.myPatients);
+													var data = $scope.myPatients;
+													for(var i=0; i<data.length; i++){
+													$scope.patientFname=data[i].patientFname;
+													$scope.patientLname=data[i].patientLname;
+													$scope.patientPhone=data[i].patientPhone;
+													$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+													$scope.listofnames.push($scope.fullname);
+													$scope.listofphones.push(data[i].patientPhone);
+													//console.log($localStorage.user);
+												}
+												$ionicLoading.hide();
+												}).catch(function(error){
+												console.log('failure data', error);
+												});
 
 
 
+			}
 
 
 

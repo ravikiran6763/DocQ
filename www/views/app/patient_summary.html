@@ -3,24 +3,24 @@
     <div class="top-content">
       <div class="details">
         <div class="profileImage">
-          <img src="./img/doc.jpg">
+          <!-- <img src="./img/doc.jpg"> -->
+          <img class="item-icon-right" ng-hide="consult.docImage2 == null "ng-src="{{consult.docImage2}}"   >
+          <img class="item-icon-right" ng-show="consult.docImage2 == null " ng-src="img/doc.jpg" >
 
         </div>
         <div class="name-content">
           <h2>Dr.{{consult.doctorFname | capitalize}} {{consult.doctorMname | capitalize}} {{consult.doctorLname | capitalize}}</h2>
           <p>{{consult.doctorDegrees}}<br>Practising since {{consult.practicingSince}} </p>
-          <!-- <div class="ratingContainer">
-            <span ng-repeat="rating in ratingss">
-              <div star-rating rating-value="rating.current" max="rating.max" ></div>
-            </span>
-          </div> -->
-          <!-- <a href="javascript:" ng-repeat="r in ratedArr" style="text-decoration:none; font-size: 150%; margin-left:1.5%">
-            <i class="icon {{r.icon}}"ng-click="rates(r.ratings,r.value)"></i>
-          </a> -->
+
           <div class="ratingContainer">
-              <span ng-repeat="rating in ratings">
-                <div star-rating rating-value="rating.current" max="rating.max" ></div>
+            <div>
+              <span class="stars " style="margin: 0 auto" ng-show="{{consult.ratingCount == 0}}">
+                <span ng-style="{ 'width': getStars(0) }"></span>
               </span>
+              <span class="stars " style="margin: 0 auto" ng-show="{{consult.ratingCount != 0}}">
+                <span ng-style="{ 'width': getStars(consult.ratings/consult.ratingCount) }"></span>
+              </span>
+            </div>
           </div>
 
         </div>
