@@ -12,7 +12,7 @@
       if(isset($postdata))
       {
 
-
+	
 	$chathistroyios = json_decode($postdata);
 
 	//echo $chathistroyios[0]->chatTo;
@@ -21,9 +21,9 @@
 
 
 	$pname = $chathistroyios[0]->pname;
-	//$chatTo = $chathistroyios[0]->chatTo;
+	$chatTo = $chathistroyios[0]->chatTo;
 	$chatDate = $chathistroyios[0]->dateformat;
-	$unread = $chathistroyios[0]->unread;
+	$unread = $chathistroyios[0]->unread;	
 	$message=$chathistroyios[0]->message;
 
 
@@ -33,18 +33,18 @@
 
 	$pname=explode("+", $chathistroyios[0]->pname);
 
-
+	
 	//echo $chatTo;
 
 
 
-	echo $sqlmyconsultation = "INSERT INTO chatHistory(dateAndTime,chatFrom,message,unreadCount) VALUES ('$chatDate','$pname[1]','$message','$unread')";
+	echo $sqlmyconsultation = "INSERT INTO chatHistory(dateAndTime,chatFrom,chatTo,message,unreadCount) VALUES ('$chatDate','$pname[1]','$chatTo','$message','$unread')";
              $retvalmyconsulation = mysql_query( $sqlmyconsultation, $dbhandle );
              if($retvalmyconsulation)
              {
              	echo "chatStored";
              }
-
+     
 mysql_close($dbhandle);
 
 

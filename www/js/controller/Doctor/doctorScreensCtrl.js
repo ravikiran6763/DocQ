@@ -366,85 +366,53 @@ $scope.viewRequest=function(patient){
   //   }, 1000);
   // $rootScope.testInterval=$interval(function () { console.log('testINtervalStarted'); }, 1000);
         $rootScope.id= $rootScope.currentPatient.id
-        var myInterval = $interval(function(){
-        if($rootScope.id === 0){
-          console.log('DOnoThing');
-        }else{
-          var idStatus={
-            declinedDoc:$localStorage.user,
-            id:$rootScope.id
-          }
-          doctorServices.checkIdStatus(idStatus).then(function(response){
-
-          console.log('existingId::',response);
-          if(response == 0){
-            // alert('expired');
-            $rootScope.id=0;
-            $rootScope.ExpiredAlert= true;
-            $rootScope.expired=response;
-          }
-          // if($rootScope.ExpiredAlert === true){
-          //
-          //   $timeout( function(){
-          //   console.log('interval started');
-          //     $ionicLoading.show({
-          //     template: '<ion-spinner></ion-spinner><br><br>Consultation Expired',
-          //     duration: 4000
-          //     });
-          //   console.log('show a Toast message here');
-          //   $ionicHistory.nextViewOptions({
-          //     disableAnimate: true,
-          //     disableBack: true
-          //   });
-          //     $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
-          // }, 1000 );
-          //
-          //     $interval.cancel(myInterval);
-          // }
-          if($rootScope.ExpiredAlert === true){
-
-            $timeout( function(){
-            console.log('interval started');
-              $ionicLoading.show({
-              template: '<ion-spinner></ion-spinner><br><br>Consultation Expired',
-              duration: 4000
-              });
-            //   $scope.name='Consultation Expired';
-            //   $ionicLoading.show({
-            //     content: "<div class='loading-text'>" +
-            //     "<div class='row'> " +
-            //     "<div class='col col-33 loading-thumb-container'>" +
-            //     // "<img class='rec-loading-thumb' src='" + $scope.thumbs.small + "' />" +
-            //     "</div> <div class='col col-66'>" +
-            //     "<h4 > Expired </h4>" +
-            //     "</div> </div>" +
-            //     "</div>",
-            //     animation: 'fade-in',
-            //     showBackdrop: false,
-            //     maxWidth: 200,
-            //     showDelay: 500
-            // });
-            console.log('show a Toast message here');
-            $ionicHistory.nextViewOptions({
-              disableAnimate: true,
-              disableBack: true
-            });
-              $state.go('templates.doctor_home',{}, {location: "replace", reload: false});
-              $rootScope.ExpiredAlert === false;
-          }, 1000 );
-
-              $interval.cancel(myInterval);
-          }
-          //  $state.go($state.current, {}, {reload: true});
-          }).catch(function(error){
-          console.log('failure data', error);
-          });
-        }
-        // alert('fired after 5 secs');
-      },1000)
-       .then(function(){
-           $interval.cancel(myInterval);
-       });
+      //   var myInterval = $interval(function(){
+      //   if($rootScope.id === 0){
+      //     console.log('DOnoThing');
+      //   }else{
+      //     var idStatus={
+      //       declinedDoc:$localStorage.user,
+      //       id:$rootScope.id
+      //     }
+      //     doctorServices.checkIdStatus(idStatus).then(function(response){
+      //
+      //     console.log('existingId::',response);
+      //     if(response == 0){
+      //       // alert('expired');
+      //       $rootScope.id=0;
+      //       $rootScope.ExpiredAlert= true;
+      //       $rootScope.expired=response;
+      //     }
+      //
+      //     if($rootScope.ExpiredAlert === true){
+      //
+      //       $timeout( function(){
+      //       console.log('interval started');
+      //         $ionicLoading.show({
+      //         template: '<ion-spinner></ion-spinner><br><br>Consultation Expired',
+      //         duration: 4000
+      //         });
+      //                 console.log('show a Toast message here');
+      //       $ionicHistory.nextViewOptions({
+      //         disableAnimate: true,
+      //         disableBack: true
+      //       });
+      //         $state.go('templates.doctor_home',{}, {location: "replace", reload: false});
+      //         $rootScope.ExpiredAlert === false;
+      //     }, 1000 );
+      //
+      //         $interval.cancel(myInterval);
+      //     }
+      //     //  $state.go($state.current, {}, {reload: true});
+      //     }).catch(function(error){
+      //     console.log('failure data', error);
+      //     });
+      //   }
+      //   // alert('fired after 5 secs');
+      // },1000)
+      //  .then(function(){
+      //      $interval.cancel(myInterval);
+      //  });
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
 }
 

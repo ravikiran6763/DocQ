@@ -97,6 +97,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'updateDocPassword':'doctor/updateDocPassword.php',
         'createChatHistory':'doctor/createChatHistory.php',
         'createChatHistoryIos':'doctor/createChatHistoryios.php',
+        'createChatHistoryIosforDoctor':'doctor/createChatHistoryIosforDoctor.php',
         'createChatHistoryforDoctor':'doctor/createChatHistoryforDoctor.php',
         'fetchChatHistory':'doctor/fetchChatHistory.php',
         'callStatus':'doctor/callStatus.php',
