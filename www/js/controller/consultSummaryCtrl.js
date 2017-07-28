@@ -109,15 +109,13 @@ $scope.setRating = function(ratings,val){
 		 max: 5
  }];
 
-
-
-myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
-		$scope.myDoctor=response;//store the response array in doctor details
-		console.log($scope.myDoctor);
-		$ionicLoading.hide();
-}).catch(function(error){
-	console.log('failure data', error);
-});
+ myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
+ 		$scope.myDoctor=response;//store the response array in doctor details
+ 		console.log($scope.myDoctor);
+ 		$ionicLoading.hide();
+ }).catch(function(error){
+ 	console.log('failure data', error);
+ });
 
 $scope.ratingsObject = {
 		iconOn: 'ion-ios-star',    //Optional

@@ -4,8 +4,8 @@
       <div class="details">
         <div class="profileImage">
           <!-- <img src="./img/doc.jpg"> -->
-          <img class="item-icon-right" ng-hide="consult.docImage2 == null "ng-src="{{consult.docImage2}}"   >
-          <img class="item-icon-right" ng-show="consult.docImage2 == null " ng-src="img/doc.jpg" >
+          <img  ng-hide="consult.docImage2 == null "ng-src="{{consult.docImage2}}"   >
+          <img  ng-show="consult.docImage2 == null " ng-src="img/doc.jpg" >
 
         </div>
         <div class="name-content">
@@ -14,10 +14,10 @@
 
           <div class="ratingContainer">
             <div>
-              <span class="stars " style="margin: 0 auto" ng-show="{{consult.ratingCount == 0}}">
+              <span class="stars " style="margin: -30px 0 0 19px;" ng-show="{{consult.ratingCount == 0}}">
                 <span ng-style="{ 'width': getStars(0) }"></span>
               </span>
-              <span class="stars " style="margin: 0 auto" ng-show="{{consult.ratingCount != 0}}">
+              <span class="stars " style="margin: -30px 0 0 19px;" ng-show="{{consult.ratingCount != 0}}">
                 <span ng-style="{ 'width': getStars(consult.ratings/consult.ratingCount) }"></span>
               </span>
             </div>
