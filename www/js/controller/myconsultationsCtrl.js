@@ -65,7 +65,7 @@ function checkNewMessages()
 
 				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 						$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-							// console.log($rootScope.ConsultedDoctor);
+							console.log($rootScope.ConsultedDoctor);
 						var data = response;
 							// console.log(response);
 						for(var i=0; i<data.length; i++){
