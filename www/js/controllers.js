@@ -150,8 +150,9 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 		});
 		if($localStorage.doctororpatient === 'patient'){
-			// $ionicLoading.hide();
-			// $state.go('app.patient_home',{}, {location: "replace", reload: false})
+
+			//$ionicLoading.hide();
+			//$state.go('app.patient_home',{}, {location: "replace", reload: false})
 
 			window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -190,8 +191,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				{
 					alert("Error calling Hello Plugin");
 				}
-				 hello.login(uname1,pw1,success, failure);
-				//$state.go('app.patient_home',{}, {location: "replace", reload: false})
+		 hello.login(uname1,pw1,success, failure);
 
 			}
 			else{
@@ -201,9 +201,8 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 						});
 				var success = function(message)
 				{
-							console.log(message);
+					console.log(message);
 					$scope.iosLoggin=message;
-
 
 				}
 				var failure = function()

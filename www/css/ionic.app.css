@@ -11720,7 +11720,7 @@ ion-side-menu .heading-item .message {
         height: 100%;
         width: 75%; }
         .consultationList-view .myDoctor-list li .name-content .name {
-          width: 70%; }
+          width: 100%; }
         .consultationList-view .myDoctor-list li .name-content .date {
           position: absolute;
           width: 20%;
@@ -11744,7 +11744,7 @@ ion-side-menu .heading-item .message {
           position: relative !important;
           float: right !important;
           /* right: 4% !important; */
-          top: -30% !important; }
+          top: 8% !important; }
         .consultationList-view .myDoctor-list li .name-content h2 {
           margin: 2%;
           font-size: 125%;
