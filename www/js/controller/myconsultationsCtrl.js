@@ -16,6 +16,10 @@ $ionicLoading.show();
 console.log('consultations');
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
+var username = "greet+"+$localStorage.user;
+
+
+console.log('MY CONSULTATION CALLED');
 
 
 if($localStorage.doctororpatient == 'doctor'){
@@ -33,7 +37,7 @@ else{
 $interval(checkNewMessages,2000);
 function checkNewMessages()
 {
-	// console.log('refreshing consultation list for new messages');
+ console.log('refreshing consultation list for new messages');
 
 
 		var success = function(message)
@@ -130,10 +134,23 @@ function checkNewMessages()
 		else
 		{
 
+<<<<<<< HEAD
+			console.log('this is ios chat histroy');
+
+
+=======
+>>>>>>> 490f43d884e9f8e07159a0016efe0b704731a8fc
 			if($localStorage.doctororpatient == 'patient')
 			{
 
 
+<<<<<<< HEAD
+				console.log('this is patient');
+
+				$scope.ios = message;
+
+				console.log($scope.ios);
+=======
 
 						$scope.ios = message;
 
@@ -184,12 +201,20 @@ function checkNewMessages()
 
 				$scope.ios = message;
 
+>>>>>>> 490f43d884e9f8e07159a0016efe0b704731a8fc
 				var forioschatlist = {};
 				forioschatlist = $scope.ios;
 				var res = forioschatlist.slice(1,-1);
 				var dataForIos = JSON.parse(forioschatlist);
 
+<<<<<<< HEAD
+				console.log(dataForIos);
+
+
+				doctorServices.createChatHistoryIos(dataForIos).then(function(response){
+=======
 				doctorServices.createChatHistoryIosforDoctor(dataForIos).then(function(response){
+>>>>>>> 490f43d884e9f8e07159a0016efe0b704731a8fc
 				$scope.chatHistoryios=response;//store the response array in doctor details
 				console.log('dataSent :',$scope.chatHistoryios);
 				}).catch(function(error){
@@ -197,6 +222,33 @@ function checkNewMessages()
 				});
 
 
+<<<<<<< HEAD
+								myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+										$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+											// console.log($rootScope.ConsultedDoctor);
+										var data = response;
+											// console.log(response);
+										for(var i=0; i<data.length; i++){
+												$rootScope.doctorFname=data[i].doctorFname;
+												$rootScope.doctorLname=data[i].doctorLname;
+												$rootScope.doctorMname=data[i].doctorMname;
+												$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+												// console.log($rootScope.fullname);
+												// $scope.listofnames.push($scope.fullname);
+												// $scope.listofphones.push(data[i].patientPhone);
+												//console.log($localStorage.user);
+										}
+										$ionicLoading.hide();
+								}).catch(function(error){
+									console.log('failure data', error);
+								});
+
+
+
+
+			}
+			else {
+=======
 								myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 													$scope.myPatients=response;//store the response array in doctor details
 													console.log($scope.myPatients);
@@ -214,9 +266,48 @@ function checkNewMessages()
 												}).catch(function(error){
 												console.log('failure data', error);
 												});
+>>>>>>> 490f43d884e9f8e07159a0016efe0b704731a8fc
+
+				$scope.ios = message;
+
+				console.log($scope.ios);
+				var forioschatlist = {};
+				forioschatlist = $scope.ios;
+				var res = forioschatlist.slice(1,-1);
+				var dataForIos = JSON.parse(forioschatlist);
+
+				console.log(dataForIos);
+
+<<<<<<< HEAD
+				doctorServices.createChatHistoryforDoctor(dataofandroid).then(function(response){
+				$scope.chatHistory=response;//store the response array in doctor details
+			//  console.log('dataSent :',response);
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+
+				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+									$scope.myPatients=response;//store the response array in doctor details
+									console.log($scope.myPatients);
+									var data = $scope.myPatients;
+									for(var i=0; i<data.length; i++){
+									$scope.patientFname=data[i].patientFname;
+									$scope.patientLname=data[i].patientLname;
+									$scope.patientPhone=data[i].patientPhone;
+									$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+									$scope.listofnames.push($scope.fullname);
+									$scope.listofphones.push(data[i].patientPhone);
+									//console.log($localStorage.user);
+								}
+								$ionicLoading.hide();
+								}).catch(function(error){
+								console.log('failure data', error);
+								});
 
 
 
+=======
+>>>>>>> 490f43d884e9f8e07159a0016efe0b704731a8fc
 			}
 
 
