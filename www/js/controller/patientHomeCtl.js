@@ -31,7 +31,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			$timeout( function(){
 					console.log('interval started');
-		            // $interval(checkNewMessages,2000);
+		            $interval(checkNewMessages,2000);
 		         }, 60000 );
 
 
