@@ -508,7 +508,7 @@ $scope.BalanceForVoiceCall=function()
           console.log('failure data', error);
           });
 
-          // hello.greet(uname,pw,persontocall,success, failure);
+          hello.greet(uname,pw,persontocall,success, failure);
           $scope.counter = 120;
           $scope.onTimeout = function(){
             console.log($scope.counter);
