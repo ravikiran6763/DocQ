@@ -495,20 +495,19 @@ $scope.BalanceForVoiceCall=function()
         if($scope.myBalance >= 250)
         {
 
-            searchDoctorServices.requestForCall(callRequest).then(function(response){
-            window.localStorage['one2oneReq'] = angular.toJson(response);
-            $rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
-            $localStorage.myCallId = $rootScope.one2oneReq.reqId;
+              searchDoctorServices.requestForCall(callRequest).then(function(response){
+              window.localStorage['one2oneReq'] = angular.toJson(response);
+              $rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
+              $localStorage.myCallId = $rootScope.one2oneReq.reqId;
 
-            console.log($localStorage.myCallId);
+              console.log($localStorage.myCallId);
+              console.log($rootScope.one2oneReq.callStatus);
 
-            console.log($rootScope.one2oneReq.callStatus);
+              }).catch(function(error){
+              console.log('failure data', error);
+              });
 
-          }).catch(function(error){
-          console.log('failure data', error);
-          });
-
-          hello.greet(uname,pw,persontocall,success, failure);
+          // hello.greet(uname,pw,persontocall,success, failure);
           $scope.counter = 120;
           $scope.onTimeout = function(){
             console.log($scope.counter);
