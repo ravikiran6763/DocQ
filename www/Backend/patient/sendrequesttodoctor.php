@@ -98,9 +98,6 @@ $sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.do
 
 			 				 return $response;
 
-
-
-
  	}
 
  			 }

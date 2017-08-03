@@ -11,13 +11,6 @@ console.log('docprofileview');
 $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
-
-//
-// $rootScope.devideRates=$rootScope.docRates/$rootScope.docTotalRates;
-// $rootScope.ratingsToDoc=$rootScope.devideRates.toFixed(1);
-//
-// console.log($rootScope.ratingsToDoc);
-
 $scope.getStars = function(rating) {
   // Get the value
   var val = parseFloat(rating);
@@ -28,12 +21,7 @@ $scope.getStars = function(rating) {
 
 
 $ionicLoading.show();
-
-
-
-// $interval(checkDocStatus, 6000);
-
-// $interval(checkConnection, 6000);
+$interval(checkDocStatus, 6000);
 
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
 $scope.myDocDetails1=response;
@@ -466,7 +454,6 @@ $scope.BalanceForVoiceCall=function()
     {
       $rootScope.docNumToCall = num;
 
-      $ionicLoading.show();
       var callRequest={
       patient:$localStorage.user,
       doctor:$rootScope.docNumToCall,
@@ -474,6 +461,7 @@ $scope.BalanceForVoiceCall=function()
       }
       console.log(callRequest);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
+        console.log(response);
         console.log(response[0][0]);
       $scope.myBalance=response[0][0];
       $localStorage.patientWalletBalance=$scope.myBalance;
@@ -510,7 +498,7 @@ $scope.BalanceForVoiceCall=function()
               console.log('failure data', error);
               });
 
-          hello.greet(uname,pw,persontocall,success, failure);
+          // hello.greet(uname,pw,persontocall,success, failure);
           $scope.counter = 120;
           $scope.onTimeout = function(){
             console.log($scope.counter);

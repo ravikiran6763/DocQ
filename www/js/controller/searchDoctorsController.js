@@ -284,6 +284,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			{
 
 					searchDoctorServices.requestForCall(callRequest).then(function(response){
+						console.log('print response',response);
 					window.localStorage['one2oneReq'] = angular.toJson(response);
 					$rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
 					$localStorage.one2oneId = $rootScope.one2oneReq.reqId;
