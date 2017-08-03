@@ -55,6 +55,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 	$scope.doLogIn = function()
 	{
 
+
+
 				$rootScope.loginDatasubmitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
@@ -82,6 +84,21 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 					if(response === "patient")
 					{
+
+
+						window.plugins.OneSignal.getIds(function(ids) {
+							$scope.playerId=JSON.stringify(ids['userId']);
+							// console.log($scope.playerId);
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:$localStorage.user,
+								user:'patient'
+							}
+							console.log(updatePlayer);
+							LoginService.updatePlayer(updatePlayer).then(function(response){
+								console.log(response);
+							})
+						});
 						$localStorage.doctororpatient = response;
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
@@ -279,6 +296,22 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					}
 					else if(response === "doctor")
 					{
+
+						window.plugins.OneSignal.getIds(function(ids) {
+							$scope.playerId=JSON.stringify(ids['userId']);
+							// console.log($scope.playerId);
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:$localStorage.user,
+								user:'doctor'
+							}
+							console.log(updatePlayer);
+							LoginService.updatePlayer(updatePlayer).then(function(response){
+								console.log(response);
+							})
+						});
+
+
 						$localStorage.doctororpatient = response;
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
