@@ -86,7 +86,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	}
 
 
-	// $interval(checkCallStatus,2000,false);
+	$interval(checkCallStatus,2000,false);
 
 	function checkCallStatus(){
 		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
