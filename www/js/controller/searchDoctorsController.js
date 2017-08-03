@@ -86,7 +86,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	}
 
 
-	// $interval(checkCallStatus,2000,false);
+	$interval(checkCallStatus,2000,false);
 
 	function checkCallStatus(){
 		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
@@ -192,7 +192,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 												disableAnimate: true,
 												disableBack: true
 											 });
-											 $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
 
 												//
 												$scope.enddate = new Date();
@@ -201,6 +200,10 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 												// console.log($localStorage.Doctocall);
 												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
 													console.log('inserted to consultation',response);
+
+													$state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
+
+
 					              }).catch(function(error){
 					              console.log('failure data', error);
 					              });
@@ -224,12 +227,31 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 				 		 });
 		 }
+		 if(newValue == 4){
+			 alert('declined by doctor');
+			 $scope.callAccept.close();
+			 var confirmPopup = $ionicPopup.confirm({
+							 title: 'Declined!!',
+							 template: 'Doctor has declined for consultation',
+							 cssClass: 'videoPopup',
+							 scope: $scope,
+							 buttons: [
+								 {
+									 text: 'Ok',
+									 type: 'button-positive',
+									 onTap: function(e) {
+									 console.log('ok');
+									 }
+								 },
+							 ]
+						 });
+		 }
 
 	},true);
 	$scope.videoCall=function(num)
 	{
-		$rootScope.docNumToCall = num;
 
+		$rootScope.docNumToCall = num;
 		$ionicLoading.show();
 		var callRequest={
 		patient:$localStorage.user,
@@ -244,7 +266,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 				console.log('pop up page clicked');
 					var uname = "greet+"+$localStorage.user;
 					 var pw = "DQ_patient";
-
 					 var persontocall = "greet+" + $rootScope.docNumToCall;
 					//  var persontocall = "greet+" + $localStorage.consultedDoctor;
 					 console.log(uname);
@@ -266,9 +287,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 					window.localStorage['one2oneReq'] = angular.toJson(response);
 					$rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
 					$localStorage.one2oneId = $rootScope.one2oneReq.reqId;
-
 					console.log($localStorage.one2oneId);
-
 					console.log($rootScope.one2oneReq.callStatus);
 
 				}).catch(function(error){

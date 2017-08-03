@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading, doctorServices,patientrequesttodoctor,searchDoctorServices) {
+DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices) {
 
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
@@ -423,7 +423,6 @@ $scope.BalanceForVoiceCall=function()
   												disableAnimate: true,
   												disableBack: true
   											 });
-  											 $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.myCallId}, {location: "replace", reload: false});
   												//
   												$scope.enddate = new Date();
   												console.log($localStorage.user);
@@ -431,6 +430,10 @@ $scope.BalanceForVoiceCall=function()
   												// console.log($localStorage.Doctocall);
   												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.myCallId).then(function(response){
   													console.log('inserted to consultation',response);
+
+                            $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.myCallId}, {location: "replace", reload: false});
+
+
   					              }).catch(function(error){
   					              console.log('failure data', error);
   					              });

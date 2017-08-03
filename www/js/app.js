@@ -192,11 +192,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
 
         window.plugins.OneSignal
         .startInit( "6873c259-9a11-4a2a-a3b5-53aea7d59429")
-        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
+        .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+        // Notification - native notification display while user has app in focus (can be distracting).
+        // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
+        // None - notification is silent.
         .handleNotificationOpened(function(jsonData) {
           var data = jsonData.notification.payload.additionalData;
           // console.log('fromPush',data.reqId);
-          // alert("Notification opened:\n" + JSON.stringify(jsonData));
+          console.log("Notification opened:\n" + JSON.stringify(jsonData));
           console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
 
           $ionicHistory.nextViewOptions({
