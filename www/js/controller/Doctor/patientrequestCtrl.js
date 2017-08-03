@@ -401,27 +401,7 @@ $scope.popupShown = true;
 						]
 
 						});
-
-
-				// var alertPopup = $ionicPopup.alert({
-				// 	title: 'Declined!',
-				// 	template: "<div>Patient has declined for a consultation</div>",
-				// 	cssClass: 'requestPopup',
-				// 	scope: $scope,
-				// });
-				// alertPopup.then(function(res) {
-				// 	$rootScope.callReqPopUp.close();
-				//
-				// 	$state.go("templates.doctor_home",{reload:true});
-				// 	$interval.cancel(videoOrAudio);
-				// 	var patAct={};
-				// 	$scope.routeTo =false;
-				// 	$ionicHistory.clearHistory();
-				// 	$scope.$on('$destroy', function(){
-				// 	 $timeout.cancel(docTimeout);
-				// 	 console.log('destroyed');
-				// 	 });
-				// });
+			
 		 }
 
  },true);

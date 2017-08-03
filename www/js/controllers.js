@@ -150,9 +150,9 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 		});
 		if($localStorage.doctororpatient === 'patient'){
-
-			//$ionicLoading.hide();
-			//$state.go('app.patient_home',{}, {location: "replace", reload: false})
+			//
+			// $ionicLoading.hide();
+			// $state.go('app.patient_home',{}, {location: "replace", reload: false})
 
 			window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -197,7 +197,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 			else{
 
 				$ionicLoading.show({
-							template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
+							template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 						});
 				var success = function(message)
 				{
