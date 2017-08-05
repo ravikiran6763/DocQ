@@ -145,7 +145,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 //
 // 						//store user in to background for vsee chat purpose
 //
-// 						window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir) {
+// 						window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function(dir) {
 //         console.log("got main dir",dir);
 //         dir.getFile("log.txt", {create:true}, function(file) {
 //             console.log("got the file", file);
@@ -183,9 +183,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 // 			  myService.startService(function(r){enableTimer(r)}, function(e){handleError(e)});
 //
 //
-// 			function go() {
-//    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
-// };
+// // 			function go() {
+// //    myService.getStatus(function(r){startService(r)}, function(e){handleError(e)});
+// // };
 //
 // function startService(data) {
 //    if (data.ServiceRunning) {
