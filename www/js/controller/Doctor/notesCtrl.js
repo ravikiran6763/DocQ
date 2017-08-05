@@ -14,7 +14,8 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   // $window.location.reload();
   $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
   // console.log($rootScope.currentPatient.patientNum);
-  var patientToDisplay =$rootScope.currentPatient.patientNum
+  $localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
+  var patientToDisplay =$localStorage.patientToDisplay;
   console.log(patientToDisplay);
   if(!patientToDisplay){
     patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
