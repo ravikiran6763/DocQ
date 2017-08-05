@@ -758,7 +758,7 @@ $stateProvider
   })
 
   .state('templates.prescription', {
-    url: "/notesForPatient",
+    url: "/notesForPatient/:reqPat",
     views: {
       'menuContent': {
         templateUrl: "views/templates/prescription.html",
@@ -839,9 +839,50 @@ $stateProvider
   })
 ;
 
-  //Patient signup
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/splash');
+  // $urlRouterProvider.otherwise('/splash');
+  $urlRouterProvider.otherwise(function($injector,$localStorage) {
+    // console.log($injector.get('hello'));
+    var $state = $injector.get('$state');
+    var Storage = $injector.get('$localStorage');
+    // var Vsee=cordova.plugins.hello;
+
+      var userType=Storage.doctororpatient;
+      var userNum=Storage.user;
+
+      console.log(userType);
+      if(userType === 'doctor'){
+        // $state.go('templates.doctor_home');
+        // var uname1 = "greet+"+userNum;
+        // var pw1 = "DQ_doctor";
+        //
+        // var success = function(message)
+        // {
+        //   console.log("The loading indicator is now hidden");
+        //   $ionicHistory.nextViewOptions({
+        //     disableAnimate: true,
+        //     disableBack: true
+        //   });
+        //   $state.go('tempplates.doctor_home', {}, {location: "replace", reload: false});
+        //     // $ionicLoading.hide().then(function(){
+        //     // });
+        // }
+        // var failure = function()
+        // {
+        //   alert("Error calling Hello Plugin");
+        // }
+        //
+        // Vsee.login(uname1,pw1,success, failure);
+        return '/templates/doctor_home';
+      }
+      // else if(userType === 'patient'){
+      //   $state.go('app.patient_home');
+      // }
+      else{
+        return '/splash';
+      }
+    });
+
   // $httpProvider.interceptors.push('APIInterceptor');
   // $urlRouterProvider.otherwise(function() {
   //       var logged = false;
@@ -851,38 +892,8 @@ $stateProvider
   //         // alert('hello');
   //           return '/auth/loginNew';
   //       } else {
-  //           return 'app.masterList';
+  //           return '/splash';
   //       }
   //
   //   });
 });
-
-
-// DoctorQuickApp.config(['$ionicAppProvider', function($ionicAppProvider) {
-//   $ionicAppProvider.identify({
-//     app_id: '45d07bf3',
-//     api_key: '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
-//     dev_push: true
-//   });
-// }])
-
-// DoctorQuickApp.config(function($ionicCloudProvider) {
-//   $ionicCloudProvider.init({
-//     "core": {
-//       "app_id": "45d07bf3",
-//       "api_key": '9a0055c7ea8bf7dd8c57ac17055e2200318cfddedfa43dc6',
-//     },
-//     "push": {
-//       "sender_id": "310212728810",
-//       "pluginConfig": {
-//         "ios": {
-//           "badge": true,
-//           "sound": true
-//         },
-//         "android": {
-//           "iconColor": "#343434"
-//         }
-//       }
-//     }
-//   });
-// })

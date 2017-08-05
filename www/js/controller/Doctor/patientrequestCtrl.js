@@ -401,7 +401,7 @@ $scope.popupShown = true;
 						]
 
 						});
-			
+
 		 }
 
  },true);
@@ -431,7 +431,7 @@ $scope.popupShown = true;
 				 disableBack: true
 			 });
 
-			$state.go("templates.prescription",{},{location: "replace", reload: false})
+			$state.go("templates.prescription",{"reqPat":$stateParams.reqPat},{location: "replace", reload: false})
 
  		}
 

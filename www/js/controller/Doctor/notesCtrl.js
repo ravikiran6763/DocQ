@@ -13,8 +13,19 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   $scope.currentPatient={};
   // $window.location.reload();
   $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-  console.log($rootScope.currentPatient.patientNum);
-
+  // console.log($rootScope.currentPatient.patientNum);
+  var patientToDisplay =$rootScope.currentPatient.patientNum
+  console.log(patientToDisplay);
+  if(!patientToDisplay){
+    patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
+      $scope.patient_details=response;
+      console.log($scope.patient_details);
+      $ionicLoading.hide();
+      console.log($scope.patient_details);
+    }).catch(function(error){
+      console.log('failure data', error);
+    })
+  }
   patientProfileDetailsService.fetchPatient($rootScope.currentPatient.patientNum).then(function(response){
     $scope.patient_details=response;
     console.log($scope.patient_details);
