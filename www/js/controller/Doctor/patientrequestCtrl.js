@@ -12,6 +12,14 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 					$rootScope.pushReqPat=$stateParams.reqPat;
 					$rootScope.dateAndTime=$stateParams.reqTime;
 
+					doctorServices.currentPatient($localStorage.user).then(function(response){
+						console.log(response);
+					window.localStorage['currentPatient'] = angular.toJson(response);
+					// console.log('one2onePending:',$scope.one2oneRequests);
+					})
+
+
+
 					// alert($rootScope.dateAndTime);
 					 console.log('reqId',$rootScope.pushReqId)
 					 console.log('reqPat',$rootScope.pushReqPat)
@@ -401,7 +409,7 @@ $scope.popupShown = true;
 						]
 
 						});
-			
+
 		 }
 
  },true);
@@ -431,7 +439,7 @@ $scope.popupShown = true;
 				 disableBack: true
 			 });
 
-			$state.go("templates.prescription",{},{location: "replace", reload: false})
+			$state.go("templates.prescription",{"reqPat":$stateParams.reqPat},{location: "replace", reload: false})
 
  		}
 

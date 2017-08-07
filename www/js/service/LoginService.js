@@ -2,6 +2,8 @@
 DoctorQuickApp.service('LoginService', function ($http,$q, BASE_URL, API) {
 
  var userPhone;
+ var loggedIn = false;
+
 
 this.logoutFromDq = function (userNum) {
   console.log(userNum);
@@ -48,6 +50,7 @@ this.alreadyLoggedIn = function (userDetails) {
 	this.loginprocess = function (userDetails) {
 
     console.log(userDetails);
+    loggedIn = true;
 
 		userPhone = userDetails.userNum;
 		var deferred = $q.defer();
@@ -64,8 +67,10 @@ this.alreadyLoggedIn = function (userDetails) {
 		});
 		return deferred.promise;
 }
-this.returnUserPhone=function(){
-  return userPhone;
+this.isLoggedIn=function(){
+
+  console.log(loggedIn);
+  return loggedIn;
 }
 
 });

@@ -23,6 +23,26 @@ angular.module('DoctorQuick.factories', [])
 })
 
 
+
+.factory('isLoggedIn', function($http){
+  return{
+
+          name : function()
+          {
+
+              return true;
+
+
+          }
+
+
+
+      };
+
+
+})
+
+
 //remember
 
 .factory('$remember', function() {

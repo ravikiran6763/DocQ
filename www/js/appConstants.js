@@ -81,6 +81,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviews' : 'invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'consultationRequest' : 'doctor/consultationRequest.php',
+        'currentPatient' : 'doctor/currentPatient.php',
+
         'fetchOne2OneReq' : 'doctor/fetchOne2OneReq.php',
         'requestacceptedbydoctor':  'doctor/acceptedpatientreqbydoctor.php',
         'declinedbydoctor':'doctor/declinedbydoctor.php',
