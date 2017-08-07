@@ -145,7 +145,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 //
 // 						//store user in to background for vsee chat purpose
 //
-// 						window.resolveLocalFileSystemURL(cordova.file.externalRootDirectory, function(dir) {
+// 						window.resolveLocalFileSystemURL(cordova.file.externalDataDirectory, function(dir) {
 //         console.log("got main dir",dir);
 //         dir.getFile("log.txt", {create:true}, function(file) {
 //             console.log("got the file", file);
