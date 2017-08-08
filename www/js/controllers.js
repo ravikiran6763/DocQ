@@ -287,7 +287,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				else{
 
 				$ionicLoading.show({
-				template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
+				template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 				});
 				var success = function(message)
 				{

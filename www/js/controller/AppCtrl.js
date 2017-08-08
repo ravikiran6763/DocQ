@@ -1097,7 +1097,7 @@ $scope.done = function (prescType,sno){
 												testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
 												$rootScope.chekDiag=true;
 												$rootScope.val=$rootScope.prescription.diagnosisforpatient;
-												$state.go("templates.prescription");
+												$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
 
 
 
@@ -1139,7 +1139,8 @@ $scope.done = function (prescType,sno){
 												testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
 												$rootScope.chekTests=true;
 												$rootScope.testVal=$rootScope.prescription.checkedTests;
-												$state.go("templates.prescription");
+												// $state.go("templates.prescription");
+												$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
 
 
 											}
@@ -1181,7 +1182,9 @@ $scope.done = function (prescType,sno){
 													testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
 													$rootScope.chekMedi=true;
 													$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
-													$state.go("templates.prescription");
+													// $state.go("templates.prescription");
+													$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+
 
 
 												}
