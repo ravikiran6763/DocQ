@@ -305,7 +305,7 @@ $scope.BalanceForVoiceCall=function()
   	}
 
 
-    $interval(checkMyCallStatus,2000,false);
+
 
   	function checkMyCallStatus(){
   		searchDoctorServices.checkCallStatus($localStorage.myCallId).then(function(response){
@@ -326,6 +326,7 @@ $scope.BalanceForVoiceCall=function()
   						console.log('delay 3 sec');
   					}, 3000);
   					console.log('value changed');
+            $interval.cancel(checkMyCallStatus);
   					$scope.callAccept = $ionicPopup.show({
   				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
   				 			 cssClass: 'requestPopup',
@@ -337,6 +338,7 @@ $scope.BalanceForVoiceCall=function()
   				 			 onTap:function(){
   				 				 console.log('cancel');
   				 				 console.log($localStorage.user);
+                   $interval.cancel(checkMyCallStatus);
   								 $scope.callReqPopUp.close();
   								  searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
   								  $scope.declinedByPat=response;
@@ -357,7 +359,7 @@ $scope.BalanceForVoiceCall=function()
   									$scope.startdate = new Date();
   									$scope.callid = $rootScope.callId;
   									// $localStorage.ViewDoc=1;
-
+                    $interval.cancel(checkMyCallStatus);
   									console.log($localStorage.networkType);
   									var uname = "greet+"+$localStorage.user;
   									var pw = "DQ_patient";
@@ -453,7 +455,7 @@ $scope.BalanceForVoiceCall=function()
     $scope.videoCallMydoc=function(num)
     {
       $rootScope.docNumToCall = num;
-
+      $interval(checkMyCallStatus,2000);
       var callRequest={
       patient:$localStorage.user,
       doctor:$rootScope.docNumToCall,

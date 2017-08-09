@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -1425,13 +1425,21 @@ $scope.sendprescription = function()
       console.log('Please Select Atleast One Tests')
     }
 		$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-		$rootScope.patientNum=$scope.currentPatient.patientNum;
+		console.log($stateParams.reqPat);
 
+		$rootScope.patientNum=$scope.currentPatient.patientNum;
+		$localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
+	  var patientToDisplay =$localStorage.patientToDisplay;
     if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
     {
+
+			if(!patientToDisplay){
+				patientToDisplay=$stateParams.reqPat;
+			}
+
         var prescriptiondetails = {
           docphno : $localStorage.user,
-          patientphno : $rootScope.patientNum,
+          patientphno : patientToDisplay,
           diagnosis : $scope.diagnosis,
           tests : $scope.tests,
           medication : $scope.medication
@@ -1448,7 +1456,10 @@ $scope.sendprescription = function()
         if($scope.pic){
           var auname =  "greet+"+$localStorage.user;
           var apw = "DQ_doctor";
-          var ato = "greet+" + $rootScope.patientNum;
+					if(!patientToDisplay){
+						patientToDisplay=$stateParams.reqPat;
+					}
+          var ato = "greet+" + patientToDisplay;
 
           console.log(auname);
           console.log(ato);
