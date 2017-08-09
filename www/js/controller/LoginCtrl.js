@@ -54,9 +54,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 	$scope.doLogIn = function()
 	{
-
-
-
 				$rootScope.loginDatasubmitted=true;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
@@ -85,7 +82,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					if(response === "patient")
 					{
 
-
+						$localStorage.doctororpatient = response;
 						window.plugins.OneSignal.getIds(function(ids) {
 							$scope.playerId=JSON.stringify(ids['userId']);
 							// console.log($scope.playerId);
@@ -99,7 +96,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								console.log(response);
 							})
 						});
-						$localStorage.doctororpatient = response;
+
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
 						}).catch(function(error){
@@ -140,7 +137,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
@@ -166,18 +166,20 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								alert("Error calling Hello Plugin");
 
 							}
-
 							// $state.go('app.patient_home');//for browser login
-
 							hello.login(uname1,pw1,success, failure);
 						}
 						else{
 							$ionicLoading.show({
-						        template: '<ion-spinner></ion-spinner><br><br>connecting to server..'
+						        template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 						      });
 							var success = function(message)
 							{
+<<<<<<< HEAD
 										alert(message);
+=======
+										console.log(message);
+>>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
 
@@ -190,22 +192,24 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
-						// $state.go('app.patient_home');//for browser login
-							// $state.go('app.patient_home');//for browser login
 							hello.login(uname1,pw1,success, failure);
 
 							$timeout( function(){
 									console.log('interval started');
 						            $interval($rootScope.loginInterval,2000,1);
-						         }, 5000 );
+						         }, 10000 );
 
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
+<<<<<<< HEAD
 
 
 											alert(message);
 
+=======
+											// alert(message);
+>>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
 											// 	alert('loggedin');
@@ -232,7 +236,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					}
 					else if(response === "doctor")
 					{
-
+						$localStorage.doctororpatient = response;
 						window.plugins.OneSignal.getIds(function(ids) {
 							$scope.playerId=JSON.stringify(ids['userId']);
 							// console.log($scope.playerId);
@@ -248,7 +252,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						});
 
 
-						$localStorage.doctororpatient = response;
+
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
@@ -259,20 +263,21 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						}).catch(function(error){
 							console.log('failure data', error);
 						});
+
+						var uname1 = "greet+"+$scope.loginData.phone;
+						var pw1 = "DQ_doctor";
+
 						if($scope.deviceAndroid === true){
 							$ionicLoading.show({
-										template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
+										template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 									});
 
-
-												var uname1 = "greet+"+$scope.loginData.phone;
-												var pw1 = "DQ_doctor";
 
 												console.log(uname1);
 
 													var success = function(message)
 													{
-														$rootScope.logginMessage="Connecting to Server";
+														$rootScope.logginMessage="Connecting to DoctorQuick";
 														console.log(message);
 														$ionicLoading.hide();
 														$ionicHistory.nextViewOptions({
@@ -297,13 +302,16 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						}
 						else{
 							$ionicLoading.show({
-						        template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
+						        template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 						      });
-									var uname1 = "greet+"+$scope.loginData.phone;
-									var pw1 = "DQ_doctor";
+
 							var success = function(message)
 							{
+<<<<<<< HEAD
 										alert(message);
+=======
+										console.log(message);
+>>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
 
@@ -316,29 +324,34 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							}
 
-						// $state.go('app.patient_home');//for browser login
-							// $state.go('app.patient_home');//for browser login
 							hello.login(uname1,pw1,success, failure);
 
 							$timeout( function(){
 									console.log('interval started');
 						            $interval($rootScope.loginInterval,2000,1);
-						         }, 5000 );
+						         }, 10000 );
 
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
+<<<<<<< HEAD
 											alert(message);
 											
+=======
+										console.log(message);
+>>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
-											// 	alert('loggedin');
+												console.log('hide loader');
 											$ionicHistory.nextViewOptions({
 												disableAnimate: true,
 												disableBack: true
 											});
 											$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+<<<<<<< HEAD
 											//$interval.cancel(loginStatus);
+=======
+>>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 	 									});
 
 	 								}

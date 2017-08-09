@@ -18,25 +18,15 @@
       //  echo $sp;
 
 
-       $requestpatientquery = "select img.image,pr.id,pr.patientNum,pr.requestedTime,ADDTIME(pr.requestedTime,'05:30:00') as awstime,pd.patientFname,pd.patientMname,pd.patientLname,pd.patientAge,pd.patientSex from patientDetails as pd,reqForConsultation as pr,patientImages as img where pr.patientNum=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.speciality ='$sp' and pr.flag=1 and pr.id not in(select reqId from declinedRequests where declinedDoctor='$doctorphno')";
+       $requestpatientquery = "select img.image,pr.id,pr.patientNum,pr.requestedTime as awstime,pd.patientFname,pd.patientMname,pd.patientLname,pd.patientAge,pd.patientSex from patientDetails as pd,reqForConsultation as pr,patientImages as img where pr.patientNum=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.speciality ='$sp' and pr.flag=1 and pr.id not in(select reqId from declinedRequests where declinedDoctor='$doctorphno')";
 			$retvaltodoctor = mysql_query( $requestpatientquery, $dbhandle );
 			while($resultofrequestedpatient = mysql_fetch_array($retvaltodoctor))
 			{
 
-			//	$toconvertdateandtime = $resultofrequestedpatient['awstime'];
-
-			//	$converttimetoist = "select convert_tz('$toconvertdateandtime','+00:00','+05:30') as isttime";
-			//	 $isttime = mysql_query( $converttimetoist, $dbhandle );
-			//	whileesultoftime =  mysql_fetch_array($isttime))
-				//{}
-				
-					//$awstime = $resultofrequestedpatient['awstime'];
-					//$ist = date('Y-m-d H:i:s',strtotime($awstime)+19800);
-
-					//echo $awstime;
+				$toconvertdateandtime = $resultofrequestedpatient['awstime'];
 
 
-				
+	
 
 
 				$requestedpatientlist[] = $resultofrequestedpatient;//STORE THE RESULT TO ARRAY

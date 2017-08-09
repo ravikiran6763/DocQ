@@ -18,7 +18,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.pendingRequests = response;
-    //console.log('pending:',$scope.pendingRequests);
+    console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
     // .catch(function(error){

@@ -206,7 +206,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
             disableAnimate: true,
             disableBack: true
           });
-          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+          $state.go('templates.viewPatientRequestFromPush',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
         })
         .endInit();
 
@@ -696,15 +696,15 @@ $stateProvider
       }
     }
   })
-  // .state('templates.viewPatientRequest', {
-  //   url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/templates/patientRequestfromdocotor.html",
-  //         controller: 'patientrequestCtrl'
-  //     }
-  //   }
-  // })
+  .state('templates.viewPatientRequestFromPush', {
+    url: "/viewPatientPushRequest/:reqId/:reqPat/:reqTime",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/patientRequestfromPush.html",
+          controller: 'patientrequestCtrl'
+      }
+    }
+  })
 
   .state('templates.patientRequest', {
     url: "/patientRequest/:reqId/:reqPat/:reqTime",
@@ -841,7 +841,7 @@ $stateProvider
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/splash');
-  $urlRouterProvider.otherwise(function($injector,$localStorage) {
+  $urlRouterProvider.otherwise(function($injector,$localStorage,$cordova) {
     // console.log($injector.get('hello'));
     var $state = $injector.get('$state');
     var Storage = $injector.get('$localStorage');
@@ -852,9 +852,8 @@ $stateProvider
 
       console.log(userType);
       if(userType === 'doctor'){
-        // $state.go('templates.doctor_home');
-        // var uname1 = "greet+"+userNum;
-        // var pw1 = "DQ_doctor";
+        var uname1 = "greet+"+userNum;
+        var pw1 = "DQ_doctor";
         //
         // var success = function(message)
         // {

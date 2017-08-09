@@ -86,7 +86,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	}
 
 
-	$interval(checkCallStatus,2000,false);
+
 
 	function checkCallStatus(){
 		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
@@ -107,6 +107,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 						console.log('delay 3 sec');
 					}, 3000);
 					console.log('value changed');
+
 					$scope.callAccept = $ionicPopup.show({
 				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
 				 			 cssClass: 'requestPopup',
@@ -118,6 +119,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 				 			 onTap:function(){
 				 				 console.log('cancel');
 				 				 console.log($localStorage.user);
+								 $interval.cancel(checkCallStatus);
 								 $scope.callReqPopUp.close();
 								  searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
 								  $scope.declinedByPat=response;
@@ -138,7 +140,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 									$scope.startdate = new Date();
 									$scope.callid = $rootScope.callId;
 									// $localStorage.ViewDoc=1;
-
+									$interval.cancel(checkCallStatus);
 									console.log($localStorage.networkType);
 									var uname = "greet+"+$localStorage.user;
 									var pw = "DQ_patient";
@@ -250,6 +252,8 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	},true);
 	$scope.videoCall=function(num)
 	{
+
+		$interval(checkCallStatus,2000);
 
 		$rootScope.docNumToCall = num;
 		$ionicLoading.show();

@@ -8,6 +8,98 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 
 				$scope.toggleText = "Accept";
 
+
+				console.log($state.$current.name);
+
+				$timeout( function(){
+						console.log('interval started');
+						// if($state.$current.name === "templates.viewPatientRequestFromPush"){
+							$scope.deviceAndroid = ionic.Platform.isAndroid();
+							console.log($scope.deviceAndroid);
+							var uname1 = "greet+"+$localStorage.user;
+							var pw1 = "DQ_doctor";
+
+							$ionicLoading.show({
+							template: '<ion-spinner></ion-spinner><br><br>Fetching Patient Details'
+							});
+
+							if($scope.deviceAndroid === true){
+
+							var success = function(message)
+							{
+							$ionicLoading.hide();
+							console.log(message);
+							$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+							});
+							$state.go($state.$current, {}, {location: "replace", reload: false});
+							// alert(message);
+							}
+							var failure = function()
+							{
+							alert("Error calling Hello Plugin");
+							}
+
+							hello.login(uname1,pw1,success, failure);
+
+							}
+							else{
+
+							$ionicLoading.show({
+							template: '<ion-spinner></ion-spinner><br><br>Fetching Patient Details'
+							});
+							var success = function(message)
+							{
+							// alert(message);
+							$scope.iosLoggin=message;
+							$localStorage.iosLogin=$scope.iosLoggin;
+
+							}
+							var failure = function()
+							{
+
+							alert("Error calling Hello Plugin");
+
+							}
+
+							hello.login(uname1,pw1,success, failure);
+
+							$timeout( function(){
+							console.log('interval started');
+							$interval(loginStatus,2000,1);
+							}, 10000 );
+
+							function loginStatus() {
+							var success = function(message)
+							{
+							// alert(message);
+							$ionicLoading.hide().then(function(){
+							console.log("The loading indicator is now hidden");
+							// alert('loggedin');
+							$ionicHistory.nextViewOptions({
+							disableAnimate: true,
+							disableBack: true
+							});
+							$interval.cancel(loginStatus);
+
+							$state.go($state.$current, {}, {location: "replace", reload: false});
+							});
+
+							}
+
+							var failure = function()
+							{
+							alert("Error Occurred While Loggin in to DoctoQuick");
+							}
+							hello.loginstatus(success,failure);
+							}
+
+							}
+						// }
+					}, 2000 );
+
+
 					$rootScope.pushReqId=$stateParams.reqId;
 					$rootScope.pushReqPat=$stateParams.reqPat;
 					$rootScope.dateAndTime=$stateParams.reqTime;
@@ -438,8 +530,8 @@ $scope.popupShown = true;
 				 disableAnimate: true,
 				 disableBack: true
 			 });
-
-			$state.go("templates.prescription",{"reqPat":$stateParams.reqPat},{location: "replace", reload: false})
+			 $localStorage.activePatient= $stateParams.reqPat;
+			$state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
 
  		}
 
