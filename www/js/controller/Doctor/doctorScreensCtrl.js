@@ -415,7 +415,7 @@ $scope.viewRequest=function(patient){
       //  .then(function(){
       //      $interval.cancel(myInterval);
       //  });
-  $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.requestedTime})
+  $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.awstime})
 }
 
         $timeout( function(){
