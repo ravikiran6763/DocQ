@@ -137,10 +137,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
@@ -175,11 +171,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						      });
 							var success = function(message)
 							{
-<<<<<<< HEAD
-										alert(message);
-=======
 										console.log(message);
->>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
 
@@ -202,14 +194,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
-<<<<<<< HEAD
-
-
-											alert(message);
-
-=======
+											console.log(message);
 											// alert(message);
->>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
 											// 	alert('loggedin');
@@ -307,11 +293,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							var success = function(message)
 							{
-<<<<<<< HEAD
-										alert(message);
-=======
 										console.log(message);
->>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
 
@@ -334,12 +316,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
-<<<<<<< HEAD
-											alert(message);
-											
-=======
 										console.log(message);
->>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
 												console.log('hide loader');
@@ -348,10 +325,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 												disableBack: true
 											});
 											$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-<<<<<<< HEAD
 											//$interval.cancel(loginStatus);
-=======
->>>>>>> bb3e86a0f06c67eb8f2a0d2b6f1d238151a7377c
 	 									});
 
 	 								}
