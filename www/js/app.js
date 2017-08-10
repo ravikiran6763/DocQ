@@ -223,21 +223,16 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 
         $rootScope.previousState = fromState;
-        // console.log(toState.name.indexOf('app.patient_home'));
+        console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
-        // Restore platform default transition. We are just hardcoding android transitions to auth views.
-        //$ionicConfig.views.transition(none);
+        $ionicConfig.views.transition(none);
         // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
-          $ionicConfig.views.transition('none');
           $ionicConfig.views.swipeBackEnabled(false);
         }
-        else{
-          $ionicConfig.views.transition('none');
-        }
-          console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+      	console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
       // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
@@ -384,7 +379,10 @@ DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
       //  $ionicConfigProvider.views.transition('platform');
-       $ionicConfigProvider.views.transition('none')
+       $ionicConfigProvider.views.transition('none');
+      //  $ionicConfigProvider.scrolling.jsScrolling(true);
+       $ionicConfigProvider.scrolling.jsScrolling(false);
+
 
 
 });

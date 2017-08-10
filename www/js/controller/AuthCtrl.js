@@ -15,6 +15,8 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     $scope.devicePlatform = ionic.Platform.isIOS();
     console.log($ionicHistory.currentStateName());
 
+    $ionicConfig.views.swipeBackEnabled(false);
+    
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
@@ -508,7 +510,7 @@ $scope.patientRegistration = function()
           title: 'Thank You',
           cssClass: 'videoPopup',
           buttons: [
-        
+
            {
              text: 'Close',
              type: 'button-positive',

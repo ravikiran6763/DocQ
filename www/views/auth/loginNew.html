@@ -1,4 +1,4 @@
-<ion-view class="dqLogin-view" cache-view="false">
+<ion-view class="dqLogin-view" cache-view="true">
   <!-- <ion-header-bar class="bar-header bar-light">
 
   </ion-header-bar> -->
@@ -20,7 +20,8 @@
          <!-- <select ng-hide="true" ng-model="country" ng-init="country=countries[0]" ng-options="country.name for country in countries"></select> -->
         <span class="input-group-addon" ng-model="country.dial_code" >+91</span>
         <input class="form-control"  type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="loginData.phone" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required></input>
-        <!-- <input type="tel" class="form-control" placeholder="Phone Number" name="user_phone" string-to-number  ng-model="country.dial_code"> -->
+        <!-- <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='loginData.phone' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}><span style=" margin: -10% 0 0 2% !important; font-size: 100% !important;">+91</span></input> -->
+
       </div>
       <div class="form-group">
         <input class="form-control" type="password"  placeholder="Password" name="user_pin" ng-model="loginData.pin"  required  >

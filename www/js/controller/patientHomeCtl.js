@@ -8,7 +8,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.hideSideMenu = true;
 
 			HardwareBackButtonManager.disable();
-
+			$ionicConfig.views.swipeBackEnabled(false);
+			
 			$scope.currentState=$ionicHistory.currentStateName();
 
 			console.log($scope.currentState);
