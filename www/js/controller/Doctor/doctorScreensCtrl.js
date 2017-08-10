@@ -11,6 +11,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     $rootScope.homePage=$ionicHistory.currentStateName();
     HardwareBackButtonManager.disable();
+    $ionicConfig.views.swipeBackEnabled(false);
+    
     // $route.reload();
     console.log($ionicHistory.viewHistory());
     $interval(checkConsultations,2000,false);

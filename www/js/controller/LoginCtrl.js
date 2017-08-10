@@ -137,7 +137,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 02b90c8f63d9ec4a28021ddc8b96b8caa9233c64
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
@@ -172,7 +175,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						      });
 							var success = function(message)
 							{
+<<<<<<< HEAD
 										alert(message);
+=======
+>>>>>>> 02b90c8f63d9ec4a28021ddc8b96b8caa9233c64
 										console.log(message);
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
@@ -196,10 +202,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
+<<<<<<< HEAD
 
 
 											alert(message);
 
+=======
+											console.log(message);
+>>>>>>> 02b90c8f63d9ec4a28021ddc8b96b8caa9233c64
 											// alert(message);
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
@@ -298,7 +308,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 							var success = function(message)
 							{
+<<<<<<< HEAD
 										alert(message);
+=======
+>>>>>>> 02b90c8f63d9ec4a28021ddc8b96b8caa9233c64
 										console.log(message);
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
@@ -322,8 +335,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
+<<<<<<< HEAD
 											alert(message);
 
+=======
+>>>>>>> 02b90c8f63d9ec4a28021ddc8b96b8caa9233c64
 										console.log(message);
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");

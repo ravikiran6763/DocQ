@@ -14,6 +14,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showLanguage=false;
 	$rootScope.hideSideMenu = true;
 
+	$ionicConfig.views.swipeBackEnabled(false);
+	
 	var specialitywise = "";
 	var catwise = "";
 	var genderwise = "";
