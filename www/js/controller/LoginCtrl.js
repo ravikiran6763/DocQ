@@ -137,6 +137,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
 
+
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
@@ -194,6 +195,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
+
+
+
 											console.log(message);
 											// alert(message);
 	 									$ionicLoading.hide().then(function(){
@@ -316,6 +320,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
+
 										console.log(message);
 	 									$ionicLoading.hide().then(function(){
 	 										console.log("The loading indicator is now hidden");
