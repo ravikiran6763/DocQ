@@ -15,7 +15,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.hideSideMenu = true;
 
 	$ionicConfig.views.swipeBackEnabled(false);
-	
+
 	var specialitywise = "";
 	var catwise = "";
 	var genderwise = "";
@@ -64,26 +64,6 @@ ion.sound({
 // ion.sound.play("beer_can_opening");
 //ion.sound.stop("witchdoctor");
 
-$scope.pushRegister = function() {
- console.log('Ionic Push: Registering user');
- $scope.accptNotifications=true;
- $scope.rejectNotifications=false;
-
- window.plugins.OneSignal.getIds(function(ids){
-  console.log(ids);
- 	var notificationObj = {
- 		contents: {en: "You have new consultation request"},
- 		include_player_ids: [ids.userId],
- 		android_sound:'tring'
- 	};
-
- });
-
-
-};
-
-
-
 //var networkState= $cordovaNetwork.isOnline();
 ////////////////////////////////////////////////////////////////////////////////
 //console.log(networkState);
@@ -91,64 +71,75 @@ $scope.pushRegister = function() {
 
 $localStorage.chekedData =0;
 $localStorage.dataConnection=navigator.onLine;
-////////////////////////////////////////////////////////////////////////////////
-$interval(checkForInternet, 5000,1);
-function checkForInternet() {
+// $scope.dataLost=$localStorage.dataConnection;
+$scope.dataLost=$localStorage.networkType;
 
-if(!navigator.onLine ){
-	$localStorage.dataConnection=navigator.onLine;
-	if($localStorage.dataConnection === false && $localStorage.chekedData == 0){
-		var confirmPopup = $ionicPopup.confirm({
-						title: 'DoctorQuick',
-						template: 'Seems you are disconnected from the internet',
-						cssClass: 'videoPopup',
-						scope: $scope,
-						buttons: [
-						{
-						text: 'Cancel',
-						type: 'button-royal',
-						},
-						{
-							text: 'Ok',
-							type: 'button-positive',
-							onTap: function(e) {
-							console.log('ok');
-								$localStorage.chekedData = 1;
-								$state.go('auth.loginNew');
-							// }, 100)
 
-						}
-					},
-					]
-					});
-	}
-}
-}
-// console.log($localStorage.dataConnection);
 
-document.addEventListener("deviceready", function (){
-    var type = $cordovaNetwork.getNetwork()
-    var isOnline = $cordovaNetwork.isOnline()
-    var isOffline = $cordovaNetwork.isOffline()
-		console.log(type);
-
-		if( type != 'WIFI' || type != '4g'){
-			console.log('wifi');
+console.log($localStorage.dataConnection);
+$scope.$watch('dataLost', function (newValue, oldValue, scope){
+		alert('changed');
+		alert($localStorage.dataConnection);
+		if(newValue === 'None'){
+			// var confirmPopup = $ionicPopup.confirm({
+			// 	title: 'DoctorQuick',
+			// 	template: 'Seems you are disconnected from the internet',
+			// 	cssClass: 'videoPopup',
+			// 	scope: $scope,
+			// 	buttons: [
+			// 		{
+			// 			text: 'Cancel',
+			// 			type: 'button-royal',
+			// 		},
+			// 		{
+			// 			text: 'Ok',
+			// 			type: 'button-positive',
+			// 			onTap: function(e) {
+			// 			console.log('ok');
+			// 			$localStorage.chekedData = 1;
+			// 			// $state.go('auth.loginNew');
+			// 			// }, 100)
+			//
+			// 			}
+			// 		},
+			// 	]
+			// });
 		}
-    // listen for Online event
-    $rootScope.$on('networkOffline', function(event, networkState){
-      var onlineState = networkState;
-			console.log(onlineState);
-    })
-
-    // listen for Offline event
-    $rootScope.$on('networkOffline', function(event, networkState){
-      var offlineState = networkState;
-			console.log(offlineState);
-    })
-
-  }, false);
-
+},true);
+////////////////////////////////////////////////////////////////////////////////
+// $interval(checkForInternet, 5000);
+// function checkForInternet() {
+//
+// if(!navigator.onLine ){
+// 	$localStorage.dataConnection=navigator.onLine;
+// 	if($localStorage.dataConnection === false && $localStorage.chekedData == 0){
+// 				var confirmPopup = $ionicPopup.confirm({
+// 					title: 'DoctorQuick',
+// 					template: 'Seems you are disconnected from the internet',
+// 					cssClass: 'videoPopup',
+// 					scope: $scope,
+// 					buttons: [
+// 						{
+// 							text: 'Cancel',
+// 							type: 'button-royal',
+// 						},
+// 						{
+// 							text: 'Ok',
+// 							type: 'button-positive',
+// 							onTap: function(e) {
+// 							console.log('ok');
+// 							$localStorage.chekedData = 1;
+// 							// $state.go('auth.loginNew');
+// 							// }, 100)
+//
+// 							}
+// 						},
+// 					]
+// 				});
+// 	}
+// }
+// }
+// console.log($localStorage.dataConnection);
 
 
 ////////////////////////////////////////////////////////////////////////////////

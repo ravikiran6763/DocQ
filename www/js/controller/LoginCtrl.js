@@ -239,8 +239,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 
 
 
-						$scope.deviceAndroid = ionic.Platform.isAndroid();
-						console.log($scope.deviceAndroid);
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
 							$rootScope.doctor_details=response;//store the response array in doctor details
 							console.log($rootScope.doctor_details);
@@ -253,6 +251,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_doctor";
 
+						$scope.deviceAndroid = ionic.Platform.isAndroid();
+						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
 							$ionicLoading.show({
 										template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
