@@ -67,7 +67,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 })
 
 
-DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush,$ionicPopup) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
@@ -91,7 +91,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     }, 300);
   });
 
-  $interval(checkConnection, 1000)
+  $interval(checkConnection, 1000);
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -105,12 +105,37 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
       $localStorage.networkType = states[networkState];
       //console.log('Connection type: ' + $localStorage.networkType);
+      if($localStorage.networkType === 'None'){
+        var confirmPopup = $ionicPopup.confirm({
+          title: 'DoctorQuick',
+          template: 'Seems you are disconnected from the internet',
+          cssClass: 'videoPopup',
+          buttons: [
+            {
+              text: 'Cancel',
+              type: 'button-royal',
+            },
+            {
+              text: 'Ok',
+              type: 'button-positive',
+              onTap: function(e) {
+              console.log('ok');
+              // $localStorage.chekedData = 1;
+              // $state.go('auth.loginNew');
+              // }, 100)
+
+              }
+            },
+          ]
+        });
+      }
   }
 
   document.addEventListener("offline", onOffline, false);
   function onOffline() {
       // Handle the offline event
       console.log('offline');
+
   }
 })
 
@@ -226,7 +251,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
-        $ionicConfig.views.transition(none);
+        $ionicConfig.views.transition('none');
         // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
@@ -289,6 +314,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
               });
               $state.go("templates.doctor_home");
             }
+            // else if($rootScope.previousState.name === "" && $state.$current.name === "templates.doctor_home"){
+            //
+            // }
             else if($state.$current.name === "templates.prescription"){
               $rootScope.prescriptioAlert = $ionicPopup.show({
               title:"Alert!!!",

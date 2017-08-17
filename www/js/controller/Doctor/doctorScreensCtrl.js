@@ -5,14 +5,25 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 		$rootScope.showNotification=true;
 		$rootScope.showBadge=true;
 		$rootScope.showDocStatus=false;
-
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
-
     $rootScope.homePage=$ionicHistory.currentStateName();
+
     HardwareBackButtonManager.disable();
-    $ionicConfig.views.swipeBackEnabled(false);
-    
+    $ionicConfig.views.swipeBackEnabled(false);//disables swipe back in iphone
+    // alert($rootScope.previousState.name);
+    // alert($rootScope.homePage);
+  if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
+    $scope.docAvailable=false;
+    $scope.docNotAvailable=true;
+    $localStorage.onOff=2;
+    // alert('hello go online');
+    // var noResponsePopup = $ionicPopup.alert({
+    // template: "<div ><p>Go Online.</p></div>",
+    // cssClass: 'requestPopup',
+    // scope: $scope,
+    // });
+  }
     // $route.reload();
     console.log($ionicHistory.viewHistory());
     $interval(checkConsultations,2000,false);
@@ -20,7 +31,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.pendingRequests = response;
-    console.log('pending:',$scope.pendingRequests);
+    // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
     // .catch(function(error){
@@ -34,147 +45,6 @@ function checkConsultations(){
     })
 
 }
-
-//
-// $scope.deviceAndroid = ionic.Platform.isAndroid();
-//
-//
-// $interval(checkNewMessagesForPatient,2000);
-// var username = "greet+"+$localStorage.user;
-// var password = "DQ_doctor";
-//
-//
-// function checkNewMessagesForPatient()
-// {
-//
-//  var success = function(message)
-//  {
-//
-//    console.log(message);
-//      if($scope.deviceAndroid)
-//      {
-//
-//          $scope.chatlist1 = message;
-//
-//          var forandroidchatlist = {};
-//          forandroidchatlist = $scope.chatlist1;
-//
-//          var dataofandroid = JSON.parse(forandroidchatlist);
-//          dataofandroid.chatTo=$localStorage.user;
-//          console.log('UpdateChat',dataofandroid);
-//          doctorServices.createChatHistory(dataofandroid).then(function(response){
-//          $scope.chatHistory=response;//store the response array in doctor details
-//          // console.log('dataSent :',$scope.chatHistory);
-//          }).catch(function(error){
-//           console.log('failure data', error);
-//           });
-//
-//                for (var keyandroid in dataofandroid)
-//                {
-//                    if (dataofandroid.hasOwnProperty(keyandroid))
-//                    {
-//                        console.log(keyandroid + " = " + dataofandroid[keyandroid]);
-//
-//                    if(keyandroid == "unread")
-//                    {
-//                        $scope.unreadcountforandroid = dataofandroid[keyandroid];
-//                    }
-//
-//                    if(keyandroid == "message")
-//                    {
-//
-//                      $scope.msgforandroid = dataofandroid[keyandroid];
-//
-//                    }
-//                    else if(keyandroid == "name")
-//                    {
-//                        $scope.nameforandroid = dataofandroid[keyandroid];
-//                        console.log($scope.nameforandroid);
-//
-//                    }
-//                    else if(keyandroid == "dateformat")
-//                    {
-//                        $scope.datestringforandroid = dataofandroid[keyandroid];
-//                    }
-//                    else
-//                    {
-//                      console.log('no response from vsee');
-//                    }
-//                  }
-//                }
-//
-//      }
-//      else
-//      {
-//        console.log('this is called');
-//          var forioschatlist = {};
-//            forioschatlist = $scope.chatlist;
-//            console.log('iosChatHIstory:',forioschatlist);
-//
-//            var dataForIos = JSON.parse(forioschatlist);
-//            console.log('ChatData:',data);
-//
-//            dataForIos.chatTo=$localStorage.user;
-//            console.log('UpdateChat',dataForIos);
-//            doctorServices.createChatHistory(dataForIos).then(function(response){
-//            $scope.chatHistory=response;//store the response array in doctor details
-//            // console.log('dataSent :',$scope.chatHistory);
-//            }).catch(function(error){
-//             console.log('failure data', error);
-//             });
-//
-//           for (var key in data) {
-//             if (data.hasOwnProperty(key)) {
-//               console.log(key + " = " + data[key]);
-//
-//
-//               if(key == "unread")
-//               {
-//                 $scope.unreadchatcountfromvsee = data[key];
-//               }
-//               else if(key == "message")
-//               {
-//                 $scope.msg = data[key];
-//               }
-//               else if(key == "name")
-//               {
-//                 $scope.name = data[key];
-//
-//                 $scope.name = $scope.name.substring(6);
-//
-//                 console.log('ChatNAme:',$scope.name);
-//
-//
-//
-//               }
-//               else if(key == "dateformat")
-//               {
-//                 $scope.datestring = data[key];
-//               }
-//               else {
-//                 console.log('no response from vsee');
-//                 // noresponse of chat from vsee
-//               }
-//             }
-//           }
-// }
-//
-//
-//
-//
-// }
-//
-//    var failure = function()
-//    {
-//      alert("Error calling Hello Plugin");
-//    }
-//
-// hello.chatcounts(username,password,success, failure);
-//
-// }
-//
-
-      // hello.chatcounts(username,password,success, failure);
 
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
     // console.log($ionicHistory.currentStateName());
@@ -303,7 +173,7 @@ function checkConsultations(){
 					var unametologout = "greet+"+$localStorage.user;
 					var pwtologout = "DQ_doctor";
 
-					alert(unametologout);
+					// alert(unametologout);
 					var success = function(message)
 					{
 						alert(message);
@@ -363,58 +233,8 @@ $scope.viewRequest=function(patient){
 
   console.log($rootScope.currentPatient);
   console.log($rootScope.currentPatient.requestedTime);
-  //  $rootScope.intervalPromise = $interval(function () {
-   //
-  //   }, 1000);
-  // $rootScope.testInterval=$interval(function () { console.log('testINtervalStarted'); }, 1000);
         $rootScope.id= $rootScope.currentPatient.id
-      //   var myInterval = $interval(function(){
-      //   if($rootScope.id === 0){
-      //     console.log('DOnoThing');
-      //   }else{
-      //     var idStatus={
-      //       declinedDoc:$localStorage.user,
-      //       id:$rootScope.id
-      //     }
-      //     doctorServices.checkIdStatus(idStatus).then(function(response){
-      //
-      //     console.log('existingId::',response);
-      //     if(response == 0){
-      //       // alert('expired');
-      //       $rootScope.id=0;
-      //       $rootScope.ExpiredAlert= true;
-      //       $rootScope.expired=response;
-      //     }
-      //
-      //     if($rootScope.ExpiredAlert === true){
-      //
-      //       $timeout( function(){
-      //       console.log('interval started');
-      //         $ionicLoading.show({
-      //         template: '<ion-spinner></ion-spinner><br><br>Consultation Expired',
-      //         duration: 4000
-      //         });
-      //                 console.log('show a Toast message here');
-      //       $ionicHistory.nextViewOptions({
-      //         disableAnimate: true,
-      //         disableBack: true
-      //       });
-      //         $state.go('templates.doctor_home',{}, {location: "replace", reload: false});
-      //         $rootScope.ExpiredAlert === false;
-      //     }, 1000 );
-      //
-      //         $interval.cancel(myInterval);
-      //     }
-      //     //  $state.go($state.current, {}, {reload: true});
-      //     }).catch(function(error){
-      //     console.log('failure data', error);
-      //     });
-      //   }
-      //   // alert('fired after 5 secs');
-      // },1000)
-      //  .then(function(){
-      //      $interval.cancel(myInterval);
-      //  });
+
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.awstime})
 }
 
