@@ -57,10 +57,10 @@ function checkNewMessages()
 				var forandroidchatlist = {};
 				forandroidchatlist = $scope.chatlist1;
 				var dataofandroid = JSON.parse(forandroidchatlist);
-				// dataofandroid.chatTo=$localStorage.user;
+				dataofandroid.chatTo=$localStorage.user;
 				doctorServices.createChatHistory(dataofandroid).then(function(response){
 				$scope.chatHistory=response;//store the response array in doctor details
-			 //console.log('dataSent :',response);
+			 console.log('dataSent :',response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				});
@@ -99,10 +99,10 @@ function checkNewMessages()
 				var forandroidchatlist = {};
 				forandroidchatlist = $scope.chatlist1;
 				var dataofandroid = JSON.parse(forandroidchatlist);
-				// dataofandroid.chatTo=$localStorage.user;
+				dataofandroid.chatTo=$localStorage.user;
 				doctorServices.createChatHistoryforDoctor(dataofandroid).then(function(response){
 				$scope.chatHistory=response;//store the response array in doctor details
-			//  console.log('dataSent :',response);
+			 console.log('dataSent :',response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				});
@@ -176,6 +176,10 @@ function checkNewMessages()
 										$rootScope.doctorLname=data[i].doctorLname;
 										$rootScope.doctorMname=data[i].doctorMname;
 										$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+
+
+
+
 										// console.log($rootScope.fullname);
 										// $scope.listofnames.push($scope.fullname);
 										// $scope.listofphones.push(data[i].patientPhone);
