@@ -134,7 +134,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   document.addEventListener("offline", onOffline, false);
   function onOffline() {
       // Handle the offline event
-      console.log('offline');
+      alert('offline');
 
   }
 })

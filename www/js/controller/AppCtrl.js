@@ -78,8 +78,6 @@ $scope.dataLost=$localStorage.networkType;
 
 console.log($localStorage.dataConnection);
 $scope.$watch('dataLost', function (newValue, oldValue, scope){
-		alert('changed');
-		alert($localStorage.dataConnection);
 		if(newValue === 'None'){
 			// var confirmPopup = $ionicPopup.confirm({
 			// 	title: 'DoctorQuick',
