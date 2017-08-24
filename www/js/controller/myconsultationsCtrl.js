@@ -61,11 +61,10 @@ function checkNewMessages()
 				dataofandroid.chatTo=$localStorage.user;
 				doctorServices.createChatHistory(dataofandroid).then(function(response){
 				$scope.chatHistory=response;//store the response array in doctor details
-				//console.log('dataSent :',response);
+			 console.log('dataSent :',response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				});
-
 
 
 				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){

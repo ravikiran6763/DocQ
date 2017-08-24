@@ -105,6 +105,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 					$rootScope.pushReqPat=$stateParams.reqPat;
 					$rootScope.dateAndTime=$stateParams.reqTime;
 
+
+					console.log('from previous',$rootScope.dateAndTime);
+					console.log('from previous stateParams',$stateParams.reqTime);
+
 					doctorServices.currentPatient($localStorage.user).then(function(response){
 						console.log(response);
 					window.localStorage['currentPatient'] = angular.toJson(response);
@@ -210,10 +214,41 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 					var timestamp = new Date(date_test).getTime();
 
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
+
+					console.log('from date and time',$rootScope.dateAndTime);
+
+					console.log('current date and time',$scope.CurrentDate);
+
+					var justdate = $rootScope.dateAndTime;
+
+
+
+					var t = justdate.split(/[- :]/);
+
+// Apply each element to the Date function
+var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+var actiondate = new Date(d);
+
+var timestamp = new Date(actiondate).getTime();
+
+
+console.log('actiondate',timestamp);
+
+
+					console.log('timestamp',timestamp);
+					console.log('currentTimestamp',currentTimestamp);
+
+
+
 					var diffMs = (currentTimestamp - timestamp);
 					var diffDays = Math.round(diffMs / 86400000); // days
 					var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
 					var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+
+					console.log('diffDays',diffDays);
+					console.log('diffMins',diffMins);
+				  console.log('diffHrs',diffHrs);
+
 					$rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
 					// $rootScope.requestedDUration= diffDays + " day " + "ago";
 					console.log($rootScope.requestedDUration);
