@@ -109,7 +109,12 @@ $scope.setRating = function(ratings,val){
 		 max: 5
  }];
 
- myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
+var myDoc={
+	calledDoctor:$stateParams.calledDoctor,
+	patient:$localStorage.user
+}
+console.log(myDoc);
+ myConsultationService.docSummaryDetails(myDoc).then(function(response){
  		$scope.myDoctor=response;//store the response array in doctor details
  		console.log($scope.myDoctor);
  		$ionicLoading.hide();
@@ -163,7 +168,7 @@ $scope.ratingsObject = {
 			{
 
 					$scope.patient_details ={};
-					$scope.userPhone=LoginService.returnUserPhone();
+					// $scope.userPhone=LoginService.returnUserPhone();
 
 					if($scope.ratingComments.comment)
 					{
@@ -172,12 +177,12 @@ $scope.ratingsObject = {
 						var ratedValues={
 							rates:$rootScope.ratingValue,
 							//ratedBy:$localStorage.user,
-							ratedTo:$stateParams.calledDoctor
-							//ratingComments:$scope.ratingComments.comment
+							ratedTo:$stateParams.calledDoctor,
+							ratingComments:$scope.ratingComments.comment
 						};
 						console.log(ratedValues);
 						rateDoctorServices.rateDoctor(ratedValues).then(function(response){
-							// console.log(ratedValues);
+							console.log(ratedValues);
 							$scope.rated=response;
 							console.log($scope.rated);
 							$scope.ratingComments.comment="";
@@ -259,6 +264,7 @@ rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(r
 
 $scope.addToFavorite=function(fav){
 	$scope.favorite=fav;
+	console.log($scope.favorite);
 if($scope.favorite == true){
 	$scope.favorite=1;
 
@@ -278,15 +284,9 @@ if($scope.favorite == true){
 $scope.added={};
    // Do whatever you want here
 	 rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
-
-
 		 $scope.added=response;
-
-
 		 console.log(response);
-
 		 //console.log($scope.added.favorite);
-
 		 if($scope.added.favorite == 1){
 			 //console.log($scope.added.favorite);
 
