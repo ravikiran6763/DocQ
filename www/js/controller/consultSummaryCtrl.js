@@ -262,6 +262,37 @@ rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(r
 				console.log('failure data', error);
 		});
 
+$scope.removeFavorite=function(fav){
+	var favoriteDoc={
+		ratedBy:$localStorage.user,
+		ratedTo:$stateParams.calledDoctor,
+		favorite:2
+	};
+
+	rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
+		$scope.added=response;
+		console.log(response);
+		$state.go($state.current, {}, {reload: true});
+					window.plugins.toast.showWithOptions({
+					message: "Doctor removed from favorites",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 10.5, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 10, // iOS default 16, Android default 50
+					verticalPadding: 6 // iOS default 12, Android default 30
+					}
+					});
+
+	}).catch(function(error){
+		console.log('failure data', error);
+	});
+
+}
 $scope.addToFavorite=function(fav){
 	$scope.favorite=fav;
 	console.log($scope.favorite);
