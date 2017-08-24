@@ -1,6 +1,6 @@
 DoctorQuickApp.controller('callAcceptedCtrl', function($scope,$rootScope,$ionicConfig, $http, $location,$cordovaNetwork,$timeout,$ionicPopup,$ionicPlatform,$ionicHistory, $stateParams,$interval, $state, $localStorage, $ionicLoading, doctorServices,$ionicSideMenuDelegate,rateDoctorServices,callacceptedbydoctor,callAcceptedService,doctorServices,HardwareBackButtonManager,patientProfileDetailsService) {
 
-	$rootScope.headerTxt="Doctor";
+	$rootScope.headerTxt="DoctorQuick";
 	$rootScope.showBackBtn=false;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;

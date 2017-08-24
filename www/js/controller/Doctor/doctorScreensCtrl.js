@@ -278,15 +278,7 @@ $scope.viewRequest=function(patient){
 
 });
 
-  // $scope.Timer = $interval(function () {
-  //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-  //   $scope.pendingRequests = response;
-  //   console.log('pending:',$scope.pendingRequests);
-  //   $scope.requests=$scope.pendingRequests.length;
-  //   }).catch(function(error){
-  //   console.log('failure data', error);
-  //   })
-  // }, 1000);
+
 
 
 // $scope.pushNotificationChange = function() {

@@ -67,7 +67,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 })
 
 
-DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush,$ionicPopup) {
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
@@ -91,7 +91,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     }, 300);
   });
 
-  $interval(checkConnection, 1000);
+  $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -105,37 +105,12 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
       $localStorage.networkType = states[networkState];
       //console.log('Connection type: ' + $localStorage.networkType);
-      if($localStorage.networkType === 'None'){
-        var confirmPopup = $ionicPopup.confirm({
-          title: 'DoctorQuick',
-          template: 'Seems you are disconnected from the internet',
-          cssClass: 'videoPopup',
-          buttons: [
-            {
-              text: 'Cancel',
-              type: 'button-royal',
-            },
-            {
-              text: 'Ok',
-              type: 'button-positive',
-              onTap: function(e) {
-              console.log('ok');
-              // $localStorage.chekedData = 1;
-              // $state.go('auth.loginNew');
-              // }, 100)
-
-              }
-            },
-          ]
-        });
-      }
   }
 
   document.addEventListener("offline", onOffline, false);
   function onOffline() {
       // Handle the offline event
       console.log('offline');
-
   }
 })
 
@@ -231,7 +206,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
             disableAnimate: true,
             disableBack: true
           });
-          $state.go('templates.viewPatientRequestFromPush',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
         })
         .endInit();
 
@@ -248,16 +223,21 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 
         $rootScope.previousState = fromState;
-        console.log(toState.name.indexOf('app.patient_home'));
+        // console.log(toState.name.indexOf('app.patient_home'));
       if(toState.name.indexOf('app.patient_home') > -1)
       {
-        $ionicConfig.views.transition('none');
+        // Restore platform default transition. We are just hardcoding android transitions to auth views.
+        //$ionicConfig.views.transition(none);
         // If it's ios, then enable swipe back again
         if(ionic.Platform.isIOS())
         {
+          $ionicConfig.views.transition('none');
           $ionicConfig.views.swipeBackEnabled(false);
         }
-      	console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+        else{
+          $ionicConfig.views.transition('none');
+        }
+          console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
       }
       // console.log(toState.name);
       if (toState.name != "app.searchDoctors") {
@@ -314,9 +294,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
               });
               $state.go("templates.doctor_home");
             }
-            // else if($rootScope.previousState.name === "" && $state.$current.name === "templates.doctor_home"){
-            //
-            // }
             else if($state.$current.name === "templates.prescription"){
               $rootScope.prescriptioAlert = $ionicPopup.show({
               title:"Alert!!!",
@@ -407,10 +384,7 @@ DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
       //  $ionicConfigProvider.views.transition('platform');
-       $ionicConfigProvider.views.transition('none');
-      //  $ionicConfigProvider.scrolling.jsScrolling(true);
-       $ionicConfigProvider.scrolling.jsScrolling(false);
-
+       $ionicConfigProvider.views.transition('none')
 
 
 });
@@ -722,15 +696,15 @@ $stateProvider
       }
     }
   })
-  .state('templates.viewPatientRequestFromPush', {
-    url: "/viewPatientPushRequest/:reqId/:reqPat/:reqTime",
-    views: {
-      'menuContent': {
-        templateUrl: "views/templates/patientRequestfromPush.html",
-          controller: 'patientrequestCtrl'
-      }
-    }
-  })
+  // .state('templates.viewPatientRequest', {
+  //   url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
+  //   views: {
+  //     'menuContent': {
+  //       templateUrl: "views/templates/patientRequestfromdocotor.html",
+  //         controller: 'patientrequestCtrl'
+  //     }
+  //   }
+  // })
 
   .state('templates.patientRequest', {
     url: "/patientRequest/:reqId/:reqPat/:reqTime",
@@ -867,7 +841,7 @@ $stateProvider
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/splash');
-  $urlRouterProvider.otherwise(function($injector,$localStorage,$cordova) {
+  $urlRouterProvider.otherwise(function($injector,$localStorage) {
     // console.log($injector.get('hello'));
     var $state = $injector.get('$state');
     var Storage = $injector.get('$localStorage');
@@ -878,8 +852,9 @@ $stateProvider
 
       console.log(userType);
       if(userType === 'doctor'){
-        var uname1 = "greet+"+userNum;
-        var pw1 = "DQ_doctor";
+        // $state.go('templates.doctor_home');
+        // var uname1 = "greet+"+userNum;
+        // var pw1 = "DQ_doctor";
         //
         // var success = function(message)
         // {

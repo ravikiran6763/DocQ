@@ -1,6 +1,6 @@
 DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $ionicPlatform,$localStorage, $ionicLoading, $ionicConfig, $http,$interval, LoginService, patientCareService, doctorServices,myConsultationService) {
 
-	$rootScope.headerTxt="My Consultaions";
+	$rootScope.headerTxt="My consultations";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.hideSideMenu = true;
@@ -42,12 +42,13 @@ function checkNewMessages()
 
 		var success = function(message)
 		{
-		$ionicLoading.hide();
-		if($scope.deviceAndroid)
-		{
+				console.log(message.length);
+				$ionicLoading.hide();
+				if($scope.deviceAndroid)
+				{
 
-			if($localStorage.doctororpatient == 'patient')
-			{
+				if($localStorage.doctororpatient == 'patient')
+				{
 
 				//var password = "DQ_doctor";
 
@@ -57,10 +58,10 @@ function checkNewMessages()
 				var forandroidchatlist = {};
 				forandroidchatlist = $scope.chatlist1;
 				var dataofandroid = JSON.parse(forandroidchatlist);
-				// dataofandroid.chatTo=$localStorage.user;
+				dataofandroid.chatTo=$localStorage.user;
 				doctorServices.createChatHistory(dataofandroid).then(function(response){
 				$scope.chatHistory=response;//store the response array in doctor details
-			 //console.log('dataSent :',response);
+				//console.log('dataSent :',response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				});
@@ -68,30 +69,30 @@ function checkNewMessages()
 
 
 				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-						$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-							console.log($rootScope.ConsultedDoctor);
-						var data = response;
-							// console.log(response);
-						for(var i=0; i<data.length; i++){
-								$rootScope.doctorFname=data[i].doctorFname;
-								$rootScope.doctorLname=data[i].doctorLname;
-								$rootScope.doctorMname=data[i].doctorMname;
-								$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
-								// console.log($rootScope.fullname);
-								// $scope.listofnames.push($scope.fullname);
-								// $scope.listofphones.push(data[i].patientPhone);
-								//console.log($localStorage.user);
-						}
-						$ionicLoading.hide();
+				$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+				console.log($rootScope.ConsultedDoctor);
+				var data = response;
+				// console.log(response);
+				for(var i=0; i<data.length; i++){
+				$rootScope.doctorFname=data[i].doctorFname;
+				$rootScope.doctorLname=data[i].doctorLname;
+				$rootScope.doctorMname=data[i].doctorMname;
+				$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+				// console.log($rootScope.fullname);
+				// $scope.listofnames.push($scope.fullname);
+				// $scope.listofphones.push(data[i].patientPhone);
+				//console.log($localStorage.user);
+				}
+				$ionicLoading.hide();
 				}).catch(function(error){
-					console.log('failure data', error);
+				console.log('failure data', error);
 				});
 
 
 
-			}
-			else
-			{
+				}
+				else
+				{
 
 				$scope.chatlist1 = message;
 
@@ -99,46 +100,46 @@ function checkNewMessages()
 				var forandroidchatlist = {};
 				forandroidchatlist = $scope.chatlist1;
 				var dataofandroid = JSON.parse(forandroidchatlist);
-				// dataofandroid.chatTo=$localStorage.user;
+				dataofandroid.chatTo=$localStorage.user;
 				doctorServices.createChatHistoryforDoctor(dataofandroid).then(function(response){
 				$scope.chatHistory=response;//store the response array in doctor details
-			//  console.log('dataSent :',response);
+				//  console.log('dataSent :',response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				});
 
 				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
-									$scope.myPatients=response;//store the response array in doctor details
-									console.log($scope.myPatients);
-									var data = $scope.myPatients;
-									for(var i=0; i<data.length; i++){
-									$scope.patientFname=data[i].patientFname;
-									$scope.patientLname=data[i].patientLname;
-									$scope.patientPhone=data[i].patientPhone;
-									$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
-									$scope.listofnames.push($scope.fullname);
-									$scope.listofphones.push(data[i].patientPhone);
-									//console.log($localStorage.user);
-								}
-								$ionicLoading.hide();
-								}).catch(function(error){
-								console.log('failure data', error);
-								});
+				$scope.myPatients=response;//store the response array in doctor details
+				console.log($scope.myPatients);
+				var data = $scope.myPatients;
+				for(var i=0; i<data.length; i++){
+				$scope.patientFname=data[i].patientFname;
+				$scope.patientLname=data[i].patientLname;
+				$scope.patientPhone=data[i].patientPhone;
+				$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+				$scope.listofnames.push($scope.fullname);
+				$scope.listofphones.push(data[i].patientPhone);
+				//console.log($localStorage.user);
+				}
+				$ionicLoading.hide();
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
 
 
-			}
+				}
 
 
 
-		}
-		else
-		{
+				}
+				else
+				{
 
-			console.log('this is ios chat histroy');
+				console.log('this is ios chat histroy');
 
 
-			if($localStorage.doctororpatient == 'patient')
-			{
+				if($localStorage.doctororpatient == 'patient')
+				{
 
 
 				console.log('this is patient');
@@ -147,51 +148,52 @@ function checkNewMessages()
 
 				console.log($scope.ios);
 
-						$scope.ios = message;
+				$scope.ios = message;
 
-						var forioschatlist = {};
-						forioschatlist = $scope.ios;
-						var res = forioschatlist.slice(1,-1);
-						var dataForIos = JSON.parse(forioschatlist);
-
-
-
-						doctorServices.createChatHistoryIos(dataForIos).then(function(response){
-						$scope.chatHistoryios=response;//store the response array in doctor details
-						console.log('dataSent :',$scope.chatHistoryios);
-						}).catch(function(error){
-						console.log('failure data', error);
-						});
+				var forioschatlist = {};
+				forioschatlist = $scope.ios;
+				var res = forioschatlist.slice(1,-1);
+				var dataForIos = JSON.parse(forioschatlist);
 
 
 
-
-						myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
-								$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-									// console.log($rootScope.ConsultedDoctor);
-								var data = response;
-									// console.log(response);
-								for(var i=0; i<data.length; i++){
-										$rootScope.doctorFname=data[i].doctorFname;
-										$rootScope.doctorLname=data[i].doctorLname;
-										$rootScope.doctorMname=data[i].doctorMname;
-										$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
-										// console.log($rootScope.fullname);
-										// $scope.listofnames.push($scope.fullname);
-										// $scope.listofphones.push(data[i].patientPhone);
-										//console.log($localStorage.user);
-								}
-								$ionicLoading.hide();
-						}).catch(function(error){
-							console.log('failure data', error);
-						});
+				doctorServices.createChatHistoryIos(dataForIos).then(function(response){
+				$scope.chatHistoryios=response;//store the response array in doctor details
+				console.log('dataSent :',$scope.chatHistoryios);
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
 
 
 
 
+				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+				$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+				// console.log($rootScope.ConsultedDoctor);
+				var data = response;
+				// console.log(response);
+				$ionicLoading.hide();
+				for(var i=0; i<data.length; i++){
+				$rootScope.doctorFname=data[i].doctorFname;
+				$rootScope.doctorLname=data[i].doctorLname;
+				$rootScope.doctorMname=data[i].doctorMname;
+				$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+				// console.log($rootScope.fullname);
+				// $scope.listofnames.push($scope.fullname);
+				// $scope.listofphones.push(data[i].patientPhone);
+				//console.log($localStorage.user);
+				}
 
-			}
-			else {
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+
+
+
+
+
+				}
+				else {
 
 
 				$scope.ios = message;
@@ -203,8 +205,6 @@ function checkNewMessages()
 
 				console.log(dataForIos);
 
-
-
 				doctorServices.createChatHistoryIosforDoctor(dataForIos).then(function(response){
 				$scope.chatHistoryios=response;//store the response array in doctor details
 				console.log('dataSent :',$scope.chatHistoryios);
@@ -214,41 +214,41 @@ function checkNewMessages()
 
 
 
-									myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
-									$scope.myPatients=response;//store the response array in doctor details
-									console.log($scope.myPatients);
-									var data = $scope.myPatients;
-									for(var i=0; i<data.length; i++){
-									$scope.patientFname=data[i].patientFname;
-									$scope.patientLname=data[i].patientLname;
-									$scope.patientPhone=data[i].patientPhone;
-									$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
-									$scope.listofnames.push($scope.fullname);
-									$scope.listofphones.push(data[i].patientPhone);
-									//console.log($localStorage.user);
-								}
-								$ionicLoading.hide();
-								}).catch(function(error){
-								console.log('failure data', error);
-								});
+				myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+				$scope.myPatients=response;//store the response array in doctor details
+				console.log($scope.myPatients);
+				var data = $scope.myPatients;
+				for(var i=0; i<data.length; i++){
+				$scope.patientFname=data[i].patientFname;
+				$scope.patientLname=data[i].patientLname;
+				$scope.patientPhone=data[i].patientPhone;
+				$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+				$scope.listofnames.push($scope.fullname);
+				$scope.listofphones.push(data[i].patientPhone);
+				//console.log($localStorage.user);
+				}
+				$ionicLoading.hide();
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
 
 
 
 
-			}
+				}
 
-			}
+				}
 
 
 		}
 
 
-   var failure = function()
-   {
-     alert("Error calling Hello Plugin");
-   }
+		var failure = function()
+		{
+		 alert("Error calling Hello Plugin");
+		}
 
-hello.chatcounts(username,password,success, failure);
+		hello.chatcounts(username,password,success, failure);
 
 }
 
