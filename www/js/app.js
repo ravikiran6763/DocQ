@@ -89,6 +89,14 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     setTimeout(function() {
         navigator.splashscreen.hide();
     }, 300);
+
+    window.MobileAccessibility.usePreferredTextZoom(true);
+   function getTextZoomCallback(textZoom) {
+     console.log('WebView text should be scaled to the preferred value ' + textZoom + '%')
+   }
+   window.MobileAccessibility.getTextZoom(getTextZoomCallback);
+
+
   });
 
   $interval(checkConnection, 1000)
@@ -208,7 +216,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
             disableAnimate: true,
             disableBack: true
           });
-          $state.go('templates.patientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+          $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
         })
         .endInit();
 
@@ -698,15 +706,16 @@ $stateProvider
       }
     }
   })
-  // .state('templates.viewPatientRequest', {
-  //   url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/templates/patientRequestfromdocotor.html",
-  //         controller: 'patientrequestCtrl'
-  //     }
-  //   }
-  // })
+
+  .state('templates.viewPatientRequest', {
+    url: "/viewPatientRequest/:reqId/:reqPat/:reqTime",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/patientRequestfromPush.html",
+          controller: 'patientrequestCtrl'
+      }
+    }
+  })
 
   .state('templates.patientRequest', {
     url: "/patientRequest/:reqId/:reqPat/:reqTime",

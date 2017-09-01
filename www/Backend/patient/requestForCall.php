@@ -80,7 +80,7 @@
 			 				 $fields = array(
 			 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 			 					 'include_player_ids' => $Ids,
-			 					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromdocotor.html"),
+			 					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromPush.html"),
 			 					 'contents' => $content,
 			 					 'android_sound' => 'dqandroidtone',
 			 					 'ios_sound' => 'iphone.wav',

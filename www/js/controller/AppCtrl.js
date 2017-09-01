@@ -1003,6 +1003,15 @@ $scope.BalanceForVoiceCall=function()
 					userNum:$localStorage.user,
 					user:'patient'
 				}
+
+				$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+				var playerId = JSON.parse($window.localStorage.getItem("patientDetails"));
+				playerId[0][8] = "";
+				console.log(playerId);
+				console.log($scope.patient_details[0][8]);
+				localStorage.setItem("patientDetails",JSON.stringify(playerId));
+				console.log(angular.fromJson($window.localStorage['patientDetails']));
+
 			}
 			else{
 				var updatePlayer ={
@@ -1012,13 +1021,15 @@ $scope.BalanceForVoiceCall=function()
 				}
 			}
 
+
+
 			LoginService.updatePlayer(updatePlayer).then(function(response){
 				console.log(response);
 			})
  	// 	window.plugins.OneSignal.registerForPushNotifications(true);
 		};
 		$scope.showNotifications = function (msg) {
-			alert(msg);
+			// alert(msg);
 					$scope.accptNotifications=false;
 					$scope.rejectNotifications=true;
 					window.plugins.OneSignal.getIds(function(ids){
@@ -1026,7 +1037,7 @@ $scope.BalanceForVoiceCall=function()
             //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
             console.log(JSON.stringify(ids['userId']));
             $scope.playerId=JSON.stringify(ids['userId']);
-						alert('oneSignal')
+						// alert('oneSignal')
             console.log($scope.playerId);
 						if($localStorage.doctororpatient === 'patient'){
 							var updatePlayer ={
