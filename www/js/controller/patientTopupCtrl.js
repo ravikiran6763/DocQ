@@ -54,7 +54,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var options = {
 											description: 'Consult A Doctor Now',
 											currency: 'INR',
-											key: 'rzp_test_mzUbTyUmUd2dyE',
+											key: 'rzp_test_mzUbTyUmUd2dyE',//change this key to live account key
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
 											method:{
@@ -78,14 +78,14 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 										//  alert($rootScope.patientWalletUpdate);
 										 if($rootScope.patientWalletUpdate=='TransactionSuccessful'){
 											  // $state.go('app.patient_topup');
-												$state.go($state.current, $stateParams, {reload: true, inherit: false});
+												$state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});
 										 }
 										 if($rootScope.patientWalletUpdate=='ERROR'){
 											  alert('Error While Initiating Payment');
 										 }
 										 $scope.payment.topUpAmt="";
 										 $window.location.reload(true);
-
+										//  $state.reload()
 										// $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
 									 console.log($rootScope.patientWalletUpdate);
 									   }).catch(function(error){

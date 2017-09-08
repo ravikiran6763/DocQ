@@ -239,27 +239,38 @@ $scope.viewRequest=function(patient){
 }
 
         $timeout( function(){
+
+        
+          var uname1 = "greet+"+$localStorage.user;
+  				var pw1 = "DQ_doctor";
+          var success = function(message)
+          {
+                console.log(message);
+            $scope.iosLoggin=message;
+            $localStorage.onOff=1;
+          }
+          var failure = function()
+          {
+
+            alert("Error calling Hello Plugin");
+
+          }
+
+          hello.login(uname1,pw1,success, failure);
         console.log('interval started');
         $interval(checkNewMessages,2000);
-        }, 60000 );
+      }, 30000 );
 
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_doctor";
 				$rootScope.unreadchatforpatient = 0;
 
-
 				function checkNewMessages()
 				{
-
-
 						var success = function(message)
 						{
-
 							$rootScope.unreadchatforpatient = message;
-
-							console.log($scope.unreadchatforpatient);
-
-
+							// console.log($scope.unreadchatforpatient);
 						}
 
 						var failure = function()

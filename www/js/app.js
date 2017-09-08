@@ -874,7 +874,9 @@ $stateProvider
         //     disableAnimate: true,
         //     disableBack: true
         //   });
-        //   $state.go('tempplates.doctor_home', {}, {location: "replace", reload: false});
+        //   // $state.go('tempplates.doctor_home', {}, {location: "replace", reload: false});
+        //   return '/templates/doctor_home';
+        //
         //     // $ionicLoading.hide().then(function(){
         //     // });
         // }

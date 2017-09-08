@@ -10,6 +10,8 @@ if (isset($postdata))
 		$r = json_decode($postdata);
 		$loginphno = $r->userNum;
 		$loginpw= $r->password;
+    // $loginphno = '8792618138';
+		// $loginpw= 'amit';
 		$loginpw = base64_encode($loginpw);//converts password string to encoded format
 
        $sql1 = "select count(*) as patient,loginFlag as loggedState from patientDetails where patientPhone='$loginphno' and patientPwd='$loginpw' and loginFlag=1";

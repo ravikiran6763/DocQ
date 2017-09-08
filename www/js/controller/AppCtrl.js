@@ -1012,6 +1012,9 @@ $scope.BalanceForVoiceCall=function()
 				localStorage.setItem("patientDetails",JSON.stringify(playerId));
 				console.log(angular.fromJson($window.localStorage['patientDetails']));
 
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+					console.log(response);
+				})
 			}
 			else{
 				var updatePlayer ={
@@ -1019,13 +1022,15 @@ $scope.BalanceForVoiceCall=function()
 					userNum:$localStorage.user,
 					user:'doctor'
 				}
+
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+					console.log(response);
+				})
 			}
 
 
 
-			LoginService.updatePlayer(updatePlayer).then(function(response){
-				console.log(response);
-			})
+
  	// 	window.plugins.OneSignal.registerForPushNotifications(true);
 		};
 		$scope.showNotifications = function (msg) {

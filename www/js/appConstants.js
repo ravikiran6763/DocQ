@@ -14,13 +14,16 @@ DoctorQuickApp.constant('BASE_URL', {
         //Testing
         // 'url' :'http://ec2-52-39-133-220.us-west-2.compute.amazonaws.com/'
         //Staging
-        'url' : 'http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/'
+        // 'url' : 'http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/'//oregon
+        'url' : 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/'//mumbai
+
     })
 .constant('API', {
           /*COMMON APIS*/
 
         // 'patientRegistration':'DQ/patientegistration.php',
 
+        // 'login': 'common/test.php',
         'login': 'common/dqLogin.php',
         'logout': 'common/logout.php',
         'ForgotPassword': 'common/forgotPassword.php',

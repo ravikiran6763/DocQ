@@ -7,8 +7,6 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 				$rootScope.showBadge=false;
 
 				$scope.toggleText = "Accept";
-
-
 				console.log($state.$current.name);
 				// if($state.$current.name === "templates.viewPatientRequest"){
 				// 	alert("check for notification id existance here");
@@ -24,40 +22,38 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 							console.log($scope.deviceAndroid);
 
 							doctorServices.pushReqStatus($stateParams.reqId).then(function(response){
-								// alert('exp',response);
-
-								if(response === '"expired"'){
-
-									if($scope.deviceAndroid === true){
-										ion.sound.stop("androidtone");
-									}
-									else{
-										ion.sound.stop("iphone");
-									}
-										$rootScope.expiredReq = $ionicPopup.show({
-										title:"Sorry!!!",
-										template: "<div >This Request has been served/Expired </b></div>",
-										cssClass: 'requestPopup',
-										scope: $scope,
-										buttons: [
-										{
-										text: 'Ok',
-										type: 'button-positive',
-										onTap:function(){
-										console.log('cancel');
-										$ionicHistory.nextViewOptions({
-											disableAnimate: true,
-											disableBack: true
-										});
-										$rootScope.hideSideMenu = true;
-											$state.go('templates.doctor_home',{}, {location: "replace", reload: false})
-										}
-										},
-										]
-										});
-
-								}
-								else{
+								console.log('exp',response);
+								// if(response === '"expired"'){
+								// if($scope.deviceAndroid === true){
+								// 		ion.sound.stop("androidtone");
+								// 		}
+								// 		else{
+								// 		ion.sound.stop("iphone");
+								// 		}
+								// 		$rootScope.expiredReq = $ionicPopup.show({
+								// 		title:"Sorry!!!",
+								// 		template: "<div >This Request has been served/Expired </b></div>",
+								// 		cssClass: 'requestPopup',
+								// 		scope: $scope,
+								// 		buttons: [
+								// 		{
+								// 		text: 'Ok',
+								// 		type: 'button-positive',
+								// 		onTap:function(){
+								// 		console.log('cancel');
+								// 		$ionicHistory.nextViewOptions({
+								// 		disableAnimate: true,
+								// 		disableBack: true
+								// 		});
+								// 		$rootScope.hideSideMenu = true;
+								// 		$state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+								// 		}
+								// 		},
+								// 		]
+								// 		});
+								//
+								// }
+								// else{
 									// alert('else part');
 									var uname1 = "greet+"+$localStorage.user;
 									var pw1 = "DQ_doctor";
@@ -140,7 +136,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 									}
 
 									}
-								}
+								// }elsee
 							// console.log('one2onePending:',$scope.one2oneRequests);
 							})
 

@@ -32,6 +32,50 @@ else{
 }
 
 
+if($localStorage.doctororpatient === "patient"){//to list out the consulted patient/doctors
+	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+	console.log($rootScope.ConsultedDoctor);
+	var data = response;
+	// console.log(response);
+	for(var i=0; i<data.length; i++){
+	$rootScope.doctorFname=data[i].doctorFname;
+	$rootScope.doctorLname=data[i].doctorLname;
+	$rootScope.doctorMname=data[i].doctorMname;
+	$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+	// console.log($rootScope.fullname);
+	// $scope.listofnames.push($scope.fullname);
+	// $scope.listofphones.push(data[i].patientPhone);
+	//console.log($localStorage.user);
+	}
+	$ionicLoading.hide();
+	}).catch(function(error){
+	console.log('failure data', error);
+	});
+}
+else{
+	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+	// console.log($rootScope.ConsultedDoctor);
+	var data = response;
+	// console.log(response);
+	$ionicLoading.hide();
+	for(var i=0; i<data.length; i++){
+	$rootScope.doctorFname=data[i].doctorFname;
+	$rootScope.doctorLname=data[i].doctorLname;
+	$rootScope.doctorMname=data[i].doctorMname;
+	$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+	// console.log($rootScope.fullname);
+	// $scope.listofnames.push($scope.fullname);
+	// $scope.listofphones.push(data[i].patientPhone);
+	//console.log($localStorage.user);
+	}
+
+	}).catch(function(error){
+	console.log('failure data', error);
+	});
+}
+
 
 
 $interval(checkNewMessages,2000);
@@ -39,11 +83,10 @@ function checkNewMessages()
 {
  console.log('refreshing consultation list for new messages');
 
-
 		var success = function(message)
 		{
 				console.log(message.length);
-				$ionicLoading.hide();
+				// $ionicLoading.hide();
 				if($scope.deviceAndroid)
 				{
 
@@ -51,9 +94,7 @@ function checkNewMessages()
 				{
 
 				//var password = "DQ_doctor";
-
 				$scope.chatlist1 = message;
-
 				console.log(message);
 				var forandroidchatlist = {};
 				forandroidchatlist = $scope.chatlist1;
@@ -86,8 +127,6 @@ function checkNewMessages()
 				}).catch(function(error){
 				console.log('failure data', error);
 				});
-
-
 
 				}
 				else
