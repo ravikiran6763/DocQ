@@ -579,15 +579,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		 $state.go('app.patient_home');
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
-		$state.go('app.doctor_home');
+		$state.go('templates.doctor_home');
 	}
 		$ionicHistory.clearHistory();
-		if($localStorage.doctororpatient === 'patient'){
-			$state.go('app.patient_home');
-		}
-		if($localStorage.doctororpatient === 'doctor'){
-			$state.go('templates.doctor_home');
-		}
 		$ionicHistory.clearHistory();
 		$ionicHistory.clearCache();
 		console.log($ionicHistory.viewHistory());
