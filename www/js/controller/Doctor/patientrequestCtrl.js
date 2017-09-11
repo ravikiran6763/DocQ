@@ -27,6 +27,7 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 
 							var success = function(message)
 							{
+								alert(message);
 							$ionicLoading.hide();
 							console.log(message);
 							$ionicHistory.nextViewOptions({
@@ -209,29 +210,18 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
 
 					console.log('from date and time',$rootScope.dateAndTime);
-
 					console.log('current date and time',$scope.CurrentDate);
 
 					var justdate = $rootScope.dateAndTime;
-
-
-
 					var t = justdate.split(/[- :]/);
+					// Apply each element to the Date function
+					var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+					var actiondate = new Date(d);
+					var timestamp = new Date(actiondate).getTime();
 
-// Apply each element to the Date function
-var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-var actiondate = new Date(d);
-
-var timestamp = new Date(actiondate).getTime();
-
-
-console.log('actiondate',timestamp);
-
-
+					console.log('actiondate',timestamp);
 					console.log('timestamp',timestamp);
 					console.log('currentTimestamp',currentTimestamp);
-
-
 
 					var diffMs = (currentTimestamp - timestamp);
 					var diffDays = Math.round(diffMs / 86400000); // days

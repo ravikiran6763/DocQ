@@ -13,8 +13,8 @@
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
         "com.example.hello": "^0.7.0",
-        "com.red_folder.phonegap.plugin.backgroundservice": "../veeresh mac data/bgs-core",
         "com.red_folder.phonegap.plugin.backgroundservice.sample": "^2.0.0",
+        "cordova-android": "^6.2.3",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-device": "^1.1.0",
         "cordova-plugin-shared-preferences": "0.0.1",
@@ -65,12 +65,12 @@
             },
             "cordova-plugin-whitelist": {},
             "ionic-plugin-deploy": {},
-            "com.red_folder.phonegap.plugin.backgroundservice": {},
             "cordova-plugin-shared-preferences": {},
             "cordova-plugin-x-toast": {},
             "com.example.hello": {}
         },
         "platforms": [
+            "android",
             "ios"
         ]
     }
