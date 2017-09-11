@@ -16,6 +16,10 @@ DoctorQuickApp.constant('BASE_URL', {
         //Staging
         //'url' : 'http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/'
         'url' : 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/'
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6fc5b27edebca08f22e56206976054dd1615cd5d
 
 
     })
