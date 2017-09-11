@@ -11,7 +11,7 @@ require 'headers.php';
 		// echo "hello";
 				$loginphno = json_decode($postdata);
 	 				$myConsultation = array();
-					$sql = "select doctorFname,doctorMname,doctorLname,doctorDetails.doctorPhone,doctorDegrees,practicingSince from doctorDetails where doctorPhone='$loginphno'";
+					$sql = "select docImage2,doctorFname,doctorMname,doctorLname,doctorDetails.doctorPhone,doctorDegrees,practicingSince,ratings,ratingCount from doctorDetails,doctorImages where doctorPhone='$loginphno' and doctorDetails.doctorPhone=doctorImages.docPhone";
 
           $retval = mysql_query( $sql, $dbhandle );
 					while($row = mysql_fetch_array($retval))

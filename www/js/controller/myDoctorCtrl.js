@@ -39,10 +39,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		// alert('list');
     $scope.myConsultedDoctors=response;
 		console.log($scope.myConsultedDoctors);
-		$scope.ratings = [{
-					current: 0,
-					max: 5
-			}];
+		
 		$ionicLoading.hide();
   }).catch(function(error){
   console.log('failure data', error);
@@ -57,7 +54,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 	$state.go('app.viewdoctor_profile', {rates: $rootScope.ratesForDoc,totalRates: $rootScope.totalRate})
 		// $state.go('app.viewdoctor_profile');
-		
+
 
 	}
 

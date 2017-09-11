@@ -4,21 +4,22 @@
 	require "mergejpegimage.php";
 	header('Content-type: text/html; charset=utf-8');
  $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
+
  if(isset($postdata))
  {
 
-	      $request = json_decode($postdata);
-	      $doctorphoneno = $request->docphno; //DOCTOR PHONE NO
-	      $patientphoneno = $request->patientphno;//PATIENT PHONE NO
-	      $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
-	      $tests = $request->tests;//TESTSBY DOCTOR
-	      $medication = $request->medication;//MEDICATION BY DOCTOR
+	      // $request = json_decode($postdata);
+	      // $doctorphoneno = $request->docphno; //DOCTOR PHONE NO
+	      // $patientphoneno = $request->patientphno;//PATIENT PHONE NO
+	      // $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
+	      // $tests = $request->tests;//TESTSBY DOCTOR
+	      // $medication = $request->medication;//MEDICATION BY DOCTOR
 
-	      // $doctorphoneno = '7829786711'; //DOCTOR PHONE NO
-	      // $patientphoneno = '9845000753';//PATIENT PHONE NO
-	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
-	      // $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
-	      // $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
+	      $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
+	      $patientphoneno = '8792618138';//PATIENT PHONE NO
+	      $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
+	      $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
+	      $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
 
 
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE

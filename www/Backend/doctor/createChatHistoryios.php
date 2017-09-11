@@ -13,37 +13,52 @@
       {
 
 
-	$chathistroyios = json_decode($postdata);
+				$chathistroyios = json_decode($postdata);
 
-	//echo $chathistroyios[0]->chatTo;
+	for($i=0;$i<=sizeof($chathistroyios);$i++)
+	{
 
+			$pname = $chathistroyios[$i]->pname;
+		  $pname=explode("+", $pname);
+			$chatTo = $chathistroyios[$i]->chatTo;
+			$chatTo = explode("+",$chatTo);
 
+			$chatDate = $chathistroyios[$i]->dateformat;
+			$unread = $chathistroyios[$i]->unread;
+			$message=$chathistroyios[$i]->message;
 
-
-	$pname = $chathistroyios[0]->pname;
-	//$chatTo = $chathistroyios[0]->chatTo;
-	$chatDate = $chathistroyios[0]->dateformat;
-	$unread = $chathistroyios[0]->unread;
-	$message=$chathistroyios[0]->message;
-
-
-
-
-
-
-	$pname=explode("+", $chathistroyios[0]->pname);
+      $sqltocount = "select unreadcount from chatHistory where message='$message'";
+			$dretvalcount = mysql_query( $sqltocount, $dbhandle );
+			while($rowcount = mysql_fetch_assoc($dretvalcount)) {
 
 
-	//echo $chatTo;
+        if($rowcount['unreadcount'] == $unread)
+        {
 
 
+                //echo "donothinh";
 
-	echo $sqlmyconsultation = "INSERT INTO chatHistory(dateAndTime,chatFrom,message,unreadCount) VALUES ('$chatDate','$pname[1]','$message','$unread')";
+        }
+        else
+        {
+
+                $accpteddoctor = "update chatHistory set unreadcount='$unread' where message='$message'";
+  						 $retval = mysql_query($accpteddoctor,$dbhandle);
+
+
+        }
+
+
+}
+
+ $sqlmyconsultation = "INSERT INTO chatHistory(dateAndTime,chatFrom,message,unreadCount,chatTo) VALUES ('$chatDate','$pname[1]','$message','$unread','$chatTo[1]')";
              $retvalmyconsulation = mysql_query( $sqlmyconsultation, $dbhandle );
              if($retvalmyconsulation)
              {
              	echo "chatStored";
              }
+
+					 }
 
 mysql_close($dbhandle);
 

@@ -109,7 +109,12 @@ $scope.setRating = function(ratings,val){
 		 max: 5
  }];
 
- myConsultationService.docSummaryDetails($stateParams.calledDoctor).then(function(response){
+var myDoc={
+	calledDoctor:$stateParams.calledDoctor,
+	patient:$localStorage.user
+}
+console.log(myDoc);
+ myConsultationService.docSummaryDetails(myDoc).then(function(response){
  		$scope.myDoctor=response;//store the response array in doctor details
  		console.log($scope.myDoctor);
  		$ionicLoading.hide();
@@ -163,7 +168,7 @@ $scope.ratingsObject = {
 			{
 
 					$scope.patient_details ={};
-					$scope.userPhone=LoginService.returnUserPhone();
+					// $scope.userPhone=LoginService.returnUserPhone();
 
 					if($scope.ratingComments.comment)
 					{
@@ -172,12 +177,12 @@ $scope.ratingsObject = {
 						var ratedValues={
 							rates:$rootScope.ratingValue,
 							//ratedBy:$localStorage.user,
-							ratedTo:$stateParams.calledDoctor
-							//ratingComments:$scope.ratingComments.comment
+							ratedTo:$stateParams.calledDoctor,
+							ratingComments:$scope.ratingComments.comment
 						};
 						console.log(ratedValues);
 						rateDoctorServices.rateDoctor(ratedValues).then(function(response){
-							// console.log(ratedValues);
+							console.log(ratedValues);
 							$scope.rated=response;
 							console.log($scope.rated);
 							$scope.ratingComments.comment="";
@@ -257,8 +262,40 @@ rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(r
 				console.log('failure data', error);
 		});
 
+$scope.removeFavorite=function(fav){
+	var favoriteDoc={
+		ratedBy:$localStorage.user,
+		ratedTo:$stateParams.calledDoctor,
+		favorite:2
+	};
+
+	rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
+		$scope.added=response;
+		console.log(response);
+		$state.go($state.current, {}, {reload: true});
+					window.plugins.toast.showWithOptions({
+					message: "Doctor removed from favorites",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 10.5, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 10, // iOS default 16, Android default 50
+					verticalPadding: 6 // iOS default 12, Android default 30
+					}
+					});
+
+	}).catch(function(error){
+		console.log('failure data', error);
+	});
+
+}
 $scope.addToFavorite=function(fav){
 	$scope.favorite=fav;
+	console.log($scope.favorite);
 if($scope.favorite == true){
 	$scope.favorite=1;
 
@@ -278,15 +315,9 @@ if($scope.favorite == true){
 $scope.added={};
    // Do whatever you want here
 	 rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
-
-
 		 $scope.added=response;
-
-
 		 console.log(response);
-
 		 //console.log($scope.added.favorite);
-
 		 if($scope.added.favorite == 1){
 			 //console.log($scope.added.favorite);
 

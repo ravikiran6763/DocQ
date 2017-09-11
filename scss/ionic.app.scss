@@ -29,6 +29,31 @@ $stable:                          red !default;
 /*-------------------------------------------------
  MIXIN :: CLEARFIX
 —-----------------------------------------------*/
+
+
+@media (max-width: 300px) {
+    html {
+        font-size: 70% !important;
+    }
+}
+
+@media (min-width: 500px) {
+    html {
+        font-size: 80% !important;
+    }
+}
+
+@media (min-width: 700px) {
+    html {
+        font-size: 120% !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    html {
+        font-size: 200% !important;
+    }
+}
 @mixin clearfix() {
     clear: both;
     &:before,
@@ -39,6 +64,11 @@ $stable:                          red !default;
     &:after {
         clear: both;
     }
+}
+@mixin font-size($sizeValue: 12 ){
+	font-size: $sizeValue + px; //fallback for old browsers
+	font-size: (0.0625 * $sizeValue) + rem;
+
 }
 
 //include media queries

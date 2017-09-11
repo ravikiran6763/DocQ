@@ -1,9 +1,9 @@
 <ion-view class="consultationList-view" cache-view="false">
 
   <ion-content >
-    <div class="myDoctor-list" ng-repeat="patient in myPatients">
+    <div class="myDoctor-list" >
       <ul>
-      <li  ng-click="clicktochat(patient.patientPhone);">
+      <li ng-repeat="patient in myPatients" ng-click="clicktochat(patient.patientPhone);">
 
         <div class="profile-img">
           <img src="{{patient.image}}">
@@ -27,7 +27,7 @@
     </ul>
 
       <ul>
-        <li ng-show="!myPatients.length" style="margin-top: 8vh;"><center><b style="color:teal;">No available messages</b></center></li>
+        <li ng-show="!myPatients.length" style="margin-top: 8vh;"><center><b style="color:teal;">No Consultations</b></center></li>
       </ul>
     </div>
 

@@ -8,10 +8,10 @@
 
         </ion-refresher>
     <div>
-      <div class="myDoctor-list" ng-repeat="doctor in myConsultedDoctors">
+      <div class="myDoctor-list" >
         <ul>
           <!-- <li  ui-sref="app.viewdoctor_profile({myDocFname:doctor.doctorFname,myDocLname:doctor.doctorLname,myDocNum:doctor.doctorPhone,myDocDegree:doctor.doctorDegrees})"> -->
-        <li   ng-click="viewDocProfile(doctor.doctorPhone,doctor.ratings/doctor.ratingCount,doctor.ratingCount)">
+        <li ng-repeat="doctor in myConsultedDoctors"  ng-click="viewDocProfile(doctor.doctorPhone,doctor.ratings/doctor.ratingCount,doctor.ratingCount)">
           <div class="profile-img">
             <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
             <img  ng-hide="doctor.docImage2 == null "ng-src="{{doctor.docImage2}}"   >
@@ -26,7 +26,7 @@
               <span ng-style="{ 'width': getStars(0) }"></span>
             </span>
             <span class="stars " ng-show="{{doctor.ratingCount != 0}}">
-              <span ng-style="{ 'width': getStars(doctor.ratings/doctor.ratingCount) }"></span>
+              <span ng-style="{ 'width': getStars(3) }"></span>
             </span>
             <p class="totalReview">
                 ({{doctor.ratingCount}} Reviews)

@@ -56,7 +56,7 @@ var data=$scope.myDocDetails1;//take all json data into this variable
 console.log('failure data', error);
 });
 
-     console.log($scope.ratings.current);
+
 function checkDocStatus(){
   doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
   $scope.myDocDetails1=response;
@@ -75,8 +75,8 @@ function checkDocStatus(){
           console.log($rootScope.rates);
 
           $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
-          console.log('rates',$rootScope.DocRates);
-          console.log('total',$rootScope.totalRates);
+          // console.log('rates',$rootScope.DocRates);
+          // console.log('total',$rootScope.totalRates);
 
 
 

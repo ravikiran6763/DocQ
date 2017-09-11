@@ -239,27 +239,38 @@ $scope.viewRequest=function(patient){
 }
 
         $timeout( function(){
+
+        
+          var uname1 = "greet+"+$localStorage.user;
+  				var pw1 = "DQ_doctor";
+          var success = function(message)
+          {
+                console.log(message);
+            $scope.iosLoggin=message;
+            $localStorage.onOff=1;
+          }
+          var failure = function()
+          {
+
+            alert("Error calling Hello Plugin");
+
+          }
+
+          hello.login(uname1,pw1,success, failure);
         console.log('interval started');
         $interval(checkNewMessages,2000);
-        }, 60000 );
+      }, 30000 );
 
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_doctor";
 				$rootScope.unreadchatforpatient = 0;
 
-
 				function checkNewMessages()
 				{
-
-
 						var success = function(message)
 						{
-
 							$rootScope.unreadchatforpatient = message;
-
-							console.log($scope.unreadchatforpatient);
-
-
+							// console.log($scope.unreadchatforpatient);
 						}
 
 						var failure = function()
@@ -278,15 +289,7 @@ $scope.viewRequest=function(patient){
 
 });
 
-  // $scope.Timer = $interval(function () {
-  //   doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
-  //   $scope.pendingRequests = response;
-  //   console.log('pending:',$scope.pendingRequests);
-  //   $scope.requests=$scope.pendingRequests.length;
-  //   }).catch(function(error){
-  //   console.log('failure data', error);
-  //   })
-  // }, 1000);
+
 
 
 // $scope.pushNotificationChange = function() {

@@ -17,9 +17,9 @@
 	//
   //       exit(0);
   //   }
-	$username = "doctorquick";
+	$username = "doctorquick2017";
   $password = "aishiteimasu";
-  $hostname = "doctorquick.cy3fske9ly7g.us-west-2.rds.amazonaws.com:3306";
+  $hostname = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
   //$hostname = "dq-new.cn214rm1segx.us-west-2.rds.amazonaws.com";
 
   //connection to the database

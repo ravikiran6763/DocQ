@@ -18,6 +18,22 @@ $dark:                            #444 !default;
 /*-------------------------------------------------
  MIXIN :: CLEARFIX
 —-----------------------------------------------*/
+@media (max-width: 300px) {
+  html {
+    font-size: 70% !important; } }
+
+@media (min-width: 500px) {
+  html {
+    font-size: 80% !important; } }
+
+@media (min-width: 700px) {
+  html {
+    font-size: 120% !important; } }
+
+@media (min-width: 1200px) {
+  html {
+    font-size: 200% !important; } }
+
 /*
 To customize the look and feel of Ionic, you can override the variables
 in ionic's _variables.scss file.
@@ -9824,6 +9840,16 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+input[type="checkbox"] + span {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.33s, opacity 0.33s linear; }
+
+input[type="checkbox"]:checked + span {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0s; }
+
 span.stars, span.stars span {
   display: block;
   /* Download the star image here: http://stackoverflow.com/questions/1987524/turn-a-number-into-star-rating-display-using-jquery-and-css */
@@ -9847,6 +9873,10 @@ span.stars span {
   position: absolute !important;
   margin: -10% 0 0 2% !important;
   font-size: 100% !important; }
+
+h5.menu-text {
+  margin-top: 8%;
+  font-size: 100%; }
 
 ion-side-menu ion-item.item .menu-text {
   font-family: Ubuntu,bold,sans-serif !important;
@@ -11632,7 +11662,7 @@ ion-side-menu .heading-item .message {
         margin-left: 27%; }
         .profile-view .top-content .details .name-content h2 {
           margin-top: -20%;
-          font-size: 20px !important;
+          font-size: 100% !important;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important; }
   .profile-view .profileDetails {
@@ -12350,7 +12380,7 @@ ion-side-menu .heading-item .message {
       float: left;
       padding: 5% 5%;
       width: 72%; }
-      .sepecility-details-view .top-content .name-content h2 {
+      .sepecility-details-view .top-content .name-content h4 {
         margin-top: 4%;
         font-size: 106%;
         color: black;
@@ -12368,7 +12398,7 @@ ion-side-menu .heading-item .message {
         position: absolute;
         overflow: hidden; }
         .sepecility-details-view .top-content .specDescription .description p {
-          font-size: 90%;
+          font-size: 100%;
           margin-top: 23%;
           text-align: center; }
   .sepecility-details-view .onlineDocs {
@@ -12901,6 +12931,11 @@ ion-side-menu .heading-item .message {
       width: 80% !important;
       margin: 0 auto; }
       .change_pwd-view .form-content .form-group input[type="password"] {
+        margin-top: 4% !important;
+        height: 22% !important;
+        padding-left: 10px;
+        width: 100% !important; }
+      .change_pwd-view .form-content .form-group input[type="email"] {
         margin-top: 4% !important;
         height: 22% !important;
         padding-left: 10px;

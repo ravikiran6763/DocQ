@@ -296,4 +296,16 @@ this.checkIdStatus = function (id){
   return deferred.promise;
 }
 
+this.pushReqStatus = function (id){
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.pushReqStatus,id)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
 });

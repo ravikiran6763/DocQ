@@ -19,7 +19,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
   }
 
 
-  $username = "doctorquick";
+  $username = "doctorquick2017";
   $password = "aishiteimasu";
   $hostname = "doctorquick.cy3fske9ly7g.us-west-2.rds.amazonaws.com:3306";
   //$hostname = "dq-new.cn214rm1segx.us-west-2.rds.amazonaws.com";

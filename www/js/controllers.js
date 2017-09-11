@@ -193,54 +193,54 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				}
 				else{
 
-						$ionicLoading.show({
-						template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-						});
-						var success = function(message)
-						{
-							console.log(message);
-							$scope.iosLoggin=message;
+				$ionicLoading.show({
+				template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+				});
+				var success = function(message)
+				{
+				console.log(message);
+				$scope.iosLoggin=message;
 
-						}
-						var failure = function()
-						{
+				}
+				var failure = function()
+				{
 
-							alert("Error calling Hello Plugin");
+				alert("Error calling Hello Plugin");
 
-						}
+				}
 
-						// $state.go('app.patient_home');//for browser login
-						// $state.go('app.patient_home');//for browser login
-						hello.login(uname1,pw1,success, failure);
+				// $state.go('app.patient_home');//for browser login
+				// $state.go('app.patient_home');//for browser login
+				hello.login(uname1,pw1,success, failure);
 
-						$timeout( function(){
-						console.log('interval started');
-						$interval($rootScope.loginInterval,2000,1);
-						}, 10000 );
+				$timeout( function(){
+				console.log('interval started');
+				$interval($rootScope.loginInterval,2000,1);
+				}, 10000 );
 
-						$rootScope.loginInterval = function() {
-						var success = function(message)
-						{
-						// alert(message);
-						$ionicLoading.hide().then(function(){
-						console.log("The loading indicator is now hidden");
-						// alert('loggedin');
-						$ionicHistory.nextViewOptions({
-						disableAnimate: true,
-						disableBack: true
-						});
-						$interval.cancel($rootScope.loginInterval);
-						$state.go('app.patient_home', {}, {location: "replace", reload: false});
-						});
+				$rootScope.loginInterval = function() {
+				var success = function(message)
+				{
+				// alert(message);
+				$ionicLoading.hide().then(function(){
+				console.log("The loading indicator is now hidden");
+				// alert('loggedin');
+				$ionicHistory.nextViewOptions({
+				disableAnimate: true,
+				disableBack: true
+				});
+				$interval.cancel($rootScope.loginInterval);
+				$state.go('app.patient_home', {}, {location: "replace", reload: false});
+				});
 
-						}
+				}
 
-						var failure = function()
-						{
-						alert("Error Occurred While Loggin in to DoctoQuick");
-						}
-						hello.loginstatus(success,failure);
-						}
+				var failure = function()
+				{
+				alert("Error Occurred While Loggin in to DoctoQuick");
+				}
+				hello.loginstatus(success,failure);
+				}
 
 				}
 
@@ -287,7 +287,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				else{
 
 				$ionicLoading.show({
-				template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+				template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
 				});
 				var success = function(message)
 				{

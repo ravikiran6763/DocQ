@@ -74,34 +74,38 @@ $localStorage.dataConnection=navigator.onLine;
 // $scope.dataLost=$localStorage.dataConnection;
 $scope.dataLost=$localStorage.networkType;
 
-
+$scope.showAlert==false;
 
 console.log($localStorage.dataConnection);
 $scope.$watch('dataLost', function (newValue, oldValue, scope){
-		if(newValue === 'None'){
-			// var confirmPopup = $ionicPopup.confirm({
-			// 	title: 'DoctorQuick',
-			// 	template: 'Seems you are disconnected from the internet',
-			// 	cssClass: 'videoPopup',
-			// 	scope: $scope,
-			// 	buttons: [
-			// 		{
-			// 			text: 'Cancel',
-			// 			type: 'button-royal',
-			// 		},
-			// 		{
-			// 			text: 'Ok',
-			// 			type: 'button-positive',
-			// 			onTap: function(e) {
-			// 			console.log('ok');
-			// 			$localStorage.chekedData = 1;
-			// 			// $state.go('auth.loginNew');
-			// 			// }, 100)
-			//
-			// 			}
-			// 		},
-			// 	]
-			// });
+		// alert('changed');
+		// alert($localStorage.dataConnection);
+		console.log('newVal',newValue);
+		console.log('oldValue',oldValue);
+
+		if(newValue === 'None' && oldValue != 'None'){
+				var confirmPopup = $ionicPopup.confirm({
+					title: 'DoctorQuick',
+					template: 'Seems you are disconnected from the internet',
+					cssClass: 'videoPopup',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'Cancel',
+							type: 'button-royal',
+						},
+						{
+							text: 'Ok',
+							type: 'button-positive',
+							onTap: function(e) {
+							console.log('ok');
+
+							}
+						},
+					]
+				});
+
+
 		}
 },true);
 ////////////////////////////////////////////////////////////////////////////////
@@ -224,11 +228,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$ionicHistory.clearHistory();
 						}
 
-						// else if($scope.prevPage === 'auth.patient_reg3'){
-						// 	console.log($scope.otpentered);
-						// 	$state.go('auth.patient_reg2');
-						//
-						// }
 						else{
 							window.history.back();
 							}
@@ -248,18 +247,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					});
 				// $state.go('app.results');
 					$scope.myDoctorRatings={}
-					// rateDoctorServices.getDocRatingsByAll(docPhone).then(function(response){
-					// 	$scope.myDoctorRatings=response;//store the response array in doctor details
-					// console.log($scope.myDoctorRatings);
-					// $scope.ratings = [{
-					// 			 current: $scope.myDoctorRatings,
-					// 			 max: 5,
-					// 			 total:0
-					// 	 }, ];
-					// 	 console.log($scope.ratings);
-				  // }).catch(function(error){
-				  // console.log('failure data', error);
-				  // });
 
 				}
 
@@ -592,15 +579,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		 $state.go('app.patient_home');
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
-		$state.go('app.doctor_home');
+		$state.go('templates.doctor_home');
 	}
 		$ionicHistory.clearHistory();
-		if($localStorage.doctororpatient === 'patient'){
-			$state.go('app.patient_home');
-		}
-		if($localStorage.doctororpatient === 'doctor'){
-			$state.go('templates.doctor_home');
-		}
 		$ionicHistory.clearHistory();
 		$ionicHistory.clearCache();
 		console.log($ionicHistory.viewHistory());
@@ -619,6 +600,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	$rootScope.login={};
 	$rootScope.ratedBy;
+	$scope.updatePatientEmail=function(){
+		alert('update email here');
+	}
 		$scope.updatePwd=function(){
 			$rootScope.ratedBy=$scope.login.userPhone;
 			var newPwd={
@@ -627,13 +611,38 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			};
 			console.log($scope.login.password);
 			console.log($scope.login.verify);
+			if($scope.login.password && $scope.login.verify){
+				if($scope.login.password === $scope.login.verify){
+					patientProfileDetailsService.changePwd2(newPwd).then(function(response){
+					console.log(response);
+						$scope.login='';
+						window.plugins.toast.showWithOptions({
+							message: "Your password has been updated.",
+							duration: "short", // 2000 ms
+							position: "bottom",
+							styling: {
+							opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+							backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+							textColor: '#ffffff', // Ditto. Default #FFFFFF
+							textSize: 13, // Default is approx. 13.
+							cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+							horizontalPadding: 16, // iOS default 16, Android default 50
+							verticalPadding: 12 // iOS default 12, Android default 30
+						}
+						});
+					}).catch(function(error){
+					console.log('failure data', error);
+					});
 
-			if($scope.login.password === $scope.login.verify){
-				patientProfileDetailsService.changePwd2(newPwd).then(function(response){
-				console.log(response);
-					$scope.login='';
+					$ionicHistory.nextViewOptions({
+					disableAnimate: true,
+					disableBack: true
+				 });
+					$state.go("app.patient_home",{}, {location: "replace", reload: false});
+				}
+				else{
 					window.plugins.toast.showWithOptions({
-						message: "Your password has been updated.",
+						message: "Password did not match.",
 						duration: "short", // 2000 ms
 						position: "bottom",
 						styling: {
@@ -646,32 +655,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						verticalPadding: 12 // iOS default 12, Android default 30
 					}
 					});
-				}).catch(function(error){
-				console.log('failure data', error);
-				});
-
-				$ionicHistory.nextViewOptions({
-				disableAnimate: true,
-				disableBack: true
-			 });
-				$state.go("app.patient_home",{}, {location: "replace", reload: false});
-			}
-			else{
-				window.plugins.toast.showWithOptions({
-					message: "Password did not match.",
-					duration: "short", // 2000 ms
-					position: "bottom",
-					styling: {
-					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-					textColor: '#ffffff', // Ditto. Default #FFFFFF
-					textSize: 13, // Default is approx. 13.
-					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-					horizontalPadding: 16, // iOS default 16, Android default 50
-					verticalPadding: 12 // iOS default 12, Android default 30
 				}
-				});
 			}
+
 
 		}
 		$scope.updateDocPwd=function(){
@@ -751,14 +737,7 @@ $scope.ratingsObject = {
 
 };
 
-	$scope.ratings = [{ name: 'DocRating', number: '3.5' }]
-   $scope.getStars = function(rating) {
-     // Get the value
-     var val = parseFloat(rating);
-     // Turn value into number/100
-     var size = val/5*100;
-     return size + '%';
-   }
+
 
 	 $scope.getWallet=function(){
      $rootScope.patientWalletdetails ={};
@@ -1012,11 +991,44 @@ $scope.BalanceForVoiceCall=function()
 			console.log(msg);
 			$scope.accptNotifications=true;
 			$scope.rejectNotifications=false;
+			if($localStorage.doctororpatient === 'patient'){
+				var updatePlayer ={
+					palyerId:'',
+					userNum:$localStorage.user,
+					user:'patient'
+				}
+
+				$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+				var playerId = JSON.parse($window.localStorage.getItem("patientDetails"));
+				playerId[0][8] = "";
+				console.log(playerId);
+				console.log($scope.patient_details[0][8]);
+				localStorage.setItem("patientDetails",JSON.stringify(playerId));
+				console.log(angular.fromJson($window.localStorage['patientDetails']));
+
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+					console.log(response);
+				})
+			}
+			else{
+				var updatePlayer ={
+					palyerId:'',
+					userNum:$localStorage.user,
+					user:'doctor'
+				}
+
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+					console.log(response);
+				})
+			}
+
+
+
 
  	// 	window.plugins.OneSignal.registerForPushNotifications(true);
 		};
 		$scope.showNotifications = function (msg) {
-			alert(msg);
+			// alert(msg);
 					$scope.accptNotifications=false;
 					$scope.rejectNotifications=true;
 					window.plugins.OneSignal.getIds(function(ids){
@@ -1024,14 +1036,23 @@ $scope.BalanceForVoiceCall=function()
             //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
             console.log(JSON.stringify(ids['userId']));
             $scope.playerId=JSON.stringify(ids['userId']);
-						alert('oneSignal')
+						// alert('oneSignal')
             console.log($scope.playerId);
-            var updatePlayer ={
-              palyerId:$scope.playerId,
-              userNum:$localStorage.user,
-              user:'doctor'
-            }
-            alert(updatePlayer);
+						if($localStorage.doctororpatient === 'patient'){
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:$localStorage.user,
+								user:'patient'
+							}
+						}
+						else{
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:$localStorage.user,
+								user:'doctor'
+							}
+						}
+
             LoginService.updatePlayer(updatePlayer).then(function(response){
               console.log(response);
             })

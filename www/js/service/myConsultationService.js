@@ -16,11 +16,11 @@ this.myConsultedDoctors = function (patient_phone) {
 
 }
 
-this.docSummaryDetails = function (doc_phone) {
-// console.log(doc_phone);
+this.docSummaryDetails = function (myDoc) {
+console.log(myDoc);
   var deferred = $q.defer();
   // console.log(BASE_URL.url + API.docSummary);
-  $http.post(BASE_URL.url + API.docSummary,doc_phone)
+  $http.post(BASE_URL.url + API.docSummary,myDoc)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
   })

@@ -25,6 +25,7 @@ DoctorQuickApp.constant('BASE_URL', {
 
         // 'patientRegistration':'DQ/patientegistration.php',
 
+        // 'login': 'common/test.php',
         'login': 'common/dqLogin.php',
         'logout': 'common/logout.php',
         'ForgotPassword': 'common/forgotPassword.php',
@@ -107,6 +108,9 @@ DoctorQuickApp.constant('BASE_URL', {
         'createChatHistoryforDoctor':'doctor/createChatHistoryforDoctor.php',
         'fetchChatHistory':'doctor/fetchChatHistory.php',
         'callStatus':'doctor/callStatus.php',
+        'pushReqStatus':'doctor/pushReqStatus.php',
+
+
         'testjpegimage' :'prescription/responseasimages.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
         'sidemenulist':'DQ/sidemenulist.php',
