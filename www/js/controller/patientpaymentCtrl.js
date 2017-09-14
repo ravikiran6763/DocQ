@@ -15,6 +15,13 @@ console.log($localStorage.user);
      console.log('failure data', error);
    });
 
+   patientWalletServices.paidToDoctors($localStorage.user).then(function(response){
+    $rootScope.doctorsList=response;
+    console.log($rootScope.doctorsList);
+    }).catch(function(error){
+      console.log('failure data', error);
+    });
+
    $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
 
 })

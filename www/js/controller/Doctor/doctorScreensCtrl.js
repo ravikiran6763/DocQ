@@ -240,7 +240,7 @@ $scope.viewRequest=function(patient){
 
         $timeout( function(){
 
-        
+
           var uname1 = "greet+"+$localStorage.user;
   				var pw1 = "DQ_doctor";
           var success = function(message)
@@ -288,18 +288,3 @@ $scope.viewRequest=function(patient){
 
 
 });
-
-
-
-
-// $scope.pushNotificationChange = function() {
-//     console.log('docStatus Change', $scope.docStatus.checked);
-//     if($scope.docStatus.checked == 'online'){
-//       $scope.docAvailable=true;
-//       $scope.docNotAvailable=true;
-//     }
-//     if($scope.docStatus.checked == 'offline'){
-//       $scope.docAvailable=false;
-//       $scope.docNotAvailable=true;
-//     }
-//   };

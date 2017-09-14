@@ -1436,12 +1436,12 @@ $scope.sendprescription = function()
 			}, 1000);
       console.log('Please Select Atleast One Tests')
     }
-		$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-		console.log($stateParams.reqPat);
+			$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
+			console.log($stateParams.reqPat);
 
-		$rootScope.patientNum=$scope.currentPatient.patientNum;
-		$localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
-	  var patientToDisplay =$localStorage.patientToDisplay;
+			$rootScope.patientNum=$scope.currentPatient.patientNum;
+			$localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
+		  var patientToDisplay =$localStorage.patientToDisplay;
     if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
     {
 
@@ -1461,7 +1461,7 @@ $scope.sendprescription = function()
 
         //test jpeg image response
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
-        // console.log(response);
+        console.log(response);
         $scope.pic=response
         console.log(prescriptiondetails);
 
@@ -1482,22 +1482,13 @@ $scope.sendprescription = function()
             var success = function(message)
             {
 
-
 								console.log('prescription clicked');
 								console.log(message);
 
-
 							$rootScope.prescription = {};
-
-
 							$rootScope.val = "";
-
 							$rootScope.testVal = "";
 							$rootScope.mediVal = "";
-
-
-						 //
-						 //
 						// 	console.log(message);
 							$ionicHistory.nextViewOptions({
 							disableAnimate: true,
@@ -1519,9 +1510,7 @@ $scope.sendprescription = function()
 
 
           }
-        // $rootScope.prescription = "data:image/jpeg;base64," + $scope.pic;
-        // var URL = "http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/prescription/out.jpeg";
-        // console.log(cordova.file.externalRootDirectory);
+
         }).catch(function(error){
         console.log('failure data', error);
         });

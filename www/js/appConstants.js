@@ -17,8 +17,6 @@ DoctorQuickApp.constant('BASE_URL', {
         //'url' : 'http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/'
         'url' : 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/'
 
-
-
     })
 .constant('API', {
           /*COMMON APIS*/
@@ -41,6 +39,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchMyDoctors'      :'patient/fetchMyDoctors.php',
         'myConsultations'     :'patient/myConsultations.php',
         'myWalletBalance'     :'patient/myWalletBalance.php',
+        'paidForConsultations'     :'patient/paidForConsultations.php',
         'patientQuery'        :'patient/patientQuery.php',
         'paientCallBack'      :'patient/paientCallBack.php',
         'getMedicalSpecialist' : 'patient/listallspecialities.php',
@@ -109,7 +108,6 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchChatHistory':'doctor/fetchChatHistory.php',
         'callStatus':'doctor/callStatus.php',
         'pushReqStatus':'doctor/pushReqStatus.php',
-
 
         'testjpegimage' :'prescription/responseasimages.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',

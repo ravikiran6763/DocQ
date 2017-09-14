@@ -46,6 +46,8 @@ $rootScope.transcMsg='Select Dates';
               $scope.DocAcc=response;
             if($scope.DocAcc.length === 0){
               $rootScope.transcMsg='No Transactions';
+            }else{
+              $rootScope.transcMsg='';
             }
               }).catch(function(error){
             console.log('failure data', error);

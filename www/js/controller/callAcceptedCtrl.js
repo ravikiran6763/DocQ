@@ -173,8 +173,6 @@ $scope.BalanceForVoiceCall = function()
 							console.log($localStorage.user);
 							console.log($localStorage.Doctocall);
 							callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
-
-
 							$ionicHistory.nextViewOptions({
  						 	disableAnimate: true,
  						 	disableBack: true

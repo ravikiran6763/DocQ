@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootScope,$state,$localStorage,$stateParams,$interval,$location,$ionicPlatform,$ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService,medicalSpecialityService) {
+ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootScope,$state,$localStorage,$stateParams,$interval,$location,$ionicPlatform,$ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService,medicalSpecialityService) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -229,16 +229,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 
 					 $scope.currentPatient={};
 					 $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-			     console.log($scope.currentPatient);
+			     console.log('current patient',$scope.currentPatient);
 					//  $rootScope.reqId=$scope.currentPatient.id;
 
-					//  $rootScope.patientFname=$scope.currentPatient.patientFname;
-					//  $rootScope.patientLname=$scope.currentPatient.patientLname;
-					//  $rootScope.patientAge=$scope.currentPatient.patientAge;
-					//  $rootScope.patientSex=$scope.currentPatient.patientSex;
-					//  $rootScope.patientImage=$scope.currentPatient.image;
-					//  $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
-					//  $rootScope.patientNum=$scope.currentPatient.patientNum;
+
 
 			 	$scope.CurrentDate = new Date();
 				$rootScope.dateDiff=$rootScope.dateAndTime-$scope.CurrentDate;
@@ -255,16 +249,10 @@ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootSco
 					var date_test = new Date(tt.replace(/-/g,"/"));
 					console.log('converted date and time',date_test);
 					var timestamp = new Date(date_test).getTime();
-
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
-
 					console.log('from date and time',$rootScope.dateAndTime);
-
 					console.log('current date and time',$scope.CurrentDate);
-
 					var justdate = $rootScope.dateAndTime;
-
-
 
 					var t = justdate.split(/[- :]/);
 
@@ -381,7 +369,7 @@ console.log('actiondate',timestamp);
 								patientphno : $rootScope.reqPat,
 								consultId:$rootScope.reqId
 								}
-								console.log(accptdReq);
+								console.log('accptdReq',accptdReq);
 								patientrequesttodoctor.accpetedbydoctor(accptdReq).then(function(response){
 									$scope.reqStatus=response;
 									console.log('updatedResponse:',response);
@@ -676,18 +664,25 @@ $scope.popupShown = true;
 				 disableAnimate: true,
 				 disableBack: true
 			 });
-			 $localStorage.activePatient= $stateParams.reqPat;
-
-			 if($scope.deviceAndroid === true){
-				 $interval.cancel($rootScope.videoOrAudio);
-				 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
-
+       if($stateParams.reqPat){
+         $localStorage.activePatient= $stateParams.reqPat;
+       }
+			 else {
+           $localStorage.activePatient= $scope.currentPatient.patientPhone;
 			 }
-			 else{
-				 $interval.cancel($rootScope.videoOrAudio);
-				 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
-
-			 }
+       console.log('activePatient',$localStorage.activePatient);
+       $interval.cancel($rootScope.videoOrAudio);
+       $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false});
+			//  if($scope.deviceAndroid === true){
+			// 	 $interval.cancel($rootScope.videoOrAudio);
+			// 	 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
+       //
+			//  }
+			//  else{
+			// 	 $interval.cancel($rootScope.videoOrAudio);
+			// 	 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
+       //
+			//  }
 
 
  		}

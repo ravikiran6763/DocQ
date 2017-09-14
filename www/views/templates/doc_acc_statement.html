@@ -9,7 +9,7 @@
     <h1>Report</h1>
     <div class="bal-info" ng-repeat="bal in availableBalance">
       <div class="balance-content">
-        <p>Available <span>₹0{{bal.totalBal}}</span></p>
+        <p>Available <span>₹{{bal.totalBal-bal.totalWithdrawl}}</span></p>
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
           <img src="img/doc.jpg">
         </div>
         <div class="name-content">
-            <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}}</span></h2>
+            <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}} {{details.totalWithdrawl}}</span></h2>
             <p>{{details.consultedDate |  date :  "dd.MM.y"}}</p>
         </div>
 
