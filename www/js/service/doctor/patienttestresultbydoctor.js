@@ -1,6 +1,5 @@
 DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, $cordovaFileTransfer,$cordovaFile) {
 
-
     var diagnosisbydoctor = "";
     var testsbydoctor = "";
     var medicationbydoctor = "";
@@ -8,12 +7,8 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     var tests = "";
     var medication = "";
 
-
-
-
   this.diagnosisdone = function(diagnosis)
   {
-
        diagnosisbydoctor = diagnosis;
   }
 
@@ -37,14 +32,10 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
       {
           return "";
       }
-
-    
-
   }
 
   this.gettests = function()
   {
-
     if(testsbydoctor)
     {
           return testsbydoctor;
@@ -53,42 +44,26 @@ DoctorQuickApp.service('testresultbydoctor', function ($http,$q, BASE_URL, API, 
     {
           return "";
     }
-
-
-
-
   }
 
   this.getmedication = function()
   {
     if(medicationbydoctor)
     {
-
           return medicationbydoctor;
-
     }
     else
     {
-
           return "";
-
-
     }
-
-
-
-
   }
 
   this.jpegtest = function(options)
   {
-
     var deferred = $q.defer();
     $http.post(BASE_URL.url + API.testjpegimage,options)
     .success(function (data, status, headers, config){
       deferred.resolve(data);
-
-
     })
     .error(function (){
       deferred.reject('Error while getting data');

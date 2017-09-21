@@ -13,7 +13,7 @@
 			$reqId = $requesteddata->consultId;
 
 
-  		$reqDecline = "INSERT INTO declinedRequests(reqId,declinedpatientNum,declinedDoctor,declinedDatetime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
+  		echo $reqDecline = "INSERT INTO declinedRequests(reqId,declinedpatientNum,declinedDoctor,declinedDatetime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
   		$retval1 = mysql_query( $reqDecline, $dbhandle );
   		if(!$retval1 )
   		{
@@ -24,6 +24,7 @@
         echo "declined";
       }
 
+ mysql_close($dbhandle);
 
 
 	}

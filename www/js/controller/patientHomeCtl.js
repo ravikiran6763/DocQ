@@ -9,7 +9,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
-			
+
 			$scope.currentState=$ionicHistory.currentStateName();
 
 			console.log($scope.currentState);
@@ -30,36 +30,36 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 
-			$timeout( function(){
-					console.log('interval started');
-		            $interval(checkNewMessages,2000);
-		         }, 60000 );
-
-
-
-				var username = "greet+"+$localStorage.user;
-				var password = "DQ_patient";
-				$rootScope.unreadchatforpatient = 0;
-
-
-				function checkNewMessages()
-				{
-					var success = function(message)
-					{
-
-							$rootScope.unreadchatforpatient = message;
-							console.log($scope.unreadchatforpatient);
-
-					}
-
-						var failure = function()
-						{
-								console.log('this is from patient home CTRL');
-						}
-
-							hello.unreadchatfromusers(username,password,success, failure);
-
-				}
+			// $timeout( function(){
+			// 		console.log('interval started');
+		  //           $interval(checkNewMessages,2000);
+		  //        }, 60000 );
+			//
+			//
+			//
+			// 	var username = "greet+"+$localStorage.user;
+			// 	var password = "DQ_patient";
+			// 	$rootScope.unreadchatforpatient = 0;
+			//
+			//
+			// 	function checkNewMessages()
+			// 	{
+			// 		var success = function(message)
+			// 		{
+			//
+			// 				$rootScope.unreadchatforpatient = message;
+			// 				console.log($scope.unreadchatforpatient);
+			//
+			// 		}
+			//
+			// 			var failure = function()
+			// 			{
+			// 					console.log('this is from patient home CTRL');
+			// 			}
+			//
+			// 				hello.unreadchatfromusers(username,password,success, failure);
+			//
+			// 	}
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;

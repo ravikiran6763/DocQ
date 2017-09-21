@@ -17,14 +17,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=false;
     $scope.docNotAvailable=true;
     $localStorage.onOff=2;
-    // alert('hello go online');
-    // var noResponsePopup = $ionicPopup.alert({
-    // template: "<div ><p>Go Online.</p></div>",
-    // cssClass: 'requestPopup',
-    // scope: $scope,
-    // });
+
   }
-    // $route.reload();
     console.log($ionicHistory.viewHistory());
     $interval(checkConsultations,2000,false);
 
@@ -185,24 +179,17 @@ function checkConsultations(){
 					hello.logout(unametologout,pwtologout,success, failure);
 
 				}
-
-
 	}
-
-
     // $interval(pendingConsultations, 1000);
     //$interval(lookForPrescription, 1000);
  $scope.pending=$localStorage.requests;
  // console.log($scope.pending);
-
-
   $scope.hello = 5;
   $localStorage.totalReq = 0;
 //////////////////////////////
 // console.log($location.path());
 //////////////////////////////
 // $scope.$watch('pending', function() { console.log('watch!'); });
-
 
     $scope.$watch('requests', function (newValue, oldValue, scope) {
         // console.log('changed');
@@ -238,53 +225,7 @@ $scope.viewRequest=function(patient){
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.awstime})
 }
 
-        $timeout( function(){
-
-
-          var uname1 = "greet+"+$localStorage.user;
-  				var pw1 = "DQ_doctor";
-          var success = function(message)
-          {
-                console.log(message);
-            $scope.iosLoggin=message;
-            $localStorage.onOff=1;
-          }
-          var failure = function()
-          {
-
-            alert("Error calling Hello Plugin");
-
-          }
-
-          hello.login(uname1,pw1,success, failure);
-        console.log('interval started');
-        $interval(checkNewMessages,2000);
-      }, 30000 );
-
-				var username = "greet+"+$localStorage.user;
-				var password = "DQ_doctor";
-				$rootScope.unreadchatforpatient = 0;
-
-				function checkNewMessages()
-				{
-						var success = function(message)
-						{
-							$rootScope.unreadchatforpatient = message;
-							// console.log($scope.unreadchatforpatient);
-						}
-
-						var failure = function()
-						{
-							console.log("Error calling Hello Plugin");
-							//console.log(‘error’);
-
-						}
-
-							hello.unreadchatfromusers(username,password,success, failure);
-
-
-				}
-
+  
 
 
 });

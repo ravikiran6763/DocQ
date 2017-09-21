@@ -73,8 +73,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 				};
 
 				$scope.lastView = $ionicHistory.backView();
-
-
 				LoginService.loginprocess(userDetails).then(function(response){
 					// console.log(navigator.connection.type);
 					console.log(response);
@@ -165,6 +163,30 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							}
 							// $state.go('app.patient_home');//for browser login
 							hello.login(uname1,pw1,success, failure);
+							$timeout( function(){
+		          console.log('interval started');
+		          $interval(checkNewMessages,2000);
+
+						}, 5000 );
+
+							var username = "greet+"+$localStorage.user;
+	            var password = "DQ_patient";
+	            function checkNewMessages()
+	            {
+	                var success = function(message)
+	                {
+	                  $rootScope.unreadchatforpatient = message;
+	                  console.log($scope.unreadchatforpatient);
+	                }
+
+	                var failure = function()
+	                {
+	                  console.log("Error calling Hello Plugin");
+	                  //console.log(‘error’);
+
+	                }
+	                  hello.unreadchatfromusers(username,password,success, failure);
+	            }
 						}
 						else{
 							$ionicLoading.show({
@@ -190,27 +212,41 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							$timeout( function(){
 									console.log('interval started');
 						            $interval($rootScope.loginInterval,2000,1);
+												$interval(checkNewMessages,2000);
+
 						         }, 10000 );
 
+										 var username = "greet+"+$localStorage.user;
+										 var password = "DQ_patient";
+										 function checkNewMessages()
+										 {
+										 		var success = function(message)
+										 		{
+										 			$rootScope.unreadchatforpatient = message;
+										 			console.log($scope.unreadchatforpatient);
+										 		}
+
+										 		var failure = function()
+										 		{
+										 			console.log("Error calling Hello Plugin");
+										 			//console.log(‘error’);
+
+										 		}
+										 			hello.unreadchatfromusers(username,password,success, failure);
+										 }
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
-
-
-
-											console.log(message);
-											// alert(message);
-	 									$ionicLoading.hide().then(function(){
-	 										console.log("The loading indicator is now hidden");
-											// 	alert('loggedin');
-											$ionicHistory.nextViewOptions({
-												disableAnimate: true,
-												disableBack: true
-											});
-											$state.go('app.patient_home', {}, {location: "replace", reload: false});
+										console.log(message);
+										$ionicLoading.hide().then(function(){
+										console.log("The loading indicator is now hidden");
+										$ionicHistory.nextViewOptions({
+										disableAnimate: true,
+										disableBack: true
+										});
+										$state.go('app.patient_home', {}, {location: "replace", reload: false});
 											//$interval.cancel(loginStatus);
-	 									});
-
+										});
 	 								}
 
 	 								var failure = function()
@@ -227,21 +263,19 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					else if(response === "doctor")
 					{
 						$localStorage.doctororpatient = response;
-						window.plugins.OneSignal.getIds(function(ids) {
-							$scope.playerId=JSON.stringify(ids['userId']);
-							// console.log($scope.playerId);
-							var updatePlayer ={
-								palyerId:$scope.playerId,
-								userNum:$localStorage.user,
-								user:'doctor'
-							}
-							console.log(updatePlayer);
-							LoginService.updatePlayer(updatePlayer).then(function(response){
-								console.log(response);
-							})
-						});
-
-
+						// window.plugins.OneSignal.getIds(function(ids) {
+						// 	$scope.playerId=JSON.stringify(ids['userId']);
+						// 	// console.log($scope.playerId);
+						// 	var updatePlayer ={
+						// 		palyerId:$scope.playerId,
+						// 		userNum:$localStorage.user,
+						// 		user:'doctor'
+						// 	}
+						// 	console.log(updatePlayer);
+						// 	LoginService.updatePlayer(updatePlayer).then(function(response){
+						// 		console.log(response);
+						// 	})
+						// });
 
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
 							$rootScope.doctor_details=response;//store the response array in doctor details
@@ -258,13 +292,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
-							$ionicLoading.show({
-										template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-									});
-
-
-												console.log(uname1);
-
+												$ionicLoading.show({
+															template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+														});
+														console.log(uname1);
 													var success = function(message)
 													{
 														$rootScope.logginMessage="Connecting to DoctorQuick";
@@ -285,8 +316,32 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 														alert("Error Occurred While Loggin in to DoctoQuick");
 
 													}
-												// $state.go('templates.doctor_home');//for logging in from browser
-												hello.login(uname1,pw1,success, failure);
+												$state.go('templates.doctor_home');//for logging in from browser
+												// hello.login(uname1,pw1,success, failure);
+
+												$timeout( function(){
+												console.log('interval started');
+												$interval(checkNewMessages,2000);
+												}, 5000 );
+
+												var username = "greet+"+$localStorage.user;
+						            var password = "DQ_doctor";
+						            function checkNewMessages()
+						            {
+						                var success = function(message)
+						                {
+						                  $rootScope.unreadchatforpatient = message;
+						                  console.log($scope.unreadchatforpatient);
+						                }
+
+						                var failure = function()
+						                {
+						                  console.log("Error calling Hello Plugin");
+						                  //console.log(‘error’);
+
+						                }
+						                  hello.unreadchatfromusers(username,password,success, failure);
+						            }
 												$localStorage.onOff=1;
 
 						}
@@ -300,14 +355,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 										console.log(message);
 								$scope.iosLoggin=message;
 								$localStorage.iosLogin=$scope.iosLoggin;
-
-
 							}
 							var failure = function()
 							{
-
 								alert("Error calling Hello Plugin");
-
 							}
 
 							hello.login(uname1,pw1,success, failure);
@@ -315,24 +366,42 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							$timeout( function(){
 									console.log('interval started');
 						            $interval($rootScope.loginInterval,2000,1);
+												$interval(checkNewMessages,2000);
+
 						         }, 10000 );
+										 var username = "greet+"+$localStorage.user;
+				             var password = "DQ_doctor";
+				             function checkNewMessages()
+				             {
+				                 var success = function(message)
+				                 {
+				                   $rootScope.unreadchatforpatient = message;
+				                   console.log($scope.unreadchatforpatient);
+				                 }
+
+				                 var failure = function()
+				                 {
+				                   console.log("Error calling Hello Plugin");
+				                   //console.log(‘error’);
+
+				                 }
+				                   hello.unreadchatfromusers(username,password,success, failure);
+				             }
 
 								 $rootScope.loginInterval = function () {
 									 var success = function(message)
 	 								{
-
 										console.log(message);
-	 									$ionicLoading.hide().then(function(){
-	 										console.log("The loading indicator is now hidden");
-												console.log('hide loader');
-											$ionicHistory.nextViewOptions({
-												disableAnimate: true,
-												disableBack: true
-											});
-											$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-											//$interval.cancel(loginStatus);
-	 									});
-
+										$ionicLoading.hide().then(function(){
+										console.log("The loading indicator is now hidden");
+										console.log('hide loader');
+										$ionicHistory.nextViewOptions({
+										disableAnimate: true,
+										disableBack: true
+										});
+										$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+										//$interval.cancel(loginStatus);
+										});
 	 								}
 
 	 								var failure = function()

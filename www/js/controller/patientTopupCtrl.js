@@ -162,8 +162,10 @@ $scope.patient_details=[];
  console.log('failure data', error);
  })
 
-				$scope.payToDq=function(){
-
-
-				}
+ patientWalletServices.paidToDoctors($localStorage.user).then(function(response){
+	$rootScope.doctorsList=response;
+	console.log($rootScope.doctorsList);
+	}).catch(function(error){
+		console.log('failure data', error);
+	});
 })

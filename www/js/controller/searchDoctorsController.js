@@ -17,27 +17,12 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	  $ionicLoading.show();
 	  doctorServices.checkMyBalance($localStorage.user).then(function(response){
 	    // console.log(response[0][0]);
-	    $scope.myBalance=response[0][0];
-	    var uname = "greet+"+$localStorage.user;
-	     var pw = "DQ_patient";
-	     var persontocall = "greet+" + $rootScope.docNumToCall;
-			 console.log(persontocall);
-	    //  var persontocall = "greet+" + $localStorage.consultedDoctor;
-	     console.log(uname);
-	     console.log(persontocall);
+			$rootScope.patientWalletdetails=response;
+			$rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
+			$rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
 
-	     var success = function(message)
-	      {
-	          alert(message);
-	      }
-	      var failure = function()
-	      {
-	        alert("Error calling Hello Plugin");
-	      }
-
-
-
-	    if($scope.myBalance >= 250)
+			$rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
+	    if($rootScope.myWalletBal >= 250)
 	    {
 	      hello.audiocallvsee(uname,pw,persontocall,success, failure);
 	      var confirmPopup = $ionicPopup.confirm({
@@ -60,22 +45,35 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    else
 	    {
 	      var confirmPopup = $ionicPopup.confirm({
-	        template: '<b>Your DoctorQuick Balance is too low.</b>',
-	        cssClass: 'videoPopup',
-	        scope: $scope,
-	        buttons: [
-	          {
-	            text: 'Cancel',
-	            type: 'button-royal', },
-	          {
-	          text: 'Topup',
-	          type: 'button-positive',
-	           onTap: function(e) {
-	              $state.go('app.patient_topup');
-	           }
-	          },
-	         ]
-	        //templateUrl: "views/app/viewdoctor_profile.html",
+					title: 'DoctorQuick',
+ 				 template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
+ 				 cssClass: 'videoPopup',
+ 				 scope: $scope,
+ 				 buttons: [
+ 					 {
+ 						 text: 'Cancel',
+ 						 type: 'button-royal',
+ 						 onTap: function(e) {
+ 							 $ionicHistory.nextViewOptions({
+ 								 disableAnimate: true,
+ 								 disableBack: true
+ 							 });
+ 							 $state.go('app.patient_home',{}, {location: "replace", reload: false})
+ 						 }
+ 					 },
+ 					 {
+ 						 text: 'Topup',
+ 						 type: 'button-positive',
+ 						 onTap: function(e) {
+ 							 $ionicHistory.nextViewOptions({
+ 								 disableAnimate: true,
+ 								 disableBack: true
+ 							 });
+ 							 $state.go('app.patient_topup',{}, {location: "replace", reload: false});
+ 						 }
+ 					 },
+
+ 				 ]
 	      });
 	    }
 	      $ionicLoading.hide();
@@ -264,27 +262,16 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		}
 		console.log(callRequest);
 		doctorServices.checkMyBalance($localStorage.user).then(function(response){
-			console.log(response[0][0]);
-		$scope.myBalance=response[0][0];
-		$localStorage.patientWalletBalance=$scope.myBalance;
-				console.log('pop up page clicked');
-					var uname = "greet+"+$localStorage.user;
-					 var pw = "DQ_patient";
-					 var persontocall = "greet+" + $rootScope.docNumToCall;
-					//  var persontocall = "greet+" + $localStorage.consultedDoctor;
-					 console.log(uname);
-					 console.log(persontocall);
-					 var success = function(message)
-						{
-								alert(message);
-						}
-						var failure = function()
-						{
-							alert("Error calling Hello Plugin");
-						}
+			$rootScope.patientWalletdetails=response;
+      $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
+      $rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
+
+      $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
+
+			console.log($rootScope.myWalletBal);
 
 						$scope.counter = 0;
-			if($scope.myBalance >= 250)
+			if($rootScope.myWalletBal >= 250)
 			{
 
 					searchDoctorServices.requestForCall(callRequest).then(function(response){
@@ -362,15 +349,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 			 			 }
 			 			 },
-						//  {
-						 //  text: 'Resend',
-						 //  type: 'button-assertive',
-						 //  onTap:function(){
-						// 	 console.log('resend');
-						// 	 $scope.videoCall();
-						 //
-						 //  }
-						 //  },
+
 			 		 ]
 
 			 		 });
@@ -380,23 +359,35 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			{
 
 				var confirmPopup = $ionicPopup.confirm({
+					title: 'DoctorQuick',
 					template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
 					cssClass: 'videoPopup',
 					scope: $scope,
 					buttons: [
 						{
 							text: 'Cancel',
-							type: 'button-royal', },
-						{
-
-						text: 'Topup',
-						type: 'button-positive',
-						 onTap: function(e) {
-								$state.go('app.patient_topup');
-						 }
-
+							type: 'button-royal',
+							onTap: function(e) {
+								$ionicHistory.nextViewOptions({
+									disableAnimate: true,
+									disableBack: true
+								});
+								$state.go('app.patient_home',{}, {location: "replace", reload: false})
+							}
 						},
-					 ]
+						{
+							text: 'Topup',
+							type: 'button-positive',
+							onTap: function(e) {
+								$ionicHistory.nextViewOptions({
+									disableAnimate: true,
+									disableBack: true
+								});
+								$state.go('app.patient_topup',{}, {location: "replace", reload: false});
+							}
+						},
+
+					]
 					//templateUrl: "views/app/viewdoctor_profile.html",
 				});
 

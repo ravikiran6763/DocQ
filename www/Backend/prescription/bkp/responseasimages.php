@@ -2,24 +2,25 @@
 
 	require "headers.php";
 	require "mergejpegimage.php";
-	header('Content-type: text/html; charset=utf-8');
- $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
+	header('Content-type: text/html; charset=UTF-8');
+  $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
+	// ini_set('display_errors', 'On');
 
- if(isset($postdata))
- {
+if(isset($postdata))
+{
 
-	      // $request = json_decode($postdata);
-	      // $doctorphoneno = $request->docphno; //DOCTOR PHONE NO
-	      // $patientphoneno = $request->patientphno;//PATIENT PHONE NO
-	      // $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
-	      // $tests = $request->tests;//TESTSBY DOCTOR
-	      // $medication = $request->medication;//MEDICATION BY DOCTOR
+	      $request = json_decode($postdata);
+	      $doctorphoneno = $request->docphno; //DOCTOR PHONE NO
+	      $patientphoneno = $request->patientphno;//PATIENT PHONE NO
+	      $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
+	      $tests = $request->tests;//TESTSBY DOCTOR
+	      $medication = $request->medication;//MEDICATION BY DOCTOR
 
-	      $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
-	      $patientphoneno = '8792618138';//PATIENT PHONE NO
-	      $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
-	      $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
-	      $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
+	      // $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
+	      // $patientphoneno = '8792618138';//PATIENT PHONE NO
+	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
+	      // $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
+	      // $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
 
 
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE
@@ -109,7 +110,7 @@
 	 		if(!$retvalbyprescription )
       {
           die('Could not enter data: ' . mysql_error());
-           echo "ERROR";
+           print "ERROR";
       }
       else
       {
@@ -122,13 +123,17 @@
 		         $preCount=$row['preCount'];
 
 		       }
-				 $my_img = imagecreate(920,1080);
+
+
+				 $my_img = imagecreate(920,1080) or die('Cannot create image');
     		 $background = imagecolorallocate( $my_img, 255, 255, 255 );
   			 $text_colour = imagecolorallocate( $my_img, 0, 0, 0 );
    			 $text_colour_for_lined = imagecolorallocate( $my_img, 255, 255, 255 );
 				 $line_colour = imagecolorallocate( $my_img, 106, 145, 54 );
    			 $red   = imagecolorallocate($my_img, 0,   255,   0);
   	     $black = imagecolorallocate($my_img, 0, 0, 0);
+
+				 $line_colour1 = imagecolorallocate( $my_img, 106, 145, 54 );
 
 				 $font = 'Ubuntu-B.ttf';
 				imagestring( $my_img, 20, 20, 20, "Dr.$doctor_fullname",$text_colour );
@@ -144,6 +149,8 @@
 				imagerectangle($my_img, 0, 0, 920, 1080, $line_colour1);
 				// $thickness = 18;
 				// imageline( $my_img, 0, 115, 920, 115, $line_colour );
+
+
 
 				$thickness = 18;
 				imageline( $my_img, 0, 165, 920, 165, $line_colour );
@@ -202,6 +209,8 @@
 				imagestring( $my_img, 1020, 60, 1020, "Dr.$doctor_fullname",$text_colour );
 				imagestring( $my_img, 1050, 60, 1050, "$doctor_degrees", $text_colour );
 
+
+
  				 header( "Content-type: image/jpeg" );
 				//GENERATE JPEG FORMAT IMAGE BASED ON CONSULTATION ID BY THE PATIENT
 
@@ -215,25 +224,25 @@
 				list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
 
 
-				$out = imagecreatetruecolor($width, $height);
+				$out = @imagecreatetruecolor($width, $height)
+      		or die('Cannot Initialize new GD image stream');
+				// $out = imagecreatetruecolor($width, $height) or die('Cannot Initialize new GD image stream');
+
+				// print "<img src='data:image/jpeg;base64," . base64_encode( $out )."'>"; //saviour line!
 				imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
 				imagecopyresampled($out, $png, 680, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
 				imagejpeg($out, "DocQuik$preCount.jpeg");
-
 				$base64 = base64_encode($out);
-
 				imagedestroy( $out );
 
 			}
 		}
 		else
 		{
-		   echo "Please Mention Diagnosis as it is Mandatory";
+		   print "Please Mention Diagnosis as it is Mandatory";
 		}
- }
+}
 
-mysql_close($dbhandle);
-
-
- echo "DocQuik$preCount";
+	mysql_close($dbhandle);
+print "DocQuik$preCount";
 ?>

@@ -318,8 +318,19 @@ $scope.BalanceForVoiceCall=function()
   	}
   	$scope.$watch('checkMyStatus', function (newValue, oldValue, scope){
   		 console.log('changed');
-
-  		 if(newValue == 2){
+       if(newValue == 4){
+         var alertPopup = $ionicPopup.alert({
+           title: 'Declined!',
+           template: "<div>Doctor has declined for a consultation</div>",
+           cssClass: 'requestPopup',
+           scope: $scope,
+         });
+           alertPopup.then(function(res) {
+           $state.go("app.patient_home");
+           $ionicHistory.clearHistory();
+         });
+       }
+  		 else if(newValue == 2){
   			 console.log('changed call val');
   			 $scope.callReqPopUp.close();
   			 setTimeout(function (){
@@ -447,6 +458,9 @@ $scope.BalanceForVoiceCall=function()
 
   				 		 });
   		 }
+       else{
+         //do nothing
+       }
 
   	},true);
 
@@ -463,29 +477,15 @@ $scope.BalanceForVoiceCall=function()
       }
       console.log(callRequest);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
-        console.log(response);
-        console.log(response[0][0]);
-      $scope.myBalance=response[0][0];
-      $localStorage.patientWalletBalance=$scope.myBalance;
-          console.log('pop up page clicked');
-            var uname = "greet+"+$localStorage.user;
-             var pw = "DQ_patient";
+        $scope.patientWalletdetails=response;
+        console.log($scope.patientWalletdetails);
+  			$scope.myCredit=$scope.patientWalletdetails[0][0];
+  			$scope.myDebit=$scope.patientWalletdetails[0][1];
 
-             var persontocall = "greet+" + $rootScope.docNumToCall;
-            //  var persontocall = "greet+" + $localStorage.consultedDoctor;
-             console.log(uname);
-             console.log(persontocall);
-             var success = function(message)
-              {
-                  alert(message);
-              }
-              var failure = function()
-              {
-                alert("Error calling Hello Plugin");
-              }
-
+  			$scope.myWalletBal=$scope.myCredit-$scope.myDebit;
+        console.log($scope.myWalletBal);
               $scope.counter = 0;
-        if($scope.myBalance >= 250)
+        if($scope.myWalletBal >= 250)
         {
 
               searchDoctorServices.requestForCall(callRequest).then(function(response){
@@ -563,15 +563,7 @@ $scope.BalanceForVoiceCall=function()
 
                }
                },
-              //  {
-               //  text: 'Resend',
-               //  type: 'button-assertive',
-               //  onTap:function(){
-              // 	 console.log('resend');
-              // 	 $scope.videoCall();
-               //
-               //  }
-               //  },
+
              ]
 
              });
@@ -581,25 +573,36 @@ $scope.BalanceForVoiceCall=function()
         {
 
           var confirmPopup = $ionicPopup.confirm({
-            template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
-            cssClass: 'videoPopup',
-            scope: $scope,
-            buttons: [
-              {
-                text: 'Cancel',
-                type: 'button-royal', },
-              {
+      						title: 'DoctorQuick',
+      						template: '<center><b>You can not send request now as your Wallet Balance is low</b></center> ',
+      						cssClass: 'videoPopup',
+      						scope: $scope,
+      						buttons: [
+                   {
+      								text: 'Cancel',
+      								type: 'button-royal',
+      								onTap: function(e) {
+                       $ionicHistory.nextViewOptions({
+                         disableAnimate: true,
+                         disableBack: true
+                       });
+                       $state.go('app.patient_home',{}, {location: "replace", reload: false})
+      								}
+      							},
+      							{
+      								text: 'Topup',
+      								type: 'button-positive',
+      								onTap: function(e) {
+                       $ionicHistory.nextViewOptions({
+                         disableAnimate: true,
+                         disableBack: true
+                       });
+                       $state.go('app.patient_topup',{}, {location: "replace", reload: false});
+      								}
+      							},
 
-              text: 'Topup',
-              type: 'button-positive',
-               onTap: function(e) {
-                  $state.go('app.patient_topup');
-               }
-
-              },
-             ]
-            //templateUrl: "views/app/viewdoctor_profile.html",
-          });
+      						]
+      					});
 
         }
           $ionicLoading.hide();
@@ -608,5 +611,6 @@ $scope.BalanceForVoiceCall=function()
       });
 
     }
+  
 
 })

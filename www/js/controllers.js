@@ -12,6 +12,11 @@ DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$st
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
 		// $rootScope.prescription={};
+		if($rootScope.chekDiag === false){
+			$rootScope.val= "";
+			$rootScope.prescription.diagnosisforpatient="";
+		}
+
 
 		$scope.clear=function()
 		{
@@ -38,13 +43,15 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$scope.patientPhone = $stateParams.ptPh;
 
 		// $rootScope.prescription={};
-
+		if($rootScope.chekTests === false){
+			$rootScope.testVal= "";
+			$rootScope.prescription.checkedTests="";
+		}
 		$scope.clear=function()
 		{
 				$rootScope.prescription.checkedTests="";
 				$rootScope.chekTests=false;
 				$rootScope.testVal= "";
-
 
 		}
 
@@ -65,14 +72,17 @@ DoctorQuickApp.controller('medicationCtrl', function($scope,$rootScope, $statePa
 		$scope.patientImage = $stateParams.ptImage;
 		$scope.patientPhone = $stateParams.ptPh;
 		// $rootScope.prescription={};
+		if($rootScope.chekMedi === false){
+			$rootScope.mediVal = "";
+			$rootScope.prescription.medicationforpatient="";
+		}
+
 
 		$scope.clear=function()
 		{
-
 			$rootScope.prescription.medicationforpatient="";
 			$rootScope.chekMedi=false;
 			$rootScope.mediVal = "";
-
 		}
 
 })
@@ -190,6 +200,29 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 						}
 						hello.login(uname1,pw1,success, failure);
 
+						$timeout( function(){
+				    console.log('interval started');
+				    $interval(checkNewMessages,1000);
+
+				    }, 3000);
+				  var username = "greet+"+$localStorage.user;
+				  var password = "DQ_patient";
+				  function checkNewMessages()
+				  {
+				      var success = function(message)
+				      {
+				        $rootScope.unreadchatforpatient = message;
+				        console.log($scope.unreadchatforpatient);
+				      }
+
+				      var failure = function()
+				      {
+				        console.log("Error calling Hello Plugin");
+				        //console.log(‘error’);
+
+				      }
+				        hello.unreadchatfromusers(username,password,success, failure);
+				  }
 				}
 				else{
 
@@ -216,7 +249,30 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				$timeout( function(){
 				console.log('interval started');
 				$interval($rootScope.loginInterval,2000,1);
+				$interval(checkNewMessages,2000);
+
 				}, 10000 );
+
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_patient";
+				function checkNewMessages()
+				{
+						var success = function(message)
+						{
+							$rootScope.unreadchatforpatient = message;
+							console.log($scope.unreadchatforpatient);
+						}
+
+						var failure = function()
+						{
+							console.log("Error calling Hello Plugin");
+							//console.log(‘error’);
+
+						}
+							hello.unreadchatfromusers(username,password,success, failure);
+				}
+
+
 
 				$rootScope.loginInterval = function() {
 				var success = function(message)

@@ -23,38 +23,6 @@
 
 							doctorServices.pushReqStatus($stateParams.reqId).then(function(response){
 								console.log('exp',response);
-								// if(response === '"expired"'){
-								// if($scope.deviceAndroid === true){
-								// 		ion.sound.stop("androidtone");
-								// 		}
-								// 		else{
-								// 		ion.sound.stop("iphone");
-								// 		}
-								// 		$rootScope.expiredReq = $ionicPopup.show({
-								// 		title:"Sorry!!!",
-								// 		template: "<div >This Request has been served/Expired </b></div>",
-								// 		cssClass: 'requestPopup',
-								// 		scope: $scope,
-								// 		buttons: [
-								// 		{
-								// 		text: 'Ok',
-								// 		type: 'button-positive',
-								// 		onTap:function(){
-								// 		console.log('cancel');
-								// 		$ionicHistory.nextViewOptions({
-								// 		disableAnimate: true,
-								// 		disableBack: true
-								// 		});
-								// 		$rootScope.hideSideMenu = true;
-								// 		$state.go('templates.doctor_home',{}, {location: "replace", reload: false})
-								// 		}
-								// 		},
-								// 		]
-								// 		});
-								//
-								// }
-								// else{
-									// alert('else part');
 									var uname1 = "greet+"+$localStorage.user;
 									var pw1 = "DQ_doctor";
 
@@ -548,7 +516,7 @@ console.log('actiondate',timestamp);
 			}
 			console.log($scope.type);
 			$localStorage.accpt='';
-			console.log($localStorage.accpt);
+
 			if($localStorage.accpt === 1){
 				$scope.isDisabled = true;
 				console.log('donNothing');
@@ -670,24 +638,40 @@ $scope.popupShown = true;
 			 else {
            $localStorage.activePatient= $scope.currentPatient.patientPhone;
 			 }
-       console.log('activePatient',$localStorage.activePatient);
-       $interval.cancel($rootScope.videoOrAudio);
-       $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false});
-			//  if($scope.deviceAndroid === true){
-			// 	 $interval.cancel($rootScope.videoOrAudio);
-			// 	 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
-       //
-			//  }
-			//  else{
-			// 	 $interval.cancel($rootScope.videoOrAudio);
-			// 	 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
-       //
-			//  }
+      //  $interval.cancel($rootScope.videoOrAudio);
+      //  $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false});
+			 if($scope.deviceAndroid === true){
+				 $interval.cancel($rootScope.videoOrAudio);
+				 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
+
+			 }
+			 else{
+         $ionicLoading.show({
+         template: '<ion-spinner></ion-spinner><br><br>Loading'
+         });
+         $timeout( function(){
+           $ionicLoading.hide().then(function(){
+           console.log("The loading indicator is now hidden");
+           // alert('loggedin');
+           $ionicHistory.nextViewOptions({
+           disableAnimate: true,
+           disableBack: true
+           });
+           $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
+           $interval.cancel($rootScope.videoOrAudio);
+
+           });
+
+         }, 10000 );
+
+			 }
 
 
  		}
 
  },true);
+
+
 
 
 

@@ -13,7 +13,7 @@
 			$reqId = $requesteddata->consultId;
 
 
-  		echo $reqDecline = "INSERT INTO declinedRequests(reqId,declinedpatientNum,declinedDoctor,declinedDatetime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
+  		 $reqDecline = "INSERT INTO declinedRequests(reqId,declinedpatientNum,declinedDoctor,declinedDatetime) VALUES ('$reqId','$patientphno','$doctorphno',now())";
   		$retval1 = mysql_query( $reqDecline, $dbhandle );
   		if(!$retval1 )
   		{
@@ -22,6 +22,12 @@
   		}
       else {
         echo "declined";
+			 $sql = "update reqForConsultation set flag=4,declinedTime=now() where accptedDoctor='$doctorphno' and id= '$reqId'";
+			 $retval = mysql_query( $sql, $dbhandle );
+			 while($row = mysql_fetch_array($retval))
+			 {
+				 echo $exist = $row['doctor'];
+			 }
       }
 
  mysql_close($dbhandle);

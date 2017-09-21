@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$ionicConfig,$ionicPopup, $stateParams, $cordovaToast, $http) {
+DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$localStorage,$ionicConfig,$ionicPopup, $stateParams, $cordovaToast, $http,patientWalletServices) {
 	$rootScope.headerTxt="Refund ";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -10,6 +10,13 @@ DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$ionic
 
 console.log('refundCtrl');
 
+patientWalletServices.paidToDoctors($localStorage.user).then(function(response){
+ $rootScope.doctorsList=response;
+ console.log($rootScope.doctorsList);
+ }).catch(function(error){
+	 console.log('failure data', error);
+ });
+
 if($rootScope.debit===''){
 	console.log('null');
 }
@@ -17,7 +24,7 @@ console.log($rootScope.debit);
 	$scope.refundReq = function(isDocTopUpValid) {
 		console.log('isDocTopUpValid ', isDocTopUpValid)
 		$scope.submitted = true;
-		
+
 		if(!$scope.payment.refund){
 
 			$cordovaToast.showLongCenter('amount must be entered.', 'short', 'center').then(function(success) {

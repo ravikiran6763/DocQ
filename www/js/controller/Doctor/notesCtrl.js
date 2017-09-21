@@ -15,24 +15,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
   console.log($rootScope.currentPatient.patientNum);
   $localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
-  var patientToDisplay =$localStorage.patientToDisplay;
-  console.log(patientToDisplay);
-  if(!patientToDisplay){
-    patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
-      $scope.patient_details=response;
-      console.log($scope.patient_details);
-      $ionicLoading.hide();
-    }).catch(function(error){
-      console.log('failure data', error);
-    })
-  }
-  patientProfileDetailsService.fetchPatient($rootScope.currentPatient.patientNum).then(function(response){
-    $scope.patient_details=response;
-    console.log($scope.patient_details);
-    $ionicLoading.hide();
-  }).catch(function(error){
-    console.log('failure data', error);
-  })
   $rootScope.patientFname=$scope.currentPatient.patientFname;
   $rootScope.patientLname=$scope.currentPatient.patientLname;
   $rootScope.patientAge=$scope.currentPatient.patientAge;
@@ -42,26 +24,34 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   $rootScope.reqId=$scope.currentPatient.id;
   $rootScope.patientNum=$scope.currentPatient.patientNum;
 
-$localStorage.reqPat = $stateParams.reqPat;
-// console.log($rootScope.reqId);
+  $localStorage.reqPat = $stateParams.reqPat;
 
-// setTimeout(function (){
-//   patientProfileDetailsService.updatenotesflag($rootScope.reqId).then(function(response){
-//     console.log(response);
-//    console.log('success');
-//   }).catch(function(error){
-//    console.log('failure data', error);
-//   })
-// }, 5000);
+  var patientToDisplay =$localStorage.patientToDisplay;
+  console.log(patientToDisplay);
+  if(!patientToDisplay){
+    // alert('from state params',$stateParams.reqPat);
+    $stateParams.reqPat='8792618138';
 
-
-
-  //this is used to set notesflag in the database top 2
-// console.log($rootScope.patientNum);
-
+    patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
+      $scope.patient_details=response;
+      console.log($scope.patient_details);
+      $ionicLoading.hide();
+    }).catch(function(error){
+      console.log('failure data', error);
+    })
+  }
+  else{
+    // alert('from localStorage',$rootScope.currentPatient.patientNum);
+    patientProfileDetailsService.fetchPatient($rootScope.currentPatient.patientNum).then(function(response){
+      $scope.patient_details=response;
+      console.log($scope.patient_details);
+      $ionicLoading.hide();
+    }).catch(function(error){
+      console.log('failure data', error);
+    })
+  }
 
   $ionicLoading.show();
-		// console.log($scope.paphno);
 
 
 

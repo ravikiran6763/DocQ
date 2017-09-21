@@ -43,6 +43,10 @@
 
         <!--  -->
         <ion-list ng-hide="sideMenuForSearch">
+          <!-- <ion-item class="item-icon-left" ng-click="clearAllHistory();"  ui-sref="templates.prescription" menu-close>
+            <i class="icon ion-ios-home"></i>
+            <h2 class="menu-text">Notes</h2>
+          </ion-item> -->
           <ion-item class="item-icon-left" ng-click="clearAllHistory();"  ui-sref="templates.doctor_home" menu-close>
             <i class="icon ion-ios-home"></i>
             <h2 class="menu-text">Home</h2>
@@ -90,6 +94,7 @@
                 <img  src="img/on.png"  width="100%" height="85%"  ng-hide="accptNotifications" ng-click="hideNotifications('hide')" on-drag-left="hideNotifications('hide')">
                 <img  src="img/off.png" width="100%" height="85%" ng-hide="rejectNotifications" ng-click="showNotifications('show')" on-drag-right="showNotifications('show')">
               </div>
+
         </ion-list>
   </ion-content>
   </ion-side-menu>

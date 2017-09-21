@@ -36,6 +36,9 @@ console.log('appcalld');
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.devicePlatform = ionic.Platform.isIOS();
 
+
+console.log($rootScope.previousState);
+
 // $interval.cancel(checkAcceptedReq,2000);
 
 // console.log($location.path());
@@ -1060,65 +1063,23 @@ $scope.BalanceForVoiceCall=function()
 				};
 
 
-
-
-
-
-//
-// $scope.done=function()
-// {
-// 	console.log($rootScope.prescription.diagnosisforpatient);
-// 		if($rootScope.prescription.diagnosisforpatient)
-// 		{
-// 				testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
-// 				$rootScope.chekDiag=true;
-// 				$rootScope.val=$rootScope.prescription.diagnosisforpatient;
-// 				$state.go("templates.prescription");
-// 		}
-//
-// 		if($rootScope.prescription.checkedTests)
-// 		{
-// 				testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
-// 				$rootScope.chekDiag=true;
-// 				$rootScope.val=$rootScope.prescription.checkedTests;
-// 				$state.go("templates.prescription");
-// 		}
-//
-//
-//
-// 		else
-// 		{
-// 					alert('Please Enter Something')
-// 		}
-// }
-
-
 ///prescription par
 $rootScope.prescription={};
 
 $scope.done = function (prescType,sno){
-
         switch(sno){
-            case 1://for diagnosis
-
-
+            case 1:			//for diagnosis
 											if($rootScope.prescription.diagnosisforpatient)
 											{
-
-
 												testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
 												$rootScope.chekDiag=true;
 												$rootScope.val=$rootScope.prescription.diagnosisforpatient;
 												$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
-
-
-
 											}
 											else
 											{
-
+												$rootScope.prescription.diagnosisforpatient="";
 												// alert('please enter diagnosis');
-
 												window.plugins.toast.showWithOptions({
 												message: "Please Enter Diagnosis",
 												duration: "short", // 2000 ms
@@ -1136,29 +1097,19 @@ $scope.done = function (prescType,sno){
 												$timeout(function() {
 													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
 												}, 1000);
-
-
-											 }
-
-
-
-                break;
-            case 2://for tests
-
+											 }  break;
+            case 2:			//for tests
 											if($rootScope.prescription.checkedTests)
 											{
-
 												testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
 												$rootScope.chekTests=true;
 												$rootScope.testVal=$rootScope.prescription.checkedTests;
 												// $state.go("templates.prescription");
 												$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
 
-
 											}
 											else {
-
-
+												$rootScope.prescription.checkedTests="";
 												window.plugins.toast.showWithOptions({
 												message: "Please Enter Tests",
 												duration: "short", // 2000 ms
@@ -1176,35 +1127,23 @@ $scope.done = function (prescType,sno){
 												$timeout(function() {
 													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
 												}, 1000);
-
 												// alert('please enter tests details');
-
-
-
 											}
-
-
-                console.log("2. Selected Name: " + prescType );
-                break;
-						case 3://for medications
+                			break;
+						case 3:			//for medications
 
 												if($rootScope.prescription.medicationforpatient)
 												{
-
 													testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
 													$rootScope.chekMedi=true;
 													$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
 													// $state.go("templates.prescription");
 													$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
 
-
-
 												}
 												else {
-
 														// alert('please enter medication');
-
-
+													$rootScope.prescription.medicationforpatien="";
 													window.plugins.toast.showWithOptions({
 													message: "Please Enter Medication",
 													duration: "short", // 2000 ms
@@ -1222,11 +1161,7 @@ $scope.done = function (prescType,sno){
 													$timeout(function() {
 														 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
 													}, 1000);
-
-
 												}
-
-
 
                 console.log("3. Selected Name: " + prescType );
                 break;
@@ -1236,25 +1171,31 @@ $scope.done = function (prescType,sno){
     }
 
 
+$rootScope.chekMedi = false;
+$rootScope.chekDiag = false;
+$rootScope.chekTests = false;
 
 $scope.sendprescription = function()
 {
+	$scope.diagnosis ="";
+	$scope.tests = "";
+	$scope.medication = "";
+		var prescriptiondetails={};
+		console.log($rootScope.chekDiag,$rootScope.chekTests,$rootScope.chekMedi);
 
-
-    $scope.diagnosis = testresultbydoctor.getdiagnosis();
-    $scope.tests = testresultbydoctor.gettests();
-    $scope.medication = testresultbydoctor.getmedication();
-
-    if($rootScope.chekDiag && $rootScope.chekMedi && $rootScope.chekTests)
+    if($rootScope.chekDiag  === true && $rootScope.chekMedi  === true && $rootScope.chekTests === true)
     {
       $scope.diagnosis = testresultbydoctor.getdiagnosis();
       $scope.tests = testresultbydoctor.gettests();
       $scope.medication = testresultbydoctor.getmedication();
 
-
     }
-    else if($rootScope.chekDiag && $rootScope.chekTests)
+    else if($rootScope.chekDiag  === true && $rootScope.chekTests  === true)
     {
+			$scope.diagnosis = testresultbydoctor.getdiagnosis();
+			$scope.tests = testresultbydoctor.gettests();
+			// $scope.medication = testresultbydoctor.getmedication();
+
 			window.plugins.toast.showWithOptions({
 			message: "You Missed Medication",
 			duration: "short", // 2000 ms
@@ -1281,8 +1222,12 @@ $scope.sendprescription = function()
         }
         console.log(diagandtests);
     }
-    else if($rootScope.chekDiag && $rootScope.chekMedi)
+    else if($rootScope.chekDiag  === true && $rootScope.chekMedi  === true)
     {
+			$scope.diagnosis = testresultbydoctor.getdiagnosis();
+			// $scope.tests = testresultbydoctor.gettests();
+			$scope.medication = testresultbydoctor.getmedication();
+
 			window.plugins.toast.showWithOptions({
 			message: "You Missed Tests",
 			duration: "short", // 2000 ms
@@ -1309,8 +1254,12 @@ $scope.sendprescription = function()
       }
       console.log(diagandmedication);
     }
-    else if($rootScope.chekTests && $rootScope.chekMedi)
+    else if($rootScope.chekTests  === true && $rootScope.chekMedi  === true)
     {
+			// $scope.diagnosis = testresultbydoctor.getdiagnosis();
+			$scope.tests = testresultbydoctor.gettests();
+			$scope.medication = testresultbydoctor.getmedication();
+
 			window.plugins.toast.showWithOptions({
 			message: "You Missed Diagnosis",
 			duration: "short", // 2000 ms
@@ -1337,8 +1286,11 @@ $scope.sendprescription = function()
       }
       console.log(testsandmedication);
     }
-    else if($rootScope.chekDiag)
+    else if($rootScope.chekDiag  === true)
     {
+			$scope.diagnosis = testresultbydoctor.getdiagnosis();
+			// $scope.tests = testresultbydoctor.gettests();
+			// $scope.medication = testresultbydoctor.getmedication();
 			window.plugins.toast.showWithOptions({
 			message: "You have Missed tests and Medication",
 			duration: "short", // 2000 ms
@@ -1363,8 +1315,11 @@ $scope.sendprescription = function()
       }
       console.log(onlydiagnosis);
     }
-    else if($rootScope.chekTests)
+    else if($rootScope.chekTests  === true)
     {
+			// $scope.diagnosis = testresultbydoctor.getdiagnosis();
+			$scope.tests = testresultbydoctor.gettests();
+			// $scope.medication = testresultbydoctor.getmedication();
 			window.plugins.toast.showWithOptions({
 			message: "You have Missed Diagnosis and Medication",
 			duration: "short", // 2000 ms
@@ -1389,8 +1344,11 @@ $scope.sendprescription = function()
       }
       console.log(onlytests);
     }
-    else if($rootScope.chekMedi)
+    else if($rootScope.chekMedi === true)
     {
+			// $scope.diagnosis = testresultbydoctor.getdiagnosis();
+			// $scope.tests = testresultbydoctor.gettests();
+			$scope.medication = testresultbydoctor.getmedication();
 			window.plugins.toast.showWithOptions({
 			message: "You have Missed Diagnosis and Tests",
 			duration: "short", // 2000 ms
@@ -1438,7 +1396,6 @@ $scope.sendprescription = function()
     }
 			$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
 			console.log($stateParams.reqPat);
-
 			$rootScope.patientNum=$scope.currentPatient.patientNum;
 			$localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
 		  var patientToDisplay =$localStorage.patientToDisplay;
@@ -1464,58 +1421,68 @@ $scope.sendprescription = function()
         console.log(response);
         $scope.pic=response
         console.log(prescriptiondetails);
-
-        if($scope.pic){
-          var auname =  "greet+"+$localStorage.user;
-          var apw = "DQ_doctor";
+				if($scope.pic === "DiagnosisError"){
+					window.plugins.toast.showWithOptions({
+					message: "Please Enter Diagnosis as it is Mandatory.",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+					}
+					});
+				}
+				else{
+					var auname =  "greet+"+$localStorage.user;
+					var apw = "DQ_doctor";
 					if(!patientToDisplay){
 						patientToDisplay=$stateParams.reqPat;
 					}
-          var ato = "greet+" + patientToDisplay;
+					var ato = "greet+" + patientToDisplay;
 
-          console.log(auname);
-          console.log(ato);
-          var prescImg=$scope.pic;
+					console.log(auname);
+					console.log(ato);
+					var prescImg=$scope.pic;
 
 					console.log(prescImg);
 
-            var success = function(message)
-            {
+						var success = function(message)
+						{
 
 								console.log('prescription clicked');
 								console.log(message);
-
 							$rootScope.prescription = {};
-							$rootScope.val = "";
-							$rootScope.testVal = "";
-							$rootScope.mediVal = "";
-						// 	console.log(message);
+						 prescriptiondetails='';
+
 							$ionicHistory.nextViewOptions({
 							disableAnimate: true,
 							disableBack: true
 						 });
-
-						 $state.go('templates.consulted_patient',{}, {location: "replace", reload: false});
-
-              // alert(message);
+						 $state.go('templates.consulted_patient');
+							// alert(message);
 							console.log(message);
-            }
+						}
 
-            var failure = function()
-            {
-              alert("Error calling Hello Plugin");
-            }
+						var failure = function()
+						{
+							alert("Error calling Hello Plugin");
+						}
 
-            hello.automatic(auname,apw,ato,prescImg,success, failure);
+						hello.automatic(auname,apw,ato,prescImg,success, failure);
 
-
-          }
+				}
 
         }).catch(function(error){
         console.log('failure data', error);
         });
 
     }
+		$rootScope.chekTests;
 
 }
 

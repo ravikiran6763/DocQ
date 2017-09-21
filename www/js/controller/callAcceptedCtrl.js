@@ -103,9 +103,7 @@ $scope.checkWalletBalance = function()
 		var success = function(message)
 		{
 
-					console.log(message);
-
-
+				console.log(message);
 				$ionicHistory.nextViewOptions({
 				disableAnimate: true,
 				disableBack: true
@@ -116,12 +114,25 @@ $scope.checkWalletBalance = function()
 			 //$state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId}, {location: "replace", reload: false});
 			 if($scope.deviceAndroid === false){
 				 $ionicLoading.show({
-	        template: 'Connecting...',
-	        duration: 3000
-	  			})
-			 }
-			 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
+         template: '<ion-spinner></ion-spinner><br><br>Loading'
+         });
+				 $timeout( function(){
+           $ionicLoading.hide().then(function(){
+           console.log("The loading indicator is now hidden");
+           // alert('loggedin');
+           $ionicHistory.nextViewOptions({
+           disableAnimate: true,
+           disableBack: true
+           });
+					 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
 
+           });
+
+         }, 10000 );
+			 }
+			 else{
+				 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
+			 }
 
 			 	console.log('callEnded');
 				//
@@ -200,6 +211,7 @@ console.log(checkPatientActivity);
 	//  doctorServices.patientActivity($rootScope.callId).then(function(response){
 	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
 	 $scope.consultStatus=response;
+	 console.log($scope.consultStatus);
 	 $localStorage.declinedByDoc = $scope.consultStatus[0][0];
 	 $scope.docDeclined=$localStorage.declinedByDoc;
 	//  console.log($scope.consultStatus);

@@ -80,10 +80,8 @@ function checkNewMessages()
 				console.log(message.length);
 				if($scope.deviceAndroid)
 				{
-
 						if($localStorage.doctororpatient == 'patient')
 						{
-
 								//var password = "DQ_doctor";
 								$scope.chatlist1 = message;
 								console.log(message);

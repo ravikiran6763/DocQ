@@ -124,7 +124,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   }
 })
 
-DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform,$localStorage, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -220,13 +220,30 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         })
         .endInit();
 
+        console.log('deviceredy');
+        console.log($localStorage.doctororpatient);
+        if($localStorage.doctororpatient === "doctor"){
+          $timeout( function() {
+            $state.go('templates.loadingDoctor');
+          }, 0);
+
+        }
+        else{
+          //do nothing
+        }
+
 //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
-  function onDeviceReady(){
-      checkConnection();
-      console.log('device ready for network check');
-  }
 
+//cordova event handling
+
+document.addEventListener("resume", onResume, false);
+function onResume() {
+   setTimeout(function() {
+        console.log('resume');
+        // $state.go("templates.doc_profile");//working
+        }, 0);
+}
 
 
 
@@ -627,8 +644,6 @@ $stateProvider
       }
     })
 
-
-
 //doctor profile
   .state('app.viewdoctor_profile', {
     url: "/viewdoctor_profile/:rates/:totalRates",
@@ -666,6 +681,16 @@ $stateProvider
     abstract: true,
     templateUrl: "views/templates/doc-sidemenu.html",
     controller: 'doctorScreensCtrl'
+  })
+
+  .state('templates.loadingDoctor', {
+    url: "/loadingDoctor",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/loadingDoctor.html",
+          controller: 'loadingDoctor'
+      }
+    }
   })
 
   .state('templates.doctor_home', {
@@ -863,34 +888,10 @@ $stateProvider
 
       console.log(userType);
       if(userType === 'doctor'){
-        // $state.go('templates.doctor_home');
-        // var uname1 = "greet+"+userNum;
-        // var pw1 = "DQ_doctor";
-        //
-        // var success = function(message)
-        // {
-        //   console.log("The loading indicator is now hidden");
-        //   $ionicHistory.nextViewOptions({
-        //     disableAnimate: true,
-        //     disableBack: true
-        //   });
-        //   // $state.go('tempplates.doctor_home', {}, {location: "replace", reload: false});
-        //   return '/templates/doctor_home';
-        //
-        //     // $ionicLoading.hide().then(function(){
-        //     // });
-        // }
-        // var failure = function()
-        // {
-        //   alert("Error calling Hello Plugin");
-        // }
-        //
-        // Vsee.login(uname1,pw1,success, failure);
+
         return '/templates/doctor_home';
       }
-      // else if(userType === 'patient'){
-      //   $state.go('app.patient_home');
-      // }
+    
       else{
         return '/splash';
       }
