@@ -30,7 +30,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   console.log(patientToDisplay);
   if(!patientToDisplay){
     // alert('from state params',$stateParams.reqPat);
-    $stateParams.reqPat='8792618138';
+    // $stateParams.reqPat='8792618138';
 
     patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
       $scope.patient_details=response;

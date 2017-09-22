@@ -12,7 +12,7 @@
         "bcrypt": "^0.8.5",
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
-        "com.example.hello": "file:///Users/amittantia/Desktop/VSEE/VseePlugin",
+        "com.example.hello": "file:///Users/amittantia/Desktop/RK/VseePlugin",
         "com.razorpay.cordova": "^1.3.1",
         "com.red_folder.phonegap.plugin.backgroundservice": "../veeresh mac data/bgs-core",
         "com.red_folder.phonegap.plugin.backgroundservice.sample": "^2.0.0",
@@ -71,9 +71,9 @@
             "cordova-plugin-shared-preferences": {},
             "cordova-plugin-x-toast": {},
             "phonegap-plugin-mobile-accessibility": {},
+            "com.razorpay.cordova": {},
             "com.red_folder.phonegap.plugin.backgroundservice": {},
-            "com.example.hello": {},
-            "com.razorpay.cordova": {}
+            "com.example.hello": {}
         },
         "platforms": [
             "android",
