@@ -803,6 +803,16 @@ $stateProvider
     }
   })
 
+  .state('templates.sendPrescription', {
+    url: "/sendPrescription/:reqPat",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/sendPrescription.html",
+        controller:'sendPrescriptionCtrl'
+      }
+    }
+  })
+
   .state('templates.diagnosisForPatient', {
     url: "/diagnosisForPatient/:ptFname/:ptLname/:ptImage/:ptPh",
     views: {
@@ -891,7 +901,7 @@ $stateProvider
 
         return '/templates/doctor_home';
       }
-    
+
       else{
         return '/splash';
       }
