@@ -36,6 +36,7 @@
         "mongoose": "~4.2.4",
         "morgan": "~1.5.0",
         "ng-intl-tel-input": "^2.0.0",
+        "onesignal-cordova-plugin": "^2.2.0",
         "passport": "^0.3.0",
         "passport-jwt": "^1.2.1",
         "phonegap-plugin-mobile-accessibility": "git+https://github.com/phonegap/phonegap-mobile-accessibility.git"
@@ -73,7 +74,8 @@
             "phonegap-plugin-mobile-accessibility": {},
             "com.razorpay.cordova": {},
             "com.red_folder.phonegap.plugin.backgroundservice": {},
-            "com.example.hello": {}
+            "com.example.hello": {},
+            "onesignal-cordova-plugin": {}
         },
         "platforms": [
             "android",

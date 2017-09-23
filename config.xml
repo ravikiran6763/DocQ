@@ -369,5 +369,6 @@
     <plugin name="cordova-plugin-whitelist" spec="1.2.0" />
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
     <plugin name="ionic-plugin-deploy" spec="~0.6.5" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="phonegap-plugin-mobile-accessibility" spec="git+https://github.com/phonegap/phonegap-mobile-accessibility.git" />
 </widget>

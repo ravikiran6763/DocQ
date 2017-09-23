@@ -83,171 +83,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	}
 
-
-
-
-	function checkCallStatus(){
-		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
-			console.log($localStorage.one2oneId);
-		$scope.calStat = response;
-		console.log($scope.calStat[0][0]);
-		$localStorage.callStatus=$scope.calStat[0][0];
-		$scope.checkStatus=$localStorage.callStatus;
-		})
-	}
-	$scope.$watch('checkStatus', function (newValue, oldValue, scope){
-		 console.log('changed');
-
-		 if(newValue == 2){
-			 console.log('changed call val');
-			 $scope.callReqPopUp.close();
-			 setTimeout(function (){
-						console.log('delay 3 sec');
-					}, 3000);
-					console.log('value changed');
-
-					$scope.callAccept = $ionicPopup.show({
-				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
-				 			 cssClass: 'requestPopup',
-				 			 scope: $scope,
-				 			 buttons: [
-				 			 {
-				 			 text: 'Decline',
-				 			 type: 'button-royal',
-				 			 onTap:function(){
-				 				 console.log('cancel');
-				 				 console.log($localStorage.user);
-								 $interval.cancel(checkCallStatus);
-								 $scope.callReqPopUp.close();
-								  searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
-								  $scope.declinedByPat=response;
-									$localStorage.one2oneId=0;
-									$localStorage.callStatus=0;
-									console.log($scope.declinedByPat);
-								  }).catch(function(error){
-								  	console.log('failure data', error);
-								  });
-									$state.go($state.current, {}, {reload: true});
-				 			 }
-				 			 },
-							 {
-							  text: 'Start',
-							  type: 'button-assertive',
-							  onTap:function(){
-									var videocallflag = 2;
-									$scope.startdate = new Date();
-									$scope.callid = $rootScope.callId;
-									// $localStorage.ViewDoc=1;
-									$interval.cancel(checkCallStatus);
-									console.log($localStorage.networkType);
-									var uname = "greet+"+$localStorage.user;
-									var pw = "DQ_patient";
-
-										 var persontocall = "greet+" + $rootScope.docNumToCall;
-										 console.log(uname);
-										 console.log(persontocall);
-
-									if($localStorage.networkType == 'None')
-									{
-										var confirmPopup = $ionicPopup.confirm({
-														title: 'DoctorQuick',
-														template: 'You are Offline ',
-														cssClass: 'videoPopup',
-														scope: $scope,
-														buttons: [
-															{
-																text: 'Ok',
-																type: 'button-royal',
-																onTap: function(e) {
-																console.log('offline');
-																}
-															},
-														]
-													});
-									}
-									else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
-									{
-										var confirmPopup = $ionicPopup.confirm({
-														title: 'DoctorQuick',
-														template: 'We detected slow nwtwork on your device ',
-														cssClass: 'videoPopup',
-														scope: $scope,
-														buttons: [
-															{
-																text: 'Ok',
-																type: 'button-positive',
-																onTap: function(e) {
-																console.log('ok');
-																}
-															},
-														]
-													});
-									}
-									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
-									{
-										var success = function(message)
-										{
-
-												$ionicHistory.nextViewOptions({
-												disableAnimate: true,
-												disableBack: true
-											 });
-
-												//
-												$scope.enddate = new Date();
-												console.log($localStorage.user);
-												console.log($rootScope.accptdDoc);
-												// console.log($localStorage.Doctocall);
-												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
-													console.log('inserted to consultation',response);
-
-													$state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
-
-
-					              }).catch(function(error){
-					              console.log('failure data', error);
-					              });
-										}
-										var failure = function()
-										{
-											alert("Error calling Hello Plugin");
-										}
-											hello.greet(uname,pw,persontocall,success, failure);
-									}
-									else{
-
-										//Do nNothing
-
-									}
-
-
-							  }
-							  },
-				 		 ]
-
-				 		 });
-		 }
-		 if(newValue == 4){
-			 alert('declined by doctor');
-			 $scope.callAccept.close();
-			 var confirmPopup = $ionicPopup.confirm({
-							 title: 'Declined!!',
-							 template: 'Doctor has declined for consultation',
-							 cssClass: 'videoPopup',
-							 scope: $scope,
-							 buttons: [
-								 {
-									 text: 'Ok',
-									 type: 'button-positive',
-									 onTap: function(e) {
-									 console.log('ok');
-									 }
-								 },
-							 ]
-						 });
-		 }
-
-	},true);
 	$scope.videoCall=function(num)
 	{
 
@@ -398,6 +233,176 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		});
 
 	}
+
+	function checkCallStatus(){
+		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
+			console.log($localStorage.one2oneId);
+		$scope.calStat = response;
+		console.log($scope.calStat[0][0]);
+		$localStorage.callStatus=$scope.calStat[0][0];
+		$scope.checkStatus=$localStorage.callStatus;
+		})
+	}
+	$scope.$watch('checkStatus', function (newValue, oldValue, scope){
+		 console.log('changed');
+
+		 if(newValue == 2){
+			 console.log('changed call val');
+			 $scope.callReqPopUp.close();
+			 setTimeout(function (){
+						console.log('delay 3 sec');
+					}, 3000);
+					console.log('value changed');
+
+					$scope.callAccept = $ionicPopup.show({
+				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
+				 			 cssClass: 'requestPopup',
+				 			 scope: $scope,
+				 			 buttons: [
+				 			 {
+				 			 text: 'Decline',
+				 			 type: 'button-royal',
+				 			 onTap:function(){
+				 				 console.log('cancel');
+				 				 console.log($localStorage.user);
+								 $interval.cancel(checkCallStatus);
+								 $scope.callReqPopUp.close();
+								  searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
+								  $scope.declinedByPat=response;
+									$localStorage.one2oneId=0;
+									$localStorage.callStatus=0;
+									console.log($scope.declinedByPat);
+								  }).catch(function(error){
+								  	console.log('failure data', error);
+								  });
+									$state.go($state.current, {}, {reload: true});
+				 			 }
+				 			 },
+							 {
+							  text: 'Start',
+							  type: 'button-assertive',
+							  onTap:function(){
+									var videocallflag = 2;
+									$scope.startdate = new Date();
+									$scope.callid = $rootScope.callId;
+									// $localStorage.ViewDoc=1;
+									$interval.cancel(checkCallStatus);
+									console.log($localStorage.networkType);
+									var uname = "greet+"+$localStorage.user;
+									var pw = "DQ_patient";
+
+										 var persontocall = "greet+" + $rootScope.docNumToCall;
+										 console.log(uname);
+										 console.log(persontocall);
+
+									if($localStorage.networkType == 'None')
+									{
+										var confirmPopup = $ionicPopup.confirm({
+														title: 'DoctorQuick',
+														template: 'You are Offline ',
+														cssClass: 'videoPopup',
+														scope: $scope,
+														buttons: [
+															{
+																text: 'Ok',
+																type: 'button-royal',
+																onTap: function(e) {
+																console.log('offline');
+																}
+															},
+														]
+													});
+									}
+									else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
+									{
+										var confirmPopup = $ionicPopup.confirm({
+														title: 'DoctorQuick',
+														template: 'We detected slow nwtwork on your device ',
+														cssClass: 'videoPopup',
+														scope: $scope,
+														buttons: [
+															{
+																text: 'Ok',
+																type: 'button-positive',
+																onTap: function(e) {
+																console.log('ok');
+																}
+															},
+														]
+													});
+									}
+									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
+									{
+										var success = function(message)
+										{
+
+												$ionicHistory.nextViewOptions({
+												disableAnimate: true,
+												disableBack: true
+											 });
+
+												//
+												$scope.enddate = new Date();
+												console.log($localStorage.user);
+												console.log($rootScope.accptdDoc);
+												// console.log($localStorage.Doctocall);
+												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
+													console.log('inserted to consultation',response);
+
+													$state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
+
+
+					              }).catch(function(error){
+					              console.log('failure data', error);
+					              });
+										}
+										var failure = function()
+										{
+											alert("Error calling Hello Plugin");
+										}
+											hello.greet(uname,pw,persontocall,success, failure);
+									}
+									else{
+
+										//Do nNothing
+
+									}
+
+
+							  }
+							  },
+				 		 ]
+
+				 		 });
+		 }
+		 if(newValue == 4){
+			//  alert('declined');
+
+			 $scope.callReqPopUp.close();
+			 var confirmPopup = $ionicPopup.confirm({
+							 title: 'Declined!!',
+							 template: 'Doctor has declined for consultation',
+							 cssClass: 'videoPopup',
+							 scope: $scope,
+							 buttons: [
+								 {
+									 text: 'Ok',
+									 type: 'button-positive',
+									 onTap: function(e) {
+										 var test = $timeout($scope.onTimeout,1000);//timer interval
+							 			$scope.$on('$destroy', function(){
+							 			$timeout.cancel(test);
+							 			console.log('destroyed');
+							 			});
+										 $state.go($state.current, {}, {reload: true});
+									 console.log('ok');
+									 }
+								 },
+							 ]
+						 });
+		 }
+
+	},true);
 
 	$scope.sendOfflineMessage=function(num){
 		var sendMessage={

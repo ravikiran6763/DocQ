@@ -169,6 +169,11 @@ $rootScope.popUpClosed == false;
                             disableAnimate: true,
                             disableBack: true
                           });
+                          var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+                          $scope.$on('$destroy', function(){
+                          $timeout.cancel(patientTimeout);
+                          console.log('destroyed');
+                          });
                           $state.go('app.callAccepted',{accptdDoc:$rootScope.doctorPhone,callId:$rootScope.callId,callFlag:$rootScope.cal_flag,rates:$rootScope.rates,totalRates:$rootScope.totalRates},{location: "replace", reload: false});
                           console.log('show accpted doc profile');
                             $interval.cancel(checkAcceptedReq);
@@ -184,7 +189,7 @@ $rootScope.popUpClosed == false;
 
            }
           else{
-              alert('Database Error');
+              console.log('Database Error');
           }
           }).catch(function(error){
               console.log('failure data', error);
@@ -307,6 +312,11 @@ $rootScope.popUpClosed == false;
    					 scope: $scope,
    		     });
    		     	 alertPopup.then(function(res) {
+               var test = $timeout($scope.onTimeout,1000);//timer interval
+         			$scope.$on('$destroy', function(){
+         			$timeout.cancel(test);
+         			console.log('destroyed');
+         			});
    					 $state.go("app.patient_home");
    					 $ionicHistory.clearHistory();
    		     });

@@ -327,6 +327,11 @@ $scope.BalanceForVoiceCall=function()
            scope: $scope,
          });
            alertPopup.then(function(res) {
+             var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+             $scope.$on('$destroy', function(){
+             $timeout.cancel(patientTimeout);
+             console.log('destroyed');
+             });
            $state.go("app.patient_home");
            $ionicHistory.clearHistory();
          });
