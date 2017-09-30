@@ -13,6 +13,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $ionicConfig.views.swipeBackEnabled(false);//disables swipe back in iphone
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
+
+
+
+
   if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
     $scope.docAvailable=false;
     $scope.docNotAvailable=true;
@@ -225,7 +229,29 @@ $scope.viewRequest=function(patient){
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.awstime})
 }
 
-  
 
+$scope.playDemoVideo = function() {
+$scope.videoPlayerPopup = $ionicPopup.show({
+  // title: 'DoctorQuick',
+  template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
+      '<iframe width="100%" height="90%" src="https://www.youtube.com/watch?v=xowDOen2zrM" frameborder="0" allowfullscreen autoplay></iframe>',
+  // templateUrl: "views/app/viewdoctor_profile.html",
+  cssClass: 'videoPlayerPopup',
+  scope: $scope,
+
+});
+$ionicLoading.hide();
+$scope.closethis = function()
+{
+$scope.videoPlayerPopup.close();
+};
+// $scope.showModal('templates/video-popover.html');
+}
+
+$rootScope.testnum = "greet+9844992181";
+//
+// var presPatient = $rootScope.testnum.split('+');
+// $rootScope.test1num=presPatient['1'];
+// console.log($rootScope.test1num);
 
 });

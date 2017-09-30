@@ -1,25 +1,25 @@
 DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$interval, $ionicConfig, $ionicHistory,$timeout, $window, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
 
 
-
-  var username = "greet+"+$localStorage.user;
-  var password = "DQ_doctor";
-  function checkNewMessages()
-  {
-      var success = function(message)
-      {
-        $rootScope.unreadchatforpatient = message;
-        // console.log($scope.unreadchatforpatient);
-      }
-
-      var failure = function()
-      {
-        console.log("Error calling Hello Plugin");
-        //console.log(‘error’);
-
-      }
-        hello.unreadchatfromusers(username,password,success, failure);
-  }
+  // 
+  // var username = "greet+"+$localStorage.user;
+  // var password = "DQ_doctor";
+  // function checkNewMessages()
+  // {
+  //     var success = function(message)
+  //     {
+  //       $rootScope.unreadchatforpatient = message;
+  //       // console.log($scope.unreadchatforpatient);
+  //     }
+  //
+  //     var failure = function()
+  //     {
+  //       console.log("Error calling Hello Plugin");
+  //       //console.log(‘error’);
+  //
+  //     }
+  //       hello.unreadchatfromusers(username,password,success, failure);
+  // }
 
 
   $timeout( function() {

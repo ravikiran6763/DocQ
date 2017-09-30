@@ -15,7 +15,7 @@ angular.module('DoctorQuick.services', [])
 .service('isLoggedIn', function ($rootScope, FeedLoader, $q){
 	this.get = function() {
 		return true;
-		
+
 	};
 })
 
@@ -169,5 +169,42 @@ angular.module('DoctorQuick.services', [])
   }
   return this;
 })
+
+.service('urlShortener', service);
+
+function service($log, $q, $http) {
+
+    var gapiKey = 'AIzaSyAnSYS82Y5k9Lmln9xUS6k7e3xNcpHvOWs';
+    var gapiUrl = 'https://www.googleapis.com/urlshortener/v1/url';
+
+    return {
+        shorten: shorten
+    };
+
+    //////////////////////////////////////////////////
+
+    function shorten(url) {
+        console.log(url);
+        var data = {
+            method: 'POST',
+            url: gapiUrl + '?key=' + gapiKey,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            data: {
+                longUrl: "url",
+            }
+        };
+
+        return $http(data).then(function (response) {
+					console.log(data);
+            // $log.debug(response);
+            return response.data;
+        }, function (response) {
+            // $log.debug(response);
+            return response.data;
+        });
+    };
+}
 
 ;

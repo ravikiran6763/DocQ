@@ -156,34 +156,32 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicCo
 })
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
+	$scope.toggle = true;
+	$rootScope.headerTxt="Terms Of Use";
+	$rootScope.showBackBtn=true;
+	$rootScope.checkedValue = false;
+	$rootScope.showNotification=false;
 
 	var get = getUrlVars();
 
 	console.log('thisis after getting');
 	console.log(get["phno"]);
-
-
-
 	function getUrlVars() {
-    var vars = {};
-    /*Splits the variables into chuncks*/
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-        /*Takes those chunks and removes anything after the hashtag*/
-        vars[key] = value.replace(/#\b[^#]*$/gi, '');
+	var vars = {};
+	/*Splits the variables into chuncks*/
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+	/*Takes those chunks and removes anything after the hashtag*/
+	vars[key] = value.replace(/#\b[^#]*$/gi, '');
 
 
-    });
+	});
 
-		console.log('from webviewactivity');
-		console.log(vars);
-		return vars;
-}
+	console.log('from webviewactivity');
+	console.log(vars);
+	return vars;
+	}
 
-   	$scope.toggle = true;
-	 	$rootScope.headerTxt="Terms Of Use";
-		$rootScope.showBackBtn=true;
-		$rootScope.checkedValue = false;
-		$rootScope.showNotification=false;
+
 
 
 })

@@ -50,6 +50,8 @@ h5.menu-text{
         font-family: Ubuntu,bold,sans-serif !important;
         font-size: 100%;
     }
+
+
 .button .button-block .button-assertive .activated{
   background-color: red !important;
 }
@@ -106,6 +108,17 @@ ion-content.scroll-content.ionic-scroll{
       transition: all linear 0ms !important;
       -webkit-transition-duration: 0s;
       transition-duration: 0s;
+    }
+}
+
+.demoButton{
+  width: 100%;
+    position: relative;
+    margin-top: 42% !important;
+    margin-left: 7% !important;
+    p{
+      color: white;
+
     }
 }
 

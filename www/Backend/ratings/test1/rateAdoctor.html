@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/*@import url(http://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);*/
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Ubuntu;
+}
+header{
+  background: teal;
+  height: 7vh;
+  position: relative;
+}
+header p{
+  padding-top: 3%;
+    color: white;
+    font-size: 20px;
+}
+body {
+  background: #e2e2e2;
+  width: 100%;
+  height: 100%;
+ }
+ .doctorInfo{
+   position: absolute;
+    width: 100%;
+    height: 30%;
+
+ }
+ .doctorInfo img{
+   background: teal;
+   position: absolute;
+ }
+ .doctorInfo .profileImage {
+   margin-top: 5%;
+   width: 40%;
+ }
+ .doctorInfo .profileImage img {
+   background: #eee;
+    border-radius: 50%;
+    margin-left: 3%;
+    padding: 2%;
+    width: 25%;
+ }
+
+ .nameContent{
+    width: 66%;
+    float: right;
+    margin-top: 2%;
+ }
+ .rateField{
+   margin-bottom: 6%;
+    margin-top: 4%;
+ }
+ .formContent{
+    margin: 0 auto;
+     width: 96%;
+     height: 30vh;
+     border: 1px solid #fff;
+ }
+ .formContent .form-group{
+   width: 100%;
+
+        margin-top: 1%
+ }
+ .formContent .form-group label{
+   <!-- font-size: 2.5em; -->
+    position: absolute;
+    margin-top:4%;
+    margin-left: 1%;
+ }
+ input{
+   width: 72%;
+   height: 7vh;
+   margin-bottom: 2%;
+ }
+ h1{
+   text-align: center;
+    color: white;
+    font-weight: 100;
+ }
+ .button {
+   padding: 15px 25px;
+   font-size: 24px;
+   text-align: center;
+   cursor: pointer;
+   outline: none;
+   color: #fff;
+   background-color: #4CAF50;
+   border: none;
+   float:right;
+   margin-top: 2%;
+   margin-right: 2%;
+
+ }
+
+ .button:hover {background-color: #3e8e41}
+
+ .button:active {
+   background-color: #3e8e41;
+   box-shadow: 0 5px #666;
+   transform: translateY(4px);
+ }
+ h2{
+
+    font-weight: 400;
+    font-family: Ubuntu;
+ }
+ h3{
+
+    font-weight: 400;
+    font-family: Ubuntu;
+ }
+.cont {
+  width: 93%;
+  max-width: 350px;
+  text-align: center;
+  margin: 4% auto;
+  padding: 30px 0;
+  background: #111;
+  color: #EEE;
+  border-radius: 5px;
+  border: thin solid #444;
+  overflow: hidden;
+}
+
+hr {
+  margin: 20px;
+  border: none;
+  border-bottom: thin solid rgba(255,255,255,.1);
+}
+
+div.title {
+  <!-- font-size: 2em;  -->
+}
+
+h1 span {
+  font-weight: 300;
+  color: #Fd4;
+}
+
+div.stars {
+  width: 270px;
+  display: inline-block;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  <!-- font-size: 36px; -->
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+.rating{
+    color: #a9a9a9;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    margin-top: -7%;
+    margin-left: 22%;
+    font-size: 1.6em;
+}
+
+ul.rating {
+  display: inline-block;
+}
+
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.rating .filled {
+  color: #f8f48a;
+}
+
+
+.rating-box {
+ background: url("../images/bkg_rating.png") repeat-x;
+ <!-- font-size: 0; -->
+ height: 13px;
+ line-height: 0;
+ overflow: hidden;
+ text-indent: -999em;
+ width: 70px;
+}
+
+.rating-box .rating {
+ background: url("../images/bkg_rating.png") repeat-x;
+ background-position: 0 100%;
+ float: left;
+ height: 13px;
+}
+
+
+.average-rating-container {
+  position:relative;
+  height:31px;
+  width:103px;
+  overflow:hidden;
+
+  .background,
+  .foreground {
+    position: absolute;
+    top:0;
+    left:0;
+    overflow:hidden;
+    white-space: nowrap;
+  }
+}
+</style>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<script>
+var DoctorQuick = angular.module('DoctorQuick', []);
+DoctorQuick.controller('doctorCtrl', function($scope,$rootScope, $http) {
+   $http.get("rating.php")
+   .then(function (data, status, response, config){
+      console.log(data.data[0]);
+     $rootScope.rateDoctor = data.data;
+     console.log( $rootScope.rateDoctor);
+   });
+
+   $scope.rating = 5;
+      $scope.rateFunction = function(rating) {
+        console.log('Rating selected - ' + rating);
+        $scope.rates=rating;
+      };
+      $scope.Patient={};
+
+      $scope.giveRatings=function () {
+      $scope.userFname = $scope.Patient.fname;
+      $scope.userLname = $scope.Patient.lname;
+
+      var dataToSend={
+        fname:$scope.userFname,
+        lname:$scope.userLname,
+        rates:$scope.rates
+      }
+    console.log(dataToSend);
+
+
+
+    var url = 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/ratings/test1/ratingsByuser.php', data = dataToSend;
+    $http.post(url, data).then(function (data,response) {
+      console.log(data);
+    }, function (response) {
+    });
+
+
+
+
+
+      }
+
+
+});
+DoctorQuick.directive("averageStarRating", function() {
+  return {
+    restrict : "EA",
+    template : "<div class='average-rating-container'>" +
+               "  <ul class='rating background' class='readonly'>" +
+               "    <li ng-repeat='star in stars' class='star'>" +
+               "      <i class='fa fa-star'></i>" + //&#9733
+               "    </li>" +
+               "  </ul>" +
+               "  <ul class='rating foreground' class='readonly' style='width:{{filledInStarsContainerWidth}}%'>" +
+               "    <li ng-repeat='star in stars' class='star filled'>" +
+               "      <i class='fa fa-star'></i>" + //&#9733
+               "    </li>" +
+               "  </ul>" +
+               "</div>",
+    scope : {
+      averageRatingValue : "=ngModel",
+      max : "=?", //optional: default is 5
+    },
+    link : function(scope, elem, attrs) {
+      if (scope.max == undefined) { scope.max = 5; }
+      function updateStars() {
+        scope.stars = [];
+        for (var i = 0; i < scope.max; i++) {
+          scope.stars.push({});
+        }
+        var starContainerMaxWidth = 100; //%
+        scope.filledInStarsContainerWidth = scope.averageRatingValue / scope.max * starContainerMaxWidth;
+      };
+      scope.$watch("averageRatingValue", function(oldVal, newVal) {
+        if (newVal) { updateStars(); }
+      });
+    }
+  };
+});
+
+DoctorQuick.directive('starRating',
+	function() {
+		return {
+			restrict : 'A',
+			template : '<ul class="rating">'
+					 + '	<li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
+					 + '\u2605'
+					 + '</li>'
+					 + '</ul>',
+			scope : {
+				ratingValue : '=',
+				max : '=',
+				onRatingSelected : '&'
+			},
+			link : function(scope, elem, attrs) {
+				var updateStars = function() {
+					scope.stars = [];
+					for ( var i = 0; i < scope.max; i++) {
+						scope.stars.push({
+							filled : i < scope.ratingValue
+						});
+					}
+				};
+
+				scope.toggle = function(index) {
+					scope.ratingValue = index + 1;
+					scope.onRatingSelected({
+						rating : index + 1
+					});
+				};
+
+				scope.$watch('ratingValue',
+					function(oldVal, newVal) {
+						if (newVal) {
+							updateStars();
+						}
+					}
+				);
+			}
+		};
+	}
+);
+DoctorQuick.filter('capitalize', function() {
+    return function(input, scope) {
+      if (input!=null) {
+          var stringArr = input.split(" ");
+          var result = "";
+          var cap = stringArr.length;
+          for(var x = 0; x < cap; x++) {
+            stringArr[x].toLowerCase();
+            if(x === cap - 1) {
+              result += stringArr[x].substring(0,1).toUpperCase() + stringArr[x].substring(1);
+            } else {
+              result += stringArr[x].substring(0,1).toUpperCase() + stringArr[x].substring(1) + " ";
+            }
+          }
+        return result;
+      }
+    }
+  });
+</script>
+
+</head>
+<body>
+
+<div ng-app="DoctorQuick" ng-controller="doctorCtrl">
+    <header>
+    <center>  <p>Review Doctor</p></center>
+    </header>
+
+    <div class="doctorInfo"  ng-repeat="consult in rateDoctor">
+        <div class="profileImage">
+            <!-- <img src="./img/doc.jpg"> -->
+          <img  ng-hide="consult.docImage2 == null "ng-src="{{consult.docImage2}}"   >
+          <img  ng-show="consult.docImage2 == null " ng-src="icon.png" >
+        </div>
+        <div class="nameContent">
+            <h2>Dr.{{consult.doctorFname | capitalize}} {{consult.doctorMname | capitalize}} {{consult.doctorLname | capitalize}}</h2>
+            <h2>{{consult.doctorDegrees}}<br> </h2>
+            <h3>Practising since {{consult.practicingSince}}</h3>
+            <!-- <div class="star-box" style="display: inline-block;width:auto ;white-space: nowrap;">
+              <span class="unfilled" style="color:#d3d3d3; position: absolute;top: 0;left: 0;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+              <span class="filled" style="color:#e9ce18; white-space: nowrap; overflow: hidden;position: absolute;top: 0;left: 0;width:65px">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+
+            </div> -->
+            <div class="average">
+                <average-star-rating ng-model="averageRating" max="5"><average-star-rating>
+              </div>
+        </div>
+    </div>
+    <form>
+      <div style="margin-top: 45%;">
+        <div class="formContent" >
+          <div class="rateField">
+            <div class="form-group">
+              <label for="lname">Ratings</label>
+            </div>
+            <div ng-init="rating = star.rating + 1"></div>
+            <div class="star-rating" star-rating rating-value="rating"
+             data-max="5" on-rating-selected="rateFunction(rating)"></div>
+          </div>
+
+
+
+          <div class="form-group" >
+            <label for="fname">First Name</label>
+
+            <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" ng-model="Patient.fname"  required>
+          </div>
+          <div class="form-group" >
+            <label for="lname">Last Name</label>
+
+            <input type="text" class="form-control" placeholder="Last Name" name="mname" ng-model="Patient.lname" required >
+          </div>
+
+        </div>
+      </div>
+
+      <button type="button" class="button" ng-click="giveRatings()">Send</button>
+
+
+    </form>
+
+</div>
+</body>
+</html>
+
+
+<!--
+<div class="stars">
+  <form action="">
+    <input class="star star-5" id="star-5" type="radio" name="star"/>
+    <label class="star star-5" for="star-5"></label>
+    <input class="star star-4" id="star-4" type="radio" name="star"/>
+    <label class="star star-4" for="star-4"></label>
+    <input class="star star-3" id="star-3" type="radio" name="star"/>
+    <label class="star star-3" for="star-3"></label>
+    <input class="star star-2" id="star-2" type="radio" name="star"/>
+    <label class="star star-2" for="star-2"></label>
+    <input class="star star-1" id="star-1" type="radio" name="star"/>
+    <label class="star star-1" for="star-1"></label>
+  </form>
+</div>
+ -->
