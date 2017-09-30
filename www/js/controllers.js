@@ -156,14 +156,34 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicCo
 })
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
+	$scope.toggle = true;
+	$rootScope.headerTxt="Terms Of Use";
+	$rootScope.showBackBtn=true;
+	$rootScope.checkedValue = false;
+	$rootScope.showNotification=false;
 
 
+<<<<<<< HEAD
+=======
+	console.log('thisis after getting');
+	console.log(get["phno"]);
+	function getUrlVars() {
+	var vars = {};
+	/*Splits the variables into chuncks*/
+	var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+	/*Takes those chunks and removes anything after the hashtag*/
+	vars[key] = value.replace(/#\b[^#]*$/gi, '');
 
-   	$scope.toggle = true;
-	 	$rootScope.headerTxt="Terms Of Use";
-		$rootScope.showBackBtn=true;
-		$rootScope.checkedValue = false;
-		$rootScope.showNotification=false;
+
+	});
+
+	console.log('from webviewactivity');
+	console.log(vars);
+	return vars;
+	}
+
+>>>>>>> 220ffb73b7e57aa21c321b58793c22023b0c6d63
+
 
 
 })

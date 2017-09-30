@@ -124,33 +124,10 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   }
 })
 
-DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform,$localStorage, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      $ionicPlatform.registerBackButtonAction(function (event) {
-        console.log(  $ionicHistory.backView());
-        if ( ($state.$current.name=="templates.doctor_home" || $state.$current.name=="app.patient_home")){
-            console.log('back button disabled');
-            $ionicHistory.backView();
 
-                // H/W BACK button is disabled for these states (these views)
-                // Do not go to the previous state (or view) for these states.
-                // Do nothing here to disable H/W back button.
-                // navigator.app.exitAspp();
-            } else {
-                // For all other states, the H/W BACK button is enabled
-                navigator.app.backHistory();
-            }
-        }, 1000);
-
-    if (ionic.Platform.isAndroid()) {
-          window.addEventListener("native.hidekeyboard", function () {
-          StatusBar.hide();
-          window.AndroidFullScreen.immersiveMode(false, false);
-        });
-      }
-
+<<<<<<< HEAD
       if(window.StatusBar)
       {
           // StatusBar.styleDefault();
@@ -279,179 +256,281 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
           $timeout( function() {
             $state.go('templates.loadingDoctor');
           }, 0);
+=======
+  if (ionic.Platform.isAndroid()) {
+    window.addEventListener("native.hidekeyboard", function () {
+    StatusBar.hide();
+    window.AndroidFullScreen.immersiveMode(false, false);
+    });
+  }
 
-        }
-        else{
-          //do nothing
-        }
+  if(window.StatusBar){
+    // StatusBar.styleDefault();
+    StatusBar.hide();
+  }
 
-//-------------------------------------ONESIGNAL PUSH SETUP---------------------
+  if (window.Connection){
+    if (navigator.connection.type == Connection.NONE)
+    {
+    toast.show("Internet is disconnected on your device");
+    };
+  };
+
+  function successFunction() {
+    console.info("It worked!");
+  }
+  function errorFunction(error){
+    console.error(error);
+  }
+  function trace(value){
+    console.log(value);
+  }
+  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+  //-------------------------------------ONESIGNAL PUSH SETUP---------------------
+
+  window.plugins.OneSignal.getIds(function(ids) {
+    // alert('getIds: ' + JSON.stringify(ids));
+    console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+  });
+  var iosSettings = {};
+  iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+  iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+
+  var notificationOpenedCallback = function(jsonData) {
+    alert("Notification opened:\n" + JSON.stringify(jsonData));
+    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+  };
+
+    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+
+  window.plugins.OneSignal
+  .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")
+  .iOSSettings(iosSettings)
+  .endInit();
+
+  window.plugins.OneSignal
+  .startInit( "6873c259-9a11-4a2a-a3b5-53aea7d59429")
+  .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+  // Notification - native notification display while user has app in focus (can be distracting).
+  // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
+  // None - notification is silent.
+  .handleNotificationOpened(function(jsonData) {
+      var data = jsonData.notification.payload.additionalData;
+      // console.log('fromPush',data.reqId);
+      console.log("Notification opened:\n" + JSON.stringify(jsonData));
+      console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+
+      $ionicHistory.nextViewOptions({
+      disableAnimate: true,
+      disableBack: true
+      });
+      $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+  })
+  .endInit();
+
+  console.log('deviceredy');
+
+  console.log($localStorage.doctororpatient);
+
+  var get = getUrlVars();
+  console.log('thisis after getting');
+  console.log(get["phno"]);
+  $rootScope.pat_phnofromwebview = get["phno"];
+  // var presPatient = $rootScope.pat_phnofromwebview.split('+');
+  // $rootScope.presPatientNum=presPatient['1'];
+  function getUrlVars() {
+  var vars = {};
+  /*Splits the variables into chuncks*/
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+  /*Takes those chunks and removes anything after the hashtag*/
+  vars[key] = value.replace(/#\b[^#]*$/gi, '');
+
   });
 
-//cordova event handling
+  console.log('from webviewactivity');
+  console.log(vars);
+  return vars;
 
-document.addEventListener("resume", onResume, false);
-function onResume() {
-   setTimeout(function() {
-        console.log('resume');
-        // $state.go("templates.doc_profile");//working
-        }, 0);
-}
+  }
+
+  if($localStorage.doctororpatient === "doctor" ){
+
+  if($rootScope.pat_phnofromwebview){
+  $localStorage.onOff=2;
+  $ionicLoading.show({
+  template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+  duration:5000
+  });
+  console.log($rootScope.pat_phnofromwebview);
+  $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+  return '/templates/sendPrescription';
+  }
+  $timeout( function() {
+  $state.go('templates.loadingDoctor');
+  }, 0);
+
+  }
+
+  else{
+  //do nothing
+  console.log('UNDEFINED');
+  }
+
+
+>>>>>>> 220ffb73b7e57aa21c321b58793c22023b0c6d63
+
+
+
+
+  //-------------------------------------ONESIGNAL PUSH SETUP---------------------
+  });
+
+  //cordova event handling
+
+  document.addEventListener("resume", onResume, false);
+  function onResume() {
+  setTimeout(function() {
+  console.log('resume');
+  // $state.go("templates.doc_profile");//working
+  }, 0);
+  }
 
 
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 
-        $rootScope.previousState = fromState;
-        // console.log(toState.name.indexOf('app.patient_home'));
-      if(toState.name.indexOf('app.patient_home') > -1)
-      {
-        // Restore platform default transition. We are just hardcoding android transitions to auth views.
-        //$ionicConfig.views.transition(none);
-        // If it's ios, then enable swipe back again
-        if(ionic.Platform.isIOS())
-        {
-          $ionicConfig.views.transition('none');
-          $ionicConfig.views.swipeBackEnabled(false);
-        }
-        else{
-          $ionicConfig.views.transition('none');
-        }
-          console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
-      }
-      // console.log(toState.name);
-      if (toState.name != "app.searchDoctors") {
-        $rootScope.sideMenuForSearch = false;
-      }
-      if (toState.name == "app.patient_summary") {
-        // $rootScope.hideSideMenu = true;
-        console.log('summary');
-      }
-      console.log($rootScope.previousState.name);
-      $ionicPlatform.registerBackButtonAction(function (event) {
-        console.log($state.$current.name);
-        if ( ( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
-            // alert('route to home page and set the root to homepage');
+  $rootScope.previousState = fromState;
+  // console.log(toState.name.indexOf('app.patient_home'));
+  if(toState.name.indexOf('app.patient_home') > -1)
+  {
+  // Restore platform default transition. We are just hardcoding android transitions to auth views.
+  //$ionicConfig.views.transition(none);
+  // If it's ios, then enable swipe back again
+  if(ionic.Platform.isIOS())
+  {
+  $ionicConfig.views.transition('none');
+  $ionicConfig.views.swipeBackEnabled(false);
+  }
+  else{
+  $ionicConfig.views.transition('none');
+  }
+  console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+  }
+  // console.log(toState.name);
+  if (toState.name != "app.searchDoctors") {
+  $rootScope.sideMenuForSearch = false;
+  }
+  if (toState.name == "app.patient_summary") {
+  // $rootScope.hideSideMenu = true;
+  console.log('summary');
+  }
+  console.log($rootScope.previousState.name);
+  $ionicPlatform.registerBackButtonAction(function (event) {
+  console.log($state.$current.name);
+  if ( ( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
+  // alert('route to home page and set the root to homepage');
 
-            $rootScope.completeConsultation = $ionicPopup.show({
-            title:"Alert!!!",
-            template: "<div >PLease send the prescription and complete the consultation</b></div>",
-            cssClass: 'requestPopup',
-            buttons: [
-            {
-            text: 'Ok',
-            type: 'button-royal',
-            onTap:function(){
-            console.log('cancel');
-            $ionicHistory.clearCache();
-            $ionicHistory.clearHistory();
-            $ionicHistory.nextViewOptions({
-              disableAnimate: true,
-              disableBack: true
-            });
-              // $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
-            }
-            },
-            ]
-            });
-
-            }
-            else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted") {
-              $ionicHistory.clearCache();
-              $ionicHistory.clearHistory();
-              $ionicHistory.nextViewOptions({
-                disableBack: true,
-                historyRoot: true
-              });
-              $state.go("app.patient_home");
-            }
-            else if($rootScope.previousState.name === "templates.prescription" && $state.$current.name === "templates.consulted_patient"){
-              $ionicHistory.clearCache();
-              $ionicHistory.clearHistory();
-              $ionicHistory.nextViewOptions({
-                disableBack: true,
-                historyRoot: true
-              });
-              $state.go("templates.doctor_home");
-            }
-            else if($state.$current.name === "templates.prescription"){
-              $rootScope.prescriptioAlert = $ionicPopup.show({
-              title:"Alert!!!",
-              template: "<div >PLease send the prescription to the Patient</b></div>",
-              cssClass: 'requestPopup',
-              buttons: [
-              {
-              text: 'Ok',
-              type: 'button-royal',
-              onTap:function(){
-              console.log('cancel');
-              $ionicHistory.clearCache();
-              $ionicHistory.clearHistory();
-              $ionicHistory.nextViewOptions({
-                disableAnimate: true,
-                disableBack: true
-              });
-                // $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
-              }
-              },
-              ]
-              });
-            }
-            else {
-                // For all other states, the H/W BACK button is enabled
-                navigator.app.backHistory();
-            }
-        }, 1000);
-
+  $rootScope.completeConsultation = $ionicPopup.show({
+  title:"Alert!!!",
+  template: "<div >PLease send the prescription and complete the consultation</b></div>",
+  cssClass: 'requestPopup',
+  buttons: [
+  {
+  text: 'Ok',
+  type: 'button-royal',
+  onTap:function(){
+  console.log('cancel');
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+  $ionicHistory.nextViewOptions({
+  disableAnimate: true,
+  disableBack: true
+  });
+  // $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+  }
+  },
+  ]
   });
 
+  }
+  else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted") {
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+  $ionicHistory.nextViewOptions({
+  disableBack: true,
+  historyRoot: true
+  });
+  $state.go("app.patient_home");
+  }
+  else if($rootScope.previousState.name === "templates.prescription" && $state.$current.name === "templates.consulted_patient"){
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+  $ionicHistory.nextViewOptions({
+  disableBack: true,
+  historyRoot: true
+  });
+  $state.go("templates.doctor_home");
+  }
+  else if($state.$current.name === "templates.prescription"){
+  $rootScope.prescriptioAlert = $ionicPopup.show({
+  title:"Alert!!!",
+  template: "<div >PLease send the prescription to the Patient</b></div>",
+  cssClass: 'requestPopup',
+  buttons: [
+  {
+  text: 'Ok',
+  type: 'button-royal',
+  onTap:function(){
+  console.log('cancel');
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+  $ionicHistory.nextViewOptions({
+  disableAnimate: true,
+  disableBack: true
+  });
+  // $state.go('templates.doctor_home',{}, {location: "replace", reload: false})
+  }
+  },
+  ]
+  });
+  }
+  else if($state.$current.name === "templates.sendPrescription"){
+  // $ionicHistory.clearCache();
+  // $ionicHistory.clearHistory();
+  // $ionicHistory.nextViewOptions({
+  //   disableAnimate: true,
+  //   disableBack: true
+  // });
+  $state.go("templates.doctor_home")
 
-  // press again to exit
-  $ionicPlatform.registerBackButtonAction(function(e){
-      $rootScope.currState=$ionicHistory.currentStateName();
-      console.log($rootScope.previousState.name);
+  }
+  else if($state.$current.name === "templates.doctor_home"){
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+  $ionicHistory.nextViewOptions({
+  disableAnimate: true,
+  disableBack: true
+  });
+  $state.go("templates.doctor_home",{reload:true})
 
-      if($state.$current.name === 'templates.doctor_home' || $state.$current.name ==='app.patient_home'){
-        $ionicHistory.clearHistory();
-        $ionicHistory.clearCache();
-        // $ionicHistory.removeBackView();
-        console.log($ionicHistory.backView());
-        console.log('H/W back disabled');
-        $interval.cancel(checkAcceptedReq);
-      }
-      if ($rootScope.backButtonPressedOnceToExit) {
-      ionic.Platform.exitApp();
-      }
-      else if ($ionicHistory.backView()) {
-        $ionicHistory.goBack();
-        console.log('cameback');
-      }
-      else {
-        $rootScope.backButtonPressedOnceToExit = true;
+  }
+  else if($state.$current.name === "app.patient_home"){
+  $ionicHistory.clearCache();
+  $ionicHistory.clearHistory();
+  $ionicHistory.nextViewOptions({
+  disableAnimate: true,
+  disableBack: true
+  });
+  $state.go("app.patient_home",{reload:true})
 
-        window.plugins.toast.showWithOptions({
-            message: "Press back button again to exit",
-            duration: "short", // 2000 ms
-            position: "bottom",
-            styling: {
-            opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-            backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-            textColor: '#ffffff', // Ditto. Default #FFFFFF
-            textSize: 10.5, // Default is approx. 13.
-            cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-            horizontalPadding: 10, // iOS default 16, Android default 50
-            verticalPadding: 6 // iOS default 12, Android default 30
-            }
-        });
-        setTimeout(function(){
-          $rootScope.backButtonPressedOnceToExit = false;
-        },2000);
-        console.log('doNOthing');
-      }
-      e.preventDefault();
-      return false;
-  },101);
+  }
+  else {
+  // For all other states, the H/W BACK button is enabled
+  navigator.app.backHistory();
+  }
+  }, 1000);
 
+  });
   })
 
 DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
@@ -592,6 +671,7 @@ $stateProvider
 })
 
 .state('app.patient_summary', {
+  cache : false,
   url: "/patient_summary/:calledDoctor/:consultId",
   views: {
     'menuContent': {
@@ -719,6 +799,7 @@ $stateProvider
   })
 
   .state('app.callAccepted', {
+    cache : false,
     url: "/callAccepted/:accptdDoc/:callId/:callFlag",
     views: {
       'menuContent': {
@@ -829,8 +910,8 @@ $stateProvider
     url: "/invite_reviews",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/invite_reviews.html"
-
+        templateUrl: "views/templates/invite_reviews.html",
+        controller:'contactsCtrl'
       }
     }
   })
@@ -847,6 +928,7 @@ $stateProvider
   })
 
   .state('templates.prescription', {
+    cache : false,
     url: "/notesForPatient/:reqPat",
     views: {
       'menuContent': {
@@ -857,6 +939,7 @@ $stateProvider
   })
 
   .state('templates.sendPrescription', {
+    cache : false,
     url: "/sendPrescription/:reqPat",
     views: {
       'menuContent': {

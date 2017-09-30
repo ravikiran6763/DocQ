@@ -9933,6 +9933,14 @@ ion-content.scroll-content.ionic-scroll {
     -webkit-transition-duration: 0s;
     transition-duration: 0s; }
 
+.demoButton {
+  width: 100%;
+  position: relative;
+  margin-top: 42% !important;
+  margin-left: 7% !important; }
+  .demoButton p {
+    color: white; }
+
 .sideMenuToggle {
   position: absolute;
   margin-top: -16%;

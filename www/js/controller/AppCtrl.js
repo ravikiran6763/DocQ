@@ -579,15 +579,17 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
  $scope.clearAllHistory = function(){
 	 if($localStorage.doctororpatient === 'patient'){
-		 $state.go('app.patient_home');
+		$ionicHistory.clearCache().then(function(){ $state.go('app.patient_home'); });
+
+ 		console.log($ionicHistory.viewHistory());
+
 	 }
 	 if($localStorage.doctororpatient === 'doctor'){
-		$state.go('templates.doctor_home');
+		 $ionicHistory.clearCache().then(function(){ $state.go('templates.doctor_home'); });
+
+ 		console.log($ionicHistory.viewHistory());
 	}
-		$ionicHistory.clearHistory();
-		$ionicHistory.clearHistory();
-		$ionicHistory.clearCache();
-		console.log($ionicHistory.viewHistory());
+
  }
 	$scope.getPatientDetails = function(){
 			$state.go('app.patient_profile');
@@ -1485,6 +1487,9 @@ $scope.sendprescription = function()
 		$rootScope.chekTests;
 
 }
+
+// FOR SENDING PRESCRIPTION FROM VSEE UI
+
 
 
 

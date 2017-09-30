@@ -306,7 +306,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 															disableBack: true
 														});
 														$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-														// $state.go('templates.doctor_home');
 
 													}
 
