@@ -161,10 +161,6 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification=false;
-
-
-<<<<<<< HEAD
-=======
 	console.log('thisis after getting');
 	console.log(get["phno"]);
 	function getUrlVars() {
@@ -181,10 +177,6 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 	console.log(vars);
 	return vars;
 	}
-
->>>>>>> 220ffb73b7e57aa21c321b58793c22023b0c6d63
-
-
 
 })
 

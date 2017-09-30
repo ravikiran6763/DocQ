@@ -10,7 +10,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 
   // $rootScope.prescription={};
 
-<<<<<<< HEAD
   $scope.currentPatient={};
   // $window.location.reload();
   $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
@@ -53,7 +52,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   }
 
   $ionicLoading.show();
-=======
 // console.log(templates.doc_profile);
 if($state.$current.name === 'templates.prescription'){
     $rootScope.headerTxt="Notes";
@@ -113,9 +111,5 @@ else{
     console.log('failure data', error);
   })
 }
-
->>>>>>> 220ffb73b7e57aa21c321b58793c22023b0c6d63
-
-
 
 })
