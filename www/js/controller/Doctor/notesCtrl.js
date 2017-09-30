@@ -13,7 +13,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   $scope.currentPatient={};
   // $window.location.reload();
   $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-  console.log($rootScope.currentPatient.patientNum);
+  // console.log($rootScope.currentPatient.patientNum);
   $localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
   $rootScope.patientFname=$scope.currentPatient.patientFname;
   $rootScope.patientLname=$scope.currentPatient.patientLname;

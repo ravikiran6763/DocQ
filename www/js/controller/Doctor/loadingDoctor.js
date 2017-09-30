@@ -104,12 +104,13 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
 
             var username = "greet+"+$localStorage.user;
             var password = "DQ_doctor";
+
             function checkNewMessages()
             {
                 var success = function(message)
                 {
                   $rootScope.unreadchatforpatient = message;
-                  console.log($scope.unreadchatforpatient);
+                  console.log($rootScope.unreadchatforpatient);
                 }
 
                 var failure = function()
@@ -176,9 +177,9 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     //     }
     //
     //     hello.login(uname1,pw1,success, failure);
-    //
-    //
-    //
+
+
+
     // $state.go('templates.doctor_home');
 
   }, 0);

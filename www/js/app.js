@@ -221,6 +221,59 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
         .endInit();
 
         console.log('deviceredy');
+
+
+        var get = getUrlVars();
+
+      	console.log('thisis after getting');
+      	console.log(get["phno"]);
+
+
+        $rootScope.pat_phnofromwebview = get["phno"];
+
+        var a  = $rootScope.pat_phnofromwebview.split('%20');
+
+
+        $rootScope.patientphone = a[1];
+        console.log('this is assigning');
+        console.log($rootScope.patientphone);
+
+
+
+        if($rootScope.pat_phnofromwebview){
+          console.log($rootScope.pat_phnofromwebview);
+            $state.go('templates.sendPrescription',{ "reqPat": $rootScope.patientphone},{location: "replace", reload: false});
+
+            return '/templates/sendPrescription';
+
+
+        }
+        else{
+          //do nothing
+
+          console.log('UNDEFINED');
+        }
+
+
+
+      	function getUrlVars() {
+          var vars = {};
+          /*Splits the variables into chuncks*/
+          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+              /*Takes those chunks and removes anything after the hashtag*/
+              vars[key] = value.replace(/#\b[^#]*$/gi, '');
+
+
+          });
+
+      		console.log('from webviewactivity');
+      		console.log(vars);
+      		return vars;
+      }
+
+
+
+
         console.log($localStorage.doctororpatient);
         if($localStorage.doctororpatient === "doctor"){
           $timeout( function() {
@@ -808,7 +861,7 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/templates/sendPrescription.html",
-        controller:'sendPrescriptionCtrl'
+        controller:'notesCtrl'
       }
     }
   })
