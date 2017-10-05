@@ -408,7 +408,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 
 							window.plugins.toast.showWithOptions({
-							message: "Please Select Atleast One Search Criteria",
+							message: "Please select atleast one search criteria",
 							duration: "short", // 2000 ms
 							position: "bottom",
 							styling: {
@@ -489,15 +489,15 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									{
 										console.log('empty');
 												var confirmPopup = $ionicPopup.confirm({
-															 title: 'DoctorQuick',
-															 template: 'No doctors are available right now!!',
+															 title: 'No Doctors Available',
+															 template: 'Please try again after some time',
 															 cssClass: 'videoPopup',
 															 scope: $scope,
 															 buttons: [
 
 															 {
 																 text: 'Ok',
-																 type: 'button-positive',
+																 type: 'button-royal',
 																 onTap: function(e) {
 																 console.log('ok');
 
@@ -529,7 +529,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		var pwtologout = "DQ_patient";
 
    	var confirmPopup = $ionicPopup.confirm({
-						title: 'DoctorQuick',
+
 						template: '<center>Are you sure you want to Signout?</center>',
 						cssClass: 'videoPopup',
 						scope: $scope,
@@ -1083,7 +1083,7 @@ $scope.done = function (prescType,sno){
 												$rootScope.prescription.diagnosisforpatient="";
 												// alert('please enter diagnosis');
 												window.plugins.toast.showWithOptions({
-												message: "Please Enter Diagnosis",
+												message: "Please enter diagnosis",
 												duration: "short", // 2000 ms
 												position: "bottom",
 												styling: {
@@ -1096,9 +1096,9 @@ $scope.done = function (prescType,sno){
 												verticalPadding: 12 // iOS default 12, Android default 30
 												}
 												});
-												$timeout(function() {
-													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-												}, 1000);
+												// $timeout(function() {
+												// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+												// }, 1000);
 											 }  break;
             case 2:			//for tests
 											if($rootScope.prescription.checkedTests)
@@ -1113,7 +1113,7 @@ $scope.done = function (prescType,sno){
 											else {
 												$rootScope.prescription.checkedTests="";
 												window.plugins.toast.showWithOptions({
-												message: "Please Enter Tests",
+												message: "Please enter test recomended",
 												duration: "short", // 2000 ms
 												position: "bottom",
 												styling: {
@@ -1126,9 +1126,9 @@ $scope.done = function (prescType,sno){
 												verticalPadding: 12 // iOS default 12, Android default 30
 												}
 												});
-												$timeout(function() {
-													 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-												}, 1000);
+												// $timeout(function() {
+												// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+												// }, 1000);
 												// alert('please enter tests details');
 											}
                 			break;
@@ -1147,7 +1147,7 @@ $scope.done = function (prescType,sno){
 														// alert('please enter medication');
 													$rootScope.prescription.medicationforpatien="";
 													window.plugins.toast.showWithOptions({
-													message: "Please Enter Medication",
+													message: "Please enter medication",
 													duration: "short", // 2000 ms
 													position: "bottom",
 													styling: {
@@ -1160,9 +1160,9 @@ $scope.done = function (prescType,sno){
 													verticalPadding: 12 // iOS default 12, Android default 30
 													}
 													});
-													$timeout(function() {
-														 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-													}, 1000);
+													// $timeout(function() {
+													// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+													// }, 1000);
 												}
 
                 console.log("3. Selected Name: " + prescType );

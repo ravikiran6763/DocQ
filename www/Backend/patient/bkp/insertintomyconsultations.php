@@ -48,7 +48,7 @@
 		else
 		{
 		echo "Query Submitted";
-		echo	$deductAmount = "INSERT INTO patientWallet(patientPhone,consultationId,amountDeducted,debitedDatetime,consultDatetime,consultedWith) VALUES ('$patient_phno','$callId','250',now(),now(),'$doctor_phno')";
+			$deductAmount = "INSERT INTO patientWallet(patientPhone,consultationId,amountDeducted,debitedDatetime,consultDatetime,consultedWith) VALUES ('$patient_phno','$callId','250',now(),now(),'$doctor_phno')";
 			$retvaldeductAmount = mysql_query( $deductAmount, $dbhandle );
 			if(!$retvaldeductAmount)
 			{

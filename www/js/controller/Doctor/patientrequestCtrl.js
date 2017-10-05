@@ -470,7 +470,7 @@ console.log('actiondate',timestamp);
 									$rootScope.closeDocPopUp=true;
 									console.log($rootScope.closeDocPopUp);
 									$scope.noResponsePopup = $ionicPopup.show({
-												template: "<div ng-app='refresh_div' ><p>Patient did not respond .</p></div>",
+												template: "<div ng-app='refresh_div' ><p>No response has been received from patient .</p></div>",
 												cssClass: 'requestPopup',
 												scope: $scope,
 												buttons: [
@@ -585,7 +585,7 @@ $scope.popupShown = true;
 				}, 3000);
 
 				$scope.patientDeclined = $ionicPopup.show({
-							template: "<div >Patient has declined for a consultation</div>",
+							template: "<div >Patient does not wish to proceed for a consultation at this time</div>",
 							cssClass: 'requestPopup',
 							scope: $scope,
 							buttons: [

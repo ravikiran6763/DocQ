@@ -16,7 +16,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     console.log($ionicHistory.currentStateName());
 
     $ionicConfig.views.swipeBackEnabled(false);
-    
+
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
         if($scope.deviceAndroid){
@@ -106,7 +106,7 @@ $scope.patientRegistration = function()
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
           window.plugins.toast.showWithOptions({
-          message: "Valid code must be entered",
+          message: "Valid OTP must be entered",
           duration: "short", // 2000 ms
           position: "bottom",
           styling: {
@@ -207,9 +207,9 @@ $scope.patientRegistration = function()
               verticalPadding: 12 // iOS default 12, Android default 30
               }
               });
-        			$timeout(function() {
-        		     $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-        		  }, 1000);
+        			// $timeout(function() {
+        		  //    $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+        		  // }, 1000);
               // $cordovaToast.showLongBottom('Valid code must be entered tap on Resend to receive a code again.', 'short', 'center').then(function(success) {
               // // success
               // }, function (error) {
@@ -234,7 +234,7 @@ $scope.patientRegistration = function()
           $scope.submittedAge = true;
           // alert('You Should be 18+ to use this app')
               window.plugins.toast.showWithOptions({
-              message: "You Should be 18+ to use this app",
+              message: "You should be 18+ to use DoctorQuick",
               duration: "short", // 2000 ms
               position: "bottom",
               styling: {
@@ -572,7 +572,7 @@ $scope.patientRegistration = function()
   $scope.videoPlayerPopup = $ionicPopup.show({
     title: 'DoctorQuick',
     template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
-        '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/ZnWIc3EYGrg" frameborder="0" allowfullscreen autoplay></iframe>',
+        '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/x49Vi9iKE_o" frameborder="0" allowfullscreen autoplay></iframe>',
     // templateUrl: "views/app/viewdoctor_profile.html",
     cssClass: 'videoPlayerPopup',
     scope: $scope,

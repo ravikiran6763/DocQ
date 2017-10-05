@@ -15,13 +15,8 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 $ionicLoading.show();
 // console.log('consultations');
 
-$scope.deviceAndroid = ionic.Platform.isAndroid();
 var username = "greet+"+$localStorage.user;
-
-
 // console.log('MY CONSULTATION CALLED');
-
-
 if($localStorage.doctororpatient == 'doctor'){
 	var password = "DQ_doctor";
 
@@ -282,8 +277,14 @@ $scope.consultationDetails=function(consultedDoc)
 $scope.clicktochat = function(pateientPhone)
 {
 		//console.log(pateientPhone);
+		$scope.deviceAndroid = ionic.Platform.isAndroid();
+		if($scope.deviceAndroid === false){
+			alert($scope.deviceAndroid);
+			console.log('iosPlatform:',$scope.deviceAndroid);
+			$localStorage.sendPrescTo=$scope.patientToChat;
+			console.log($localStorage.sendPrescTo);
+		}
 		$scope.patientToChat=pateientPhone;
-
 		var username = "greet+"+$localStorage.user;
 		var password = "DQ_doctor";
 	 	var persontocall = "greet+" + $scope.patientToChat;
@@ -298,6 +299,7 @@ $scope.clicktochat = function(pateientPhone)
 
 		}
 		hello.chat(username,password,persontocall,success, failure);
+
 
 }
 console.log($state.$current.name);
