@@ -11,7 +11,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   if($scope.deviceAndroid === false){
     $localStorage.sendPrescTo='';
   }
-// console.log(templates.doc_profile);
+console.log("inNotesCOntoller:",$state.$current.name);
 if($state.$current.name === 'templates.prescription'){
     $rootScope.headerTxt="Notes";
     $rootScope.hideSideMenu = false;
@@ -62,6 +62,7 @@ if($state.$current.name === 'templates.prescription'){
 else{
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
+  $localStorage.activePatient=$stateParams.reqPat;
   patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
     $scope.patient_details=response;
     console.log($scope.patient_details);

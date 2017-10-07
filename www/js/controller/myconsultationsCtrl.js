@@ -276,14 +276,16 @@ $scope.consultationDetails=function(consultedDoc)
 }
 $scope.clicktochat = function(pateientPhone)
 {
-		//console.log(pateientPhone);
-		$scope.deviceAndroid = ionic.Platform.isAndroid();
-		if($scope.deviceAndroid === false){
-			alert($scope.deviceAndroid);
-			console.log('iosPlatform:',$scope.deviceAndroid);
-			$localStorage.sendPrescTo=$scope.patientToChat;
-			console.log($localStorage.sendPrescTo);
+		console.log(pateientPhone);
+		$rootScope.deviceIOS = ionic.Platform.isIOS();
+
+
+		if($scope.deviceIOS === true){
+			console.log('iosPlatform');
+			$localStorage.sendPrescTo=pateientPhone;
+			console.log('tosend prescription',$localStorage.sendPrescTo);
 		}
+
 		$scope.patientToChat=pateientPhone;
 		var username = "greet+"+$localStorage.user;
 		var password = "DQ_doctor";

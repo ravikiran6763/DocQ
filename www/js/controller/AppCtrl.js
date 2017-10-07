@@ -1073,13 +1073,25 @@ $scope.done = function (prescType,sno){
             case 1:			//for diagnosis
 											if($rootScope.prescription.diagnosisforpatient)
 											{
+												console.log($rootScope.previousState.name);
+
 												testresultbydoctor.diagnosisdone($rootScope.prescription.diagnosisforpatient);
 												$rootScope.chekDiag=true;
 												$rootScope.val=$rootScope.prescription.diagnosisforpatient;
-												$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+												if($rootScope.previousState.name === "templates.sendPrescription"){
+													console.log('prescription view');
+													$state.go('templates.sendPrescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+													return '/templates/sendPrescription';
+												}
+												else{
+													console.log('notes view');
+													$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+
+												}
 											}
 											else
 											{
+
 												$rootScope.prescription.diagnosisforpatient="";
 												// alert('please enter diagnosis');
 												window.plugins.toast.showWithOptions({
@@ -1103,12 +1115,22 @@ $scope.done = function (prescType,sno){
             case 2:			//for tests
 											if($rootScope.prescription.checkedTests)
 											{
+												console.log($rootScope.previousState.name);
+
 												testresultbydoctor.testrecommended($rootScope.prescription.checkedTests);
 												$rootScope.chekTests=true;
 												$rootScope.testVal=$rootScope.prescription.checkedTests;
 												// $state.go("templates.prescription");
-												$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+												if($rootScope.previousState.name === "templates.sendPrescription"){
+													console.log('prescription view');
+													$state.go('templates.sendPrescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+													return '/templates/sendPrescription';
+												}
+												else{
+													console.log('notes view');
+													$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
 
+												}
 											}
 											else {
 												$rootScope.prescription.checkedTests="";
@@ -1136,12 +1158,22 @@ $scope.done = function (prescType,sno){
 
 												if($rootScope.prescription.medicationforpatient)
 												{
+													console.log($rootScope.previousState.name);
+
 													testresultbydoctor.medicationdone($rootScope.prescription.medicationforpatient);
 													$rootScope.chekMedi=true;
 													$rootScope.mediVal=$rootScope.prescription.medicationforpatient;
 													// $state.go("templates.prescription");
-													$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+													if($rootScope.previousState.name === "templates.sendPrescription"){
+														console.log('prescription view');
+														$state.go('templates.sendPrescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+														return '/templates/sendPrescription';
+													}
+													else{
+														console.log('notes view');
+														$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
 
+													}
 												}
 												else {
 														// alert('please enter medication');
@@ -1212,9 +1244,9 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
         // alert('You Missed Medication');
         $scope.diagnosis = testresultbydoctor.getdiagnosis();
         $scope.tests = testresultbydoctor.gettests();
@@ -1244,9 +1276,9 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
       // alert('You Missed Tests');
       $scope.diagnosis = testresultbydoctor.getdiagnosis();
       $scope.medication = testresultbydoctor.getmedication();
@@ -1276,9 +1308,9 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
       // alert('You Missed Diagnosis');
       $scope.tests = testresultbydoctor.gettests();
       $scope.medication = testresultbydoctor.getmedication();
@@ -1307,9 +1339,9 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
       // alert('You have Missed tests and Medication');
       $scope.diagnosis = testresultbydoctor.getdiagnosis();
       var onlydiagnosis = {
@@ -1336,9 +1368,9 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
       // alert('You have Missed Diagnosis and Medication');
       $scope.tests = testresultbydoctor.gettests();
       var onlytests = {
@@ -1365,9 +1397,9 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
       // alert('You have Missed Diagnosis and Tests');
       $scope.medication = testresultbydoctor.getmedication();
       var onlymedication = {
@@ -1391,15 +1423,29 @@ $scope.sendprescription = function()
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+			// $timeout(function() {
+			// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+			// }, 1000);
       console.log('Please Select Atleast One Tests')
     }
 			$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-			console.log($stateParams.reqPat);
-			$rootScope.patientNum=$scope.currentPatient.patientNum;
-			$localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
+			// console.log('CURRENT PATIENT FOR SEND PRESCRIPTION',$scope.currentPatient);
+			console.log('FROM STATEPARAMS',$stateParams.reqPat);
+			// console.log('FROM SCOPE VALUE',$scope.currentPatient.patientNum);
+
+			if(!$scope.currentPatient){
+				$rootScope.patientNum=$stateParams.reqPat;
+				$localStorage.patientToDisplay=$stateParams.reqPat;
+			}
+			else{
+				console.log($stateParams.reqPat);
+				$rootScope.patientNum=$scope.currentPatient.patientNum;
+				$localStorage.patientToDisplay=$scope.currentPatient.patientNum;
+
+			}
+
+			// $localStorage.patientToDisplay=$stateParams.reqPat;
+
 		  var patientToDisplay =$localStorage.patientToDisplay;
     if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
     {

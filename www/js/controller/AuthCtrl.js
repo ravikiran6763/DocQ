@@ -356,9 +356,8 @@ $scope.patientRegistration = function()
             console.log($scope.patientExist);
             if($scope.patientExist === 'patient'){
               $scope.myPopup=$ionicPopup.show({
-                title: 'Patient Already Exist',
-
-                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please try again if the problem persists call us directly.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+                // title: '',
+                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 
                 cssClass: 'loginPopup',
                 scope: $scope,
@@ -484,8 +483,8 @@ $scope.patientRegistration = function()
         console.log("Patient Already Exist");
         //Alert Popup goes healthcare
         $scope.myPopup=$ionicPopup.show({
-          title: 'Doctor Already Exist',
-          template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please try again if the problem persists call us directly.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+          title: 'Number Already Registered',
+          template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please wait someone from DoctorQuick will call you shortly to help you with registration.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
           cssClass: 'loginPopup',
           scope: $scope,
         });
@@ -494,7 +493,7 @@ $scope.patientRegistration = function()
         {
         $scope.myPopup.close();
         $window.localStorage.clear();
-        $state.go('auth.loginNew');
+        // $state.go('auth.loginNew');
 
         };
 
