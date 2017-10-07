@@ -228,8 +228,8 @@ console.log(checkPatientActivity);
 				 }, 3000);
 
 		     var alertPopup = $ionicPopup.alert({
-		       title: 'Declined!',
-					 template: "<div>Doctor has declined for a consultation</div>",
+		      //  title: 'Declined!',
+					 template: "<div>Doctor does not wish to proceed for a consultation at this time</div>",
 					 cssClass: 'requestPopup',
 					 scope: $scope,
 		     });

@@ -36,19 +36,52 @@ console.log($rootScope.debit);
 		}
 		else if ($scope.payment.refund>$rootScope.balanceAmt) {
 
-						$cordovaToast.showLongCenter('Amount more than available balance.', 'short', 'center').then(function(success) {
-						// success
-						}, function (error) {
-						// error
-						});
+
+			window.plugins.toast.showWithOptions({
+			message: "Amount more than available balance.",
+			duration: "short", // 2000 ms
+			position: "bottom",
+			styling: {
+			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+			backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+			textColor: '#ffffff', // Ditto. Default #FFFFFF
+			textSize: 13, // Default is approx. 13.
+			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+			horizontalPadding: 16, // iOS default 16, Android default 50
+			verticalPadding: 12 // iOS default 12, Android default 30
+			}
+			});
+						// $cordovaToast.showLongCenter('Amount more than available balance.', 'short', 'center').then(function(success) {
+						// // success
+						// }, function (error) {
+						// // error
+						// });
 
 		}
 		else{
 
 			var confirmPopup = $ionicPopup.confirm({
-			 // title: '<h4>Thank You</h4>',
-				template: 'Your request for refund is processed and it will be added to your account number within 7 business days..'
+				title: 'Refund',
+				template: 'Your request for refund is processed and it will be credited to your account within 7 business days',
+				cssClass: 'videoPopup',
+				scope: $scope,
+				buttons: [
+					
+					{
+						text: 'Ok',
+						type: 'button-positive',
+						onTap: function(e) {
+						console.log('ok');
+
+						}
+					},
+				]
 			});
+
+			// var confirmPopup = $ionicPopup.confirm({
+			//  // title: '<h4>Thank You</h4>',
+			// 	template: 'Your request for refund is processed and it will be added to your account number within 7 business days..'
+			// });
 		}
 
 

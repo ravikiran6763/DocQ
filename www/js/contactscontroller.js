@@ -7,17 +7,20 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
   $rootScope.hideSideMenu = true;
 
   $ionicLoading.show({
-        template: '<p>Fetching all your contacts...</p><ion-spinner></ion-spinner>'
+        template: '<p>Fetching all your contacts</p><ion-spinner></ion-spinner>'
       });
 
-      $timeout(function () {
-        console.log('timeout');
-       $ionicLoading.hide();
-     }, 5000);
+    //   $timeout(function () {
+    //     console.log('timeout');
+    //    $ionicLoading.hide();
+    //  }, 5000);
 
 
       $scope.phoneContacts = [];
       function onSuccess(contacts) {
+        console.log(contacts);
+        $ionicLoading.hide();
+
           for (var i = 0; i < contacts.length; i++) {
           var contact = contacts[i];
           $scope.phoneContacts.push(contact);
@@ -28,9 +31,10 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
           alert(contactError);
       };
       var options = {};
-      // options.filter="mobile";
+      options.type="mobile";
       options.multiple = true;
       options.hasPhoneNumber =true;
+
       $cordovaContacts.find(options).then(onSuccess, onError);
       $scope.selectedlist = "";
       $scope.phones = {};
@@ -42,8 +46,8 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
             if($scope.phones[contactno])
             {
                 count++;
-                console.log(contactno);
-                $scope.selectedlist = contactno.split(' ').join('');
+                console.log(contactno.contact);
+                // $scope.selectedlist = contactno.split(' ').join('');
               if($scope.selectedlist.length > 10)
               {
                 $scope.selectedlist = $scope.selectedlist.substring(3);
@@ -52,7 +56,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
               {
                   $scope.selectedlist = $scope.selectedlist;
               }
-              invitereviews.invitereviewpatient($scope.selectedlist);
+              // invitereviews.invitereviewpatient($scope.selectedlist);
 
 
             if(count === 3)

@@ -58,4 +58,18 @@ angular.module('DoctorQuick.filters', [])
         return new Date(1970, 0, 1).setSeconds(seconds);
     };
 }])
+
+
+.filter('groupBy', function() {
+    return _.memoize(function(items, field) {
+            return _.groupBy(items, field);
+        }
+    );
+})
+
+.filter('unique', function() {
+    return function (arr, field) {
+        return _.uniq(arr, function(a) { return a[field]; });
+    };
+})
 ;

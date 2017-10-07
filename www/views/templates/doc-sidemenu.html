@@ -17,8 +17,6 @@
 
         </ion-nav-buttons>
 
-
-
         <ion-nav-title>
           {{headerTxt}}
           <!-- <img class="doctor-status " ng-src="" ng-show="showDocStatus"> its no more required-->
@@ -28,7 +26,6 @@
 
           <a class="button button-icon button-clear ion-navicon" menu-toggle="right" ng-show="hideSideMenu" ng-click="toggleLeftSideMenu()">
           </a>
-
           <!-- <a class="button button-icon button-clear ion-navicon" menu-toggle="right">
           </a> -->
         </ion-nav-buttons>
@@ -85,7 +82,8 @@
               <h2 class="menu-text">Terms Of Use</h2>
             </ion-item>
 
-            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+
+            <!-- <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
               <i class="icon ion-android-cloud-done"></i>
               <h2 class="menu-text">Notifications</h2>
             </ion-item>
@@ -93,7 +91,7 @@
               <div class="docSidemenuToggle">
                 <img  src="img/on.png"  width="100%" height="85%"  ng-hide="accptNotifications" ng-click="hideNotifications('hide')" on-drag-left="hideNotifications('hide')">
                 <img  src="img/off.png" width="100%" height="85%" ng-hide="rejectNotifications" ng-click="showNotifications('show')" on-drag-right="showNotifications('show')">
-              </div>
+              </div> -->
 
         </ion-list>
   </ion-content>

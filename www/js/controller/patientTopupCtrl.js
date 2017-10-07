@@ -26,7 +26,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 								console.log($scope.payment.topUp);
 							 if($scope.payment.topUp < 250){
 								 window.plugins.toast.showWithOptions({
-								 message: "amount must be ₹250 or higher.",
+								 message: "Amount must be ₹250 or higher.",
 								 duration: "short", // 2000 ms
 								 position: "bottom",
 								 styling: {
