@@ -447,8 +447,8 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                 if(rejection.status <= 0) {
                     // window.location = "noresponse.html";
                     $injector.get("$ionicLoading").show({
-      						        template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-                          duration:5000
+      						        template: '<ion-spinner></ion-spinner>',
+                          duration:20000
       						      });
                         $timeout( function(){
           									console.log('interval started');
@@ -479,7 +479,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                                },
                              ]
                            });
-          						         }, 5000 );
+                         }, 20000 );
 
 
                     return;
