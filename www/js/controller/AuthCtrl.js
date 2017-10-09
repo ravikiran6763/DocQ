@@ -480,7 +480,7 @@ $scope.patientRegistration = function()
     doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
       console.log(response);
       if(response == 'ERROR'){
-        console.log("Patient Already Exist");
+        console.log("doctor Already Exist");
         //Alert Popup goes healthcare
         $scope.myPopup=$ionicPopup.show({
           title: 'Number Already Registered',
@@ -498,6 +498,22 @@ $scope.patientRegistration = function()
         };
 
       }
+      else if(response == 'Exist'){
+        $scope.myPopup=$ionicPopup.show({
+          // title: '',
+          template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+
+          cssClass: 'loginPopup',
+          scope: $scope,
+                    });
+        $scope.closethis = function()
+        {
+        $scope.myPopup.close();
+        $window.localStorage.clear();
+        // $state.go('auth.loginNew');
+
+        };
+      }
       else{
 
         $scope.regDoc=doctorDetails;
@@ -505,8 +521,8 @@ $scope.patientRegistration = function()
         var showDoc= $ionicPopup.show({
           scope: $scope,
           template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
-                      "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}.<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
-          title: 'Thank You',
+                      "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
+          // title: 'Thank You',
           cssClass: 'videoPopup',
           buttons: [
 

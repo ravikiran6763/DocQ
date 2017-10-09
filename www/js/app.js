@@ -420,12 +420,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   });
   })
 
-DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
-  // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    }
-]);
+// DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
+//   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+//
+//
+//     }
+// ]);
 
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
@@ -438,6 +438,57 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  // $httpProvider.interceptors.push('Interceptor');
+  $httpProvider.interceptors.push(function($q,$injector,$localStorage,$timeout) {
+        return {
+          responseError: function(rejection) {
+                if(rejection.status <= 0) {
+                    // window.location = "noresponse.html";
+                    $injector.get("$ionicLoading").show({
+      						        template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+                          duration:5000
+      						      });
+                        $timeout( function(){
+          									console.log('interval started');
+                            $injector.get("$ionicPopup").confirm({
+                             // title: 'Unable to reach DoctorQuick servers',
+                             template: '<center>Unable to reach DoctorQuick servers please check your connection and try again</center>',
+                             cssClass: 'videoPopup',
+                             // scope: $scope,
+                             buttons: [
+                               // {
+                               // 	text: 'Cancel',
+                               // 	type: 'button-royal',
+                               // },
+                               {
+                                 text: 'OK',
+                                 type: 'button-royal',
+                                 onTap: function(e) {
+                                 console.log('ok');
+                                  console.log($localStorage.doctororpatient);
+                                  if($localStorage.doctororpatient === "patient"){
+                                    $injector.get("$state").go("app.patient_home");
+                                  }
+                                  else{
+                                    $injector.get("$state").go("templates.doctor_home");
+                                  }
+
+                                 }
+                               },
+                             ]
+                           });
+          						         }, 5000 );
+
+
+                    return;
+                }
+                return $q.reject(rejection);
+            }
+        };
+    });
+
   $stateProvider
   .state('splash',{
     url:'/splash',

@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientCareCtrl', function($scope, $rootScope, $timeout, $localStorage, $cordovaToast, $ionicLoading, $ionicPopup,$ionicConfig, $http, patientCareService) {
+DoctorQuickApp.controller('patientCareCtrl', function($scope, $rootScope,$cordovaNetwork, $timeout, $localStorage, $cordovaToast, $ionicLoading, $ionicPopup,$ionicConfig, $http, patientCareService) {
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -11,7 +11,7 @@ $scope.submitted = false;
 	$scope.sendQuery=function(isQueryValid){
 		console.log(isQueryValid);
 		$scope.submitted = true;
-		console.log($scope.submitted);
+		// console.log($scope.submitted);
 		if(!$rootScope.cc.query){
 			console.log($rootScope.cc.query);
 			// $scope.queryPopup =$ionicPopup.show({
@@ -42,27 +42,38 @@ $scope.submitted = false;
 	      patientPhone:$localStorage.user,
 	      query:$rootScope.cc.query
 	    }
-	    patientCareService.submitQuery(patientQuery).then(function(response){
+	    patientCareService.submitQuery(patientQuery).then(function(response,status){
+				console.log(response);
+	//  var isOnline = $cordovaNetwork.isOnline()
+	 //
+	//  var isOffline = $cordovaNetwork.isOffline()
+
 	        $rootScope.cc.query="";
 
-				window.plugins.toast.showWithOptions({
-        message: "Your query has been submitted.",
-        duration: "short", // 2000 ms
-        position: "bottom",
-        styling: {
-        opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-        backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-        textColor: '#ffffff', // Ditto. Default #FFFFFF
-        textSize: 13, // Default is approx. 13.
-        cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-        horizontalPadding: 16, // iOS default 16, Android default 50
-        verticalPadding: 12 // iOS default 12, Android default 30
-        }
-        });
+				// window.plugins.toast.showWithOptions({
+        // message: "Your query has been submitted.",
+        // duration: "short", // 2000 ms
+        // position: "bottom",
+        // styling: {
+        // opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+        // backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+        // textColor: '#ffffff', // Ditto. Default #FFFFFF
+        // textSize: 13, // Default is approx. 13.
+        // cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+        // horizontalPadding: 16, // iOS default 16, Android default 50
+        // verticalPadding: 12 // iOS default 12, Android default 30
+        // }
+        // });
 
 
-	      }).catch(function(error){
+			}).catch(function(error){
+					console.log(error);
+					//
+					// if(error){
+					// 	alert('error ');
+					// }
 	      console.log('failure data', error);
+
 	    });
 		}
 

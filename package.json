@@ -12,10 +12,7 @@
         "bcrypt": "^0.8.5",
         "bluebird": "^3.4.7",
         "body-parser": "~1.9.2",
-<<<<<<< HEAD
-        "com.example.hello": "^0.7.0",
-=======
->>>>>>> 71ad12a506421533e585a64ffc0e4d70b4c0c3df
+        "com.example.hello": "file:///Users/amittantia/Desktop/VSEE/VseePlugin",
         "com.razorpay.cordova": "^1.3.1",
         "com.red_folder.phonegap.plugin.backgroundservice": "../veeresh mac data/bgs-core",
         "cordova-android": "^6.2.3",
