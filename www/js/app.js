@@ -115,13 +115,13 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       //console.log('Connection type: ' + $localStorage.networkType);
   }
 
-  document.addEventListener("offline", onOffline, false);
-  function onOffline() {
-      // Handle the offline event
-      console.log('offline');
-      alert('offline');
-
-  }
+  // document.addEventListener("offline", onOffline, false);
+  // function onOffline() {
+  //     // Handle the offline event
+  //     console.log('offline');
+  //     alert('offline');
+  //
+  // }
 })
 
 DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
@@ -438,56 +438,90 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
+  $httpProvider.defaults.timeout = 5000;
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // $httpProvider.interceptors.push('Interceptor');
-  $httpProvider.interceptors.push(function($q,$injector,$localStorage,$timeout) {
-        return {
-          responseError: function(rejection) {
-                if(rejection.status <= 0) {
-                    // window.location = "noresponse.html";
-                    $injector.get("$ionicLoading").show({
-      						        template: '<ion-spinner></ion-spinner>',
-                          duration:20000
-      						      });
-                        $timeout( function(){
-          									console.log('interval started');
-                            $injector.get("$ionicPopup").confirm({
-                             // title: 'Unable to reach DoctorQuick servers',
-                             template: '<center>Unable to reach DoctorQuick servers please check your connection and try again</center>',
-                             cssClass: 'videoPopup',
-                             // scope: $scope,
-                             buttons: [
-                               // {
-                               // 	text: 'Cancel',
-                               // 	type: 'button-royal',
-                               // },
-                               {
-                                 text: 'OK',
-                                 type: 'button-royal',
-                                 onTap: function(e) {
-                                 console.log('ok');
-                                  console.log($localStorage.doctororpatient);
-                                  if($localStorage.doctororpatient === "patient"){
-                                    $injector.get("$state").go("app.patient_home");
-                                  }
-                                  else{
-                                    $injector.get("$state").go("templates.doctor_home");
-                                  }
+  $httpProvider.interceptors.push(function($q,$injector,$localStorage,$timeout,$rootScope) {
+    return {
+          request: function (config) {
+              //config.cache = true;
+              config.timeout = 60000;
+              return config;
+          },
+          responseError: function (rejection,response) {
+            $rootScope.$watch('online', function(newValue, oldValue){
+                   if (newValue !== oldValue) {
+                      //  $rootScope.online=$rootScope.online;
+                       $injector.get("$ionicLoading").hide();
 
+                   }
+               });
+              //  console.log(response.config);
+              //console.log(rejection);
+              switch (rejection.status) {
+                  // case 0 :  var $http = $injector.get('$http');//for retry condition
+                  //           return $http(response.config);
+                  //         break;
+                  case -1 :
+                      console.log('connection timed out!');
+                      if($injector.get("$state").$current.name === "auth.loginNew"){
+                        console.log('loginview');
+                        // $injector.get("$ionicLoading").show({
+                        //       template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
+                        //       duration:30000
+                        //     });
+                              console.log($injector.get("$state").$current.name);
+
+                                // window.location = "noresponse.html";
+                                $injector.get("$ionicLoading").show({
+                  						        template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
+                  						      });
+                      }
+                      else{
+                        $injector.get("$ionicLoading").show({
+                              template: '<ion-spinner></ion-spinner><br><br>Recovering lost connection',
+                            });
+                      }
+                      break;
+                  case 404 :
+                      console.log('Error 404 - not found!');
+
+                      break;
+                  case 408 :
+                      console.log('Timeout');
+                      $injector.get("$ionicPopup").confirm({
+                            // title: 'Unable to reach DoctorQuick servers',
+                            template: '<center>Unable to reach DoctorQuick servers please check your connection and try again</center>',
+                            cssClass: 'videoPopup',
+                            // scope: $scope,
+                            buttons: [
+                              {
+                                text: 'OK',
+                                type: 'button-royal',
+                                onTap: function(e) {
+                                console.log('ok');
+                                 console.log($localStorage.doctororpatient);
+                                 if($localStorage.doctororpatient === "patient"){
+                                   $injector.get("$state").go("app.patient_home");
                                  }
-                               },
-                             ]
-                           });
-                         }, 20000 );
+                                 else{
+                                   $injector.get("$state").go("templates.doctor_home");
+                                 }
 
+                                }
+                              },
+                            ]
+                          });
 
-                    return;
-                }
-                return $q.reject(rejection);
-            }
-        };
+                      break;
+              }
+              return $q.reject(rejection);
+          }
+      }
     });
+
+
 
   $stateProvider
   .state('splash',{

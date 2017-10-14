@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,pingService) {
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
@@ -30,36 +30,26 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 
-			// $timeout( function(){
-			// 		console.log('interval started');
-		  //           $interval(checkNewMessages,2000);
-		  //        }, 60000 );
-			//
-			//
-			//
-			// 	var username = "greet+"+$localStorage.user;
-			// 	var password = "DQ_patient";
-			// 	$rootScope.unreadchatforpatient = 0;
-			//
-			//
-			// 	function checkNewMessages()
-			// 	{
-			// 		var success = function(message)
-			// 		{
-			//
-			// 				$rootScope.unreadchatforpatient = message;
-			// 				console.log($scope.unreadchatforpatient);
-			//
-			// 		}
-			//
-			// 			var failure = function()
-			// 			{
-			// 					console.log('this is from patient home CTRL');
-			// 			}
-			//
-			// 				hello.unreadchatfromusers(username,password,success, failure);
-			//
-			// 	}
+			$timeout( function(){
+				$interval(startPinging,2000);
+			}, 2000 );
+
+
+
+				var username = "greet+"+$localStorage.user;
+				var password = "DQ_patient";
+				$rootScope.unreadchatforpatient = 0;
+
+
+				function startPinging()
+				{
+					console.log('start piniging');
+					pingService.pingToServer().then(function(response){
+							console.log( response);
+					 }).catch(function(error){
+							 console.log('failure data', error);
+					 });
+				}
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;

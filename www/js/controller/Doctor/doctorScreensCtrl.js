@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager,LoginService) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -49,6 +49,11 @@ function checkConsultations(){
     $scope.emailNotification = 'Subscribed';
     // console.log($scope.emailNotification);
     $scope.Online = function (message) {
+
+      console.log($localStorage.user);
+      doctorServices.notifyPatient($localStorage.user).then(function(response){
+        console.log(response);
+      })
           console.log(message);
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
@@ -57,7 +62,11 @@ function checkConsultations(){
             doctorphno : $localStorage.user,
             onoff : $localStorage.onOff
           }
-          doctoronoffdetails.doctoronoff(whichdoctoronoff);
+          doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
+  				console.log(response);
+  				}).catch(function(error){
+  				console.log('failure data', error);
+  				});
 
             var uname1 = "greet+"+$localStorage.user;
             var pw1 = "DQ_doctor";
@@ -76,6 +85,41 @@ function checkConsultations(){
               hello.login(uname1,pw1,success, failure);
               $ionicLoading.hide();
 
+              //Unregister from onesignal notifications
+              $scope.accptNotifications=false;
+    					$scope.rejectNotifications=true;
+    					window.plugins.OneSignal.getIds(function(ids){
+                //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+                //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+                console.log(JSON.stringify(ids['userId']));
+                $scope.playerId=JSON.stringify(ids['userId']);
+    						// alert('oneSignal')
+                console.log($scope.playerId);
+    						if($localStorage.doctororpatient === 'patient'){
+    							var updatePlayer ={
+    								palyerId:$scope.playerId,
+    								userNum:$localStorage.user,
+    								user:'patient'
+    							}
+    						}
+    						else{
+    							var updatePlayer ={
+    								palyerId:$scope.playerId,
+    								userNum:$localStorage.user,
+    								user:'doctor'
+    							}
+
+
+    						}
+
+                LoginService.updatePlayer(updatePlayer).then(function(response){
+                  console.log(response);
+                })
+
+
+
+
+              });
 
         };
         $scope.Offline = function (message) {
@@ -92,7 +136,12 @@ function checkConsultations(){
               doctorphno : $localStorage.user,
               onoff : $localStorage.onOff
         }
-        doctoronoffdetails.doctoronoff(whichdoctoronoff);
+        console.log(whichdoctoronoff);
+        doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
+				console.log(response);
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
 
         var unametologout = "greet+"+$localStorage.user;
         var pwtologout = "DQ_doctor";
@@ -107,6 +156,44 @@ function checkConsultations(){
             console.log("An Error occured kindly check your Interner Connection");
           }
         hello.logout(unametologout,pwtologout,success, failure);
+
+
+        $scope.accptNotifications=true;
+        $scope.rejectNotifications=false;
+        if($localStorage.doctororpatient === 'patient'){
+          var updatePlayer ={
+            palyerId:'',
+            userNum:$localStorage.user,
+            user:'patient'
+          }
+
+          $scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+          var playerId = JSON.parse($window.localStorage.getItem("patientDetails"));
+          playerId[0][8] = "";
+          console.log(playerId);
+          console.log($scope.patient_details[0][8]);
+          localStorage.setItem("patientDetails",JSON.stringify(playerId));
+          console.log(angular.fromJson($window.localStorage['patientDetails']));
+
+          LoginService.updatePlayer(updatePlayer).then(function(response){
+            console.log(response);
+          })
+        }
+        else{
+          var updatePlayer ={
+            palyerId:'',
+            userNum:$localStorage.user,
+            user:'doctor'
+          }
+
+          LoginService.updatePlayer(updatePlayer).then(function(response){
+            console.log(response);
+          })
+        }
+
+
+
+
 
         };
 

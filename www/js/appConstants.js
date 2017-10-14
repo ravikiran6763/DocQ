@@ -32,6 +32,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'languages': 'common/languages.php',
         'updatePlayer': 'common/updatePlayer.php',
         'alreadyLoggedIn': 'common/alreadyLoggedIn.php',
+        'pingToServer': 'common/ping.php',
+
 
         /*PATIENT APIS*/
         'patientRegistration' :'patient/patientRegistration.php',
@@ -115,7 +117,9 @@ DoctorQuickApp.constant('BASE_URL', {
         'patientTrasactionHistory':'DQ/patientWallet/patientTrasactionHistory.php',
 
         /*  DOCTOR ON OFF API */
-        'doctoronoffconditions':'doctor/doctoronoffline.php'
+        'doctoronoffconditions':'doctor/doctoronoffline.php',
+        'notifyPatient':'doctor/notifyPatient.php'
+
 
     })
 .constant('AUTH_EVENTS', {

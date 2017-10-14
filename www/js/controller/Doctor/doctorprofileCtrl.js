@@ -155,7 +155,7 @@ console.log('failure data', error);
         {
 
           var confirmPopup = $ionicPopup.confirm({
-            template: '<b>Your DoctorQuick Balance is too low.</b>',
+            template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹250.</b></center> ',
             cssClass: 'videoPopup',
             scope: $scope,
             buttons: [

@@ -20,7 +20,7 @@ DoctorQuickApp.service('patientCareService', function ($http,$q, BASE_URL, API) 
   this.submitCallBack = function (patientPhone){
     console.log('from service',patientPhone);
     var deferred = $q.defer();
-    $http.post(BASE_URL.url + API.paientCallBack,patientPhone)
+    $http.post(BASE_URL.url + API.paientCallBack,patientPhone,{timeout: 1000})
     .success(function (data, status, headers, config){
       deferred.resolve(data);
     })

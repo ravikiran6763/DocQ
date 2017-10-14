@@ -1,7 +1,7 @@
-DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$interval, $ionicConfig, $ionicHistory,$timeout, $window, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
+DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$interval, $ionicConfig, $ionicHistory,$timeout, $window, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,LoginService) {
 
 
-  // 
+  //
   // var username = "greet+"+$localStorage.user;
   // var password = "DQ_doctor";
   // function checkNewMessages()
@@ -31,6 +31,26 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
         });
     var uname1 = "greet+"+$localStorage.user;
     var pw1 = "DQ_doctor";
+
+    window.plugins.OneSignal.getIds(function(ids) {
+      $scope.playerId=JSON.stringify(ids['userId']);
+      // console.log($scope.playerId);
+      var updatePlayer ={
+        palyerId:$scope.playerId,
+        userNum:$localStorage.user,
+        user:'doctor'
+      }
+      console.log(updatePlayer);
+      LoginService.updatePlayer(updatePlayer).then(function(response){
+        console.log(response);
+      })
+    });
+
+    doctorServices.notifyPatient($localStorage.user).then(function(response){
+      console.log(response);
+    })
+
+
     if($scope.deviceAndroid === true){
 
         var success = function(message)
