@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$interval, $ionicConfig, $ionicHistory,$timeout, $window, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,LoginService) {
+DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$interval, $ionicConfig, $ionicHistory,$timeout, $window, $localStorage, $ionicLoading, doctorServices,rateDoctorServices,LoginService,doctoronoffdetails) {
 
 
   //
@@ -49,6 +49,15 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     doctorServices.notifyPatient($localStorage.user).then(function(response){
       console.log(response);
     })
+    var whichdoctoronoff = {
+      doctorphno : $localStorage.user,
+      onoff : 1
+    }
+    doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
+    console.log(response);
+    }).catch(function(error){
+    console.log('failure data', error);
+    });
 
 
     if($scope.deviceAndroid === true){

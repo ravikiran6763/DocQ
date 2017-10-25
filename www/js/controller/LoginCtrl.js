@@ -13,7 +13,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							$cookies.put('password', $scope.loginData.pin);
 						}
 						else
-						{
+ 						{
 								$cookies.put('Username', '');
 								$cookies.put('password', '');
 						}

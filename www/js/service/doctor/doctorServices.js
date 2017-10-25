@@ -322,4 +322,17 @@ this.notifyPatient = function (doctor){
   return deferred.promise;
 }
 
+
+var newPatientAdded="";
+var newPatient="";
+this.addNewPatient = function(newPatient)
+{
+     newPatientAdded = newPatient;
+}
+this.getNewPatient = function()
+{
+  return newPatientAdded;
+}
+
+
 });

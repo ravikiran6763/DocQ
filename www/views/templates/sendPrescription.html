@@ -1,8 +1,8 @@
 <ion-view class="patient-notes-view" cache-view="false">
 
-  <ion-content scroll="false" ng-repeat="pt in patient_details">
-
-    <div class="top-content"  >
+  <ion-content scroll="false" >
+<!-- ng-repeat="pt in patient_details" -->
+    <div class="top-content" ng-repeat="pt in patient_details" >
       <div class="details">
         <div class="profileImage">
           <img ng-src="{{pt.image}}">
@@ -18,7 +18,21 @@
     <div class="notesDescription">
       <p >After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
     </div >
-    <div class="card ">
+      <div class="card " style="margin-bottom: -4%;">
+        <div class="row" ui-sref="templates.addNewPatient">
+              <div ng-repeat="pt in patient_details" class="col col-75"  ng-show="shownewPatient" >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
+              <div class="col col-75"  ng-hide="shownewPatient"  ng-repeat="n in patientAdded">Patient : {{n.fname}} {{n.lname}}</div>
+
+              <div class="col">
+                <!-- <label class="checkbox">
+                  <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
+                </label> -->
+                <i class="icon ion-chevron-right icon-accessory" ></i>
+              </div>
+        </div>
+
+      </div>
+    <div class="card " ng-repeat="pt in patient_details">
     <div class="row">
           <div class="col col-75"  ui-sref="templates.diagnosisForPatient({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})" >Diagnosis</div>
           <div class="col" ui-sref="templates.diagnosisForPatient({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})">
@@ -49,8 +63,8 @@
   </div>
 
   <div class="buttons">
-   <button  class="button button-block button-assertive" ng-click="sendprescription();">Send Prescription</button>
-   <!-- <button  class="button button-block button-energized" ng-click="sendprescription();">Complete without charge</button> -->
+   <button  class="button button-block button-assertive" ng-click="sendprescription();">Complete & charge</button>
+   <button  class="button button-block button-energized" ng-click="sendprescription();">Complete without charge</button>
  </div>
 
   </ion-content>

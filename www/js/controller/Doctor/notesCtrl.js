@@ -1,11 +1,20 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService,doctorServices) {
 
   $scope.toggle = true;
 	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 
+
+  $rootScope.patientAdded=doctorServices.getNewPatient();
+  console.log($rootScope.patientAdded);
+  if($rootScope.patientAdded){
+    $rootScope.shownewPatient=false;
+  }
+  else{
+    $rootScope.shownewPatient=true;
+  }
   // $rootScope.prescription={};
   $scope.deviceAndroid = ionic.Platform.isAndroid();
   if($scope.deviceAndroid === false){
@@ -18,7 +27,7 @@ if($state.$current.name === 'templates.prescription'){
     $scope.currentPatient={};
     // $window.location.reload();
     $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-    console.log($rootScope.currentPatient.patientNum);
+    // console.log($rootScope.currentPatient.patientNum);
     $localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
     $rootScope.patientFname=$scope.currentPatient.patientFname;
     $rootScope.patientLname=$scope.currentPatient.patientLname;
@@ -32,10 +41,9 @@ if($state.$current.name === 'templates.prescription'){
     $localStorage.reqPat = $stateParams.reqPat;
 
     var patientToDisplay =$localStorage.patientToDisplay;
-    console.log(patientToDisplay);
+    // console.log(patientToDisplay);
     if(!patientToDisplay){
-      // alert('from state params',$stateParams.reqPat);
-      // $stateParams.reqPat='8792618138';
+
 
       patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
         $scope.patient_details=response;
@@ -58,8 +66,44 @@ if($state.$current.name === 'templates.prescription'){
 
     $ionicLoading.show();
 
+    $rootScope.addPatient=function(patient){
+      $rootScope.defaultPatient=patient;
+      console.log(patient);
+      $state.go("templates.addNewPatient")
+    }
+
+
 }
-else{
+
+else if($state.$current.name === 'templates.addNewPatient'){
+  $scope.toggle = true;
+
+  $rootScope.showBackBtn=true;
+  $rootScope.showNotification=false;
+  $rootScope.showBadge=false;
+  $rootScope.headerTxt="Add Patient";
+  $rootScope.hideSideMenu = false;
+
+  $rootScope.newPatient={};
+  $rootScope.saveNewPatient=function(){
+  	// alert('add new patient');
+
+    var patientAdded={
+      fname:$rootScope.newPatient.fname,
+      lname:$rootScope.newPatient.lname,
+      age:$rootScope.newPatient.age,
+      sex:$rootScope.newPatient.sex
+    }
+    window.history.back();
+    doctorServices.addNewPatient(patientAdded);
+
+  }
+
+
+
+}
+
+else {
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
   $localStorage.activePatient=$stateParams.reqPat;
@@ -71,5 +115,7 @@ else{
     console.log('failure data', error);
   })
 }
+
+
 
 })

@@ -14,13 +14,15 @@ this.getinvitecontacts = function()
 
 
 
-this.sendsmstoinvitereviews = function (contactsfrominvitereview,queryforinvitereview) {
+this.sendsmstoinvitereviews = function (contactsfrominvitereview,queryforinvitereview,doctor) {
 
 
 toinvite = {
 
     phnos : contactsfrominvitereview,
-    query : queryforinvitereview
+    query : queryforinvitereview,
+    user : doctor
+
 
 };
 

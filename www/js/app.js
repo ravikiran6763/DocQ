@@ -280,6 +280,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   setTimeout(function() {
   console.log('resume');
   // $state.go("templates.doc_profile");//working
+  // $state.go($state.current, {}, { reload: true, inherit: false, notify: true });
+//
   }, 0);
   }
 
@@ -547,6 +549,11 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     templateUrl: "views/auth/getPassword.html",
     controller: 'ForgotPasswordCtrl'
   })
+  .state('auth.terms', {
+    url: "/terms",
+    templateUrl: "views/auth/terms.html"
+  })
+
 
 
 
@@ -905,6 +912,16 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/templates/prescription.html",
+        controller:'notesCtrl'
+      }
+    }
+  })
+  .state('templates.addNewPatient', {
+    cache : false,
+    url: "/addNewPatient",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/addNewPatient.html",
         controller:'notesCtrl'
       }
     }

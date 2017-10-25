@@ -1227,8 +1227,19 @@ $rootScope.chekMedi = false;
 $rootScope.chekDiag = false;
 $rootScope.chekTests = false;
 
+$rootScope.newPatient={};
+
+
+
+
 $scope.sendprescription = function()
 {
+
+	$localStorage.newPatientFname='';
+	$localStorage.newPatientLname='';
+	$localStorage.newPatientAge='';
+	$localStorage.newPatientSex='';
+
 	$scope.diagnosis ="";
 	$scope.tests = "";
 	$scope.medication = "";
@@ -1482,7 +1493,7 @@ $scope.sendprescription = function()
 
 				console.log($rootScope.chekDiag);
 
-        //test jpeg image response
+        //test jpeg image response/Users/amittantia/Desktop/RK/VseePlugin
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
         console.log(response);
         $scope.pic=response
@@ -1551,17 +1562,6 @@ $scope.sendprescription = function()
 		$rootScope.chekTests;
 
 }
-
-// FOR SENDING PRESCRIPTION FROM VSEE UI
-
-// Factory.ckIfOnline();
-//     $rootScope.$watch('online', function(newValue, oldValue){
-// 			alert('watching');
-//         if (newValue !== oldValue) {
-//             $scope.online=$rootScope.online;
-//         }
-//     });
-//
 
 
 

@@ -100,6 +100,8 @@ $stable:                          red !default;
 @import "scss/auth/signup.styles";
 @import "scss/auth/forgot-password.styles";
 @import "scss/auth/forgotPassword.styles";
+@import "scss/auth/terms.styles";
+
 
 @import "scss/sidemenu/side-menu.styles";
 @import "scss/profile/profile.styles";
@@ -147,6 +149,8 @@ $stable:                          red !default;
 @import "scss/templates/termsofuse.styles";
 @import "scss/templates/inviteResult.styles";
 @import "scss/templates/video.styles";
+@import "scss/templates/addPatient.styles";
+
 //registration
 @import "scss/DoctorRegistration/doctorReg1.styles";
 @import "scss/DoctorRegistration/doctorReg2.styles";
