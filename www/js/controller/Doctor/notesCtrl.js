@@ -46,8 +46,6 @@ if($state.$current.name === 'templates.prescription'){
     var patientToDisplay =$localStorage.patientToDisplay;
     // console.log(patientToDisplay);
     if(!patientToDisplay){
-
-
       patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
         $scope.patient_details=response;
         console.log($scope.patient_details);
