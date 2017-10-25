@@ -10,7 +10,7 @@
         <img  ng-show="mydocs.docImage2 == null " ng-src="img/doc.jpg" >
       </div>
       <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname |capitalize}} {{ mydocs.doctorLname |capitalize}} </h1>
-      <h2>{{mydocs.doctorDegrees}}, Degrees<br>practicing since {{mydocs.practicingSince}}</h2>
+      <h2>{{mydocs.doctorDegrees}}<br>practicing since {{mydocs.practicingSince}}</h2>
       <h2></h2>
 
     </div>
@@ -22,7 +22,7 @@
             Rating
           </div>
           <div class=" col" ng-repeat="mydocs in myDocDetails1">
-            {{mydocs.ratings/mydocs.ratingCount | number }}/{{mydocs.ratingCount}}
+            {{mydocs.ratings/mydocs.ratingCount | number:1 }}/{{mydocs.ratingCount}}
           </div>
 
 
