@@ -263,19 +263,19 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					else if(response === "doctor")
 					{
 						$localStorage.doctororpatient = response;
-						window.plugins.OneSignal.getIds(function(ids) {
-							$scope.playerId=JSON.stringify(ids['userId']);
-							// console.log($scope.playerId);
-							var updatePlayer ={
-								palyerId:$scope.playerId,
-								userNum:$localStorage.user,
-								user:'doctor'
-							}
-							console.log(updatePlayer);
-							LoginService.updatePlayer(updatePlayer).then(function(response){
-								console.log(response);
-							})
-						});
+						// window.plugins.OneSignal.getIds(function(ids) {
+						// 	$scope.playerId=JSON.stringify(ids['userId']);
+						// 	// console.log($scope.playerId);
+						// 	var updatePlayer ={
+						// 		palyerId:$scope.playerId,
+						// 		userNum:$localStorage.user,
+						// 		user:'doctor'
+						// 	}
+						// 	console.log(updatePlayer);
+						// 	LoginService.updatePlayer(updatePlayer).then(function(response){
+						// 		console.log(response);
+						// 	})
+						// });
 
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
 							$rootScope.doctor_details=response;//store the response array in doctor details
@@ -315,8 +315,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 														alert("Error Occurred While Loggin in to DoctoQuick");
 
 													}
+<<<<<<< HEAD
 												// $state.go('templates.doctor_home');//for logging in from browser
 												hello.login(uname1,pw1,success, failure);
+=======
+												$state.go('templates.doctor_home');//for logging in from browser
+												// hello.login(uname1,pw1,success, failure);
+
+>>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
 
 
 												$timeout( function(){

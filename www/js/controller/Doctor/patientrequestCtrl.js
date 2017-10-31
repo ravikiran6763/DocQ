@@ -247,8 +247,9 @@ console.log('actiondate',timestamp);
 					console.log('diffDays',diffDays);
 					console.log('diffMins',diffMins);
 				  console.log('diffHrs',diffHrs);
-
-					$rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
+          $rootScope.requestedDUration= diffMins+ " Minutes"+" ago";
+          // next line displys hr min and sec
+					// $rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
 					// $rootScope.requestedDUration= diffDays + " day " + "ago";
 					console.log($rootScope.requestedDUration);
 					var diff = currentTimestamp-timestamp;

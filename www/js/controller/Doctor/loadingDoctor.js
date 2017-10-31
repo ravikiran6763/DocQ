@@ -46,6 +46,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
       })
     });
 
+<<<<<<< HEAD
     doctorServices.doctorDetails($localStorage.user).then(function(response,data){
       $rootScope.doctor_details=response;//store the response array in doctor details
       console.log($rootScope.doctor_details);
@@ -55,6 +56,8 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
       console.log('failure data', error);
     });
 
+=======
+>>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
     doctorServices.notifyPatient($localStorage.user).then(function(response){
       console.log(response);
     })
