@@ -43,9 +43,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 				function startPinging()
 				{
-					console.log('start piniging');
+					// console.log('start piniging');
 					pingService.pingToServer().then(function(response){
-							console.log( response);
 					 }).catch(function(error){
 							 console.log('failure data', error);
 					 });

@@ -22,7 +22,7 @@
             Rating
           </div>
           <div class=" col" ng-repeat="mydocs in myDocDetails1">
-            {{mydocs.ratings/mydocs.ratingCount | number:1 }}/{{mydocs.ratingCount}}
+            {{mydocs.ratings/mydocs.ratingCount | number:1 }}({{mydocs.ratingCount}} Reviews)
           </div>
 
 

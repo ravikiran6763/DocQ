@@ -85,7 +85,7 @@ else if($state.$current.name === 'templates.addNewPatient'){
   $rootScope.newPatient={};
   $rootScope.saveNewPatient=function(){
   	// alert('add new patient');
-
+    $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
     var patientAdded={
       fname:$rootScope.newPatient.fname,
       lname:$rootScope.newPatient.lname,
