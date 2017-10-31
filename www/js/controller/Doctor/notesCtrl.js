@@ -26,6 +26,9 @@ if($state.$current.name === 'templates.prescription'){
     $rootScope.hideSideMenu = false;
     $scope.currentPatient={};
     // $window.location.reload();
+    $rootScope.patientAdded=doctorServices.getNewPatient();
+    console.log($rootScope.patientAdded);
+
     $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
     // console.log($rootScope.currentPatient.patientNum);
     $localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
@@ -105,6 +108,9 @@ else {
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
   $localStorage.activePatient=$stateParams.reqPat;
+  $rootScope.patientAdded=doctorServices.getNewPatient();
+  console.log($rootScope.patientAdded);
+  
   patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
     $scope.patient_details=response;
     console.log($scope.patient_details);
