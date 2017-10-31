@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('inviteresultCtrl', function($scope,$stateParams,invitereviews,invitereviewsresultservice){
+DoctorQuickApp.controller('inviteresultCtrl', function($scope,$stateParams,$localStorage,invitereviews,invitereviewsresultservice){
 
 
   $scope.count = $stateParams.countofselected;
@@ -10,8 +10,9 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$stateParams,invit
 
 $scope.Savedata = function()
 {
+  console.log($localStorage.user);
       $scope.contacts = invitereviews.getinvitecontacts();
-      invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.cc.query);
+      invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.cc.query,$localStorage.user);
 }
 
 

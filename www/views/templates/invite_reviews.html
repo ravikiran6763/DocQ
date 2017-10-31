@@ -2,18 +2,18 @@
   <ion-nav-title>
    <span>Invite Reviews</span>
  </ion-nav-title>
- <ion-content  scroll="true">
+ <ion-content ng-controller="contactsCtrl" scroll="true">
 
    <div class="top-content">
      <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
    </div>
 
-   <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts ">
-     <ion-checkbox ng-repeat="number in contact.phoneNumbers | groupBy:'number.value'  "
+   <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
+     <ion-checkbox ng-repeat="number in contact.phoneNumbers"
                     ng-model="phones[number.value]"
                     class="item-checkbox-right" ng-click="selectedcontacts(number.value);">
-                    {{ contact.name.formatted }} {{number.value}}
-<!-- {{number.value}} -->
+                    {{ contact.name.formatted }}
+
     </ion-checkbox>
 
    </ion-list>

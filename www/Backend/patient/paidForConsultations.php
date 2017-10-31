@@ -11,7 +11,7 @@
         $walletDetails = array();
 
 
-        $sql = " select doctorFname,doctorMname,doctorLname,consultationId,amountDeducted,date(consultDatetime) as date,consultedWith from patientWallet,doctorDetails where patientPhone='$patientphno' and doctorDetails.doctorPhone=patientWallet.consultedWith and consultationId is not NULL ";
+        $sql = " select docImage2,doctorFname,doctorMname,doctorLname,consultationId,amountDeducted,date(consultDatetime) as date,consultedWith from patientWallet,doctorDetails,doctorImages where patientPhone='$patientphno' and doctorDetails.doctorPhone=patientWallet.consultedWith and doctorDetails.doctorPhone=doctorImages.docPhone and consultationId is not NULL ";
         $retval = mysql_query( $sql, $dbhandle );
 
         while($row = mysql_fetch_array($retval))

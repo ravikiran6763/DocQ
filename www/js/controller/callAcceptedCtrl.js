@@ -40,6 +40,13 @@ console.log($rootScope.callFlag,$rootScope.callId);
  doctorServices.doctorDetails($rootScope.accptdDoc).then(function(response){
  $scope.calledDetails=response;
  console.log($scope.calledDetails);
+ $scope.getStars = function(rating) {
+	 // Get the value
+	 var val = parseFloat(rating);
+	 // Turn value into number/100
+	 var size = val/5*100;
+	 return size + '%';
+ }
  }).catch(function(error){
  console.log('failure data', error);
  });

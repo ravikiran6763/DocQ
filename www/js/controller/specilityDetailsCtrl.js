@@ -225,7 +225,7 @@ $rootScope.popUpClosed == false;
      else{
        var confirmPopup = $ionicPopup.confirm({
    						title: 'Low Balance',
-   						template: '<center><b>Your request could not be processed as your<br>DoctorQuick wallet balance is less than ₹250.</b></center> ',
+   						template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹250.</b></center> ',
    						cssClass: 'videoPopup',
    						scope: $scope,
    						buttons: [

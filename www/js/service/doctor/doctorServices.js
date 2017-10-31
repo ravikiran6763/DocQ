@@ -308,4 +308,31 @@ this.pushReqStatus = function (id){
   return deferred.promise;
 }
 
+
+this.notifyPatient = function (doctor){
+  console.log(doctor);
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.notifyPatient,doctor)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
+
+var newPatientAdded="";
+var newPatient="";
+this.addNewPatient = function(newPatient)
+{
+     newPatientAdded = newPatient;
+}
+this.getNewPatient = function()
+{
+  return newPatientAdded;
+}
+
+
 });

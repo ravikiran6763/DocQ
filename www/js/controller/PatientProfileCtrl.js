@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$state,$window,$ionicConfig,$ionicPush,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$cordovaEmailComposer,$state,$window,$ionicConfig,$ionicPush,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -16,6 +16,15 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 	console.log($scope.patient_details);
 	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
 
+	$scope.updatePatientEmail=function(){
+		// alert('update email here');
+		cordova.plugins.email.open({
+    to:      'ravikiran6763@gmail.com',
+    subject: 'Greetings',
+    body:    '<h1>Nice greetings from Leipzig</h1>',
+    isHtml:  true
+});
+	}
 
 $scope.register = function() {
  console.log('Ionic Push: Registering user');

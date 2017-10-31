@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localStorage, $ionicConfig, $ionicLoading, $http, $cordovaToast, doctorCareService) {
+DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localStorage,$timeout, $ionicConfig, $ionicLoading, $http, $cordovaToast, doctorCareService) {
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -67,7 +67,7 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localS
       noBackdrop: true,
       template: '<ion-spinner icon="lines"/><p class="item-icon-left">Loading stuff...</p>'
     });
-	
+
     doctorCareService.submitCallBack($localStorage.user).then(function(response){
         console.log(response);
 				$ionicLoading.hide();

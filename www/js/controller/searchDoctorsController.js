@@ -46,7 +46,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    {
 	      var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
- 				 template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
+ 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹250.</b></center> ',
  				 cssClass: 'videoPopup',
  				 scope: $scope,
  				 buttons: [

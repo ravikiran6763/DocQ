@@ -11,13 +11,6 @@ console.log('docprofileview');
 $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
-$scope.getStars = function(rating) {
-  // Get the value
-  var val = parseFloat(rating);
-  // Turn value into number/100
-  var size = val/5*100;
-  return size + '%';
-}
 
 
 $ionicLoading.show();
@@ -51,6 +44,14 @@ var data=$scope.myDocDetails1;//take all json data into this variable
                max: 5,
                total:$rootScope.totalRates
              }, ];
+             $scope.getStars = function(rating) {
+               // Get the value
+               var val = parseFloat(rating);
+               // Turn value into number/100
+               var size = val/5*100;
+               return size + '%';
+             }
+
     }
 }).catch(function(error){
 console.log('failure data', error);
@@ -155,7 +156,7 @@ console.log('failure data', error);
         {
 
           var confirmPopup = $ionicPopup.confirm({
-            template: '<b>Your DoctorQuick Balance is too low.</b>',
+            template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹250.</b></center> ',
             cssClass: 'videoPopup',
             scope: $scope,
             buttons: [

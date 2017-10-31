@@ -11,6 +11,15 @@ if (isset($postdata))
      $patient = $message->patient;
     $doctor = $message->doctor;
 
+
+    $storwInDb = "INSERT INTO offlineRequests(patient,doctor,dateAndTime) VALUES ('$patient','$doctor',now())";
+		$retvalstorwInDb = mysql_query( $storwInDb, $dbhandle );
+		if(!$retvalstorwInDb)
+		{
+		// die('Could not enter data: ' . mysql_error());
+		echo "ERROR";
+		}
+
     $sql = "select patientFname,patientLname  from patientDetails where patientPhone='$patient'  ";
     //$sql = "select count(*) as patient from patient_registration where ph_no='9844992181' and password='cmtpcmFu'";
     $retval = mysql_query( $sql, $dbhandle );
@@ -38,7 +47,7 @@ if (isset($postdata))
 
     $ch = curl_init('https://www.txtguru.in/imobile/api.php?');
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=tallysolutions&password=49332602&source=TALLYS&dmobile=91".$doctor."&message=Hello+Dr.$docName,Mr.$name+wants+to+consult+you,please+go+online+in+DoctorQuick+to+accept+the+consultations.");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "username=tallysolutions&password=49332602&source=TALLYS&dmobile=91".$doctor."&message=Hello+Dr.$docName,Mr.$name+wants+to+consult+you,please+go+online+in+DoctorQuick+to+accept+the+consultation.");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
     $data = curl_exec($ch);
     echo json_encode($userPass);

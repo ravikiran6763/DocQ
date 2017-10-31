@@ -13,7 +13,8 @@
  				//$sql = "select doctorfname,doctorMname,doctorLname,doctorPhone,doctorDegrees,practicingSince,doctorSex,doctorCountry,doctorCity,doctorFee,doctorSpecialityId,onoff,(select avg(rating) from doctorRatings where doctorRatings.ratingTo=doctorDetails.doctorPhone) as ratings, (select count(*) from doctorRatings where doctorRatings.ratingTo=doctorDetails.doctorPhone) as totalRates from doctorRatings,doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and doctorPhone='$loginphno' group by doctorDetails.doctorPhone";
 
 
-		$sql = "select doctorPhone,doctorFname,doctorMname,doctorLname,doctorFee,doctorPhone,doctorDegrees,practicingSince,ratings,ratingCount,donoff.onoff from doctorDetails,doctor_onoff as donoff where donoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$loginphno'";
+		// $sql = "select docImage2,doctorPhone,doctorFname,doctorMname,doctorLname,doctorFee,doctorPhone,doctorDegrees,practicingSince,ratings,ratingCount,donoff.onoff from doctorDetails,doctor_onoff,doctorImages as donoff where donoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$loginphno' and doctorImages.docPhone=doctorDetails.doctorPhone";
+		$sql = "select docImage2,doctorPhone,doctorFname,doctorMname,doctorLname,doctorFee,doctorPhone,doctorDegrees,practicingSince,ratings,ratingCount,donoff.onoff from doctorDetails,doctor_onoff as donoff,doctorImages where donoff.doctor_phno=doctorDetails.doctorPhone and doctorDetails.doctorPhone='$loginphno' and doctorImages.docPhone=doctorDetails.doctorPhone";
     $retval = mysql_query( $sql, $dbhandle );
         while($row = mysql_fetch_array($retval))
         {

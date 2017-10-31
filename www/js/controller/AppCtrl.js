@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform, $ionicPush, $ionicAuth,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=false;
@@ -479,6 +479,13 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 																			 max: 5
 																		 }];
 																		 console.log($scope.ratings);
+																		 $scope.getStars = function(rating) {
+												               // Get the value
+												               var val = parseFloat(rating);
+												               // Turn value into number/100
+												               var size = val/5*100;
+												               return size + '%';
+												             }
 																// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
 
 											 			}
@@ -605,9 +612,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	$rootScope.login={};
 	$rootScope.ratedBy;
-	$scope.updatePatientEmail=function(){
-		alert('update email here');
-	}
+
 		$scope.updatePwd=function(){
 			$rootScope.ratedBy=$scope.login.userPhone;
 			var newPwd={
@@ -615,6 +620,26 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			userPhone:$localStorage.user
 			};
 			console.log($scope.login.password);
+			if(!$scope.login.password){
+	      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
+	      $scope.submittedPwd = true;
+
+	      window.plugins.toast.showWithOptions({
+	      message: "Valid 4 digit password must be entered",
+	      duration: "short", // 2000 ms
+	      position: "bottom",
+	      styling: {
+	      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+	      backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+	      textColor: '#ffffff', // Ditto. Default #FFFFFF
+	      textSize: 13, // Default is approx. 13.
+	      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+	      horizontalPadding: 16, // iOS default 16, Android default 50
+	      verticalPadding: 12 // iOS default 12, Android default 30
+	      }
+	      });
+
+	    }
 			console.log($scope.login.verify);
 			if($scope.login.password && $scope.login.verify){
 				if($scope.login.password === $scope.login.verify){
@@ -1209,8 +1234,19 @@ $rootScope.chekMedi = false;
 $rootScope.chekDiag = false;
 $rootScope.chekTests = false;
 
+$rootScope.newPatient={};
+
+
+
+
 $scope.sendprescription = function()
 {
+
+	$localStorage.newPatientFname='';
+	$localStorage.newPatientLname='';
+	$localStorage.newPatientAge='';
+	$localStorage.newPatientSex='';
+
 	$scope.diagnosis ="";
 	$scope.tests = "";
 	$scope.medication = "";
@@ -1464,7 +1500,7 @@ $scope.sendprescription = function()
 
 				console.log($rootScope.chekDiag);
 
-        //test jpeg image response
+        //test jpeg image response/Users/amittantia/Desktop/RK/VseePlugin
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
         console.log(response);
         $scope.pic=response
@@ -1533,11 +1569,6 @@ $scope.sendprescription = function()
 		$rootScope.chekTests;
 
 }
-
-// FOR SENDING PRESCRIPTION FROM VSEE UI
-
-
-
 
 
 

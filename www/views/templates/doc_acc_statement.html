@@ -33,7 +33,9 @@
     <ul >
         <li class="" ng-repeat="details in DocAcc">
         <div class="profile-img">
-          <img src="img/doc.jpg">
+          <!-- <img src="img/doc.jpg"> -->
+          <img src="{{details.image}}">
+
         </div>
         <div class="name-content">
             <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}} {{details.totalWithdrawl}}</span></h2>

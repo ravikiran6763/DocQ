@@ -355,5 +355,18 @@ angular.module('DoctorQuick.factories', [])
    }
 })
 
+.factory('Factory', function($q, $http, $rootScope){
+    var httpLoc = 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/';
+    return{
+        ckIfOnline: function(){
+            $http.get(httpLoc);
+        },
+        change: function(){
+            return 'noresponse'
+        }
+    }
+})
+
+
 
 ;

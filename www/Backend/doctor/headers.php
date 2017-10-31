@@ -6,7 +6,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
       header('Access-Control-Max-Age: 86400');    // cache for 1 day
   }
 
-//  Access-Control headers are received during OPTIONS requests
+  // Access-Control headers are received during OPTIONS requests
   if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
       if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
@@ -21,7 +21,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 
   $username = "doctorquick2017";
   $password = "aishiteimasu";
-  $hostname = "doctorquick.cy3fske9ly7g.us-west-2.rds.amazonaws.com:3306";
+  $hostname = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
   //$hostname = "dq-new.cn214rm1segx.us-west-2.rds.amazonaws.com";
 
   //connection to the database

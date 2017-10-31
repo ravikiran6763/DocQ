@@ -15,7 +15,7 @@ if (isset($postdata))
 
      $doctorAccDetails = array();
 
-     $sql = "select patientFname,patientMname,patientLname,DoctorWallet.patientPhone,consultedDate,consultationAmount from DoctorWallet,patientDetails where docPhone ='$docPhone' and consultedDate>='$fromDate 00:00:00' and consultedDate<='$toDate 23:59:59' and patientDetails.patientPhone=DoctorWallet.patientPhone";
+     $sql = "select image,patientFname,patientMname,patientLname,DoctorWallet.patientPhone,consultedDate,consultationAmount from DoctorWallet,patientDetails,patientImages where docPhone ='$docPhone' and consultedDate>='$fromDate 00:00:00' and consultedDate<='$toDate 23:59:59' and patientDetails.patientPhone=DoctorWallet.patientPhone and patientImages.patientphone=DoctorWallet.patientPhone";
 
      $retval = mysql_query( $sql, $dbhandle );
 

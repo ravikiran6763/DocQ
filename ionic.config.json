@@ -14,5 +14,9 @@
       "path": "/api",
       "proxyUrl": "http://localhost:8100/"
     }
-  ]
+  ],
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic1"
 }

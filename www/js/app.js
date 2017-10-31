@@ -115,13 +115,13 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       //console.log('Connection type: ' + $localStorage.networkType);
   }
 
-  document.addEventListener("offline", onOffline, false);
-  function onOffline() {
-      // Handle the offline event
-      console.log('offline');
-      alert('offline');
-
-  }
+  // document.addEventListener("offline", onOffline, false);
+  // function onOffline() {
+  //     // Handle the offline event
+  //     console.log('offline');
+  //     alert('offline');
+  //
+  // }
 })
 
 DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
@@ -280,6 +280,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   setTimeout(function() {
   console.log('resume');
   // $state.go("templates.doc_profile");//working
+  // $state.go($state.current, {}, { reload: true, inherit: false, notify: true });
+//
   }, 0);
   }
 
@@ -420,12 +422,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   });
   })
 
-DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
-  // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-    $httpProvider.defaults.useXDomain = true;
-    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    }
-]);
+// DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
+//   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+//
+//
+//     }
+// ]);
 
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
@@ -438,6 +440,91 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
+  $httpProvider.defaults.timeout = 5000;
+  $httpProvider.defaults.useXDomain = true;
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  // $httpProvider.interceptors.push('Interceptor');
+  $httpProvider.interceptors.push(function($q,$injector,$localStorage,$timeout,$rootScope) {
+    return {
+          request: function (config) {
+              //config.cache = true;
+              config.timeout = 60000;
+              return config;
+          },
+          responseError: function (rejection,response) {
+            $rootScope.$watch('online', function(newValue, oldValue){
+                   if (newValue !== oldValue) {
+                      //  $rootScope.online=$rootScope.online;
+                       $injector.get("$ionicLoading").hide();
+
+                   }
+               });
+              //  console.log(response.config);
+              //console.log(rejection);
+              switch (rejection.status) {
+                  // case 0 :  var $http = $injector.get('$http');//for retry condition
+                  //           return $http(response.config);
+                  //         break;
+                  case -1 :
+                      console.log('connection timed out!');
+                      if($injector.get("$state").$current.name === "auth.loginNew"){
+                        console.log('loginview');
+                        // $injector.get("$ionicLoading").show({
+                        //       template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
+                        //       duration:30000
+                        //     });
+                              console.log($injector.get("$state").$current.name);
+
+                                // window.location = "noresponse.html";
+                                $injector.get("$ionicLoading").show({
+                  						        template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
+                  						      });
+                      }
+                      else{
+                        $injector.get("$ionicLoading").show({
+                              template: '<ion-spinner></ion-spinner><br><br>Recovering lost connection',
+                            });
+                      }
+                      break;
+                  case 404 :
+                      console.log('Error 404 - not found!');
+
+                      break;
+                  case 408 :
+                      console.log('Timeout');
+                      $injector.get("$ionicPopup").confirm({
+                            // title: 'Unable to reach DoctorQuick servers',
+                            template: '<center>Unable to reach DoctorQuick servers please check your connection and try again</center>',
+                            cssClass: 'videoPopup',
+                            // scope: $scope,
+                            buttons: [
+                              {
+                                text: 'OK',
+                                type: 'button-royal',
+                                onTap: function(e) {
+                                console.log('ok');
+                                 console.log($localStorage.doctororpatient);
+                                 if($localStorage.doctororpatient === "patient"){
+                                   $injector.get("$state").go("app.patient_home");
+                                 }
+                                 else{
+                                   $injector.get("$state").go("templates.doctor_home");
+                                 }
+
+                                }
+                              },
+                            ]
+                          });
+
+                      break;
+              }
+              return $q.reject(rejection);
+          }
+      }
+    });
+
+
+
   $stateProvider
   .state('splash',{
     url:'/splash',
@@ -462,6 +549,11 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     templateUrl: "views/auth/getPassword.html",
     controller: 'ForgotPasswordCtrl'
   })
+  .state('auth.terms', {
+    url: "/terms",
+    templateUrl: "views/auth/terms.html"
+  })
+
 
 
 
@@ -820,6 +912,16 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/templates/prescription.html",
+        controller:'notesCtrl'
+      }
+    }
+  })
+  .state('templates.addNewPatient', {
+    cache : false,
+    url: "/addNewPatient",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/addNewPatient.html",
         controller:'notesCtrl'
       }
     }

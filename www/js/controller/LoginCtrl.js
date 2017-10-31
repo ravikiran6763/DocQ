@@ -13,7 +13,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							$cookies.put('password', $scope.loginData.pin);
 						}
 						else
-						{
+ 						{
 								$cookies.put('Username', '');
 								$cookies.put('password', '');
 						}
@@ -315,8 +315,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 														alert("Error Occurred While Loggin in to DoctoQuick");
 
 													}
-												//$state.go('templates.doctor_home');//for logging in from browser
+												// $state.go('templates.doctor_home');//for logging in from browser
 												hello.login(uname1,pw1,success, failure);
+
 
 												$timeout( function(){
 												console.log('interval started');

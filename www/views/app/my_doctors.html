@@ -26,7 +26,7 @@
               <span ng-style="{ 'width': getStars(0) }"></span>
             </span>
             <span class="stars " ng-show="{{doctor.ratingCount != 0}}">
-              <span ng-style="{ 'width': getStars(3) }"></span>
+              <span ng-style="{ 'width': getStars(doctor.ratings/doctor.ratingCount) }"></span>
             </span>
             <p class="totalReview">
                 ({{doctor.ratingCount}} Reviews)

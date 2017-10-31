@@ -29,6 +29,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 						current: $scope.docRating,
 						max: 5
 				}, ];
+
 	};
 		$ionicLoading.show({
 		    template: '',
@@ -39,7 +40,13 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		// alert('list');
     $scope.myConsultedDoctors=response;
 		console.log($scope.myConsultedDoctors);
-		
+		$scope.getStars = function(rating) {
+			// Get the value
+			var val = parseFloat(rating);
+			// Turn value into number/100
+			var size = val/5*100;
+			return size + '%';
+		}
 		$ionicLoading.hide();
   }).catch(function(error){
   console.log('failure data', error);

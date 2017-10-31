@@ -5,6 +5,9 @@
 
     $postdata = file_get_contents("php://input");
 
+    use Razorpay\Api\Api;
+
+
 
     if (isset($postdata))
     {
@@ -24,6 +27,13 @@
 			else
 			{
 				echo "TransactionSuccessful";
+
+        $api = new Api('rzp_test_JTodx06v7mHqbr', 'OEhBHIi3YERtnELjzs1GxDCs');//test mode
+        // $api = new Api('rzp_live_JU6YPIIvdsBxyY', 'UAt4i1yyObWOLgLNmkIAfg8Q');//live mode
+
+        $payment = $api->payment->fetch($paymentId);
+        $payment->capture(array('amount' => $amountPaid));
+
       }
       	//  echo json_encode($patientDetails);
 		}

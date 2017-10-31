@@ -27,11 +27,11 @@ if (isset($postdata))
       {
         echo "patient";
 
-            // $loginUpdate = "update patientDetails set loginFlag=2 where patientPhone='$loginphno'";
-            // $retLogin = mysql_query( $loginUpdate, $dbhandle );
-            // while($row = mysql_fetch_array($retLogin))
-            // {
-            // }
+            $loginUpdate = "update patientDetails set loginFlag=2 where patientPhone='$loginphno'";
+            $retLogin = mysql_query( $loginUpdate, $dbhandle );
+            while($row = mysql_fetch_array($retLogin))
+            {
+            }
       }
 
 

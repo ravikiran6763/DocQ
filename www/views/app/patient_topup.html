@@ -7,7 +7,7 @@
           <div class="walletLogo">
             <img ng-src="img/dq_icon_payments_large_540x960.png" >
           </div>
-          <h1>DoctorQuick Wallet</h1>
+          <h1>DoctorQuick Deposit</h1>
         </div>
         <div class="balanceAmt ">
 
@@ -32,8 +32,8 @@
       <ul>
       <li  ng-repeat="doc in doctorsList">
         <div class="profile-img">
-          <img  ng-hide="r.image == null "ng-src="{{r.image}}"   >
-          <img  ng-show="r.image == null " ng-src="img/doc.jpg"  >
+          <img  ng-hide="doc.docImage2 == null "ng-src="{{doc.docImage2}}"   >
+          <img  ng-show="doc.docImage2 == null " ng-src="img/doc.jpg"  >
         </div>
         <div class="name-content">
           <div class="name">
@@ -52,7 +52,7 @@
           <p>₹{{doc.amountDeducted}}</p>
         </div>
       </li>
-    
+
 
     </ul>
 

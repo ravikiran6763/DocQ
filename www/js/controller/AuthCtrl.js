@@ -480,7 +480,7 @@ $scope.patientRegistration = function()
     doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
       console.log(response);
       if(response == 'ERROR'){
-        console.log("Patient Already Exist");
+        console.log("doctor Already Exist");
         //Alert Popup goes healthcare
         $scope.myPopup=$ionicPopup.show({
           title: 'Number Already Registered',
@@ -498,6 +498,22 @@ $scope.patientRegistration = function()
         };
 
       }
+      else if(response == 'Exist'){
+        $scope.myPopup=$ionicPopup.show({
+          // title: '',
+          template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+
+          cssClass: 'loginPopup',
+          scope: $scope,
+                    });
+        $scope.closethis = function()
+        {
+        $scope.myPopup.close();
+        $window.localStorage.clear();
+        // $state.go('auth.loginNew');
+
+        };
+      }
       else{
 
         $scope.regDoc=doctorDetails;
@@ -505,8 +521,8 @@ $scope.patientRegistration = function()
         var showDoc= $ionicPopup.show({
           scope: $scope,
           template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
-                      "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}.<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
-          title: 'Thank You',
+                      "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
+          // title: 'Thank You',
           cssClass: 'videoPopup',
           buttons: [
 
@@ -536,23 +552,9 @@ $scope.patientRegistration = function()
     $ionicLoading.show();
     $scope.termsPopup = $ionicPopup.show({
       title: 'Terms Of Use',
-      template: '<div ><p style="color:#fff; margin: -21px 0 0 15px; ">Please try again if the problem persists call us directly.</p></div><div style="position: absolute; margin-top: 0vh; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
-      '<div class="terms-content">'+
-      '<li>Use of the Site. DoctorQuick Private Limited. (“DoctorQuick”, “we”, “us”, or “our”) operates the website located at www.doctorquick.com and other related websites and mobile applications with links to these Terms of Use (collectively, the “Site”). We offer online telehealth services (the “Services”) enabling our members (“Members”) to report their health history and engage healthcare professionals (“Treating Providers”) to obtain medical and healthcare services (“Services”). By accessing and using the Site, you agree to be bound by these Terms of Use and all other terms and policies that appear on the Site. If you do not wish to be bound by any of these Terms of Use, you may not use the Site or the Services.</li>'+
-      '<br><li>Use of the Site. DoctorQuick Private Limited. (“DoctorQuick”, “we”, “us”, or “our”) operates the website located at www.doctorquick.com and other related websites and mobile applications with links to these Terms of Use (collectively, the “Site”). We offer online telehealth services (the “Services”) enabling our members (“Members”) to report their health history and engage healthcare professionals (“Treating Providers”) to obtain medical and healthcare services (“Services”). By accessing and using the Site, you agree to be bound by these Terms of Use and all other terms and policies that appear on the Site. If you do not wish to be bound by any of these Terms of Use, you may not use the Site or the Services.</li>'+
-
-      '</div>',
-      // templateUrl: "views/app/viewdoctor_profile.html",
+      templateUrl: "views/auth/terms.html",
       cssClass: 'termsPopup',
       scope: $scope,
-      // buttons: [
-      // 	{ text: 'Cancel' },
-      // 	{
-      // 	text: '<b>Agree</b>',
-      // 	type: 'button-positive',
-      //
-      // 	},
-      // ]
     });
 
     $scope.closethis = function()
