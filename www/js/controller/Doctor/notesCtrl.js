@@ -88,11 +88,7 @@ else if($state.$current.name === 'templates.addNewPatient'){
   $rootScope.newPatient={};
   $rootScope.saveNewPatient=function(){
   	// alert('add new patient');
-<<<<<<< HEAD
-
-=======
     $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
->>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
     var patientAdded={
       fname:$rootScope.newPatient.fname,
       lname:$rootScope.newPatient.lname,
@@ -112,15 +108,10 @@ else {
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
   $localStorage.activePatient=$stateParams.reqPat;
-<<<<<<< HEAD
   $scope.patientAdded=doctorServices.getNewPatient();
   console.log($scope.patientAdded);
-
-=======
   $rootScope.patientAdded=doctorServices.getNewPatient();
   console.log($rootScope.patientAdded);
-  
->>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
   patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
     $scope.patient_details=response;
     console.log($scope.patient_details);

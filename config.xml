@@ -356,11 +356,7 @@
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
     <engine name="android" spec="^6.2.3" />
-<<<<<<< HEAD
-    <engine name="ios" spec="^4.4.0" />
-=======
     <engine name="ios" spec="^4.5.2" />
->>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
     <plugin name="cordova-plugin-device" spec="^1.1.0">
         <variable name="MY_VARIABLE" value="my_variable_value" />
     </plugin>
@@ -369,16 +365,10 @@
     <plugin name="cordova-plugin-shared-preferences" spec="0.0.1" />
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
     <plugin name="phonegap-plugin-mobile-accessibility" spec="git+https://github.com/phonegap/phonegap-mobile-accessibility.git" />
-<<<<<<< HEAD
     <plugin name="com.razorpay.cordova" spec="^1.3.1" />
     <plugin name="com.red_folder.phonegap.plugin.backgroundservice" spec="../veeresh mac data/bgs-core" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
-    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
-=======
-    <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
-    <plugin name="com.razorpay.cordova" spec="^1.3.1" />
-    <plugin name="com.example.hello" spec="file:../newpluginforandroid/cordova-plugin-hello" />
->>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
+    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
 </widget>

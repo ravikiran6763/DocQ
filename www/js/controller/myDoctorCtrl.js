@@ -41,19 +41,16 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
     $scope.myConsultedDoctors=response;
 		console.log($scope.myConsultedDoctors);
 		$scope.getStars = function(rating) {
-<<<<<<< HEAD
 			// Get the value
 			var val = parseFloat(rating);
 			// Turn value into number/100
 			var size = val/5*100;
 			return size + '%';
-=======
 		  // Get the value
 		  var val = parseFloat(rating);
 		  // Turn value into number/100
 		  var size = val/5*100;
 		  return size + '%';
->>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
 		}
 		$ionicLoading.hide();
   }).catch(function(error){

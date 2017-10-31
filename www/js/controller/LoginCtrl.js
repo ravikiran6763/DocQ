@@ -315,15 +315,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 														alert("Error Occurred While Loggin in to DoctoQuick");
 
 													}
-<<<<<<< HEAD
 												// $state.go('templates.doctor_home');//for logging in from browser
 												hello.login(uname1,pw1,success, failure);
-=======
 												$state.go('templates.doctor_home');//for logging in from browser
 												// hello.login(uname1,pw1,success, failure);
-
->>>>>>> dfb6c55c300db30cfe42f30e442b0a64644f47b8
-
 
 												$timeout( function(){
 												console.log('interval started');
