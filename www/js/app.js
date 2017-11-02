@@ -306,9 +306,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
   console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
   }
-  // console.log(toState.name);
+  console.log(toState.name);
   if (toState.name != "app.searchDoctors") {
   $rootScope.sideMenuForSearch = false;
+  }
+  if (toState.name != "templates.invite_reviews") {
+    $rootScope.inviteButton = false;
+    $rootScope.hideSideMenu = true;
+  }
+  if (toState.name === "templates.doctor_home") {
+    $rootScope.showNotification = true;
+    	$rootScope.showBadge=true;
+    // $rootScope.hideSideMenu = true;
+  }
+  if (toState.name != "templates.doctor_home") {
+    $rootScope.showBackBtn=false;
+    // $rootScope.hideSideMenu = true;
   }
   if (toState.name == "app.patient_summary") {
   // $rootScope.hideSideMenu = true;
@@ -394,6 +407,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
 
   }
   else if($state.$current.name === "templates.doctor_home"){
+    $rootScope.inviteButton = true;
+
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
   $ionicHistory.nextViewOptions({

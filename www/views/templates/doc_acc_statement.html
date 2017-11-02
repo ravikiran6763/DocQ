@@ -34,12 +34,26 @@
         <li class="" ng-repeat="details in DocAcc">
         <div class="profile-img">
           <!-- <img src="img/doc.jpg"> -->
-          <img src="{{details.image}}">
+          <img  ng-hide="details.image == null " ng-src="{{details.image}}"   >
+          <img  ng-show="details.image == null " ng-src="img/dq_icon_payments_large_540x960.png"  >
+          <!-- <img src="{{details.image}}"> -->
 
         </div>
         <div class="name-content">
-            <h2>{{details.patientFname}} {{details.patientLname}}<span>₹{{details.consultationAmount}} {{details.totalWithdrawl}}</span></h2>
-            <p>{{details.consultedDate |  date :  "dd.MM.y"}}</p>
+          <!-- <h2 ng-hide="doc.doctorFname == null ">Dr. {{doc.doctorFname}} {{doc.doctorLname}}</h2> -->
+
+            <h2 ng-hide="details.patientFname == null ">{{details.patientFname}} {{details.patientLname}}
+              <span ng-hide="details.consultationAmount == null ">₹{{details.consultationAmount}}</span>
+
+            </h2>
+            <h2 ng-show="details.patientFname == null ">Withdrawl
+              <span >₹{{details.withdrawlAmount}}</span>
+
+            </h2>
+            <!-- <p>{{details.consultedDate |  date :  "dd.MM.y"}}</p> -->
+
+            <p class="msgContent" ng-hide="details.consultedDate == null "><font size=2>{{details.consultedDate}}</font></p>
+            <p class="msgContent" ng-show="details.consultedDate == null "><font size=2>{{details.withdrawlDate}}</font></p>
         </div>
 
         </li>

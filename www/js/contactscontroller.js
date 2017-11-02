@@ -4,7 +4,8 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
-  $rootScope.hideSideMenu = true;
+  $rootScope.hideSideMenu = false;
+  $rootScope.inviteButton = true;
 
   $ionicLoading.show({
         template: '<p>Fetching all your contacts...</p><ion-spinner></ion-spinner>'
@@ -55,10 +56,10 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
               invitereviews.invitereviewpatient($scope.selectedlist);
 
 
-            if(count === 3)
-            {
-              $state.go('templates.inviteresult',{'countofselected':count});
-            }
+            // if(count === 3)
+            // {
+            //   $state.go('templates.inviteresult',{'countofselected':count});
+            // }
 
             }
             else
@@ -71,4 +72,6 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
             $ionicLoading.hide();
       }
+
+
 })

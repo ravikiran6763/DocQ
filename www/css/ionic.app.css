@@ -10981,7 +10981,7 @@ ion-spinner.spinner-on-load {
   height: 30% !important; }
   .dqLogin-view .top-content .logoContainer {
     position: relative;
-    width: 65% !important;
+    width: 70% !important;
     margin: 0 auto; }
     .dqLogin-view .top-content .logoContainer .logo {
       width: 100% !important;
@@ -10989,7 +10989,7 @@ ion-spinner.spinner-on-load {
       margin: 0 auto; }
       .dqLogin-view .top-content .logoContainer .logo img {
         width: 100% !important;
-        margin-top: 15% !important; }
+        margin-top: 10% !important; }
 
 .dqLogin-view .login-content {
   width: 100% !important;
@@ -12324,7 +12324,8 @@ ion-side-menu .heading-item .message {
           overflow: hidden !important;
           height: 3vh;
           width: 100% !important;
-          text-overflow: ellipsis !important; }
+          text-overflow: ellipsis !important;
+          margin-top: 2% !important; }
         .patient-payment-view .bottom-content li .name-content .chatCount {
           float: left !important;
           margin: -9vh 0 0 -20vw !important; }
@@ -12705,7 +12706,8 @@ ion-side-menu .heading-item .message {
           overflow: hidden !important;
           height: 3vh;
           width: 100% !important;
-          text-overflow: ellipsis !important; }
+          text-overflow: ellipsis !important;
+          margin-top: 2% !important; }
         .topUp-refund-view .bottom-content li .name-content .chatCount {
           float: left !important;
           margin: -9vh 0 0 -20vw !important; }
@@ -13851,8 +13853,7 @@ ion-side-menu .heading-item .message {
   background-color: #e2e2e2 !important; }
   .inviteResults-view .selected {
     width: 100% !important;
-    margin: 0 auto;
-    height: 15vh; }
+    margin: 30px 0 0 0; }
     .inviteResults-view .selected p {
       text-align: center;
       font-size: 5vw; }

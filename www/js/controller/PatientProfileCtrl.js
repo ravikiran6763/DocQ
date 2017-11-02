@@ -97,7 +97,7 @@ $scope.register = function() {
 					buttons: [
 						{
 						text: 'Camera',
-						type: 'icon-left icon-google-drive button-assertive',
+						type: ' button-stable',
 						onTap: $scope.takePhoto = function () {
 															var options = {
 																quality: 75,

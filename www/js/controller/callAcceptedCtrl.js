@@ -77,13 +77,13 @@ $scope.checkWalletBalance = function()
 	if($localStorage.networkType == 'None')
 	{
 		var confirmPopup = $ionicPopup.confirm({
-						title: 'DoctorQuick',
+						// title: 'DoctorQuick',
 						template: 'You are Offline ',
 						cssClass: 'videoPopup',
 						scope: $scope,
 						buttons: [
 							{
-								text: 'Ok',
+								text: 'OK',
 								type: 'button-royal',
 								onTap: function(e) {
 								console.log('offline');
@@ -95,13 +95,13 @@ $scope.checkWalletBalance = function()
 	else if($localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
 	{
 		var confirmPopup = $ionicPopup.confirm({
-						title: 'DoctorQuick',
+						// title: 'DoctorQuick',
 						template: 'We detected slow nwtwork on your device ',
 						cssClass: 'videoPopup',
 						scope: $scope,
 						buttons: [
 							{
-								text: 'Ok',
+								text: 'OK',
 								type: 'button-positive',
 								onTap: function(e) {
 								console.log('ok');

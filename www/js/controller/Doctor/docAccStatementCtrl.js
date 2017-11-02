@@ -6,7 +6,10 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
   $rootScope.hideSideMenu = true;
-console.log($localStorage.user);
+
+  console.log($localStorage.user);
+  $rootScope.from ='';
+  $rootScope.toDate='';
 
 accountsService.docAccountsBalance($localStorage.user).then(function(response){
     $scope.availableBalance=response;
@@ -19,19 +22,16 @@ accountsService.docAccountsBalance($localStorage.user).then(function(response){
       callback: function (val) {  //Mandatory
         console.log(val);
         console.log('Selected from Date : ' + val, new Date(val));
-        // $rootScope.from = $filter('date')(new Date(val),'yyyy-MM-dd HH:mm:ss Z');
         $rootScope.from = $filter('date')(new Date(val),'yyyy-MM-dd');
-        console.log($rootScope.from);
-        // $localStorage.fromDate=$rootScope.from;
         accountsService.docAccountsDetails($rootScope.from);
       },
 
       from: new Date(2016, 1, 1), //Optional
       to: new Date(2050, 12, 31), //Optional
       inputDate: new Date(),      //Optional
-      mondayFirst: true,          //Optional
-      disableWeekdays: [0],       //Optional
-      closeOnSelect: false,
+      mondayFirst: false,          //Optional
+      // disableWeekdays: [0],       //Optional
+      closeOnSelect: true,
       dateFormat: 'dd MMMM yyyy',      //Optional
       templateType: 'popup'       //Optional
     };
@@ -49,6 +49,7 @@ $rootScope.transcMsg='Select Dates';
             }else{
               $rootScope.transcMsg='';
             }
+
               }).catch(function(error){
             console.log('failure data', error);
           });
@@ -57,9 +58,9 @@ $rootScope.transcMsg='Select Dates';
         from: new Date(2016, 1, 1), //Optional
         to: new Date(2050, 12, 31), //Optional
         inputDate: new Date(),      //Optional
-        mondayFirst: true,          //Optional
-        disableWeekdays: [0],       //Optional
-        closeOnSelect: false,
+        mondayFirst: false,          //Optional
+        // disableWeekdays: [0],       //Optional
+        closeOnSelect: true,
         dateFormat: 'dd MMMM yyyy',     //Optional
         templateType: 'popup'       //Optional
       };

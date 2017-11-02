@@ -13,6 +13,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 	$rootScope.hideSideMenu = true;
+	$rootScope.inviteButton = false;
+
 
 	$ionicConfig.views.swipeBackEnabled(false);
 
@@ -1569,6 +1571,8 @@ $scope.sendprescription = function()
 		$rootScope.chekTests;
 
 }
+
+
 
 
 

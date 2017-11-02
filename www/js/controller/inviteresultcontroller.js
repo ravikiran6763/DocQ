@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('inviteresultCtrl', function($scope,$stateParams,$localStorage,invitereviews,invitereviewsresultservice){
+DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$stateParams,$localStorage,$ionicLoading,invitereviews,invitereviewsresultservice){
 
 
   $scope.count = $stateParams.countofselected;
@@ -10,9 +10,20 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$stateParams,$loca
 
 $scope.Savedata = function()
 {
+  $ionicLoading.show({
+        template: '<ion-spinner></ion-spinner><br><br>Sending invite'
+      });
   console.log($localStorage.user);
       $scope.contacts = invitereviews.getinvitecontacts();
-      invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.cc.query,$localStorage.user);
+      invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.cc.query,$localStorage.user).then(function(response){
+        if(response){
+          $ionicLoading.hide();
+          $scope.contacts='';
+          $state.go("templates.doctor_home")
+        }
+      }).catch(function(error){
+      console.log('failure data', error);
+      })
 }
 
 
