@@ -497,7 +497,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                       }
                       else{
                         $injector.get("$ionicLoading").show({
-                              template: '<ion-spinner></ion-spinner><br><br>Recovering lost connection',
+                              template: '<ion-spinner icon="crescent"></ion-spinner><br><br>Recovering lost connection',
                             });
                       }
                       break;

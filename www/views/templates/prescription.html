@@ -19,11 +19,11 @@
       <p >After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
     </div >
       <div class="card " style="margin-bottom: -4%;">
-        <div class="row" ui-sref="templates.addNewPatient">
+        <div class="row" >
           <div  class="col col-75"  ng-hide="defaultPatient" ng-repeat="def in currentPatient">Patient : {{def.patientFname}} {{def.patientLname}} (Default)</div>
           <div class="col col-75"   ng-show="defaultPatient" ng-repeat="subPat in subPatientDetails">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
-              <div class="col col-75"  ng-show="newPatient"  >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
-              <div class="col col-75"  ng-hide="shownewPatient">Patient : {{newPatientFname}} {{newPatientLname}}</div>
+              <!-- <div class="col col-75"  ng-show="newPatient"  >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
+              <div class="col col-75"  ng-hide="shownewPatient">Patient : {{newPatientFname}} {{newPatientLname}}</div> -->
 
         </div>
 

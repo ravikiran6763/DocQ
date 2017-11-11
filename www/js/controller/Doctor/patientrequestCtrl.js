@@ -206,8 +206,8 @@
            $rootScope.subPatientId=$scope.currentPatient.subPatientId;
 
            console.log($rootScope.subPatientId);
-           // $localStorage.subPatientId=$rootScope.subPatientId);
-           // $localStorage.patientNum=$rootScope.patientNum);
+           $localStorage.subPatientId=$rootScope.subPatientId;
+           $localStorage.patientNum=$rootScope.patientNum;
 
 
 

@@ -51,11 +51,13 @@ if($state.$current.name === 'templates.prescription'){
 
     var patientToDisplay =$localStorage.patientToDisplay;
     var subPatientToShow ={
-      subPatId:$rootScope.subPatientId,
-      mainPatient:$rootScope.patientNum
+      subPatId:$localStorage.subPatientId,
+      mainPatient:$localStorage.patientNum
     }
+    console.log(subPatientToShow);
     medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
        $rootScope.subPatientDetails=response;
+       console.log($rootScope.subPatientDetails);
        console.log($rootScope.subPatientDetails.length);
        if($rootScope.subPatientDetails.length == 0){
          console.log('hide');
