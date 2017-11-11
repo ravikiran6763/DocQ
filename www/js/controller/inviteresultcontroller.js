@@ -1,5 +1,12 @@
-DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$stateParams,$localStorage,$ionicLoading,invitereviews,invitereviewsresultservice){
+DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,$stateParams,$localStorage,$ionicLoading,invitereviews,invitereviewsresultservice){
 
+  $scope.toggle = true;
+  $rootScope.headerTxt="Invite Reviews";
+  $rootScope.showBackBtn=true;
+  $rootScope.showNotification=false;
+  $rootScope.showBadge=false;
+  $rootScope.hideSideMenu = true;
+  $rootScope.inviteButton = false;
 
   $scope.count = $stateParams.countofselected;
   $scope.cc ={};

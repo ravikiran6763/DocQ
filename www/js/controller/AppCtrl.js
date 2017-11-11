@@ -15,7 +15,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.hideSideMenu = true;
 	$rootScope.inviteButton = false;
 
-
 	$ionicConfig.views.swipeBackEnabled(false);
 
 	var specialitywise = "";
@@ -1487,6 +1486,10 @@ $scope.sendprescription = function()
 		  var patientToDisplay =$localStorage.patientToDisplay;
     if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
     {
+			// $rootScope.newpatientAdded=doctorServices.getNewPatient();
+			// console.log($rootScope.newpatientAdded);
+			// $scope.newPatientFname=$scope.newpatientAdded.fname;
+			// $scope.newPatientLname=$scope.newpatientAdded.lname;
 
 			if(!patientToDisplay){
 				patientToDisplay=$stateParams.reqPat;
@@ -1499,7 +1502,7 @@ $scope.sendprescription = function()
           tests : $scope.tests,
           medication : $scope.medication
         };
-
+				console.log(prescriptiondetails);
 				console.log($rootScope.chekDiag);
 
         //test jpeg image response/Users/amittantia/Desktop/RK/VseePlugin

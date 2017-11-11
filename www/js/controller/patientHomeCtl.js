@@ -7,6 +7,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
 
+$localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
 

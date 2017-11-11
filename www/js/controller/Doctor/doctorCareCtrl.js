@@ -37,7 +37,7 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope,$state, $rootScope,$
 	        $rootScope.cc.query="";
 
 					var confirmPopup = $ionicPopup.confirm({
-									template: '<center>Someone will contact you from DoctorQuick.</center>',
+									template: '<center>Someone from DoctorQuick will contact you soon</center>',
 									cssClass: 'videoPopup',
 									scope: $scope,
 									buttons: [
@@ -74,7 +74,7 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope,$state, $rootScope,$
 				$ionicLoading.hide();
         $rootScope.cc.query="";
 				var confirmPopup = $ionicPopup.confirm({
-								template: '<center>Someone will contact you from DoctorQuick.</center>',
+								template: '<center>Someone from DoctorQuick will contact you soon</center>',
 								cssClass: 'videoPopup',
 								scope: $scope,
 								buttons: [

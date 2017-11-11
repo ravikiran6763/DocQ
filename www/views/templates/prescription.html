@@ -20,15 +20,11 @@
     </div >
       <div class="card " style="margin-bottom: -4%;">
         <div class="row" ui-sref="templates.addNewPatient">
-              <div class="col col-75"  ng-show="newPatient" ng-click=addPatient() >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
-              <div class="col col-75"  ng-hide="newPatient" >Patient : </div>
+          <div  class="col col-75"  ng-hide="defaultPatient" ng-repeat="def in currentPatient">Patient : {{def.patientFname}} {{def.patientLname}} (Default)</div>
+          <div class="col col-75"   ng-show="defaultPatient" ng-repeat="subPat in subPatientDetails">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
+              <div class="col col-75"  ng-show="newPatient"  >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
+              <div class="col col-75"  ng-hide="shownewPatient">Patient : {{newPatientFname}} {{newPatientLname}}</div>
 
-              <div class="col">
-                <!-- <label class="checkbox">
-                  <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
-                </label> -->
-                <i class="icon ion-chevron-right icon-accessory" ></i>
-              </div>
         </div>
 
       </div>

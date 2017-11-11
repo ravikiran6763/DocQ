@@ -16,6 +16,13 @@ if(isset($postdata))
 	      $tests = $request->tests;//TESTSBY DOCTOR
 	      $medication = $request->medication;//MEDICATION BY DOCTOR
 
+				$newPatienFname = $request->newPatienFname;//MEDICATION BY DOCTOR
+				$newPatienLname = $request->newPatienLname;//MEDICATION BY DOCTOR
+				$newPatienAge = $request->newPatienAge;//MEDICATION BY DOCTOR
+				$newPatienSex = $request->newPatienSex;//MEDICATION BY DOCTOR
+
+
+
 	      // $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
 	      // $patientphoneno = '8792618138';//PATIENT PHONE NO
 	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
@@ -49,22 +56,33 @@ if(isset($postdata))
 	   		die('Could not get data: ' . mysql_error());
 	    	}
 				//GET PATIENTINFORMATION FROM PATIENTDETAILS TABLE
-             $patientinformation = "select patientFname,patientMname,patientLname,patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
-             $retvalpatientinformation = mysql_query( $patientinformation, $dbhandle );
-                while($row = mysql_fetch_array($retvalpatientinformation))
-                {
-	     						//GET PATIENT INFORMATION FROM patientDetails TABLE
-                     $patient_fname = $row['patientFname'];
-                     $patient_mname = $row['patientMname'];
-                     $patient_lname = $row['patientLname'];
-                     $patient_age = $row['patientAge'];
-                     $patient_sex = $row['patientSex'];
-                     $patient_fullname = $patient_fname." ".$patient_mname." ".$patient_lname;
-                }
-                 if(! $retvalpatientinformation)
-                 {
-                   die('Could not get data: ' . mysql_error());
-                }
+				if($newPatienFname === NULL){
+					$patientinformation = "select patientFname,patientMname,patientLname,patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
+					$retvalpatientinformation = mysql_query( $patientinformation, $dbhandle );
+						 while($row = mysql_fetch_array($retvalpatientinformation))
+						 {
+							 //GET PATIENT INFORMATION FROM patientDetails TABLE
+									$patient_fname = $row['patientFname'];
+									$patient_mname = $row['patientMname'];
+									$patient_lname = $row['patientLname'];
+									$patient_age = $row['patientAge'];
+									$patient_sex = $row['patientSex'];
+									$patient_fullname = $patient_fname." ".$patient_mname." ".$patient_lname;
+						 }
+							if(! $retvalpatientinformation)
+							{
+								die('Could not get data: ' . mysql_error());
+						 }
+
+				}
+				else{
+					$patient_fname = $newPatienFname;
+					$patient_lname = $newPatienLname;
+					$patient_age = $newPatienAge;
+					$patient_sex = $newPatienSex;
+					$patient_fullname = $patient_fname."  ".$patient_lname;
+				}
+
 
 								//IF DIAGNOSIS IS MENTIONED BY THE DOCTOR ENTER INTO LOOP
 		if($diagnosis)
@@ -237,7 +255,7 @@ if(isset($postdata))
 
 			}
 			print "DocQuik$preCount";
-			
+
 		}
 		else
 		{

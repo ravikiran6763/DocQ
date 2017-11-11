@@ -1,10 +1,17 @@
-DoctorQuickApp.service('invitereviews', function ($http,$q,BASE_URL, API) {
+DoctorQuickApp.service('invitereviews', function ($http,$rootScope,$q,BASE_URL, API) {
 
 
-var con = [];
+$rootScope.con = [];
+this.invitereviewpatient = function (listofcontacts){
+  if(listofcontacts === true){
+    $rootScope.con.push(listofcontacts);
+  }
+  else{
+    var index = $rootScope.con.indexOf(listofcontacts);
+    $rootScope.con.splice(index, 1);
+  }
 
-this.invitereviewpatient = function (listofcontacts) {
-      con.push(listofcontacts);
+      console.log($rootScope.con);
 }
 
 this.getinvitecontacts = function()

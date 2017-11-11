@@ -1,0 +1,58 @@
+<ion-view class="add-patient-view" cache-view="false">
+
+  <ion-content scroll="false" >
+
+<form  novalidate name="addingPatient" ng-submit="sendForm($event)" ng-class={loginDatasubmitted:loginDatasubmitted}>
+
+<div class="card ">
+  <div class="row">
+    <div class="col">
+      <p style="margin: 3% 0 0 1%; position:fixed;">First Name</p>
+    </div>
+    <div class="col-75">
+      <input class="form-control"  type="text" placeholder="First Name" name="newFname"  ng-model="newPatient.fname" required></input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p style="margin: 3% 0 0 1%; position:fixed;">Last Name</p>
+    </div>
+  <div class="col-75">
+      <input class="form-control"  type="text" placeholder="Last Name" name="newLname"  ng-model="newPatient.lname" required></input>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p style="margin: 13% 0 0 1%;">DOB</p>
+    </div>
+    <div class="col-75" style="padding:2% !important;">
+      <input class="form-control"  type="date" placeholder="DOB" name="newLname"  ng-model="newPatient.dob" required></input>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <p style="margin: 10% 0 0 0%;">Sex</p>
+    </div>
+
+    <div class="col-75" >
+      <div class="row">
+        <div class="col" style="width:50%">
+            <ion-radio class="form-control"ng-value="'Male'" ng-model="newPatient.sex" required><span style="margin: -15px 0 0 -12px; float:left;font-size: smaller;">Male</span></ion-radio>
+        </div>
+        <div class="col" style="width:50%">
+          <ion-radio class="form-control" ng-value="'Female'" ng-model="newPatient.sex" required><span style="position: fixed; font-size: smaller;    margin: -14px 0 0 -23px;">Female</span></ion-radio>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="buttons">
+ <button  class="button button-block button-assertive" ng-click="savePatient();">Save</button>
+</div>
+</form>
+</ion-view>
+</ion-content>

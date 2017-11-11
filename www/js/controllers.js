@@ -240,7 +240,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				      var success = function(message)
 				      {
 				        $rootScope.unreadchatforpatient = message;
-				        console.log($scope.unreadchatforpatient);
+				        // console.log($scope.unreadchatforpatient);
 				      }
 
 				      var failure = function()

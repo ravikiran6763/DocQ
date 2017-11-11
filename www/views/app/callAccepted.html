@@ -17,8 +17,9 @@
           <span ng-style="{ 'width': getStars(0) }"></span>
         </span>
         <span class="stars " style="margin: 0 auto" ng-show="{{mydocs.ratingCount != 0}}">
-          <span ng-style="{ 'width': getStars(mydocs.ratings/mydocs.ratingCount) }"></span>({{mydocs.ratingCount}} Reviews)
+          <span ng-style="{ 'width': getStars(mydocs.ratings/mydocs.ratingCount) }"></span>
         </span>
+        <center><p>({{mydocs.ratingCount}} Reviews)</p><center>
       </div>
       <!-- <span ng-repeat="rating in ratings" >
         <div  star-rating rating-value="rating.current" max="rating.max" >

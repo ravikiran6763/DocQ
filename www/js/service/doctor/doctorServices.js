@@ -323,16 +323,6 @@ this.notifyPatient = function (doctor){
 }
 
 
-var newPatientAdded="";
-var newPatient="";
-this.addNewPatient = function(newPatient)
-{
-     newPatientAdded = newPatient;
-}
-this.getNewPatient = function()
-{
-  return newPatientAdded;
-}
 
 
 });

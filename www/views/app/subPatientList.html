@@ -1,0 +1,48 @@
+<ion-view class="add-patient-view" cache-view="false">
+
+  <ion-content scroll="false" >
+
+    <div class="myDoctor-list"  >
+      <div class="profile-img" >
+
+      </div>
+
+      <div class="name-content">
+        <div class="name" ui-sref="app.addSubPatient">
+          <!-- <ionic-letter-avatar data="{{sub.newPatientFname}}">{{sub.newPatientFname}}  {{sub.newPatientLname}}</ionic-letter-avatar> -->
+          <center>
+            <i class="icon ion-android-add " style="position: absolute; font-size: 5vh; margin-left: -22%; margin-top: -1%;"></i>
+            <h4 style="margin: 5% 0 0 5%; font-family: inherit;"> Add Patient  </h4>
+          </center>
+        </div>
+
+      </div>
+
+      <ul>
+
+      <li ng-repeat="sub in subPatients" >
+
+        <div class="profile-img" >
+          <img  ng-src="img/patientAvatar.png">
+
+        </div>
+
+        <div class="name-content" ng-click="selectSubPatient({{sub.id}})">
+          <div class="name" >
+            <!-- <ionic-letter-avatar data="{{sub.newPatientFname}}">{{sub.newPatientFname}}  {{sub.newPatientLname}}</ionic-letter-avatar> -->
+            <h2 style="margin: 5% 0 0 5%;"> {{sub.newPatientFname}}  {{sub.newPatientLname}}  </h2>
+          </div>
+
+        </div>
+
+        <div class="next-icon" ng-click="editNewPatient({{sub}})">
+          <i class="icon ion-edit" ></i>
+        </div>
+
+      </li>
+    </ul>
+    </div>
+
+
+  </ion-content>
+</ion-view>

@@ -176,7 +176,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 	                var success = function(message)
 	                {
 	                  $scope.unreadchatforpatient = message;
-	                  console.log($scope.unreadchatforpatient);
+	                  // console.log($scope.unreadchatforpatient);
 	                }
 
 	                var failure = function()

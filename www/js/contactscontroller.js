@@ -8,7 +8,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
   $rootScope.inviteButton = true;
 
   $ionicLoading.show({
-        template: '<p>Fetching all your contacts...</p><ion-spinner></ion-spinner>'
+        template: '<ion-spinner></ion-spinner><br><p>Fetching all your contacts</p>'
       });
 
       $timeout(function () {
@@ -36,13 +36,13 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
       $scope.selectedlist = "";
       $scope.phones = {};
 
-      var count = 0;
+      // var count = 0;
       var uniquevalues = [];
       $scope.selectedcontacts = function(contactno)
       {
             if($scope.phones[contactno])
             {
-                count++;
+                // count++;
                 console.log(contactno);
                 $scope.selectedlist = contactno.split(' ').join('');
               if($scope.selectedlist.length > 10)
@@ -62,16 +62,32 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
             // }
 
             }
-            else
-            {
-
-              count--;
-              //do noting
-            $state.go('templates.inviteresult');
-            }
+            // else
+            // {
+            //
+            //   count--;
+            //   //do noting
+            // // $state.go('templates.inviteresult');
+            // }
 
             $ionicLoading.hide();
       }
+
+      $scope.phones = { };
+    $scope.getNumber = function (checked) {
+      console.log(checked);
+      invitereviews.invitereviewpatient($scope.phones);
+
+      if(checked){
+        console.log();
+      }
+      else{
+        console.log('pop an element');
+      }
+
+
+
+    };
 
 
 })

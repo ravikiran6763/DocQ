@@ -29,7 +29,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.pendingRequests = response;
-    // console.log('pending:',$scope.pendingRequests);
+    console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
     // .catch(function(error){
@@ -38,7 +38,7 @@ function checkConsultations(){
     //$interval(checkNewMsgs,2000);
     doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
     $scope.one2oneRequests = response;
-    // console.log('one2onePending:',$scope.one2oneRequests);
+    console.log('one2onePending:',$scope.one2oneRequests);
     $scope.one2oneRequests=$scope.one2oneRequests.length;
     })
 

@@ -272,4 +272,9 @@ console.log(checkPatientActivity);
 			 console.log('decline clicked');
  }
 
+ $scope.$on('$destroy', function(){
+ 		$interval.cancel(checkAcceptedReqDocStatus);
+		
+ });
+
 });

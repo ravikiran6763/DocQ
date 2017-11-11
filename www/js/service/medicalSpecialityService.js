@@ -30,9 +30,11 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
         {
             var patientrequest = {
               patientphno : $localStorage.user,
-              speciality : medicalSpecialityId
+              speciality : medicalSpecialityId,
+              subPatientId:$localStorage.selectedSubPatient
             }
 
+            console.log(patientrequest);
           var deferred = $q.defer();
           $http.post(BASE_URL.url + API.sendrequesttodoctor,patientrequest)
           .success(function (data, status, headers, config){
@@ -101,6 +103,60 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
         deferred.reject('Error while getting data');
       });
       return deferred.promise;
+  }
+
+  var newPatientAdded="";
+  var newPatient="";
+
+  this.savePatient = function (patientAdded){
+    console.log('service:',patientAdded);
+    var deferred = $q.defer();
+    console.log(BASE_URL.url + API.savePatient);
+    $http.post(BASE_URL.url + API.savePatient,patientAdded)
+    .success(function (data, status, headers, config){
+      deferred.resolve(data);
+    })
+    .error(function (){
+      deferred.reject('Error while getting data');
+    });
+    return deferred.promise;
+}
+
+this.getSubPatients = function (user){
+  console.log('service:',user);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.getSubPatients);
+  $http.post(BASE_URL.url + API.getSubPatients,user)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
+this.selectSubPatient = function (subPatientToShow){
+  console.log('service:',subPatientToShow);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.selectSubPatient);
+  $http.post(BASE_URL.url + API.selectSubPatient,subPatientToShow)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
+  this.addNewPatient = function(newPatient)
+  {
+       newPatientAdded = newPatient;
+  }
+  this.getNewPatient = function()
+  {
+    return newPatientAdded;
   }
 
 

@@ -14,7 +14,7 @@ require 'headers.php';
        $pushReqPat= $reqPatient->reqPat;
       // echo "string";
 	 				$patientDetails = array();
-					 $sql = "select req.id,pt.patientFname,pt.patientMname,pt.patientLname,pt.patientAge,pt.patientSex,pt.patientPhone,pt.patientEmail,req.requestedTime,im.image from patientDetails as pt,patientImages as im, reqForConsultation as req where pt.patientPhone=im.patientphone and pt.patientPhone='$pushReqPat' and  req.id='$reqId'";
+					 $sql = "select req.id,req.subPatientId,pt.patientFname,pt.patientMname,pt.patientLname,pt.patientAge,pt.patientSex,pt.patientPhone,pt.patientEmail,req.requestedTime,im.image from patientDetails as pt,patientImages as im, reqForConsultation as req where pt.patientPhone=im.patientphone and pt.patientPhone='$pushReqPat' and  req.id='$reqId'";
 					$retval = mysql_query( $sql, $dbhandle );
 
 					while($row = mysql_fetch_array($retval))

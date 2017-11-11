@@ -49,12 +49,11 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_JU6YPIIvdsBxyY // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
-											// hide-email: true,
 											method:{
 												wallet:true
 											},
 											prefill:{
-												// email: false,
+												email: false,
 												contact: $localStorage.user,
 												name: $scope.patientFname
 											},

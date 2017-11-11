@@ -236,13 +236,14 @@ if(isset($postdata))
 				imagedestroy( $out );
 
 			}
+			print "DocQuik$preCount";
+			
 		}
 		else
 		{
-		   print "Please Mention Diagnosis as it is Mandatory";
+		   print "DiagnosisError";
 		}
 }
 
 	mysql_close($dbhandle);
-print "DocQuik$preCount";
 ?>

@@ -724,10 +724,41 @@ $stateProvider
     }
   }
 })
+.state('app.subPatientList', {
+  cache : false,
+  url: "/subPatientList",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/subPatientList.html",
+      controller:'addNewPatientCtrl'
+    }
+  }
+})
+
+.state('app.addSubPatient', {
+  cache : false,
+  url: "/addSubPatient",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/addSubPatient.html",
+      controller:'addNewPatientCtrl'
+    }
+  }
+})
+.state('app.editPatient', {
+  cache : false,
+  url: "/editPatient/:id/:fname/:lname/:sex/:dob",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/editPatient.html",
+      controller:'editPatientCtrl'
+    }
+  }
+})
 
 //doctore screens
   .state('app.specialityDetailsNew', {
-    url: "/specialityDetailsNew/:specialId/:special/:content1/:descrpt",
+    url: "/specialityDetailsNew",
     views: {
       'menuContent': {
         templateUrl: "views/app/specialityDetailsNew.html",
@@ -931,16 +962,7 @@ $stateProvider
       }
     }
   })
-  .state('templates.addNewPatient', {
-    cache : false,
-    url: "/addNewPatient",
-    views: {
-      'menuContent': {
-        templateUrl: "views/templates/addNewPatient.html",
-        controller:'notesCtrl'
-      }
-    }
-  })
+
 
   .state('templates.sendPrescription', {
     cache : false,
