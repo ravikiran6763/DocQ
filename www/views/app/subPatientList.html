@@ -35,10 +35,17 @@
 
         </div>
 
-        <div class="next-icon" ng-click="editNewPatient({{sub}})">
-          <i class="icon ion-edit" ></i>
+        <div class=" row next-icon" style="position: absolute; margin: 0 0 0 85%;">
+          <div  class="col" ng-click="editNewPatient({{sub}})">
+            <i class="icon ion-edit" ></i>
+          </div>
+          <div  class="col" ng-click="deleteNewPatient({{sub}})">
+            <i class="ion-android-delete" style="margin: 0 0 0 10px;"></i>
+          </div>
         </div>
-
+        <!-- <div  ng-click="editNewPatient({{sub}})">
+          <i class="ion-android-delete" ></i>
+        </div> -->
       </li>
     </ul>
     </div>

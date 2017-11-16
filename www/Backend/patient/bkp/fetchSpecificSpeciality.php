@@ -36,12 +36,20 @@
 			$data = array();
 	    while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
       {
-
+				$docCount = $row['noofonlinedoctors'];
+				// echo $docCount;
+				// if($docCount === "0"){
+				// 	echo "nodoctors";
+				// }
+				// else{
+				// 	$data[] = $row;
+				//
+				// }
 				$data[] = $row;
-
+				// echo $data;
       }
-
 			echo json_encode($data);
+
 
 	}
 

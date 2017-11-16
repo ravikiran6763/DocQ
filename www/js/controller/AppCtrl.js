@@ -1240,9 +1240,10 @@ $rootScope.newPatient={};
 
 
 
-$scope.sendprescription = function()
+$scope.endConsultation = function(type)
 {
-
+	console.log(type);
+	console.log($localStorage.subPatientId);
 	$localStorage.newPatientFname='';
 	$localStorage.newPatientLname='';
 	$localStorage.newPatientAge='';
@@ -1500,71 +1501,78 @@ $scope.sendprescription = function()
           patientphno : patientToDisplay,
           diagnosis : $scope.diagnosis,
           tests : $scope.tests,
-          medication : $scope.medication
+          medication : $scope.medication,
+					subPatient:$localStorage.subPatientId
         };
 				console.log(prescriptiondetails);
 				console.log($rootScope.chekDiag);
 
         //test jpeg image response/Users/amittantia/Desktop/RK/VseePlugin
         testresultbydoctor.jpegtest(prescriptiondetails).then(function(response){
-        console.log(response);
-        $scope.pic=response
-        console.log(prescriptiondetails);
-				if($scope.pic === "DiagnosisError"){
-					window.plugins.toast.showWithOptions({
-					message: "Please Enter Diagnosis as it is Mandatory.",
-					duration: "short", // 2000 ms
-					position: "bottom",
-					styling: {
-					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-					backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-					textColor: '#ffffff', // Ditto. Default #FFFFFF
-					textSize: 13, // Default is approx. 13.
-					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-					horizontalPadding: 16, // iOS default 16, Android default 50
-					verticalPadding: 12 // iOS default 12, Android default 30
+	        console.log(response);
+	        $scope.pic=response
+	        console.log(prescriptiondetails);
+					if($scope.pic === "DiagnosisError"){
+						window.plugins.toast.showWithOptions({
+						message: "Please Enter Diagnosis as it is Mandatory.",
+						duration: "short", // 2000 ms
+						position: "bottom",
+						styling: {
+						opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+						backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+						textColor: '#ffffff', // Ditto. Default #FFFFFF
+						textSize: 13, // Default is approx. 13.
+						cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+						horizontalPadding: 16, // iOS default 16, Android default 50
+						verticalPadding: 12 // iOS default 12, Android default 30
+						}
+						});
 					}
-					});
-				}
-				else{
-					var auname =  "greet+"+$localStorage.user;
-					var apw = "DQ_doctor";
-					if(!patientToDisplay){
-						patientToDisplay=$stateParams.reqPat;
-					}
-					var ato = "greet+" + patientToDisplay;
+					else{
+						var auname =  "greet+"+$localStorage.user;
+						var apw = "DQ_doctor";
+						if(!patientToDisplay){
+							patientToDisplay=$stateParams.reqPat;
+						}
+						var ato = "greet+" + patientToDisplay;
 
-					console.log(auname);
-					console.log(ato);
-					var prescImg=$scope.pic;
+						console.log(auname);
+						console.log(ato);
+						var prescImg=$scope.pic;
 
-					console.log(prescImg);
+						console.log(prescImg);
 
-						var success = function(message)
-						{
+							var success = function(message)
+							{
 
-								console.log('prescription clicked');
+									console.log('prescription clicked');
+									console.log(message);
+								$rootScope.prescription = {};
+							 prescriptiondetails='';
+							 $localStorage.subPatientId='';
+								$ionicHistory.nextViewOptions({
+								disableAnimate: true,
+								disableBack: true
+							 });
+							 if(type === 1){
+								 $state.go('templates.consulted_patient');
+							 }
+							 else{
+								 $state.go('templates.doctor_home');
+
+							 }
+								// alert(message);
 								console.log(message);
-							$rootScope.prescription = {};
-						 prescriptiondetails='';
+							}
 
-							$ionicHistory.nextViewOptions({
-							disableAnimate: true,
-							disableBack: true
-						 });
-						 $state.go('templates.consulted_patient');
-							// alert(message);
-							console.log(message);
-						}
+							var failure = function()
+							{
+								alert("Error calling Hello Plugin");
+							}
 
-						var failure = function()
-						{
-							alert("Error calling Hello Plugin");
-						}
+							hello.automatic(auname,apw,ato,prescImg,success, failure);
 
-						hello.automatic(auname,apw,ato,prescImg,success, failure);
-
-				}
+					}
 
         }).catch(function(error){
         console.log('failure data', error);

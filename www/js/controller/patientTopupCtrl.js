@@ -44,16 +44,17 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 								else{
 									var options = {
-											description: 'Consult A Doctor Now',
+											description: 'GET WELL SOONER',
 											currency: 'INR',
 											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_JU6YPIIvdsBxyY // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
-											method:{
-												wallet:true
-											},
+											// method:{
+											// 	wallet:true,
+											// 	upi:true
+											// },
 											prefill:{
-												email: false,
+												email: $scope.patientEmail,
 												contact: $localStorage.user,
 												name: $scope.patientFname
 											},

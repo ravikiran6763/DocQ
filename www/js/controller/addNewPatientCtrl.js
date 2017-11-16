@@ -19,12 +19,50 @@ if($state.$current.name === 'app.addSubPatient'){
     $state.go("app.editPatient",{id:sub.id,fname:sub.newPatientFname,lname:sub.newPatientLname,dob:sub.newPatientDOB,sex:sub.newPatientSex});
 
   }
+
+  $rootScope.deleteNewPatient=function(sub){
+
+    var confirmPopup = $ionicPopup.confirm({
+      template: '<center>Are you sure you want to delete the patient?</center>',
+      cssClass: 'videoPopup',
+      scope: $scope,
+      buttons: [
+
+        {
+          text: 'Cancel',
+          type: 'button-positive',
+          onTap: function(e) {
+          console.log('ok');
+
+          }
+        },
+        {
+          text: 'Delete',
+          type: 'button-royal',
+          onTap: function(e) {
+            medicalSpecialityService.deletePatient(sub).then(function(response){
+               console.log('saved', response);
+               if(response){
+                 $state.reload()
+               }
+            }).catch(function(error){
+                console.log('failure data', error);
+            });
+
+          }
+        },
+      ]
+    });
+    console.log(sub);
+    // console.log('app.editPatient',{id:$scope.subPAtientDetails.id});
+
+  }
   $rootScope.selectSubPatient=function(id){
     $localStorage.selectedSubPatient=id;
     console.log(id);
     console.log('selected');
-
-    $state.go("app.specialityDetailsNew");
+    window.history.back();
+    // $state.go("app.specialityDetailsNew");
   }
 
   $rootScope.savePatient=function(){
@@ -45,7 +83,7 @@ if($state.$current.name === 'app.addSubPatient'){
       medicalSpecialityService.savePatient(patientAdded).then(function(response){
          console.log('saved', response);
          $state.go("app.subPatientList");
-         
+
       }).catch(function(error){
           console.log('failure data', error);
       });

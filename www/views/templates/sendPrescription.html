@@ -1,6 +1,6 @@
 <ion-view class="patient-notes-view" cache-view="false">
 
-  <ion-content scroll="false" >
+  <ion-content scroll="false" ng-repeat="pt in patient_details" >
 <!-- ng-repeat="pt in patient_details" -->
     <div class="top-content" ng-repeat="pt in patient_details" >
       <div class="details">
@@ -19,17 +19,23 @@
       <p >After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
     </div >
       <div class="card " style="margin-bottom: -4%;">
-        <div class="row" >
-          <!-- ui-sref="templates.addNewPatient" -->
-              <div ng-repeat="pt in patient_details" class="col col-75"  ng-show="shownewPatient" >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
-              <div class="col col-75"  ng-hide="shownewPatient">Patient : {{newPatientFname}} {{newPatientLname}}</div>
+        <div >
+              <!-- <div ng-repeat="pt in patient_details" class="col col-75"  ng-show="shownewPatient" >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div> -->
 
-              <div class="col">
-                <!-- <label class="checkbox">
-                  <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
-                </label> -->
-                <i class="icon ion-chevron-right icon-accessory" ></i>
-              </div>
+              <label class="item item-input item-select item-icon-left" style="position:relative; max-width: 100%;"
+                     ng-class="{ 'has-error-lr' : signinForm.sex.$invalid  && signinForm.$submitted, 'valid-lr' : signinForm.sex.$valid  && signinForm.$submitted}">
+                <span>Patient:</span>
+                <!-- <input type="text" name="sex"  ng-model="doctor.sex" required> -->
+
+                <select ng-repeat="n in subPatients" name='subPatient' ng-model="subPatient.id" required ng-change="selectedPatient({{n.id}})">
+                  <option value="">Select Patient</option>
+                  <option   value={{n.id}}>{{n.newPatientFname}} {{n.newPatientLname}}</option>
+                </select>
+              </label>
+
+              <!-- <div class="col col-75"  ng-hide="shownewPatient"  ng-repeat="n in subPatients">Patient : {{n.newPatientFname}} {{n.newPatientLname}}</div> -->
+
+
         </div>
 
       </div>
@@ -64,8 +70,7 @@
   </div>
 
   <div class="buttons">
-   <button  class="button button-block button-assertive" ng-click="sendprescription();">Sendprescription</button>
-   <!-- <button  class="button button-block button-energized" ng-click="sendprescription();">Complete without charge</button> -->
+   <button  class="button button-block button-assertive" ng-click="sendprescription();">Send Prescription</button>
  </div>
 
   </ion-content>

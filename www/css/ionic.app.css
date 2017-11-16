@@ -12098,13 +12098,13 @@ ion-side-menu .heading-item .message {
     font-size: 120% !important;
     line-height: 0vh;
     text-align: center;
-    margin-top: 6vh;
+    margin-top: 12vh;
     font-family: Ubuntu,bold,sans-serif !important; }
   .searchDoctor-profile-view .bottom-content h5 {
     font-size: 150% !important;
     line-height: 0vh;
     text-align: center;
-    margin-top: 3vh;
+    margin-top: -3vh;
     font-family: Ubuntu,bold,sans-serif !important; }
   .searchDoctor-profile-view .bottom-content .button-content {
     margin-top: 6% !important;
@@ -13057,7 +13057,9 @@ ion-side-menu .heading-item .message {
       text-align: center; }
   .ViewDoctorProfile-view .middle-content {
     width: 100%;
-    height: 15%; }
+    height: 15%;
+    margin-top: -8%;
+    position: relative; }
     .ViewDoctorProfile-view .middle-content .card {
       padding-top: 0 !important;
       padding-bottom: 0 !important;
@@ -13073,8 +13075,11 @@ ion-side-menu .heading-item .message {
       font-size: 130%;
       text-align: center;
       line-height: 5%; }
+    .ViewDoctorProfile-view .bottom-content h5 {
+      position: relative;
+      margin-top: 15%; }
     .ViewDoctorProfile-view .bottom-content .buttons {
-      margin-top: 5% !important; }
+      margin-top: 0% !important; }
       .ViewDoctorProfile-view .bottom-content .buttons .button {
         width: 85%;
         margin-left: 8%; }
@@ -14371,7 +14376,7 @@ ion-side-menu .heading-item .message {
         height: 18% !important;
         padding-left: 10px;
         width: 100% !important; }
-    .patient-reg-1-view .form-content input[type="tel"] {
+    .patient-reg-1-view .form-content input[type="date"] {
       margin-top: 4% !important;
       height: 18% !important;
       padding-left: 10px;

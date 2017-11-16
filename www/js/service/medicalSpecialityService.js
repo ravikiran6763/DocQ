@@ -149,6 +149,19 @@ this.selectSubPatient = function (subPatientToShow){
   });
   return deferred.promise;
 }
+this.deletePatient = function (subPatientToDelete){
+  console.log('service:',subPatientToDelete);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.deletePatient);
+  $http.post(BASE_URL.url + API.deletePatient,subPatientToDelete)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
 
   this.addNewPatient = function(newPatient)
   {

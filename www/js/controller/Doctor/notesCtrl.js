@@ -102,12 +102,24 @@ else {
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
   $localStorage.activePatient=$stateParams.reqPat;
-  $scope.newpatientAdded=doctorServices.getNewPatient();
-  $scope.newPatientFname=$scope.newpatientAdded.fname;
-  $scope.newPatientLname=$scope.newpatientAdded.lname;
-
-  console.log($scope.newpatientAdded.fname);
-  console.log($scope.newpatientAdded.lname);
+  $scope.subPatient='';
+  // $scope.newpatientAdded=doctorServices.getNewPatient();
+  // $scope.newPatientFname=$scope.newpatientAdded.fname;
+  // $scope.newPatientLname=$scope.newpatientAdded.lname;
+  //
+  // console.log($scope.newpatientAdded.fname);
+  // console.log($scope.newpatientAdded.lname);
+  $scope.selectedPatient=function(id){
+    console.log(id);
+    console.log('selected patient',$scope.subPatient.id);
+  }
+  medicalSpecialityService.getSubPatients($stateParams.reqPat)
+   .then(function(response){
+     $scope.subPatients = response;
+     console.log($scope.subPatients);
+   }).catch(function(error){
+      console.log('failure data', error);
+   });
 
   patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
     $scope.patient_details=response;

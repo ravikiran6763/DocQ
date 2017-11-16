@@ -78,7 +78,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'declineOne2oneReqPatient':'patient/declineOne2oneReqPatient.php',
         'getSubPatients':'patient/getSubPatients.php',
         'selectSubPatient':'patient/selectSubPatient.php',
-        
+        'deletePatient':'patient/deletePatient.php',
+
 
 
 

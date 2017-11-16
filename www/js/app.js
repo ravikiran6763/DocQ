@@ -1067,19 +1067,9 @@ $stateProvider
       else{
         return '/splash';
       }
+      // return '/splash';
+
     });
 
-  // $httpProvider.interceptors.push('APIInterceptor');
-  // $urlRouterProvider.otherwise(function() {
-  //       var logged = false;
-  //     // alert($localStorage.doctororpatient);
-  //       // Check User logined or not
-  //       if (logged != true) {
-  //         // alert('hello');
-  //           return '/auth/loginNew';
-  //       } else {
-  //           return '/splash';
-  //       }
-  //
-  //   });
+
 });

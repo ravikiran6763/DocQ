@@ -66,12 +66,12 @@ console.log($rootScope.debit);
 				cssClass: 'videoPopup',
 				scope: $scope,
 				buttons: [
-					
+
 					{
-						text: 'Ok',
+						text: 'OK',
 						type: 'button-positive',
 						onTap: function(e) {
-						console.log('ok');
+						console.log('OK');
 
 						}
 					},
