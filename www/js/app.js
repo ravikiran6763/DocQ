@@ -251,8 +251,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
     if($localStorage.sendPrescTo != ''){
       console.log("iosDevice:");
       console.log("iospatient:",$localStorage.sendPrescTo);
-      $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
-      return '/templates/sendPrescription';
+      // $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+      // return '/templates/sendPrescription';
     }
 
 
