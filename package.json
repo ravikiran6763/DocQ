@@ -22,8 +22,10 @@
     "cordova-plugin-inappbrowser": "^1.7.1",
     "cordova-plugin-shared-preferences": "0.0.1",
     "cordova-plugin-whitelist": "1.2.0",
+    "cordova-plugin-x-socialsharing": "git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
     "cordova-plugin-x-toast": "^2.6.0",
     "cordova-uglify": "^0.2.8",
+    "es6-promise-plugin": "^4.1.0",
     "express": "~4.9.8",
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
@@ -78,7 +80,8 @@
       "onesignal-cordova-plugin": {},
       "cordova-plugin-email-composer": {},
       "cordova-plugin-inappbrowser": {},
-      "com.example.hello": {}
+      "com.example.hello": {},
+      "cordova-plugin-x-socialsharing": {}
     },
     "platforms": [
       "android",

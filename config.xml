@@ -371,4 +371,5 @@
     <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
     <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
 </widget>

@@ -7,15 +7,11 @@
  * @author Ravikiran
  */
 DoctorQuickApp.constant('BASE_URL', {
-        //Development http://ec2-52-39-133-220.us-west-2.compute.amazonaws.com/
-        // 'url': 'http://greetbss.greettech.com/'
-        //Development
-        // 'url': 'http://greetbss.greettech.com/'
-        //Testing
-        // 'url' :'http://ec2-52-39-133-220.us-west-2.compute.amazonaws.com/'
-        //Staging
-        //'url' : 'http://ec2-54-187-148-143.us-west-2.compute.amazonaws.com/'
-        'url' : 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/'
+
+        //testing
+        // 'url' : 'http://ec2-52-66-68-161.ap-south-1.compute.amazonaws.com/'
+        //development
+        'url' : 'http://ec2-35-154-118-177.ap-south-1.compute.amazonaws.com/'
 
     })
 .constant('API', {
