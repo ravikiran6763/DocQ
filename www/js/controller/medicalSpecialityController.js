@@ -11,13 +11,20 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
     console.log($scope.specialitiesList);
 
-     medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
- 		 .then(function(response){
- 				console.log('Details', response);
- 				$scope.specialityDetails = response;
-        $ionicLoading.hide();
- 		 }).catch(function(error){
- 				 console.log('failure data', error);
- 		 });
+
+       $scope.specialityDetailsNew=function(id){
+         $localStorage.SpecilityId=id;
+         console.log($localStorage.SpecilityId);
+         medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
+        		 .then(function(response){
+        				console.log('Details', response);
+        				$scope.specialityDetails = response;
+               $ionicLoading.hide();
+        		 }).catch(function(error){
+        				 console.log('failure data', error);
+        		 });
+         $state.go("app.specialityDetailsNew");
+       }
+
 
 });

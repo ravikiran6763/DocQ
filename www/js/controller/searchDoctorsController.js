@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory) {
+DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory,medicalSpecialityService) {
 
 	$rootScope.headerTxt="Search Doctors";
 	$rootScope.showBackBtn=true;
@@ -93,6 +93,8 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		var callRequest={
 		patient:$localStorage.user,
 		doctor:$rootScope.docNumToCall,
+		subPatient:$localStorage.selectedSubPatient
+		
 		// callId:$rootScope.callId
 		}
 		console.log(callRequest);
@@ -416,5 +418,54 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		});
 	}
 
+
+	    $scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+	    console.log($scope.patient_details);
+	    $rootScope.defaultPatientFname=$scope.patient_details[0][0];
+	    $rootScope.defaultPatientLname=$scope.patient_details[0][2];
+	    $rootScope.defaultPatientNum=$scope.patient_details[0][5];
+
+
+	    console.log($rootScope.defaultPatientFname);
+	    console.log($rootScope.defaultPatientLname);
+
+	    $scope.patientToConsult='';
+	    $scope.changePatient=function (val) {
+	      $state.go("app.subPatientList");
+	    }
+	    $scope.editNewPatient=function () {
+	     if($localStorage.newPatientVal == 0){
+	       console.log('select patient to edit');
+	     }
+	     else if($localStorage.newPatientVal === $localStorage.user || $localStorage.newPatientVal === 'new'){
+	       console.log('can not edit default patient');
+	     }
+	     else{
+	       $state.go("app.editPatient",{id:$localStorage.newPatientVal});
+
+	     }
+
+
+	    }
+			var subPatientToShow={
+				subPatId:$localStorage.selectedSubPatient,
+				mainPatient:$localStorage.user
+			}
+			medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
+				 $rootScope.newPAtient=response;
+				 console.log($rootScope.newPAtient.length);
+				 if($rootScope.newPAtient.length == 0){
+					 console.log('hide');
+					 $rootScope.defaultPatient=false;
+					 $rootScope.shownewPatient=true;
+
+				 }
+				 else{
+					 $rootScope.defaultPatient=true;
+					 $rootScope.shownewPatient=false;
+				 }
+			}).catch(function(error){
+					console.log('failure data', error);
+			});
 
 })

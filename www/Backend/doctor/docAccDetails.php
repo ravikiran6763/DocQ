@@ -15,8 +15,8 @@ if (isset($postdata))
 
      $doctorAccDetails = array();
 
-     $sql = "select patientFname,patientMname,patientLname,DoctorWallet.patientPhone,consultedDate,consultationAmount from DoctorWallet,patientDetails where docPhone ='$docPhone' and consultedDate>='$fromDate 00:00:00' and consultedDate<='$toDate 23:59:59' and patientDetails.patientPhone=DoctorWallet.patientPhone";
-
+      $sql = "select image,patientFname,patientMname,patientLname,DoctorWallet.patientPhone,consultedDate,consultationAmount,withdrawlAmount,withdrawlDate from DoctorWallet LEFT JOIN patientDetails ON patientDetails.patientPhone=DoctorWallet.patientPhone LEFT JOIN patientImages ON patientImages.patientphone=DoctorWallet.patientPhone where DoctorWallet.docPhone='9738162020' and consultedDate>='$fromDate 00:00:00' and consultedDate<='$toDate 23:59:59'";
+    //  $sql = "select image,patientFname,patientMname,patientLname,DoctorWallet.patientPhone,consultedDate,consultationAmount from DoctorWallet,patientDetails,patientImages where docPhone ='$docPhone' and consultedDate>='$fromDate 00:00:00' and consultedDate<='$toDate 23:59:59' and patientDetails.patientPhone=DoctorWallet.patientPhone and patientImages.patientphone=DoctorWallet.patientPhone";
      $retval = mysql_query( $sql, $dbhandle );
 
      while($row = mysql_fetch_array($retval))
@@ -29,20 +29,20 @@ if (isset($postdata))
        die('Could not get data: ' . mysql_error());
      }
 
-     $sqlWithdraw = "select sum(withdrawlAmount) as totalWithdrawl from DoctorWallet where docPhone ='$docPhone' ";
-
-     $retvalWithdraw = mysql_query( $sqlWithdraw, $dbhandle );
-
-     while($row = mysql_fetch_array($retvalWithdraw))
-     {
-
-       $doctorAccDetails['totalWithdrawl'] = $row['totalWithdrawl'];
-     }
-
-     if(! $retval )
-     {
-       die('Could not get data: ' . mysql_error());
-     }
+    //  $sqlWithdraw = "select sum(withdrawlAmount) as totalWithdrawl from DoctorWallet where docPhone ='$docPhone' ";
+     //
+    //  $retvalWithdraw = mysql_query( $sqlWithdraw, $dbhandle );
+     //
+    //  while($row = mysql_fetch_array($retvalWithdraw))
+    //  {
+     //
+    //    $doctorAccDetails['totalWithdrawl'] = $row['totalWithdrawl'];
+    //  }
+     //
+    //  if(! $retval )
+    //  {
+    //    die('Could not get data: ' . mysql_error());
+    //  }
 
       echo json_encode($doctorAccDetails);
     // echo $fromDate;

@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService,doctorServices) {
+DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService,doctorServices,medicalSpecialityService) {
 
   $scope.toggle = true;
 	$rootScope.showBackBtn=false;
@@ -7,27 +7,32 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 	$rootScope.showBadge=false;
 
 
-  $rootScope.patientAdded=doctorServices.getNewPatient();
-  console.log($rootScope.patientAdded);
-  if($rootScope.patientAdded){
-    $rootScope.shownewPatient=false;
-  }
-  else{
-    $rootScope.shownewPatient=true;
-  }
+  // $rootScope.newpatientAdded=doctorServices.getNewPatient();
+  // console.log($rootScope.newpatientAdded);
+  // $scope.newPatientFname=$scope.newpatientAdded.fname;
+  // $scope.newPatientLname=$scope.newpatientAdded.lname;
+  // if($rootScope.newpatientAdded){
+  //   $rootScope.shownewPatient=false;
+  // }
+  // else{
+  //   $rootScope.shownewPatient=true;
+  // }
   // $rootScope.prescription={};
   $scope.deviceAndroid = ionic.Platform.isAndroid();
   if($scope.deviceAndroid === false){
     $localStorage.sendPrescTo='';
   }
+  console.log($localStorage.subPatientId);
+  console.log($localStorage.patientNum);
+
 console.log("inNotesCOntoller:",$state.$current.name);
 if($state.$current.name === 'templates.prescription'){
     $rootScope.headerTxt="Notes";
     $rootScope.hideSideMenu = false;
     $scope.currentPatient={};
     // $window.location.reload();
-    $rootScope.patientAdded=doctorServices.getNewPatient();
-    console.log($rootScope.patientAdded);
+    // $scope.newpatientAdded=doctorServices.getNewPatient();
+    // console.log($rootScope.newpatientAdded);
 
     $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
     // console.log($rootScope.currentPatient.patientNum);
@@ -40,15 +45,38 @@ if($state.$current.name === 'templates.prescription'){
     $rootScope.dateAndTime=$scope.currentPatient.requestedTime;
     $rootScope.reqId=$scope.currentPatient.id;
     $rootScope.patientNum=$scope.currentPatient.patientNum;
+    $rootScope.subPatientId=$scope.currentPatient.subPatientId;
 
     $localStorage.reqPat = $stateParams.reqPat;
 
     var patientToDisplay =$localStorage.patientToDisplay;
+    var subPatientToShow ={
+      subPatId:$localStorage.subPatientId,
+      mainPatient:$localStorage.patientNum
+    }
+    console.log(subPatientToShow);
+    medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
+       $rootScope.subPatientDetails=response;
+       console.log($rootScope.subPatientDetails);
+       console.log($rootScope.subPatientDetails.length);
+       if($rootScope.subPatientDetails.length == 0){
+         console.log('hide');
+         $rootScope.defaultPatient=false;
+         $rootScope.shownewPatient=true;
+
+       }
+       else{
+         $rootScope.defaultPatient=true;
+         $rootScope.shownewPatient=false;
+       }
+    }).catch(function(error){
+        console.log('failure data', error);
+    });
     // console.log(patientToDisplay);
     if(!patientToDisplay){
       patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
         $scope.patient_details=response;
-        console.log($scope.patient_details);
+        console.log($scope.patient_details.subPatientId);
         $ionicLoading.hide();
       }).catch(function(error){
         console.log('failure data', error);
@@ -67,40 +95,6 @@ if($state.$current.name === 'templates.prescription'){
 
     $ionicLoading.show();
 
-    $rootScope.addPatient=function(patient){
-      $rootScope.defaultPatient=patient;
-      console.log(patient);
-      $state.go("templates.addNewPatient")
-    }
-
-
-}
-
-else if($state.$current.name === 'templates.addNewPatient'){
-  $scope.toggle = true;
-
-  $rootScope.showBackBtn=true;
-  $rootScope.showNotification=false;
-  $rootScope.showBadge=false;
-  $rootScope.headerTxt="Add Patient";
-  $rootScope.hideSideMenu = false;
-
-  $rootScope.newPatient={};
-  $rootScope.saveNewPatient=function(){
-  	// alert('add new patient');
-    $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
-    var patientAdded={
-      fname:$rootScope.newPatient.fname,
-      lname:$rootScope.newPatient.lname,
-      age:$rootScope.newPatient.age,
-      sex:$rootScope.newPatient.sex
-    }
-    window.history.back();
-    doctorServices.addNewPatient(patientAdded);
-
-  }
-
-
 
 }
 
@@ -108,9 +102,25 @@ else {
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
   $localStorage.activePatient=$stateParams.reqPat;
-  $rootScope.patientAdded=doctorServices.getNewPatient();
-  console.log($rootScope.patientAdded);
-  
+  $scope.subPatient='';
+  // $scope.newpatientAdded=doctorServices.getNewPatient();
+  // $scope.newPatientFname=$scope.newpatientAdded.fname;
+  // $scope.newPatientLname=$scope.newpatientAdded.lname;
+  //
+  // console.log($scope.newpatientAdded.fname);
+  // console.log($scope.newpatientAdded.lname);
+  $scope.selectedPatient=function(id){
+    console.log(id);
+    console.log('selected patient',$scope.subPatient.id);
+  }
+  medicalSpecialityService.getSubPatients($stateParams.reqPat)
+   .then(function(response){
+     $scope.subPatients = response;
+     console.log($scope.subPatients);
+   }).catch(function(error){
+      console.log('failure data', error);
+   });
+
   patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
     $scope.patient_details=response;
     console.log($scope.patient_details);

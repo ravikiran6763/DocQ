@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices) {
+DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices,medicalSpecialityService) {
 
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
@@ -11,13 +11,6 @@ console.log('docprofileview');
 $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
-$scope.getStars = function(rating) {
-  // Get the value
-  var val = parseFloat(rating);
-  // Turn value into number/100
-  var size = val/5*100;
-  return size + '%';
-}
 
 
 $ionicLoading.show();
@@ -51,6 +44,14 @@ var data=$scope.myDocDetails1;//take all json data into this variable
                max: 5,
                total:$rootScope.totalRates
              }, ];
+             $scope.getStars = function(rating) {
+               // Get the value
+               var val = parseFloat(rating);
+               // Turn value into number/100
+               var size = val/5*100;
+               return size + '%';
+             }
+
     }
 }).catch(function(error){
 console.log('failure data', error);
@@ -472,9 +473,11 @@ $scope.BalanceForVoiceCall=function()
       var callRequest={
       patient:$localStorage.user,
       doctor:$rootScope.docNumToCall,
+      subPatient:$localStorage.selectedSubPatient
       // callId:$rootScope.callId
       }
       console.log(callRequest);
+      console.log($localStorage.selectedSubPatient);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
         $scope.patientWalletdetails=response;
         console.log($scope.patientWalletdetails);
@@ -484,7 +487,7 @@ $scope.BalanceForVoiceCall=function()
   			$scope.myWalletBal=$scope.myCredit-$scope.myDebit;
         console.log($scope.myWalletBal);
               $scope.counter = 0;
-        if($scope.myWalletBal >= 250)
+        if($scope.myWalletBal >= 270)
         {
 
               searchDoctorServices.requestForCall(callRequest).then(function(response){
@@ -611,5 +614,52 @@ $scope.BalanceForVoiceCall=function()
 
     }
 
+    $scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+    console.log($scope.patient_details);
+    $rootScope.defaultPatientFname=$scope.patient_details[0][0];
+    $rootScope.defaultPatientLname=$scope.patient_details[0][2];
+    $rootScope.defaultPatientNum=$scope.patient_details[0][5];
 
+
+    console.log($rootScope.defaultPatientFname);
+    console.log($rootScope.defaultPatientLname);
+
+    $scope.patientToConsult='';
+    $scope.changePatient=function (val) {
+      $state.go("app.subPatientList");
+    }
+    $scope.editNewPatient=function () {
+     if($localStorage.newPatientVal == 0){
+       console.log('select patient to edit');
+     }
+     else if($localStorage.newPatientVal === $localStorage.user || $localStorage.newPatientVal === 'new'){
+       console.log('can not edit default patient');
+     }
+     else{
+       $state.go("app.editPatient",{id:$localStorage.newPatientVal});
+
+     }
+
+
+    }
+    var subPatientToShow={
+      subPatId:$localStorage.selectedSubPatient,
+      mainPatient:$localStorage.user
+    }
+    medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
+       $rootScope.newPAtient=response;
+       console.log($rootScope.newPAtient.length);
+       if($rootScope.newPAtient.length == 0){
+         console.log('hide');
+         $rootScope.defaultPatient=false;
+         $rootScope.shownewPatient=true;
+
+       }
+       else{
+         $rootScope.defaultPatient=true;
+         $rootScope.shownewPatient=false;
+       }
+    }).catch(function(error){
+        console.log('failure data', error);
+    });
 })

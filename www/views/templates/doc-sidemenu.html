@@ -26,6 +26,8 @@
 
           <a class="button button-icon button-clear ion-navicon" menu-toggle="right" ng-show="hideSideMenu" ng-click="toggleLeftSideMenu()">
           </a>
+          <a ng-show="inviteButton" style="color: white; font-family: inherit; font-size: 100%; margin: 6px 5px 0 0;" ng-click="inviteForReview();">Done
+          </a>
           <!-- <a class="button button-icon button-clear ion-navicon" menu-toggle="right">
           </a> -->
         </ion-nav-buttons>
@@ -40,14 +42,7 @@
 
         <!--  -->
         <ion-list ng-hide="sideMenuForSearch">
-          <!-- <ion-item class="item-icon-left"   ui-sref="templates.addNewPatient" menu-close>
-            <i class="icon ion-ios-home"></i>
-            <h2 class="menu-text">Add Patient</h2>
-          </ion-item> -->
-          <!-- <ion-item class="item-icon-left"   ui-sref="templates.prescription" menu-close>
-            <i class="icon ion-ios-home"></i>
-            <h2 class="menu-text">Notes</h2>
-          </ion-item> -->
+        
           <ion-item class="item-icon-left" ng-click="clearAllHistory();"  ui-sref="templates.doctor_home" menu-close>
             <i class="icon ion-ios-home"></i>
             <h2 class="menu-text">Home</h2>

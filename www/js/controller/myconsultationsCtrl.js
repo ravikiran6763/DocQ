@@ -48,7 +48,7 @@ if($localStorage.doctororpatient === "patient"){ //to list out the consulted pat
 else{
 	myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
-	// console.log($scope.myPatients);
+	console.log($scope.myPatients);
 	var data = $scope.myPatients;
 	for(var i=0; i<data.length; i++){
 	$scope.patientFname=data[i].patientFname;
@@ -66,10 +66,8 @@ else{
 
 
 
-$interval(checkNewMessages,2000);
-function checkNewMessages()
-{
- console.log('refreshing consultation list for new messages');
+$rootScope.checkNewMessages = $interval(function(){
+	console.log('refreshing consultation list for new messages');
 		var success = function(message)
 		{
 				// console.log(message.length);
@@ -238,7 +236,7 @@ function checkNewMessages()
 		}
 
 		hello.chatcounts(username,password,success, failure);
-}
+}, 1000);
 
 $scope.pagedecision=$ionicHistory.currentStateName();
 var username = "greet+"+$localStorage.user;
@@ -260,7 +258,7 @@ $scope.consultationDetails=function(consultedDoc)
 			var username = "greet+"+$localStorage.user;
 			var password = "DQ_patient";
 		 	var persontocall = "greet+" + consultedDoc;
-
+			console.log(persontocall);
 
 		var success = function(message)
 		{
@@ -306,4 +304,11 @@ $scope.clicktochat = function(pateientPhone)
 }
 console.log($state.$current.name);
 console.log($rootScope.previousState.name);
+
+$scope.$on('$destroy', function(){
+	console.log('destroyed');
+   $interval.cancel($rootScope.checkNewMessages);
+
+});
+
 });

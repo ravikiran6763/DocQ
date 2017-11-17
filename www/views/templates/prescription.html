@@ -16,19 +16,15 @@
       </div>
     </div>
     <div class="notesDescription">
-      <p >After completing the diagnosis,test recomnded and medication section the results will be sent to your patient as an attachment in message.</p>
+      <p >After completing the diagnosis,test recommended and medication section the results will be sent to your patient as an attachment in message.</p>
     </div >
-      <div class="card " style="margin-bottom: -4%;">
-        <div class="row" ui-sref="templates.addNewPatient">
-              <div class="col col-75"  ng-show="newPatient" ng-click=addPatient() >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
-              <div class="col col-75"  ng-hide="newPatient" >Patient : </div>
+      <div class="card " style="margin-bottom: -4%;" ng-show="defaultPatient" ng-repeat="subPat in subPatientDetails">
+        <div class="row"  >
+          <!-- <div  class="col col-75"  ng-hide="defaultPatient" ng-repeat="def in currentPatient">Patient : {{def.patientFname}} {{def.patientLname}} (Default)</div> -->
+          <div class="col col-75"   >Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
+              <!-- <div class="col col-75"  ng-show="newPatient"  >Patient : {{pt.patientFname}} {{pt.patientLname}} (Default)</div>
+              <div class="col col-75"  ng-hide="shownewPatient">Patient : {{newPatientFname}} {{newPatientLname}}</div> -->
 
-              <div class="col">
-                <!-- <label class="checkbox">
-                  <input class="checkbox" type="checkbox" ng-model="notes.checkedDiagnosis" ng-checked="chekDiag">
-                </label> -->
-                <i class="icon ion-chevron-right icon-accessory" ></i>
-              </div>
         </div>
 
       </div>
@@ -43,7 +39,7 @@
           </div>
     </div>
     <div class="  row">
-          <div class="col col-75"  ui-sref="templates.patientTests({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})">Tests Recomended</div>
+          <div class="col col-75"  ui-sref="templates.patientTests({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})">Tests Recommended</div>
           <div class="col" ui-sref="templates.patientTests({ptFname:pt.patientFname,ptLname:pt.patientLname,ptImage:pt.image,ptPh:pt.patientFname})">
           <label class="checkbox">
             <input class="checkbox"  type="checkbox" ng-model="notes.checkedTests" ng-checked="chekTests" >
@@ -63,8 +59,8 @@
   </div>
 
   <div class="buttons">
-   <button  class="button button-block button-assertive" ng-click="sendprescription();">Complete & charge</button>
-   <button  class="button button-block button-energized" ng-click="sendprescription();">Complete without charge</button>
+   <button  class="button button-block button-assertive" ng-click="endConsultation(1);">Complete & charge</button>
+   <button  class="button button-block button-energized" ng-click="endConsultation(2);">Complete without charge</button>
  </div>
 
   </ion-content>

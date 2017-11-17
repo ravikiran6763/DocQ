@@ -7,7 +7,7 @@
           <div class="walletLogo">
             <img ng-src="img/dq_icon_payments_large_540x960.png" >
           </div>
-          <h1>DoctorQuick Wallet</h1>
+          <h1>DoctorQuick Deposit</h1>
         </div>
         <div class="balanceAmt ">
 
@@ -33,23 +33,26 @@
       <li  ng-repeat="doc in doctorsList">
         <div class="profile-img">
           <img  ng-hide="doc.docImage2 == null "ng-src="{{doc.docImage2}}"   >
-          <img  ng-show="doc.docImage2 == null " ng-src="img/doc.jpg"  >
+          <img  ng-show="doc.docImage2 == null " ng-src="img/dq_icon_payments_large_540x960.png"  >
         </div>
         <div class="name-content">
           <div class="name">
-            <h2>Dr. {{doc.doctorFname}} {{doc.doctorLname}}</h2>
+            <h2 ng-hide="doc.doctorFname == null ">Dr. {{doc.doctorFname}} {{doc.doctorLname}}</h2>
+            <h2 ng-show="doc.doctorFname == null ">Deposit</h2>
           </div>
           <div class="date">
             <!-- <p>{{r.consultDate | date:'yyyy-MM-dd'}}</p> -->
 
           </div>
 
-          <p class="msgContent"><font size=2>{{doc.date}}</font></p>
+          <p class="msgContent" ng-hide="doc.creditedDatetime == null "><font size=2>{{doc.creditedDatetime}}</font></p>
+          <p class="msgContent" ng-show="doc.creditedDatetime == null "><font size=2>{{doc.debitedDatetime}}</font></p>
           <!-- <p class="badge badge-assertive chatCount">{{ 1 }}</p> -->
 
         </div>
         <div class="next-icon">
-          <p>₹{{doc.amountDeducted}}</p>
+          <p ng-hide="doc.amountDeducted == null " >₹{{doc.amountDeducted}}</p>
+          <p ng-show="doc.amountDeducted == null ">₹{{doc.amountCredited}}</p>
         </div>
       </li>
 

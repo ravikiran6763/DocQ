@@ -8,7 +8,7 @@ if (isset($postdata))
 
     $docPhno = json_decode($postdata);
     $doctorDetails = array();
-    $sql = "select sum(consultationAmount) as totalBal from DoctorWallet where docPhone ='$docPhno' ";
+    $sql = "select sum(consultationAmount) as totalBal, sum(withdrawlAmount) as totalWithdrawl from DoctorWallet where docPhone ='$docPhno' ";
 
     $retval = mysql_query( $sql, $dbhandle );
 

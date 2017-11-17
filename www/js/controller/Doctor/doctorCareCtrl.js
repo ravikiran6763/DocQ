@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localStorage,$timeout, $ionicConfig, $ionicLoading, $http, $cordovaToast, doctorCareService) {
+DoctorQuickApp.controller('doctorCareCtrl', function($scope,$state, $rootScope,$ionicPopup, $localStorage,$timeout, $ionicConfig, $ionicLoading, $http, $cordovaToast, doctorCareService) {
 	$rootScope.headerTxt="Customer Care";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -36,20 +36,21 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localS
 	        console.log(response);
 	        $rootScope.cc.query="";
 
-					window.plugins.toast.showWithOptions({
-	        message: "Your query has been submitted.",
-	        duration: "short", // 2000 ms
-	        position: "bottom",
-	        styling: {
-	        opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-	        backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-	        textColor: '#ffffff', // Ditto. Default #FFFFFF
-	        textSize: 13, // Default is approx. 13.
-	        cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-	        horizontalPadding: 16, // iOS default 16, Android default 50
-	        verticalPadding: 12 // iOS default 12, Android default 30
-	        }
-	        });
+					var confirmPopup = $ionicPopup.confirm({
+									template: '<center>Someone from DoctorQuick will contact you soon</center>',
+									cssClass: 'videoPopup',
+									scope: $scope,
+									buttons: [
+										{
+											text: 'OK',
+											type: 'button-positive',
+											onTap: function(e) {
+											console.log('offline');
+											$state.go("templates.doctor_home")
+											}
+										},
+									]
+								});
 
 	      }).catch(function(error){
 	      console.log('failure data', error);
@@ -72,24 +73,21 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope, $rootScope, $localS
         console.log(response);
 				$ionicLoading.hide();
         $rootScope.cc.query="";
-				$timeout(function () {
-					console.log('timeout');
-					$ionicLoading.hide();
-					window.plugins.toast.showWithOptions({
-					message: "Someone will contact you from DoctorQuick.",
-					duration: "short", // 2000 ms
-					position: "bottom",
-					styling: {
-					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-					textColor: '#ffffff', // Ditto. Default #FFFFFF
-					textSize: 13, // Default is approx. 13.
-					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-					horizontalPadding: 16, // iOS default 16, Android default 50
-					verticalPadding: 12 // iOS default 12, Android default 30
-					}
-					});
-				}, 2000);
+				var confirmPopup = $ionicPopup.confirm({
+								template: '<center>Someone from DoctorQuick will contact you soon</center>',
+								cssClass: 'videoPopup',
+								scope: $scope,
+								buttons: [
+									{
+										text: 'OK',
+										type: 'button-positive',
+										onTap: function(e) {
+										console.log('offline');
+										$state.go("templates.doctor_home")
+										}
+									},
+								]
+							});
       }).catch(function(error){
       console.log('failure data', error);
     });

@@ -240,7 +240,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				      var success = function(message)
 				      {
 				        $rootScope.unreadchatforpatient = message;
-				        console.log($scope.unreadchatforpatient);
+				        // console.log($scope.unreadchatforpatient);
 				      }
 
 				      var failure = function()
@@ -349,29 +349,30 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				var pw1 = "DQ_doctor";
 				if($scope.deviceAndroid === true){
 
-				var success = function(message)
-				{
-				$ionicLoading.hide();
-				console.log(message);
-				$ionicHistory.nextViewOptions({
-				disableAnimate: true,
-				disableBack: true
-				});
-				$state.go('templates.doctor_home',{}, {location: "replace", reload: false});
-				// alert(message);
-				}
-				var failure = function()
-				{
-				alert("Error calling Hello Plugin");
-				}
+						var success = function(message)
+						{
+							alert(message);
+						$ionicLoading.hide();
+						console.log(message);
+						$ionicHistory.nextViewOptions({
+						disableAnimate: true,
+						disableBack: true
+						});
+						$state.go('templates.doctor_home',{}, {location: "replace", reload: false});
+						// alert(message);
+						}
+						var failure = function()
+						{
+						alert("Error calling Hello Plugin");
+						}
 
-				hello.login(uname1,pw1,success, failure);
+						hello.login(uname1,pw1,success, failure);
 
 				}
 				else{
 
 				$ionicLoading.show({
-				template: '<ion-spinner></ion-spinner><br><br>connecting to DoctorQuick'
+				template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 				});
 				var success = function(message)
 				{

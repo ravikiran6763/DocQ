@@ -1,14 +1,23 @@
 <ion-view class="profile-view" cache-view="false">
 
   <ion-content ng-repeat="doctor in userDoctor">
-    <div class="top-content"  >
+    <div class="doc-top-content"  >
       <div class="details">
         <div class="profileImage" ng-click="showAlert()">
-          <img  ng-hide="doctor.image == null " ng-src="{{doctor.image}}"  >
-          <img  ng-show="doctor.image == null " ng-src="img/patientAvatar.png"  >
+          <img  ng-hide="doctor.docImage2 == null " ng-src="{{doctor.docImage2}}"  >
+          <img  ng-show="doctor.docImage2 == null " ng-src="img/patientAvatar.png"  >
         </div>
         <div class="name-content">
           <h2>Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h2>
+
+          <span class="stars " ng-show="{{mydocs.ratingCount == 0}}">
+            <span ng-style="{ 'width': getStars(0) }"></span>
+          </span>
+          <span class="stars " ng-show="{{mydocs.ratingCount != 0}}">
+            <span ng-style="{ 'width': getStars(doctor.ratings/doctor.ratingCount) }"></span>
+          </span>
+          <span style="float: right; margin-top: -7%; margin-right: 22%; font-size: 88%;">({{doctor.ratingCount}}Reviews)</span>
+          <!-- {{doctor.ratings/doctor.ratingCount | number:1 }}/{{doctor.ratingCount}} -->
           <!-- <div star-rating rating-value="rating.current" max="rating.max" ></div> -->
 
         </div>
@@ -22,7 +31,7 @@
             <div class="col">First Name</div>
             <div class="col">{{doctor.doctorFname | capitalize}}</div>
           </div>
-          <div class="row">
+          <div class="row" ng-hide="doctor.doctorMname == '' ">
             <div class="col">Middle Name</div>
             <div class="col">{{doctor.doctorMname | capitalize}}</div>
           </div>

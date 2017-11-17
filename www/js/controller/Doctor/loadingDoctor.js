@@ -46,6 +46,14 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     //   })
     // });
 
+    doctorServices.doctorDetails($localStorage.user).then(function(response,data){
+      $rootScope.doctor_details=response;//store the response array in doctor details
+      console.log($rootScope.doctor_details);
+      window.localStorage['doctorDetails'] = angular.toJson(response);
+
+    }).catch(function(error){
+      console.log('failure data', error);
+    });
     doctorServices.notifyPatient($localStorage.user).then(function(response){
       console.log(response);
     })
@@ -84,26 +92,26 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
         hello.login(uname1,pw1,success, failure);
         $timeout( function(){
         console.log('interval started');
-        $interval(checkNewMessages,1000);
-        }, 3000);
         var username = "greet+"+$localStorage.user;
         var password = "DQ_doctor";
-        function checkNewMessages()
-        {
-            var success = function(message)
-            {
-              $rootScope.unreadchatforpatient = message;
-              console.log($scope.unreadchatforpatient);
-            }
+          $rootScope.checkNewMessages = $interval(function(){
+          //code goes here
+          var success = function(message)
+          {
+            $rootScope.unreadchatforpatient = message;
+            console.log($scope.unreadchatforpatient);
+          }
 
-            var failure = function()
-            {
-              console.log("Error calling Hello Plugin");
-              //console.log(‘error’);
+          var failure = function()
+          {
+            console.log("Error calling Hello Plugin");
+            //console.log(‘error’);
 
-            }
-              hello.unreadchatfromusers(username,password,success, failure);
-        }
+          }
+            hello.unreadchatfromusers(username,password,success, failure);
+          }, 1000);
+        }, 3000);
+
     }
     else{
 
@@ -175,41 +183,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
             }
 
     }
-    // $ionicLoading.show({
-    //       template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick',
-    //     });
-    //     var uname1 = "greet+"+$localStorage.user;
-    //     var pw1 = "DQ_doctor";
-    //     var success = function(message)
-    //     {
-    //       console.log(message);
-    //
-    //       $ionicLoading.hide().then(function(){
-    //         console.log("The loading indicator is now hidden");
-    //
-    //         $ionicHistory.nextViewOptions({
-    //           disableAnimate: true,
-    //           disableBack: true
-    //         });
-    //         $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-    //         $interval(checkNewMessages,2000);
-    //       });
-    //
-    //       $scope.iosLoggin=message;
-    //       $localStorage.onOff=1;
-    //     }
-    //     var failure = function()
-    //     {
-    //
-    //       alert("Error calling Hello Plugin");
-    //
-    //     }
-    //
-    //     hello.login(uname1,pw1,success, failure);
 
-
-
-    // $state.go('templates.doctor_home');
 
   }, 0);
 

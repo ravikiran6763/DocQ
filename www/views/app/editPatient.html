@@ -1,6 +1,7 @@
 <ion-view class="add-patient-view" cache-view="false">
 
   <ion-content scroll="false" >
+  <form  novalidate name="addingPatient" ng-submit="sendForm($event)" ng-class={loginDatasubmitted:loginDatasubmitted}>
 
   <div class="card ">
     <div class="row">
@@ -21,10 +22,10 @@
     </div>
     <div class="row">
       <div class="col">
-        <p style="margin: 13% 0 0 1%;">Age</p>
+        <p style="margin: 13% 0 0 1%;">DOB</p>
       </div>
       <div class="col-75" style="padding:2% !important;">
-        <input class="form-control"  type="number" placeholder="Age" name="newLname"  ng-model="newPatient.age" required></input>
+        <input class="form-control"  type="date" placeholder="DOB" name="newLname"  ng-model="newPatient.age" required></input>
       </div>
     </div>
 
@@ -42,22 +43,15 @@
             <ion-radio class="form-control" ng-value="'Female'" ng-model="newPatient.sex" required><span style="position: fixed; font-size: smaller;    margin: -14px 0 0 -23px;">Female</span></ion-radio>
           </div>
         </div>
-        <!-- <select name='sex' ng-model="newPatient.sex" style="width:100%; height: 70%; border: 1px solid #eee; background-color: white;" required>
-          <option value='Male' selected>Male</option>
-          <option value='Female'>Female</option>
-        </select> -->
+
       </div>
 
-        <!-- <div class="form-group button-bar" >
-          <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'Male'" required><span >Male</span></ion-radio>
-          <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'Female'" required><span >Female</span></ion-radio>
-        </div> -->
     </div>
   </div>
 
   <div class="buttons">
-   <button  class="button button-block button-assertive" ng-click="saveNewPatient();">Save</button>
+   <button  class="button button-block button-assertive" ng-click="savePatient();">Save</button>
  </div>
-
+</form>
   </ion-content>
 </ion-view>

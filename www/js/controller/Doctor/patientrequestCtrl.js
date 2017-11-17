@@ -148,9 +148,13 @@
 					 		for(var i=0; i<data.length; i++){
 			 						$rootScope.reqId=data[i].id,
 			 						$rootScope.reqPat=data[i].patientPhone,
+                  $rootScope.subPatientId=data[i].subPatientId,
+
 									// $rootScope.dateAndTime=data[i].requestedTime
 					 		console.log($rootScope.reqId);
 					 		console.log($rootScope.reqPat);
+              console.log($rootScope.subPatientId);
+
 
 					 		}
 
@@ -198,7 +202,13 @@
 					 $scope.currentPatient={};
 					 $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
 			     console.log('current patient',$scope.currentPatient);
-					//  $rootScope.reqId=$scope.currentPatient.id;
+					 $rootScope.patientNum=$scope.currentPatient.patientNum;
+           $rootScope.subPatientId=$scope.currentPatient.subPatientId;
+
+           console.log($rootScope.subPatientId);
+           $localStorage.subPatientId=$rootScope.subPatientId;
+           $localStorage.patientNum=$rootScope.patientNum;
+
 
 
 
@@ -299,7 +309,7 @@ console.log('actiondate',timestamp);
 					scope: $scope,
 					buttons: [
 					{
-					text: 'Ok',
+					text: 'OK',
 					type: 'button-positive',
 					onTap:function(){
 					console.log('cancel');
@@ -350,7 +360,7 @@ console.log('actiondate',timestamp);
 																	scope: $scope,
 																	buttons: [
 																	{
-																	text: 'Ok',
+																	text: 'OK',
 																	type: 'button-positive',
 																	onTap:function(){
 																	console.log('cancel');
@@ -442,10 +452,10 @@ console.log('actiondate',timestamp);
 																			scope: $scope,
 																			buttons: [
 																			{
-																				text: 'Ok',
+																				text: 'OK',
 																				type: 'button-positive',
 																				onTap: function(e) {
-																				console.log('ok');
+																				console.log('OK');
 																				$state.go("templates.doctor_home");
 																				}
 																			},
@@ -591,7 +601,7 @@ $scope.popupShown = true;
 							scope: $scope,
 							buttons: [
 							{
-							text: 'Ok',
+							text: 'OK',
 							type: 'button-positive',
 							onTap:function(){
 								console.log('patient Declined to call');
@@ -672,7 +682,9 @@ $scope.popupShown = true;
 
  },true);
 
-
+ $scope.$on('$destroy', function(){
+     $interval.cancel(checkForrDeclined,5000);
+ });
 
 
 

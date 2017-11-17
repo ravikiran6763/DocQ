@@ -230,6 +230,7 @@ $scope.patientRegistration = function()
       // console.log($rootScope.PatientDetail);
       if(isFormValid) {
         console.log(isFormValid);
+        console.log($rootScope.PatientDetail.patient_age);
         if($rootScope.PatientDetail.patient_age<18){
           $scope.submittedAge = true;
           // alert('You Should be 18+ to use this app')

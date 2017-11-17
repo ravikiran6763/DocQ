@@ -11,7 +11,7 @@ if (isset($postdata))
 			$doctorphno = $checkPatientActivity->doctor;
      $consultStatus = array();
 
-    echo  $sql = "select flag from reqForConsultation where id='$consultID' and accptedDoctor='$doctorphno'";
+     $sql = "select flag from reqForConsultation where id='$consultID' and accptedDoctor='$doctorphno'";
      $retval = mysql_query( $sql, $dbhandle );
      while($row = mysql_fetch_array($retval))
      {

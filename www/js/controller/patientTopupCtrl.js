@@ -24,7 +24,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 								$scope.payment.topUpAmt=($scope.payment.topUp*100);
 								console.log($scope.payment.topUp);
-							 if($scope.payment.topUp < 250){
+							 if($scope.payment.topUp < 1){//250
 								 window.plugins.toast.showWithOptions({
 								 message: "Amount must be ₹250 or higher.",
 								 duration: "short", // 2000 ms
@@ -39,43 +39,40 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 								 verticalPadding: 12 // iOS default 12, Android default 30
 								 }
 								 });
-								$timeout(function() {
-									 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-								}, 1000);
-									// alert('amount must be ₹250 or higher');
-									// $cordovaToast.showLongCenter('amount must be ₹250 or higher.', 'short', 'center').then(function(success) {
-									// // success
-									// }, function (error) {
-									// // error
-									// });
+
 								}
 
 								else{
 									var options = {
-											description: 'Consult A Doctor Now',
+											description: 'GET WELL SOONER',
 											currency: 'INR',
-											key: 'rzp_test_mzUbTyUmUd2dyE',//change this key to live account key
+											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_JU6YPIIvdsBxyY // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
-											method:{
-												wallet:false
-											},
-											prefill: {
+											// method:{
+											// 	wallet:true,
+											// 	upi:true
+											// },
+											prefill:{
 												email: $scope.patientEmail,
 												contact: $localStorage.user,
 												name: $scope.patientFname
 											},
-											// theme: {color: '#6aa13e'}
+
 									}
-									// console.log(options);
 									RazorPayService.topUpOptions(options);
 									var successCallback = function(payment_id) {
 									// alert('payment_id: ' + payment_id);
+									alert('payment_id: ' + success.razorpay_payment_id);
+								   var orderId = success.razorpay_order_id
+								   var signature = success.razorpay_signature
+									 alert(orderId);
+									 alert(signature);
 
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){
 									   $rootScope.patientWalletUpdate=response;
-										//  alert($rootScope.patientWalletUpdate);
+										 alert($rootScope.patientWalletUpdate);
 										 if($rootScope.patientWalletUpdate=='TransactionSuccessful'){
 											  // $state.go('app.patient_topup');
 												$state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});
@@ -94,7 +91,21 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									}
 
 									var cancelCallback = function(error) {
-									alert(error.description + ' (Error '+error.code+')');
+										window.plugins.toast.showWithOptions({
+										message: "Transaction cancelled.",
+										duration: "short", // 2000 ms
+										position: "bottom",
+										styling: {
+										opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+										backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+										textColor: '#ffffff', // Ditto. Default #FFFFFF
+										textSize: 13, // Default is approx. 13.
+										cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+										horizontalPadding: 16, // iOS default 16, Android default 50
+										verticalPadding: 12 // iOS default 12, Android default 30
+										}
+										});
+									// alert(error.description + ' (Error '+error.code+')');
 									}
 									RazorpayCheckout.open(options, successCallback, cancelCallback);
 

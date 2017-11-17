@@ -22,7 +22,8 @@
             Rating
           </div>
           <div class=" col" ng-repeat="mydocs in myDocDetails1">
-            {{mydocs.ratings/mydocs.ratingCount | number:1 }}({{mydocs.ratingCount}} Reviews)
+            {{mydocs.ratings/mydocs.ratingCount | number:1 }}/{{mydocs.ratingCount}}
+            <!-- {{mydocs.ratings/mydocs.ratingCount | number:1 }}({{mydocs.ratingCount}} Reviews) -->
           </div>
 
 
@@ -42,6 +43,19 @@
 
         </div>
       </div>
+      <div class="card " style="margin-top: -4%;">
+        <div class="row" style="margin-left: 0% !important;">
+          <!-- ui-sref="templates.addNewPatient" -->
+              <div  class="col col-75" class="item-icon-right" ng-click="changePatient();" ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
+              <div class="col col-75"  class="item-icon-right" ng-click="changePatient();" ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
+              <i class="icon ion-chevron-right icon-accessory" style="margin-left: 17%; margin-top: 3%;"></i>
+
+              <div class="col">
+
+              </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="bottom-content"  ng-repeat="mydocs in myDocDetails1" ng-show="{{mydocs.onoff == 1}}">
@@ -54,10 +68,10 @@
             Video Call
           </button>
         </div>
-        <center><h5>consultation Fee:{{mydocs.doctorFee}}</h5></center>
+        <center><h4 style="margin-top: 7%;">Consultation Fee:₹{{mydocs.doctorFee}}</h4></center>
     </div>
     <div class="offline-content"  ng-repeat="mydocs in myDocDetails1" ng-show="{{mydocs.onoff == 2}}">
-        <h4>Dr.{{mydocs.doctorfname |capitalize}} is offline<br>you may request a consultatiion <br>when back online by sending a<br>notification</h4>
+        <h4 style="margin-top: 20%">Dr.{{mydocs.doctorfname |capitalize}} is offline<br>you may request a consultatiion <br>when back online by sending a<br>notification</h4>
         <div class="buttons">
 
           <button type="submit" class="button button-block button-assertive" ng-click="sendOfflineMessage({{mydocs.doctorPhone}});">

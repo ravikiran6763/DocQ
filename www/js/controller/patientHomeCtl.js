@@ -7,6 +7,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
 
+$localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
 
@@ -27,9 +28,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			}
 
-
-
-
 			$timeout( function(){
 				$interval(startPinging,2000);
 			}, 2000 );
@@ -40,11 +38,11 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				var password = "DQ_patient";
 				$rootScope.unreadchatforpatient = 0;
 
-
 				function startPinging()
 				{
 					// console.log('start piniging');
 					pingService.pingToServer().then(function(response){
+							// console.log( response);
 					 }).catch(function(error){
 							 console.log('failure data', error);
 					 });

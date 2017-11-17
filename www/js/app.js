@@ -306,9 +306,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
   }
   console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
   }
-  // console.log(toState.name);
+  console.log(toState.name);
   if (toState.name != "app.searchDoctors") {
   $rootScope.sideMenuForSearch = false;
+  }
+  if (toState.name != "templates.invite_reviews") {
+    $rootScope.inviteButton = false;
+    $rootScope.hideSideMenu = true;
+  }
+  if (toState.name === "templates.doctor_home") {
+    $rootScope.showNotification = true;
+    	$rootScope.showBadge=true;
+    // $rootScope.hideSideMenu = true;
+  }
+  if (toState.name != "templates.doctor_home") {
+    $rootScope.showBackBtn=false;
+    // $rootScope.hideSideMenu = true;
   }
   if (toState.name == "app.patient_summary") {
   // $rootScope.hideSideMenu = true;
@@ -394,6 +407,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionic
 
   }
   else if($state.$current.name === "templates.doctor_home"){
+    $rootScope.inviteButton = true;
+
   $ionicHistory.clearCache();
   $ionicHistory.clearHistory();
   $ionicHistory.nextViewOptions({
@@ -482,7 +497,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                       }
                       else{
                         $injector.get("$ionicLoading").show({
-                              template: '<ion-spinner></ion-spinner><br><br>Recovering lost connection',
+                              template: '<ion-spinner icon="crescent"></ion-spinner><br><br>Recovering lost connection',
                             });
                       }
                       break;
@@ -709,10 +724,41 @@ $stateProvider
     }
   }
 })
+.state('app.subPatientList', {
+  cache : false,
+  url: "/subPatientList",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/subPatientList.html",
+      controller:'addNewPatientCtrl'
+    }
+  }
+})
+
+.state('app.addSubPatient', {
+  cache : false,
+  url: "/addSubPatient",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/addSubPatient.html",
+      controller:'addNewPatientCtrl'
+    }
+  }
+})
+.state('app.editPatient', {
+  cache : false,
+  url: "/editPatient/:id/:fname/:lname/:sex/:dob",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/editPatient.html",
+      controller:'editPatientCtrl'
+    }
+  }
+})
 
 //doctore screens
   .state('app.specialityDetailsNew', {
-    url: "/specialityDetailsNew/:specialId/:special/:content1/:descrpt",
+    url: "/specialityDetailsNew",
     views: {
       'menuContent': {
         templateUrl: "views/app/specialityDetailsNew.html",
@@ -916,16 +962,7 @@ $stateProvider
       }
     }
   })
-  .state('templates.addNewPatient', {
-    cache : false,
-    url: "/addNewPatient",
-    views: {
-      'menuContent': {
-        templateUrl: "views/templates/addNewPatient.html",
-        controller:'notesCtrl'
-      }
-    }
-  })
+
 
   .state('templates.sendPrescription', {
     cache : false,
@@ -1030,19 +1067,9 @@ $stateProvider
       else{
         return '/splash';
       }
+      // return '/splash';
+
     });
 
-  // $httpProvider.interceptors.push('APIInterceptor');
-  // $urlRouterProvider.otherwise(function() {
-  //       var logged = false;
-  //     // alert($localStorage.doctororpatient);
-  //       // Check User logined or not
-  //       if (logged != true) {
-  //         // alert('hello');
-  //           return '/auth/loginNew';
-  //       } else {
-  //           return '/splash';
-  //       }
-  //
-  //   });
+
 });
