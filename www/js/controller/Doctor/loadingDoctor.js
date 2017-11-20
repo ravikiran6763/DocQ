@@ -99,7 +99,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
           var success = function(message)
           {
             $rootScope.unreadchatforpatient = message;
-            console.log($scope.unreadchatforpatient);
+            // console.log($scope.unreadchatforpatient);
           }
 
           var failure = function()

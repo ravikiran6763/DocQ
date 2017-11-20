@@ -62,7 +62,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'changePatientPwd':'patient/changePatientPwd.php',
         'callaccepteddoctor':'patient/insertintomyconsultations.php',
         'existingPatient' : 'patient/existingPatient.php',
-        'sendotp' : 'textgurutest.php',
+        'sendotp' : 'patient/sendotp.php',
         'savePatient':'patient/savePatient.php',
         'rateMyDoctor':'patient/rateMyDoctortodoctordetails.php',
         'addToFavorite':'patient/addToFavorite.php',

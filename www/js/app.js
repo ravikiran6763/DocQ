@@ -38,8 +38,8 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ngMessages',
   'ion-alpha-scroll',
   'angular-circular-progress',
-  'ionic-letter-avatar',
-  'ionic.cloud'
+  'ionic-letter-avatar'
+  // 'ionic.cloud'
 ])
 
 DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval) {
@@ -67,7 +67,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 })
 
 
-DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage,$ionicPush) {
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage) {
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
@@ -124,7 +124,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   // }
 })
 
-DoctorQuickApp.run(function($state,$ionicPlatform,$ionicPush, $rootScope, $ionicConfig, $ionicPlatform,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
 
   if (ionic.Platform.isAndroid()) {
@@ -497,7 +497,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                       }
                       else{
                         $injector.get("$ionicLoading").show({
-                              template: '<ion-spinner icon="crescent"></ion-spinner><br><br>Recovering lost connection',
+                              template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
                             });
                       }
                       break;

@@ -357,14 +357,8 @@
     </config-file>
     <engine name="android" spec="^6.2.3" />
     <engine name="ios" spec="^4.5.3" />
-<<<<<<< HEAD
-=======
-    <plugin name="cordova-plugin-device" spec="^1.1.0">
-        <variable name="MY_VARIABLE" value="my_variable_value" />
-    </plugin>
->>>>>>> a0093e2bc3e5c114d3738adef7c384ca536f902c
     <plugin name="cordova-plugin-whitelist" spec="1.2.0" />
-    <plugin name="com.razorpay.cordova" spec="git+https://github.com/razorpay/razorpay-cordova.git" />
+    <plugin name="com.razorpay.cordova" spec="^1.3.1" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
@@ -372,26 +366,19 @@
     <plugin name="cordova-plugin-contacts" spec="^2.3.1">
         <variable name="CONTACTS_USAGE_DESCRIPTION" value=" " />
     </plugin>
-    <plugin name="cordova-plugin-device" spec="^1.1.7" />
+    <plugin name="cordova-plugin-device" spec="^1.1.0">
+        <variable name="MY_VARIABLE" value="my_variable_value" />
+    </plugin>
     <plugin name="cordova-plugin-fullscreen" spec="^1.2.0" />
     <plugin name="cordova-plugin-network-information" spec="^1.3.4" />
     <plugin name="cordova-plugin-shared-preferences" spec="0.0.1" />
     <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
-<<<<<<< HEAD
     <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
-    <plugin name="com.example.hello" spec="file:../newpluginforandroid/cordova-plugin-hello" />
-=======
-    <plugin name="phonegap-plugin-mobile-accessibility" spec="git+https://github.com/phonegap/phonegap-mobile-accessibility.git" />
-    <plugin name="com.razorpay.cordova" spec="^1.3.1" />
     <plugin name="com.red_folder.phonegap.plugin.backgroundservice" spec="../veeresh mac data/bgs-core" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
     <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
-<<<<<<< HEAD
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-=======
->>>>>>> a0093e2bc3e5c114d3738adef7c384ca536f902c
->>>>>>> b4564a21a8a9d9028c88445c809da0639faf5b80
 </widget>

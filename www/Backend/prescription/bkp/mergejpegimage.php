@@ -1,5 +1,6 @@
 <?php
 
+include("createjpeg.php");
 
 $png= imagecreatefrompng('dq_loginlogo.png');
 

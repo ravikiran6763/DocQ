@@ -76,20 +76,26 @@
 								 echo "ERROR";
 							}
 
+							$sqlTopup = "INSERT INTO patientWallet(patientPhone,transactionId,amountCredited,creditedDateTime) values('$pateientPhone','registration_bonus',250,now())";
+							$retvalTopUp = mysql_query( $sqlTopup, $dbhandle );
 
+								if(mysql_error())
+								// if(!$retval)
+								{
+								// die('Could not enter data: ' . mysql_error());
+									 echo "ERROR";
+								}
 
-
-						$clienrNuym=$apiclientname+$pateientPhone;
 						//PASSWORD FOR DOCTOR TO LOGIN INTO VSEE
 						$password = "DQ_patient";
 						//CREATE USERS IN VSEE FROM THE BELOW URL
 						$USER_CREATE_URL = "https://api.vsee.com/user/create?apikey=" . $apikey;
 						//SEND JSON DATA OF USERS TO VSEE API
-						$USER_JSON = '{"secretkey":'.$secretkey.',
-						"username":'.$pateientPhone.',
-						"password":'.$password.',
-						"fn": '.$pateientFname.',
-						"ln": '.$pateientLname.'}';
+						$USER_JSON = '{"secretkey":"'.$secretkey.'",
+						"username":"'.$pateientPhone.'",
+						"password":"'.$password.'",
+						"fn": "'.$pateientFname.'",
+						"ln": "'.$pateientLname.'"}';
 						curl_setopt($ch, CURLOPT_URL, $USER_CREATE_URL);
 						curl_setopt($ch, CURLOPT_POSTFIELDS, $USER_JSON);
 						$result = curl_exec($ch);

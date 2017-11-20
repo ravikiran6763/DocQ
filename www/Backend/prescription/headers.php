@@ -19,9 +19,9 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
   }
 
 
-  $username = "doctorquick2017";
-  $password = "aishiteimasu";
-  $hostname = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
+  $username = "dq_1507";
+  $password = "dqrskvsk";
+  $hostname = "doctorquickservices-1.cluster-ck1ombdee9lh.ap-south-1.rds.amazonaws.com:3306";
   //$hostname = "dq-new.cn214rm1segx.us-west-2.rds.amazonaws.com";
 
   //connection to the database
@@ -29,7 +29,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
    or die("Unable to connect to MySQL");
 
   //select a database to work with
-  $selected = mysql_select_db("tayokuki",$dbhandle)
+  $selected = mysql_select_db("DoctorQuick",$dbhandle)
     or die("Could not select examples");
 
     header('Content-type: text/html; charset=utf-8');

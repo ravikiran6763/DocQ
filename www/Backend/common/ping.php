@@ -17,11 +17,14 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
 
       exit(0);
   }
+  
+  $username = "dq_1507";
+  $password = "dqrskvsk";
+  $hostname = "doctorquickservices-1.cluster-ck1ombdee9lh.ap-south-1.rds.amazonaws.com:3306";
 
-
-  $username = "doctorquick2017";
-  $password = "aishiteimasu";
-  $hostname = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
+  // $username = "doctorquick2017";
+  // $password = "aishiteimasu";
+  // $hostname = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
   //$hostname = "dq-new.cn214rm1segx.us-west-2.rds.amazonaws.com";
 
   //connection to the database

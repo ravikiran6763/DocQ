@@ -5,7 +5,7 @@ $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL,'https://www.txtguru.in/imobile/api.php?');
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_POSTFIELDS,'username=tallysolutions&password=49332602&source=TALLYS&dmobile=919880801520&message=helllllo');
+curl_setopt($ch, CURLOPT_POSTFIELDS,'username=doctorquick&password=49332602&source=TALLYS&dmobile=919880801520&message=helllllo');
 
 // in real life you should use something like:
 // curl_setopt($ch, CURLOPT_POSTFIELDS,

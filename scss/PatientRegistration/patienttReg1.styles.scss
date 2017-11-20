@@ -87,6 +87,10 @@
 					width: 100% !important;
 					// height: 100%;
 				}
+				input[readonly]:not(.cloned-text-input){
+					background-color: #eee !important;
+
+				}
 	}
 	.bottom-content{
 		height: 17% !important;

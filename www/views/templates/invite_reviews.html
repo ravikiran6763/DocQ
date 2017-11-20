@@ -8,6 +8,8 @@
      <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
    </div>
 
+   <ceneter><i class="icon ion-android-share-alt" ng-click="showAlert()"></i>
+   </center>
    <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
      <!-- <ion-checkbox ng-repeat="number in contact.phoneNumbers"
                     ng-model="phones[number.value]"

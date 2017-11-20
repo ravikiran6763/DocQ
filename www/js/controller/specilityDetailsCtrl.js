@@ -361,7 +361,7 @@ $rootScope.popUpClosed == false;
 
   $scope.$on('$destroy', function(){
       $interval.cancel(checkAcceptedReqDocStatus);
-      $interval.cancel(checkAcceptedReq);
+      // $interval.cancel(checkAcceptedReq);
       $interval.cancel(CheckOnlineDocs);
 
   });

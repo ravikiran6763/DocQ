@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$cordovaEmailComposer,$state,$window,$ionicConfig,$ionicPush,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$cordovaEmailComposer,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -32,13 +32,7 @@ $scope.register = function() {
  $scope.accptNotifications=true;
  $scope.rejectNotifications=false;
  // Register with the Ionic Push service.  All parameters are optional.
- $ionicPush.register().then(function(token){
-	 return $ionicPush.saveToken(token);
- }).then(function(token){
-	 console.log('token',token);
- }).catch(function(err){
-	 console.log(err);
- });
+
 
 
 };

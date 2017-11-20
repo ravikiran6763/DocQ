@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window,$ionicAuth, $ionicUser,$ionicPush, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -7,7 +7,7 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     $rootScope.Doctor = {};
     $rootScope.PatientDetail = {};
     $scope.Doctor = {};
-
+    $rootScope.dateOfBirth='';
     $scope.submitted = false;
 
     $scope.deviceAndroid = ionic.Platform.isAndroid();
@@ -75,7 +75,6 @@ $scope.sendForm = function($event,form)
     patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
     {
       $scope.otpentered = {};
-
         $scope.otp=response;
         window.plugins.toast.showWithOptions({
         message: "OTP has been sent to your mobile number",
@@ -99,6 +98,7 @@ $scope.sendForm = function($event,form)
   }
 
     $scope.otpentered = {};
+
 
 $scope.patientRegistration = function()
 {
@@ -152,7 +152,7 @@ $scope.patientRegistration = function()
               $window.localStorage.clear();
               $scope.otpentered={};
               $rootScope.PatientDetail={};
-
+              $rootScope.dateOfBirth='';
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
               disableBack: true
@@ -225,31 +225,46 @@ $scope.patientRegistration = function()
       $rootScope.validInput=false;
       $scope.validForm =isFormValid;
       $scope.submitted = true;
+      $scope.currentDate = new Date();
+      console.log($scope.currentDate);
+      console.log($rootScope.dateOfBirth);
 
+      var date2 = new Date();
+      var date1 = new Date($rootScope.dateOfBirth);
+      var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+      $scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+      // return $scope.dayDifference;
+      console.log($scope.dayDifference);
+      // if($scope.dayDifference < 6570){
+      //
+      //   alert('you should be 18+')
+      //
+      // }
 
       // console.log($rootScope.PatientDetail);
       if(isFormValid) {
         console.log(isFormValid);
-        console.log($rootScope.PatientDetail.patient_age);
-        if($rootScope.PatientDetail.patient_age<18){
+
+        if($rootScope.dateOfBirth === '' || $scope.dayDifference < 6570){
           $scope.submittedAge = true;
-          // alert('You Should be 18+ to use this app')
-              window.plugins.toast.showWithOptions({
-              message: "You should be 18+ to use DoctorQuick",
-              duration: "short", // 2000 ms
-              position: "bottom",
-              styling: {
-              opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-              backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-              textColor: '#ffffff', // Ditto. Default #FFFFFF
-              textSize: 13, // Default is approx. 13.
-              cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-              horizontalPadding: 16, // iOS default 16, Android default 50
-              verticalPadding: 12 // iOS default 12, Android default 30
-              }
-              });
+          window.plugins.toast.showWithOptions({
+          message: "You should be 18+ to use DoctorQuick",
+          duration: "short", // 2000 ms
+          position: "bottom",
+          styling: {
+          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+          backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+          textColor: '#ffffff', // Ditto. Default #FFFFFF
+          textSize: 13, // Default is approx. 13.
+          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+          horizontalPadding: 16, // iOS default 16, Android default 50
+          verticalPadding: 12 // iOS default 12, Android default 30
+          }
+          });
         }
+
         else{
+          $rootScope.PatientDetail.patient_age=$rootScope.dateOfBirth;
           $state.go('auth.patient_reg2');
         }
       }
@@ -587,6 +602,30 @@ $scope.patientRegistration = function()
   };
 	// $scope.showModal('templates/video-popover.html');
 }
+$rootScope.dateOfBirth='';
+var ipObj2 = {
+    callback: function (val) {  //Mandatory
+      $scope.currentDate = new Date();
+      console.log($scope.currentDate);
+      console.log('Selected To Date : ' + val, new Date(val));
 
+      $rootScope.dateOfBirth = $filter('date')(new Date(val),'yyyy-MM-dd');
+
+    },
+
+    from: new Date(1950, 1, 1), //Optional
+    to: new Date(2050, 12, 31), //Optional
+    inputDate: new Date(),      //Optional
+    mondayFirst: false,          //Optional
+    // disableWeekdays: [0],       //Optional
+    closeOnSelect: true,
+    dateFormat: 'dd MMMM yyyy',     //Optional
+    templateType: 'popup'       //Optional
+  };
+
+$scope.openDatePickerDOB = function(){
+
+  ionicDatePicker.openDatePicker(ipObj2);
+};
 
 })

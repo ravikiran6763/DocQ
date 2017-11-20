@@ -14381,6 +14381,8 @@ ion-side-menu .heading-item .message {
       height: 18% !important;
       padding-left: 10px;
       width: 100% !important; }
+    .patient-reg-1-view .form-content input[readonly]:not(.cloned-text-input) {
+      background-color: #eee !important; }
   .patient-reg-1-view .bottom-content {
     height: 17% !important; }
     .patient-reg-1-view .bottom-content .login_button {
