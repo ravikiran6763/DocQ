@@ -19,7 +19,7 @@
           </div>
           <div class="row">
             <div class="col">Gender</div>
-            <div class="col" ng-if="patient.patientSex || 'M' ">Male</div>
+            <div class="col" >{{patient.patientSex}}</div>
 
           </div>
       </div>
@@ -33,7 +33,7 @@
 
       <div class="card" ng-click="changePwd();">
           <div class="row">
-                <div class="col">change password</div>
+                <div class="col" style="position:absolute;">change password</div>
                 <div class="col"></div><i class="icon ion-chevron-right icon-accessory" ></i>
 
           </div>

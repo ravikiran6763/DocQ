@@ -1,16 +1,9 @@
 DoctorQuickApp.service('invitereviews', function ($http,$rootScope,$q,BASE_URL, API) {
 
 
-$rootScope.con = [];
+var con = [];
 this.invitereviewpatient = function (listofcontacts){
-  if(listofcontacts === true){
     $rootScope.con.push(listofcontacts);
-  }
-  else{
-    var index = $rootScope.con.indexOf(listofcontacts);
-    $rootScope.con.splice(index, 1);
-  }
-
       console.log($rootScope.con);
 }
 

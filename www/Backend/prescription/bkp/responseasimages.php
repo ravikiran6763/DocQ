@@ -15,11 +15,8 @@ if(isset($postdata))
 	      $diagnosis = $request->diagnosis;//DIAGNOSIS BY DOCTOR
 	      $tests = $request->tests;//TESTSBY DOCTOR
 	      $medication = $request->medication;//MEDICATION BY DOCTOR
+				$subPatient = $request->subPatient;//MEDICATION BY DOCTOR
 
-				$newPatienFname = $request->newPatienFname;//MEDICATION BY DOCTOR
-				$newPatienLname = $request->newPatienLname;//MEDICATION BY DOCTOR
-				$newPatienAge = $request->newPatienAge;//MEDICATION BY DOCTOR
-				$newPatienSex = $request->newPatienSex;//MEDICATION BY DOCTOR
 
 
 
@@ -28,7 +25,7 @@ if(isset($postdata))
 	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
 	      // $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
 	      // $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
-
+        //
 
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE
 	     $doctorinformation = "select doctorFname,doctorMname,doctorLname,doctorDegrees,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode from doctorDetails where  doctorPhone='$doctorphoneno'";
@@ -56,7 +53,10 @@ if(isset($postdata))
 	   		die('Could not get data: ' . mysql_error());
 	    	}
 				//GET PATIENTINFORMATION FROM PATIENTDETAILS TABLE
-				if($newPatienFname === NULL){
+				$subPatient = (int)$subPatient;
+				if($subPatient == 0)
+				{
+
 					$patientinformation = "select patientFname,patientMname,patientLname,patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
 					$retvalpatientinformation = mysql_query( $patientinformation, $dbhandle );
 						 while($row = mysql_fetch_array($retvalpatientinformation))
@@ -76,11 +76,19 @@ if(isset($postdata))
 
 				}
 				else{
-					$patient_fname = $newPatienFname;
-					$patient_lname = $newPatienLname;
-					$patient_age = $newPatienAge;
-					$patient_sex = $newPatienSex;
-					$patient_fullname = $patient_fname."  ".$patient_lname;
+					 $sql = "select id,newPatientFname,newPatientLname,newPatientDOB,newPatientSex,addedBy from addNewPatient where addedBy='$patientphoneno' and id='$subPatient' ";
+					$retval = mysql_query( $sql, $dbhandle );
+
+					while($row1 = mysql_fetch_array($retval))
+					{
+						$patient_fname = $row1['newPatientFname'];
+						$patient_lname = $row1['newPatientLname'];
+						$patient_age = $row1['newPatientDOB'];
+						$patient_sex = $row1['newPatientSex'];
+						$patient_fullname = $patient_fname."  ".$patient_lname;
+
+					}
+
 				}
 
 

@@ -163,3 +163,12 @@ margin: -5vh 11vw 0 0;
     color: white;
     position: absolute;
 }
+
+.ion-android-share-alt:before {
+    font-size: 6vh;
+    position: absolute;
+    color: teal;
+    margin: 0 auto;
+    z-index: 999;
+    margin: -11% 0 0 85%;
+}

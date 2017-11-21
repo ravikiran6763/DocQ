@@ -46,7 +46,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var options = {
 											description: 'GET WELL SOONER',
 											currency: 'INR',
-											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_JU6YPIIvdsBxyY // rzp_test_JTodx06v7mHqbr
+											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											// key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
 											// method:{
@@ -61,23 +62,23 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									}
 									RazorPayService.topUpOptions(options);
+
+
 									var successCallback = function(payment_id) {
-									// alert('payment_id: ' + payment_id);
-									alert('payment_id: ' + success.razorpay_payment_id);
-								   var orderId = success.razorpay_order_id
-								   var signature = success.razorpay_signature
-									 alert(orderId);
-									 alert(signature);
+									alert('payment_id: ' + payment_id)
 
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){
 									   $rootScope.patientWalletUpdate=response;
-										 alert($rootScope.patientWalletUpdate);
-										 if($rootScope.patientWalletUpdate=='TransactionSuccessful'){
+										 console.log($rootScope.patientWalletUpdate);
+										 if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
 											  // $state.go('app.patient_topup');
 												$state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});
+													this.navCtrl.push("patient_payments",{
+														status: this.status
+													});
 										 }
-										 if($rootScope.patientWalletUpdate=='ERROR'){
+										 if($rootScope.patientWalletUpdate ==='ERROR'){
 											  alert('Error While Initiating Payment');
 										 }
 										 $scope.payment.topUpAmt="";
@@ -91,6 +92,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									}
 
 									var cancelCallback = function(error) {
+									console.log(error.description + ' (Error '+error.code+')')
 										window.plugins.toast.showWithOptions({
 										message: "Transaction cancelled.",
 										duration: "short", // 2000 ms
@@ -105,9 +107,27 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 										verticalPadding: 12 // iOS default 12, Android default 30
 										}
 										});
-									// alert(error.description + ' (Error '+error.code+')');
+										$window.location.reload(true);
 									}
+
 									RazorpayCheckout.open(options, successCallback, cancelCallback);
+
+									// // var successCallback = function(payment_id) {
+									// // // alert('payment_id: ' + payment_id);
+									// // alert('payment_id: ' + success.razorpay_payment_id);
+								  // //  var orderId = success.razorpay_order_id
+								  // //  var signature = success.razorpay_signature
+									// //  // alert(orderId);
+									// //  // alert(signature);
+                  // //
+                  // //
+									// // }
+                  //
+									// var cancelCallback = function(error) {
+                  //
+									// // alert(error.description + ' (Error '+error.code+')');
+									// }
+									// RazorpayCheckout.open(options, successCallback, cancelCallback);
 
 								}
 	  }

@@ -11495,6 +11495,14 @@ ion-side-menu .heading-item .message {
   color: white;
   position: absolute; }
 
+.ion-android-share-alt:before {
+  font-size: 6vh;
+  position: absolute;
+  color: teal;
+  margin: 0 auto;
+  z-index: 999;
+  margin: -11% 0 0 85%; }
+
 .patientscreen-view {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patientscreen-view ion-content {

@@ -57,7 +57,7 @@ if(isset($postdata))
 				if($subPatient == 0)
 				{
 
-					$patientinformation = "select patientFname,patientMname,patientLname,patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
+					$patientinformation = "select patientFname,patientMname,patientLname,FLOOR(DATEDIFF(now(),patientAge)/365) as patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
 					$retvalpatientinformation = mysql_query( $patientinformation, $dbhandle );
 						 while($row = mysql_fetch_array($retvalpatientinformation))
 						 {
@@ -76,7 +76,7 @@ if(isset($postdata))
 
 				}
 				else{
-					 $sql = "select id,newPatientFname,newPatientLname,newPatientDOB,newPatientSex,addedBy from addNewPatient where addedBy='$patientphoneno' and id='$subPatient' ";
+					 $sql = "select id,newPatientFname,newPatientLname,FLOOR(DATEDIFF(now(),newPatientDOB)/365) as newPatientDOB,newPatientSex,addedBy from addNewPatient where addedBy='$patientphoneno' and id='$subPatient' ";
 					$retval = mysql_query( $sql, $dbhandle );
 
 					while($row1 = mysql_fetch_array($retval))
