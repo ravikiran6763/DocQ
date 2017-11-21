@@ -3,7 +3,8 @@ DoctorQuickApp.service('invitereviews', function ($http,$rootScope,$q,BASE_URL, 
 
 var con = [];
 this.invitereviewpatient = function (listofcontacts){
-    $rootScope.con.push(listofcontacts);
+
+    con.push(listofcontacts);
       console.log($rootScope.con);
 }
 
