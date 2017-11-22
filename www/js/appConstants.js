@@ -86,7 +86,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'myConsultedPatients':'doctor/myConsultedPatients.php',
         'resendOtp':'DQ/resendOtp.php',
         'changePassword': 'changePassword',
-        'invitereviews' : 'invitereview.php',
+        'invitereviews' : 'doctor/invitereview.php',
         'getdoctorrequest' : 'doctor/getdoctorrequestfrompatient.php',
         'consultationRequest' : 'doctor/consultationRequest.php',
         'currentPatient' : 'doctor/currentPatient.php',
@@ -120,7 +120,9 @@ DoctorQuickApp.constant('BASE_URL', {
 
         /*  DOCTOR ON OFF API */
         'doctoronoffconditions':'doctor/doctoronoffline.php',
-        'notifyPatient':'doctor/notifyPatient.php'
+        'notifyPatient':'doctor/notifyPatient.php',
+        'generateTinyUrl':'doctor/generateTinyUrl.php',
+
 
 
     })

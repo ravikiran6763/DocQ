@@ -5,11 +5,11 @@
     </div>
 
     <form class="cc-form">
-
-      <button class="clear-field button button-clear button-positive" ng-click="Cleardata();">
+      <!-- {{docTinyUrl}} -->
+      <button class="clear-field button button-clear button-positive" ng-click="Cleardata();" style="font-size: 2vh; font-weight: bold;">
         Clear
       </button>
-      <button class="done button button-clear button-positive" ng-click="Savedata();">
+      <button class="done button button-clear button-positive" ng-click="Savedata();" style="font-size: 2vh; font-weight: bold;">
         Send
       </button>
 
@@ -17,7 +17,7 @@
     <div class="top-content">
       <div class="text-area-content">
         <label class="item item-input">
-          <textarea placeholder=" " ng-model="cc.query"></textarea>
+          <textarea placeholder=" " ng-model="query"></textarea>
         </label>
       </div>
     </div>

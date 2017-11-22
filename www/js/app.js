@@ -269,6 +269,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('UNDEFINED');
   }
 
+//API KEY FOR URL SHORTNING
+  gapi.client.setApiKey('AIzaSyDV5_Ca9cEVSFaiLkyzGIcDcbnV_4CiA0o');
+  gapi.client.load('urlshortener', 'v1', function() { document.getElementById("result").innerHTML = ""; });
 
   //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });

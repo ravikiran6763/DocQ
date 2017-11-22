@@ -12,8 +12,15 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
+	// console.time('Timer1');
 	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
 	console.log($scope.patient_details);
+	// debugger;
+	var msg='raaa';
+	console.todo = function(msg) {
+	console.log(' % c % s % s % s', 'color: yellow; background - color: black;', '–', msg, '–');
+}
+console.todo('RAVI');
 	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
 
 	$scope.updatePatientEmail=function(){
@@ -25,7 +32,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
     isHtml:  true
 });
 	}
-
+// console.timeEnd('Timer1');
 $scope.register = function() {
  console.log('Ionic Push: Registering user');
 
@@ -83,6 +90,8 @@ $scope.register = function() {
 
 				}
 				$scope.changePhoto = function() {
+					// console.trace('trace');
+
 					// $state.go('app.capture');
 				var myPopup=	$ionicPopup.show({
 					title: 'Upload Profile Picture',

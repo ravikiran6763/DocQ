@@ -10486,6 +10486,37 @@ ion-side-menu.menu-left.menu {
 .requestPopup .button-positive {
   background-color: #6a9136 !important; }
 
+.inviteReviewPopup .popup {
+  width: 85%;
+  border-radius: 10px; }
+
+.inviteReviewPopup .popup-head {
+  padding: 0%;
+  border-bottom: 1px solid #eee;
+  text-align: center; }
+
+.inviteReviewPopup .popup-title {
+  margin-top: 7%; }
+  .inviteReviewPopup .popup-title i {
+    font-size: 218%;
+    margin-top: 9%;
+    color: #6e9636; }
+
+.inviteReviewPopup .popup-buttons {
+  padding: 0;
+  min-height: 0; }
+
+.inviteReviewPopup .popup-buttons .button {
+  border-radius: 0;
+  color: #28a54c; }
+
+.inviteReviewPopup .button-royal {
+  background-color: #fff !important;
+  border-right: 1px solid #999; }
+
+.inviteReviewPopup .button-positive {
+  background-color: #fff !important; }
+
 .videoPopup .popup {
   width: 85%;
   border-radius: 10px; }

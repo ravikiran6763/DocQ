@@ -109,12 +109,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
       console.log(checked);
       invitereviews.invitereviewpatient($scope.phones);
 
-      if(checked){
-        console.log();
-      }
-      else{
-        console.log('pop an element');
-      }
+    
 
 
 

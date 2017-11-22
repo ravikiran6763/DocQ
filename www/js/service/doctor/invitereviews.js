@@ -42,6 +42,19 @@ console.log(data);
 return deferred.promise;
 
 };
+this.generateTinyUrl = function (docPhone) {
+  var deferred = $q.defer();
+  // console.log(docPhone);
+  $http.post(BASE_URL.url + API.generateTinyUrl,docPhone)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
 
 
 

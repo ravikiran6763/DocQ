@@ -14,7 +14,27 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
 
+    $rootScope.showAlert = function ()
+    {
+      alert('tiny');
+      var Url = 'http://ec2-35-154-118-177.ap-south-1.compute.amazonaws.com/rateAdoctor.html';
+      var request = gapi.client.urlshortener.url.insert({
+      'resource': {
+      'longUrl': Url
+      }
+      });
+      request.execute(function(response) {
 
+      if (response.id != null) {
+      str = "<b>Long URL:</b>" + Url + "<br>";
+      str += "<b>Test Short URL:</b> <a href='" + response.id + "'>" + response.id + "</a><br>";
+      document.getElementById("result").innerHTML = str;
+      }
+      else {
+      alert("Error: creating short url \n" + response.error);
+      }
+      });
+    }
 
 
   if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
@@ -346,7 +366,18 @@ $scope.videoPlayerPopup.close();
   $scope.contacts='';
 $scope.inviteForReview=function(){
   $scope.contacts = invitereviews.getinvitecontacts();
-   $state.go('templates.inviteresult',{'countofselected':$scope.contacts.length});
+   // $state.go('templates.inviteresult',{'countofselected':$scope.contacts.length});
 	console.log($scope.contacts.length);
+  $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+
+  invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user).then(function(response){
+    if(response){
+      $ionicLoading.hide();
+      $scope.contacts='';
+      $state.go("templates.doctor_home")
+    }
+  }).catch(function(error){
+  console.log('failure data', error);
+  })
 }
 });

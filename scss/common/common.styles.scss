@@ -759,6 +759,44 @@ height: 100%;
   		}
   }
 
+
+  .inviteReviewPopup{
+  	.popup{
+  		width: 85%;
+  		border-radius: 10px;
+  	}
+  	.popup-head {
+      padding: 0%;
+      border-bottom: 1px solid #eee;
+      text-align: center
+  	}
+  	.popup-title {
+      margin-top: 7%;
+      i{
+      font-size: 218%;
+      margin-top: 9%;
+      color: #6e9636;
+      }
+  	}
+  	.popup-buttons {
+  		padding: 0;
+  		min-height: 0;
+
+  	}
+  		.popup-buttons .button {
+  		border-radius: 0;
+  		color: #28a54c;
+
+  		}
+  		.button-royal{
+  			background-color: #fff !important;
+        border-right: 1px solid #999;
+  		}
+  		.button-positive{
+  			background-color: #fff !important;
+
+  		}
+  }
 //video call request popup
 
 .videoPopup{
