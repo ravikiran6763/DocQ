@@ -33,7 +33,6 @@ $ionicLoading.show({
 if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-	// console.log($rootScope.ConsultedDoctor);
 	var data = response;
 	for(var i=0; i<data.length; i++){
 	$rootScope.doctorFname=data[i].doctorFname;
