@@ -87,18 +87,18 @@
 
 
       <div class="radio_bg" ng-repeat="item in specialityList1">
-          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="h1(item.special);" ng-show="showSPecialities" menu-close ><h2 >{{item.special}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="selectSpeciality(item.special);" ng-show="showSPecialities" menu-close ><h2 >{{item.special}} </h2></ion-radio>
           <!-- selected:indexOf({{specialityList.search}}) -->
       </div>
 
       <div class="radio_bg" ng-repeat="type in sexList">
-          <ion-radio  ng-model="specialityList.sex" ng-value=type.sex ng-click="h1(type.sex);" ng-show="showSex" menu-close><h2 >{{type.sex}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.sex" ng-value=type.sex ng-click="selectSex(type.sex);" ng-show="showSex" menu-close><h2 >{{type.sex}} </h2></ion-radio>
       </div>
       <div class="radio_bg" ng-repeat="st in statusList">
-          <ion-radio  ng-model="specialityList.stat" ng-value=st.stat ng-click="h1(st.stat);" ng-show="showStatus" menu-close><h2 >{{st.stat}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.stat" ng-value=st.stat ng-click="selectStatus(st.stat);" ng-show="showStatus" menu-close><h2 >{{st.stat}} </h2></ion-radio>
       </div>
       <div class="radio_bg" ng-repeat="ln in LanguageList">
-          <ion-radio  ng-model="specialityList.language" ng-value=ln.language ng-click="h1(ln.language);" ng-show="showLanguage"  menu-close><h2 >{{ln.language}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.language" ng-value=ln.language ng-click="selectLanguage(ln.language);" ng-show="showLanguage"  menu-close><h2 >{{ln.language}} </h2></ion-radio>
       </div>
 
     </ion-list>

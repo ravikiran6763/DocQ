@@ -365,11 +365,12 @@ $scope.videoPlayerPopup.close();
 //invite Reviews
   $scope.contacts='';
 $scope.inviteForReview=function(){
+  $ionicLoading.show({
+    template:'<ion-spinner></ion-spinner><br><center>Sending invite</center>'
+  })
   $scope.contacts = invitereviews.getinvitecontacts();
-   // $state.go('templates.inviteresult',{'countofselected':$scope.contacts.length});
 	console.log($scope.contacts.length);
   $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-
   invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user).then(function(response){
     if(response){
       $ionicLoading.hide();

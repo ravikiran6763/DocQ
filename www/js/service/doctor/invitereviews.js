@@ -19,11 +19,10 @@ this.sendsmstoinvitereviews = function (contactsfrominvitereview,queryforinviter
 
 
 toinvite = {
-
+  
     phnos : contactsfrominvitereview,
     query : queryforinvitereview,
     user : doctor
-
 
 };
 

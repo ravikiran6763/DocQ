@@ -23,7 +23,7 @@
       </ion-list> -->
    <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
 
-    <ion-checkbox ng-repeat="number in contact.phoneNumbers | groupBy: 'value'"
+    <ion-checkbox ng-repeat="number in contact.phoneNumbers "
                    ng-model="phones[number.value]"
                    class="item-checkbox-right" ng-click="getNumber(number.value);">
                    {{ contact.name.formatted  }}

@@ -18,10 +18,17 @@ if(isset($data))
   $bystatus = $request->bystatus;//ON OFFLINE STATUS IS STORED HERE
   $bylanguage = $request->bylanguage;//LANGUAGE VALUE IS STORED HERE
 
+  if($bystatus === "Online"){
+    $bystatus = 1;
+  }
+  if($bystatus === "Offline"){
+    $bystatus = 2;
+  }
 
 //IF SPECIALITY IS SELECTED ENTER INSDIE LOOP
 if($byspecial)
 {
+
     //GET ID OF THE SPECALITY FROM SPECILITY TABLE
       $sql = "select id from speciality  where special like '%$byspecial%'";
       $retval = mysql_query( $sql, $dbhandle );
@@ -113,6 +120,7 @@ elseif($bygender)
 }
 elseif($bystatus)
 {
+
   //IF STATUS IS SELECTED ENTER LOOP
     if($bylanguage)
     {
@@ -123,7 +131,7 @@ elseif($bystatus)
     else
     {
     //ONLY IF STATUS IS SELECTED
-    $sqlresults = "select docImage2,doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff,ratings,ratingCount from doctorDetails,doctor_onoff,doctorImages where doctorImages.docPhone=doctorDetails.doctorPhone and doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctor_onoff.onoff='$bystatus'";
+   $sqlresults = "select docImage2,doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff,ratings,ratingCount from doctorDetails,doctor_onoff,doctorImages where doctorImages.docPhone=doctorDetails.doctorPhone and doctorDetails.doctorPhone = doctor_onoff.doctor_phno AND doctor_onoff.onoff='$bystatus'";
 
   	// echo $sqlresults;
 
@@ -135,7 +143,7 @@ elseif($bylanguage)
 {
 //ONLY IF LANGUAGE IS SELECTED
 // echo "select docImage2,doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff,ratings,ratingCount from doctorDetails,doctorImages where doctorImages.docPhone=doctorDetails.doctorPhone and doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%'";
-  echo $sqlresults = "select docImage2,doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff,ratings,ratingCount from doctorDetails,doctor_onoff,doctorImages where doctorImages.docPhone=doctorDetails.doctorPhone and doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%' group by doctorImages.docPhone";
+   $sqlresults = "select docImage2,doctorFname,doctorLname,doctorPhone,doctorDegrees,practicingSince,onoff,ratings,ratingCount from doctorDetails,doctor_onoff,doctorImages where doctorImages.docPhone=doctorDetails.doctorPhone and doctorLanguage1 like  '%$bylanguage%' OR doctorLanguage2 like '%$bylanguage%' group by doctorImages.docPhone";
 }
 else
 {

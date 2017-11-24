@@ -237,49 +237,39 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}
 		}
 
-
-
-
-			$scope.viewDoc2=function(docPhone){
-				console.log(docPhone);
-			doctorServices.specificSearch(docPhone).then(function(response){
-						$scope.myDocDetail=response;
-						console.log(response);
-						$state.go('app.results');
+				$scope.viewDoc2=function(docPhone){
+					console.log(docPhone);
+					doctorServices.specificSearch(docPhone).then(function(response){
+					$scope.myDocDetail=response;
+					console.log(response);
+					$state.go('app.results');
 					}).catch(function(error){
 					console.log('failure data', error);
 					});
-				// $state.go('app.results');
+					// $state.go('app.results');
 					$scope.myDoctorRatings={}
-
 				}
-
-
 
 			$rootScope.specialityList = {};
 			$rootScope.sexList = {};
 			$rootScope.LanguageList = {};
 			$rootScope.statusList = {};
 
-
 			$scope.showSideMenu = function (selectedSearch){
 
+				if (selectedSearch == "gender")
+				{
 
-					if (selectedSearch == "gender")
-					{
+					$rootScope.sexList = [
+						{'sex': 'Male'},
+						{'sex': 'Female'}
+					]
 
-							$rootScope.sexList = [
-								{'sex': 'Male'},
-								{'sex': 'Female'}
-							]
-
-
-							$rootScope.SearchHeader='Gender';
-							$rootScope.showSPecialities=false;
-							$rootScope.showSex=true;
-							$rootScope.showStatus=false;
-							$rootScope.showLanguage=false;
-
+					$rootScope.SearchHeader='Gender';
+					$rootScope.showSPecialities=false;
+					$rootScope.showSex=true;
+					$rootScope.showStatus=false;
+					$rootScope.showLanguage=false;
 
 				}
 
@@ -335,64 +325,52 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 			$scope.sidemenu = {};
 			$scope.choice='';
-			$scope.h1 = function(val)	{
-					if(val === "Asthma Specialist " || val === "Ayurvedic Doctor " || val === "Cardiologist" || val === "Dentist " || val == "Dermatologist" || val === "Dietician/Nutritionist" || val === "Ear-nose-throat specialist" || val === "Gastroenterologist" || val === "General Physician " || val === "Gynecologist" || val === "Homeopathy" || val === "Lactation Consultant " || val === "Neurologist" || val === "Obstetrician/Gynecologist " || val === "Orthopaedic Surgeon" || val === "Pediatrician" || val === "Psychiatrist" || val === "Veterinarian")
-					{
-						$scope.specfic = val;
-						$scope.choice= val;
-						console.log($scope.specfic);
-					}
-					if(val == "Female" || val == "Male")
-					{
-							if(val === "Male")
-							{
-								$scope.gender = "Male";
-							}
-							else
-							{
-								$scope.gender = "Female";
-							}
-					}
 
-					if(val == "Offline" || val == "Online")
-					{
-						if(val === "Online")
-						{
-							// $scope.onoff = 'Online';
-							$scope.onoff = 1;
-
-						}
-						else
-						{
-							// $scope.onoff = 'Offline';
-							$scope.onoff = 2;
-						}
-					}
-
-					if(val == "Kannada" ||  val == "English" || val == "Hindi" ||  val == "Telugu" || val == "Tamil")
-					{
-
-						$scope.languagedata = val;
-						console.log($scope.languagedata );
-					}
-
-
-					searchbyspecialities.specialitywisesearch($scope.specfic);
-					searchbyspecialities.categorywisesearch($scope.gender);
-					searchbyspecialities.genderwisesearch($scope.onoff);
-					searchbyspecialities.languagewisesearch($scope.languagedata);
-
-					$scope.specialdata =  searchbyspecialities.getSpecialData();
-					$scope.genderdata =  searchbyspecialities.getcategoryData();
-					$scope.statusdata =  searchbyspecialities.getgenderData();
-
-					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
-
-
-
+			$scope.selectSpeciality = function(val)	{
+				$scope.specfic = val;
+				$scope.choice= val;
+				console.log($scope.specfic);
+				searchbyspecialities.specialitywisesearch($scope.specfic);
+				$scope.specialdata =  searchbyspecialities.getSpecialData();
 			}
 
+			$scope.selectSex = function(val)	{
+				if(val === "Male")
+				{
+					$scope.gender = "Male";
+				}
+				else
+				{
+					$scope.gender = "Female";
+				}
+				searchbyspecialities.categorywisesearch($scope.gender);
+				$scope.genderdata =  searchbyspecialities.getcategoryData();
+				console.log($scope.gender);
 
+			}
+			$scope.selectStatus = function(val)	{
+				if(val === "Online")
+				{
+					// $scope.onoff = 'Online';
+					$scope.onoff =  "Online";
+
+				}
+				else
+				{
+					// $scope.onoff = 'Offline';
+					$scope.onoff =  "Offline";
+				}
+
+				searchbyspecialities.genderwisesearch($scope.onoff);
+				$scope.statusdata =  searchbyspecialities.getgenderData();
+
+			}
+			$scope.selectLanguage = function(val)	{
+				console.log(val);
+					searchbyspecialities.languagewisesearch(val);
+					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
+					console.log($scope.languagedataselected);
+			}
 
 			$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
 			{
@@ -402,11 +380,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						//PUT ONE ERROR MESSAGE HERE
 						if(specialitywise == null && catwise == null && genderwise == null && languagewise == null)
 						{
-
-
-
 							console.log('Please Select Atlease One Search Criteria');
-
 
 							window.plugins.toast.showWithOptions({
 							message: "Please select atleast one search criteria",
@@ -439,7 +413,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									bylanguage:languagewise
 								};
 
-
 								console.log(searchdoctor);
 								$rootScope.rates=0;
 								$rootScope.totalRates=0;
@@ -460,8 +433,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 																$rootScope.rate=data[i].ratings,
 																//$rootScope.totalRates=data[i].totalRates
 																$rootScope.totalRates=data[i].ratingCount
-
-
 																		console.log($rootScope.rate);
 																		console.log($rootScope.totalRates);
 																$rootScope.totalRates=data[i].ratingCount
