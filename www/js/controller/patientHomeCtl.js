@@ -7,13 +7,17 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
 
-$localStorage.selectedSubPatient=0;
+			$localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
 
 			$scope.currentState=$ionicHistory.currentStateName();
 
 			console.log($scope.currentState);
+			$rootScope.goToConsultation = function ()
+	    {
+	      $state.go("app.my_consultations");
+	    }
 			$scope.medicalSpeciality = function(){
 				$state.go('app.medical_speciality');
 				$ionicLoading.hide();

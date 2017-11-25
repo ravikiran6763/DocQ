@@ -32,19 +32,19 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     var uname1 = "greet+"+$localStorage.user;
     var pw1 = "DQ_doctor";
 
-    // window.plugins.OneSignal.getIds(function(ids) {
-    //   $scope.playerId=JSON.stringify(ids['userId']);
-    //   // console.log($scope.playerId);
-    //   var updatePlayer ={
-    //     palyerId:$scope.playerId,
-    //     userNum:$localStorage.user,
-    //     user:'doctor'
-    //   }
-    //   console.log(updatePlayer);
-    //   LoginService.updatePlayer(updatePlayer).then(function(response){
-    //     console.log(response);
-    //   })
-    // });
+    window.plugins.OneSignal.getIds(function(ids) {
+      $scope.playerId=JSON.stringify(ids['userId']);
+      // console.log($scope.playerId);
+      var updatePlayer ={
+        palyerId:$scope.playerId,
+        userNum:$localStorage.user,
+        user:'doctor'
+      }
+      console.log(updatePlayer);
+      LoginService.updatePlayer(updatePlayer).then(function(response){
+        console.log(response);
+      })
+    });
 
     doctorServices.doctorDetails($localStorage.user).then(function(response,data){
       $rootScope.doctor_details=response;//store the response array in doctor details
@@ -134,7 +134,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
           $timeout( function(){
           console.log('interval started');
           $interval(loginStatus,2000,1);
-          $interval(checkNewMessages,2000);
+          // $interval(checkNewMessages,2000);
 
           }, 10000 );
 

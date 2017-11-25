@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams, $rootScope, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
+DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams, $rootScope,$filter,ionicDatePicker, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
   $scope.toggle = true;
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -69,7 +69,7 @@ if($state.$current.name === 'app.addSubPatient'){
     $rootScope.loginDatasubmitted=true;
     // alert('add new patient');
     $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
-
+    $rootScope.newPatient.dob=$rootScope.dateOfBirth;
     if($rootScope.newPatient.fname && $rootScope.newPatient.lname && $rootScope.newPatient.dob && $rootScope.newPatient.sex){
       var patientAdded={
         fname:$rootScope.newPatient.fname,
@@ -101,4 +101,32 @@ if($state.$current.name === 'app.addSubPatient'){
    }).catch(function(error){
       console.log('failure data', error);
    });
+
+   $rootScope.dateOfBirth='';
+   var ipObj2 = {
+       callback: function (val) {  //Mandatory
+         $scope.currentDate = new Date();
+         console.log($scope.currentDate);
+         console.log('Selected To Date : ' + val, new Date(val));
+
+         $rootScope.dateOfBirth = $filter('date')(new Date(val),'yyyy-MM-dd');
+
+       },
+
+       from: new Date(1950, 1, 1), //Optional
+       to: new Date(2050, 12, 31), //Optional
+       inputDate: new Date(),      //Optional
+       mondayFirst: false,          //Optional
+       // disableWeekdays: [0],       //Optional
+       closeOnSelect: true,
+       dateFormat: 'dd MMMM yyyy',     //Optional
+       templateType: 'popup'       //Optional
+     };
+
+   $scope.openDatePickerDOB = function(){
+
+     ionicDatePicker.openDatePicker(ipObj2);
+   };
+
+
 })

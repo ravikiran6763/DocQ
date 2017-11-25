@@ -14063,6 +14063,11 @@ ion-side-menu .heading-item .message {
         height: 18% !important;
         padding: 4% !important;
         width: 100% !important; }
+      .add-patient-view .form-content .form-group input[type="text"] {
+        margin-top: 4% !important;
+        height: 18% !important;
+        padding-left: 10px;
+        width: 100% !important; }
       .add-patient-view .form-content .form-group .item-radio .item-content {
         padding-top: 5% !important;
         padding-right: 0% !important; }

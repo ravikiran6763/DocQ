@@ -187,24 +187,24 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 		});
 		if($localStorage.doctororpatient === 'patient'){
-				// $ionicLoading.hide();
-				// $state.go('app.patient_home',{}, {location: "replace", reload: false})
-				// window.plugins.OneSignal.getIds(function(ids){
-				// //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
-				// //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
-				// console.log(JSON.stringify(ids['userId']));
-				// $scope.playerId=JSON.stringify(ids['userId']);
-				// console.log($scope.playerId);
-				// var updatePlayer ={
-				// 	palyerId:$scope.playerId,
-				// 	userNum:$localStorage.user,
-				// 	user:'patient'
-				// }
-				// console.log(updatePlayer);
-				// LoginService.updatePlayer(updatePlayer).then(function(response){
-				// console.log(response);
-				// })
-				// });
+				$ionicLoading.hide();
+				$state.go('app.patient_home',{}, {location: "replace", reload: false})
+				window.plugins.OneSignal.getIds(function(ids){
+				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+				//document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+				console.log(JSON.stringify(ids['userId']));
+				$scope.playerId=JSON.stringify(ids['userId']);
+				console.log($scope.playerId);
+				var updatePlayer ={
+					palyerId:$scope.playerId,
+					userNum:$localStorage.user,
+					user:'patient'
+				}
+				console.log(updatePlayer);
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+				console.log(response);
+				})
+				});
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				console.log($scope.deviceAndroid);
 				var uname1 = "greet+"+$localStorage.user;
@@ -277,7 +277,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				$timeout( function(){
 				console.log('interval started');
 				$interval($rootScope.loginInterval,2000,1);
-				$interval(checkNewMessages,2000);
+				// $interval(checkNewMessages,2000);
 
 				}, 10000 );
 
@@ -330,19 +330,19 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 		}
 		else if($localStorage.doctororpatient === 'doctor'){
-				// window.plugins.OneSignal.getIds(function(ids) {
-				// $scope.playerId=JSON.stringify(ids['userId']);
-				// // console.log($scope.playerId);
-				// var updatePlayer ={
-				// palyerId:$scope.playerId,
-				// userNum:$localStorage.user,
-				// user:'doctor'
-				// }
-				// console.log(updatePlayer);
-				// LoginService.updatePlayer(updatePlayer).then(function(response){
-				// console.log(response);
-				// })
-				// });
+				window.plugins.OneSignal.getIds(function(ids) {
+				$scope.playerId=JSON.stringify(ids['userId']);
+				// console.log($scope.playerId);
+				var updatePlayer ={
+				palyerId:$scope.playerId,
+				userNum:$localStorage.user,
+				user:'doctor'
+				}
+				console.log(updatePlayer);
+				LoginService.updatePlayer(updatePlayer).then(function(response){
+				console.log(response);
+				})
+				});
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				console.log($scope.deviceAndroid);
 				var uname1 = "greet+"+$localStorage.user;
