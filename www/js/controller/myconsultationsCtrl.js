@@ -304,10 +304,10 @@ $scope.clicktochat = function(pateientPhone)
 console.log($state.$current.name);
 console.log($rootScope.previousState.name);
 
-$scope.$on('$destroy', function(){
-	console.log('destroyed');
-   $interval.cancel($rootScope.checkNewMessages);
-
-});
+// $scope.$on('$destroy', function(){
+// 	console.log('destroyed');
+//    $interval.cancel($rootScope.checkNewMessages);
+//
+// });
 
 });

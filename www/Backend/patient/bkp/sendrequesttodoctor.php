@@ -6,7 +6,7 @@
 if(isset($postdata))
 {
 
-	$request_from_patient = json_decode($postdata);
+		$request_from_patient = json_decode($postdata);
 	  $patient_phno = $request_from_patient->patientphno;
 	  $specialityId = $request_from_patient->speciality;
 		$subPatientId = $request_from_patient->subPatientId;
@@ -49,9 +49,9 @@ if(isset($postdata))
 			echo "Error";
 		}
 	}
-		//  $sendPush="SELECT playerId as playerId from doctorDetails where doctorSpecialityId like '%$speciality%'";
-	//$sendPush="SELECT playerId as playerId  from doctorDetails,doctor_onoff where  doctorSpecialityId like '%$speciality%' order by playerId";
-	$sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and onoff=1 and doctorSpecialityId like '%$speciality%'";
+
+		$myArray =array();
+	 $sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and onoff=1 and doctorSpecialityId like '%$speciality%' and playerId not in('')";
 
 	 $result = mysql_query($sendPush);
 	 while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)){
@@ -105,7 +105,7 @@ if(isset($postdata))
 
 	 	}
 
-	 			 }
+	 }
 
 	 			 $response = sendMessage();
 	 			 $return["allresponses"] = $response;

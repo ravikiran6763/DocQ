@@ -11,8 +11,8 @@ if(isset($postdata))
 	  $specialityId = $request_from_patient->speciality;
 		$subPatientId = $request_from_patient->subPatientId;
 
-	// $patient_phno = '9844992181';
-	// $speciality = 'Dentist';
+	// $patient_phno = '9738158587';
+	// $speciality = 'Cardiologist';
 	$fiveMins="SELECT count(id) as count  FROM reqForConsultation WHERE requestedTime > DATE_SUB(NOW(), INTERVAL 2 MINUTE) and patientNum='$patient_phno' and flag = 1 ";
 	$fiveMinsRet = mysql_query( $fiveMins, $dbhandle );
 	while($row = mysql_fetch_array($fiveMinsRet))

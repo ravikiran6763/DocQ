@@ -375,10 +375,17 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.3.0" />
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
     <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
+<<<<<<< HEAD
+    <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
+    <plugin name="com.example.hello" spec="file:../newpluginforandroid/cordova-plugin-hello" />
+=======
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="com.example.hello" spec="file:../VSEE/VseePlugin" />
+>>>>>>> 75c53fa9f13cfea219ab7bdb7b1cb0c695e83928
 </widget>
