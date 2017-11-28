@@ -499,9 +499,9 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                   						      });
                       }
                       else{
-                        $injector.get("$ionicLoading").show({
-                              template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
-                            });
+                        // $injector.get("$ionicLoading").show({
+                        //       template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
+                        //     });
                       }
                       break;
                   case 404 :
@@ -790,7 +790,7 @@ $stateProvider
       'menuContent': {
         templateUrl: "views/app/searchresultbydoctor.html",
         controller:"searchDoctorsController"
-        
+
       }
     }
   })
