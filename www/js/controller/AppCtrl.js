@@ -1515,6 +1515,7 @@ $scope.endConsultation = function(type)
 
 							var success = function(message)
 							{
+								$localStorage.sendPrescTo = "";
 
 									console.log('prescription clicked');
 									console.log(message);
