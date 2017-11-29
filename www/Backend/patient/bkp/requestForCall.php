@@ -14,13 +14,15 @@
 		 $callData = json_decode($postdata);
      $patient = $callData->patient;
      $doctor = $callData->doctor;
+		 $subPatient = $callData->subPatient;
+
 		 $sql = "select doctorSpecialityId as special from  doctorDetails where doctorPhone='$doctor';";
 		 $dretval = mysql_query( $sql, $dbhandle );
 		 while($row = mysql_fetch_assoc($dretval)) {
 		 //  echo "special :{$row['special']}  ";
 		  $sp=$row['special'];
 
-			$insertionvalues = "INSERT INTO reqForConsultation(patientNum,speciality,accptedDoctor,requestedTime) VALUES ('$patient','$sp','$doctor',now())";
+			$insertionvalues = "INSERT INTO reqForConsultation(patientNum,speciality,accptedDoctor,requestedTime,subPatientId) VALUES ('$patient','$sp','$doctor',now(),'$subPatient')";
 
 		 //  $insertionvalues = "INSERT INTO consultRequest(patientphno,doctorphno,reqTime) VALUES ('$patient','$doctor',now())";
 		 $retvalmyconsulation = mysql_query( $insertionvalues, $dbhandle );

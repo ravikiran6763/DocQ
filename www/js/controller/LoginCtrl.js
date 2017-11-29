@@ -317,8 +317,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 														alert("Error Occurred While Loggin in to DoctoQuick");
 
 													}
-												$state.go('templates.doctor_home');//for logging in from browser
-												// hello.login(uname1,pw1,success, failure);
+												// $state.go('templates.doctor_home');//for logging in from browser
+												hello.login(uname1,pw1,success, failure);
 
 
 												$timeout( function(){

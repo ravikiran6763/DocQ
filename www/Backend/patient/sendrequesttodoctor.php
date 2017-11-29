@@ -50,18 +50,18 @@ if(isset($postdata))
 		}
 	}
 
-		$myArray =array();
+		$playerId =array();
 	 $sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and onoff=1 and doctorSpecialityId like '%$speciality%' and playerId not in('')";
 
 	 $result = mysql_query($sendPush);
 	 while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)){
-			 $myArray[]= $row['playerId'];
+			 $playerId[]= $row['playerId'];
 	 }
+	 for ($i=0; $i < sizeof(playerId); $i++) {
 
-	 for ($i=0; $i < sizeof($myArray); $i++) {
 	 		 function sendMessage(){
 	 		 $Ids =array();
-	 			$Ids = $GLOBALS['myArray'];
+	 			$Ids = $GLOBALS['playerId'];
 	 			$reqId = $GLOBALS['reqId'];
 	 			$reqTime = $GLOBALS['reqTime'];
 	 			$reqPatImg = $GLOBALS['reqPatImg'];
@@ -107,9 +107,9 @@ if(isset($postdata))
 
 	 }
 
-	 			 $response = sendMessage();
-	 			 $return["allresponses"] = $response;
-	 			 $return = json_encode( $return);
+	 $response = sendMessage();
+	 $return["allresponses"] = $response;
+	 $return = json_encode( $return);
 	 		// 	 print("\n\nJSON received:\n");
 	 		// 	 print($return);
 	 		// 	 print("\n");

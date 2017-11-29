@@ -115,7 +115,7 @@ ion-content.scroll-content.ionic-scroll{
 .demoButton{
   width: 100%;
     position: relative;
-    margin-top: 42% !important;
+    margin-top: 38% !important;
     margin-left: 7% !important;
     p{
       color: white;
@@ -693,7 +693,7 @@ height: 100%;
   .popup{
 
       width: 100%;
-      height: 100%;
+      height: 60%;
       background-color: transparent;
       top: 42vh;
   }
@@ -701,6 +701,9 @@ height: 100%;
     padding: 15px 10px;
     border-bottom: 0px;
     text-align: center;
+  }
+  .popup-body{
+    padding: 0 !important;
   }
   .popup-title {
     margin: 0;
@@ -783,17 +786,19 @@ height: 100%;
   		min-height: 0;
 
   	}
-  		.popup-buttons .button {
-  		border-radius: 0;
-  		color: #28a54c;
+  		// .popup-buttons .button {
+  		// border-radius: 0;
+  		// // color: #28a54c;
+      //
+  		// }
+  		// .button-royal{
+  		// 	background-color: #fff !important;
+      //   border-right: 1px solid #999;
+  		// }
+      .button-positive{
+  			background-color: #6a9136 !important;
+        margin-right: 2px;
 
-  		}
-  		.button-royal{
-  			background-color: #fff !important;
-        border-right: 1px solid #999;
-  		}
-  		.button-positive{
-  			background-color: #fff !important;
 
   		}
   }

@@ -9936,7 +9936,7 @@ ion-content.scroll-content.ionic-scroll {
 .demoButton {
   width: 100%;
   position: relative;
-  margin-top: 42% !important;
+  margin-top: 38% !important;
   margin-left: 7% !important; }
   .demoButton p {
     color: white; }
@@ -10432,7 +10432,7 @@ ion-side-menu.menu-left.menu {
 
 .videoPlayerPopup .popup {
   width: 100%;
-  height: 100%;
+  height: 60%;
   background-color: transparent;
   top: 42vh; }
 
@@ -10440,6 +10440,9 @@ ion-side-menu.menu-left.menu {
   padding: 15px 10px;
   border-bottom: 0px;
   text-align: center; }
+
+.videoPlayerPopup .popup-body {
+  padding: 0 !important; }
 
 .videoPlayerPopup .popup-title {
   margin: 0;
@@ -10506,16 +10509,9 @@ ion-side-menu.menu-left.menu {
   padding: 0;
   min-height: 0; }
 
-.inviteReviewPopup .popup-buttons .button {
-  border-radius: 0;
-  color: #28a54c; }
-
-.inviteReviewPopup .button-royal {
-  background-color: #fff !important;
-  border-right: 1px solid #999; }
-
 .inviteReviewPopup .button-positive {
-  background-color: #fff !important; }
+  background-color: #6a9136 !important;
+  margin-right: 2px; }
 
 .videoPopup .popup {
   width: 85%;
@@ -11961,7 +11957,7 @@ ion-side-menu .heading-item .message {
     width: 100%;
     overflow: scroll !important; }
     .mydoctor-profile-view .myDoctor-list li {
-      height: 16%;
+      height: 18%;
       border-bottom: 2px solid #dadada;
       *zoom: 1; }
       .mydoctor-profile-view .myDoctor-list li:before, .mydoctor-profile-view .myDoctor-list li:after {
@@ -13897,11 +13893,12 @@ ion-side-menu .heading-item .message {
 .inviteResults-view {
   background-color: #e2e2e2 !important; }
   .inviteResults-view .selected {
-    width: 100% !important;
-    margin: 30px 0 0 0; }
-    .inviteResults-view .selected p {
-      text-align: center;
-      font-size: 5vw; }
+    width: 90% !important;
+    margin: 0 auto; }
+  .inviteResults-view p {
+    text-align: center;
+    font-size: 4vw;
+    margin-top: 4%; }
   .inviteResults-view .clear-field {
     color: #343434;
     margin-top: 4vh;
