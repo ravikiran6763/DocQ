@@ -278,7 +278,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 			$scope.showSideMenu = function (selectedSearch){
 
-
 					if (selectedSearch == "gender")
 					{
 
@@ -349,7 +348,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 			$scope.sidemenu = {};
 			$scope.choice='';
-			$scope.h1 = function(val)	{
+			$scope.h1 = function(val){
 					if(val === "Asthma Specialist " || val === "Ayurvedic Doctor " || val === "Cardiologist" || val === "Dentist " || val == "Dermatologist" || val === "Dietician/Nutritionist" || val === "Ear-nose-throat specialist" || val === "Gastroenterologist" || val === "General Physician " || val === "Gynecologist" || val === "Homeopathy" || val === "Lactation Consultant " || val === "Neurologist" || val === "Obstetrician/Gynecologist " || val === "Orthopaedic Surgeon" || val === "Pediatrician" || val === "Psychiatrist" || val === "Veterinarian")
 					{
 						$scope.specfic = val;
