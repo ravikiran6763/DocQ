@@ -378,7 +378,6 @@
     <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-<<<<<<< HEAD
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.2" />
     <plugin name="com.example.hello" spec="file:../newpluginforandroid/cordova-plugin-hello">
@@ -386,9 +385,7 @@
         <variable name="MICROPHONE_USAGE_DESCRIPTION" value="Sending audio in a call requires the microphone." />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" This allows you to send photos from your library via chat" />
     </plugin>
-=======
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="com.example.hello" spec="file:../VSEE/VseePlugin" />
->>>>>>> 21240d566e463261301beb389840d5c99915979d
 </widget>
