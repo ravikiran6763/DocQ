@@ -133,6 +133,17 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     window.AndroidFullScreen.immersiveMode(false, false);
     });
   }
+  else {
+
+
+
+    console.log("localStorage previous value",$localStorage.sendPrescTo);
+
+    $localStorage.sendPrescTo = "";
+
+    console.log("localStorage after value",$localStorage.sendPrescTo);
+
+  }
 
   if(window.StatusBar){
     // StatusBar.styleDefault();
@@ -251,8 +262,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     if($localStorage.sendPrescTo != ''){
       console.log("iosDevice:");
       console.log("iospatient:",$localStorage.sendPrescTo);
-      // $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
-      // return '/templates/sendPrescription';
+      $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+      return '/templates/sendPrescription';
     }
 
 
@@ -280,6 +291,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
   document.addEventListener("resume", onResume, false);
   function onResume() {
+
+
   setTimeout(function() {
   console.log('resume');
   // $state.go("templates.doc_profile");//working
