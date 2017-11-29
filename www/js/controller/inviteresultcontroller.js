@@ -20,7 +20,7 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,
   });
 console.log($localStorage.docTinyUrl);
 
-  $scope.query = "Hi,\nPlease visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.\nClick here: ";
+  $scope.query = "Hi,\nPlease visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients. Thanks.\nClick here: ";
   $scope.tiny=$localStorage.docTinyUrl;
 
 $scope.query =$scope.query+$scope.tiny;
@@ -55,7 +55,7 @@ $scope.Savedata = function()
          buttons: [
            {
              text: 'DoctorQuick',
-             type: 'button-royal',
+             type: 'button-positive',
              onTap: function(e) {
                 $state.go("templates.invite_reviews");
              }

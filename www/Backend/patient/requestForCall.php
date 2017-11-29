@@ -5,23 +5,23 @@
 	 $postdata = file_get_contents("php://input");
 
 
-// echo $postdata;
 
 	if (isset($postdata))
 	{
 		$reqDetails=array();
 
 		 $callData = json_decode($postdata);
+
      $patient = $callData->patient;
      $doctor = $callData->doctor;
 		 $subPatient = $callData->subPatient;
 
-		 $sql = "select doctorSpecialityId as special from  doctorDetails where doctorPhone='$doctor';";
+		 $sql = "select speciality.id as  special from  doctorDetails,speciality where speciality.special=doctorDetails.doctorSpecialityId and doctorPhone='$doctor';";
 		 $dretval = mysql_query( $sql, $dbhandle );
 		 while($row = mysql_fetch_assoc($dretval)) {
 		 //  echo "special :{$row['special']}  ";
 		  $sp=$row['special'];
-
+			// echo $sp;
 			$insertionvalues = "INSERT INTO reqForConsultation(patientNum,speciality,accptedDoctor,requestedTime,subPatientId) VALUES ('$patient','$sp','$doctor',now(),'$subPatient')";
 
 		 //  $insertionvalues = "INSERT INTO consultRequest(patientphno,doctorphno,reqTime) VALUES ('$patient','$doctor',now())";

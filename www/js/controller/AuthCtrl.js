@@ -582,24 +582,20 @@ $scope.patientRegistration = function()
 
   //video popoverOptions
 
-  $scope.clipSrc = 'https://www.youtube.com/watch?v=L83qMnbJ198';
-
   $scope.playVideo = function() {
   $ionicLoading.show();
   $scope.videoPlayerPopup = $ionicPopup.show({
-    title: 'DoctorQuick',
-    template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="patientProfileCtrl" ng-Click="closethis();">X</div>'+
-        '<iframe width="100%" height="90%" src="https://www.youtube-nocookie.com/embed/xrLtb9Pkkjg?rel=0" frameborder="0" allowfullscreen autoplay></iframe>',
-    // templateUrl: "views/app/viewdoctor_profile.html",
+    // title: 'DoctorQuick',
+    template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 7px;" ng-controller="AuthCtrl" ng-Click="closethis();">X</div>'+
+        '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/xrLtb9Pkkjg?rel=0&amp;showinfo=0" frameborder="0"  autoplay></iframe>',
     cssClass: 'videoPlayerPopup',
-    // scope: $scope,
+    scope: $scope,
   });
   $ionicLoading.hide();
   $scope.closethis = function()
   {
-    $scope.videoPlayerPopup.close();
+  $scope.videoPlayerPopup.close();
   };
-	// $scope.showModal('templates/video-popover.html');
 }
 $rootScope.dateOfBirth='';
 var ipObj2 = {

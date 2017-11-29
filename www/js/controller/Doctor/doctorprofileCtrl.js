@@ -11,8 +11,6 @@ console.log('docprofileview');
 $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
-
-
 $ionicLoading.show();
 $interval(checkDocStatus, 6000);
 
@@ -464,8 +462,6 @@ $scope.BalanceForVoiceCall=function()
 
   	},true);
 
-
-
     $scope.videoCallMydoc=function(num)
     {
       $rootScope.docNumToCall = num;
@@ -476,7 +472,6 @@ $scope.BalanceForVoiceCall=function()
       subPatient:$localStorage.selectedSubPatient
       // callId:$rootScope.callId
       }
-      console.log(callRequest);
       console.log($localStorage.selectedSubPatient);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
         $scope.patientWalletdetails=response;
@@ -489,8 +484,10 @@ $scope.BalanceForVoiceCall=function()
               $scope.counter = 0;
         if($scope.myWalletBal >= 270)
         {
+          console.log(callRequest);
 
               searchDoctorServices.requestForCall(callRequest).then(function(response){
+              console.log('one2oneReq',response);
               window.localStorage['one2oneReq'] = angular.toJson(response);
               $rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
               $localStorage.myCallId = $rootScope.one2oneReq.reqId;
