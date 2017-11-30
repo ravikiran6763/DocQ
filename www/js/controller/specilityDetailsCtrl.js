@@ -101,6 +101,8 @@ $rootScope.popUpClosed == false;
                  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
                  $scope.cancelledReq=response;
                  $state.go("app.medical_speciality");
+                 $interval.cancel(checkAcceptedReq);
+                 $interval.cancel(checkAcceptedReqDocStatus);
                  }).catch(function(error){
                  console.log('failure data', error);
                  });
@@ -130,6 +132,8 @@ $rootScope.popUpClosed == false;
                 onTap:function(){
 
                   $interval.cancel(checkAcceptedReq);
+                  $interval.cancel(checkAcceptedReqDocStatus);
+
                   console.log('cancel');
                   console.log($scope.counter);
                   console.log($localStorage.user);
@@ -151,6 +155,7 @@ $rootScope.popUpClosed == false;
                 $scope.cancelledReq=response;
                 $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
                  $scope.nonePopUp=true;
+                   $interval.cance(checkAcceptedReq);
                   console.log($scope.cancelledReq);
                 }).catch(function(error){
                 console.log('failure data', error);
