@@ -1,3 +1,4 @@
+
 // Ionic DoctorQuickApp
 // var handleOpenURL=function(url){
 //   alert("Received url"+url);
@@ -124,8 +125,14 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   // }
 })
 
-DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
+//
+//     $interval(checkConsultations,2000,false);
+//
+// function checkConsultations(){
+//   console.log('on device ready');
+// }
 
   if (ionic.Platform.isAndroid()) {
     window.addEventListener("native.hidekeyboard", function () {
@@ -246,6 +253,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
 
   if($localStorage.doctororpatient === "doctor" ){
+
+
 
   if($rootScope.pat_phnofromwebview){
       $localStorage.onOff=2;
@@ -483,7 +492,11 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               return config;
           },
           responseError: function (rejection,response) {
+
+
             $rootScope.$watch('online', function(newValue, oldValue){
+              console.log('newValue',newValue);
+              console.log('oldValue',oldValue);
                    if (newValue !== oldValue) {
                       //  $rootScope.online=$rootScope.online;
                        $injector.get("$ionicLoading").hide();
@@ -493,6 +506,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               //  console.log(response.config);
               //console.log(rejection);
               switch (rejection.status) {
+                // console.log(rejection.status);
                   // case 0 :  var $http = $injector.get('$http');//for retry condition
                   //           return $http(response.config);
                   //         break;
@@ -512,9 +526,9 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                   						      });
                       }
                       else{
-                        // $injector.get("$ionicLoading").show({
-                        //       template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
-                        //     });
+                        $injector.get("$ionicLoading").show({
+                              template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
+                            });
                       }
                       break;
                   case 404 :

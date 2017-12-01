@@ -59,7 +59,7 @@ console.log($rootScope.specialId);
    $scope.stopped = false;
    $scope.buttonText='Send Request';
 
-$rootScope.popUpClosed == false;
+   $rootScope.popUpClosed == false;
   $scope.sendrequesttoonlinedoctors = function()
   {
     patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
@@ -69,11 +69,9 @@ $rootScope.popUpClosed == false;
 
      $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
      console.log($rootScope.myWalletBal);
-
      $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
      console.log($rootScope.newPAtient);
-
-     if($rootScope.myWalletBal >= 250){
+     if($rootScope.myWalletBal >= 270){
        console.log($localStorage.networkType);
        if($localStorage.networkType === '4G' || $localStorage.networkType === 'WiFi' || $localStorage.networkType === 'Unknown'){
          console.log($localStorage.SpecilityId);
@@ -341,9 +339,6 @@ $rootScope.popUpClosed == false;
     },true);
 
 //New patient details
-
-
-
 
     $scope.patientToConsult='';
     $scope.changePatient=function (val) {

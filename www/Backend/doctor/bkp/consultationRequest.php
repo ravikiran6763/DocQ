@@ -23,21 +23,6 @@
 			while($resultofrequestedpatient = mysql_fetch_array($retvaltodoctor))
 			{
 
-			//	$toconvertdateandtime = $resultofrequestedpatient['awstime'];
-
-			//	$converttimetoist = "select convert_tz('$toconvertdateandtime','+00:00','+05:30') as isttime";
-			//	 $isttime = mysql_query( $converttimetoist, $dbhandle );
-			//	whileesultoftime =  mysql_fetch_array($isttime))
-				//{}
-
-					//$awstime = $resultofrequestedpatient['awstime'];
-					//$ist = date('Y-m-d H:i:s',strtotime($awstime)+19800);
-
-					//echo $awstime;
-
-
-
-
 
 				$requestedpatientlist[] = $resultofrequestedpatient;//STORE THE RESULT TO ARRAY
 			}

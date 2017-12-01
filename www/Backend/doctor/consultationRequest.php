@@ -17,7 +17,6 @@
        $sp=$row['special'];
       //  echo $sp;
 
-
        $requestpatientquery = "select img.image,pr.id,pr.subPatientId,pr.patientNum,pr.requestedTime,ADDTIME(pr.requestedTime,'05:30:00') as awstime,pd.patientFname,pd.patientMname,pd.patientLname,FLOOR(DATEDIFF(now(),pd.patientAge)/365) as patientAge,pd.patientSex from patientDetails as pd,reqForConsultation as pr,patientImages as img where pr.patientNum=pd.patientPhone and img.patientphone=pd.patientPhone  and pr.speciality ='$sp' and pr.flag=1 and pr.id not in(select reqId from declinedRequests where declinedDoctor='$doctorphno')";
 			$retvaltodoctor = mysql_query( $requestpatientquery, $dbhandle );
 			while($resultofrequestedpatient = mysql_fetch_array($retvaltodoctor))
@@ -39,6 +38,10 @@
 
 				echo json_encode($requestedpatientlist);//SEND THE ENCODED DATA TO APP
 
+	}
+	else
+	{
+		echo "NODATA";
 	}
 	mysql_close($dbhandle);//CLOSE THE DATABASE CONNECTION.
 ?>

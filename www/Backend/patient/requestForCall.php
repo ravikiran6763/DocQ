@@ -87,12 +87,14 @@
 
 
 
-			 				 $content = array(
-								 "en" => 'would like a consultation with you. Tap to accept'
-			 					 );
-								 $headers = array(
- 								"en" => $patientFullName'
- 								);
+								$content = array(
+								"en" => 'would like a consultation with you.Tap to accept.'
+								// {"en": "English Message", "es": "Spanish Message"}
+								);
+								$headers = array(
+								"en" => $patientFullName
+								// {"en": "English Message", "es": "Spanish Message"}
+								);
 
 			 				 $fields = array(
 			 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
