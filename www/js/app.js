@@ -1,4 +1,3 @@
-
 // Ionic DoctorQuickApp
 // var handleOpenURL=function(url){
 //   alert("Received url"+url);
@@ -100,7 +99,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
   });
 
-  $interval(checkConnection, 1000)
+  // $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -127,12 +126,12 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
 DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
-//
-//     $interval(checkConsultations,2000,false);
-//
-// function checkConsultations(){
-//   console.log('on device ready');
-// }
+      //
+      // $interval(checkConsultations,2000,false);
+      //
+      // function checkConsultations(){
+      //   console.log('on device ready');
+      // }
 
   if (ionic.Platform.isAndroid()) {
     window.addEventListener("native.hidekeyboard", function () {
@@ -254,33 +253,32 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
   if($localStorage.doctororpatient === "doctor" ){
 
+      if($rootScope.pat_phnofromwebview){
+        $rootScope.testvalue=true;
 
+          $localStorage.onOff=2;
+          $ionicLoading.show({
+          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+          duration:5000
+          });
+          console.log($rootScope.pat_phnofromwebview);
+          $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+          return '/templates/sendPrescription';
+      }
 
-  if($rootScope.pat_phnofromwebview){
-      $localStorage.onOff=2;
-      $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-      duration:5000
-      });
-      console.log($rootScope.pat_phnofromwebview);
-      $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-      return '/templates/sendPrescription';
-  }
+      if($rootScope.deviceIOS === true){
+        if($localStorage.sendPrescTo != ''){
+          console.log("iosDevice:");
+          console.log("iospatient:",$localStorage.sendPrescTo);
+          $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+          return '/templates/sendPrescription';
+        }
 
-  if($rootScope.deviceIOS === true){
-    if($localStorage.sendPrescTo != ''){
-      console.log("iosDevice:");
-      console.log("iospatient:",$localStorage.sendPrescTo);
-      $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
-      return '/templates/sendPrescription';
-    }
-
-
-  }
-
-  $timeout( function() {
-    $state.go('templates.loadingDoctor');
-  }, 0);
+      }
+      //
+      $timeout( function() {
+        $state.go('templates.loadingDoctor');
+      }, 0);
 
   }
 
@@ -492,7 +490,8 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               return config;
           },
           responseError: function (rejection,response) {
-
+            console.log(rejection);
+            console.log(response);
 
             $rootScope.$watch('online', function(newValue, oldValue){
               console.log('newValue',newValue);
@@ -500,11 +499,19 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                    if (newValue !== oldValue) {
                       //  $rootScope.online=$rootScope.online;
                        $injector.get("$ionicLoading").hide();
-
+                        $injector.get("$state").reload()
                    }
+                  // else if(newValue == false && oldValue == false ){
+                  //    console.log('offf');
+                  //  }
+                  //  else if(newValue == true && oldValue == true){
+                  //     console.log('onnfff');
+                  //   }
+                  //  else{
+                  //    console.log('offf');
+                  //  }
                });
-              //  console.log(response.config);
-              //console.log(rejection);
+
               switch (rejection.status) {
                 // console.log(rejection.status);
                   // case 0 :  var $http = $injector.get('$http');//for retry condition
@@ -523,12 +530,22 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                                 // window.location = "noresponse.html";
                                 $injector.get("$ionicLoading").show({
                   						        template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
+
                   						      });
                       }
                       else{
                         $injector.get("$ionicLoading").show({
                               template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
                             });
+
+                            // $injector.get("$ionicLoading").hide();
+                            // $injector.get("$ionicLoading").hide().then(function(){
+                            // console.log("The loading indicator is now hidden");
+                            // // $injector.get("$ionicLoading").show({
+                            // //       template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
+                            // //     });
+                            //
+                            // });
                       }
                       break;
                   case 404 :
@@ -539,7 +556,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                       console.log('Timeout');
                       $injector.get("$ionicPopup").confirm({
                             // title: 'Unable to reach DoctorQuick servers',
-                            template: '<center>Unable to reach DoctorQuick servers please check your connection and try again</center>',
+                            template: '<center>Unable to reach DoctorQuick servers. Please check your connection and try again</center>',
                             cssClass: 'videoPopup',
                             // scope: $scope,
                             buttons: [
@@ -1081,15 +1098,17 @@ $stateProvider
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/splash');
-  $urlRouterProvider.otherwise(function($injector,$localStorage) {
+  $urlRouterProvider.otherwise(function($injector,$localStorage,$rootScope) {
     // console.log($injector.get('hello'));
-    var $state = $injector.get('$state');
+    var state = $injector.get('$state');
     var Storage = $injector.get('$localStorage');
+    var rootScope = $injector.get('$rootScope');
+
     // var Vsee=cordova.plugins.hello;
 
       var userType=Storage.doctororpatient;
       var userNum=Storage.user;
-
+      console.log(rootScope.testvalue);
       console.log(userType);
       if(userType === 'doctor'){
 
