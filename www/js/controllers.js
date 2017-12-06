@@ -213,14 +213,16 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 						var success = function(message)
 						{
-						$ionicLoading.hide();
-						console.log(message);
-						// alert(message);
-						$ionicHistory.nextViewOptions({
-						disableAnimate: true,
-						disableBack: true
-						});
-						$state.go('app.patient_home',{}, {location: "replace", reload: false})
+							$ionicLoading.hide().then(function(){
+		          console.log("The loading indicator is now hidden");
+		          // alert('loggedin');
+		          $ionicHistory.nextViewOptions({
+		          disableAnimate: true,
+		          disableBack: true
+		          });
+		          $interval.cancel(loginStatus);
+		          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+		          });
 						}
 						var failure = function()
 						{
@@ -352,13 +354,16 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 						var success = function(message)
 						{
 									// alert(message);
-								$ionicLoading.hide();
-								console.log(message);
-								$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-								});
-								$state.go('templates.doctor_home',{}, {location: "replace", reload: false});
+									$ionicLoading.hide().then(function(){
+				          console.log("The loading indicator is now hidden");
+				          // alert('loggedin');
+				          $ionicHistory.nextViewOptions({
+				          disableAnimate: true,
+				          disableBack: true
+				          });
+				          $interval.cancel(loginStatus);
+				          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+				          });
 								// alert(message);
 						}
 						var failure = function()

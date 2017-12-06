@@ -99,7 +99,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
   });
 
-  // $interval(checkConnection, 1000)
+  $interval(checkConnection, 1000)
   function checkConnection() {
       var networkState = navigator.network.connection.type;
       var states = {};
@@ -126,12 +126,12 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
 DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
-      //
-      // $interval(checkConsultations,2000,false);
-      //
-      // function checkConsultations(){
-      //   console.log('on device ready');
-      // }
+    //
+    //     $interval(checkConsultations,2000,false);
+    //
+    // function checkConsultations(){
+    //   console.log('on device ready');
+    // }
 
   if (ionic.Platform.isAndroid()) {
     window.addEventListener("native.hidekeyboard", function () {
@@ -140,15 +140,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     });
   }
   else {
-
-
-
     console.log("localStorage previous value",$localStorage.sendPrescTo);
-
     $localStorage.sendPrescTo = "";
-
     console.log("localStorage after value",$localStorage.sendPrescTo);
-
   }
 
   if(window.StatusBar){
@@ -254,8 +248,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   if($localStorage.doctororpatient === "doctor" ){
 
       if($rootScope.pat_phnofromwebview){
-        $rootScope.testvalue=true;
-
           $localStorage.onOff=2;
           $ionicLoading.show({
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
@@ -273,12 +265,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
           return '/templates/sendPrescription';
         }
-
       }
-      //
-      $timeout( function() {
-        $state.go('templates.loadingDoctor');
-      }, 0);
+
+
 
   }
 
@@ -286,10 +275,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     //do nothing
     console.log('UNDEFINED');
   }
+  $timeout( function() {
+    // $state.go('templates.loadingDoctor');
+  }, 0);
 
-//API KEY FOR URL SHORTNING
-  gapi.client.setApiKey('AIzaSyDV5_Ca9cEVSFaiLkyzGIcDcbnV_4CiA0o');
-  gapi.client.load('urlshortener', 'v1', function() { document.getElementById("result").innerHTML = ""; });
 
   //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
@@ -307,8 +296,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 //
   }, 0);
   }
-
-
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 
@@ -501,15 +488,12 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                        $injector.get("$ionicLoading").hide();
                         $injector.get("$state").reload()
                    }
-                  // else if(newValue == false && oldValue == false ){
-                  //    console.log('offf');
-                  //  }
-                  //  else if(newValue == true && oldValue == true){
-                  //     console.log('onnfff');
-                  //   }
-                  //  else{
-                  //    console.log('offf');
-                  //  }
+                  else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
+                     console.log('on');
+                   }else{
+                     console.log('offf');
+
+                   }
                });
 
               switch (rejection.status) {
@@ -1098,27 +1082,23 @@ $stateProvider
 
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/splash');
-  $urlRouterProvider.otherwise(function($injector,$localStorage,$rootScope) {
-    // console.log($injector.get('hello'));
-    var state = $injector.get('$state');
+  $urlRouterProvider.otherwise(function($injector,$localStorage,$location) {
+    var $state = $injector.get('$state');
     var Storage = $injector.get('$localStorage');
-    var rootScope = $injector.get('$rootScope');
-
-    // var Vsee=cordova.plugins.hello;
-
+    console.log(Storage.sendPrescTo);
       var userType=Storage.doctororpatient;
       var userNum=Storage.user;
-      console.log(rootScope.testvalue);
+      // console.log($location.path());
       console.log(userType);
-      if(userType === 'doctor'){
-
-        return '/templates/doctor_home';
-      }
-
-      else{
-        return '/splash';
-      }
-      // return '/splash';
+      // if(userType === 'doctor'){
+      //
+      //   return '/templates/doctor_home';
+      // }
+      //
+      // else{
+      //   return '/splash';
+      // }
+      return '/splash';
 
     });
 

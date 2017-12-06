@@ -104,8 +104,7 @@
       }
     },
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   }
 }

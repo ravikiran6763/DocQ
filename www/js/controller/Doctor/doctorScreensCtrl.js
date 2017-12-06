@@ -18,27 +18,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     {
       $state.go("templates.consulted_patient")
     }
-    $rootScope.showAlert = function ()
-    {
-      alert('tiny');
-      var Url = 'http://ec2-35-154-118-177.ap-south-1.compute.amazonaws.com/rateAdoctor.html';
-      var request = gapi.client.urlshortener.url.insert({
-      'resource': {
-      'longUrl': Url
-      }
-      });
-      request.execute(function(response) {
-
-      if (response.id != null) {
-      str = "<b>Long URL:</b>" + Url + "<br>";
-      str += "<b>Test Short URL:</b> <a href='" + response.id + "'>" + response.id + "</a><br>";
-      document.getElementById("result").innerHTML = str;
-      }
-      else {
-      alert("Error: creating short url \n" + response.error);
-      }
-      });
-    }
+  
 
 
   if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
@@ -53,18 +33,18 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
     $scope.pendingRequests = response;
-    console.log('pending:',$scope.pendingRequests);
+    // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
-    // .catch(function(error){
-    // console.log('failure data', error);
-    // })
+  // .catch(function(error){
+  //   console.log('failure data', error);
+  // })
     //$interval(checkNewMsgs,2000);
-    doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
-    $scope.one2oneRequests = response;
-    // console.log('one2onePending:',$scope.one2oneRequests);
-    $scope.one2oneRequests=$scope.one2oneRequests.length;
-    })
+    // doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
+    // $scope.one2oneRequests = response;
+    // // console.log('one2onePending:',$scope.one2oneRequests);
+    // $scope.one2oneRequests=$scope.one2oneRequests.length;
+    // })
 
 }
 
