@@ -10,14 +10,15 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope,$state, $
 
 console.log($state.$current.name);
 
-$scope.getStars = function(rating) {
-  // Get the value
-  var val = parseFloat(rating);
-  // Turn value into number/100
-  var size = val/5*100;
-  return size + '%';
-}
+
   $scope.userDoctor = angular.fromJson($window.localStorage['doctorDetails']);
+  $scope.getStars = function(rating) {
+    // Get the value
+    var val = parseFloat(rating);
+    // Turn value into number/100
+    var size = val/5*100;
+    return size + '%';
+  }
   console.log($scope.userDoctor);
 	 $scope.$watch('toggle', function(){
 			 $scope.toggleText = $scope.toggle ? 'Accept!' : 'Accepted';

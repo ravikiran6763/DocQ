@@ -781,9 +781,11 @@ ul.rating {
 }
 .fnameLabel {
 	width:100%;
+	padding:7px;
 }
 .lnameLabel {
 	margin-top:24%;
+	padding:7px;
 }
 .leftPart {
 	position:absolute;
@@ -1009,12 +1011,12 @@ DoctorQuick.filter('capitalize', function() {
       <div class="clearfix"></div>
       <div class="form-group">
         <label for="fname">First Name</label>
-        <input type="text" id="fname" name="fname" ng-model="Patient.fname" required style="padding:7px!important; min-height:36px;">
+        <input type="text" id="fname" placeholder="First Name" name="fname" ng-model="Patient.fname" required>
         <div class="clearfix"></div>
       </div>
       <div class="form-group">
         <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="fname" ng-model="Patient.lname" required style="padding:7px!important; min-height:36px;">
+        <input type="text" id="lname" placeholder="Last Name" name="fname" ng-model="Patient.lname"  required>
         <div class="clearfix"></div>
       </div>
       <div class="form-group">

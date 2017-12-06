@@ -13,7 +13,11 @@
     "bluebird": "^3.4.7",
     "body-parser": "~1.9.2",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
+<<<<<<< HEAD
     "com.example.hello": "file:../newpluginforandroid/cordova-plugin-hello",
+=======
+    "com.example.hello": "file:../VSEE/VseePlugin",
+>>>>>>> 07b79e3595f7891e2aaf5f47eca7b09a557b7bc1
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-fabric-plugin": "^1.1.10",
@@ -43,7 +47,11 @@
     "mongoose": "~4.2.4",
     "morgan": "~1.5.0",
     "ng-intl-tel-input": "^2.0.0",
+<<<<<<< HEAD
     "onesignal-cordova-plugin": "^2.2.4",
+=======
+    "onesignal-cordova-plugin": "^2.2.0",
+>>>>>>> 07b79e3595f7891e2aaf5f47eca7b09a557b7bc1
     "passport": "^0.3.0",
     "passport-jwt": "^1.2.1",
     "phonegap-plugin-mobile-accessibility": "^1.0.5"
@@ -90,12 +98,23 @@
       "cordova-plugin-x-toast": {},
       "phonegap-plugin-mobile-accessibility": {},
       "cordova-plugin-inappbrowser": {},
+<<<<<<< HEAD
       "onesignal-cordova-plugin": {},
       "cordova-fabric-plugin": {
         "FABRIC_API_KEY": "ad99658b46c527c8efd4106bcdd26760def1a477",
         "FABRIC_API_SECRET": "d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9"
       },
       "com.example.hello": {}
+=======
+      "cordova-plugin-x-socialsharing": {},
+      "cordova-plugin-console": {},
+      "onesignal-cordova-plugin": {},
+      "com.example.hello": {
+        "CAMERA_USAGE_DESCRIPTION": "Sending video in a call requires the camera",
+        "MICROPHONE_USAGE_DESCRIPTION": "Sending audio in a call requires the microphone.",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": " This allows you to send photos from your library via chat"
+      }
+>>>>>>> 07b79e3595f7891e2aaf5f47eca7b09a557b7bc1
     },
     "platforms": [
       "android"

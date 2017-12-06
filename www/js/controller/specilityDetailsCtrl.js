@@ -59,7 +59,7 @@ console.log($rootScope.specialId);
    $scope.stopped = false;
    $scope.buttonText='Send Request';
 
-$rootScope.popUpClosed == false;
+   $rootScope.popUpClosed == false;
   $scope.sendrequesttoonlinedoctors = function()
   {
     patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
@@ -69,11 +69,9 @@ $rootScope.popUpClosed == false;
 
      $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
      console.log($rootScope.myWalletBal);
-
      $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
      console.log($rootScope.newPAtient);
-
-     if($rootScope.myWalletBal >= 250){
+     if($rootScope.myWalletBal >= 270){
        console.log($localStorage.networkType);
        if($localStorage.networkType === '4G' || $localStorage.networkType === 'WiFi' || $localStorage.networkType === 'Unknown'){
          console.log($localStorage.SpecilityId);
@@ -101,6 +99,8 @@ $rootScope.popUpClosed == false;
                  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
                  $scope.cancelledReq=response;
                  $state.go("app.medical_speciality");
+                 $interval.cancel(checkAcceptedReq);
+                 $interval.cancel(checkAcceptedReqDocStatus);
                  }).catch(function(error){
                  console.log('failure data', error);
                  });
@@ -130,6 +130,8 @@ $rootScope.popUpClosed == false;
                 onTap:function(){
 
                   $interval.cancel(checkAcceptedReq);
+                  $interval.cancel(checkAcceptedReqDocStatus);
+
                   console.log('cancel');
                   console.log($scope.counter);
                   console.log($localStorage.user);
@@ -151,6 +153,7 @@ $rootScope.popUpClosed == false;
                 $scope.cancelledReq=response;
                 $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
                  $scope.nonePopUp=true;
+                   $interval.cance(checkAcceptedReq);
                   console.log($scope.cancelledReq);
                 }).catch(function(error){
                 console.log('failure data', error);
@@ -336,9 +339,6 @@ $rootScope.popUpClosed == false;
     },true);
 
 //New patient details
-
-
-
 
     $scope.patientToConsult='';
     $scope.changePatient=function (val) {

@@ -213,14 +213,16 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 						var success = function(message)
 						{
-						$ionicLoading.hide();
-						console.log(message);
-						// alert(message);
-						$ionicHistory.nextViewOptions({
-						disableAnimate: true,
-						disableBack: true
-						});
-						$state.go('app.patient_home',{}, {location: "replace", reload: false})
+							$ionicLoading.hide().then(function(){
+		          console.log("The loading indicator is now hidden");
+		          // alert('loggedin');
+		          $ionicHistory.nextViewOptions({
+		          disableAnimate: true,
+		          disableBack: true
+		          });
+		          $interval.cancel(loginStatus);
+		          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+		          });
 						}
 						var failure = function()
 						{
@@ -351,23 +353,49 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 						var success = function(message)
 						{
-							alert(message);
-						$ionicLoading.hide();
-						console.log(message);
-						$ionicHistory.nextViewOptions({
-						disableAnimate: true,
-						disableBack: true
-						});
-						$state.go('templates.doctor_home',{}, {location: "replace", reload: false});
-						// alert(message);
+									// alert(message);
+									$ionicLoading.hide().then(function(){
+				          console.log("The loading indicator is now hidden");
+				          // alert('loggedin');
+				          $ionicHistory.nextViewOptions({
+				          disableAnimate: true,
+				          disableBack: true
+				          });
+				          $interval.cancel(loginStatus);
+				          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+				          });
+								// alert(message);
 						}
 						var failure = function()
 						{
-						alert("Error calling Hello Plugin");
+							alert("Error calling Hello Plugin");
 						}
 
 						hello.login(uname1,pw1,success, failure);
 
+						$timeout( function(){
+				    console.log('interval started');
+				    $interval(checkNewMessages,1000);
+
+				    }, 3000);
+				  var username = "greet+"+$localStorage.user;
+				  var password = "DQ_doctor";
+				  function checkNewMessages()
+				  {
+				      var success = function(message)
+				      {
+				        $rootScope.unreadchatforpatient = message;
+				        // console.log($scope.unreadchatforpatient);
+				      }
+
+				      var failure = function()
+				      {
+				        console.log("Error calling Hello Plugin");
+				        //console.log(‘error’);
+
+				      }
+				        hello.unreadchatfromusers(username,password,success, failure);
+				  }
 				}
 				else{
 
@@ -377,14 +405,14 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				var success = function(message)
 				{
 				// alert(message);
-				$scope.iosLoggin=message;
-				$localStorage.iosLogin=$scope.iosLoggin;
+					$scope.iosLoggin=message;
+					$localStorage.iosLogin=$scope.iosLoggin;
 
 				}
 				var failure = function()
 				{
 
-				alert("Error calling Hello Plugin");
+					alert("Error calling Hello Plugin");
 
 				}
 
@@ -400,24 +428,24 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				function loginStatus() {
 				var success = function(message)
 				{
-				// alert(message);
-				$ionicLoading.hide().then(function(){
-				console.log("The loading indicator is now hidden");
-				// alert('loggedin');
-				$ionicHistory.nextViewOptions({
-				disableAnimate: true,
-				disableBack: true
-				});
-				$interval.cancel(loginStatus);
+						// alert(message);
+						$ionicLoading.hide().then(function(){
+						console.log("The loading indicator is now hidden");
+						// alert('loggedin');
+						$ionicHistory.nextViewOptions({
+						disableAnimate: true,
+						disableBack: true
+						});
+						$interval.cancel(loginStatus);
 
-				$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-				});
+						$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+						});
 
 				}
 
 				var failure = function()
 				{
-				alert("Error Occurred While Loggin in to DoctoQuick");
+					alert("Error Occurred While Loggin in to DoctoQuick");
 				}
 				hello.loginstatus(success,failure);
 				}

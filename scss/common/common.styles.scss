@@ -1,3 +1,92 @@
+// Respnsive video player
+.video-wrapper {
+	height: 0;
+	overflow: hidden;
+	padding-bottom: 56.25%; // For ratio 16:9. 75% if ratio is 4:3
+	position: relative;
+
+	embed,
+	object,
+	iframe {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+}
+
+// Modal window
+.modal {
+	label {
+		cursor: pointer;
+		font-weight: normal;
+		margin-bottom: 0;
+	}
+
+	.modal-state {
+		display: none;
+	}
+
+	.modal-fade-screen {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.85);
+		opacity: 0;
+		visibility: hidden;
+		z-index: 999;
+		transition: opacity 0.25s ease;
+	}
+
+	.modal-close {
+		position: absolute;
+		top: -3rem;
+		right: -3rem;
+		font-size: 2rem;
+		color: #fff;
+		cursor: pointer;
+	}
+
+	.modal-inner {
+		width: 80%;
+		height: auto;
+		position: relative;
+		background-color: transparent;
+		transition: opacity 0.25s ease;
+	}
+	.modal-state:checked + .modal-fade-screen {
+		opacity: 1;
+		visibility: visible;
+	}
+}
+
+.modal-open {
+	overflow: hidden;
+}
+
+.modal-closed {
+	overflow: auto;
+}
+
+// Based on code by Kasper Mikiewicz
+// Other Styling
+// ---------------------------------
+section {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+
 // General reset styles
 
 input[type="checkbox"] {

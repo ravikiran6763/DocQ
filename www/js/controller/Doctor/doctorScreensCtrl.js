@@ -18,27 +18,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     {
       $state.go("templates.consulted_patient")
     }
-    $rootScope.showAlert = function ()
-    {
-      alert('tiny');
-      var Url = 'http://ec2-35-154-118-177.ap-south-1.compute.amazonaws.com/rateAdoctor.html';
-      var request = gapi.client.urlshortener.url.insert({
-      'resource': {
-      'longUrl': Url
-      }
-      });
-      request.execute(function(response) {
-
-      if (response.id != null) {
-      str = "<b>Long URL:</b>" + Url + "<br>";
-      str += "<b>Test Short URL:</b> <a href='" + response.id + "'>" + response.id + "</a><br>";
-      document.getElementById("result").innerHTML = str;
-      }
-      else {
-      alert("Error: creating short url \n" + response.error);
-      }
-      });
-    }
+  
 
 
   if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
@@ -56,15 +36,15 @@ function checkConsultations(){
     // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
-    // .catch(function(error){
-    // console.log('failure data', error);
-    // })
+  // .catch(function(error){
+  //   console.log('failure data', error);
+  // })
     //$interval(checkNewMsgs,2000);
-    doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
-    $scope.one2oneRequests = response;
-    // console.log('one2onePending:',$scope.one2oneRequests);
-    $scope.one2oneRequests=$scope.one2oneRequests.length;
-    })
+    // doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
+    // $scope.one2oneRequests = response;
+    // // console.log('one2onePending:',$scope.one2oneRequests);
+    // $scope.one2oneRequests=$scope.one2oneRequests.length;
+    // })
 
 }
 
@@ -338,16 +318,13 @@ $scope.viewRequest=function(patient){
 
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.awstime})
 }
-
-
 $scope.playDemoVideo = function() {
 
   // YoutubeVideoPlayer.openVideo('https://www.youtube.com/embed/x49Vi9iKE_o', function(result) { console.log('YoutubeVideoPlayer result = ' + result); });
-
 $scope.videoPlayerPopup = $ionicPopup.show({
   // title: 'DoctorQuick',
-  template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 0px;left: 0;  border-radius: 22px; font-size: 8vw; color: teal; text-align: end; padding: 0px;" ng-controller="doctorScreensCtrl" ng-Click="closethis();">X</div>'+
-      '<iframe width="100%" height="90%" src="https://www.youtube.com/embed/xrLtb9Pkkjg?rel=0&amp;showinfo=0" frameborder="0"  autoplay></iframe>',
+  template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 23px;left: 95%; border-radius: 22px; font-size: 4vw; color: teal; text-align: center; padding: 0px; background-color: white; width: 5%;font-weight: bolder;color: #777;" ng-controller="doctorScreensCtrl" ng-Click="closethis();">X</div>'+
+      '<iframe style="width: 100%; height: 59%; border: 4px solid green; margin-top: 7%;" src="https://www.youtube-nocookie.com/embed/Nt364t3Vp6I?rel=0&amp;showinfo=0" frameborder="0"  autoplay></iframe>',
   // template:'test',
   cssClass: 'videoPlayerPopup',
   scope: $scope,

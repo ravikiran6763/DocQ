@@ -142,20 +142,16 @@
 					 console.log($rootScope.existingId);
 					 doctorServices.fetchReqPatientDetails(consltDetails).then(function(response){
 						 console.log('Response::',response);
-
 					 $rootScope.reqPatDetails=response;
 					 var data=$rootScope.reqPatDetails//take all json data into this variable
 					 		for(var i=0; i<data.length; i++){
 			 						$rootScope.reqId=data[i].id,
 			 						$rootScope.reqPat=data[i].patientPhone,
                   $rootScope.subPatientId=data[i].subPatientId,
-
 									// $rootScope.dateAndTime=data[i].requestedTime
 					 		console.log($rootScope.reqId);
 					 		console.log($rootScope.reqPat);
               console.log($rootScope.subPatientId);
-
-
 					 		}
 
 					 $ionicLoading.hide();
@@ -188,7 +184,6 @@
 					 });
 
 					 $scope.deviceAndroid = ionic.Platform.isAndroid();
-
 					 if($scope.deviceAndroid === true){
 						 ion.sound.play("androidtone");
 					 }
@@ -201,7 +196,7 @@
 
 					 $scope.currentPatient={};
 					 $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-			     console.log('current patient',$scope.currentPatient);
+			     // console.log('current patient',$scope.currentPatient);
 					 $rootScope.patientNum=$scope.currentPatient.patientNum;
            $rootScope.subPatientId=$scope.currentPatient.subPatientId;
 
@@ -219,11 +214,7 @@
 				$rootScope.closeDocPopUp=false;
 				////// calculate datedifference////
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
-
 					var tt = $rootScope.dateAndTime;
-
-
-
 					var date_test = new Date(tt.replace(/-/g,"/"));
 					console.log('converted date and time',date_test);
 					var timestamp = new Date(date_test).getTime();
@@ -234,15 +225,14 @@
 
 					var t = justdate.split(/[- :]/);
 
-// Apply each element to the Date function
-var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
-var actiondate = new Date(d);
+          // Apply each element to the Date function
+          var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);
+          var actiondate = new Date(d);
 
-var timestamp = new Date(actiondate).getTime();
+          var timestamp = new Date(actiondate).getTime();
 
 
-console.log('actiondate',timestamp);
-
+          console.log('actiondate',timestamp);
 
 					console.log('timestamp',timestamp);
 					console.log('currentTimestamp',currentTimestamp);
@@ -268,15 +258,11 @@ console.log('actiondate',timestamp);
 					console.log('diffDays',diffDays);
 					console.log('diffHrs',diffHrs);
 					console.log('diffMins',diffMins);
-
 					console.log('timestamp',timestamp);
 					console.log('currentTimestamp',currentTimestamp);
 
 					var diffMs = (currentTimestamp - timestamp);
-
 					console.log('datedifference in min',diffMs);
-
-
 
 
 				//////
@@ -284,10 +270,10 @@ console.log('actiondate',timestamp);
 					$rootScope.callAcc=true;
 					$rootScope.timer=true;
 
- $scope.type = '';
- $scope.setType = function(event){
-	 $scope.isDisabled = false;
-		$scope.type = angular.element(event.target).text();
+    $scope.type = '';
+    $scope.setType = function(event){
+    $scope.isDisabled = false;
+    $scope.type = angular.element(event.target).text();
 		console.log($scope.type);
 		if($scope.type === 'Decline' && $localStorage.accpt === 1){
 

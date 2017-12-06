@@ -12,7 +12,10 @@
       margin: 0 auto;
 
     }
-
+    .add-patient-view .card .row {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
   .card {
     .col-75{
       padding: 3%;
@@ -175,7 +178,7 @@
 				width: 100% !important;
 				// height: 100%;
 				}
-        
+
 			.item-radio .item-content{
 				padding-top: 5% !important;
 				padding-right: 0% !important;

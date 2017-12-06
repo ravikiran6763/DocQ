@@ -83,7 +83,8 @@ if($state.$current.name === 'app.addSubPatient'){
       medicalSpecialityService.savePatient(patientAdded).then(function(response){
          console.log('saved', response);
          $state.go("app.subPatientList");
-
+         $rootScope.newPatient={};
+         console.log(patientAdded);
       }).catch(function(error){
           console.log('failure data', error);
       });

@@ -62,8 +62,12 @@ mysql -h doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com -P 3306 -u 
 # mysql -h doctorquickservices-1.cluster-ck1ombdee9lh.ap-south-1.rds.amazonaws.com -P 3306 -u dq_1507 -p    #
 #############################################################################################################
 
+mysql -h doctorquick.ctxtxfosce9r.ap-south-1.rds.amazonaws.com -P 3306 -u doctorquick -p
+
+
 grant all privileges on mydb.* to ec2-user@doctorquick-services-ap-south-1b.ck1ombdee9lh.ap-south-1.rds.amazonaws.com:3306 identified by 'dqrskvsk';
 
+grant all privileges on mydb.* to ec2-user@doctorquick.ctxtxfosce9r.ap-south-1.rds.amazonaws.com:3306 identified by 'anvera2017';
 
 
 grant all privileges on mydb.* to ec2-user@doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306 identified by 'aishiteimasu';
@@ -79,6 +83,7 @@ CREATE TABLE ratingsToDoctor (
     primary key(id)
 );
 
+https://youtu.be/Nt364t3Vp6I
 
 /////google API DEtails
 Account :doctorquick2016@gmail.com
