@@ -303,22 +303,23 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   // console.log(toState.name.indexOf('app.patient_home'));
   if(toState.name.indexOf('app.patient_home') > -1)
   {
-  // Restore platform default transition. We are just hardcoding android transitions to auth views.
-  //$ionicConfig.views.transition(none);
-  // If it's ios, then enable swipe back again
-  if(ionic.Platform.isIOS())
-  {
-  $ionicConfig.views.transition('none');
-  $ionicConfig.views.swipeBackEnabled(false);
-  }
-  else{
-  $ionicConfig.views.transition('none');
-  }
-  console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+      // Restore platform default transition. We are just hardcoding android transitions to auth views.
+      //$ionicConfig.views.transition(none);
+      // If it's ios, then enable swipe back again
+      if(ionic.Platform.isIOS())
+      {
+      $ionicConfig.views.transition('none');
+      $ionicConfig.views.swipeBackEnabled(false);
+      }
+      else{
+      $ionicConfig.views.transition('none');
+      }
+      console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
   }
   console.log(toState.name);
+  console.log($rootScope.previousState.name);
   if (toState.name != "app.searchDoctors") {
-  $rootScope.sideMenuForSearch = false;
+    $rootScope.sideMenuForSearch = false;
   }
   if (toState.name != "templates.invite_reviews") {
     $rootScope.inviteButton = false;
