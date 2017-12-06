@@ -248,14 +248,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   if($localStorage.doctororpatient === "doctor" ){
 
   if($rootScope.pat_phnofromwebview){
+
+
+    console.log('webviewloop entered');
+
       $localStorage.onOff=2;
       $ionicLoading.show({
       template: '<ion-spinner></ion-spinner><br><br>Please Wait',
       duration:5000
       });
-      console.log($rootScope.pat_phnofromwebview);
+
+      //console.log($rootScope.pat_phnofromwebview);
+
       $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
       return '/templates/sendPrescription';
+
+
   }
 
   if($rootScope.deviceIOS === true){
@@ -269,9 +277,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
   }
 
-  $timeout( function() {
-    $state.go('templates.loadingDoctor');
-  }, 0);
+  // $timeout( function() {
+  //   $state.go('templates.loadingDoctor');
+  // }, 0);
 
   }
 
@@ -1077,15 +1085,15 @@ $stateProvider
       var userNum=Storage.user;
 
       console.log(userType);
-      if(userType === 'doctor'){
-
-        return '/templates/doctor_home';
-      }
-
-      else{
-        return '/splash';
-      }
-      // return '/splash';
+      // if(userType === 'doctor'){
+      //
+      //   return '/templates/doctor_home';
+      // }
+      //
+      // else{
+      //   return '/splash';
+      // }
+       return '/splash';
 
     });
 
