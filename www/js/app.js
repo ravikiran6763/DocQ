@@ -235,11 +235,13 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
   });
 
+
+
+  }
+
   console.log('from webviewactivity');
   console.log(vars);
   return vars;
-
-  }
 
 
   console.log('iospatientValue:',$localStorage.sendPrescTo);
@@ -247,34 +249,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
   if($localStorage.doctororpatient === "doctor" ){
 
-<<<<<<< HEAD
-  if($rootScope.pat_phnofromwebview){
-
-
-    console.log('webviewloop entered');
-
-      $localStorage.onOff=2;
-      $ionicLoading.show({
-      template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-      duration:5000
-      });
-
-      //console.log($rootScope.pat_phnofromwebview);
-
-      $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-      return '/templates/sendPrescription';
-
-
-  }
-
-  if($rootScope.deviceIOS === true){
-    if($localStorage.sendPrescTo != ''){
-      console.log("iosDevice:");
-      console.log("iospatient:",$localStorage.sendPrescTo);
-      $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
-      return '/templates/sendPrescription';
-    }
-=======
       if($rootScope.pat_phnofromwebview){
           $localStorage.onOff=2;
           $ionicLoading.show({
@@ -285,7 +259,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
           return '/templates/sendPrescription';
       }
->>>>>>> 07b79e3595f7891e2aaf5f47eca7b09a557b7bc1
 
       if($rootScope.deviceIOS === true){
         if($localStorage.sendPrescTo != ''){
@@ -297,12 +270,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
       }
 
 
-<<<<<<< HEAD
-  // $timeout( function() {
-  //   $state.go('templates.loadingDoctor');
-  // }, 0);
-=======
->>>>>>> 07b79e3595f7891e2aaf5f47eca7b09a557b7bc1
 
   }
 
@@ -1125,19 +1092,15 @@ $stateProvider
       var userNum=Storage.user;
       // console.log($location.path());
       console.log(userType);
-      // if(userType === 'doctor'){
-      //
-      //   return '/templates/doctor_home';
-      // }
-      //
-      // else{
-      //   return '/splash';
-      // }
-<<<<<<< HEAD
-       return '/splash';
-=======
-      return '/splash';
->>>>>>> 07b79e3595f7891e2aaf5f47eca7b09a557b7bc1
+      if(userType === 'doctor'){
+
+        return '/templates/doctor_home';
+      }
+
+      else{
+        return '/splash';
+      }
+      //return '/splash';
 
     });
 
