@@ -221,7 +221,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log("iosDevice:",$rootScope.deviceIOS);
   }
 
-<<<<<<< HEAD
   var get = getUrlVars();
   console.log('thisis after getting');
   console.log(get["phno"]);
@@ -244,7 +243,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   console.log('from webviewactivity');
   console.log(vars);
   return vars;
-=======
   // var get = getUrlVars();
   // console.log('thisis after getting');
   // console.log(get["phno"]);
@@ -265,12 +263,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   // return vars;
   //
   // }
->>>>>>> 225d91074c7dd011ae099cef3f40e041203c2539
 
 
   console.log('iospatientValue:',$localStorage.sendPrescTo);
 
-<<<<<<< HEAD
 
   if($localStorage.doctororpatient === "doctor" ){
 
@@ -302,8 +298,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     //do nothing
     console.log('UNDEFINED');
   }
-=======
->>>>>>> 225d91074c7dd011ae099cef3f40e041203c2539
   $timeout( function() {
     // $state.go('templates.loadingDoctor');
     if($rootScope.pat_phnofromwebview){
@@ -1155,7 +1149,6 @@ $stateProvider
       var userNum=Storage.user;
       // console.log($location.path());
       console.log(userType);
-<<<<<<< HEAD
       if(userType === 'doctor'){
 
         return '/templates/doctor_home';
@@ -1165,7 +1158,6 @@ $stateProvider
         return '/splash';
       }
       //return '/splash';
-=======
 
       var get = getUrlVars();
       console.log('thisis after getting');
@@ -1227,7 +1219,6 @@ $stateProvider
       // else{
       //   return '/splash';
       // }
->>>>>>> 225d91074c7dd011ae099cef3f40e041203c2539
 
     });
 
