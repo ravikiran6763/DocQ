@@ -357,8 +357,6 @@
     </config-file>
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.2.0" />
-    <engine name="android" spec="^6.2.3" />
-    <plugin name="cordova-plugin-whitelist" spec="1.2.0" />
     <plugin name="com.razorpay.cordova" spec="^1.3.1" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1">
         <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
@@ -377,20 +375,17 @@
     <plugin name="cordova-plugin-x-toast" spec="^2.6.0" />
     <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
-    <plugin name="onesignal-cordova-plugin" spec="^2.2.4" />
+    <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="cordova-fabric-plugin" spec="^1.1.10">
         <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
         <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
     </plugin>
-    <plugin name="com.example.hello" spec="file:../newpluginforandroid/cordova-plugin-hello" />
-    <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
-    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
-    <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-    <plugin name="cordova-plugin-console" spec="^1.1.0" />
-    <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
     <plugin name="com.example.hello" spec="file:../VSEE/VseePlugin">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Sending video in a call requires the camera" />
         <variable name="MICROPHONE_USAGE_DESCRIPTION" value="Sending audio in a call requires the microphone." />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" This allows you to send photos from your library via chat" />
     </plugin>
+    <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
+    <plugin name="cordova-plugin-console" spec="^1.1.0" />
+    <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
 </widget>

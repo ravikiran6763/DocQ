@@ -51,6 +51,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					}
 				 ]
 
+				 $scope.getPassword = function(num)
+				 {
+					 // $ionicLoading.show({
+						//  template:'Getting your password',
+						//  duration:3000
+					 // });
+				      console.log("get password",num);
+				 };
 
 	$scope.doLogIn = function()
 	{
