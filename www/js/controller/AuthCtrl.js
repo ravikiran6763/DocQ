@@ -27,7 +27,6 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
       });
 
 
-
 $scope.sendForm = function($event,form)
 {
      $event.preventDefault()
@@ -593,7 +592,7 @@ $scope.patientRegistration = function()
     scope: $scope,
 
   });
-  
+
   $ionicLoading.hide();
   $scope.closethis = function()
   {

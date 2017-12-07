@@ -183,6 +183,12 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoading,$localStorage,$interval,$window,$scope,$state,$ionicHistory,LoginService){
 	$timeout(function(){
 	// console.log($localStorage.doctororpatient);
+
+
+
+
+	  
+
 		$ionicLoading.show({
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 		});

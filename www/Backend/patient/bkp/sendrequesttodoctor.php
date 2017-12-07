@@ -43,6 +43,16 @@ if(isset($postdata))
 							 {
 								    $speciality = $rowSp['special'];
 							 }
+
+							 $sqlSp1 = "select patientFname,patientLname from patientDetails where patientPhone='$patient_phno'";
+							$retvalSp1 = mysql_query( $sqlSp1, $dbhandle );
+							while($rowSp1 = mysql_fetch_array($retvalSp1))
+							{
+									 $patientFname = $rowSp1['patientFname'];
+									 $patientLname = $rowSp1['patientLname'];
+
+									  $patientFullName= $patientFname." ".$patientLname;
+							}
 			 }
 		}
 		else{
@@ -50,33 +60,46 @@ if(isset($postdata))
 		}
 	}
 
-		$myArray =array();
+		$playerId =array();
 	 $sendPush="select playerId from doctorDetails,doctor_onoff where doctor_onoff.doctor_phno=doctorDetails.doctorPhone and onoff=1 and doctorSpecialityId like '%$speciality%' and playerId not in('')";
 
 	 $result = mysql_query($sendPush);
 	 while ($row = mysql_fetch_assoc($result, MYSQL_ASSOC)){
-			 $myArray[]= $row['playerId'];
+			 $playerId[]= $row['playerId'];
 	 }
+	 for ($i=0; $i < sizeof(playerId); $i++) {
 
-	 for ($i=0; $i < sizeof($myArray); $i++) {
 	 		 function sendMessage(){
 	 		 $Ids =array();
-	 			$Ids = $GLOBALS['myArray'];
+	 			$Ids = $GLOBALS['playerId'];
 	 			$reqId = $GLOBALS['reqId'];
 	 			$reqTime = $GLOBALS['reqTime'];
 	 			$reqPatImg = $GLOBALS['reqPatImg'];
-	 			$reqPat = $GLOBALS['patient_phno'];
+	 			 $reqPat = $GLOBALS['patient_phno'];
+				 $patientFullName = $GLOBALS['patientFullName'];
+				// $patientFname="Abhijeet";
 
-
-				 				 $content = array(
-				 					 "en" => 'You have a new consultation request pending!!!'
-				 					 );
+								// $title = array(
+								// "en" => 'DoctorQuick - Get Well Sooner'
+								// // {"en": "English Message", "es": "Spanish Message"}
+								// );
+								$content = array(
+								"en" => 'would like a consultation with you.Tap to accept.'
+								// {"en": "English Message", "es": "Spanish Message"}
+								);
+								$headers = array(
+								"en" => $patientFullName
+								// {"en": "English Message", "es": "Spanish Message"}
+								);
 
 				 				 $fields = array(
 				 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
 				 					 'include_player_ids' => $Ids,
 				 					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromPush.html"),
-				 					 'contents' => $content,
+									 // 'title' => $title,
+									 'headings' => $headers,
+									 'contents' => $content,
+									 'ledColor' => 'red',
 				 					 'android_sound' => 'dqandroidtone',
 				 					 'ios_sound' => 'iphone.wav',
 				 				 );
@@ -107,9 +130,9 @@ if(isset($postdata))
 
 	 }
 
-	 			 $response = sendMessage();
-	 			 $return["allresponses"] = $response;
-	 			 $return = json_encode( $return);
+	 $response = sendMessage();
+	 $return["allresponses"] = $response;
+	 $return = json_encode( $return);
 	 		// 	 print("\n\nJSON received:\n");
 	 		// 	 print($return);
 	 		// 	 print("\n");

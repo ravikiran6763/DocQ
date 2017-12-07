@@ -39,16 +39,12 @@ for ($i=0; $i < sizeof($myArray); $i++) {
      $doctorLname = $GLOBALS['doctorLname'];
      $patient = $GLOBALS['patient'];
 
-		 // ONE SIGNAL Testing Credentials
-	 	//  6873c259-9a11-4a2a-a3b5-53aea7d59429
-	 	//  MjAxYmFhNTItZTNiOS00ZDY3LTgzOTgtOGIxNDJmMjI1OGZj //old rest api key
-
   		$content = array(
   			"en" => 'Hi Dr.'.$doctorLname.' is now available.'
   			);
 
   		$fields = array(
-				'app_id' => "e215d4e2-486f-4f19-984b-e54e8b63f891",
+  			'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
   			'include_player_ids' => $Ids,
   			// 'data' => array("foo" => "bar"),
   			'contents' => $content
@@ -61,7 +57,7 @@ for ($i=0; $i < sizeof($myArray); $i++) {
   		$ch = curl_init();
   		curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
   		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-  												   'Authorization: Basic YWRhZTE3NTktMGY1Yy00NzAwLWE5NjgtNDk2YTIyMmNlYzRj'));
+  												   'Authorization: Basic MjAxYmFhNTItZTNiOS00ZDY3LTgzOTgtOGIxNDJmMjI1OGZj'));
   		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   		curl_setopt($ch, CURLOPT_HEADER, FALSE);
   		curl_setopt($ch, CURLOPT_POST, TRUE);

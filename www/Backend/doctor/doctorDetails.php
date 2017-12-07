@@ -7,6 +7,7 @@
 		{
 
 				$loginphno = json_decode($postdata);
+				// $loginphno='9738162020';
         $doctorDetails = array();
         $sql = "select docImage2,onoff,doctorFname,doctorMname,doctorLname,doctorEmail,doctorPhone,doctorPwd,doctorDegrees,practicingSince,doctorAge,doctorSex,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode,doctorLanguage1,doctorLanguage2,doctorBankName,doctorAccountNum,doctorBankIfsc,doctorFee,doctorSpecialityId,doctorMedFlag,doctorMedNum,ratings,ratingCount,playerId from doctorDetails,doctorImages,doctor_onoff where doctorPhone='$loginphno' and doctorImages.docPhone=doctorDetails.doctorPhone and  doctorDetails.doctorPhone=doctor_onoff.doctor_phno";
         $retval = mysql_query( $sql, $dbhandle );

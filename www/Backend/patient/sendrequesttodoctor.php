@@ -91,9 +91,11 @@ if(isset($postdata))
 								"en" => $patientFullName
 								// {"en": "English Message", "es": "Spanish Message"}
 								);
-
+                // ONE SIGNAL Testing Credentials
+								//  6873c259-9a11-4a2a-a3b5-53aea7d59429
+								//  MjAxYmFhNTItZTNiOS00ZDY3LTgzOTgtOGIxNDJmMjI1OGZj //old rest api key
 				 				 $fields = array(
-				 					 'app_id' => "6873c259-9a11-4a2a-a3b5-53aea7d59429",
+				 					 'app_id' => "e215d4e2-486f-4f19-984b-e54e8b63f891",
 				 					 'include_player_ids' => $Ids,
 				 					 'data' => array("reqId" => $reqId,"reqPat" => $reqPat,"reqTime" => $reqTime,"reqPatImg" => $reqPatImg,"targetUrl" => "patientRequestfromPush.html"),
 									 // 'title' => $title,
@@ -111,7 +113,7 @@ if(isset($postdata))
 				 				 $rk = curl_init();
 				 				 curl_setopt($rk, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
 				 				 curl_setopt($rk, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-				 																'Authorization: Basic MjAxYmFhNTItZTNiOS00ZDY3LTgzOTgtOGIxNDJmMjI1OGZj'));
+				 																'Authorization: Basic YWRhZTE3NTktMGY1Yy00NzAwLWE5NjgtNDk2YTIyMmNlYzRj'));
 				 				 curl_setopt($rk, CURLOPT_RETURNTRANSFER, TRUE);
 				 				 curl_setopt($rk, CURLOPT_HEADER, FALSE);
 				 				 curl_setopt($rk, CURLOPT_POST, TRUE);
