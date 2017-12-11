@@ -13,7 +13,7 @@ DoctorQuickApp.constant('BASE_URL', {
         //Staging doctorquickservices
         // 'url' : 'http://ec2-35-154-118-177.ap-south-1.compute.amazonaws.com/'
         //Development services.doctorquick
-        'url' : 'http://35.154.234.29/'
+        'url' : 'http://ec2-35-154-234-29.ap-south-1.compute.amazonaws.com/'
     })
 .constant('API', {
           /*COMMON APIS*/

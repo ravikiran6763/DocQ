@@ -187,7 +187,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 
 
-	  
+
 
 		$ionicLoading.show({
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
@@ -227,7 +227,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 		          disableBack: true
 		          });
 		          $interval.cancel(loginStatus);
-		          $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+		          $state.go('app.patient_home', {}, {location: "replace", reload: false});
 		          });
 						}
 						var failure = function()

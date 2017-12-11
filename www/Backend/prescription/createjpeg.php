@@ -73,6 +73,7 @@ $sy = imagesy($my_img);
 
 
 imagejpeg( $my_img,"hello.jpeg");
+// print "hello.jpeg";
 //imagecolordeallocate( $line_color );
 //imagecolordeallocate( $text_color );
 //imagecolordeallocate( $background );

@@ -1,10 +1,12 @@
 <?php
 
 	require "headers.php";
-	require "mergejpegimage.php";
+	// require "mergejpegimage.php";
 	header('Content-type: text/html; charset=UTF-8');
   $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
 	// ini_set('display_errors', 'On');
+	// error_reporting(E_ALL);
+	// ini_set('display_errors', 'on');
 
 if(isset($postdata))
 {
@@ -18,14 +20,13 @@ if(isset($postdata))
 				$subPatient = $request->subPatient;//MEDICATION BY DOCTOR
 
 
-
-
-	      // $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
-	      // $patientphoneno = '8792618138';//PATIENT PHONE NO
-	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
-	      // $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
-	      // $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
-        //
+	      //  $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
+	      //  $patientphoneno = '8792618138';//PATIENT PHONE NO
+	      //  $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
+	      //  $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
+	      //  $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
+				//  $subPatient = "";//MEDICATION BY DOCTOR
+        // // //
 
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE
 	     $doctorinformation = "select doctorFname,doctorMname,doctorLname,doctorDegrees,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode from doctorDetails where  doctorPhone='$doctorphoneno'";
@@ -147,12 +148,18 @@ if(isset($postdata))
 		       while($row = mysql_fetch_array($prscrption))
 		       {
 		         $preCount=$row['preCount'];
-
 		       }
-
-
-				 $my_img = imagecreate(920,1080) or die('Cannot create image');
-    		 $background = imagecolorallocate( $my_img, 255, 255, 255 );
+					 header("Content-Type: image/jpeg");
+					 // $im = @imagecreate(110, 20)
+					 // 		or die("Cannot Initialize new GD image stream");
+					 // $background_color = imagecolorallocate($im, 0, 0, 0);
+					 // $text_color = imagecolorallocate($im, 233, 14, 91);
+					 // imagestring($im, 1, 5, 5,  "A Simple Text String", $text_color);
+					 // imagepng($im);
+					 // imagedestroy($im);
+					 // $my_img = imagecreate(1024,1024);
+				 $my_img = @imagecreate(920,1080) or die('Cannot create image');
+    		 $background_color = imagecolorallocate( $my_img, 255, 255, 255 );
   			 $text_colour = imagecolorallocate( $my_img, 0, 0, 0 );
    			 $text_colour_for_lined = imagecolorallocate( $my_img, 255, 255, 255 );
 				 $line_colour = imagecolorallocate( $my_img, 106, 145, 54 );
@@ -237,7 +244,7 @@ if(isset($postdata))
 
 
 
- 				 header( "Content-type: image/jpeg" );
+ 				 // header( "Content-type: image/jpeg" );
 				//GENERATE JPEG FORMAT IMAGE BASED ON CONSULTATION ID BY THE PATIENT
 
 				imagejpeg( $my_img,"DocQuik$preCount.jpeg");
@@ -250,9 +257,9 @@ if(isset($postdata))
 				list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
 
 
-				$out = @imagecreatetruecolor($width, $height)
-      		or die('Cannot Initialize new GD image stream');
-				// $out = imagecreatetruecolor($width, $height) or die('Cannot Initialize new GD image stream');
+				// $out = @imagecreatetruecolor($width, $height)
+      	// 	or die('Cannot Initialize new GD image stream');
+				$out = imagecreatetruecolor(920, 1080) or die('Cannot Initialize new GD image stream');
 
 				// print "<img src='data:image/jpeg;base64," . base64_encode( $out )."'>"; //saviour line!
 				imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
@@ -262,6 +269,7 @@ if(isset($postdata))
 				imagedestroy( $out );
 
 			}
+
 			print "DocQuik$preCount";
 
 		}

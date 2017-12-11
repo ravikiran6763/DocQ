@@ -89,19 +89,19 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					{
 
 						$localStorage.doctororpatient = response;
-						// window.plugins.OneSignal.getIds(function(ids) {
-						// 	$scope.playerId=JSON.stringify(ids['userId']);
-						// 	// console.log($scope.playerId);
-						// 	var updatePlayer ={
-						// 		palyerId:$scope.playerId,
-						// 		userNum:$localStorage.user,
-						// 		user:'patient'
-						// 	}
-						// 	console.log(updatePlayer);
-						// 	LoginService.updatePlayer(updatePlayer).then(function(response){
-						// 		console.log(response);
-						// 	})
-						// });
+						window.plugins.OneSignal.getIds(function(ids) {
+							$scope.playerId=JSON.stringify(ids['userId']);
+							// console.log($scope.playerId);
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:$localStorage.user,
+								user:'patient'
+							}
+							console.log(updatePlayer);
+							LoginService.updatePlayer(updatePlayer).then(function(response){
+								console.log(response);
+							})
+						});
 
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
@@ -271,21 +271,21 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 					else if(response === "doctor")
 					{
 						$localStorage.doctororpatient = response;
-						// window.plugins.OneSignal.getIds(function(ids) {
-						// 	$scope.playerId=JSON.stringify(ids['userId']);
-            //
-						// 	console.log('OneSignal for doctor');
-						// 	// console.log($scope.playerId);
-						// 	var updatePlayer ={
-						// 		palyerId:$scope.playerId,
-						// 		userNum:$localStorage.user,
-						// 		user:'doctor'
-						// 	}
-						// 	console.log(updatePlayer);
-						// 	LoginService.updatePlayer(updatePlayer).then(function(response){
-						// 		console.log(response);
-						// 	})
-						// });
+						window.plugins.OneSignal.getIds(function(ids) {
+							$scope.playerId=JSON.stringify(ids['userId']);
+
+							console.log('OneSignal for doctor');
+							// console.log($scope.playerId);
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:$localStorage.user,
+								user:'doctor'
+							}
+							console.log(updatePlayer);
+							LoginService.updatePlayer(updatePlayer).then(function(response){
+								console.log(response);
+							})
+						});
 
 						doctorServices.doctorDetails($scope.loginData.phone).then(function(response,data){
 							$rootScope.doctor_details=response;//store the response array in doctor details

@@ -1,16 +1,9 @@
 // Ionic DoctorQuickApp
-// var handleOpenURL=function(url){
-//   alert("Received url"+url);
-//   window.localStorage.setItem('externalLoad',url);
-// }
-//
-//
 
 angular.module('underscore', [])
 .factory('_', function() {
   return window._; // assumes underscore has already been loaded on the page
 });
-
 
 var DoctorQuickApp = angular.module('DoctorQuick', [
   'ionic',
@@ -221,52 +214,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log("iosDevice:",$rootScope.deviceIOS);
   }
 
-  var get = getUrlVars();
-  console.log('thisis after getting');
-  console.log(get["phno"]);
-  $rootScope.pat_phnofromwebview = get["phno"];
-  // var presPatient = $rootScope.pat_phnofromwebview.split('+');
-  // $rootScope.presPatientNum=presPatient['1'];
-  function getUrlVars() {
-  var vars = {};
-  /*Splits the variables into chuncks*/
-  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-  /*Takes those chunks and removes anything after the hashtag*/
-  vars[key] = value.replace(/#\b[^#]*$/gi, '');
-
-  });
-
-
-
-  }
-
-  console.log('from webviewactivity');
-  console.log(vars);
-  return vars;
-  // var get = getUrlVars();
-  // console.log('thisis after getting');
-  // console.log(get["phno"]);
-  // $rootScope.pat_phnofromwebview = get["phno"];
-  // // var presPatient = $rootScope.pat_phnofromwebview.split('+');
-  // // $rootScope.presPatientNum=presPatient['1'];
-  // function getUrlVars() {
-  // var vars = {};
-  // /*Splits the variables into chuncks*/
-  // var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
-  // /*Takes those chunks and removes anything after the hashtag*/
-  // vars[key] = value.replace(/#\b[^#]*$/gi, '');
-  //
-  // });
-  //
-  // console.log('from webviewactivity');
-  // console.log(vars);
-  // return vars;
-  //
-  // }
-
 
   console.log('iospatientValue:',$localStorage.sendPrescTo);
-
 
   if($localStorage.doctororpatient === "doctor" ){
 
@@ -289,8 +238,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           return '/templates/sendPrescription';
         }
       }
-
-
 
   }
 
@@ -1140,31 +1087,20 @@ $stateProvider
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/splash');
   $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootScope) {
-    var state = $injector.get('$state');
+    var $state = $injector.get('$state');
     var Storage = $injector.get('$localStorage');
     var rootScope = $injector.get('$rootScope');
 
     console.log(Storage.sendPrescTo);
       var userType=Storage.doctororpatient;
       var userNum=Storage.user;
-      // console.log($location.path());
       console.log(userType);
-      if(userType === 'doctor'){
-
-        return '/templates/doctor_home';
-      }
-
-      else{
-        return '/splash';
-      }
-      //return '/splash';
 
       var get = getUrlVars();
       console.log('thisis after getting');
       console.log(get["phno"]);
       rootScope.pat_phnofromwebview = get["phno"];
-      // var presPatient = $rootScope.pat_phnofromwebview.split('+');
-      // $rootScope.presPatientNum=presPatient['1'];
+
       function getUrlVars() {
       var vars = {};
       /*Splits the variables into chuncks*/
@@ -1180,17 +1116,17 @@ $stateProvider
 
       }
       if(rootScope.pat_phnofromwebview){
-        if(localStorage.doctororpatient === "doctor"){
+        if($localStorage.doctororpatient === "doctor" ){
 
-    	      if(rootScope.pat_phnofromwebview){
+    	      if($rootScope.pat_phnofromwebview){
     					console.log('Route to prescription view :)');
-    	          localStorage.onOff=2;
-    	          // $ionicLoading.show({
-    	          // template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-    	          // duration:5000
-    	          // });
-    	          console.log(rootScope.pat_phnofromwebview);
-    	          state.go('templates.sendPrescription',{"reqPat": rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+    	          $localStorage.onOff=2;
+    	          $ionicLoading.show({
+    	          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+    	          duration:5000
+    	          });
+    	          console.log($rootScope.pat_phnofromwebview);
+    	          $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
     	          return '/templates/sendPrescription';
     	      }
             //
@@ -1208,6 +1144,7 @@ $stateProvider
     	  }
       }
       else{
+        console.log("normal routing");
         return '/splash';
       }
 

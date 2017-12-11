@@ -1515,26 +1515,26 @@ $scope.endConsultation = function(type)
 
 							var success = function(message)
 							{
-								$localStorage.sendPrescTo = "";
+									$localStorage.sendPrescTo = "";
 
 									console.log('prescription clicked');
 									console.log(message);
-								$rootScope.prescription = {};
-							 prescriptiondetails='';
-							 $localStorage.subPatientId='';
-								$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-							 });
-							 if(type === 1){
-								 $state.go('templates.consulted_patient');
-							 }
-							 else{
-								 $state.go('templates.doctor_home');
+									$rootScope.prescription = {};
+									prescriptiondetails='';
+									$localStorage.subPatientId='';
+									$ionicHistory.nextViewOptions({
+									disableAnimate: true,
+									disableBack: true
+									});
+									if(type === 1){
+									$state.go('templates.consulted_patient');
+									}
+									else{
+									$state.go('templates.doctor_home');
 
-							 }
-								// alert(message);
-								console.log(message);
+									}
+									// alert(message);
+									console.log(message);
 							}
 
 							var failure = function()

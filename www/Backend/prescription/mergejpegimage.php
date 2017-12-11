@@ -10,6 +10,6 @@ $newheight = $newheight -100;
 $out = imagecreatetruecolor($newwidth, $newheight);
 imagecopyresampled($out, $png, 0, 0, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
 imagecopyresampled($out, $png, 30, 20, 0, 0, $newwidth, $newheight, $newwidth, $newheight);
-imagejpeg($out, 'out.jpg');
+imagejpeg($out,'out.jpg');
 
 ?>

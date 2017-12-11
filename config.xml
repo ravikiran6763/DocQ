@@ -63,11 +63,11 @@
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
     <preference name="SplashScreen" value="none" />
-    <preference name="SplashScreenDelay" value="0" />
-    <preference name="AutoHideSplashScreen" value="true" />
+    <preference name="SplashScreenDelay" value="6000" />
+    <preference name="AutoHideSplashScreen" value="false" />
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="FadeSplashScreen" value="false" />
-    <preference name="loadUrlTimeoutValue" value="700000" />
+    <preference name="loadUrlTimeoutValue" value="10000" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="android-minSdkVersion" value="16" />
@@ -91,7 +91,8 @@
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
     <preference name="SplashScreen" value="none" />
-    <preference name="SplashScreenDelay" value="1000" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="BackgroundColor" value="" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -176,6 +177,12 @@
         <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
         <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
         <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
+        <splash height="1242" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" />
+        <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
+        <splash height="2048" src="resources/ios/splash/Default-Landscape@~ipadpro.png" width="2732" />
+        <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+        <splash height="2732" src="resources/ios/splash/Default-Portrait@~ipadpro.png" width="2048" />
+        <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
     <platform name="android">
         <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
@@ -190,6 +197,12 @@
         <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
+        <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
+        <splash density="land-mdpi" src="resources/android/splash/drawable-land-mdpi-screen.png" />
+        <splash density="land-hdpi" src="resources/android/splash/drawable-land-hdpi-screen.png" />
+        <splash density="land-xhdpi" src="resources/android/splash/drawable-land-xhdpi-screen.png" />
+        <splash density="land-xxhdpi" src="resources/android/splash/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-xxxhdpi" src="resources/android/splash/drawable-land-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -355,6 +368,7 @@
         </dict>
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
+    <preference name="SplashShowOnlyFirstTime" value="false" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.2.0" />
     <plugin name="com.razorpay.cordova" spec="^1.3.1" />
@@ -376,21 +390,16 @@
     <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.0" />
-<<<<<<< HEAD
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
-    <plugin name="com.example.hello" spec="file:../newpluginforandroid/cordova-plugin-hello" />
-=======
-    <plugin name="cordova-fabric-plugin" spec="^1.1.10">
-        <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
-        <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
-    </plugin>
     <plugin name="com.example.hello" spec="file:../VSEE/VseePlugin">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Sending video in a call requires the camera" />
         <variable name="MICROPHONE_USAGE_DESCRIPTION" value="Sending audio in a call requires the microphone." />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" This allows you to send photos from your library via chat" />
     </plugin>
+    <plugin name="cordova-fabric-plugin" spec="^1.1.10">
+        <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
+        <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
+    </plugin>
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-    <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-email-composer" spec="git+https://github.com/katzer/cordova-plugin-email-composer.git" />
->>>>>>> 225d91074c7dd011ae099cef3f40e041203c2539
 </widget>
