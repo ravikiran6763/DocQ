@@ -18,6 +18,9 @@ if(isset($postdata))
 	      $tests = $request->tests;//TESTSBY DOCTOR
 	      $medication = $request->medication;//MEDICATION BY DOCTOR
 				$subPatient = $request->subPatient;//MEDICATION BY DOCTOR
+				$charge = $request->charge;//MEDICATION BY DOCTOR
+				$currentReqId = $request->currentReqId;//MEDICATION BY DOCTOR
+
 
 
 	      //  $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
@@ -49,10 +52,10 @@ if(isset($postdata))
 		     $doctor_citypin = $doctor_country." ".$doctor_city." ".$doctor_pincode;
        	}
 
-   		 if(! $retvaldoctorinformation)
-    	 {
-	   		die('Could not get data: ' . mysql_error());
-	    	}
+				if(! $retvaldoctorinformation)
+				{
+				die('Could not get data: ' . mysql_error());
+				}
 				//GET PATIENTINFORMATION FROM PATIENTDETAILS TABLE
 				$subPatient = (int)$subPatient;
 				if($subPatient == 0)
@@ -142,7 +145,22 @@ if(isset($postdata))
       else
       {
 			    //CREATE JPEG FOR THE PATIENT PRESCRIPTIOM MENTIONED BY THE DOCTOR
-
+					if($charge == 1){
+						$deductAmount = "INSERT INTO patientWallet(patientPhone,consultationId,amountDeducted,debitedDatetime,consultDatetime,consultedWith) VALUES ('$patientphoneno','$currentReqId','270',now(),now(),'$doctorphoneno')";
+						$retvaldeductAmount = mysql_query( $deductAmount, $dbhandle );
+						if(!$retvaldeductAmount)
+						{
+						// die('Could not enter data: ' . mysql_error());
+						echo "ERROR";
+						}
+						$addAmount = "INSERT INTO DoctorWallet(docPhone,consultationAmount,patientPhone,consultationId,consultedDate) VALUES ('$doctorphoneno','200','$patientphoneno','$currentReqId',now())";
+						$retvalAddAmount = mysql_query( $addAmount, $dbhandle );
+						if(!$retvalAddAmount)
+						{
+						// die('Could not enter data: ' . mysql_error());
+						echo "ERROR";
+						}
+					}
 					$preCount = "select max(id) as preCount from prescriptionbydoctor;";
  					$prscrption = mysql_query( $preCount, $dbhandle );
 		       while($row = mysql_fetch_array($prscrption))
@@ -150,14 +168,7 @@ if(isset($postdata))
 		         $preCount=$row['preCount'];
 		       }
 					 header("Content-Type: image/jpeg");
-					 // $im = @imagecreate(110, 20)
-					 // 		or die("Cannot Initialize new GD image stream");
-					 // $background_color = imagecolorallocate($im, 0, 0, 0);
-					 // $text_color = imagecolorallocate($im, 233, 14, 91);
-					 // imagestring($im, 1, 5, 5,  "A Simple Text String", $text_color);
-					 // imagepng($im);
-					 // imagedestroy($im);
-					 // $my_img = imagecreate(1024,1024);
+
 				 $my_img = @imagecreate(920,1080) or die('Cannot create image');
     		 $background_color = imagecolorallocate( $my_img, 255, 255, 255 );
   			 $text_colour = imagecolorallocate( $my_img, 0, 0, 0 );

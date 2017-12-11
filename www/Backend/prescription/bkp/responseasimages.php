@@ -1,10 +1,12 @@
 <?php
 
 	require "headers.php";
-	require "mergejpegimage.php";
+	// require "mergejpegimage.php";
 	header('Content-type: text/html; charset=UTF-8');
   $postdata = file_get_contents("php://input"); // TO RECIEVE POST REQUEST FROM ANGULAR JS
 	// ini_set('display_errors', 'On');
+	// error_reporting(E_ALL);
+	// ini_set('display_errors', 'on');
 
 if(isset($postdata))
 {
@@ -16,16 +18,18 @@ if(isset($postdata))
 	      $tests = $request->tests;//TESTSBY DOCTOR
 	      $medication = $request->medication;//MEDICATION BY DOCTOR
 				$subPatient = $request->subPatient;//MEDICATION BY DOCTOR
+				$charge = $request->charge;//MEDICATION BY DOCTOR
+				$currentReqId = $request->currentReqId;//MEDICATION BY DOCTOR
 
 
 
-
-	      // $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
-	      // $patientphoneno = '8792618138';//PATIENT PHONE NO
-	      // $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
-	      // $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
-	      // $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
-        //
+	      //  $doctorphoneno = '9844992181'; //DOCTOR PHONE NO
+	      //  $patientphoneno = '8792618138';//PATIENT PHONE NO
+	      //  $diagnosis = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//DIAGNOSIS BY DOCTOR
+	      //  $tests = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//TESTSBY DOCTOR
+	      //  $medication = 'Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum';//MEDICATION BY DOCTOR
+				//  $subPatient = "";//MEDICATION BY DOCTOR
+        // // //
 
 	     //GET DOCTOR INFORMATION FROM DOCTORDETAILS TABLE
 	     $doctorinformation = "select doctorFname,doctorMname,doctorLname,doctorDegrees,doctorCountry,doctorCity,doctorAddress1,doctorAddress2,doctorPincode from doctorDetails where  doctorPhone='$doctorphoneno'";
@@ -48,16 +52,16 @@ if(isset($postdata))
 		     $doctor_citypin = $doctor_country." ".$doctor_city." ".$doctor_pincode;
        	}
 
-   		 if(! $retvaldoctorinformation)
-    	 {
-	   		die('Could not get data: ' . mysql_error());
-	    	}
+				if(! $retvaldoctorinformation)
+				{
+				die('Could not get data: ' . mysql_error());
+				}
 				//GET PATIENTINFORMATION FROM PATIENTDETAILS TABLE
 				$subPatient = (int)$subPatient;
 				if($subPatient == 0)
 				{
 
-					$patientinformation = "select patientFname,patientMname,patientLname,patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
+					$patientinformation = "select patientFname,patientMname,patientLname,FLOOR(DATEDIFF(now(),patientAge)/365) as patientAge,patientSex from patientDetails where  patientPhone='$patientphoneno'";
 					$retvalpatientinformation = mysql_query( $patientinformation, $dbhandle );
 						 while($row = mysql_fetch_array($retvalpatientinformation))
 						 {
@@ -76,7 +80,7 @@ if(isset($postdata))
 
 				}
 				else{
-					 $sql = "select id,newPatientFname,newPatientLname,newPatientDOB,newPatientSex,addedBy from addNewPatient where addedBy='$patientphoneno' and id='$subPatient' ";
+					 $sql = "select id,newPatientFname,newPatientLname,FLOOR(DATEDIFF(now(),newPatientDOB)/365) as newPatientDOB,newPatientSex,addedBy from addNewPatient where addedBy='$patientphoneno' and id='$subPatient' ";
 					$retval = mysql_query( $sql, $dbhandle );
 
 					while($row1 = mysql_fetch_array($retval))
@@ -141,18 +145,32 @@ if(isset($postdata))
       else
       {
 			    //CREATE JPEG FOR THE PATIENT PRESCRIPTIOM MENTIONED BY THE DOCTOR
-
+					if($charge == 1){
+						$deductAmount = "INSERT INTO patientWallet(patientPhone,consultationId,amountDeducted,debitedDatetime,consultDatetime,consultedWith) VALUES ('$patientphoneno','$currentReqId','270',now(),now(),'$doctor_phno')";
+						$retvaldeductAmount = mysql_query( $deductAmount, $dbhandle );
+						if(!$retvaldeductAmount)
+						{
+						// die('Could not enter data: ' . mysql_error());
+						echo "ERROR";
+						}
+						$addAmount = "INSERT INTO DoctorWallet(docPhone,consultationAmount,patientPhone,consultationId,consultedDate) VALUES ('$doctorphoneno','200','$patientphoneno','$currentReqId',now())";
+						$retvalAddAmount = mysql_query( $addAmount, $dbhandle );
+						if(!$retvalAddAmount)
+						{
+						// die('Could not enter data: ' . mysql_error());
+						echo "ERROR";
+						}
+					}
 					$preCount = "select max(id) as preCount from prescriptionbydoctor;";
  					$prscrption = mysql_query( $preCount, $dbhandle );
 		       while($row = mysql_fetch_array($prscrption))
 		       {
 		         $preCount=$row['preCount'];
-
 		       }
+					 header("Content-Type: image/jpeg");
 
-
-				 $my_img = imagecreate(920,1080) or die('Cannot create image');
-    		 $background = imagecolorallocate( $my_img, 255, 255, 255 );
+				 $my_img = @imagecreate(920,1080) or die('Cannot create image');
+    		 $background_color = imagecolorallocate( $my_img, 255, 255, 255 );
   			 $text_colour = imagecolorallocate( $my_img, 0, 0, 0 );
    			 $text_colour_for_lined = imagecolorallocate( $my_img, 255, 255, 255 );
 				 $line_colour = imagecolorallocate( $my_img, 106, 145, 54 );
@@ -237,7 +255,7 @@ if(isset($postdata))
 
 
 
- 				 header( "Content-type: image/jpeg" );
+ 				 // header( "Content-type: image/jpeg" );
 				//GENERATE JPEG FORMAT IMAGE BASED ON CONSULTATION ID BY THE PATIENT
 
 				imagejpeg( $my_img,"DocQuik$preCount.jpeg");
@@ -250,9 +268,9 @@ if(isset($postdata))
 				list($newwidth, $newheight) = getimagesize('dq_loginlogo.png');
 
 
-				$out = @imagecreatetruecolor($width, $height)
-      		or die('Cannot Initialize new GD image stream');
-				// $out = imagecreatetruecolor($width, $height) or die('Cannot Initialize new GD image stream');
+				// $out = @imagecreatetruecolor($width, $height)
+      	// 	or die('Cannot Initialize new GD image stream');
+				$out = imagecreatetruecolor(920, 1080) or die('Cannot Initialize new GD image stream');
 
 				// print "<img src='data:image/jpeg;base64," . base64_encode( $out )."'>"; //saviour line!
 				imagecopyresampled($out, $jpeg, 0, 0, 0, 0, $width, $height, $width, $height);
@@ -262,6 +280,7 @@ if(isset($postdata))
 				imagedestroy( $out );
 
 			}
+
 			print "DocQuik$preCount";
 
 		}

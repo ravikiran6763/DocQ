@@ -63,10 +63,9 @@ else{
 	});
 }
 
-
-
 $rootScope.checkNewMessages = $interval(function(){
 	console.log('refreshing consultation list for new messages');
+
 		var success = function(message)
 		{
 				// console.log(message.length);
@@ -150,16 +149,11 @@ $rootScope.checkNewMessages = $interval(function(){
 
 				if($localStorage.doctororpatient == 'patient')
 				{
-
-
 						// console.log('this is patient');
 
 						$scope.ios = message;
-
 						// console.log($scope.ios);
-
 						$scope.ios = message;
-
 						var forioschatlist = {};
 						forioschatlist = $scope.ios;
 						var res = forioschatlist.slice(1,-1);
@@ -235,7 +229,7 @@ $rootScope.checkNewMessages = $interval(function(){
 		}
 
 		hello.chatcounts(username,password,success, failure);
-}, 1000);
+}, 5000);
 
 $scope.pagedecision=$ionicHistory.currentStateName();
 var username = "greet+"+$localStorage.user;
@@ -304,10 +298,10 @@ $scope.clicktochat = function(pateientPhone)
 console.log($state.$current.name);
 console.log($rootScope.previousState.name);
 
-// $scope.$on('$destroy', function(){
-// 	console.log('destroyed');
-//    $interval.cancel($rootScope.checkNewMessages);
-//
-// });
+$scope.$on('$destroy', function(){
+	console.log('destroyed');
+   $interval.cancel($rootScope.checkNewMessages);
+
+});
 
 });

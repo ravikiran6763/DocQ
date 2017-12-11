@@ -223,7 +223,7 @@ console.log(checkPatientActivity);
 	//  doctorServices.patientActivity($rootScope.callId).then(function(response){
 	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
 	 $scope.consultStatus=response;
-	 console.log($scope.consultStatus);
+	 // console.log($scope.consultStatus);
 	 $localStorage.declinedByDoc = $scope.consultStatus[0][0];
 	 $scope.docDeclined=$localStorage.declinedByDoc;
 	//  console.log($scope.consultStatus);
@@ -274,7 +274,7 @@ console.log(checkPatientActivity);
 
  $scope.$on('$destroy', function(){
  		$interval.cancel(checkAcceptedReqDocStatus);
-		
+
  });
 
 });

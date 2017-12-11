@@ -152,6 +152,7 @@
 					 		console.log($rootScope.reqId);
 					 		console.log($rootScope.reqPat);
               console.log($rootScope.subPatientId);
+              $localStorage.currentReqId=$rootScope.reqId;
 					 		}
 
 					 $ionicLoading.hide();
@@ -376,7 +377,7 @@
 																					$scope.consultStatus=response;
 																					$localStorage.patientDeclined=$scope.consultStatus[0][0];
 																					$scope.patDeclined=$localStorage.patientDeclined;
-																					console.log($scope.consultStatus);
+																					// console.log($scope.consultStatus);
 																					}).catch(function(error){
 																					//  console.log('failure data', error);
 																					});

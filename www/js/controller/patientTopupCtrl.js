@@ -24,9 +24,9 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 								$scope.payment.topUpAmt=($scope.payment.topUp*100);
 								console.log($scope.payment.topUp);
-							 if($scope.payment.topUp < 1){//250
+							 if($scope.payment.topUp < 270){//250
 								 window.plugins.toast.showWithOptions({
-								 message: "Amount must be ₹250 or higher.",
+								 message: "Amount must be ₹270 or higher.",
 								 duration: "short", // 2000 ms
 								 position: "bottom",
 								 styling: {
@@ -65,7 +65,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 
 									var successCallback = function(payment_id) {
-									alert('payment_id: ' + payment_id)
+									console.log('payment_id: ' + payment_id)
 
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){

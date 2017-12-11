@@ -48,20 +48,20 @@
 		else
 		{
 		echo "Query Submitted";
-			$deductAmount = "INSERT INTO patientWallet(patientPhone,consultationId,amountDeducted,debitedDatetime,consultDatetime,consultedWith) VALUES ('$patient_phno','$callId','250',now(),now(),'$doctor_phno')";
-			$retvaldeductAmount = mysql_query( $deductAmount, $dbhandle );
-			if(!$retvaldeductAmount)
-			{
-			// die('Could not enter data: ' . mysql_error());
-			echo "ERROR";
-			}
-			$addAmount = "INSERT INTO DoctorWallet(docPhone,consultationAmount,patientPhone,consultationId,consultedDate) VALUES ('$doctor_phno','250','$patient_phno','$callId',now())";
-			$retvalAddAmount = mysql_query( $addAmount, $dbhandle );
-			if(!$retvalAddAmount)
-			{
-			// die('Could not enter data: ' . mysql_error());
-			echo "ERROR";
-			}
+			// $deductAmount = "INSERT INTO patientWallet(patientPhone,consultationId,amountDeducted,debitedDatetime,consultDatetime,consultedWith) VALUES ('$patient_phno','$callId','250',now(),now(),'$doctor_phno')";
+			// $retvaldeductAmount = mysql_query( $deductAmount, $dbhandle );
+			// if(!$retvaldeductAmount)
+			// {
+			// // die('Could not enter data: ' . mysql_error());
+			// echo "ERROR";
+			// }
+			// $addAmount = "INSERT INTO DoctorWallet(docPhone,consultationAmount,patientPhone,consultationId,consultedDate) VALUES ('$doctor_phno','250','$patient_phno','$callId',now())";
+			// $retvalAddAmount = mysql_query( $addAmount, $dbhandle );
+			// if(!$retvalAddAmount)
+			// {
+			// // die('Could not enter data: ' . mysql_error());
+			// echo "ERROR";
+			// }
 		}
 	}
 

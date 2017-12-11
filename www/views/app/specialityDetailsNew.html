@@ -10,7 +10,7 @@
           <h4>{{desc.special}}</h4>
         </div>
         <div class="next-icon" >
-          <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == 0}}"></i>
+          <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == null}}"></i>
           <i class="icon ion-android-add-circle" ng-show="{{desc.noofonlinedoctors >= 1}}"></i>
         </div>
       </div>
@@ -46,12 +46,12 @@
   </div>
 
 
-    <div class="sendRequest">
+    <div class="sendRequest" ng-repeat="desc in specialityDetails">
       <div class="reqMsg">
           <p class="sendRequest">Send request for a consultation to all {{special}} who are online</p>
       </div>
       <div class="buttons" ng-disabled="true">
-        <button class="button button-block button-assertive" ng-disabled="{{desc.noofonlinedoctors === '0'}}" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">
+        <button class="button button-block button-assertive" ng-disabled="{{desc.noofonlinedoctors === null}}" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">
           {{buttonText}}
         </button>
       </div>

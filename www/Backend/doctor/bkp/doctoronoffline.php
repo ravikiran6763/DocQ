@@ -6,11 +6,15 @@
 
         $postdata = file_get_contents("php://input");
 
-	$servername = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
-	$username = "doctorquick2017";
-	$password = "aishiteimasu";
-	$dbname = "tayokuki";
-
+	// $servername = "doctorquickmumbai.ckxt7dkmucgz.ap-south-1.rds.amazonaws.com:3306";
+	// $username = "doctorquick2017";
+	// $password = "aishiteimasu";
+	// $dbname = "tayokuki";
+  //
+	$username = "dq_1507";
+	$password = "dqrskvsk";
+	$hostname = "doctorquickservices-1.cluster-ck1ombdee9lh.ap-south-1.rds.amazonaws.com:3306";
+	$dbname = "DoctorQuick";
 
 			try {
 

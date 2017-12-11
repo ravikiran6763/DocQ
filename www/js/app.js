@@ -482,14 +482,14 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                    if (newValue !== oldValue) {
                       //  $rootScope.online=$rootScope.online;
                        $injector.get("$ionicLoading").hide();
-                        $injector.get("$state").reload()
+                        // $injector.get("$state").reload()
                    }
-                  else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
-                     console.log('on');
-                   }else{
-                     console.log('offf');
-
-                   }
+                  // else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
+                  //    console.log('on');
+                  //  }else{
+                  //    console.log('offf');
+                  //
+                  //  }
                });
 
               switch (rejection.status) {
@@ -514,6 +514,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                   						      });
                       }
                       else{
+
                         $injector.get("$ionicLoading").show({
                               template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
                             });

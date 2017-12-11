@@ -31,11 +31,7 @@ if (isset($_SERVER['HTTP_ORIGIN'])) {
   //select a database to work with
   $selected = mysql_select_db("doctorquick",$dbhandle)
     or die("Could not select examples");
-    // if($selected){
-    //   echo "Connected to DB";
-    // }else{
-    //   echo "bhad me jaaa";
-    // }
+
     header('Content-type: text/html; charset=utf-8');
 
 

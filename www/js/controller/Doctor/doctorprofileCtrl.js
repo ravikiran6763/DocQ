@@ -71,7 +71,7 @@ function checkDocStatus(){
           if($rootScope.totalRates == null ){
             $rootScope.totalRates=''
           }
-          console.log($rootScope.rates);
+          // console.log($rootScope.rates);
 
           $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
           // console.log('rates',$rootScope.DocRates);
