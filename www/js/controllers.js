@@ -374,29 +374,29 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 						hello.login(uname1,pw1,success, failure);
 
-					// 	$timeout( function(){
-				  //   console.log('interval started');
-				  //   $interval(checkNewMessages,1000);
-          //
-				  //   }, 3000);
-				  // var username = "greet+"+$localStorage.user;
-				  // var password = "DQ_doctor";
-				  // function checkNewMessages()
-				  // {
-				  //     var success = function(message)
-				  //     {
-				  //       $rootScope.unreadchatforpatient = message;
-				  //       console.log($scope.unreadchatforpatient);
-				  //     }
-          //
-				  //     var failure = function()
-				  //     {
-				  //       console.log("Error calling Hello Plugin");
-				  //       //console.log(‘error’);
-          //
-				  //     }
-				  //       hello.unreadchatfromusers(username,password,success, failure);
-				  // }
+						$timeout( function(){
+				    console.log('interval started');
+				    $interval(checkNewMessages,1000);
+
+				    }, 3000);
+				  var username = "greet+"+$localStorage.user;
+				  var password = "DQ_doctor";
+				  function checkNewMessages()
+				  {
+				      var success = function(message)
+				      {
+				        $rootScope.unreadchatforpatient = message;
+				        console.log($scope.unreadchatforpatient);
+				      }
+
+				      var failure = function()
+				      {
+				        console.log("Error calling Hello Plugin");
+				        //console.log(‘error’);
+
+				      }
+				        hello.unreadchatfromusers(username,password,success, failure);
+				  }
 				}
 				else{
 
