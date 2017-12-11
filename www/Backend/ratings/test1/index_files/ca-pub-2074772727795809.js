@@ -1,1 +1,0 @@
-(google_async_config = window.google_async_config || {})['ca-pub-2074772727795809'] = {"sra_enabled":false};
