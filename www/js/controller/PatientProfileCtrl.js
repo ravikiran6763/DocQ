@@ -89,117 +89,127 @@ $scope.register = function() {
 					console.log('change pic');
 
 				}
+
+
+
+
 				$scope.changePhoto = function() {
 					// console.trace('trace');
+					var confirmPopup = $ionicPopup.confirm({
+									title: 'Upload Profile Picture',
+									template:' <center>Choose From</center>',
+									cssClass: 'inviteReviewPopup',
+									scope: $scope,
+									buttons: [
+			 						{
+			 						text: 'Camera',
+			 						type: ' button-assertive',
+			 						onTap: $scope.takePhoto = function () {
+			 															var options = {
+			 																quality: 75,
+			 																destinationType: Camera.DestinationType.DATA_URL,
+			 																sourceType: Camera.PictureSourceType.CAMERA,
+			 																allowEdit: true,
+			 																encodingType: Camera.EncodingType.JPEG,
+			 																targetWidth: 300,
+			 																targetHeight: 300,
+			 																popoverOptions: CameraPopoverOptions,
+			 																saveToPhotoAlbum: true
+			 														};
 
+			 																$cordovaCamera.getPicture(options).then(function (imageData) {
+			 																		$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+
+			 																		var imageUploadData ={
+			 																			image:$rootScope.imgURI,
+			 																			patientPhone:$rootScope.patient
+			 																		}
+			 																		$window.localStorage['patientProfileImage'] = JSON.stringify([{
+			 																		  image: $rootScope.imgURI,
+			 																		}]);
+			 																		console.log($rootScope.imgURI)
+			 																		cameraService.uploadPicture(imageUploadData).then(function(response){
+			 																			$scope.uploadedData=response;
+			 																			console.log($scope.uploadedData);
+			 																			// $ionicLoading.hide();
+			 																			 $window.location.reload();
+			 																		$scope.reload = function() {
+			 																		return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
+			 																		$scope.hideContent = true;
+			 																		return $timeout(function() {
+			 																		return $scope.hideContent = false;
+			 																		}, 1);
+			 																		});
+			 																		};
+
+
+			 																	}).catch(function(error){
+			 																	console.log('failure data', error);
+			 																	})
+
+			 																}, function (err) {
+			 																		// An error occured. Show a message to the user
+			 																});
+
+			 														}
+			 						},
+			 						{
+			 						text: 'Gallery',
+			 						type: 'button-assertive',
+			 						onTap: $scope.choosePhoto = function () {
+			 							var options = {
+			 								quality: 75,
+			 								destinationType: Camera.DestinationType.DATA_URL,
+			 								sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+			 								allowEdit: true,
+			 								encodingType: Camera.EncodingType.JPEG,
+			 								targetWidth: 300,
+			 								targetHeight: 300,
+			 								popoverOptions: CameraPopoverOptions,
+			 								mediaType:0,
+			 								saveToPhotoAlbum: false
+			 						};
+
+			 								$cordovaCamera.getPicture(options).then(function (imageData) {
+			 										$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+			 										var imageUploadData ={
+			 											image:$rootScope.imgURI,
+			 											patientPhone:$rootScope.patient
+			 										}
+			 										$window.localStorage['patientProfileImage'] = JSON.stringify([{
+			 										  image: $rootScope.imgURI,
+			 										}]);
+			 										cameraService.uploadPicture(imageUploadData).then(function(response){
+			 											$scope.uploadedData=response;
+			 											console.log($scope.uploadedData);
+			 											// $ionicLoading.hide();
+			 											$scope.reload = function() {
+			 											return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
+			 											$scope.hideContent = true;
+			 											return $timeout(function() {
+			 											return $scope.hideContent = false;
+			 											}, 1);
+			 											});
+			 											};
+			 									}).catch(function(error){
+			 									console.log('failure data', error);
+			 									})
+
+			 								}, function (err) {
+			 										// An error occured. Show a message to the user
+			 								});
+
+			 						}
+			 						},
+			 					]
+							 });
 					// $state.go('app.capture');
-				var myPopup=	$ionicPopup.show({
-					title: 'Upload Profile Picture',
-					template:' <center>Choose From</center>',
-					cssClass: 'videoPopup',
-					buttons: [
-						{
-						text: 'Camera',
-						type: ' button-stable',
-						onTap: $scope.takePhoto = function () {
-															var options = {
-																quality: 75,
-																destinationType: Camera.DestinationType.DATA_URL,
-																sourceType: Camera.PictureSourceType.CAMERA,
-																allowEdit: true,
-																encodingType: Camera.EncodingType.JPEG,
-																targetWidth: 300,
-																targetHeight: 300,
-																popoverOptions: CameraPopoverOptions,
-																saveToPhotoAlbum: true
-														};
-
-																$cordovaCamera.getPicture(options).then(function (imageData) {
-																		$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
-
-																		var imageUploadData ={
-																			image:$rootScope.imgURI,
-																			patientPhone:$rootScope.patient
-																		}
-																		$window.localStorage['patientProfileImage'] = JSON.stringify([{
-																		  image: $rootScope.imgURI,
-																		}]);
-																		console.log($rootScope.imgURI)
-																		cameraService.uploadPicture(imageUploadData).then(function(response){
-																			$scope.uploadedData=response;
-																			console.log($scope.uploadedData);
-																			// $ionicLoading.hide();
-																			 $window.location.reload();
-																		$scope.reload = function() {
-																		return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
-																		$scope.hideContent = true;
-																		return $timeout(function() {
-																		return $scope.hideContent = false;
-																		}, 1);
-																		});
-																		};
-
-
-																	}).catch(function(error){
-																	console.log('failure data', error);
-																	})
-
-																}, function (err) {
-																		// An error occured. Show a message to the user
-																});
-
-														}
-						},
-						{
-						text: 'Gallery',
-						type: 'button-assertive',
-						onTap: $scope.choosePhoto = function () {
-							var options = {
-								quality: 75,
-								destinationType: Camera.DestinationType.DATA_URL,
-								sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-								allowEdit: true,
-								encodingType: Camera.EncodingType.JPEG,
-								targetWidth: 300,
-								targetHeight: 300,
-								popoverOptions: CameraPopoverOptions,
-								mediaType:0,
-								saveToPhotoAlbum: false
-						};
-
-								$cordovaCamera.getPicture(options).then(function (imageData) {
-										$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
-										var imageUploadData ={
-											image:$rootScope.imgURI,
-											patientPhone:$rootScope.patient
-										}
-										$window.localStorage['patientProfileImage'] = JSON.stringify([{
-										  image: $rootScope.imgURI,
-										}]);
-										cameraService.uploadPicture(imageUploadData).then(function(response){
-											$scope.uploadedData=response;
-											console.log($scope.uploadedData);
-											// $ionicLoading.hide();
-											$scope.reload = function() {
-											return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
-											$scope.hideContent = true;
-											return $timeout(function() {
-											return $scope.hideContent = false;
-											}, 1);
-											});
-											};
-									}).catch(function(error){
-									console.log('failure data', error);
-									})
-
-								}, function (err) {
-										// An error occured. Show a message to the user
-								});
-
-						}
-						},
-					]
-				});
+				// var myPopup=	$ionicPopup.show({
+				// 	title: 'Upload Profile Picture',
+				// 	template:' <center>Choose From</center>',
+				// 	cssClass: 'videoPopup',
+        //
+				// });
 				$scope.closethis = function()
 				{
 				$scope.myPopup.close();

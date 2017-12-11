@@ -76,7 +76,7 @@
 								 echo "ERROR";
 							}
 
-							$sqlTopup = "INSERT INTO patientWallet(patientPhone,transactionId,amountCredited,creditedDateTime) values('$pateientPhone','registration_bonus',250,now())";
+							$sqlTopup = "INSERT INTO patientWallet(patientPhone,transactionId,amountCredited,creditedDateTime) values('$pateientPhone','registration_bonus',270,now())";
 							$retvalTopUp = mysql_query( $sqlTopup, $dbhandle );
 
 								if(mysql_error())

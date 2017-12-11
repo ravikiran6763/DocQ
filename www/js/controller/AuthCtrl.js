@@ -277,7 +277,7 @@ $scope.patientRegistration = function()
     $rootScope.validInput=false;
     $scope.submitted2ndPage = true;
     // console.log($rootScope.PatientDetail.patient_mob);
-
+    $scope.otpentered = {};
     if(!$rootScope.PatientDetail.patient_mob){
       // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedMob = true;
