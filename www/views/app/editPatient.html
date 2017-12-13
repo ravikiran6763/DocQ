@@ -9,7 +9,7 @@
         <p style="margin: 3% 0 0 1%; position:fixed;">First Name</p>
       </div>
       <div class="col-75">
-        <input class="form-control"  type="text" placeholder="First Name" name="newFname"  ng-model="newPatient.fname" required></input>
+        <input class="form-control"  type="text" placeholder="First Name" name="newFname" ng-value="editPatient.newPatientFname" ng-model="editPatient.fname" required></input>
       </div>
     </div>
     <div class="row">
@@ -17,15 +17,24 @@
         <p style="margin: 3% 0 0 1%; position:fixed;">Last Name</p>
       </div>
     <div class="col-75">
-        <input class="form-control"  type="text" placeholder="Last Name" name="newLname"  ng-model="newPatient.lname" required></input>
+        <input class="form-control"  type="text" placeholder="Last Name" name="newLname"  ng-model="editPatient.newPatientLname" required></input>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col">
         <p style="margin: 13% 0 0 1%;">DOB</p>
       </div>
       <div class="col-75" style="padding:2% !important;">
-        <input class="form-control"  type="date" placeholder="DOB" name="newLname"  ng-model="newPatient.age" required></input>
+        <input class="form-control"  type="date" placeholder="DOB" name="newLname"  ng-model="editPatient.newPatientDOB" required></input>
+      </div>
+    </div> -->
+    <div class="row" style="margin: 3% 0 0 0;">
+      <div class="col">
+        <p style="margin: 0 0 0 0;">DOB</p>
+      </div>
+      <div class="form-group">
+
+        <input type='text' placeholder="DOB"  ng-model="editPatient.newPatientDOB" ng-click="openDatePickerDOB();" ng-value="dateOfBirth| date: 'dd-MM-yyyy' " required readonly="true" style="width: 82%; margin: 0px 70px 0 51px; background-color: white;">
       </div>
     </div>
 
@@ -37,10 +46,10 @@
       <div class="col-75" >
         <div class="row">
           <div class="col" style="width:50%">
-              <ion-radio class="form-control"ng-value="'Male'" ng-model="newPatient.sex" required><span style="margin: -15px 0 0 -12px; float:left;font-size: smaller;">Male</span></ion-radio>
+              <ion-radio class="form-control"ng-value="'Male'" ng-model="editPatient.newPatientSex" required><span style="margin: -15px 0 0 -12px; float:left;font-size: smaller;">Male</span></ion-radio>
           </div>
           <div class="col" style="width:50%">
-            <ion-radio class="form-control" ng-value="'Female'" ng-model="newPatient.sex" required><span style="position: fixed; font-size: smaller;    margin: -14px 0 0 -23px;">Female</span></ion-radio>
+            <ion-radio class="form-control" ng-value="'Female'" ng-model="editPatient.newPatientSex" required><span style="position: fixed; font-size: smaller;    margin: -14px 0 0 -23px;">Female</span></ion-radio>
           </div>
         </div>
 

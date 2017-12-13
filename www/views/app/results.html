@@ -55,22 +55,22 @@
 
         </div>
       </div>
-      <div class="bottom-content"  ng-repeat="mydocs in myDocDetail" ng-show="{{mydocs.onoff == 1}}">
-        <h4>Request a consultation via</h4>
-          <div class="button-content" >
+      <div class="bottom-content"  ng-repeat="mydocs in myDocDetail" >
+        <h4 ng-hide="{{mydocs.onoff == 2}}">Request a consultation via</h4>
+          <div class="button-content" ng-show="{{mydocs.onoff == 1}}">
             <div class="">
-                <button type="submit" class=" button button-stable button-block"  ng-click="audioCall({{mydocs.doctorPhone}});">
+                <button type="submit" class=" button button-stable button-block"  ng-click="callDoctor({{mydocs.doctorPhone}},3);">
                   Voice Call
                 </button>
               </div>
               <div class="">
-                <button type="submit" class="button button-stable button-block" ng-click="videoCall({{mydocs.doctorPhone}});">
+                <button type="submit" class="button button-stable button-block" ng-click="callDoctor({{mydocs.doctorPhone}},2);">
                   Video Call
                 </button>
               </div>
           </div>
-          <div class="button-content" ng-show="{{mydocs.onoff == 2}}" >
-              <p style="text-align:center;">Doctor {{mydocs.doctorFname}} is offline <br>you may request a consultation <br>when back online by sending a<br>notification</p>
+          <div class="button-content"  ng-show="{{mydocs.onoff == 2}}" style="margin-top: 20% !important;" >
+              <p style="text-align:center;">Dr. {{mydocs.doctorFname}} is offline <br>you may request a consultation <br>when back online by sending a<br>notification</p>
               <div class="">
                 <button type="submit" class="button button-stable button-block"  ng-click="sendOfflineMessage({{mydocs.doctorPhone}})";>
                   Send Notification

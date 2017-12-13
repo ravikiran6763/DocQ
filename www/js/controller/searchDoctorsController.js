@@ -83,8 +83,10 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	}
 
-	$scope.videoCall=function(num)
+	$scope.callDoctor=function(num,callType)
 	{
+
+		$rootScope.callType=callType;
 
 		$interval(checkCallStatus,2000);
 
@@ -94,7 +96,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		patient:$localStorage.user,
 		doctor:$rootScope.docNumToCall,
 		subPatient:$localStorage.selectedSubPatient
-		
+
 		// callId:$rootScope.callId
 		}
 		console.log(callRequest);
@@ -284,7 +286,8 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 							  text: 'Start',
 							  type: 'button-assertive',
 							  onTap:function(){
-									var videocallflag = 2;
+									console.log($rootScope.callType);
+									var videocallflag = $rootScope.callType;
 									$scope.startdate = new Date();
 									$scope.callid = $rootScope.callId;
 									// $localStorage.ViewDoc=1;
@@ -362,7 +365,15 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 										{
 											alert("Error calling Hello Plugin");
 										}
+
+										if($rootScope.callType == 2){
 											hello.greet(uname,pw,persontocall,success, failure);
+										}
+										if($rootScope.callType == 3){
+											hello.audiocallvsee(uname,pw,persontocall,success, failure);
+										}
+
+
 									}
 									else{
 

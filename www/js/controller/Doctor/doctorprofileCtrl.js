@@ -184,74 +184,74 @@ console.log('failure data', error);
 //for voice call
 $scope.BalanceForVoiceCall=function()
 {
-  $ionicLoading.show();
-  doctorServices.checkMyBalance($localStorage.user).then(function(response){
-    // console.log(response[0][0]);
-    $scope.myBalance=response[0][0];
-    var uname = "greet+"+$localStorage.user;
-     var pw = "DQ_patient";
+        $ionicLoading.show();
+        doctorServices.checkMyBalance($localStorage.user).then(function(response){
+        // console.log(response[0][0]);
+        $scope.myBalance=response[0][0];
+        var uname = "greet+"+$localStorage.user;
+        var pw = "DQ_patient";
 
-     //var persontocall = "greet+" + $localStorage.docPhone;
-     var persontocall = "greet+" + $localStorage.consultedDoctor;
-     console.log(uname);
-     console.log(persontocall);
+        //var persontocall = "greet+" + $localStorage.docPhone;
+        var persontocall = "greet+" + $localStorage.consultedDoctor;
+        console.log(uname);
+        console.log(persontocall);
 
-     var success = function(message)
-      {
-          alert(message);
-      }
-      var failure = function()
-      {
+        var success = function(message)
+        {
+        alert(message);
+        }
+        var failure = function()
+        {
         alert("Error calling Hello Plugin");
-      }
+        }
 
 
 
-    if($scope.myBalance >= 250)
-    {
-      hello.audiocallvsee(uname,pw,persontocall,success, failure);
-      var confirmPopup = $ionicPopup.confirm({
+        if($scope.myBalance >= 250)
+        {
+        hello.audiocallvsee(uname,pw,persontocall,success, failure);
+        var confirmPopup = $ionicPopup.confirm({
         template: '<b>Request for Voice call has been sent <br><center>00:02</center></b>',
         cssClass: 'videoPopup',
         scope: $scope,
         buttons: [
-           { text: 'Cancel',
-             type: 'button-royal', },
+        { text: 'Cancel',
+        type: 'button-royal', },
 
-           {
-           text: 'Resend',
-           type: 'button-positive',
+        {
+        text: 'Resend',
+        type: 'button-positive',
 
-           },
-         ]
+        },
+        ]
         //templateUrl: "views/app/viewdoctor_profile.html",
-      });
-    }
-    else
-    {
-      var confirmPopup = $ionicPopup.confirm({
+        });
+        }
+        else
+        {
+        var confirmPopup = $ionicPopup.confirm({
         template: '<b>Your DoctorQuick Balance is too low.</b>',
         cssClass: 'videoPopup',
         scope: $scope,
         buttons: [
-          {
-            text: 'Cancel',
-            type: 'button-royal', },
-          {
-          text: 'Topup',
-          type: 'button-positive',
-           onTap: function(e) {
-              $state.go('app.patient_topup');
-           }
-          },
-         ]
+        {
+        text: 'Cancel',
+        type: 'button-royal', },
+        {
+        text: 'Topup',
+        type: 'button-positive',
+        onTap: function(e) {
+        $state.go('app.patient_topup');
+        }
+        },
+        ]
         //templateUrl: "views/app/viewdoctor_profile.html",
-      });
-    }
-      $ionicLoading.hide();
-    }).catch(function(error){
-  console.log('failure data', error);
-  });
+        });
+        }
+        $ionicLoading.hide();
+        }).catch(function(error){
+        console.log('failure data', error);
+        });
 
 }
 
@@ -303,14 +303,11 @@ $scope.BalanceForVoiceCall=function()
   		});
   	}
 
-
-
-
   	function checkMyCallStatus(){
   		searchDoctorServices.checkCallStatus($localStorage.myCallId).then(function(response){
   			console.log($localStorage.myCallId);
   		$scope.myCalStat = response;
-  		console.log($scope.myCalStat[0][0]);
+  		// console.log($scope.myCalStat[0][0]);
   		$localStorage.myCallStatus=$scope.myCalStat[0][0];
   		$scope.checkMyStatus=$localStorage.myCallStatus;
   		})
@@ -462,8 +459,10 @@ $scope.BalanceForVoiceCall=function()
 
   	},true);
 
-    $scope.videoCallMydoc=function(num)
+    $scope.callMyDoc=function(num,type)
     {
+      console.log(num);
+      console.log(type);
       $rootScope.docNumToCall = num;
       $interval(checkMyCallStatus,2000);
       var callRequest={

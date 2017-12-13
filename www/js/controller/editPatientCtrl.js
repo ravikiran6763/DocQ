@@ -8,15 +8,18 @@ DoctorQuickApp.controller('editPatientCtrl', function($state, $scope,$stateParam
 
   $localStorage.newPatientVal=0;
   console.log($localStorage.newPatientVal);
-
+  $rootScope.dateOfBirth='';
   var ipObj2 = {
       callback: function (val) {  //Mandatory
+        $scope.currentDate = new Date();
+        console.log($scope.currentDate);
         console.log('Selected To Date : ' + val, new Date(val));
-        $rootScope.toDate = $filter('date')(new Date(val),'yyyy-MM-dd');
+
+        $rootScope.dateOfBirth = $filter('date')(new Date(val),'yyyy-MM-dd');
 
       },
 
-      from: new Date(2016, 1, 1), //Optional
+      from: new Date(1950, 1, 1), //Optional
       to: new Date(2050, 12, 31), //Optional
       inputDate: new Date(),      //Optional
       mondayFirst: false,          //Optional
@@ -26,7 +29,8 @@ DoctorQuickApp.controller('editPatientCtrl', function($state, $scope,$stateParam
       templateType: 'popup'       //Optional
     };
 
-  $scope.openDatePickerTo = function(){
+  $scope.openDatePickerDOB = function(){
+
     ionicDatePicker.openDatePicker(ipObj2);
   };
 

@@ -12,11 +12,14 @@ if($state.$current.name === 'app.addSubPatient'){
   $rootScope.headerTxt="Add Patient";
 
 }
-
   $rootScope.editNewPatient=function(sub){
-    console.log(sub);
-    // console.log('app.editPatient',{id:$scope.subPAtientDetails.id});
-    $state.go("app.editPatient",{id:sub.id,fname:sub.newPatientFname,lname:sub.newPatientLname,dob:sub.newPatientDOB,sex:sub.newPatientSex});
+    $rootScope.editPatient=sub;
+    console.log($rootScope.editPatient);
+    console.log($rootScope.editPatient.newPatientDOB);
+
+
+    $state.go("app.editPatient");
+    // $state.go("app.editPatient",{id:sub.id,fname:sub.newPatientFname,lname:sub.newPatientLname,dob:sub.newPatientDOB,sex:sub.newPatientSex});
 
   }
 

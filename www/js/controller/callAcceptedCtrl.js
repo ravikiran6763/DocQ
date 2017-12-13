@@ -58,9 +58,11 @@ console.log($rootScope.callFlag,$rootScope.callId);
 
 // console.log($ionicHistory);
 
-$scope.checkWalletBalance = function()
+$scope.callDoctor = function(callType)
 {
-	var videocallflag = 2;
+	var videocallflag = callType;
+	console.log(videocallflag);
+
 	$scope.startdate = new Date();
 	$scope.callid = $rootScope.callId;
 	// $localStorage.ViewDoc=1;
@@ -163,7 +165,17 @@ $scope.checkWalletBalance = function()
 		{
 			alert("Error calling Hello Plugin");
 		}
+		if(videocallflag == 3){
+			console.log(videocallflag);
+			hello.audiocallvsee(uname,pw,persontocall,success, failure);
+
+		}
+		if(videocallflag == 2){
+			console.log(videocallflag);
 			hello.greet(uname,pw,persontocall,success, failure);
+		}
+
+
 	}
 	else{
 

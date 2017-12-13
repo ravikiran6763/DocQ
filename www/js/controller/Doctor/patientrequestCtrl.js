@@ -312,14 +312,14 @@
 				}
 				else{
 
-								if($scope.deviceAndroid === true){
+                ion.sound.stop("androidtone");
 
-									ion.sound.stop("androidtone");
-
-								}
-								else{
-									ion.sound.stop("iphone");
-								}
+								// if($scope.deviceAndroid === true){
+								// 	ion.sound.stop("androidtone");
+								// }
+								// else{
+								// 	ion.sound.stop("iphone");
+								// }
 
 								$rootScope.chekDiag=false;
 								$rootScope.chekTests=false;
@@ -426,30 +426,30 @@
 																					]
 																				});
 																}
-																else{
-																	$ionicLoading.show({
-																		template: 'Accepting',
-																		duration: 5000
-																	});
-																	$timeout( function(){
-																		var confirmPopup = $ionicPopup.confirm({
-																			title: 'Slow Data',
-																			template: 'Unable to accept the consultation request at the moment as we detected slow network on your device.',
-																			cssClass: 'videoPopup',
-																			scope: $scope,
-																			buttons: [
-																			{
-																				text: 'OK',
-																				type: 'button-positive',
-																				onTap: function(e) {
-																				console.log('OK');
-																				$state.go("templates.doctor_home");
-																				}
-																			},
-																			]
-																		});
-																	}, 5000 );
-																}
+																// else{
+																// 	$ionicLoading.show({
+																// 		template: 'Accepting',
+																// 		duration: 5000
+																// 	});
+																// 	$timeout( function(){
+																// 		var confirmPopup = $ionicPopup.confirm({
+																// 			title: 'Slow Data',
+																// 			template: 'Unable to accept the consultation request at the moment as we detected slow network on your device.',
+																// 			cssClass: 'videoPopup',
+																// 			scope: $scope,
+																// 			buttons: [
+																// 			{
+																// 				text: 'OK',
+																// 				type: 'button-positive',
+																// 				onTap: function(e) {
+																// 				console.log('OK');
+																// 				$state.go("templates.doctor_home");
+																// 				}
+																// 			},
+																// 			]
+																// 		});
+																// 	}, 5000 );
+																// }
 														}
 								});
 

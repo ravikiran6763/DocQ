@@ -20,7 +20,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ngCookies',
   'ngStorage',
   'ngCordova',
-  'youtube-embed',
+  // 'youtube-embed',
   'ngCordova.plugins.contacts',
   'ngMask',
   'ui.router',
@@ -29,8 +29,8 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'base64',
   'ionic-datepicker',
   'ngMessages',
-  'ion-alpha-scroll',
-  'angular-circular-progress',
+  // 'ion-alpha-scroll',
+  // 'angular-circular-progress',
   'ionic-letter-avatar'
   // 'ionic.cloud'
 ])
@@ -465,7 +465,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // $httpProvider.interceptors.push('Interceptor');
-  $httpProvider.interceptors.push(function($q,$injector,$localStorage,$timeout,$rootScope) {
+  $httpProvider.interceptors.push(function($q,$injector,$localStorage) {
     return {
           request: function (config) {
               //config.cache = true;
