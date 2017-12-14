@@ -125,6 +125,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     // function checkConsultations(){
     //   console.log('on device ready');
     // }
+    var deviceID = device.uuid;
+    $localStorage.deviceID=deviceID;
+    console.log($localStorage.deviceID);
+
+    var deviceHardwareSerial = device.serial;
+    $localStorage.serial=deviceHardwareSerial;
+    console.log($localStorage.serial);
+
+    console.log(deviceHardwareSerial);
 
   if (ionic.Platform.isAndroid()) {
     window.addEventListener("native.hidekeyboard", function () {

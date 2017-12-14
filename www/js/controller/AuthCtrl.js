@@ -134,7 +134,10 @@ $scope.patientRegistration = function()
                   pateientEmail:$rootScope.PatientDetail.pat_email,
                   pateientSex:$rootScope.PatientDetail.gender,
                   pateientPwd:$rootScope.PatientDetail.pat_password,
-                  patientImage:$rootScope.imageData
+                  patientImage:$rootScope.imageData,
+                  deviceID:$localStorage.deviceID,
+                  serial:$localStorage.serial
+
                 };
                 var loginData = {
                   'phone': $rootScope.PatientDetail.patient_mob,
@@ -365,7 +368,13 @@ $scope.patientRegistration = function()
       }
       else{
         //check for existing patient
-          patientRegistrationService.existingPatient($rootScope.PatientDetail.patient_mob).then(function(response)
+          var checkDeviceReg={
+            user:$rootScope.PatientDetail.patient_mob,
+            deviceID:$localStorage.deviceID,
+            serial:$localStorage.serial
+          }
+          console.log(checkDeviceReg);
+          patientRegistrationService.existingPatient(checkDeviceReg).then(function(response)
           {
             $scope.patientExist=response;
             console.log($scope.patientExist);
