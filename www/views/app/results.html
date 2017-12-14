@@ -77,7 +77,7 @@
                 </button>
               </div>
           </div>
-          <h5 ng-repeat="mydocs in myDocDetail">Consultation Fee: ₹{{mydocs.doctorFee}}</h5>
+          <h5 ng-repeat="mydocs in myDocDetail" ng-hide="{{mydocs.onoff == 2}}">Consultation Fee: ₹{{mydocs.doctorFee}}</h5>
     </div>
 
   </ion-content>

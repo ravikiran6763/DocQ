@@ -368,7 +368,8 @@ $scope.BalanceForVoiceCall=function()
   							  text: 'Start',
   							  type: 'button-assertive',
   							  onTap:function(){
-  									var videocallflag = 2;
+
+  									var videocallflag = $rootScope.callType;
   									$scope.startdate = new Date();
   									$scope.callid = $rootScope.callId;
   									// $localStorage.ViewDoc=1;
@@ -442,7 +443,12 @@ $scope.BalanceForVoiceCall=function()
   										{
   											alert("Error calling Hello Plugin");
   										}
-  											hello.greet(uname,pw,persontocall,success, failure);
+                      if(videocallflag == 2){
+                        hello.greet(uname,pw,persontocall,success, failure);
+                      }
+                      if(videocallflag == 3){
+                        hello.audiocallvsee(uname,pw,persontocall,success, failure);
+                      }
   									}
   									else{
   										//Do nNothing
@@ -462,6 +468,7 @@ $scope.BalanceForVoiceCall=function()
     $scope.callMyDoc=function(num,type)
     {
       console.log(num);
+      $rootScope.callType=type;
       console.log(type);
       $rootScope.docNumToCall = num;
       $interval(checkMyCallStatus,2000);

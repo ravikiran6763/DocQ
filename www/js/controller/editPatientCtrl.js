@@ -34,8 +34,16 @@ DoctorQuickApp.controller('editPatientCtrl', function($state, $scope,$stateParam
     ionicDatePicker.openDatePicker(ipObj2);
   };
 
-  $rootScope.savePatient=function(){
-
+  $rootScope.editNewPatient=function(newdata){
+    console.log(newdata.newPatientDOB);
+    console.log("save patient");
+    medicalSpecialityService.editNewPatient(newdata).then(function(response){
+       console.log('saved', response);
+       $state.go("app.subPatientList");
+       $rootScope.newPatient={};
+    }).catch(function(error){
+        console.log('failure data', error);
+    });
   }
 
 })

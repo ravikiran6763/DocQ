@@ -147,6 +147,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
+							$ionicLoading.show({
+						        template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+						      });
 							var success = function(message)
 							{
 								loggedIn=true;
@@ -310,12 +313,17 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 													{
 														$rootScope.logginMessage="Connecting to DoctorQuick";
 														console.log(message);
-														$ionicLoading.hide();
-														$ionicHistory.nextViewOptions({
-															disableAnimate: true,
-															disableBack: true
+
+														$ionicLoading.hide().then(function(){
+															console.log("The loading indicator is now hidden");
+
+															$ionicHistory.nextViewOptions({
+																disableAnimate: true,
+																disableBack: true
+															});
+															$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+
 														});
-														$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
 
 													}
 

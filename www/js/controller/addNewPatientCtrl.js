@@ -132,5 +132,5 @@ if($state.$current.name === 'app.addSubPatient'){
      ionicDatePicker.openDatePicker(ipObj2);
    };
 
-
+   
 })
