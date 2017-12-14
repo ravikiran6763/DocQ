@@ -465,7 +465,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // $httpProvider.interceptors.push('Interceptor');
-  $httpProvider.interceptors.push(function($q,$injector,$localStorage) {
+  $httpProvider.interceptors.push(function($q,$injector,$localStorage,$rootScope) {
     return {
           request: function (config) {
               //config.cache = true;

@@ -46,8 +46,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var options = {
 											description: 'GET WELL SOONER',
 											currency: 'INR',
-											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
-											// key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											// key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
 											// method:{
@@ -66,6 +66,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									var successCallback = function(payment_id) {
 									console.log('payment_id: ' + payment_id)
+									$window.location.reload(true);
 
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){
@@ -73,17 +74,17 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 										 console.log($rootScope.patientWalletUpdate);
 										 if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
 											  // $state.go('app.patient_topup');
-												$state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});
-													this.navCtrl.push("patient_payments",{
-														status: this.status
-													});
+
+												// $state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});
+												// 	this.navCtrl.push("patient_payments",{
+												// 		status: this.status
+												// 	});
 										 }
 										 if($rootScope.patientWalletUpdate ==='ERROR'){
 											  alert('Error While Initiating Payment');
 										 }
 										 $scope.payment.topUpAmt="";
-										 $window.location.reload(true);
-										//  $state.reload()
+										 // $state.reload()
 										// $state.transitionTo($state.current, $stateParams, { reload: true, inherit: false, notify: true });
 									 console.log($rootScope.patientWalletUpdate);
 									   }).catch(function(error){

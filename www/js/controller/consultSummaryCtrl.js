@@ -274,7 +274,7 @@ $scope.removeFavorite=function(fav){
 		console.log(response);
 		$state.go($state.current, {}, {reload: true});
 					window.plugins.toast.showWithOptions({
-					message: "Doctor removed from favorites",
+					message: "Doctor added to favorites",
 					duration: "short", // 2000 ms
 					position: "bottom",
 					styling: {

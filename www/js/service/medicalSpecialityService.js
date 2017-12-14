@@ -122,6 +122,20 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
     return deferred.promise;
 }
 
+this.editNewPatient = function (patientAdded){
+  console.log('service:',patientAdded);
+  var deferred = $q.defer();
+  console.log(BASE_URL.url + API.editNewPatient);
+  $http.post(BASE_URL.url + API.editNewPatient,patientAdded)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
 this.getSubPatients = function (user){
   console.log('service:',user);
   var deferred = $q.defer();

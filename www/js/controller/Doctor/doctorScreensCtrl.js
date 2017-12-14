@@ -42,6 +42,12 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     //     hello.unreadchatfromusers(username,password,success, failure);
     // }
 
+    invitereviews.generateTinyUrl($localStorage.user).then(function(response){
+      $rootScope.docTinyUrl=response;
+      $localStorage.docTinyUrl=$rootScope.docTinyUrl;
+    }).catch(function(error){
+    console.log('failure data', error);
+    });
 
   if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
     $scope.docAvailable=false;
@@ -51,6 +57,17 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
   }
     console.log($ionicHistory.viewHistory());
     $interval(checkConsultations,2000,false);
+    console.log($localStorage.onOff);
+    $scope.docStatus=$localStorage.onOff;
+    $scope.$watch('docStatus', function (newValue, oldValue, scope){
+       console.log('changed');
+
+       if(newValue > oldValue){
+           $interval.cancel(checkConsultations);
+       }
+
+    },true);
+
 
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
