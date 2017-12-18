@@ -17,6 +17,22 @@ DoctorQuickApp.service('patientWalletServices', function ($cookies,$http,$q, BAS
 
   }
 
+  this.claimFreeConsultation = function (patientPhone) {
+      console.log('wallet Service:',patientPhone);
+    var deferred = $q.defer();
+
+    $http.post(BASE_URL.url + API.claimFreeConsultation,patientPhone)
+    .success(function (data, status, headers, config){
+      deferred.resolve(data);
+    })
+    .error(function (){
+      deferred.reject('Error while getting data');
+    });
+
+    return deferred.promise;
+
+  }
+
   this.paidToDoctors = function (patientPhone) {
       console.log('wallet Service:',patientPhone);
     var deferred = $q.defer();

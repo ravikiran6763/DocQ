@@ -134,7 +134,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	  }
 		else{
 			window.plugins.toast.showWithOptions({
-			message: "amount must be ₹250 or higher.",
+			message: "amount must be ₹270 or higher.",
 			duration: "short", // 2000 ms
 			position: "bottom",
 			styling: {

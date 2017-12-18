@@ -9,7 +9,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			$localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
-			$ionicConfig.views.swipeBackEnabled(false);
+			// $ionicConfig.views.swipeBackEnabled(false);
 
 			$scope.currentState=$ionicHistory.currentStateName();
 

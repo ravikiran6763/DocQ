@@ -10,7 +10,7 @@
           <h4>{{desc.special}}</h4>
         </div>
         <div class="next-icon" >
-          <i class="icon ion-android-alert" ng-show="{{desc.noofonlinedoctors == null}}"></i>
+          <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{desc.noofonlinedoctors == null}}"></i>
           <i class="icon ion-android-add-circle" ng-show="{{desc.noofonlinedoctors >= 1}}"></i>
         </div>
       </div>
@@ -24,17 +24,21 @@
     <div class="card " style="border:1px solid teal; margin-top: 13%;">
       <div class="row">
             <div class="col">Online Doctors</div>
-            <div class="col-30" ng-repeat="desc in specialityDetails" style="font-weight:bolder;">{{desc.noofonlinedoctors}}</div>
+
+              <!-- <div class="col-30" ng-repeat="desc in specialityDetails" style="font-weight:bolder;">{{desc.noofonlinedoctors}}</div> -->
+
+            <div class="col-30" ng-if="!desc.noofonlinedoctors" style="font-weight:bolder;">{{0}}</div>
+              <div class="col-30" ng-if="desc.noofonlinedoctors" style="font-weight:bolder;">{{desc.noofonlinedoctors}}</div>
       </div>
     </div>
 
   </div>
 
-  <div class="card " style="margin-bottom: -4%;">
+  <div class="card " style="margin-bottom: -4%;" ng-click="changePatient();">
     <div class="row" style="margin-left: 0% !important;">
       <!-- ui-sref="templates.addNewPatient" -->
-          <div  class="col col-75" class="item-icon-right" ng-click="changePatient();" ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
-          <div class="col col-75"  class="item-icon-right" ng-click="changePatient();" ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
+          <div  class="col col-75" class="item-icon-right"  ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
+          <div class="col col-75"  class="item-icon-right"  ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
           <!-- <div class="col col-75"  class="item-icon-right" ng-click="changePatient();" ng-show="shownewPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div> -->
           <i class="icon ion-chevron-right icon-accessory" style="margin-left: 17%; margin-top: 3%;"></i>
 
