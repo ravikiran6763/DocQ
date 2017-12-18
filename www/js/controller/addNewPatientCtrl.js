@@ -67,7 +67,7 @@ if($state.$current.name === 'app.addSubPatient'){
     window.history.back();
     // $state.go("app.specialityDetailsNew");
   }
-
+$rootScope.loginDatasubmitted=false;
   $rootScope.savePatient=function(){
     $rootScope.loginDatasubmitted=true;
     // alert('add new patient');
@@ -94,7 +94,7 @@ if($state.$current.name === 'app.addSubPatient'){
 
     }
     else{
-      alert('empty');
+      console.log("nodata");
     }
   }
   medicalSpecialityService.getSubPatients($localStorage.user)
@@ -132,5 +132,5 @@ if($state.$current.name === 'app.addSubPatient'){
      ionicDatePicker.openDatePicker(ipObj2);
    };
 
-   
+
 })

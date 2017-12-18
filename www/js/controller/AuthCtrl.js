@@ -134,7 +134,10 @@ $scope.patientRegistration = function()
                   pateientEmail:$rootScope.PatientDetail.pat_email,
                   pateientSex:$rootScope.PatientDetail.gender,
                   pateientPwd:$rootScope.PatientDetail.pat_password,
-                  patientImage:$rootScope.imageData
+                  patientImage:$rootScope.imageData,
+                  deviceID:$localStorage.deviceID,
+                  serial:$localStorage.serial
+
                 };
                 var loginData = {
                   'phone': $rootScope.PatientDetail.patient_mob,
@@ -365,14 +368,20 @@ $scope.patientRegistration = function()
       }
       else{
         //check for existing patient
-          patientRegistrationService.existingPatient($rootScope.PatientDetail.patient_mob).then(function(response)
+          var checkDeviceReg={
+            user:$rootScope.PatientDetail.patient_mob,
+            deviceID:$localStorage.deviceID,
+            serial:$localStorage.serial
+          }
+          console.log(checkDeviceReg);
+          patientRegistrationService.existingPatient(checkDeviceReg).then(function(response)
           {
             $scope.patientExist=response;
             console.log($scope.patientExist);
             if($scope.patientExist === 'patient'){
               $scope.myPopup=$ionicPopup.show({
                 // title: '',
-                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number/Device Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 
                 cssClass: 'loginPopup',
                 scope: $scope,

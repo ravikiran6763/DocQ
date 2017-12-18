@@ -125,6 +125,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     // function checkConsultations(){
     //   console.log('on device ready');
     // }
+    var deviceID = device.uuid;
+    $localStorage.deviceID=deviceID;
+    console.log($localStorage.deviceID);
+
+    var deviceHardwareSerial = device.serial;
+    $localStorage.serial=deviceHardwareSerial;
+    console.log($localStorage.serial);
+
+    console.log(deviceHardwareSerial);
 
   if (ionic.Platform.isAndroid()) {
     window.addEventListener("native.hidekeyboard", function () {
@@ -293,15 +302,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   if(toState.name.indexOf('app.patient_home') > -1)
   {
   // Restore platform default transition. We are just hardcoding android transitions to auth views.
-  //$ionicConfig.views.transition(none);
+  // $ionicConfig.views.transition(none);
   // If it's ios, then enable swipe back again
   if(ionic.Platform.isIOS())
   {
-  $ionicConfig.views.transition('none');
-  $ionicConfig.views.swipeBackEnabled(false);
+      $ionicConfig.views.transition('none');
+      $ionicConfig.views.swipeBackEnabled(false);
   }
   else{
-  $ionicConfig.views.transition('none');
+      $ionicConfig.views.transition('none');
   }
   console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
   }
@@ -382,7 +391,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   else if($state.$current.name === "templates.prescription"){
   $rootScope.prescriptioAlert = $ionicPopup.show({
   title:"Alert!!!",
-  template: "<div >PLease send the prescription to the Patient</b></div>",
+  template: "<div >Please send the prescription to the Patient</b></div>",
   cssClass: 'requestPopup',
   buttons: [
   {
@@ -664,7 +673,8 @@ $stateProvider
     url: "/changePassword_patient",
     views: {
       'menuContent': {
-        templateUrl: "views/app/changePassword_patient.html"
+        templateUrl: "views/app/changePassword_patient.html",
+        controller:'changePatientPassWord'
 
       }
     }

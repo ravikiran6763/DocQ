@@ -154,6 +154,10 @@ var tags = [
    $http.post(BASE_URL.url + API.sendOfflineMessage,sendMessage)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
+
+     console.log(data);
+
+
    })
    .error(function (){
      deferred.reject('Error while getting data');

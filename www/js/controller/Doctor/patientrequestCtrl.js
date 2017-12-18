@@ -290,7 +290,6 @@
 				// alert('this alert is showing');
 				if(response === '"expired"'){
 					$rootScope.expiredReq = $ionicPopup.show({
-					title:"Sorry!!!",
 					template: "<div >This Request has been served/Expired </b></div>",
 					cssClass: 'requestPopup',
 					scope: $scope,

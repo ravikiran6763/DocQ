@@ -110,6 +110,16 @@ DoctorQuickApp.controller('doc_customercareCtrl', function($scope,$rootScope, $i
 
 })
 
+DoctorQuickApp.controller('changePatientPassWord', function($scope,$rootScope, $ionicConfig) {
+  $scope.toggle = true;
+	$rootScope.headerTxt="Profile";
+	$rootScope.showBackBtn=true;
+	$rootScope.showNotification=false;
+	$rootScope.showBadge=false;
+	$rootScope.showDocStatus=false;
+
+})
+
 DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 	$scope.user = {};
 	$scope.doSignUp = function(){

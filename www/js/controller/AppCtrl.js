@@ -469,13 +469,13 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										console.log('empty');
 												var confirmPopup = $ionicPopup.confirm({
 															 title: 'No Doctors Available',
-															 template: 'Please try again after some time',
+															 template: '<center>Please try again after some time.</center>',
 															 cssClass: 'videoPopup',
 															 scope: $scope,
 															 buttons: [
 
 															 {
-																 text: 'Ok',
+																 text: 'OK',
 																 type: 'button-royal',
 																 onTap: function(e) {
 																 console.log('ok');
@@ -574,7 +574,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			$state.go('app.patient_profile');
 						// $scope.patient_details ={};
 	}
-
+console.log($state.$current.name);
 	$scope.changePwd=function(){
 		$state.go('app.changePassword_patient');
 	}

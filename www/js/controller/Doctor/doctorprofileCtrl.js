@@ -12,7 +12,7 @@ $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
 $ionicLoading.show();
-$interval(checkDocStatus, 6000);
+$interval(checkDocStatus, 1000);
 
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
 $scope.myDocDetails1=response;
@@ -298,6 +298,23 @@ $scope.BalanceForVoiceCall=function()
       console.log(sendMessage);
   		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
   			console.log(response);
+
+
+        if(response === "Doctor is offline")
+        {
+
+            alert('doctor is offline');
+
+
+        }
+        else {
+
+          alert('doctor is online');
+
+
+        }
+
+
   		}).catch(function(error){
   		console.log('failure data', error);
   		});
