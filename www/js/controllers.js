@@ -284,7 +284,6 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				}
 
 				// $state.go('app.patient_home');//for browser login
-				// $state.go('app.patient_home');//for browser login
 				hello.login(uname1,pw1,success, failure);
 
 				$timeout( function(){

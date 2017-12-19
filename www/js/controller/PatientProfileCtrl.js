@@ -94,9 +94,8 @@ $scope.register = function() {
 
 
 				$ionicPlatform.onHardwareBackButton(function(e) {
-						e.preventDefault();
-						return false;
-				  });
+						console.log('close popup');
+				  },400);
 
 				$scope.changePhoto = function() {
 					// console.trace('trace');
