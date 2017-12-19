@@ -165,4 +165,23 @@ var tags = [
    return deferred.promise;
 
  }
+
+ this.checkDocStatusOnTheGo  = function (docNum) {
+   console.log('MessageDAta',docNum);
+   var deferred = $q.defer();
+   $http.post(BASE_URL.url + API.checkDocStatusOnTheGo,docNum)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+
+     console.log(data);
+
+
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+   return deferred.promise;
+
+ }
+
 });

@@ -82,6 +82,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'selectSubPatient':'patient/selectSubPatient.php',
         'deletePatient':'patient/deletePatient.php',
         'claimFreeConsultation':'patient/claimFreeConsultation.php',
+        'checkDocStatusOnTheGo':'patient/checkDocStatusOnTheGo.php',
+
 
 
 

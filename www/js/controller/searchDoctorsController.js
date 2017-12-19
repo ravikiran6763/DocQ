@@ -83,12 +83,64 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	}
 
+	$scope.$watch('checkDocStatusdfromSearch', function (newValue, oldValue, scope){
+		 console.log('changed');
+		 console.log('oldValue',oldValue);
+		 console.log('newValue',newValue);
+
+		 if(newValue == 2){
+			 $scope.callReqPopUp.close();
+
+			 var alertPopup = $ionicPopup.alert({
+				 title: 'Declined!',
+				 template: "<div>Doctor has declined for a consultation</div>",
+				 cssClass: 'requestPopup',
+				 scope: $scope,
+			 });
+				 alertPopup.then(function(res) {
+					 var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+					 $scope.$on('$destroy', function(){
+					 $timeout.cancel(patientTimeout);
+					 console.log('destroyed');
+
+					 searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+					 $scope.declinedByPat=response;
+					 $localStorage.myCallId=0;
+					 $localStorage.callStatus=0;
+					 console.log($scope.declinedByPat);
+					 }).catch(function(error){
+						 console.log('failure data', error);
+					 });
+
+
+					 });
+				 $state.go("app.patient_home");
+				 $ionicHistory.clearHistory();
+			 });
+		 }
+
+	},true);
+
+	function checkDocStatusOnTheGo(){
+		console.log($rootScope.onGoingDoc);
+		searchDoctorServices.checkDocStatusOnTheGo($rootScope.onGoingDoc).then(function(response){
+			console.log($localStorage.myCallId);
+		$scope.myDocStatSearch = response;
+		console.log($scope.myDocStatSearch);
+		$localStorage.myDocStatusSearch=$scope.myDocStatSearch;
+		$scope.checkDocStatusdfromSearch=$localStorage.myDocStatusSearch;
+		})
+	}
+
+
 	$scope.callDoctor=function(num,callType)
 	{
 
 		$rootScope.callType=callType;
 
 		$interval(checkCallStatus,2000);
+		$interval(checkDocStatusOnTheGo,2000);
+
 
 		$rootScope.docNumToCall = num;
 		$ionicLoading.show();
@@ -237,6 +289,9 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		});
 
 	}
+
+
+
 
 	function checkCallStatus(){
 		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){

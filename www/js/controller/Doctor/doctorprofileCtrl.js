@@ -320,6 +320,56 @@ $scope.BalanceForVoiceCall=function()
   		});
   	}
 
+    $scope.$watch('checkDocStatus', function (newValue, oldValue, scope){
+       console.log('changed');
+       console.log('oldValue',oldValue);
+       console.log('newValue',newValue);
+
+       if(newValue == 2){
+         $scope.callReqPopUp.close();
+
+         var alertPopup = $ionicPopup.alert({
+           title: 'Declined!',
+           template: "<div>Doctor has declined for a consultation</div>",
+           cssClass: 'requestPopup',
+           scope: $scope,
+         });
+           alertPopup.then(function(res) {
+             var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+             $scope.$on('$destroy', function(){
+             $timeout.cancel(patientTimeout);
+             console.log('destroyed');
+
+             searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+             $scope.declinedByPat=response;
+             $localStorage.myCallId=0;
+             $localStorage.callStatus=0;
+             console.log($scope.declinedByPat);
+             }).catch(function(error){
+               console.log('failure data', error);
+             });
+
+
+             });
+           $state.go("app.patient_home");
+           $ionicHistory.clearHistory();
+         });
+       }
+
+    },true);
+
+    function checkDocStatusOnTheGo(){
+      console.log($rootScope.onGoingDoc);
+      searchDoctorServices.checkDocStatusOnTheGo($rootScope.onGoingDoc).then(function(response){
+        console.log($localStorage.myCallId);
+      $scope.myDocStat = response;
+      console.log($scope.myDocStat);
+      $localStorage.myDocStatus=$scope.myDocStat;
+      $scope.checkDocStatus=$localStorage.myDocStatus;
+      })
+    }
+
+
   	function checkMyCallStatus(){
   		searchDoctorServices.checkCallStatus($localStorage.myCallId).then(function(response){
   			console.log($localStorage.myCallId);
@@ -345,6 +395,16 @@ $scope.BalanceForVoiceCall=function()
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
              });
+
+             searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+             $scope.declinedByPat=response;
+             $localStorage.myCallId=0;
+             $localStorage.callStatus=0;
+             console.log($scope.declinedByPat);
+             }).catch(function(error){
+               console.log('failure data', error);
+             });
+
            $state.go("app.patient_home");
            $ionicHistory.clearHistory();
          });
@@ -426,7 +486,7 @@ $scope.BalanceForVoiceCall=function()
   														scope: $scope,
   														buttons: [
   															{
-  																text: 'Ok',
+  																text: 'OK',
   																type: 'button-positive',
   																onTap: function(e) {
   																console.log('ok');
@@ -485,10 +545,14 @@ $scope.BalanceForVoiceCall=function()
     $scope.callMyDoc=function(num,type)
     {
       console.log(num);
+      $rootScope.onGoingDoc=num;
       $rootScope.callType=type;
       console.log(type);
       $rootScope.docNumToCall = num;
       $interval(checkMyCallStatus,2000);
+
+      $interval(checkDocStatusOnTheGo,2000);
+
       var callRequest={
       patient:$localStorage.user,
       doctor:$rootScope.docNumToCall,
