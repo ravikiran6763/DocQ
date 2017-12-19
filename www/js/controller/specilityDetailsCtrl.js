@@ -244,7 +244,7 @@ console.log($rootScope.specialId);
      else{
        var confirmPopup = $ionicPopup.confirm({
    						title: 'Low Balance',
-   						template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹270.</b></center> ',
+   						template: '<center>Your request could not be processed as yourDoctorQuick deposit is less than ₹270.</center> ',
    						cssClass: 'videoPopup',
    						scope: $scope,
    						buttons: [

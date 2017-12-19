@@ -364,4 +364,6 @@
     </plugin>
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
+    <plugin name="cordova-plugin-file" spec="^5.0.0" />
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
 </widget>

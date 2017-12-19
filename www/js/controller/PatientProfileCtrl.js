@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$cordovaEmailComposer,$ionicPlatform,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$cordovaEmailComposer,$ionicPlatform,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService,IonicClosePopupService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -98,140 +98,122 @@ $scope.register = function() {
 						return false;
 				  });
 
-				$scope.changePhoto = function() {
-					// console.trace('trace');
+			$scope.changePhoto = function() {
+							// console.trace('trace');
 
-				var myNullAction = $ionicPlatform.registerBackButtonAction(function(){
-					console.log('disabled back button for android devices');
-					return; // do nothing
-				}, 401);
-					var confirmPopup = $ionicPopup.confirm({
-									title: 'Upload Profile Picture',
-									template:' <center>Choose From</center>',
-									cssClass: 'selectImageFrom',
-									scope: $scope,
-									buttons: [
-										 						{
-													 						text: 'Camera',
-													 						type: ' button-assertive',
-													 						onTap: $scope.takePhoto = function () {
-													 															var options = {
-													 																quality: 75,
-													 																destinationType: Camera.DestinationType.DATA_URL,
-													 																sourceType: Camera.PictureSourceType.CAMERA,
-													 																allowEdit: true,
-													 																encodingType: Camera.EncodingType.JPEG,
-													 																targetWidth: 300,
-													 																targetHeight: 300,
-													 																popoverOptions: CameraPopoverOptions,
-													 																saveToPhotoAlbum: true
-													 														};
+							var confirmPopup = $ionicPopup.confirm({
+							title: 'Upload Profile Picture',
+							template:' <center>Choose From</center>',
+							cssClass: 'inviteReviewPopup',
+							scope: $scope,
+							buttons: [
+							{
+							text: 'Camera',
+							type: ' button-assertive',
+							onTap: $scope.takePhoto = function () {
+															var options = {
+																quality: 75,
+																destinationType: Camera.DestinationType.DATA_URL,
+																sourceType: Camera.PictureSourceType.CAMERA,
+																allowEdit: true,
+																encodingType: Camera.EncodingType.JPEG,
+																targetWidth: 300,
+																targetHeight: 300,
+																popoverOptions: CameraPopoverOptions,
+																saveToPhotoAlbum: true
+														};
 
-													 																$cordovaCamera.getPicture(options).then(function (imageData) {
-													 																		$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+																$cordovaCamera.getPicture(options).then(function (imageData) {
+																		$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
 
-													 																		var imageUploadData ={
-													 																			image:$rootScope.imgURI,
-													 																			patientPhone:$rootScope.patient
-													 																		}
-													 																		$window.localStorage['patientProfileImage'] = JSON.stringify([{
-													 																		  image: $rootScope.imgURI,
-													 																		}]);
-													 																		console.log($rootScope.imgURI)
-													 																		cameraService.uploadPicture(imageUploadData).then(function(response){
-													 																			$scope.uploadedData=response;
-													 																			console.log($scope.uploadedData);
-													 																			// $ionicLoading.hide();
-													 																			 $window.location.reload();
-													 																		$scope.reload = function() {
-													 																		return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
-													 																		$scope.hideContent = true;
-													 																		return $timeout(function() {
-													 																		return $scope.hideContent = false;
-													 																		}, 1);
-													 																		});
-													 																		};
+																		var imageUploadData ={
+																			image:$rootScope.imgURI,
+																			patientPhone:$rootScope.patient
+																		}
+																		$window.localStorage['patientProfileImage'] = JSON.stringify([{
+																		  image: $rootScope.imgURI,
+																		}]);
+																		console.log($rootScope.imgURI)
+																		cameraService.uploadPicture(imageUploadData).then(function(response){
+																			$scope.uploadedData=response;
+																			console.log($scope.uploadedData);
+																			// $ionicLoading.hide();
+																			 $window.location.reload();
+																		$scope.reload = function() {
+																		return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
+																		$scope.hideContent = true;
+																		return $timeout(function() {
+																		return $scope.hideContent = false;
+																		}, 1);
+																		});
+																		};
 
 
-													 																	}).catch(function(error){
-													 																	console.log('failure data', error);
-													 																	})
+																	}).catch(function(error){
+																	console.log('failure data', error);
+																	})
 
-													 																}, function (err) {
-													 																		// An error occured. Show a message to the user
-													 																});
+																}, function (err) {
+																		// An error occured. Show a message to the user
+																});
 
-													 														}
-										 						},
-										 						{
-												 						text: 'Gallery',
-												 						type: 'button-royal',
-												 						onTap: $scope.choosePhoto = function () {
-												 							var options = {
-												 								quality: 75,
-												 								destinationType: Camera.DestinationType.DATA_URL,
-												 								sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-												 								allowEdit: true,
-												 								encodingType: Camera.EncodingType.JPEG,
-												 								targetWidth: 300,
-												 								targetHeight: 300,
-												 								popoverOptions: CameraPopoverOptions,
-												 								mediaType:0,
-												 								saveToPhotoAlbum: false
-												 						};
+														}
+							},
+							{
+							text: 'Gallery',
+							type: 'button-royal',
+							onTap: $scope.choosePhoto = function () {
+							var options = {
+							quality: 75,
+							destinationType: Camera.DestinationType.DATA_URL,
+							sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+							allowEdit: true,
+							encodingType: Camera.EncodingType.JPEG,
+							targetWidth: 300,
+							targetHeight: 300,
+							popoverOptions: CameraPopoverOptions,
+							mediaType:0,
+							saveToPhotoAlbum: false
+							};
 
-												 								$cordovaCamera.getPicture(options).then(function (imageData) {
-												 										$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
-												 										var imageUploadData ={
-												 											image:$rootScope.imgURI,
-												 											patientPhone:$rootScope.patient
-												 										}
-												 										$window.localStorage['patientProfileImage'] = JSON.stringify([{
-												 										  image: $rootScope.imgURI,
-												 										}]);
-												 										cameraService.uploadPicture(imageUploadData).then(function(response){
-												 											$scope.uploadedData=response;
-												 											console.log($scope.uploadedData);
-												 											// $ionicLoading.hide();
-												 											$scope.reload = function() {
-												 											return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
-												 											$scope.hideContent = true;
-												 											return $timeout(function() {
-												 											return $scope.hideContent = false;
-												 											}, 1);
-												 											});
-												 											};
-												 									}).catch(function(error){
-												 									console.log('failure data', error);
-												 									})
+							$cordovaCamera.getPicture(options).then(function (imageData) {
+									$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+									var imageUploadData ={
+										image:$rootScope.imgURI,
+										patientPhone:$rootScope.patient
+									}
+									$window.localStorage['patientProfileImage'] = JSON.stringify([{
+									  image: $rootScope.imgURI,
+									}]);
+									cameraService.uploadPicture(imageUploadData).then(function(response){
+										$scope.uploadedData=response;
+										console.log($scope.uploadedData);
+										// $ionicLoading.hide();
+										$scope.reload = function() {
+										return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
+										$scope.hideContent = true;
+										return $timeout(function() {
+										return $scope.hideContent = false;
+										}, 1);
+										});
+										};
+								}).catch(function(error){
+								console.log('failure data', error);
+								})
 
-												 								}, function (err) {
-												 										// An error occured. Show a message to the user
-												 								});
+							}, function (err) {
+									// An error occured. Show a message to the user
+							});
 
-												 						}
-										 						},
-																{
-																	text: 'Cancel',
-																	type: 'button-calm',
-																	onTap: $scope.choosePhoto = function () {
+							}
+							},
 
-																	}
-																}
-			 					]
-							 });
-							 confirmPopup.then(function(res) {
-			     myNullAction();
-			   });
-				$scope.closethis = function()
-				{
-				$scope.myPopup.close();
-				};
-			// 	$timeout(function() {
-		  //     myPopup.close(); //close the popup after 3 seconds for some reason
-			// 		console.log('closed');
-		  //  }, 4000);
-				};
+							]
+							});
+
+							IonicClosePopupService.register(confirmPopup);
+
+			};
 
 
 

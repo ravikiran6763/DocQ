@@ -10615,9 +10615,12 @@ ion-side-menu.menu-left.menu {
   padding: 0;
   min-height: 0; }
 
+.inviteReviewPopup .button-royal {
+  background-color: #6a9136 !important; }
+
 .inviteReviewPopup .button-positive {
   background-color: #6a9136 !important;
-  margin-right: 2px; }
+  margin: 0 2px 0 0; }
 
 .videoPopup .popup {
   width: 85%;

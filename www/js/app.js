@@ -31,14 +31,26 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ngMessages',
   // 'ion-alpha-scroll',
   // 'angular-circular-progress',
-  'ionic-letter-avatar'
+  'ionic-letter-avatar',
+  'ionic.closePopup'
   // 'ionic.cloud'
 ])
 
-DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval) {
+DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval,$ionicPlatform) {
   $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
   //print here
   $interval.cancel($rootScope.loginInterval);
+
+  // $ionicPlatform.registerBackButtonAction(function(){
+  //   if($ionicHistory.currentStateName === 'templates.inviteresult'){
+  //     console.log('back button disabled');
+  //     event.preventDefault();
+  //   }else{
+  //     $ionicHistory.goBack();
+  //   }
+  // }, 100);
+
+
 });
 }])
 
@@ -72,9 +84,9 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       }
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
+    // if (window.cordova && window.cordova.plugins.Keyboard) {
+    //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    // }
     ionic.Platform.fullScreen();
     if (window.StatusBar) {
       return StatusBar.hide();
