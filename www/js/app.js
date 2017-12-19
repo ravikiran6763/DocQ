@@ -131,12 +131,11 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
 DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
-    //
-    //     $interval(checkConsultations,2000,false);
-    //
-    // function checkConsultations(){
-    //   console.log('on device ready');
-    // }
+
+
+    // AppRate.preferences.storeAppURL.ios = '*insert app id*';
+    AppRate.preferences.storeAppURL.android = 'https://play.google.com/store/apps/details?id=com.greettech.DoctorQuick&hl=en';
+
     var deviceID = device.uuid;
     $localStorage.deviceID=deviceID;
     console.log($localStorage.deviceID);

@@ -518,7 +518,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						type: 'button-royal',
 						},
 						{
-							text: 'Ok',
+							text: 'OK',
 							type: 'button-positive',
 							onTap: function(e) {
 

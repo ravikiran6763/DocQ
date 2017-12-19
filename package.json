@@ -102,9 +102,7 @@
       "cordova-plugin-compat": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-file": {},
-      "com.greettelehealth.DoctorQuick": {},
-      "cordova-plugin-file": {},
-      "cordova-plugin-file-transfer": {}
+      "com.greettelehealth.DoctorQuick": {}
     },
     "platforms": [
       "android"
