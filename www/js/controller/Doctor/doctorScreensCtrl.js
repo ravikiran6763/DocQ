@@ -42,6 +42,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     //     hello.unreadchatfromusers(username,password,success, failure);
     // }
 
+
     invitereviews.generateTinyUrl($localStorage.user).then(function(response){
       $rootScope.docTinyUrl=response;
       $localStorage.docTinyUrl=$rootScope.docTinyUrl;

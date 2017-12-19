@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,$stateParams,$localStorage,$ionicLoading,$ionicPopup,invitereviews,invitereviewsresultservice){
+DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,$stateParams,$ionicPlatform, $localStorage,$ionicLoading,$ionicPopup,invitereviews,invitereviewsresultservice,IonicClosePopupService){
 
   $scope.toggle = true;
   $rootScope.headerTxt="Invite Reviews";
@@ -19,6 +19,7 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,
   console.log('failure data', error);
   });
 console.log($localStorage.docTinyUrl);
+
 
   $scope.query = "Hi,\nPlease visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients. Thanks.\nClick here: ";
   $scope.tiny=$localStorage.docTinyUrl;
@@ -48,7 +49,8 @@ console.log($scope.query);
 $scope.Savedata = function()
 {
 
-  var confirmPopup = $ionicPopup.confirm({
+
+  var confirmPopup = $ionicPopup.show({
          template: '<center><b>You can send Review invites<br>through DoctorQuick or you<br>can use your own device apps.</b></center> ',
          cssClass: 'inviteReviewPopup',
          scope: $scope,
@@ -88,8 +90,7 @@ $scope.Savedata = function()
          ]
        });
 
-
-
+       IonicClosePopupService.register(confirmPopup);
 
 }
 
