@@ -90,7 +90,7 @@ console.log($rootScope.specialId);
                $timeout.cancel(patientTimeout);
 
                var noResponsePopup = $ionicPopup.alert({
-               template: "<div ><p>None Of the doctors have accepted your request .</p></div>",
+               template: "<div ><p>None of the doctors have accepted your request .</p></div>",
                cssClass: 'requestPopup',
                scope: $scope,
                });

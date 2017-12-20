@@ -133,8 +133,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   $ionicPlatform.on("deviceready", function(){
 
 
-    // AppRate.preferences.storeAppURL.ios = '*insert app id*';
-    AppRate.preferences.storeAppURL.android = 'https://play.google.com/store/apps/details?id=com.greettech.DoctorQuick&hl=en';
 
     var deviceID = device.uuid;
     $localStorage.deviceID=deviceID;
