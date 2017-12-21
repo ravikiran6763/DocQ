@@ -51,7 +51,7 @@ $scope.Savedata = function()
 
 
   var confirmPopup = $ionicPopup.show({
-         template: '<center><b>You can send Review invites<br>through DoctorQuick or you<br>can use your own device apps.</b></center> ',
+         template: '<center>You can send Review invites<br>through DoctorQuick or you<br>can use your own device apps.</center> ',
          cssClass: 'inviteReviewPopup',
          scope: $scope,
          buttons: [

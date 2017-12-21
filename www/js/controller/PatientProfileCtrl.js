@@ -103,10 +103,9 @@ $scope.register = function() {
 				}
 
 
-				$ionicPlatform.onHardwareBackButton(function(e) {
-						e.preventDefault();
-						return false;
-				  });
+				// $ionicPlatform.onHardwareBackButton(function(e) {
+				// 		console.log('close popup');
+				//   },400);
 
 			$scope.changePhoto = function() {
 							// console.trace('trace');

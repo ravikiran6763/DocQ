@@ -83,12 +83,105 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	}
 
+	$scope.$watch('checkDocStatusdfromSearch', function (newValue, oldValue, scope){
+		 console.log('changed');
+		 console.log('oldValue',oldValue);
+		 console.log('newValue',newValue);
+
+		 if(newValue == 2){
+			 $scope.callReqPopUp.close();
+
+			 var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+			 $scope.$on('$destroy', function(){
+			 $timeout.cancel(patientTimeout);
+			 console.log('destroyed');
+			 });
+
+			 searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
+			 $scope.declinedByPat=response;
+			 $localStorage.myCallId=0;
+			 $localStorage.callStatus=0;
+			 console.log($scope.declinedByPat);
+			 }).catch(function(error){
+				 console.log('failure data', error);
+			 });
+
+			 $scope.alertPopup = $ionicPopup.alert({
+				 // title: 'Declined!',
+				 template: "<div>Doctor did not accept your consultation</div>",
+				 cssClass: 'requestPopup',
+				 scope: $scope,
+			 });
+				 alertPopup.then(function(res) {
+					 var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+					 $scope.$on('$destroy', function(){
+					 $timeout.cancel(patientTimeout);
+					 console.log('destroyed');
+
+
+
+
+					 });
+				 $state.go("app.patient_home");
+				 $ionicHistory.clearHistory();
+			 });
+		 }
+
+	},true);
+
+$interval(checkDocStatus, 1000);
+
+	function checkDocStatus(){
+	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+	  $scope.myDocDetail=response;
+	  var data=$scope.myDocDetail;//take all json data into this variable
+	    for(var i=0; i<data.length; i++){
+
+	          $rootScope.rates=data[i].ratings,
+	          $rootScope.totalRates=data[i].totalRates
+
+	          if($rootScope.rates == null ){
+	            $rootScope.rates=''
+	          }
+	          if($rootScope.totalRates == null ){
+	            $rootScope.totalRates=''
+	          }
+	          // console.log($rootScope.rates);
+
+	          $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+	          // console.log('rates',$rootScope.DocRates);
+	          // console.log('total',$rootScope.totalRates);
+
+
+
+	      }
+
+
+	  }).catch(function(error){
+	  console.log('failure data', error);
+	  });
+	}
+
+	function checkDocStatusOnTheGo(){
+		console.log($localStorage.docPhone);
+		searchDoctorServices.checkDocStatusOnTheGo($localStorage.docPhone).then(function(response){
+			console.log($localStorage.myCallId);
+		$scope.myDocStatSearch = response;
+		console.log($scope.myDocStatSearch);
+		$localStorage.myDocStatusSearch=$scope.myDocStatSearch;
+		$scope.checkDocStatusdfromSearch=$localStorage.myDocStatusSearch;
+		})
+	}
+
+
 	$scope.callDoctor=function(num,callType)
 	{
 
 		$rootScope.callType=callType;
 
 		$interval(checkCallStatus,2000);
+		$interval(checkDocStatusOnTheGo,2000);
+
 
 		$rootScope.docNumToCall = num;
 		$ionicLoading.show();
@@ -238,6 +331,9 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	}
 
+
+
+
 	function checkCallStatus(){
 		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
 			console.log($localStorage.one2oneId);
@@ -257,7 +353,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 						console.log('delay 3 sec');
 					}, 3000);
 					console.log('value changed');
-
+					$scope.alertPopup.close();
 					$scope.callAccept = $ionicPopup.show({
 				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
 				 			 cssClass: 'requestPopup',

@@ -1,49 +1,56 @@
+
+.item-icon-left .icon:before, .item-icon-right .icon:before {
+    display: block;
+    width: 26px !important;
+    text-align: center;
+}
+
 .ion-android-bookmark::before {
-    content: url('../img/dq_icon_small_profile_540x960.png');
+    content: url('../img/icon_small_profile.svg');
 }
 
 .ion-ios-home::before {
-    content: url('../img/home_icon23.png');
+    content: url('../img/icon_small_home.svg');
     color: #6aa433;
     // font-size: 80%;
 }
 
 .ion-radio-waves::before {
-    content: url('../img/dq_icon_small_mydoctors_540x960.png');
+    content: url('../img/icon_small_mydoctors.svg');
 }
 
 .ion-social-wordpress::before {
-    content: url('../img/dq_icon_small_myconsultations_540x960.png');
+    content: url('../img/icon_small_myconsultations.svg');
 }
 
 .ion-wand::before {
-    content: url('../img/dq_icon_small_payments_540x960.png');
+    content: url('../img/icon_small_payments.svg');
 }
 
 .ion-asterisk::before {
-    content: url('../img/dq_icon_small_reviewapp_540x960.png');
+    content: url('../img/icon_small_reviewapp.svg');
 }
 
 .ion-document::before {
-    content: url('../img/dq_icon_small_notifications_540x960.png');
+    content: url('../img/icon_small_notifications.svg');
 }
 
 .ion-gear-a::before {
-    content: url('../img/dq_icon_small_customer-care_540x960.png');
+    content: url('../img/icon_small_customer-care.svg');
 }
 .ion-ios-chatbubble-outline::before {
       margin: -2% 0 0 0% !important;
       font-size: 220% !important;
 }
 .ion-android-cloud-circle::before {
-    content: url('../img/rsz_invite1.png');
+    content: url('../img/icon_small_rate.svg');
     max-width: 100%;
     height: auto;
     width: 2vmin;
 }
 
 .ion-android-cloud-done::before {
-    content: url('../img/rsz_terms1.png');
+    content: url('../img/icon_small_terms.svg');
     max-width: 100%;
     height: auto;
     width: 2vmin;
@@ -106,7 +113,7 @@
 }
 
 .ion-log-out::before{
-    content: url('../img/signout.png');
+    content: url('../img/icon_small_signout.svg');
 }
 
 .ion-ios-calendar-outline::before{

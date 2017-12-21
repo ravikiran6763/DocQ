@@ -174,66 +174,71 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 		$rootScope.goBack = function()
 		{
 
+						console.log($ionicHistory.backView());
 						$scope.prevPage=$ionicHistory.currentStateName();
 						console.log($ionicHistory.currentStateName());
 						if($scope.prevPage === 'app.patient_summary'){
-							// alert('summary page')
-							$state.go('app.patient_home');
-							$ionicHistory.clearHistory();
+								// alert('summary page')
+								$state.go('app.patient_home');
+								$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'templates.prescription'){
-							$state.go('templates.doctor_home');
-							$ionicHistory.clearHistory();
+								$state.go('templates.doctor_home');
+								$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'templates.requestAccepted'){
 							$state.go('templates.doctor_home');
 							$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
-							// $state.go('templates.doctor_home');
-							console.log('donothing');
+								// $state.go('templates.doctor_home');
+								console.log('donothing');
 						}
-
 						else if($scope.prevPage === 'app.specialityDetailsNew'){
 							window.history.back();
-
 						}
 						else if($scope.prevPage === 'app.searchDoctors'){
-							console.log('clear search values here');
-							$scope.specialdata=null;
-							$scope.genderdata= null;
-							$scope.statusdata=null;
-							$scope.languagedataselected=null;
+								console.log('clear search values here');
+								$scope.specialdata=null;
+								$scope.genderdata= null;
+								$scope.statusdata=null;
+								$scope.languagedataselected=null;
 
-							$rootScope.specialityList.sex = "";
-							$rootScope.specialityList.search = "";
-							$rootScope.specialityList.stat = "";
-							$rootScope.specialityList.language = "";
+								$rootScope.specialityList.sex = "";
+								$rootScope.specialityList.search = "";
+								$rootScope.specialityList.stat = "";
+								$rootScope.specialityList.language = "";
 
-							var specialitywise = "";
-							var catwise = "";
-							var genderwise = "";
-							var languagewise = "";
+								var specialitywise = "";
+								var catwise = "";
+								var genderwise = "";
+								var languagewise = "";
 
-							console.log($scope.specialdata);
-							window.history.back();
+								console.log($scope.specialdata);
+								window.history.back();
 
 						}
 						else if($scope.prevPage === 'templates.prescription'){
-							$state.go('templates.doctor_home');
-							$ionicHistory.clearHistory();
+								$state.go('templates.doctor_home');
+								$ionicHistory.clearHistory();
 						}
 						else if($scope.prevPage === 'app.callAccepted'){
 							// alert('decline call here');
 							// ion.sound.play("bell_ring");
 						}
 						else if($scope.prevPage === 'templates.consulted_patient'){
-							$state.go('templates.doctor_home');
-							$ionicHistory.clearHistory();
+								$state.go('templates.doctor_home');
+								$ionicHistory.clearHistory();
 						}
-
 						else{
-							window.history.back();
+							window.history.go(-2);
+								// window.history.back(-1);
+								// $scope.backView = $ionicHistory.backView();
+							 	//        $scope.backView.go();
+								// $ionicHistory.goBack();
+								// $ionicHistory.goBack(-1);
+								console.log(window.history.length);
+								// window.history.go(-(history.length - 1));
 							}
 		}
 
@@ -518,7 +523,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						type: 'button-royal',
 						},
 						{
-							text: 'Ok',
+							text: 'OK',
 							type: 'button-positive',
 							onTap: function(e) {
 

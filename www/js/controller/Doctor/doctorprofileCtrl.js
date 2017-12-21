@@ -320,6 +320,64 @@ $scope.BalanceForVoiceCall=function()
   		});
   	}
 
+    $scope.$watch('myDocStatus', function (newValue, oldValue, scope){
+       console.log('changed');
+       console.log('oldValue',oldValue);
+       console.log('newValue',newValue);
+
+       if(newValue == 2){
+         $scope.callReqPopUp.close();
+
+         var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+           $scope.$on('$destroy', function(){
+           $timeout.cancel(patientTimeout);
+           console.log('destroyed');
+         });
+
+         searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+         $scope.declinedByPat=response;
+         $localStorage.myCallId=0;
+         $localStorage.callStatus=0;
+         console.log($scope.declinedByPat);
+         }).catch(function(error){
+           console.log('failure data', error);
+         });
+
+         $scope.alertPopup = $ionicPopup.alert({
+           // title: 'Declined!',
+           template: "<div>Doctor did not accept your consultation</div>",
+           cssClass: 'requestPopup',
+           scope: $scope,
+         });
+           alertPopup.then(function(res) {
+             var patientTimeout = $timeout($scope.onTimeout,1000);//timer inerval
+             $scope.$on('$destroy', function(){
+             $timeout.cancel(patientTimeout);
+             console.log('destroyed');
+             console.log("callID:",$localStorage.myCallId);
+             $window.location.reload();
+
+
+             });
+           $state.go("app.patient_home");
+           $ionicHistory.clearHistory();
+         });
+       }
+
+    },true);
+
+    function checkDocStatusOnTheGo(){
+      console.log($rootScope.onGoingDoc);
+      searchDoctorServices.checkDocStatusOnTheGo($rootScope.onGoingDoc).then(function(response){
+        console.log($localStorage.myCallId);
+      $scope.myDocStat = response;
+      console.log($scope.myDocStat);
+      $localStorage.myDocStatus=$scope.myDocStat;
+      $scope.myDocStatus=$localStorage.myDocStatus;
+      })
+    }
+
+
   	function checkMyCallStatus(){
   		searchDoctorServices.checkCallStatus($localStorage.myCallId).then(function(response){
   			console.log($localStorage.myCallId);
@@ -334,18 +392,28 @@ $scope.BalanceForVoiceCall=function()
        if(newValue == 4){
          $scope.callReqPopUp.close();
          var alertPopup = $ionicPopup.alert({
-           title: 'Declined!',
-           template: "<div>Doctor has declined for a consultation</div>",
+           // title: 'Declined!',
+           template: "<div ><p>Doctor did not accept your request</p></div>",
            cssClass: 'requestPopup',
            scope: $scope,
          });
-           alertPopup.then(function(res) {
+           alertPopup.then(function(res){
              var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
              $scope.$on('$destroy', function(){
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
              });
-           $state.go("app.patient_home");
+
+             searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+             $scope.declinedByPat=response;
+             $localStorage.myCallId=0;
+             $localStorage.callStatus=0;
+             console.log($scope.declinedByPat);
+             }).catch(function(error){
+               console.log('failure data', error);
+             });
+              // $state.reaload();
+             $state.go("app.patient_home");
            $ionicHistory.clearHistory();
          });
        }
@@ -357,6 +425,7 @@ $scope.BalanceForVoiceCall=function()
   					}, 3000);
   					console.log('value changed');
             $interval.cancel(checkMyCallStatus);
+            $scope.alertPopup.close();
   					$scope.callAccept = $ionicPopup.show({
   				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
   				 			 cssClass: 'requestPopup',
@@ -426,7 +495,7 @@ $scope.BalanceForVoiceCall=function()
   														scope: $scope,
   														buttons: [
   															{
-  																text: 'Ok',
+  																text: 'OK',
   																type: 'button-positive',
   																onTap: function(e) {
   																console.log('ok');
@@ -485,15 +554,19 @@ $scope.BalanceForVoiceCall=function()
     $scope.callMyDoc=function(num,type)
     {
       console.log(num);
+      $rootScope.onGoingDoc=num;
       $rootScope.callType=type;
       console.log(type);
       $rootScope.docNumToCall = num;
       $interval(checkMyCallStatus,2000);
+
+      $interval(checkDocStatusOnTheGo,2000);
+
       var callRequest={
-      patient:$localStorage.user,
-      doctor:$rootScope.docNumToCall,
-      subPatient:$localStorage.selectedSubPatient
-      // callId:$rootScope.callId
+        patient:$localStorage.user,
+        doctor:$rootScope.docNumToCall,
+        subPatient:$localStorage.selectedSubPatient
+        // callId:$rootScope.callId
       }
       console.log($localStorage.selectedSubPatient);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
@@ -534,12 +607,12 @@ $scope.BalanceForVoiceCall=function()
             $timeout.cancel(patientTimeout);
 
             var noResponsePopup = $ionicPopup.alert({
-            template: "<div ><p>Doctor did not accepted your request .</p></div>",
+            template: "<div ><p>Doctor did not accept your request</p></div>",
             cssClass: 'requestPopup',
             scope: $scope,
             });
 
-            noResponsePopup.then(function(res) {
+            noResponsePopup.then(function(res){
               console.log('delete request here');
               searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
               $scope.cancelledReq=response;
@@ -555,11 +628,18 @@ $scope.BalanceForVoiceCall=function()
 
             }
           }
-          var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
-          $scope.$on('$destroy', function(){
-          $timeout.cancel(patientTimeout);
-          console.log('destroyed');
-          });
+
+          setTimeout(function (){
+
+            var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+            $scope.$on('$destroy', function(){
+            $timeout.cancel(patientTimeout);
+            console.log('destroyed');
+            });
+
+          }, 1000);
+
+
           $scope.callReqPopUp = $ionicPopup.show({
                template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
                cssClass: 'requestPopup',

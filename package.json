@@ -99,8 +99,14 @@
         "FABRIC_API_SECRET": "d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9"
       },
       "cordova-plugin-x-socialsharing": {},
+<<<<<<< HEAD
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
+=======
+      "cordova-plugin-compat": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-file": {},
+>>>>>>> 4d99c68c3f7b0a2e4be8127f472f9e4e67bd13d8
       "com.greettelehealth.DoctorQuick": {}
     },
     "platforms": [

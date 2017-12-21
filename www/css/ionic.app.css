@@ -11506,43 +11506,48 @@ ion-side-menu .heading-item .message {
       margin: 33px;
       padding: 15px; }
 
+.item-icon-left .icon:before, .item-icon-right .icon:before {
+  display: block;
+  width: 26px !important;
+  text-align: center; }
+
 .ion-android-bookmark::before {
-  content: url("../img/dq_icon_small_profile_540x960.png"); }
+  content: url("../img/icon_small_profile.svg"); }
 
 .ion-ios-home::before {
-  content: url("../img/home_icon23.png");
+  content: url("../img/icon_small_home.svg");
   color: #6aa433; }
 
 .ion-radio-waves::before {
-  content: url("../img/dq_icon_small_mydoctors_540x960.png"); }
+  content: url("../img/icon_small_mydoctors.svg"); }
 
 .ion-social-wordpress::before {
-  content: url("../img/dq_icon_small_myconsultations_540x960.png"); }
+  content: url("../img/icon_small_myconsultations.svg"); }
 
 .ion-wand::before {
-  content: url("../img/dq_icon_small_payments_540x960.png"); }
+  content: url("../img/icon_small_payments.svg"); }
 
 .ion-asterisk::before {
-  content: url("../img/dq_icon_small_reviewapp_540x960.png"); }
+  content: url("../img/icon_small_reviewapp.svg"); }
 
 .ion-document::before {
-  content: url("../img/dq_icon_small_notifications_540x960.png"); }
+  content: url("../img/icon_small_notifications.svg"); }
 
 .ion-gear-a::before {
-  content: url("../img/dq_icon_small_customer-care_540x960.png"); }
+  content: url("../img/icon_small_customer-care.svg"); }
 
 .ion-ios-chatbubble-outline::before {
   margin: -2% 0 0 0% !important;
   font-size: 220% !important; }
 
 .ion-android-cloud-circle::before {
-  content: url("../img/rsz_invite1.png");
+  content: url("../img/icon_small_rate.svg");
   max-width: 100%;
   height: auto;
   width: 2vmin; }
 
 .ion-android-cloud-done::before {
-  content: url("../img/rsz_terms1.png");
+  content: url("../img/icon_small_terms.svg");
   max-width: 100%;
   height: auto;
   width: 2vmin; }
@@ -11584,7 +11589,7 @@ ion-side-menu .heading-item .message {
   content: url("../img/dq_icon_small_payments_540x960.png"); }
 
 .ion-log-out::before {
-  content: url("../img/signout.png"); }
+  content: url("../img/icon_small_signout.svg"); }
 
 .ion-ios-calendar-outline::before {
   content: url("../img/dq_icon_calendar_540x960.png");
@@ -11999,7 +12004,8 @@ ion-side-menu .heading-item .message {
           padding: 20px !important; }
       .customercare-view .top-content .queryContent .sendButton {
         height: 26%;
-        width: 100%; }
+        width: 100%;
+        margin-top: 0 !important; }
         .customercare-view .top-content .queryContent .sendButton .button {
           width: 30%;
           float: right;
@@ -12478,7 +12484,6 @@ ion-side-menu .heading-item .message {
           margin: 0% 2%;
           color: black; }
         .patient-payment-view .bottom-content li .name-content h2 {
-          margin: 2%;
           font-size: 110%;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
@@ -14482,8 +14487,7 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
-    height: 100%;
-    overflow: hidden !important; }
+    height: 100%; }
   .patient-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-1-view .top-content {
