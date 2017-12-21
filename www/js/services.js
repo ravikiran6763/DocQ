@@ -170,6 +170,19 @@ angular.module('DoctorQuick.services', [])
   return this;
 })
 
+.service('goBackMany',function($ionicHistory){
+  return function(depth){
+    // get the right history stack based on the current view
+    var historyId = $ionicHistory.currentHistoryId();
+    var history = $ionicHistory.viewHistory().histories[historyId];
+    // set the view 'depth' back in the stack as the back view
+    var targetViewIndex = history.stack.length - 1 - depth;
+    $ionicHistory.backView(history.stack[targetViewIndex]);
+    // navigate to it
+    $ionicHistory.goBack();
+  }
+})
+
 .service('urlShortener', service);
 
 function service($log, $q, $http) {

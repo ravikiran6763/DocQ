@@ -111,21 +111,21 @@ function checkConsultations(){
   				console.log('failure data', error);
   				});
 
-            var uname1 = "greet+"+$localStorage.user;
-            var pw1 = "DQ_doctor";
-
-              console.log(uname1);
-              console.log(pw1);
-              var success = function(message)
-              {
-                console.log(message);
-
-              }
-              var failure = function()
-              {
-                console.log("An Error occured kindly check your Interner Connection");
-              }
-              hello.login(uname1,pw1,success, failure);
+            // var uname1 = "greet+"+$localStorage.user;
+            // var pw1 = "DQ_doctor";
+            //
+            //   console.log(uname1);
+            //   console.log(pw1);
+            //   var success = function(message)
+            //   {
+            //     console.log(message);
+            //
+            //   }
+            //   var failure = function()
+            //   {
+            //     console.log("An Error occured kindly check your Interner Connection");
+            //   }
+            //   hello.login(uname1,pw1,success, failure);
               $ionicLoading.hide();
 
               //Unregister from onesignal notifications
@@ -185,19 +185,19 @@ function checkConsultations(){
         console.log('failure data', error);
         });
 
-        var unametologout = "greet+"+$localStorage.user;
-        var pwtologout = "DQ_doctor";
-
-        // alert(unametologout);
-        var success = function(message)
-        {
-        console.log(message);
-        }
-        var failure = function()
-        {
-        console.log("An Error occured kindly check your Interner Connection");
-        }
-        hello.logout(unametologout,pwtologout,success, failure);
+        // var unametologout = "greet+"+$localStorage.user;
+        // var pwtologout = "DQ_doctor";
+        //
+        // // alert(unametologout);
+        // var success = function(message)
+        // {
+        // console.log(message);
+        // }
+        // var failure = function()
+        // {
+        // console.log("An Error occured kindly check your Interner Connection");
+        // }
+        // hello.logout(unametologout,pwtologout,success, failure);
 
 
         $scope.accptNotifications=true;

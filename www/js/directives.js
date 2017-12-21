@@ -72,6 +72,25 @@ angular.module('DoctorQuick.directives', [])
 		}
 })
 
+.directive('menuClose', ['$ionicHistory', function($ionicHistory) {
+  return {
+    restrict: 'AC',
+    link: function($scope, $element) {
+      $element.bind('click', function() {
+        var sideMenuCtrl = $element.inheritedData('$ionSideMenusController');
+        if (sideMenuCtrl) {
+          $ionicHistory.nextViewOptions({
+            historyRoot: true,
+            disableAnimate: true,
+            expire: 300
+          });
+          sideMenuCtrl.close();
+        }
+      });
+    }
+  };
+}])
+
 .directive('showHideContainer', function(){
 		return {
 			scope: {

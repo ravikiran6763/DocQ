@@ -12004,7 +12004,8 @@ ion-side-menu .heading-item .message {
           padding: 20px !important; }
       .customercare-view .top-content .queryContent .sendButton {
         height: 26%;
-        width: 100%; }
+        width: 100%;
+        margin-top: 0 !important; }
         .customercare-view .top-content .queryContent .sendButton .button {
           width: 30%;
           float: right;
@@ -12483,7 +12484,6 @@ ion-side-menu .heading-item .message {
           margin: 0% 2%;
           color: black; }
         .patient-payment-view .bottom-content li .name-content h2 {
-          margin: 2%;
           font-size: 110%;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
