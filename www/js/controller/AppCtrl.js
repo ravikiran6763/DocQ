@@ -231,7 +231,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 								$ionicHistory.clearHistory();
 						}
 						else{
-							window.history.go(-2);
+							window.history.go(-1);
 								// window.history.back(-1);
 								// $scope.backView = $ionicHistory.backView();
 							 	//        $scope.backView.go();

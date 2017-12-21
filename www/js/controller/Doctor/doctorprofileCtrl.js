@@ -551,9 +551,11 @@ $scope.BalanceForVoiceCall=function()
 
   	},true);
 
-    $scope.callMyDoc=function(num,type)
+    $scope.callMyDoc=function(num,spec,type)
     {
       console.log(num);
+      console.log(spec);
+
       $rootScope.onGoingDoc=num;
       $rootScope.callType=type;
       console.log(type);
@@ -629,15 +631,12 @@ $scope.BalanceForVoiceCall=function()
             }
           }
 
-          setTimeout(function (){
-
             var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
             $scope.$on('$destroy', function(){
             $timeout.cancel(patientTimeout);
             console.log('destroyed');
             });
 
-          }, 1000);
 
 
           $scope.callReqPopUp = $ionicPopup.show({

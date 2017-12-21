@@ -14693,7 +14693,7 @@ ion-side-menu .heading-item .message {
   .patient-reg-2-view ion-content {
     width: auto;
     height: 100%;
-    overflow: hidden !important; }
+    overflow: scroll !important; }
   .patient-reg-2-view .scroll-content {
     position: relative !important; }
   .patient-reg-2-view .bar-header .bar-light {
