@@ -25,15 +25,25 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 console.todo('RAVI');
 	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
 
-	$scope.updatePatientEmail=function(){
-		// alert('update email here');
-		cordova.plugins.email.open({
-    to:      'ravikiran6763@gmail.com',
-    subject: 'Greetings',
-    body:    '<h1>Nice greetings from Leipzig</h1>',
-    isHtml:  true
-});
-	}
+	$scope.updatePatientEmail=function(phoneno){
+
+		patientProfileDetailsService.updateEmail(phoneno).then(function(response){
+			$scope.patient_email=response;
+
+			console.log($scope.patient_email);
+
+	}).catch(function(error){
+	console.log('failure data', error);
+	})
+
+
+		// cordova.plugins.email.open({
+    // to:      'ravikiran6763@gmail.com',
+    // subject: 'Greetings',
+    // body:    '<h1>Nice greetings from Leipzig</h1>',
+    // isHtml:  true
+}
+
 // console.timeEnd('Timer1');
 $scope.register = function() {
  console.log('Ionic Push: Registering user');
@@ -215,8 +225,4 @@ $scope.register = function() {
 			};
 
 
-
-
-
-
-})
+});
