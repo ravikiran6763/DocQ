@@ -34,6 +34,10 @@ $scope.sendForm = function($event,form)
 
 };
 
+
+console.log($localStorage.doctororpatient);
+
+
 //Validate  Doctor
 
 //patient Registration forms.

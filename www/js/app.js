@@ -1129,7 +1129,24 @@ $stateProvider
 ;
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/auth/loginNew');
+  // $urlRouterProvider.otherwise('/auth/loginNew');
+
+$urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootScope) {
+
+  var Storage = $injector.get('$localStorage');
+  console.log(Storage.doctororpatient);
+  if(Storage.doctororpatient === 'doctor'){
+    return '/templates/doctor_home';
+  }
+  else if(Storage.doctororpatient === 'doctor'){
+    return '/app/patient_home';
+  }
+  else{
+    return '/auth/loginNew';
+  }
+
+});
+
   // $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootScope) {
   //   var $state = $injector.get('$state');
   //   var Storage = $injector.get('$localStorage');
