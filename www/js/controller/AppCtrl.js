@@ -746,6 +746,23 @@ $scope.ratingsObject = {
 
 
 
+	$scope.ReviewApp = function()
+	{
+
+		$scope.deviceAndroid = ionic.Platform.isAndroid();
+
+
+		if($scope.deviceAndroid)
+		{
+
+				window.open("market://details?id=com.greettech.DoctorQuick","_system");
+
+		}
+
+
+	}
+
+
 	 $scope.getWallet=function(){
      $rootScope.patientWalletdetails ={};
 		 $rootScope.patientTransactiondetails ={};

@@ -110,7 +110,7 @@ DoctorQuickApp.controller('doc_customercareCtrl', function($scope,$rootScope, $i
 
 })
 
-DoctorQuickApp.controller('changePatientPassWord', function($scope,$rootScope, $ionicConfig) {
+DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$rootScope,$ionicLoading, $ionicConfig,$localStorage,patientProfileDetailsService) {
   $scope.toggle = true;
 	$rootScope.headerTxt="Profile";
 	$rootScope.showBackBtn=true;
@@ -118,7 +118,42 @@ DoctorQuickApp.controller('changePatientPassWord', function($scope,$rootScope, $
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 
+console.log('update controller active');
+patientProfileDetailsService.emailVerification($localStorage.user).then(function(response){
+	$rootScope.email=response;
+	if($rootScope.email == 1){
+		$rootScope.emailVerified = false;
+		$rootScope.Verified = false;
+
+	}
+	if($rootScope.email == 2){
+		$rootScope.emailVerified = true;
+		$rootScope.Verified = true;
+
+	}
+
+	$ionicLoading.hide();
+	console.log($scope.email);
+
+}).catch(function(error){
+console.log('failure data', error);
 })
+
+$scope.sendVerificationMail = function(){
+	console.log('send mail');
+
+	patientProfileDetailsService.sendVerificationMail($localStorage.user).then(function(response){
+		$rootScope.emailSent=response;
+		console.log($rootScope.emailSent);
+	}).catch(function(error){
+	console.log('failure data', error);
+	})
+};
+
+
+})
+
+
 
 DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 	$scope.user = {};

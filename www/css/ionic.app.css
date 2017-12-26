@@ -11582,8 +11582,11 @@ ion-side-menu .heading-item .message {
 .ion-android-arrow-dropdown-circle::before {
   content: url("../img/dq_notifier_offline_540x960.png"); }
 
+.ion-checkmark-circled:before {
+  color: #6aa13e; }
+
 .ion-android-alert::before {
-  content: url("../img/dq_notifier_offline2_540x960.png"); }
+  color: #8e1f03; }
 
 .ion-android-wifi::before {
   content: url("../img/dq_icon_small_payments_540x960.png"); }

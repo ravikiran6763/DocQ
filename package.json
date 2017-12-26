@@ -13,6 +13,7 @@
     "bluebird": "^3.4.7",
     "body-parser": "~1.9.2",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
+    "com.greettelehealth.DoctorQuick": "../newpluginforandroid/cordova-plugin-hello",
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-fabric-plugin": "^1.1.10",
@@ -27,6 +28,7 @@
     "cordova-plugin-inappbrowser": "^1.7.2",
     "cordova-plugin-network-information": "^1.3.4",
     "cordova-plugin-shared-preferences": "0.0.1",
+    "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.3.0",
     "cordova-plugin-whitelist": "^1.2.0",
     "cordova-plugin-x-socialsharing": "git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
@@ -49,8 +51,7 @@
     "onesignal-cordova-plugin": "^2.2.0",
     "passport": "^0.3.0",
     "passport-jwt": "^1.2.1",
-    "phonegap-plugin-mobile-accessibility": "^1.0.5",
-    "com.greettelehealth.DoctorQuick": "../newpluginforandroid/cordova-plugin-hello"
+    "phonegap-plugin-mobile-accessibility": "^1.0.5"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -99,15 +100,11 @@
         "FABRIC_API_SECRET": "d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9"
       },
       "cordova-plugin-x-socialsharing": {},
-<<<<<<< HEAD
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
-=======
       "cordova-plugin-compat": {},
-      "cordova-plugin-file-transfer": {},
-      "cordova-plugin-file": {},
->>>>>>> 4d99c68c3f7b0a2e4be8127f472f9e4e67bd13d8
-      "com.greettelehealth.DoctorQuick": {}
+      "com.greettelehealth.DoctorQuick": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "android"

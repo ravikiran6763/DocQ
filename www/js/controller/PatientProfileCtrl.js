@@ -25,23 +25,18 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 console.todo('RAVI');
 	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
 
-	$scope.updatePatientEmail=function(phoneno){
+	$scope.updatePatientEmail=function(){
 
-		patientProfileDetailsService.updateEmail(phoneno).then(function(response){
-			$scope.patient_email=response;
+$state.go('app.changeEmail_patient');
+	// 	patientProfileDetailsService.updateEmail($localStorage.user).then(function(response){
+	// 		$scope.patient_email=response;
+	// 		console.log($scope.patient_email);
+	// 		console.log($scope.patient_email);
+  //
+	// }).catch(function(error){
+	// console.log('failure data', error);
+	// })
 
-			console.log($scope.patient_email);
-
-	}).catch(function(error){
-	console.log('failure data', error);
-	})
-
-
-		// cordova.plugins.email.open({
-    // to:      'ravikiran6763@gmail.com',
-    // subject: 'Greetings',
-    // body:    '<h1>Nice greetings from Leipzig</h1>',
-    // isHtml:  true
 }
 
 // console.timeEnd('Timer1');

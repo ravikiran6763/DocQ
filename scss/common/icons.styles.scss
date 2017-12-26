@@ -99,12 +99,14 @@
     // padding-left: 100px;
 }
 
+.ion-checkmark-circled:before {
+    color: #6aa13e;
+}
 
 .ion-android-alert::before{
-    content: url('../img/dq_notifier_offline2_540x960.png');
-    // padding: 0 0 27px 0;
-    // padding-top: 0;
-    // padding-left: 100px;
+    // content: url('../img/dq_notifier_offline2_540x960.png');
+    color: rgb(142, 31, 3);
+
 }
 
 //Doctor screens

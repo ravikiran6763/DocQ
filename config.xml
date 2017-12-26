@@ -8,7 +8,6 @@
       Ravikiran
     </author>
     <content src="index.html" />
-    <content src="index.html" />
     <access origin="*" />
     <access launch-external="yes" origin="tel:*" />
     <access origin="*" />
@@ -62,8 +61,8 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
-    <preference name="SplashScreen" value="none" />
-    <preference name="SplashScreenDelay" value="6000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="FadeSplashScreen" value="false" />
@@ -90,10 +89,10 @@
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
-    <preference name="SplashScreen" value="none" />
-    <preference name="SplashScreenDelay" value="10000" />
-    <preference name="BackgroundColor" value="" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
     <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -179,6 +178,12 @@
         <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
+        <splash density="port-ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
+        <splash density="port-mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
+        <splash density="port-hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
+        <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
+        <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
+        <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <platform name="ios">
         <icon height="57" src="resources/ios/icon/icon.png" width="57" />
@@ -337,7 +342,6 @@
         </dict>
         <widget id="com.example.ul" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" />
     </config-file>
-    <preference name="SplashShowOnlyFirstTime" value="false" />
     <engine name="android" spec="^6.3.0" />
     <plugin name="cordova-plugin-whitelist" spec="^1.2.0" />
     <plugin name="com.razorpay.cordova" spec="^1.3.1" />
@@ -364,13 +368,9 @@
         <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
     </plugin>
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-<<<<<<< HEAD
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
-=======
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
-    <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
-    <plugin name="cordova-plugin-file" spec="^5.0.0" />
->>>>>>> 4d99c68c3f7b0a2e4be8127f472f9e4e67bd13d8
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
 </widget>

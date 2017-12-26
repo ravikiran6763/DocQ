@@ -47,6 +47,36 @@ this.fetchPatientImage = function(detail){
 		return deferred.promise;
   }
 
+  this.emailVerification = function(patient){
+    // console.log(detail);
+    var deferred = $q.defer();
+    // console.log(BASE_URL.url + API.patientDetails);
+		$http.post(BASE_URL.url + API.checkEmailVerification,patient)
+		.success(function (data, status, headers, config){
+			deferred.resolve(data);
+		})
+		.error(function (){
+			deferred.reject('Error while getting data');
+		});
+
+		return deferred.promise;
+  }
+
+  this.sendVerificationMail = function(patient){
+    // console.log(detail);
+    var deferred = $q.defer();
+    // console.log(BASE_URL.url + API.patientDetails);
+		$http.post(BASE_URL.url + API.sendVerificationMail,patient)
+		.success(function (data, status, headers, config){
+			deferred.resolve(data);
+		})
+		.error(function (){
+			deferred.reject('Error while getting data');
+		});
+
+		return deferred.promise;
+  }
+
 
 
 
