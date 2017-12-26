@@ -103,8 +103,14 @@
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-compat": {},
+<<<<<<< HEAD
       "com.greettelehealth.DoctorQuick": {},
       "cordova-plugin-splashscreen": {}
+=======
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-file": {}
+
+>>>>>>> 492365ab017a9f0b81b1a4c40626ac13fcb677e7
     },
     "platforms": [
       "android"

@@ -33,7 +33,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   // 'angular-circular-progress',
   'ionic-letter-avatar',
   'ionic.closePopup',
-  'ngMaterial'
+  // 'ngMaterial'
   // 'ionic.cloud'
 ])
 
@@ -469,20 +469,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   });
   })
 
+
 // DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
 //   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 //
 //
 //     }
 // ]);
-DoctorQuickApp.config(function( $mdGestureProvider ) {
-          $mdGestureProvider.skipClickHijack();
-      });
+// DoctorQuickApp.config(function( $mdGestureProvider ) {
+//           $mdGestureProvider.skipClickHijack();
+//       });
 
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
        // $ionicConfigProvider.views.transition('platform');
        $ionicConfigProvider.views.transition('none')
+       // $ionicConfigProvider.scrolling.jsScrolling(true);
 
 
 });

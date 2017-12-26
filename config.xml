@@ -42,23 +42,19 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="orientation" value="portrait" />
     <preference name="SYSTEM_UI_FLAG_IMMERSIVE" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="orientation" value="portrait" />
     <preference name="Fullscreen" value="true" />
     <preference name="SYSTEM_UI_FLAG_IMMERSIVE" value="true" />
     <preference name="StatusBarStyle" value="styleBlackTranslucent" />
-    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="iosPersistentFileLocation" value="Compatibility" />
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
     <preference name="SplashScreen" value="screen" />
@@ -71,7 +67,6 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="SYSTEM_UI_FLAG_IMMERSIVE" value="true" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="AndroidPersistentFileLocation" value="Internal" />
@@ -79,14 +74,12 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="16" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="orientation" value="portrait" />
     <preference name="Fullscreen" value="true" />
     <preference name="SYSTEM_UI_FLAG_IMMERSIVE" value="true" />
     <preference name="StatusBarStyle" value="styleBlackTranslucent" />
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     <preference name="iosPersistentFileLocation" value="Compatibility" />
-    <preference name="AndroidPersistentFileLocation" value="Internal" />
     <preference name="iosPersistentFileLocation" value="Library" />
     <preference name="iosExtraFilesystems" value="library-nosync" />
     <preference name="SplashScreen" value="screen" />
@@ -371,6 +364,11 @@
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
+<<<<<<< HEAD
+=======
+    <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
+    <plugin name="cordova-plugin-file" spec="^5.0.0" />
+>>>>>>> 492365ab017a9f0b81b1a4c40626ac13fcb677e7
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
 </widget>
