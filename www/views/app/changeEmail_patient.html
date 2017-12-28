@@ -15,10 +15,10 @@
   <div class="form-content">
     <form name="form" ng-submit="submitForm($event)" ng-class={submitted:submitted}>
         <div class="form-group" >
-          <input ng-model="login.password" type="email" name="email" placeholder="New Email" validate-email required >
+          <input ng-model="emailToUpdate.email" type="email" name="email" placeholder="New Email" validate-email required >
         </div>
         <div class="form-group" >
-          <input ng-model="login.verify" type="email" name="verify" placeholder="Confirm New Email" validate-email required  >
+          <input ng-model="emailToUpdate.verify" type="email" name="verify" placeholder="Confirm New Email" validate-email required  >
         </div>
         <!-- <div class="error" ng-show="form.verify.$error.nxEqual">Password does not match!</div> -->
 
@@ -26,7 +26,7 @@
   </div>
 
   <div class="bottom-content" style="margin-top:-10% ">
-    <button class=" login_button button button-block button-assertive" ng-click="updatePatientEmail();">
+    <button class=" login_button button button-block button-assertive" ng-click="updateEmail();">
     Update
     </button>
     <br>

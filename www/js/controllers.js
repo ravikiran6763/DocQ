@@ -151,6 +151,28 @@ $scope.sendVerificationMail = function(){
 };
 
 
+$scope.emailToUpdate={};
+$scope.updateEmail = function(){
+	console.log($scope.emailToUpdate.email);
+	console.log($scope.emailToUpdate.verify);
+
+	if($scope.emailToUpdate.email === $scope.emailToUpdate.verify){
+		console.log('verified');
+		patientProfileDetailsService.updateEmail($localStorage.user).then(function(response){
+			$rootScope.emailSent=response;
+			console.log($rootScope.emailSent);
+		}).catch(function(error){
+		console.log('failure data', error);
+		})
+	}
+	else{
+		console.log('check the mail id');
+	}
+
+
+};
+
+
 })
 
 

@@ -84,8 +84,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'claimFreeConsultation':'patient/claimFreeConsultation.php',
         'checkEmailVerification':'patient/checkEmailVerification.php',
         'sendVerificationMail':'patient/sendVerificationMail.php',
+        'updateEmail':'patient/updateEmail.php',
 
-        'updateEmail':'verifyemail/verifyemail.php',
+
+        'verifyemail':'verifyemail/verifyemail.php',
         'checkDocStatusOnTheGo':'patient/checkDocStatusOnTheGo.php',
 
 

@@ -77,6 +77,20 @@ this.fetchPatientImage = function(detail){
 		return deferred.promise;
   }
 
+  this.updateEmail = function(emailDetails)
+  {
+    var deferred = $q.defer();
+    console.log(BASE_URL.url + API.updateEmail);
+    $http.post(BASE_URL.url + API.updateEmail,emailDetails)
+    .success(function (data, status, headers, config){
+      deferred.resolve(data);
+    })
+    .error(function (){
+      deferred.reject('Error while getting data');
+    });
+
+    return deferred.promise;
+  }
 
 
 
@@ -99,24 +113,24 @@ this.fetchPatientImage = function(detail){
   }
 
 
-  this.updateEmail = function(phoneno){
-
-    console.log(phoneno);
-
-    var deferred = $q.defer();
-    $http.post(BASE_URL.url + API.updateEmail,phoneno)
-    .success(function (data, status, headers, config){
-      deferred.resolve(data);
-
-    })
-    .error(function (){
-      deferred.reject('Error while getting data');
-    });
-
-    return deferred.promise;
-
-
-  }
+  // this.updateEmail = function(phoneno){
+  //
+  //   console.log(phoneno);
+  //
+  //   var deferred = $q.defer();
+  //   $http.post(BASE_URL.url + API.updateEmail,phoneno)
+  //   .success(function (data, status, headers, config){
+  //     deferred.resolve(data);
+  //
+  //   })
+  //   .error(function (){
+  //     deferred.reject('Error while getting data');
+  //   });
+  //
+  //   return deferred.promise;
+  //
+  //
+  // }
 
 
 
