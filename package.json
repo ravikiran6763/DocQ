@@ -13,11 +13,8 @@
     "body-parser": "~1.9.2",
     "clean-css": "^4.1.9",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
-<<<<<<< HEAD
     "com.example.hello": "file:../newpluginforandroid/cordova-plugin-hello",
-=======
     "com.example.hello": "file:../VSEE/VseePlugin",
->>>>>>> 29f69f713d98600a8eeb40179c1c1ceef7807a2d
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-fabric-plugin": "^1.1.10",
@@ -106,15 +103,12 @@
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-compat": {},
-<<<<<<< HEAD
       "cordova-plugin-splashscreen": {},
-      "com.greettelehealth.DoctorQuick": {}
-=======
+      "com.greettelehealth.DoctorQuick": {},
       "com.greettelehealth.DoctorQuick": {},
       "cordova-plugin-splashscreen": {},
       "com.example.hello": {},
       "ionic-plugin-keyboard": {}
->>>>>>> 29f69f713d98600a8eeb40179c1c1ceef7807a2d
     },
     "platforms": [
       "android"
