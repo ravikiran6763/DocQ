@@ -322,6 +322,19 @@ this.notifyPatient = function (doctor){
   return deferred.promise;
 }
 
+this.doctorStatus = function (doctor){
+  console.log(doctor);
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.doctorStatus,doctor)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
 
 
 

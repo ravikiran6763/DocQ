@@ -130,6 +130,8 @@ DoctorQuickApp.constant('BASE_URL', {
 
         /*  DOCTOR ON OFF API */
         'doctoronoffconditions':'doctor/doctoronoffline.php',
+        'doctorStatus':'doctor/doctorStatus.php',
+
         'notifyPatient':'doctor/notifyPatient.php',
         'generateTinyUrl':'doctor/generateTinyUrl.php',
 

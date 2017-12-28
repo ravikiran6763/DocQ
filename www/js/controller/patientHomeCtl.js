@@ -33,10 +33,45 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			}
 
 			$timeout( function(){
-				$interval(startPinging,2000);
-			}, 2000 );
+	        console.log('interval started');
+	        console.log($localStorage.showConnecting);
+	        if($localStorage.showConnecting == true){
+	          $ionicLoading.show({
+	            template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+	          });
 
+	        }
+	        $interval(availableInVsee,2000,1);
 
+	    }, 0 );
+
+			function availableInVsee() {
+				var uname1 = "greet+"+$localStorage.user;
+				var pw1 = "DQ_patient";
+				var success = function(message)
+				{
+					// alert(message);
+
+					$ionicLoading.hide().then(function(){
+					console.log("The loading indicator is now hidden");
+					// alert('loggedin');
+					$localStorage.showConnecting = false;
+					$ionicHistory.nextViewOptions({
+					disableAnimate: true,
+					disableBack: true
+					});
+					$interval.cancel(availableInVsee);
+					$state.go($state.current, {}, {reload: false});
+					});
+				// alert(message);
+				}
+				var failure = function()
+				{
+				alert("Error calling Hello Plugin");
+				}
+
+				hello.login(uname1,pw1,success, failure);
+			}
 
 				var username = "greet+"+$localStorage.user;
 				var password = "DQ_patient";

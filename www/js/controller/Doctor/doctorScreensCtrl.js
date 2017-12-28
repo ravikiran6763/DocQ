@@ -18,30 +18,200 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     {
       $state.go("templates.consulted_patient")
     }
-    // $timeout( function(){
-    // console.log('interval started');
-    // $interval(checkNewMessages,1000);
-    //
-    // }, 3000);
-    // var username = "greet+"+$localStorage.user;
-    // var password = "DQ_doctor";
-    // function checkNewMessages()
-    // {
-    //   var success = function(message)
-    //   {
-    //     $rootScope.unreadchatforpatient = message;
-    //     console.log($scope.unreadchatforpatient);
-    //   }
-    //
-    //   var failure = function()
-    //   {
-    //     console.log("Error calling Hello Plugin");
-    //     //console.log(‘error’);
-    //
-    //   }
-    //     hello.unreadchatfromusers(username,password,success, failure);
-    // }
+    $timeout( function(){
+        console.log('interval started');
+        console.log($localStorage.showConnecting);
+        if($localStorage.showConnecting == true){
+          $ionicLoading.show({
+            template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+          });
 
+        }
+        $interval(availableInVsee,2000,1);
+
+    }, 0 );
+
+
+    $scope.docStatus = $localStorage.onOff;
+
+
+    function availableInVsee() {
+      var uname1 = "greet+"+$localStorage.user;
+      var pw1 = "DQ_doctor";
+      var success = function(message)
+      {
+        // alert(message);
+
+        $ionicLoading.hide().then(function(){
+        console.log("The loading indicator is now hidden");
+        // alert('loggedin');
+        $localStorage.showConnecting = false;
+        $ionicHistory.nextViewOptions({
+        disableAnimate: true,
+        disableBack: true
+        });
+        $interval.cancel(availableInVsee);
+        doctorServices.doctorStatus($localStorage.user).then(function(response){
+        console.log(response);
+          $localStorage.onOff=response;
+        if(response == 1){
+          $scope.docAvailable=true;
+          $scope.docNotAvailable=false;
+
+        }
+        else{
+          $scope.docAvailable=false;
+          $scope.docNotAvailable=true;
+        }
+        }).catch(function(error){
+        console.log('failure data', error);
+        });
+        $state.go($state.current, {}, {reload: false});
+        // $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+        });
+      // alert(message);
+      }
+      var failure = function()
+      {
+      alert("Error calling Hello Plugin");
+      }
+
+      hello.login(uname1,pw1,success, failure);
+    }
+
+
+    // $timeout(function(){
+    // // console.log($localStorage.doctororpatient);
+    //
+    //   $ionicLoading.show({
+    //   template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick',
+    //   duration:7000
+    //   });
+    //
+    //    if($localStorage.doctororpatient === 'doctor'){
+    //       window.plugins.OneSignal.getIds(function(ids) {
+    //       $scope.playerId=JSON.stringify(ids['userId']);
+    //       // console.log($scope.playerId);
+    //       var updatePlayer ={
+    //       palyerId:$scope.playerId,
+    //       userNum:$localStorage.user,
+    //       user:'doctor'
+    //       }
+    //       console.log(updatePlayer);
+    //       LoginService.updatePlayer(updatePlayer).then(function(response){
+    //       console.log(response);
+    //       })
+    //       });
+    //       $scope.deviceAndroid = ionic.Platform.isAndroid();
+    //       console.log($scope.deviceAndroid);
+    //       var uname1 = "greet+"+$localStorage.user;
+    //       var pw1 = "DQ_doctor";
+    //       if($scope.deviceAndroid === true){
+    //
+    //                 var success = function(message)
+    //                 {
+    //                   // alert(message);
+    //                   $ionicLoading.hide().then(function(){
+    //                   console.log("The loading indicator is now hidden");
+    //                   // alert('loggedin');
+    //                   $ionicHistory.nextViewOptions({
+    //                   disableAnimate: true,
+    //                   disableBack: true
+    //                   });
+    //                   $interval.cancel(loginStatus);
+    //                   $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+    //                   });
+    //                 // alert(message);
+    //                 }
+    //                 var failure = function()
+    //                 {
+    //                 alert("Error calling Hello Plugin");
+    //                 }
+    //
+    //                 hello.login(uname1,pw1,success, failure);
+    //
+    //                 $timeout( function(){
+    //                 console.log('interval started');
+    //                 $interval(checkNewMessages,1000);
+    //
+    //                 }, 3000);
+    //                 var username = "greet+"+$localStorage.user;
+    //                 var password = "DQ_doctor";
+    //                 function checkNewMessages()
+    //                 {
+    //                 var success = function(message)
+    //                 {
+    //                 $rootScope.unreadchatforpatient = message;
+    //                 console.log($scope.unreadchatforpatient);
+    //                 }
+    //
+    //                 var failure = function()
+    //                 {
+    //                 console.log("Error calling Hello Plugin");
+    //                 //console.log(‘error’);
+    //
+    //                 }
+    //                 hello.unreadchatfromusers(username,password,success, failure);
+    //                 }
+    //       }
+    //       else{
+    //
+    //                   $ionicLoading.show({
+    //                   template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+    //                   });
+    //                   var success = function(message)
+    //                   {
+    //                   // alert(message);
+    //                     $scope.iosLoggin=message;
+    //                     $localStorage.iosLogin=$scope.iosLoggin;
+    //
+    //                   }
+    //                   var failure = function()
+    //                   {
+    //
+    //                     alert("Error calling Hello Plugin");
+    //
+    //                   }
+    //
+    //                   // $state.go('app.patient_home');//for browser login
+    //                   // $state.go('app.patient_home');//for browser login
+    //                   hello.login(uname1,pw1,success, failure);
+    //
+    //                   $timeout( function(){
+    //                   console.log('interval started');
+    //                   $interval(loginStatus,2000,1);
+    //                   }, 10000 );
+    //
+    //                   function loginStatus() {
+    //                   var success = function(message)
+    //                   {
+    //                       // alert(message);
+    //                       $ionicLoading.hide().then(function(){
+    //                       console.log("The loading indicator is now hidden");
+    //                       // alert('loggedin');
+    //                       $ionicHistory.nextViewOptions({
+    //                       disableAnimate: true,
+    //                       disableBack: true
+    //                       });
+    //                       $interval.cancel(loginStatus);
+    //
+    //                       $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+    //                       });
+    //
+    //                   }
+    //
+    //                   var failure = function()
+    //                   {
+    //                     alert("Error Occurred While Loggin in to DoctoQuick");
+    //                   }
+    //                   hello.loginstatus(success,failure);
+    //                   }
+    //
+    //       }
+    //
+    //   }
+    //
+    // },0);
 
     invitereviews.generateTinyUrl($localStorage.user).then(function(response){
       $rootScope.docTinyUrl=response;
@@ -53,7 +223,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
   if($rootScope.previousState.name === '' && $rootScope.homePage === 'templates.doctor_home'){
     $scope.docAvailable=false;
     $scope.docNotAvailable=true;
-    $localStorage.onOff=2;
+    // $localStorage.onOff=2;
+
 
   }
     console.log($ionicHistory.viewHistory());
@@ -404,136 +575,136 @@ $scope.inviteForReview=function(){
   })
 }
 
-$timeout(function(){
-// console.log($localStorage.doctororpatient);
-
-  $ionicLoading.show({
-  template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick',
-  duration:5000
-  });
-
-
-      window.plugins.OneSignal.getIds(function(ids) {
-      $scope.playerId=JSON.stringify(ids['userId']);
-      // console.log($scope.playerId);
-      var updatePlayer ={
-      palyerId:$scope.playerId,
-      userNum:$localStorage.user,
-      user:'doctor'
-      }
-      console.log(updatePlayer);
-      LoginService.updatePlayer(updatePlayer).then(function(response){
-      console.log(response);
-      })
-      });
-      $scope.deviceAndroid = ionic.Platform.isAndroid();
-      console.log($scope.deviceAndroid);
-      var uname1 = "greet+"+$localStorage.user;
-      var pw1 = "DQ_doctor";
-      if($scope.deviceAndroid === true){
-
-                var success = function(message)
-                {
-                  // alert(message);
-                  console.log('logged in');
-                  $ionicLoading.hide().then(function(){
-                  console.log("The loading indicator is now hidden");
-                  // alert('loggedin');
-                  $ionicHistory.nextViewOptions({
-                  disableAnimate: true,
-                  disableBack: true
-                  });
-                  $interval.cancel(loginStatus);
-                  $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-                  });
-                // alert(message);
-                }
-                var failure = function()
-                {
-                alert("Error calling Hello Plugin");
-                }
-
-                hello.login(uname1,pw1,success, failure);
-
-                $timeout( function(){
-                console.log('interval started');
-                $interval(checkNewMessages,1000);
-
-                }, 3000);
-                var username = "greet+"+$localStorage.user;
-                var password = "DQ_doctor";
-                function checkNewMessages()
-                {
-                var success = function(message)
-                {
-                $rootScope.unreadchatforpatient = message;
-                console.log($scope.unreadchatforpatient);
-                }
-
-                var failure = function()
-                {
-                console.log("Error calling Hello Plugin");
-                //console.log(‘error’);
-
-                }
-                hello.unreadchatfromusers(username,password,success, failure);
-                }
-      }
-      else{
-
-                  $ionicLoading.show({
-                  template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-                  });
-                  var success = function(message)
-                  {
-                  // alert(message);
-                    $scope.iosLoggin=message;
-                    $localStorage.iosLogin=$scope.iosLoggin;
-
-                  }
-                  var failure = function()
-                  {
-
-                    alert("Error calling Hello Plugin");
-
-                  }
-
-                  hello.login(uname1,pw1,success, failure);
-
-                  $timeout( function(){
-                  console.log('interval started');
-                  $interval(loginStatus,2000,1);
-                  }, 10000 );
-
-                  function loginStatus() {
-                  var success = function(message)
-                  {
-                      // alert(message);
-                      $ionicLoading.hide().then(function(){
-                      console.log("The loading indicator is now hidden");
-                      // alert('loggedin');
-                      $ionicHistory.nextViewOptions({
-                      disableAnimate: true,
-                      disableBack: true
-                      });
-                      $interval.cancel(loginStatus);
-
-                      $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-                      });
-
-                  }
-
-                  var failure = function()
-                  {
-                    alert("Error Occurred While Loggin in to DoctoQuick");
-                  }
-                  hello.loginstatus(success,failure);
-                  }
-
-      }
-
-
-},0);
+    // $timeout(function(){
+    //           // console.log($localStorage.doctororpatient);
+    //
+    //           $ionicLoading.show({
+    //           template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick',
+    //           duration:5000
+    //           });
+    //
+    //
+    //           window.plugins.OneSignal.getIds(function(ids) {
+    //           $scope.playerId=JSON.stringify(ids['userId']);
+    //           // console.log($scope.playerId);
+    //           var updatePlayer ={
+    //           palyerId:$scope.playerId,
+    //           userNum:$localStorage.user,
+    //           user:'doctor'
+    //           }
+    //           console.log(updatePlayer);
+    //           LoginService.updatePlayer(updatePlayer).then(function(response){
+    //           console.log(response);
+    //           })
+    //           });
+    //           $scope.deviceAndroid = ionic.Platform.isAndroid();
+    //           console.log($scope.deviceAndroid);
+    //           var uname1 = "greet+"+$localStorage.user;
+    //           var pw1 = "DQ_doctor";
+    //           if($scope.deviceAndroid === true){
+    //
+    //           var success = function(message)
+    //           {
+    //           // alert(message);
+    //           console.log('logged in');
+    //           $ionicLoading.hide().then(function(){
+    //           console.log("The loading indicator is now hidden");
+    //           // alert('loggedin');
+    //           $ionicHistory.nextViewOptions({
+    //           disableAnimate: true,
+    //           disableBack: true
+    //           });
+    //           $interval.cancel(loginStatus);
+    //           $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+    //           });
+    //           // alert(message);
+    //           }
+    //           var failure = function()
+    //           {
+    //           alert("Error calling Hello Plugin");
+    //           }
+    //
+    //           hello.login(uname1,pw1,success, failure);
+    //
+    //           $timeout( function(){
+    //           console.log('interval started');
+    //           $interval(checkNewMessages,1000);
+    //
+    //           }, 3000);
+    //           var username = "greet+"+$localStorage.user;
+    //           var password = "DQ_doctor";
+    //           function checkNewMessages()
+    //           {
+    //           var success = function(message)
+    //           {
+    //           $rootScope.unreadchatforpatient = message;
+    //           console.log($scope.unreadchatforpatient);
+    //           }
+    //
+    //           var failure = function()
+    //           {
+    //           console.log("Error calling Hello Plugin");
+    //           //console.log(‘error’);
+    //
+    //           }
+    //           hello.unreadchatfromusers(username,password,success, failure);
+    //           }
+    //           }
+    //           else{
+    //
+    //           $ionicLoading.show({
+    //           template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+    //           });
+    //           var success = function(message)
+    //           {
+    //           // alert(message);
+    //             $scope.iosLoggin=message;
+    //             $localStorage.iosLogin=$scope.iosLoggin;
+    //
+    //           }
+    //           var failure = function()
+    //           {
+    //
+    //             alert("Error calling Hello Plugin");
+    //
+    //           }
+    //
+    //           hello.login(uname1,pw1,success, failure);
+    //
+    //           $timeout( function(){
+    //           console.log('interval started');
+    //           $interval(loginStatus,2000,1);
+    //           }, 10000 );
+    //
+    //           function loginStatus() {
+    //           var success = function(message)
+    //           {
+    //               // alert(message);
+    //               $ionicLoading.hide().then(function(){
+    //               console.log("The loading indicator is now hidden");
+    //               // alert('loggedin');
+    //               $ionicHistory.nextViewOptions({
+    //               disableAnimate: true,
+    //               disableBack: true
+    //               });
+    //               $interval.cancel(loginStatus);
+    //
+    //               $state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+    //               });
+    //
+    //           }
+    //
+    //           var failure = function()
+    //           {
+    //             alert("Error Occurred While Loggin in to DoctoQuick");
+    //           }
+    //           hello.loginstatus(success,failure);
+    //           }
+    //
+    //           }
+    //
+    //
+    // },0);
 
 
 
