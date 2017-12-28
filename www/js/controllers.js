@@ -527,7 +527,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				});
 				$state.go('auth.loginNew',{}, {location: "replace", reload: false})
 		}
-	},10000);
+	},0);
 	$ionicHistory.clearHistory();
 })
 

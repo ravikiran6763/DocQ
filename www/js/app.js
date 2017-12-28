@@ -83,6 +83,8 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     function errorFunction(error) {
         console.log(error);
       }
+
+
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
     // if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -93,6 +95,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       return StatusBar.hide();
     }
     setTimeout(function() {
+      console.log('hide splash ');
         navigator.splashscreen.hide();
     }, 300);
 
@@ -102,6 +105,10 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
    }
    window.MobileAccessibility.getTextZoom(getTextZoomCallback);
 
+   window.addEventListener('keyboardDidShow', function () {
+       // Describe your logic which will be run each time keyboard is shown.
+       console.log('keborad shown');
+   });
 
   });
 
@@ -235,7 +242,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   if($localStorage.doctororpatient === "doctor" ){
 
       if($rootScope.pat_phnofromwebview){
-          $localStorage.onOff=2;
+          // $localStorage.onOff=2;
           $ionicLoading.show({
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
           duration:5000
@@ -263,7 +270,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   $timeout( function() {
     // $state.go('templates.loadingDoctor');
     if($rootScope.pat_phnofromwebview){
-        $localStorage.onOff=2;
+        // $localStorage.onOff=2;
         $ionicLoading.show({
         template: '<ion-spinner></ion-spinner><br><br>Please Wait',
         duration:5000
@@ -284,11 +291,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   }, 0);
 
 
+
   //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
 
   //cordova event handling
-
+  document.addEventListener('deviceready', function () {
+    console.log('splash hidden');
+    navigator.splashscreen.hide();
+  });
   document.addEventListener("resume", onResume, false);
   function onResume() {
 
@@ -1136,12 +1147,15 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
   var Storage = $injector.get('$localStorage');
   console.log(Storage.doctororpatient);
   if(Storage.doctororpatient === 'doctor'){
+    Storage.showConnecting = true;
     return '/templates/doctor_home';
   }
-  else if(Storage.doctororpatient === 'doctor'){
-    return '/app/patient_home';
+  else if(Storage.doctororpatient === 'patient'){
+    Storage.showConnecting = true;
+    return '/app/patientScreens';
   }
   else{
+    Storage.showConnecting = false;
     return '/auth/loginNew';
   }
 

@@ -8,12 +8,16 @@
     "angular": "^1.5.9",
     "angular-animate": "^1.5.9",
     "angular-aria": "^1.5.9",
-    "angular-material": "^1.3",
     "bcrypt": "^0.8.5",
     "bluebird": "^3.4.7",
     "body-parser": "~1.9.2",
+    "clean-css": "^4.1.9",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
+<<<<<<< HEAD
     "com.example.hello": "file:../newpluginforandroid/cordova-plugin-hello",
+=======
+    "com.example.hello": "file:../VSEE/VseePlugin",
+>>>>>>> 29f69f713d98600a8eeb40179c1c1ceef7807a2d
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-fabric-plugin": "^1.1.10",
@@ -29,8 +33,8 @@
     "cordova-plugin-network-information": "^1.3.4",
     "cordova-plugin-shared-preferences": "0.0.1",
     "cordova-plugin-splashscreen": "^4.1.0",
-    "cordova-plugin-statusbar": "^2.3.0",
-    "cordova-plugin-whitelist": "^1.2.0",
+    "cordova-plugin-statusbar": "^2.4.0",
+    "cordova-plugin-whitelist": "^1.3.3",
     "cordova-plugin-x-socialsharing": "git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
     "cordova-plugin-x-toast": "^2.6.0",
     "cordova-uglify": "^0.2.8",
@@ -44,14 +48,17 @@
     "gulp-sass": "^2.0.4",
     "ion-datetime-picker": "^0.5.2",
     "ionic-native-transitions": "^1.0.3",
+    "ionic-plugin-keyboard": "^2.2.1",
     "jwt-simple": "^0.3.1",
     "mongoose": "~4.2.4",
     "morgan": "~1.5.0",
+    "ng-annotate": "^1.2.2",
     "ng-intl-tel-input": "^2.0.0",
-    "onesignal-cordova-plugin": "^2.2.0",
+    "onesignal-cordova-plugin": "^2.2.5",
     "passport": "^0.3.0",
     "passport-jwt": "^1.2.1",
-    "phonegap-plugin-mobile-accessibility": "^1.0.5"
+    "phonegap-plugin-mobile-accessibility": "^1.0.5",
+    "uglify-js": "^3.3.2"
   },
   "devDependencies": {
     "bower": "^1.3.3",
@@ -95,16 +102,19 @@
       "phonegap-plugin-mobile-accessibility": {},
       "cordova-plugin-inappbrowser": {},
       "onesignal-cordova-plugin": {},
-      "cordova-fabric-plugin": {
-        "FABRIC_API_KEY": "ad99658b46c527c8efd4106bcdd26760def1a477",
-        "FABRIC_API_SECRET": "d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9"
-      },
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-compat": {},
+<<<<<<< HEAD
       "cordova-plugin-splashscreen": {},
       "com.greettelehealth.DoctorQuick": {}
+=======
+      "com.greettelehealth.DoctorQuick": {},
+      "cordova-plugin-splashscreen": {},
+      "com.example.hello": {},
+      "ionic-plugin-keyboard": {}
+>>>>>>> 29f69f713d98600a8eeb40179c1c1ceef7807a2d
     },
     "platforms": [
       "android"

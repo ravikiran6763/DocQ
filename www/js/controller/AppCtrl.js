@@ -40,6 +40,64 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 
 console.log($rootScope.previousState);
 
+
+// if($localStorage.doctororpatient === 'doctor'){
+// 	console.log('make doc available');
+//
+// 	var uname1 = "greet+"+$localStorage.user;
+// 	var pw1 = "DQ_doctor";
+// 	var success = function(message)
+// 	{
+// 		loggedIn=true;
+// 			$ionicLoading.hide().then(function(){
+// 				console.log("The loading indicator is now hidden");
+// 				$ionicHistory.nextViewOptions({
+// 					disableAnimate: true,
+// 					disableBack: true
+// 				});
+// 				$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+// 			});
+//
+//
+// 	}
+// 	var failure = function()
+// 	{
+//
+// 		alert("Error calling Hello Plugin");
+//
+// 	}
+// 	// $state.go('app.patient_home');//for browser login
+// 	hello.login(uname1,pw1,success, failure);
+// }
+// else{
+// 	var uname1 = "greet+"+$localStorage.user;
+// 	var pw1 = "DQ_patient";
+// 	var success = function(message)
+// 	{
+// 		loggedIn=true;
+// 			$ionicLoading.hide().then(function(){
+// 				console.log("The loading indicator is now hidden");
+// 				$ionicHistory.nextViewOptions({
+// 					disableAnimate: true,
+// 					disableBack: true
+// 				});
+// 				$state.go('app.patient_home', {}, {location: "replace", reload: false});
+// 			});
+//
+//
+// 	}
+// 	var failure = function()
+// 	{
+//
+// 		alert("Error calling Hello Plugin");
+//
+// 	}
+// 	// $state.go('app.patient_home');//for browser login
+// 	hello.login(uname1,pw1,success, failure);
+// 	console.log('make patient available');
+// }
+
+
 // $interval.cancel(checkAcceptedReq,2000);
 
 // console.log($location.path());
