@@ -15,6 +15,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.hideSideMenu = true;
 	$rootScope.inviteButton = false;
 
+  
 	$ionicConfig.views.swipeBackEnabled(false);
 
 	var specialitywise = "";
