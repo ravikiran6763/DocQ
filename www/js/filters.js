@@ -12,6 +12,19 @@ angular.module('DoctorQuick.filters', [])
   };
 })
 
+.filter('customSplitString', function() {
+  return function(input) {
+    var arr = input.split(',');
+    return arr;
+  };
+})
+
+.filter('customSpaceString', function() {
+  return function(input) {
+    var arr = input.split(' ');
+    return arr;
+  };
+})
 
 //the following filter capitalizes the first letter only
 .filter('capitalize', function() {

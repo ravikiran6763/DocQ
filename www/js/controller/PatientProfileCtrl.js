@@ -220,4 +220,24 @@ $scope.register = function() {
 			};
 
 
+			patientProfileDetailsService.emailVerification($localStorage.user).then(function(response){
+				$rootScope.email=response;
+				if($rootScope.email == 1){
+					$rootScope.emailVerified = false;
+					$rootScope.Verified = false;
+
+				}
+				if($rootScope.email == 2){
+					$rootScope.emailVerified = true;
+					$rootScope.Verified = true;
+
+				}
+
+				$ionicLoading.hide();
+				console.log($scope.email);
+
+			}).catch(function(error){
+			console.log('failure data', error);
+			})
+
 });

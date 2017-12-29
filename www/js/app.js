@@ -984,6 +984,17 @@ $stateProvider
     }
   })
 
+  .state('templates.changeEmail_doctor', {
+    url: "/changeEmail_doctor",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/changeEmail_doctor.html",
+        controller:'updateDoctorDetailsCtrl'
+
+      }
+    }
+  })
+
   .state('templates.doc_acc_statement', {
     url: "/doc_acc_statement",
     views: {
@@ -1153,7 +1164,8 @@ $stateProvider
     url: "/updatePassword",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/updatePassword.html"
+        templateUrl: "views/templates/updatePassword.html",
+        controller:'updateDoctorDetailsCtrl'
       }
     }
   })

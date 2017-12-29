@@ -33,6 +33,15 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     }, 0 );
 
+    doctorServices.doctorDetails($localStorage.user).then(function(response,data){
+      $rootScope.doctor_details=response;//store the response array in doctor details
+      console.log($rootScope.doctor_details);
+      window.localStorage['doctorDetails'] = angular.toJson(response);
+
+    }).catch(function(error){
+      console.log('failure data', error);
+    });
+
 
     $scope.docStatus = $localStorage.onOff;
 
