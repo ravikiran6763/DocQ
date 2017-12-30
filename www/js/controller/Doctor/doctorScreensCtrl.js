@@ -28,7 +28,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
         }
         $interval(availableInVsee,2000,1);
-        // $interval(checkNewMessages,2000);
+        $interval(checkNewMessages,2000);
 
 
     }, 0 );
@@ -97,7 +97,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
           var success = function(message)
           {
           $rootScope.unreadchatforpatient = message;
-          console.log($scope.unreadchatforpatient);
+          // console.log($scope.unreadchatforpatient);
           }
 
           var failure = function()

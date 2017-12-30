@@ -44,9 +44,11 @@ console.log($localStorage.doctororpatient);
 
   $scope.registerPatient=function()
   {
+      console.log($scope.loginDatasubmitted);
       var patientDetails = {};
-      $scope.loginDatasubmitted=false;
-      $state.go('auth.patient_reg1');
+      $rootScope.loginDatasubmitted=false;
+      console.log($scope.loginDatasubmitted);
+      $state.go('auth.patient_reg1', {}, {reload: true});
   }
 
   $scope.goToPatientReg2 = function ()
@@ -165,7 +167,7 @@ $scope.patientRegistration = function()
               });
               $scope.submitted = false;
               $scope.submitted2ndPage = false;
-
+              $rootScope.loginDatasubmitted=false;
 
               $state.go('auth.loginNew', {}, {location: "replace", reload: true});
               var details = {

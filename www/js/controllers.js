@@ -109,103 +109,287 @@ DoctorQuickApp.controller('doc_customercareCtrl', function($scope,$rootScope, $i
 	$rootScope.showDocStatus=false;
 
 })
-DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$rootScope, $ionicConfig,$localStorage,$ionicLoading,doctorServices) {
-  $scope.toggle = true;
-	$rootScope.headerTxt="Profile";
-	$rootScope.showBackBtn=true;
-	$rootScope.showNotification=false;
-	$rootScope.showBadge=false;
-	$rootScope.showDocStatus=false;
+DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$rootScope,$ionicPopup,$cordovaToast, $ionicConfig,$localStorage,$ionicLoading,doctorServices) {
+				$scope.toggle = true;
+				$rootScope.headerTxt="Profile";
+				$rootScope.showBackBtn=true;
+				$rootScope.showNotification=false;
+				$rootScope.showBadge=false;
+				$rootScope.showDocStatus=false;
 
-	doctorServices.doctorEmailVerification($localStorage.user).then(function(response){
-		$rootScope.email=response;
-		if($rootScope.email == 1){
-			$rootScope.emailVerified = false;
-			$rootScope.Verified = false;
+				doctorServices.doctorEmailVerification($localStorage.user).then(function(response){
+				$rootScope.email=response;
+				if($rootScope.email == 1){
+				$rootScope.emailVerified = false;
+				$rootScope.Verified = false;
 
-		}
-		if($rootScope.email == 2){
-			$rootScope.emailVerified = true;
-			$rootScope.Verified = true;
+				}
+				if($rootScope.email == 2){
+				$rootScope.emailVerified = true;
+				$rootScope.Verified = true;
 
-		}
+				}
 
-		$ionicLoading.hide();
-		console.log($scope.email);
+				$ionicLoading.hide();
+				console.log($scope.email);
 
-	}).catch(function(error){
-	console.log('failure data', error);
-	})
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+
+				$scope.emailToUpdate={};
+				$scope.updateDoctorEmail = function(){
+				console.log($scope.emailToUpdate.email);
+				console.log($scope.emailToUpdate.verify);
+
+				if(!$scope.emailToUpdate.email || !$scope.emailToUpdate.verify){
+				// alert('empty');
+				window.plugins.toast.showWithOptions({
+				message: "Enter a valid email id",
+				duration: "short", // 2000 ms
+				position: "bottom",
+				styling: {
+				opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+				backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+				textColor: '#ffffff', // Ditto. Default #FFFFFF
+				textSize: 13, // Default is approx. 13.
+				cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+				horizontalPadding: 16, // iOS default 16, Android default 50
+				verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+				}
+				else if($scope.emailToUpdate.email != $scope.emailToUpdate.verify){
+					console.log('toast here');
+					window.plugins.toast.showWithOptions({
+					message: "Check your mail id",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+					}
+					});
+
+				}
+				else if($scope.emailToUpdate.email === $scope.emailToUpdate.verify){
+				var emailDetails={
+				newMail:$scope.emailToUpdate.email,
+				phone:$localStorage.user
+				}
+				console.log('verified');
+				doctorServices.updateDoctorEmail(emailDetails).then(function(response){
+				$rootScope.emailSent=response;
+				if(response === 'MailSent'){
+				var confirmPopup = $ionicPopup.confirm({
+					// title: 'DoctorQuick',
+					template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+					cssClass: 'videoPopup',
+					scope: $scope,
+					buttons: [
+						{
+							text: 'OK',
+							type: 'button-assertive',
+							onTap: function(e) {
+							console.log('offline');
+							$state.go("templates.doctor_home");
+							}
+						},
+					]
+				});
+				}
+				console.log($rootScope.emailSent);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+				}
+				else{
+				console.log('check the mail id');
+				}
+
+
+				};
+
+				$scope.sendVerificationMailToDoc = function(){
+				console.log('send mail');
+
+				doctorServices.sendVerificationMailToDoc($localStorage.user).then(function(response){
+				if(response === 'MailSent'){
+				console.log('toast here');
+				var confirmPopup = $ionicPopup.confirm({
+				// title: 'DoctorQuick',
+				template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+				cssClass: 'videoPopup',
+				scope: $scope,
+				buttons: [
+					{
+						text: 'OK',
+						type: 'button-assertive',
+						onTap: function(e) {
+						console.log('offline');
+						$state.go("templates.doctor_home");
+						}
+					},
+				]
+				});
+				}
+				$rootScope.emailSent=response;
+				console.log($rootScope.emailSent);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+				};
 
 
 })
 
-DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$rootScope,$ionicLoading, $ionicConfig,$localStorage,patientProfileDetailsService) {
-  $scope.toggle = true;
-	$rootScope.headerTxt="Profile";
-	$rootScope.showBackBtn=true;
-	$rootScope.showNotification=false;
-	$rootScope.showBadge=false;
-	$rootScope.showDocStatus=false;
+DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$rootScope,$ionicLoading,$ionicPopup,$cordovaToast, $ionicConfig,$localStorage,patientProfileDetailsService) {
+				$scope.toggle = true;
+				$rootScope.headerTxt="Profile";
+				$rootScope.showBackBtn=true;
+				$rootScope.showNotification=false;
+				$rootScope.showBadge=false;
+				$rootScope.showDocStatus=false;
 
-console.log('update controller active');
-patientProfileDetailsService.emailVerification($localStorage.user).then(function(response){
-	$rootScope.email=response;
-	if($rootScope.email == 1){
-		$rootScope.emailVerified = false;
-		$rootScope.Verified = false;
+				console.log('update controller active');
+				patientProfileDetailsService.emailVerification($localStorage.user).then(function(response){
+				$rootScope.email=response;
+				if($rootScope.email == 1){
+				$rootScope.emailVerified = false;
+				$rootScope.Verified = false;
 
-	}
-	if($rootScope.email == 2){
-		$rootScope.emailVerified = true;
-		$rootScope.Verified = true;
+				}
+				if($rootScope.email == 2){
+				$rootScope.emailVerified = true;
+				$rootScope.Verified = true;
 
-	}
+				}
 
-	$ionicLoading.hide();
-	console.log($scope.email);
+				$ionicLoading.hide();
+				console.log($scope.email);
 
-}).catch(function(error){
-console.log('failure data', error);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+
+				$scope.sendVerificationMail = function(){
+				console.log('send mail');
+
+				patientProfileDetailsService.sendVerificationMail($localStorage.user).then(function(response){
+				$rootScope.emailSent=response;
+				if(response){
+				var confirmPopup = $ionicPopup.confirm({
+				// title: 'DoctorQuick',
+				template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+				cssClass: 'videoPopup',
+				scope: $scope,
+				buttons: [
+				{
+					text: 'OK',
+					type: 'button-assertive',
+					onTap: function(e) {
+					console.log('offline');
+					$state.go("app.patient_home");
+					}
+				},
+				]
+				});
+				}
+				console.log($rootScope.emailSent);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+				};
+
+
+				$scope.emailToUpdate={};
+				$scope.updateEmail = function(){
+				console.log($scope.emailToUpdate.email);
+				console.log($scope.emailToUpdate.verify);
+
+				if(!$scope.emailToUpdate.email || !$scope.emailToUpdate.verify){
+				// alert('empty');
+				window.plugins.toast.showWithOptions({
+				message: "Enter a valid email id",
+				duration: "short", // 2000 ms
+				position: "bottom",
+				styling: {
+				opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+				backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+				textColor: '#ffffff', // Ditto. Default #FFFFFF
+				textSize: 13, // Default is approx. 13.
+				cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+				horizontalPadding: 16, // iOS default 16, Android default 50
+				verticalPadding: 12 // iOS default 12, Android default 30
+				}
+				});
+				}
+				else if($scope.emailToUpdate.email != $scope.emailToUpdate.verify){
+					console.log('toast here');
+					window.plugins.toast.showWithOptions({
+					message: "Check your mail id",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+					}
+					});
+
+				}
+				else if($scope.emailToUpdate.email === $scope.emailToUpdate.verify){
+				console.log('verified');
+				var mailData={
+				newMail:$scope.emailToUpdate.email,
+				phone:$localStorage.user
+				}
+				patientProfileDetailsService.updateEmail(mailData).then(function(response){
+				$rootScope.emailSent=response;
+				if(response){
+				// alert('sent');
+				var confirmPopup = $ionicPopup.confirm({
+				// title: 'DoctorQuick',
+				template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+				cssClass: 'videoPopup',
+				scope: $scope,
+				buttons: [
+					{
+						text: 'OK',
+						type: 'button-assertive',
+						onTap: function(e) {
+						console.log('offline');
+						$state.go("app.patient_home");
+						}
+					},
+				]
+				});
+				}
+				console.log($rootScope.emailSent);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+				}
+
+				// An email confiramtion link to your email address has been sent. Click the link in that email to complete  registering your email. Make suure to check your spam box in case it got filtered
+				else{
+				console.log('check the mail id');
+				}
+
+
+				};
+
+
 })
-
-$scope.sendVerificationMail = function(){
-	console.log('send mail');
-
-	patientProfileDetailsService.sendVerificationMail($localStorage.user).then(function(response){
-		$rootScope.emailSent=response;
-		console.log($rootScope.emailSent);
-	}).catch(function(error){
-	console.log('failure data', error);
-	})
-};
-
-
-$scope.emailToUpdate={};
-$scope.updateEmail = function(){
-	console.log($scope.emailToUpdate.email);
-	console.log($scope.emailToUpdate.verify);
-
-	if($scope.emailToUpdate.email === $scope.emailToUpdate.verify){
-		console.log('verified');
-		patientProfileDetailsService.updateEmail($localStorage.user).then(function(response){
-			$rootScope.emailSent=response;
-			console.log($rootScope.emailSent);
-		}).catch(function(error){
-		console.log('failure data', error);
-		})
-	}
-	else{
-		console.log('check the mail id');
-	}
-
-
-};
-
-
-})
-
-
 
 DoctorQuickApp.controller('SignupCtrl', function($scope, $state) {
 	$scope.user = {};

@@ -137,6 +137,10 @@ DoctorQuickApp.constant('BASE_URL', {
         'notifyPatient':'doctor/notifyPatient.php',
         'generateTinyUrl':'doctor/generateTinyUrl.php',
         'doctorEmailVerification':'doctor/doctorEmailVerification.php',
+        'updateDoctorEmail':'doctor/updateDoctorEmail.php',
+        'sendVerificationMailToDoc':'doctor/sendVerificationMailToDoc.php',
+
+
 
 
 

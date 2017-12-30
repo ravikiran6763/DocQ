@@ -28,7 +28,7 @@
         <div class="row">
               <div class="col">Email</div>
 
-              <div class="col col-67">{{patient.patientEmail}}</div>
+              <div class="col col-67" style="overflow: hidden !important; text-overflow: ellipsis; word-wrap: normal;">{{patient.patientEmail}}</div>
               <i class=" ion-checkmark-circled"  style="font-size: 112%; margin: 8px 2px 0 0px ;     margin-left: -5px;" ng-show="emailVerified"></i>
               <i class="ion-android-alert" style="font-size: 112%; margin: 8px 2px 0 0px ;     margin-left: -5px;"  ng-hide="emailVerified"></i>
               <i class="icon ion-chevron-right icon-accessory" ></i>

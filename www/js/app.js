@@ -38,21 +38,21 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
 ])
 
 DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval,$ionicPlatform) {
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-  //print here
-  $interval.cancel($rootScope.loginInterval);
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      //print here
+      $interval.cancel($rootScope.loginInterval);
+      //
+      // $ionicPlatform.registerBackButtonAction(function(){
+      //   if($ionicHistory.currentStateName === 'templates.inviteresult'){
+      //     console.log('back button disabled');
+      //     event.preventDefault();
+      //   }else{
+      //     $ionicHistory.goBack();
+      //   }
+      // }, 100);
 
-  // $ionicPlatform.registerBackButtonAction(function(){
-  //   if($ionicHistory.currentStateName === 'templates.inviteresult'){
-  //     console.log('back button disabled');
-  //     event.preventDefault();
-  //   }else{
-  //     $ionicHistory.goBack();
-  //   }
-  // }, 100);
 
-
-});
+    });
 }])
 DoctorQuickApp.run(function($rootScope, $ionicPlatform, $ionicScrollDelegate){
 
@@ -62,15 +62,15 @@ DoctorQuickApp.run(function($rootScope, $ionicPlatform, $ionicScrollDelegate){
           }
       });
 
-      $rootScope.$on('$ionicView.loaded', function () {
-          if (window.cordova && window.cordova.plugins.Keyboard) {
-              cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false); // This makes the accessory bar visible and it only works when the view is loaded and DOM ready
-          }
-      });
+      // $rootScope.$on('$ionicView.loaded', function () {
+      //     if (window.cordova && window.cordova.plugins.Keyboard) {
+      //         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false); // This makes the accessory bar visible and it only works when the view is loaded and DOM ready
+      //     }
+      // });
 
-      window.addEventListener('native.keyboardshow', function () {
-          $ionicScrollDelegate.scrollBy(0, 1); //This will return focus to the current input once the keyboard slides-up in the view
-      });
+      // window.addEventListener('native.keyboardshow', function () {
+      //     $ionicScrollDelegate.scrollBy(0, 1); //This will return focus to the current input once the keyboard slides-up in the view
+      // });
 
 });
 
@@ -90,7 +90,6 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
       }, false);
 
 })
-
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage){
   $ionicPlatform.ready(function() {
@@ -182,7 +181,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           //
           if(window.StatusBar){
           // StatusBar.styleDefault();
-          StatusBar.overlaysWebView(true);
+            // StatusBar.overlaysWebView(true);
             StatusBar.hide();
           }
 
@@ -335,22 +334,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   $rootScope.previousState = fromState;
   console.log(toState.name.indexOf('app.patient_home'));
   console.log(toState.name.indexOf());
-  // if(toState.name.indexOf('app.patient_home') > -1)
-  // {
-  //
-  //     // Restore platform default transition. We are just hardcoding android transitions to auth views.
-  //     // $ionicConfig.views.transition(none);
-  //     // If it's ios, then enable swipe back again
-  //     if(ionic.Platform.isIOS())
-  //     {
-  //         $ionicConfig.views.transition('none');
-  //         $ionicConfig.views.swipeBackEnabled(false);
-  //     }
-  //     else{
-  //         $ionicConfig.views.transition('platform');
-  //     }
-  //     console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
-  // }
+  if(toState.name.indexOf('app.patient_home') > -1)
+  {
+
+      // Restore platform default transition. We are just hardcoding android transitions to auth views.
+      // $ionicConfig.views.transition(none);
+      // If it's ios, then enable swipe back again
+      if(ionic.Platform.isIOS())
+      {
+          $ionicConfig.views.transition('none');
+          $ionicConfig.views.swipeBackEnabled(false);
+      }
+      else{
+          $ionicConfig.views.transition('platform');
+      }
+      console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+  }
   console.log(toState.name);
   console.log(fromState.name);
 
@@ -407,7 +406,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
             });
 
       }
-      else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted") {
+      else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted"){
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
             $ionicHistory.nextViewOptions({
@@ -455,7 +454,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
       }
       else if($rootScope.previousState.name === "templates.sendPrescription"){
 
-
           $state.go("templates.doctor_home")
 
       }
@@ -486,14 +484,16 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           disableAnimate: true,
           disableBack: true
           });
+          
           $state.go("auth.loginNew",{reload:true})
       }
       else {
+        console.log('goback to prev view');
           // For all other states, the H/W BACK button is enabled
           // navigator.app.backHistory();
-          // window.history.back();
+          window.history.back();
           // window.history.go(-(history.length - 1));
-          $ionicHistory.backView();
+          // $ionicHistory.goBack();
       }
   }, 1000);
 
