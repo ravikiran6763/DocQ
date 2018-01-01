@@ -103,6 +103,7 @@ else {
   $rootScope.hideSideMenu = true;
   $localStorage.activePatient=$stateParams.reqPat;
   $scope.subPatient='';
+  $localStorage.showConnecting =false;
   // $scope.newpatientAdded=doctorServices.getNewPatient();
   // $scope.newPatientFname=$scope.newpatientAdded.fname;
   // $scope.newPatientLname=$scope.newpatientAdded.lname;

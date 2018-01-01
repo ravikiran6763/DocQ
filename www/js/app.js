@@ -38,22 +38,41 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
 ])
 
 DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval,$ionicPlatform) {
-  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-  //print here
-  $interval.cancel($rootScope.loginInterval);
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+      //print here
+      $interval.cancel($rootScope.loginInterval);
+      //
+      // $ionicPlatform.registerBackButtonAction(function(){
+      //   if($ionicHistory.currentStateName === 'templates.inviteresult'){
+      //     console.log('back button disabled');
+      //     event.preventDefault();
+      //   }else{
+      //     $ionicHistory.goBack();
+      //   }
+      // }, 100);
 
-  // $ionicPlatform.registerBackButtonAction(function(){
-  //   if($ionicHistory.currentStateName === 'templates.inviteresult'){
-  //     console.log('back button disabled');
-  //     event.preventDefault();
-  //   }else{
-  //     $ionicHistory.goBack();
-  //   }
-  // }, 100);
 
+    });
+}])
+DoctorQuickApp.run(function($rootScope, $ionicPlatform, $ionicScrollDelegate){
+
+      $ionicPlatform.ready(function () {
+          if (window.cordova && window.cordova.plugins.Keyboard){
+              cordova.plugins.Keyboard.disableScroll(true); // This will prevent the view to bounce when inputs are on focus
+          }
+      });
+
+      // $rootScope.$on('$ionicView.loaded', function () {
+      //     if (window.cordova && window.cordova.plugins.Keyboard) {
+      //         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false); // This makes the accessory bar visible and it only works when the view is loaded and DOM ready
+      //     }
+      // });
+
+      // window.addEventListener('native.keyboardshow', function () {
+      //     $ionicScrollDelegate.scrollBy(0, 1); //This will return focus to the current input once the keyboard slides-up in the view
+      // });
 
 });
-}])
 
 DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
   // console.log(navigator.onLine);
@@ -72,8 +91,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 
 })
 
-
-DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage) {
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage){
   $ionicPlatform.ready(function() {
     window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
@@ -84,16 +102,13 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
         console.log(error);
       }
 
-
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-    // if (window.cordova && window.cordova.plugins.Keyboard) {
-    //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    // }
-    ionic.Platform.fullScreen();
-    if (window.StatusBar) {
-      return StatusBar.hide();
+    if (window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
+    ionic.Platform.fullScreen();
+
     setTimeout(function() {
       console.log('hide splash ');
         navigator.splashscreen.hide();
@@ -105,9 +120,18 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
    }
    window.MobileAccessibility.getTextZoom(getTextZoomCallback);
 
-   window.addEventListener('keyboardDidShow', function () {
-       // Describe your logic which will be run each time keyboard is shown.
-       console.log('keborad shown');
+      // window.addEventListener('native.keyboardshow', function(e){
+      //   setTimeout(function() {
+      //     document.activeElement.scrollIntoViewIfNeeded();
+      //   }, 100);
+      // });
+      window.addEventListener('native.keyboardshow', function (e) {
+       console.log('keyboard opened');
+   });
+
+   window.addEventListener('native.keyboardhide', function () {
+
+       console.log('keyboard closed');
    });
 
   });
@@ -128,120 +152,114 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       //console.log('Connection type: ' + $localStorage.networkType);
   }
 
-  // document.addEventListener("offline", onOffline, false);
-  // function onOffline() {
-  //     // Handle the offline event
-  //     console.log('offline');
-  //     alert('offline');
-  //
-  // }
 })
 
 DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
 
-    var deviceID = device.uuid;
-    $localStorage.deviceID=deviceID;
-    console.log($localStorage.deviceID);
+          var deviceID = device.uuid;
+          $localStorage.deviceID=deviceID;
+          console.log($localStorage.deviceID);
 
-    var deviceHardwareSerial = device.serial;
-    $localStorage.serial=deviceHardwareSerial;
-    console.log($localStorage.serial);
+          var deviceHardwareSerial = device.serial;
+          $localStorage.serial=deviceHardwareSerial;
+          console.log($localStorage.serial);
 
-    console.log(deviceHardwareSerial);
+          console.log(deviceHardwareSerial);
 
-  if (ionic.Platform.isAndroid()) {
-    window.addEventListener("native.hidekeyboard", function () {
-    StatusBar.hide();
-    window.AndroidFullScreen.immersiveMode(false, false);
-    });
-  }
-  else {
-    console.log("localStorage previous value",$localStorage.sendPrescTo);
-    $localStorage.sendPrescTo = "";
-    console.log("localStorage after value",$localStorage.sendPrescTo);
-  }
+          if (ionic.Platform.isAndroid()) {
+              window.addEventListener("native.hidekeyboard", function () {
+                  StatusBar.hide();
+                  window.AndroidFullScreen.immersiveMode(false, false);
+              });
+          }
+          else {
+          console.log("localStorage previous value",$localStorage.sendPrescTo);
+          $localStorage.sendPrescTo = "";
+          console.log("localStorage after value",$localStorage.sendPrescTo);
+          }
+          //
+          if(window.StatusBar){
+          // StatusBar.styleDefault();
+            // StatusBar.overlaysWebView(true);
+            StatusBar.hide();
+          }
 
-  if(window.StatusBar){
-    // StatusBar.styleDefault();
-    StatusBar.hide();
-  }
+          if (window.Connection){
+          if (navigator.connection.type == Connection.NONE)
+          {
+          toast.show("Internet is disconnected on your device");
+          };
+          };
 
-  if (window.Connection){
-    if (navigator.connection.type == Connection.NONE)
-    {
-    toast.show("Internet is disconnected on your device");
-    };
-  };
+          function successFunction() {
+          console.info("It worked!");
+          }
+          function errorFunction(error){
+          console.error(error);
+          }
+          function trace(value){
+          console.log(value);
+          }
+          AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+          //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
-  function successFunction() {
-    console.info("It worked!");
-  }
-  function errorFunction(error){
-    console.error(error);
-  }
-  function trace(value){
-    console.log(value);
-  }
-  AndroidFullScreen.immersiveMode(successFunction, errorFunction);
-  //-------------------------------------ONESIGNAL PUSH SETUP---------------------
+          window.plugins.OneSignal.getIds(function(ids) {
+          // alert('getIds: ' + JSON.stringify(ids));
+          console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+          });
+          var iosSettings = {};
+          iosSettings["kOSSettingsKeyAutoPrompt"] = true;
+          iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
 
-  window.plugins.OneSignal.getIds(function(ids) {
-    // alert('getIds: ' + JSON.stringify(ids));
-    console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
-  });
-  var iosSettings = {};
-  iosSettings["kOSSettingsKeyAutoPrompt"] = true;
-  iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
+          var notificationOpenedCallback = function(jsonData) {
+          alert("Notification opened:\n" + JSON.stringify(jsonData));
+          console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+          };
 
-  var notificationOpenedCallback = function(jsonData) {
-    alert("Notification opened:\n" + JSON.stringify(jsonData));
-    console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
-  };
+          // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
 
-    // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
+          window.plugins.OneSignal
+          // .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")//old one from ravikiran6763@gmail.com
+          .startInit("e215d4e2-486f-4f19-984b-e54e8b63f891")//from services.doctorquick
+          .iOSSettings(iosSettings)
+          .endInit();
 
-  window.plugins.OneSignal
-  // .startInit("6873c259-9a11-4a2a-a3b5-53aea7d59429")//old one from ravikiran6763@gmail.com
-  .startInit("e215d4e2-486f-4f19-984b-e54e8b63f891")//from services.doctorquick
-  .iOSSettings(iosSettings)
-  .endInit();
+          window.plugins.OneSignal
+          .startInit( "e215d4e2-486f-4f19-984b-e54e8b63f891")
+          .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+          // Notification - native notification display while user has app in focus (can be distracting).
+          // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
+          // None - notification is silent.
+          .handleNotificationOpened(function(jsonData) {
+          var data = jsonData.notification.payload.additionalData;
+          // console.log('fromPush',data.reqId);
+          console.log("Notification opened:\n" + JSON.stringify(jsonData));
+          console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
 
-  window.plugins.OneSignal
-  .startInit( "e215d4e2-486f-4f19-984b-e54e8b63f891")
-  .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
-  // Notification - native notification display while user has app in focus (can be distracting).
-  // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
-  // None - notification is silent.
-  .handleNotificationOpened(function(jsonData) {
-      var data = jsonData.notification.payload.additionalData;
-      // console.log('fromPush',data.reqId);
-      console.log("Notification opened:\n" + JSON.stringify(jsonData));
-      console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+          $ionicHistory.nextViewOptions({
+          disableAnimate: true,
+          disableBack: true
+          });
+          $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+          })
+          .endInit();
 
-      $ionicHistory.nextViewOptions({
-      disableAnimate: true,
-      disableBack: true
-      });
-      $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
-  })
-  .endInit();
+          console.log('deviceredy');
+          console.log($localStorage.doctororpatient);
 
-  console.log('deviceredy');
-  console.log($localStorage.doctororpatient);
+          $rootScope.deviceAndroid = ionic.Platform.isAndroid();
+          $rootScope.deviceIOS = ionic.Platform.isIOS();
 
-  $rootScope.deviceAndroid = ionic.Platform.isAndroid();
-  $rootScope.deviceIOS = ionic.Platform.isIOS();
+          if($rootScope.deviceIOS){
+          console.log("iosDevice:",$rootScope.deviceIOS);
+          }
 
-  if($rootScope.deviceIOS){
-    console.log("iosDevice:",$rootScope.deviceIOS);
-  }
+          console.log('iospatientValue:',$localStorage.sendPrescTo);
 
-  console.log('iospatientValue:',$localStorage.sendPrescTo);
+          if($localStorage.doctororpatient === "doctor" ){
 
-  if($localStorage.doctororpatient === "doctor" ){
-
-      if($rootScope.pat_phnofromwebview){
+          if($rootScope.pat_phnofromwebview){
           // $localStorage.onOff=2;
           $ionicLoading.show({
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
@@ -250,49 +268,49 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           console.log($rootScope.pat_phnofromwebview);
           $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
           return '/templates/sendPrescription';
-      }
+          }
 
-      if($rootScope.deviceIOS === true){
-        if($localStorage.sendPrescTo != ''){
+          if($rootScope.deviceIOS === true){
+          if($localStorage.sendPrescTo != ''){
           console.log("iosDevice:");
           console.log("iospatient:",$localStorage.sendPrescTo);
           $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
           return '/templates/sendPrescription';
-        }
-      }
+          }
+          }
 
-  }
+          }
 
-  else{
-    //do nothing
-    console.log('UNDEFINED');
-  }
-  $timeout( function() {
-    // $state.go('templates.loadingDoctor');
-    if($rootScope.pat_phnofromwebview){
-        // $localStorage.onOff=2;
-        $ionicLoading.show({
-        template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-        duration:5000
-        });
-        console.log($rootScope.pat_phnofromwebview);
-        $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-        return '/templates/sendPrescription';
-    }
+          else{
+          //do nothing
+          console.log('UNDEFINED');
+          }
+          $timeout( function() {
+          // $state.go('templates.loadingDoctor');
+          if($rootScope.pat_phnofromwebview){
+          // $localStorage.onOff=2;
+          $ionicLoading.show({
+          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+          duration:5000
+          });
+          console.log($rootScope.pat_phnofromwebview);
+          $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+          return '/templates/sendPrescription';
+          }
 
-    if($rootScope.deviceIOS === true){
-      if($localStorage.sendPrescTo != ''){
-        console.log("iosDevice:");
-        console.log("iospatient:",$localStorage.sendPrescTo);
-        $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
-        return '/templates/sendPrescription';
-      }
-    }
-  }, 0);
+          if($rootScope.deviceIOS === true){
+          if($localStorage.sendPrescTo != ''){
+          console.log("iosDevice:");
+          console.log("iospatient:",$localStorage.sendPrescTo);
+          $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+          return '/templates/sendPrescription';
+          }
+          }
+          }, 0);
 
 
 
-  //-------------------------------------ONESIGNAL PUSH SETUP---------------------
+          //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
 
   //cordova event handling
@@ -316,22 +334,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   $rootScope.previousState = fromState;
   console.log(toState.name.indexOf('app.patient_home'));
   console.log(toState.name.indexOf());
-  // if(toState.name.indexOf('app.patient_home') > -1)
-  // {
-  //
-  //     // Restore platform default transition. We are just hardcoding android transitions to auth views.
-  //     // $ionicConfig.views.transition(none);
-  //     // If it's ios, then enable swipe back again
-  //     if(ionic.Platform.isIOS())
-  //     {
-  //         $ionicConfig.views.transition('none');
-  //         $ionicConfig.views.swipeBackEnabled(false);
-  //     }
-  //     else{
-  //         $ionicConfig.views.transition('platform');
-  //     }
-  //     console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
-  // }
+  if(toState.name.indexOf('app.patient_home') > -1)
+  {
+
+      // Restore platform default transition. We are just hardcoding android transitions to auth views.
+      // $ionicConfig.views.transition(none);
+      // If it's ios, then enable swipe back again
+      if(ionic.Platform.isIOS())
+      {
+          $ionicConfig.views.transition('none');
+          $ionicConfig.views.swipeBackEnabled(false);
+      }
+      else{
+          $ionicConfig.views.transition('platform');
+      }
+      console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+  }
   console.log(toState.name);
   console.log(fromState.name);
 
@@ -388,7 +406,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
             });
 
       }
-      else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted") {
+      else if($rootScope.previousState.name === "app.patient_summary" || $rootScope.previousState.name === "app.callAccepted"){
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
             $ionicHistory.nextViewOptions({
@@ -430,12 +448,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
             });
       }
       else if($state.$current.name === "templates.sendPrescription"){
-          // $ionicHistory.clearCache();
-          // $ionicHistory.clearHistory();
-          // $ionicHistory.nextViewOptions({
-          //   disableAnimate: true,
-          //   disableBack: true
-          // });
+
+          $state.go("templates.doctor_home")
+
+      }
+      else if($rootScope.previousState.name === "templates.sendPrescription"){
+
           $state.go("templates.doctor_home")
 
       }
@@ -466,14 +484,16 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           disableAnimate: true,
           disableBack: true
           });
+          
           $state.go("auth.loginNew",{reload:true})
       }
       else {
+        console.log('goback to prev view');
           // For all other states, the H/W BACK button is enabled
           // navigator.app.backHistory();
-          // window.history.back();
+          window.history.back();
           // window.history.go(-(history.length - 1));
-          $ionicHistory.backView();
+          // $ionicHistory.goBack();
       }
   }, 1000);
 
@@ -964,6 +984,17 @@ $stateProvider
     }
   })
 
+  .state('templates.changeEmail_doctor', {
+    url: "/changeEmail_doctor",
+    views: {
+      'menuContent': {
+        templateUrl: "views/templates/changeEmail_doctor.html",
+        controller:'updateDoctorDetailsCtrl'
+
+      }
+    }
+  })
+
   .state('templates.doc_acc_statement', {
     url: "/doc_acc_statement",
     views: {
@@ -1133,7 +1164,8 @@ $stateProvider
     url: "/updatePassword",
     views: {
       'menuContent': {
-        templateUrl: "views/templates/updatePassword.html"
+        templateUrl: "views/templates/updatePassword.html",
+        controller:'updateDoctorDetailsCtrl'
       }
     }
   })
@@ -1144,11 +1176,70 @@ $stateProvider
 
 $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootScope) {
 
+  var $state = $injector.get('$state');
   var Storage = $injector.get('$localStorage');
+  var rootScope = $injector.get('$rootScope');
+
   console.log(Storage.doctororpatient);
   if(Storage.doctororpatient === 'doctor'){
     Storage.showConnecting = true;
-    return '/templates/doctor_home';
+    console.log(Storage.sendPrescTo);
+      var userType=Storage.doctororpatient;
+      var userNum=Storage.user;
+      console.log(userType);
+
+      var get = getUrlVars();
+      console.log('thisis after getting');
+      console.log(get["phno"]);
+      rootScope.pat_phnofromwebview = get["phno"];
+
+    function getUrlVars() {
+    var vars = {};
+    /*Splits the variables into chuncks*/
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    /*Takes those chunks and removes anything after the hashtag*/
+    vars[key] = value.replace(/#\b[^#]*$/gi, '');
+
+    });
+
+    console.log('from webviewactivity');
+    console.log(vars);
+    return vars;
+
+    }
+    if(rootScope.pat_phnofromwebview){
+      if($localStorage.doctororpatient === "doctor" ){
+
+          if($rootScope.pat_phnofromwebview){
+            console.log('Route to prescription view :)');
+              Storage.showConnecting = false;
+              $ionicLoading.show({
+              template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+              duration:5000
+              });
+              console.log($rootScope.pat_phnofromwebview);
+              $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+              return '/templates/sendPrescription';
+          }
+          //
+          // if($rootScope.deviceIOS === true){
+          //   if($localStorage.sendPrescTo != ''){
+          //     console.log("iosDevice:");
+          //     console.log("iospatient:",$localStorage.sendPrescTo);
+          //     $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+          //     return '/templates/sendPrescription';
+          //   }
+          // }
+
+
+
+      }
+    }
+    else{
+      console.log("normal routing");
+      return '/templates/doctor_home';
+
+    }
   }
   else if(Storage.doctororpatient === 'patient'){
     Storage.showConnecting = true;

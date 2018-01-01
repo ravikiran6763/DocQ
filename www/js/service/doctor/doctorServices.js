@@ -335,6 +335,45 @@ this.doctorStatus = function (doctor){
   return deferred.promise;
 }
 
+this.doctorEmailVerification = function (doctor){
+  console.log(doctor);
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.doctorEmailVerification,doctor)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
+this.updateDoctorEmail = function (doctor){
+  console.log(doctor);
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.updateDoctorEmail,doctor)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
+this.sendVerificationMailToDoc = function (doctor){
+  console.log(doctor);
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.sendVerificationMailToDoc,doctor)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+}
+
 
 
 
