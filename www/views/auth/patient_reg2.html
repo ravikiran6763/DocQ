@@ -29,19 +29,20 @@
           <img  ng-hide='true' ng-src="img/patientAvatar.png" ng-model='PatientDetail.patientAvatar' >
           <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}><span class="intlReg">+91</span></input>
         </div>
-        <div class="form-group button-bar" >
+
+                <div class="form-group" >
+                  <input type="email" class="form-control" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
+
+                </div>
+
+                <div class="form-group" >
+                  <input type="password" class="form-control" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password" ng-minlength=4  required ValidateAlphaNumeric>
+                </div>
+        <div class="form-group button-bar">
           <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'Male'" required><span >Male</span></ion-radio>
           <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'Female'" required><span >Female</span></ion-radio>
         </div>
 
-        <div class="form-group" >
-          <input type="email" class="form-control" placeholder="Email Address" name="pat_email" name="pat_email" ng-model="PatientDetail.pat_email" validate-email required>
-
-        </div>
-
-        <div class="form-group" >
-          <input type="password" class="form-control" placeholder="Password"  name="pat_password" ng-model="PatientDetail.pat_password" ng-minlength=4  required ValidateAlphaNumeric>
-        </div>
         <p> Prescription and consultation receipts will be<br>mailed to this email address.</p>
     </form>
   </div>

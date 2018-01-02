@@ -117,7 +117,8 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 					 $scope.$on('$destroy', function(){
 					 $timeout.cancel(patientTimeout);
 					 console.log('destroyed');
-
+					 $scope.callAccept.close();
+					 $window.location.reload();
 
 
 
@@ -241,6 +242,7 @@ $interval(checkDocStatus, 1000);
 						$scope.cancelledReq=response;
 						$localStorage.one2oneId=0;
 						$localStorage.callStatus=0;
+						$scope.callAccept.close();
 						console.log($scope.cancelledReq);
 						}).catch(function(error){
 							console.log('failure data', error);
@@ -353,7 +355,7 @@ $interval(checkDocStatus, 1000);
 						console.log('delay 3 sec');
 					}, 3000);
 					console.log('value changed');
-					$scope.alertPopup.close();
+					// $scope.alertPopup.close();
 					$scope.callAccept = $ionicPopup.show({
 				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
 				 			 cssClass: 'requestPopup',
@@ -434,6 +436,7 @@ $interval(checkDocStatus, 1000);
 									}
 									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
 									{
+										console.log($rootScope.callType );
 										var success = function(message)
 										{
 
@@ -462,10 +465,10 @@ $interval(checkDocStatus, 1000);
 											alert("Error calling Hello Plugin");
 										}
 
-										if($rootScope.callType == 2){
+										if($rootScope.callType == 5){
 											hello.greet(uname,pw,persontocall,success, failure);
 										}
-										if($rootScope.callType == 3){
+										if($rootScope.callType == 6){
 											hello.audiocallvsee(uname,pw,persontocall,success, failure);
 										}
 
@@ -485,29 +488,31 @@ $interval(checkDocStatus, 1000);
 				 		 });
 		 }
 		 if(newValue == 4){
-			//  alert('declined');
+						//  alert('declined');
 
-			 $scope.callReqPopUp.close();
-			 var confirmPopup = $ionicPopup.confirm({
-							 title: 'Declined!!',
-							 template: 'Doctor has declined for consultation',
-							 cssClass: 'videoPopup',
-							 scope: $scope,
-							 buttons: [
-								 {
-									 text: 'Ok',
-									 type: 'button-positive',
-									 onTap: function(e) {
-										 var test = $timeout($scope.onTimeout,1000);//timer interval
-							 			$scope.$on('$destroy', function(){
-							 			$timeout.cancel(test);
-							 			console.log('destroyed');
-							 			});
-										 $state.go($state.current, {}, {reload: true});
-									 console.log('ok');
-									 }
-								 },
-							 ]
+						 $scope.callReqPopUp.close();
+						 var confirmPopup = $ionicPopup.confirm({
+										 // title: 'Declined!',
+										 template: '<center>Doctor has declined for consultation</center>',
+										 cssClass: 'videoPopup',
+										 scope: $scope,
+										 buttons: [
+											 {
+												 text: 'OK',
+												 type: 'button-positive',
+												 onTap: function(e) {
+													 var test = $timeout($scope.onTimeout,1000);//timer interval
+										 			$scope.$on('$destroy', function(){
+										 			$timeout.cancel(test);
+													console.log('declined here');
+										 			console.log('destroyed');
+													$scope.callAccept.close();
+										 			});
+													 $state.go($state.current, {}, {reload: true});
+												 console.log('ok');
+												 }
+											 },
+										 ]
 						 });
 		 }
 

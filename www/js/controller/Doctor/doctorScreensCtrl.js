@@ -22,9 +22,9 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
         console.log('interval started');
         console.log($localStorage.showConnecting);
         if($localStorage.showConnecting == true){
-          // $ionicLoading.show({
-          //   template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-          // });
+          $ionicLoading.show({
+            template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+          });
 
         }
         $interval(availableInVsee,2000,1);
