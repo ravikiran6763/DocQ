@@ -355,7 +355,9 @@ $scope.BalanceForVoiceCall=function()
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
              console.log("callID:",$localStorage.myCallId);
+             $scope.callAccept.close();
              $window.location.reload();
+
 
 
              });
@@ -400,6 +402,8 @@ $scope.BalanceForVoiceCall=function()
            alertPopup.then(function(res){
              var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
              $scope.$on('$destroy', function(){
+               $scope.callAccept.close();
+               
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
              });
@@ -409,6 +413,8 @@ $scope.BalanceForVoiceCall=function()
              $localStorage.myCallId=0;
              $localStorage.callStatus=0;
              console.log($scope.declinedByPat);
+             // $scope.alertPopup.hide();
+             $scope.callAccept.close();
              }).catch(function(error){
                console.log('failure data', error);
              });
@@ -424,8 +430,9 @@ $scope.BalanceForVoiceCall=function()
   						console.log('delay 3 sec');
   					}, 3000);
   					console.log('value changed');
-            $interval.cancel(checkMyCallStatus);
-            $scope.alertPopup.close();
+            // $interval.cancel(checkMyCallStatus);
+
+            console.log('show popup');
   					$scope.callAccept = $ionicPopup.show({
   				 			 template: "<div >Doctor has accepted your invitation for a<br>consultation. Please start the<br>consultation or decline</div>",
   				 			 cssClass: 'requestPopup',
@@ -456,6 +463,7 @@ $scope.BalanceForVoiceCall=function()
   							  onTap:function(){
 
   									var videocallflag = $rootScope.callType;
+                    console.log(videocallflag);
   									$scope.startdate = new Date();
   									$scope.callid = $rootScope.callId;
   									// $localStorage.ViewDoc=1;
@@ -504,8 +512,9 @@ $scope.BalanceForVoiceCall=function()
   														]
   													});
   									}
-  									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
+  									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi' )
   									{
+                        console.log(videocallflag);
   										var success = function(message)
   										{
 
@@ -518,6 +527,7 @@ $scope.BalanceForVoiceCall=function()
   												console.log($localStorage.user);
   												console.log($rootScope.accptdDoc);
   												// console.log($localStorage.Doctocall);
+
   												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.myCallId).then(function(response){
   													console.log('inserted to consultation',response);
                             $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.myCallId}, {location: "replace", reload: false});
@@ -529,10 +539,10 @@ $scope.BalanceForVoiceCall=function()
   										{
   											alert("Error calling Hello Plugin");
   										}
-                      if(videocallflag == 2){
+                      if(videocallflag == 5){
                         hello.greet(uname,pw,persontocall,success, failure);
                       }
-                      if(videocallflag == 3){
+                      if(videocallflag == 6){
                         hello.audiocallvsee(uname,pw,persontocall,success, failure);
                       }
   									}
@@ -551,10 +561,10 @@ $scope.BalanceForVoiceCall=function()
 
   	},true);
 
-    $scope.callMyDoc=function(num,spec,type)
+    $scope.callMyDoc=function(num,type)
     {
       console.log(num);
-      console.log(spec);
+      console.log(type);
 
       $rootScope.onGoingDoc=num;
       $rootScope.callType=type;
@@ -617,6 +627,8 @@ $scope.BalanceForVoiceCall=function()
             noResponsePopup.then(function(res){
               console.log('delete request here');
               searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
+                $scope.alertPopup.close();
+
               $scope.cancelledReq=response;
               $localStorage.myCallId=0;
               $localStorage.callStatus=0;
@@ -625,7 +637,6 @@ $scope.BalanceForVoiceCall=function()
                 console.log('failure data', error);
               });
             });
-
             $scope.callReqPopUp.close();
 
             }
