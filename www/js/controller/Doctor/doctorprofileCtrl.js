@@ -497,8 +497,8 @@ $scope.BalanceForVoiceCall=function()
   									else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
   									{
   										var confirmPopup = $ionicPopup.confirm({
-  														title: 'DoctorQuick',
-  														template: 'We detected slow nwtwork on your device ',
+  														// title: 'DoctorQuick',
+  														template: 'We detected slow nwtwork on your device. Please try after sometime ',
   														cssClass: 'videoPopup',
   														scope: $scope,
   														buttons: [

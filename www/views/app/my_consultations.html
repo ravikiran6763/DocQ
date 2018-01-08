@@ -14,7 +14,7 @@
             <div class="name">
               <h2>Dr.{{r.doctorFname | capitalize }} {{r.doctorLname | capitalize}}</h2>
             </div>
-            <div class="dateTime"> {{r.date }} </div>
+            <div class="dateTime"> {{r.date | date: 'dd-MM-yyyy'}} </div>
             <div class="message"> {{r.message}} </div>
           </div>
 

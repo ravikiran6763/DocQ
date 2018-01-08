@@ -1,6 +1,6 @@
 DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $ionicPlatform,$localStorage, $ionicLoading, $ionicConfig, $http,$interval, LoginService, patientCareService, doctorServices,myConsultationService,Factory) {
 
-	$rootScope.headerTxt="My consultations";
+	$rootScope.headerTxt="My Consultations";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.hideSideMenu = true;
@@ -12,7 +12,6 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$scope.fromusername = [];
 	$scope.listofphones = [];
 // for doctors consultationDetails
-$ionicLoading.show();
 // console.log('consultations');
 
 var username = "greet+"+$localStorage.user;
@@ -25,10 +24,10 @@ else{
 	var password = "DQ_patient";
 }
 
-$ionicLoading.show({
-			template: '<ion-spinner></ion-spinner><br>Loading',
-			duration:3000
-		});
+// $ionicLoading.show({
+// 			template: '<ion-spinner></ion-spinner><br>Loading',
+// 			// duration:3000
+// 		});
 
 if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
@@ -229,7 +228,7 @@ $rootScope.checkNewMessages = $interval(function(){
 		}
 
 		hello.chatcounts(username,password,success, failure);
-}, 5000);
+}, 1000);
 
 $scope.pagedecision=$ionicHistory.currentStateName();
 var username = "greet+"+$localStorage.user;

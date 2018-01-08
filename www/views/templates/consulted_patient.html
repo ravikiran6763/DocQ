@@ -15,7 +15,7 @@
           <div class="name" >
             <h2 >{{patient.patientFname}}  {{patient.patientLname}}   </h2>
           </div>
-          <div class="dateTime"> {{patient.date }} </div>
+          <div class="dateTime"> {{patient.date | date: 'dd-MM-yyyy'}} </div>
           <div class="message"> {{patient.message}} </div>
         </div>
 

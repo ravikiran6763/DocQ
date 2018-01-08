@@ -614,6 +614,22 @@ $scope.patientRegistration = function()
   $scope.videoPlayerPopup.close();
   };
 }
+
+var currentTime = new Date()
+
+// returns the month (from 0 to 11)
+var month = currentTime.getMonth() ;
+$rootScope.currentMonth= month;
+// returns the day of the month (from 1 to 31)
+var day = currentTime.getDate();
+$rootScope.currentDay= day;
+
+
+// returns the year (four digits)
+var year = currentTime.getFullYear();
+$rootScope.currentYear= year;
+
+
 $rootScope.dateOfBirth='';
 var ipObj2 = {
     callback: function (val) {  //Mandatory
@@ -626,7 +642,7 @@ var ipObj2 = {
     },
 
     from: new Date(1950, 1, 1), //Optional
-    to: new Date(2050, 12, 31), //Optional
+    to: new Date($rootScope.currentYear, $rootScope.currentMonth, $rootScope.currentDay), //Optional
     inputDate: new Date(),      //Optional
     mondayFirst: false,          //Optional
     // disableWeekdays: [0],       //Optional
