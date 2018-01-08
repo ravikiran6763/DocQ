@@ -9840,14 +9840,26 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+.dont-break-out {
+  /* These are technically the same, but use both */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  /* This is the dangerous one in WebKit, as it breaks things wherever */
+  word-break: break-all;
+  /* Instead use this non-standard one: */
+  word-break: break-word;
+  /* Adds a hyphen where the word breaks, if supported (No Blink) */
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto; }
+
 .video-wrapper {
   height: 0;
   overflow: hidden;
   padding-bottom: 56.25%;
   position: relative; }
-  .video-wrapper embed,
-  .video-wrapper object,
-  .video-wrapper iframe {
+  .video-wrapper embed, .video-wrapper object, .video-wrapper iframe {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -12111,9 +12123,12 @@ ion-side-menu .heading-item .message {
         .mydoctor-profile-view .myDoctor-list li .name-content p {
           font-size: 74%;
           margin: 0% 2%;
-          color: black; }
+          color: black;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
         .mydoctor-profile-view .myDoctor-list li .name-content .totalReview {
-          margin-left: 43%;
+          margin-left: 38%;
           margin-top: -1%;
           text-overflow: ellipsis;
           position: relative;
@@ -12212,14 +12227,14 @@ ion-side-menu .heading-item .message {
     right: 0px !important; }
   .searchDoctor-profile-view .profile-img {
     width: 30%;
-    height: 25% !important;
+    height: 22% !important;
     margin: 0 auto; }
     .searchDoctor-profile-view .profile-img img {
       width: 30vw;
       border-radius: 60%;
       padding: 5px;
       background-color: #dedad7 !important;
-      margin-top: 4vh; }
+      margin-top: 2vh; }
     .searchDoctor-profile-view .profile-img i {
       position: absolute;
       padding-left: 88px;
@@ -12229,19 +12244,19 @@ ion-side-menu .heading-item .message {
   .searchDoctor-profile-view .profile-info {
     margin: 0 auto;
     width: 90%;
-    height: 15%; }
+    height: 18%; }
     .searchDoctor-profile-view .profile-info h1, .searchDoctor-profile-view .profile-info h2, .searchDoctor-profile-view .profile-info h3 {
       font-family: Ubuntu,bold,sans-serif !important;
       text-align: center; }
     .searchDoctor-profile-view .profile-info h1 {
       font-size: 5vw; }
     .searchDoctor-profile-view .profile-info h2 {
-      font-size: 4vw;
-      line-height: 0vh;
+      font-size: 80%;
+      line-height: 1;
       color: #666666 !important; }
-    .searchDoctor-profile-view .profile-info h3 {
-      font-size: 3vw;
-      color: #666666 !important; }
+  .searchDoctor-profile-view h3 {
+    font-size: 3vw;
+    color: #666666 !important; }
   .searchDoctor-profile-view .rating-field {
     height: 10%; }
     .searchDoctor-profile-view .rating-field .card {
@@ -12291,28 +12306,29 @@ ion-side-menu .heading-item .message {
         border-radius: 60%;
         padding: 6%;
         background-color: #dedad7 !important;
-        margin-top: 14%; }
+        margin-top: 10%; }
       .callAccpted-view .top-content .imageContainer i {
         position: absolute;
         padding-left: 23%;
         padding-top: 0;
-        margin-top: 5%; }
+        margin-top: 4%; }
     .callAccpted-view .top-content h1 {
       font-size: 130%;
       text-align: center;
-      margin-top: 24%;
+      margin-top: 19%;
       line-height: 20%; }
     .callAccpted-view .top-content h2 {
       font-size: 85%;
       text-align: center; }
   .callAccpted-view .rating-field {
-    height: 10%; }
+    height: 10%;
+    margin: 0 auto; }
     .callAccpted-view .rating-field h4 {
       text-align: center;
       width: 90%;
-      margin: 0 auto;
       color: #4b9a0c;
-      font-size: 112%; }
+      font-size: 112%;
+      margin-top: 4%; }
   .callAccpted-view .bottom-content {
     height: 42%; }
     .callAccpted-view .bottom-content h5 {
@@ -12870,7 +12886,7 @@ ion-side-menu .heading-item .message {
           color: black; }
         .topUp-refund-view .bottom-content li .name-content h2 {
           margin: 2%;
-          font-size: 125%;
+          font-size: 100%;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 50%; }
@@ -12902,7 +12918,10 @@ ion-side-menu .heading-item .message {
           color: black;
           font-family: Ubuntu,bold,sans-serif !important; }
         .summary-view .top-content .details .name-content p {
-          font-size: 85%; }
+          font-size: 85%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
         .summary-view .top-content .details .name-content .ratingContainer {
           margin-top: -12%;
           margin-left: 48%;
@@ -13193,20 +13212,22 @@ ion-side-menu .heading-item .message {
         border-radius: 60%;
         padding: 6%;
         background-color: #dedad7 !important;
-        margin-top: 14%; }
+        margin-top: 5%; }
       .ViewDoctorProfile-view .top-content .imageContainer i {
         position: absolute;
         padding-left: 23%;
         padding-top: 0;
-        margin-top: 5%; }
+        margin-top: 2%; }
     .ViewDoctorProfile-view .top-content h1 {
       font-size: 130%;
       text-align: center;
-      margin-top: 24%;
+      margin-top: 20%;
       line-height: 20%; }
     .ViewDoctorProfile-view .top-content h2 {
       font-size: 85%;
-      text-align: center; }
+      text-align: center;
+      width: 80%;
+      margin: 0 auto; }
   .ViewDoctorProfile-view .middle-content {
     width: 100%;
     height: 15%;
@@ -14490,7 +14511,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
-    height: 100%; }
+    height: 100%;
+    overflow: hidden !important; }
   .patient-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-1-view .top-content {

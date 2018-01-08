@@ -130,7 +130,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	},true);
 
-$interval(checkDocStatus, 1000);
+// $interval(checkDocStatus, 1000);
 
 	function checkDocStatus(){
 	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){

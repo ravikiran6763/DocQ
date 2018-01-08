@@ -71,6 +71,14 @@ $stable:                          red !default;
 
 }
 
+@mixin word-wrap() {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
 //include media queries
 //@import "media-queries";
 // Include Sass mixins

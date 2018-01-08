@@ -164,6 +164,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 										$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
 									});
+									$timeout( function(){
+									console.log('interval started');
+									$interval(checkNewMessages,2000);
+									}, 5000 );
 
 
 							}
@@ -175,11 +179,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 							}
 							// $state.go('app.patient_home');//for browser login
 							hello.login(uname1,pw1,success, failure);
-							$timeout( function(){
-		          console.log('interval started');
-		          $interval(checkNewMessages,2000);
 
-						}, 5000 );
 
 							var username = "greet+"+$localStorage.user;
 	            var password = "DQ_patient";
@@ -325,7 +325,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 															$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
 
 														});
-
+														$timeout( function(){
+														console.log('interval started');
+														$interval(checkNewMessages,2000);
+														}, 5000 );
 													}
 
 													var failure = function()
@@ -338,10 +341,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 												hello.login(uname1,pw1,success, failure);
 
 
-												$timeout( function(){
-												console.log('interval started');
-												$interval(checkNewMessages,2000);
-												}, 5000 );
+
 
 												var username = "greet+"+$localStorage.user;
 						            var password = "DQ_doctor";

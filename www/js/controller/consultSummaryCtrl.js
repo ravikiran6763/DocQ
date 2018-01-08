@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('consultSummaryCtrl', function($state, $ionicHistory,$rootScope,$stateParams,$window,$timeout,$scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
+DoctorQuickApp.controller('consultSummaryCtrl', function($state, $ionicHistory,$rootScope,$stateParams,$ionicPopup,$window,$timeout,$scope,$rootScope,$ionicConfig, $http, $ionicLoading, $localStorage, LoginService, myConsultationService, rateDoctorServices,doctorServices,patientProfileDetailsService) {
 	$rootScope.headerTxt="Summary";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
@@ -12,7 +12,23 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $ionicHistory,$
 
 console.log($stateParams.calledDoctor);
 
-$ionicLoading.show();
+// $ionicLoading.show();
+
+var confirmPopup = $ionicPopup.confirm({
+	template: '<center>Prescription if, filled by the doctor will be available in My Consultation shortly</center>',
+	cssClass: 'videoPopup',
+	scope: $scope,
+	buttons: [
+	{
+		text: 'OK',
+		type: 'button-positive',
+		onTap: function(e) {
+		console.log('ok');
+		}
+	},
+	]
+});
+
 
 patientProfileDetailsService.updatenotesflag($stateParams.consultId).then(function(response){
 		// console.log(response);

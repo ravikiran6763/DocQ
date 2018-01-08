@@ -93,7 +93,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage){
   $ionicPlatform.ready(function() {
-    window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+    // window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
     function successFunction() {
       // console.log("It worked!");
@@ -201,7 +201,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           function trace(value){
           console.log(value);
           }
-          AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+          // AndroidFullScreen.immersiveMode(successFunction, errorFunction);
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
           window.plugins.OneSignal.getIds(function(ids) {
@@ -484,7 +484,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           disableAnimate: true,
           disableBack: true
           });
-          
+
           $state.go("auth.loginNew",{reload:true})
       }
       else {
@@ -1210,7 +1210,7 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
     if(rootScope.pat_phnofromwebview){
       if($localStorage.doctororpatient === "doctor" ){
 
-          if($rootScope.pat_phnofromwebview){
+          if(rootScope.pat_phnofromwebview){
             console.log('Route to prescription view :)');
               Storage.showConnecting = false;
               $ionicLoading.show({

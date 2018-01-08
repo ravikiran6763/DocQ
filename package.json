@@ -18,9 +18,9 @@
     "cordova-android": "^6.3.0",
     "cordova-fabric-plugin": "^1.1.10",
     "cordova-ios": "^4.5.4",
+    "cordova-plugin-android-permissions": "^1.0.0",
     "cordova-plugin-camera": "^2.4.1",
-    "cordova-plugin-compat": "^1.2.0",
-    "cordova-plugin-contacts": "^2.3.1",
+    "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^5.0.0",
     "cordova-plugin-file-transfer": "^1.7.0",
@@ -84,13 +84,9 @@
         "CAMERA_USAGE_DESCRIPTION": " ",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
       },
-      "cordova-plugin-contacts": {
-        "CONTACTS_USAGE_DESCRIPTION": " "
-      },
       "cordova-plugin-device": {
         "MY_VARIABLE": "my_variable_value"
       },
-      "cordova-plugin-fullscreen": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-shared-preferences": {},
       "cordova-plugin-statusbar": {},
@@ -98,14 +94,17 @@
       "phonegap-plugin-mobile-accessibility": {},
       "cordova-plugin-inappbrowser": {},
       "onesignal-cordova-plugin": {},
-      "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-compat": {},
       "cordova-plugin-splashscreen": {},
       "com.greettelehealth.DoctorQuick": {},
-      "com.example.hello": {},
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-fullscreen": {},
+      "cordova-plugin-contacts": {},
+      "cordova-plugin-x-socialsharing": {},
+      "cordova-plugin-android-permissions": {},
+      "com.example.hello": {}
     },
     "platforms": [
       "android"

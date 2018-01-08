@@ -11,7 +11,7 @@
         <img class="item-icon-right" ng-show="mydocs.docImage2 == null " ng-src="img/doc.jpg" >
       </div>
       <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname|capitalize}} {{ mydocs.doctorLname|capitalize}} </h1>
-      <h2>{{mydocs.doctorDegrees}}<br>practicing since {{mydocs.practicingSince}}</h2>
+      <h2>{{mydocs.doctorDegrees}}<br><b>Practicing since {{mydocs.practicingSince}}</b></h2>
       <div>
         <span class="stars " style="margin: 0 auto" ng-show="{{mydocs.ratingCount == 0}}">
           <span ng-style="{ 'width': getStars(0) }"></span>

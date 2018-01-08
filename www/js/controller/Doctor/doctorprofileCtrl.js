@@ -403,7 +403,7 @@ $scope.BalanceForVoiceCall=function()
              var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
              $scope.$on('$destroy', function(){
                $scope.callAccept.close();
-               
+
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
              });

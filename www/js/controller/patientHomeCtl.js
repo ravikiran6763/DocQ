@@ -69,7 +69,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							}
 							var failure = function()
 							{
-							alert("Error calling Hello Plugin");
+								alert("Error calling Hello Plugin");
 							}
 
 							hello.login(uname1,pw1,success, failure);

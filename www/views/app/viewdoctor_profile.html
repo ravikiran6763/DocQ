@@ -10,7 +10,7 @@
         <img  ng-show="mydocs.docImage2 == null " ng-src="img/doc.jpg" >
       </div>
       <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname |capitalize}} {{ mydocs.doctorLname |capitalize}} </h1>
-      <h2>{{mydocs.doctorDegrees}}<br>practicing since {{mydocs.practicingSince}}</h2>
+      <h2 class="dont-break-out">{{mydocs.doctorDegrees}}<br><b>Practicing since {{mydocs.practicingSince}}</b></h2>
       <h2></h2>
 
     </div>
@@ -48,7 +48,7 @@
           <!-- ui-sref="templates.addNewPatient" -->
               <div  class="col col-75" class="item-icon-right" ng-click="changePatient();" ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
               <div class="col col-75"  class="item-icon-right" ng-click="changePatient();" ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
-              <i class="icon ion-chevron-right icon-accessory" style="margin-left: 17%; margin-top: 3%;"></i>
+              <i class="icon ion-chevron-right icon-accessory" style="margin-left: 17%; margin-top: 5%;"></i>
 
               <div class="col">
 
