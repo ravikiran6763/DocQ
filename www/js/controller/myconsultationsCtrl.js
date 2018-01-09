@@ -6,6 +6,8 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
+	$rootScope.inviteButton = false;
+	
 
 	$scope.names = {};
 	$scope.listofnames = [];

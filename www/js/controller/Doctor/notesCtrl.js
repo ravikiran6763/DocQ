@@ -5,7 +5,7 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
-
+  $rootScope.inviteButton = false;
 
   // $rootScope.newpatientAdded=doctorServices.getNewPatient();
   // console.log($rootScope.newpatientAdded);

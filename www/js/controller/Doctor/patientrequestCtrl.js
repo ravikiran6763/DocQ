@@ -5,6 +5,8 @@
 				$rootScope.showNotification=false;
 				$rootScope.hideSideMenu = true;
 				$rootScope.showBadge=false;
+        $rootScope.inviteButton = false;
+        
 
 				$scope.toggleText = "Accept";
 				console.log($state.$current.name);

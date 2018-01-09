@@ -7,6 +7,8 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
     $rootScope.hideSideMenu = false;
     $rootScope.inviteButton = true;
 
+
+
     $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
 
 
@@ -22,13 +24,17 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
     $scope.phoneContacts = [];
     function onSuccess(contacts) {
-    for (var i = 0; i < contacts.length; i++) {
+      $ionicLoading.hide().then(function(){
+        for (var i = 0; i < contacts.length; i++) {
 
-    $ionicLoading.hide();
-    var contact = contacts[i];
-    $scope.phoneContacts.push(contact);
-    }
-    console.log($scope.phoneContacts);
+        var contact = contacts[i];
+        $scope.phoneContacts.push(contact);
+        }
+        console.log($scope.phoneContacts);
+
+      });
+
+
 
     };
     function onError(contactError) {

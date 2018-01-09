@@ -6,6 +6,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 	$rootScope.hideSideMenu = true;
+	
 	$scope.myDocDetail = {};
 
 	$rootScope.showSPecialities=false;
@@ -15,8 +16,9 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.hideSideMenu = true;
 	$rootScope.inviteButton = false;
 
-  
-	$ionicConfig.views.swipeBackEnabled(false);
+
+
+
 
 	var specialitywise = "";
 	var catwise = "";

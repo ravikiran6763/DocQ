@@ -7,11 +7,17 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 		$rootScope.showDocStatus=false;
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
+    $rootScope.inviteButton = false;
+
     $rootScope.homePage=$ionicHistory.currentStateName();
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
 
     HardwareBackButtonManager.disable();
     $ionicConfig.views.swipeBackEnabled(false);//disables swipe back in iphone
+
+
+
+
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
     $rootScope.goToConsultation = function ()

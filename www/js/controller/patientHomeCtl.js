@@ -13,6 +13,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			$scope.currentState=$ionicHistory.currentStateName();
 
+			$ionicConfig.views.swipeBackEnabled(false);
+
 			console.log($scope.currentState);
 			$rootScope.goToConsultation = function ()
 	    {

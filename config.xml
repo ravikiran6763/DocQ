@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.greettech.DoctorQuick" version="1.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.greettech.DoctorQuick" version="1.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>DoctorQuick</name>
     <description>
-        An Ionic Framework and Cordova project.
+      A Greet Telehealth Product
     </description>
     <author email="ravikiran6763@gmail.com" href="http://example.com.com/">
-      Ravikiran
+      Ravikiran And Veeresh
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -354,21 +354,16 @@
     <plugin name="phonegap-plugin-mobile-accessibility" spec="^1.0.5" />
     <plugin name="cordova-plugin-inappbrowser" spec="^1.7.2" />
     <plugin name="onesignal-cordova-plugin" spec="^2.2.5" />
-    <plugin name="cordova-fabric-plugin" spec="^1.1.10">
-        <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
-        <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
-    </plugin>
     <plugin name="cordova-plugin-file" spec="^5.0.0" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.0" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
-    <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="cordova-plugin-splashscreen" spec="^4.1.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-fullscreen" spec="^1.2.0" />
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
+    <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <engine name="android" spec="^6.3.0" />
 </widget>

@@ -309,6 +309,19 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           }, 0);
 
 
+          var permissions = cordova.plugins.permissions;
+          // permissions.requestPermission(permissions.READ_CONTACTS, success, error);
+
+          permissions.requestPermission(permissions.CAMERA, success, error);
+          permissions.requestPermission(permissions.RECORD_AUDIO, success, error);
+
+          function error() {
+          console.warn('Turned on the permission');
+          }
+
+          function success( status ) {
+          if( !status.hasPermission ) error();
+          }
 
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
@@ -379,9 +392,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('summary');
   }
   console.log($rootScope.previousState.name);
-  $ionicPlatform.registerBackButtonAction(function (event) {
+  $ionicPlatform.registerBackButtonAction(function (event){
       console.log($state.$current.name);
-      if ( ( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
+      if (( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
             // alert('route to home page and set the root to homepage');
 
             $rootScope.completeConsultation = $ionicPopup.show({
@@ -462,12 +475,16 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           $ionicHistory.clearCache();
           $ionicHistory.clearHistory();
           $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
+            disableAnimate: true,
+            disableBack: true
           });
+          $rootScope.inviteButton = false;
+          // window.location.reload();
+
           $state.go("templates.doctor_home",{reload:true})
 
       }
+
       else if($state.$current.name === "app.patient_home"){
           $ionicHistory.clearCache();
           $ionicHistory.clearHistory();
@@ -487,6 +504,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
           $state.go("auth.loginNew",{reload:true})
       }
+
       else {
         console.log('goback to prev view');
           // For all other states, the H/W BACK button is enabled

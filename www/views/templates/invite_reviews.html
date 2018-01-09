@@ -21,7 +21,7 @@
         </ion-item>
 
       </ion-list> -->
-   <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
+   <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts ">
 
     <ion-checkbox ng-repeat="number in contact.phoneNumbers "
                    ng-model="phones[number.value]"
