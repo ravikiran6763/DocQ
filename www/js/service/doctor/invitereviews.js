@@ -5,24 +5,25 @@ var con = [];
 this.invitereviewpatient = function (listofcontacts){
 
     con.push(listofcontacts);
-      console.log($rootScope.con);
-}
+  }
 
 this.getinvitecontacts = function()
 {
     return con;
+    console.log(con);
 }
 
 
 
-this.sendsmstoinvitereviews = function (contactsfrominvitereview,queryforinvitereview,doctor) {
+this.sendsmstoinvitereviews = function (contactsfrominvitereview,queryforinvitereview,doctor,link) {
 
 
 toinvite = {
-  
+
     phnos : contactsfrominvitereview,
     query : queryforinvitereview,
-    user : doctor
+    user : doctor,
+    inviteLink:link
 
 };
 

@@ -1073,7 +1073,7 @@ $stateProvider
 /* serach results by patients */
 
   .state('templates.invite_reviews', {
-    url: "/invite_reviews",
+    url: "/invite_reviews/:countofselected",
     views: {
       'menuContent': {
         templateUrl: "views/templates/invite_reviews.html",
@@ -1149,7 +1149,7 @@ $stateProvider
 
 
   .state('templates.inviteresult', {
-    url: "/inviteresult/:countofselected",
+    url: "/inviteresult",
     views: {
       'menuContent': {
         templateUrl: "views/templates/inviteresult.html",

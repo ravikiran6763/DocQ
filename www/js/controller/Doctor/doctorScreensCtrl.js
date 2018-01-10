@@ -439,53 +439,49 @@ $scope.videoPlayerPopup.close();
 //invite Reviews
   $scope.contacts='';
 $scope.inviteForReview=function(){
+            $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
 
-  $scope.contacts = invitereviews.getinvitecontacts();
-	console.log($scope.contacts.length);
+          // $scope.contacts = invitereviews.getselectedContacts();
+          console.log($scope.contacts.length);
 
+          if($scope.contacts.length === 0)
+          {
 
-  if($scope.contacts.length === 0)
-  {
+                window.plugins.toast.showWithOptions({
+                message: "Please select your contacts",
+                duration: "short", // 2000 ms
+                position: "bottom",
+                styling: {
+                opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+                textColor: '#ffffff', // Ditto. Default #FFFFFF
+                textSize: 13, // Default is approx. 13.
+                cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+                horizontalPadding: 16, // iOS default 16, Android default 50
+                verticalPadding: 12 // iOS default 12, Android default 30
+                }
+                });
 
+          }
+          else {
 
-    window.plugins.toast.showWithOptions({
-    message: "Please select your contacts",
-    duration: "short", // 2000 ms
-    position: "bottom",
-    styling: {
-    opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-    backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-    textColor: '#ffffff', // Ditto. Default #FFFFFF
-    textSize: 13, // Default is approx. 13.
-    cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-    horizontalPadding: 16, // iOS default 16, Android default 50
-    verticalPadding: 12 // iOS default 12, Android default 30
-    }
-    });
+                  $ionicLoading.show({
+                  template:'<ion-spinner></ion-spinner><br><center>Sending Invite</center>'
+                  })
 
+                  $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+                  invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
+                  if(response){
+                  $ionicLoading.hide();
+                  $scope.contacts='';
+                  $state.go("templates.doctor_home")
+                  window.localStorage['numbersToSendInvites']=[];
+                  }
+                  }).catch(function(error){
+                  console.log('failure data', error);
+                  })
 
-  }
-  else {
-
-
-    $ionicLoading.show({
-      template:'<ion-spinner></ion-spinner><br><center>Sending invite</center>'
-    })
-
-    $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-    invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user).then(function(response){
-      if(response){
-        $ionicLoading.hide();
-        $scope.contacts='';
-        $state.go("templates.doctor_home")
-      }
-    }).catch(function(error){
-    console.log('failure data', error);
-    })
-
-
-
-  }
+          }
 
 
 
