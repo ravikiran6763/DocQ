@@ -49,6 +49,22 @@ DoctorQuickApp.service('patientWalletServices', function ($cookies,$http,$q, BAS
 
   }
 
+  this.refundRequest = function (refundDetails) {
+      console.log('refundDetails:',refundDetails);
+    var deferred = $q.defer();
+
+    $http.post(BASE_URL.url + API.refundRequest,refundDetails)
+    .success(function (data, status, headers, config){
+      deferred.resolve(data);
+    })
+    .error(function (){
+      deferred.reject('Error while getting data');
+    });
+
+    return deferred.promise;
+
+  }
+
   // //transaction history
   // this.mytransactionHistory = function (patientPhone) {
   //     console.log('transaction history of:',patientPhone);

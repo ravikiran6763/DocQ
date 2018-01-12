@@ -299,20 +299,20 @@ $scope.BalanceForVoiceCall=function()
   		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
   			console.log(response);
 
-
-        if(response === "Doctor is offline")
-        {
-
-            alert('doctor is offline');
-
-
-        }
-        else {
-
-          alert('doctor is online');
-
-
-        }
+        // 
+        // if(response === "Doctor is offline")
+        // {
+        //
+        //     alert('doctor is offline');
+        //
+        //
+        // }
+        // else {
+        //
+        //   alert('doctor is online');
+        //
+        //
+        // }
 
 
   		}).catch(function(error){

@@ -15,7 +15,7 @@ DoctorQuickApp.controller('editPatientCtrl', function($state, $scope,$stateParam
         console.log($scope.currentDate);
         console.log('Selected To Date : ' + val, new Date(val));
 
-        $rootScope.dateOfBirth = $filter('date')(new Date(val),'yyyy-MM-dd');
+    $rootScope.editPatient.newPatientDOB = $filter('date')(new Date(val),'yyyy-MM-dd');
 
       },
 

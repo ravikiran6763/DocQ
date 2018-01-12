@@ -55,7 +55,7 @@
 						width: 85% !important;
 						margin: 0 auto !important;
 						p{
-							margin-top: 14%;
+							margin-top: 10%;
 							font-size: 130%;
 							text-align: center;
 						}
@@ -79,7 +79,7 @@
 
 				.form-control{
 					height: 17% !important;
-					width: 50% !important;
+					width: 51% !important;
 					padding: 2% 0 !important;
 				}
 				input[type="email"]{
@@ -100,9 +100,9 @@
 					// height: 100%;
 				}
 				input[type="tel"]{
-					margin-top: 4% !important;
+					// margin-top: 4% !important;
 					height: 18% !important;
-					padding: 0 0 0 14% !important;
+					padding: 0% 0 0 14% !important;
 					width: 100% !important;
 					// border: 1px solid #cdcdcf;
 					// height: 100%;
@@ -119,6 +119,17 @@
 				padding-top: 5% !important;
 				padding-right: 0% !important;
 			}
+
+			.input-group-addon:first-child {
+			    /* border-right: 0; */
+			    position: absolute !important;
+			    margin: 4.5% 0 0 2% !important;
+			    border: none;
+			    background: #fff;
+			}
+
+
+
 			}
 			p{
 				color: #fff;

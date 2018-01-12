@@ -148,20 +148,28 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
-							$ionicLoading.show({
-						        template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-						      });
+							// $ionicLoading.show({
+						  //       template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+						  //     });
 							var success = function(message)
 							{
 								loggedIn=true;
 									$ionicLoading.hide().then(function(){
 										console.log("The loading indicator is now hidden");
+										            $ionicHistory.nextViewOptions({
+										                disableBack: true,
+										                disableAnimate: true,
+										                historyRoot: true
+										            });
+										            $ionicHistory.clearCache();
+										            $ionicHistory.clearHistory();
+																$state.go('app.patient_home', {}, {location: "replace", reload: true});
 
-										$ionicHistory.nextViewOptions({
-											disableAnimate: true,
-											disableBack: true
-										});
-										$state.go('app.patient_home', {}, {location: "replace", reload: false});
+										// $ionicHistory.nextViewOptions({
+										// 	disableAnimate: true,
+										// 	// disableBack: true,
+										// 	historyRoot:true
+										// });
 
 									});
 									$timeout( function(){
@@ -306,9 +314,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 						$scope.deviceAndroid = ionic.Platform.isAndroid();
 						console.log($scope.deviceAndroid);
 						if($scope.deviceAndroid === true){
-												$ionicLoading.show({
-															template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-														});
+												// $ionicLoading.show({
+												// 			template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+												// 		});
 														console.log(uname1);
 													var success = function(message)
 													{
@@ -414,11 +422,16 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,
 										$ionicLoading.hide().then(function(){
 										console.log("The loading indicator is now hidden");
 										console.log('hide loader');
+
 										$ionicHistory.nextViewOptions({
-										disableAnimate: true,
-										disableBack: true
+												disableBack: true,
+												disableAnimate: true,
+												historyRoot: true
 										});
-										$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+										$ionicHistory.clearCache();
+										$ionicHistory.clearHistory();
+										$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
+
 										//$interval.cancel(loginStatus);
 										});
 	 								}

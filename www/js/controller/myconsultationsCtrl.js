@@ -7,7 +7,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 	$rootScope.inviteButton = false;
-	
+
 
 	$scope.names = {};
 	$scope.listofnames = [];
@@ -26,21 +26,26 @@ else{
 	var password = "DQ_patient";
 }
 
-// $ionicLoading.show({
-// 			template: '<ion-spinner></ion-spinner><br>Loading',
-// 			// duration:3000
-// 		});
+$ionicLoading.show({
+			template: '<ion-spinner></ion-spinner><br>Loading',
+			// duration:3000
+		});
 
 if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-	var data = response;
-	for(var i=0; i<data.length; i++){
-	$rootScope.doctorFname=data[i].doctorFname;
-	$rootScope.doctorLname=data[i].doctorLname;
-	$rootScope.doctorMname=data[i].doctorMname;
-	$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+	if($rootScope.ConsultedDoctor){
+		$ionicLoading.hide();
+
+		var data = response;
+		for(var i=0; i<data.length; i++){
+		$rootScope.doctorFname=data[i].doctorFname;
+		$rootScope.doctorLname=data[i].doctorLname;
+		$rootScope.doctorMname=data[i].doctorMname;
+		$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+		}
 	}
+
 	}).catch(function(error){
 	// console.log('failure data', error);
 	});
@@ -49,16 +54,21 @@ else{
 	myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
 	console.log($scope.myPatients);
-	var data = $scope.myPatients;
-	for(var i=0; i<data.length; i++){
-	$scope.patientFname=data[i].patientFname;
-	$scope.patientLname=data[i].patientLname;
-	$scope.patientPhone=data[i].patientPhone;
-	$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
-	$scope.listofnames.push($scope.fullname);
-	$scope.listofphones.push(data[i].patientPhone);
-	//console.log($localStorage.user);
+	if($scope.myPatients){
+		$ionicLoading.hide();
+		
+		var data = $scope.myPatients;
+		for(var i=0; i<data.length; i++){
+		$scope.patientFname=data[i].patientFname;
+		$scope.patientLname=data[i].patientLname;
+		$scope.patientPhone=data[i].patientPhone;
+		$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+		$scope.listofnames.push($scope.fullname);
+		$scope.listofphones.push(data[i].patientPhone);
+		//console.log($localStorage.user);
+		}
 	}
+
 	}).catch(function(error){
 	console.log('failure data', error);
 	});

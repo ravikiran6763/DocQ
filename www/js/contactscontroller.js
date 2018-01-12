@@ -104,7 +104,17 @@ console.log($rootScope.allContacts);
         console.log(pushNumber);
           $rootScope.selectedNumber.push(parseInt(pushNumber));
           console.log($rootScope.selectedNumber);
-          window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+          console.log($rootScope.selectedNumber.length);
+
+          if($rootScope.selectedNumber.length == 0){
+            $rootScope.selectedNumber=[];
+            window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+            
+          }else{
+            window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+
+          }
+
       // invitereviews.selectedContacts($rootScope.selectedNumber);
         }
     });

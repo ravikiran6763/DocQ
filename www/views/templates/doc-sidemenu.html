@@ -2,7 +2,9 @@
   <ion-side-menus enable-menu-with-back-views="true"  >
     <ion-side-menu-content class="post-size-14px" >
       <ion-nav-bar class="bar app-top-bar">
-
+        <ion-nav-back-button class="button-clear" ng-click="goBack()"  >
+          <i class="back-btn-cls ion-ios-arrow-back" ng-show="showBackBtn"  ng-click="goBack()" ></i>
+        </ion-nav-back-button>
         <ion-nav-buttons side="left" >
 
           <button class="button-clear"  style="padding-left:0; margin-top:-14%;" ng-show="showNotification"ui-sref="templates.consulted_patient">
@@ -11,9 +13,9 @@
           </i>
           </button>
 
-          <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:25vw;">
+          <!-- <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn" style="width:25vw;">
             <i class="back-btn-cls ion-ios-arrow-back" style="float:left; margin: -5px 0 0 -3px;" ></i>
-          </button>
+          </button> -->
 
         </ion-nav-buttons>
 
@@ -43,45 +45,45 @@
         <!--  -->
         <ion-list ng-hide="sideMenuForSearch">
 
-          <ion-item class="item-icon-left" ng-click="clearAllHistory();"  ui-sref="templates.doctor_home" menu-close>
+          <ion-item class="item-icon-left" ui-sref="templates.doctor_home" ng-click="closeSideMenu()">
             <i class="icon ion-ios-home"></i>
             <h2 class="menu-text">Home</h2>
           </ion-item>
-            <ion-item class="item-icon-left"  ui-sref="templates.doc_profile" menu-close>
+            <ion-item class="item-icon-left"  ui-sref="templates.doc_profile" ng-click="closeSideMenu();"  >
               <i class="icon ion-android-bookmark"></i>
               <h2 class="menu-text">Profile</h2>
             </ion-item>
-            <ion-item class="item-icon-left" nav-clear menu-close ng-click="goToConsultation();" style="background-color: #20242c !important;" >
+            <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu();" ui-sref="templates.consulted_patient"  style="background-color: #20242c !important;" >
               <i class="icon ion-radio-waves"></i>
               <h2 class="menu-text">My Consultations</h2>
             </ion-item>
 
-            <ion-item class="item-icon-left"  style="background-color: #21252d;" nav-clear menu-close ng-click="ReviewApp();">
+            <ion-item class="item-icon-left"  style="background-color: #21252d;" nav-clear menu-toggle ng-click="ReviewApp();">
               <i class="icon ion-asterisk"></i>
               <h2 class="menu-text">Review App</h2>
             </ion-item>
 
 
-            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc-customercare">
+            <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu();"  ui-sref="templates.doc-customercare">
               <i class="icon ion-gear-a"></i>
               <h2 class="menu-text">Customer Care</h2>
             </ion-item>
-            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.doc_acc_statement">
+            <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu();"  ui-sref="templates.doc_acc_statement">
               <i class="icon ion-wand"></i>
               <h2 class="menu-text">Account Statement</h2>
             </ion-item>
 
-            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.inviteresult">
+            <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu();"  ui-sref="templates.inviteresult">
               <i class="icon ion-android-cloud-circle"></i>
               <h2 class="menu-text">Invite Reviews</h2>
             </ion-item>
 
-            <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+            <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu();"  ui-sref="templates.termsOfUse">
               <i class="icon ion-android-cloud-done"></i>
               <h2 class="menu-text">Terms Of Use</h2>
             </ion-item>
 
-            <!-- <ion-item class="item-icon-left" nav-clear menu-close ui-sref="templates.termsOfUse">
+            <!-- <ion-item class="item-icon-left" nav-clear menu-toggle ui-sref="templates.termsOfUse">
               <i class="icon ion-android-cloud-done"></i>
               <h2 class="menu-text">Notifications</h2>
             </ion-item>

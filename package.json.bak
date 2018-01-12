@@ -17,16 +17,14 @@
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-ios": "^4.5.4",
-    "cordova-plugin-android-permissions": "^1.0.0",
-    "cordova-plugin-camera": "^4.0.1",
-    "cordova-plugin-contacts": "^3.0.1",
+    "cordova-plugin-camera": "^2.4.1",
+    "cordova-plugin-compat": "^1.2.0",
+    "cordova-plugin-contacts": "^2.3.1",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^5.0.0",
     "cordova-plugin-file-transfer": "^1.7.0",
     "cordova-plugin-fullscreen": "^1.2.0",
-    "cordova-plugin-inappbrowser": "^1.7.2",
     "cordova-plugin-network-information": "^1.3.4",
-    "cordova-plugin-shared-preferences": "0.0.1",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.0",
     "cordova-plugin-whitelist": "^1.3.3",
@@ -36,11 +34,11 @@
     "datepicker-for-ionic": "^1.1.7",
     "es6-promise-plugin": "^4.1.0",
     "express": "~4.9.8",
-    "gulp": "^3.5.6",
+    "gulp": "^3.9.1",
     "gulp-concat": "^2.2.0",
     "gulp-minify-css": "^0.3.0",
     "gulp-rename": "^1.2.0",
-    "gulp-sass": "^2.0.4",
+    "gulp-sass": "^2.3.2",
     "ion-datetime-picker": "^0.5.2",
     "ionic-native-transitions": "^1.0.3",
     "ionic-plugin-keyboard": "^2.2.1",
@@ -52,7 +50,7 @@
     "onesignal-cordova-plugin": "^2.2.5",
     "passport": "^0.3.0",
     "passport-jwt": "^1.2.1",
-    "phonegap-plugin-mobile-accessibility": "^1.0.5",
+    "sass": "^1.0.0-beta.4",
     "uglify-js": "^3.3.2"
   },
   "devDependencies": {
@@ -79,27 +77,28 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "com.razorpay.cordova": {},
+      "cordova-plugin-camera": {
+        "CAMERA_USAGE_DESCRIPTION": " ",
+        "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+      },
+      "cordova-plugin-contacts": {
+        "CONTACTS_USAGE_DESCRIPTION": " "
+      },
       "cordova-plugin-device": {
         "MY_VARIABLE": "my_variable_value"
       },
+      "cordova-plugin-fullscreen": {},
       "cordova-plugin-network-information": {},
-      "cordova-plugin-shared-preferences": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-x-toast": {},
-      "phonegap-plugin-mobile-accessibility": {},
-      "cordova-plugin-inappbrowser": {},
       "onesignal-cordova-plugin": {},
+      "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-transfer": {},
       "cordova-plugin-compat": {},
       "cordova-plugin-splashscreen": {},
-      "ionic-plugin-keyboard": {},
-      "cordova-plugin-fullscreen": {},
-      "cordova-plugin-contacts": {},
-      "cordova-plugin-x-socialsharing": {},
-      "cordova-plugin-android-permissions": {},
       "com.example.hello": {},
-      "cordova-plugin-camera": {}
+      "ionic-plugin-keyboard": {}
     },
     "platforms": [
       "android"

@@ -475,7 +475,9 @@ $scope.inviteForReview=function(){
                   $ionicLoading.hide();
                   $scope.contacts='';
                   $state.go("templates.doctor_home")
-                  window.localStorage['numbersToSendInvites']=[];
+                  $rootScope.inviteSent=[]
+                  window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.inviteSent);
+
                   }
                   }).catch(function(error){
                   console.log('failure data', error);

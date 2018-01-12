@@ -256,7 +256,7 @@ console.log($rootScope.specialId);
                       disableAnimate: true,
                       disableBack: true
                     });
-                    $state.go('app.patient_home',{}, {location: "replace", reload: false})
+                    $state.go($state.$current,{}, {location: "replace", reload: true})
    								}
    							},
    							{

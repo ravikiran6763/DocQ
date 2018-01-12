@@ -16,7 +16,7 @@
 
                 </div>
                 <div class="regMsg">
-                  <p class="reg_message"> Age, gender, email and password. </p>
+                  <p class="reg_message"> Phone number, Email, Password and Gender </p>
                 </div>
           </div>
       </div>
@@ -25,9 +25,17 @@
 
   <div class="form-content">
     <form name="PatientReg2" ng-submit="submitForm($event)" ng-class={submitted2ndPage:submitted2ndPage}>
-        <div class="form-group" >
+        <!-- <div class="form-group" >
           <img  ng-hide='true' ng-src="img/patientAvatar.png" ng-model='PatientDetail.patientAvatar' >
+
           <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='PatientDetail.patient_mob' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}><span class="intlReg">+91</span></input>
+        </div> -->
+
+        <div class="form-group">
+          <span class="input-group-addon"  ng-model="country.dial_code" >+91</span>
+          <input class="form-control"  type="tel" placeholder="Phone Number" name="user_phone" string-to-number ng-model="PatientDetail.patient_mob" mask-clean='true'  mask='9999999999' restrict="reject" clean="true" ng-intl-tel-input required></input>
+          <!-- <input type='tel' class="form-control"  mask-clean='true' placeholder="Mobile Number" ng-model='loginData.phone' mask='9999999999' restrict="reject" clean="true" international-phone-number preferred-countries="pl, de" required ng-class={submitted:submitted}><span style=" margin: -10% 0 0 2% !important; font-size: 100% !important;">+91</span></input> -->
+
         </div>
 
                 <div class="form-group" >
@@ -43,7 +51,7 @@
           <ion-radio class="form-control" ng-model="PatientDetail.gender" ng-value="'Female'" required><span >Female</span></ion-radio>
         </div>
 
-        <p> Prescription and consultation receipts will be<br>mailed to this email address.</p>
+        <p> Prescription and consultation receipts will be<br>mailed to the above email address.</p>
     </form>
   </div>
 
