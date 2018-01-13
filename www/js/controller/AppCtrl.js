@@ -604,15 +604,14 @@ console.log($state.$current.name);
 
 	$rootScope.passwordToUpdate={};
 	$rootScope.ratedBy;
-
 		$scope.updatePwd=function(){
-			// $rootScope.ratedBy=$scope.passwordToUpdate.userPhone;
+			// $rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
 			var newPwd={
-			newPwd1:$scope.passwordToUpdate.password,
+			newPwd1:$rootScope.passwordToUpdate.password,
 			userPhone:$localStorage.user
 			};
-			console.log($scope.passwordToUpdate.password);
-			if(!$scope.passwordToUpdate.password){
+			console.log($rootScope.passwordToUpdate.password);
+			if(!$rootScope.passwordToUpdate.password){
 	      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
 	      $scope.submittedPwd = true;
 
@@ -632,14 +631,14 @@ console.log($state.$current.name);
 	      });
 
 	    }
-			console.log($scope.passwordToUpdate.verify);
-			if($scope.passwordToUpdate.password && $scope.passwordToUpdate.verify){
-				if($scope.passwordToUpdate.password === $scope.passwordToUpdate.verify){
+			console.log($rootScope.passwordToUpdate.verify);
+			if($rootScope.passwordToUpdate.password && $rootScope.passwordToUpdate.verify){
+				if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
 					patientProfileDetailsService.changePwd2(newPwd).then(function(response){
 					console.log(response);
-						$scope.passwordToUpdate='';
+						$rootScope.passwordToUpdate={};
 						window.plugins.toast.showWithOptions({
-							message: "Your password has been updated.",
+							message: "Your password has been updated",
 							duration: "short", // 2000 ms
 							position: "bottom",
 							styling: {
@@ -655,21 +654,21 @@ console.log($state.$current.name);
 					}).catch(function(error){
 					console.log('failure data', error);
 					});
-
-					$ionicHistory.nextViewOptions({
-					disableAnimate: true,
-					disableBack: true
-				 });
-					$state.go("app.patient_profile",{}, {location: "replace", reload: false});
+         //
+					// $ionicHistory.nextViewOptions({
+					// disableAnimate: true,
+					// disableBack: true
+				 // });
+					$state.go("app.patient_profile");
 				}
 				else{
 					window.plugins.toast.showWithOptions({
-						message: "Password did not match.",
+						message: "Password did not match",
 						duration: "short", // 2000 ms
 						position: "bottom",
 						styling: {
 						opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-						backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+						backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
 						textColor: '#ffffff', // Ditto. Default #FFFFFF
 						textSize: 13, // Default is approx. 13.
 						cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
@@ -683,22 +682,22 @@ console.log($state.$current.name);
 
 		}
 		$scope.updateDocPwd=function(){
-			$rootScope.ratedBy=$scope.passwordToUpdate.userPhone;
+			$rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
 			var newPwd={
-			newPwd1:$scope.passwordToUpdate.password,
+			newPwd1:$rootScope.passwordToUpdate.password,
 			userPhone:$localStorage.user
 			};
-			console.log($scope.passwordToUpdate.password);
-			console.log($scope.passwordToUpdate.verify);
+			console.log($rootScope.passwordToUpdate.password);
+			console.log($rootScope.passwordToUpdate.verify);
 
 			console.log(newPwd);
-			if($scope.passwordToUpdate.password === $scope.passwordToUpdate.verify){
+			if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
 				doctorServices.changeDocPwd(newPwd).then(function(response){
 				console.log(response);
 				$state.go("templates.doc_profile")
-				$scope.passwordToUpdate='';
+				$rootScope.passwordToUpdate='';
 				window.plugins.toast.showWithOptions({
-					message: "Your password has been updated.",
+					message: "Your password has been updated",
 					duration: "short", // 2000 ms
 					position: "bottom",
 					styling: {
@@ -712,12 +711,8 @@ console.log($state.$current.name);
 				}
 				});
 
-				$ionicHistory.nextViewOptions({
-				disableAnimate: true,
-				disableBack: true
-			 });
 
-				$state.go("templates.doctor_home",{}, {location: "replace", reload: false});
+				$state.go("templates.doctor_home");
 
 				}).catch(function(error){
 				console.log('failure data', error);
@@ -725,7 +720,7 @@ console.log($state.$current.name);
 			}
 			else{
 				window.plugins.toast.showWithOptions({
-					message: "Password did not match.",
+					message: "Password did not match",
 					duration: "short", // 2000 ms
 					position: "bottom",
 					styling: {
@@ -894,7 +889,7 @@ $scope.checkWalletBalance=function()
 					}
 
 
-		if($scope.myBalance >= 250)
+		if($scope.myBalance >= 270)
 		{
 
 			hello.greet(uname,pw,persontocall,success, failure);
@@ -976,7 +971,7 @@ $scope.BalanceForVoiceCall=function()
 
 
 
-    if($scope.myBalance >= 250)
+    if($scope.myBalance >= 270)
     {
       hello.audiocallvsee(uname,pw,persontocall,success, failure);
       var confirmPopup = $ionicPopup.confirm({

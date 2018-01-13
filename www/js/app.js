@@ -371,16 +371,16 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
-  if (fromState.name === "app.changeEmail_patient" ) {
+  if (fromState.name === "app.changeEmail_patient" && toState.name === "app.patient_profile") {
     $state.go('app.patient_profile')
   }
-  if (fromState.name === "app.changePassword_patient") {
+  if (fromState.name === "app.changePassword_patient"  && toState.name === "app.patient_profile") {
     $state.go('app.patient_profile')
   }
-  if (fromState.name === "templates.changeEmail_doctor") {
+  if (fromState.name === "templates.changeEmail_doctor" && toState.name === "templates.doc_profile") {
     $state.go('templates.doc_profile')
   }
-  if (fromState.name === "templates.updatePassword") {
+  if (fromState.name === "templates.updatePassword" && toState.name === "templates.doc_profile") {
     $state.go('templates.doc_profile')
 
   }
@@ -488,42 +488,42 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
       }
       else if($state.$current.name === "templates.doctor_home"){
-        $ionicHistory.nextViewOptions({
-            disableBack: true,
-            disableAnimate: true,
-            historyRoot: true
-        });
+        // $ionicHistory.nextViewOptions({
+        //     disableBack: true,
+        //     disableAnimate: true,
+        //     historyRoot: true
+        // });
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
           $rootScope.inviteButton = false;
           // window.location.reload();
 
-          $state.go("templates.doctor_home",{reload:true})
+          $state.go("templates.doctor_home")
 
       }
 
       else if($state.$current.name === "app.patient_home"){
         console.log('reload homepage');
-        $ionicHistory.nextViewOptions({
-            disableBack: true,
-            disableAnimate: true,
-            historyRoot: true
-        });
+        // $ionicHistory.nextViewOptions({
+        //     disableBack: true,
+        //     disableAnimate: true,
+        //     historyRoot: true
+        // });
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
-          $state.go($state.$current,{location: "replace", reload:true})
+          $state.go($state.$current)
       }
       else if($state.$current.name === "auth.loginNew"){
           $ionicHistory.clearCache();
           $ionicHistory.clearHistory();
-          $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-          });
+          // $ionicHistory.nextViewOptions({
+          // disableAnimate: true,
+          // disableBack: true
+          // });
 
-          $state.go("auth.loginNew",{reload:true})
+          $state.go("auth.loginNew")
       }
-      
+
 
       else {
         console.log('goback to prev view');
