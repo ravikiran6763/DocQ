@@ -15,7 +15,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.hideSideMenu = true;
 	$rootScope.inviteButton = false;
 
-  
+
 	$ionicConfig.views.swipeBackEnabled(false);
 
 	var specialitywise = "";
@@ -568,8 +568,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	$scope.confirmSignout = function() {
 
-		var unametologout = "greet+"+$localStorage.user;
-		var pwtologout = "DQ_patient";
+		// var unametologout = "greet+"+$localStorage.user;
+		// var pwtologout = "DQ_patient";
 
    	var confirmPopup = $ionicPopup.confirm({
 
@@ -594,16 +594,21 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$ionicHistory.clearHistory();
 										$window.localStorage.clear();
 										$scope.loginDatasubmitted = false;
-										var success = function(message)
-										{
-													console.log(message);
-													$state.go('auth.loginNew');
-										}
-										var failure = function()
-										{
-											console.log('error calling hello plugin');
-										}
-										hello.logout(unametologout,pwtologout,success, failure);
+
+										$state.go('auth.loginNew');
+
+										
+										// }
+										// var success = function(message)
+										// {
+										// 			console.log(message);
+										// 			$state.go('auth.loginNew');
+										// }
+										// var failure = function()
+										// {
+										// 	console.log('error calling hello plugin');
+										// }
+										// hello.logout(unametologout,pwtologout,success, failure);
 								}
 							}).catch(function(error){
 							console.log('failure data', error);

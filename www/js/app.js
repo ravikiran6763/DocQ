@@ -484,7 +484,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           disableAnimate: true,
           disableBack: true
           });
-          
+
           $state.go("auth.loginNew",{reload:true})
       }
       else {
@@ -1210,7 +1210,7 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
     if(rootScope.pat_phnofromwebview){
       if($localStorage.doctororpatient === "doctor" ){
 
-          if($rootScope.pat_phnofromwebview){
+          if(rootScope.pat_phnofromwebview){
             console.log('Route to prescription view :)');
               Storage.showConnecting = false;
               $ionicLoading.show({

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaContacts, $state, $ionicLoading, $timeout, invitereviews){
+DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope,$cordovaContacts,$state, $ionicLoading, $timeout, invitereviews){
   $scope.toggle = true;
 	$rootScope.headerTxt="Invite Reviews";
 	$rootScope.showBackBtn=true;
@@ -11,18 +11,20 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaC
 
 
   $ionicLoading.show({
-        template: '<ion-spinner></ion-spinner><br><p>Fetching all your contacts</p>'
+        template: '<ion-spinner></ion-spinner><br><p>Fetching your contacts</p>'
       });
 
-      $timeout(function () {
-        console.log('timeout');
-       $ionicLoading.hide();
-     }, 5000);
+     //  $timeout(function () {
+     //    console.log('timeout');
+     //
+     // }, 5000);
 
 
       $scope.phoneContacts = [];
       function onSuccess(contacts) {
           for (var i = 0; i < contacts.length; i++) {
+
+            $ionicLoading.hide();
           var contact = contacts[i];
           $scope.phoneContacts.push(contact);
           }

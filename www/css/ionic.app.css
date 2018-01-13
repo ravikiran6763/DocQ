@@ -12870,7 +12870,7 @@ ion-side-menu .heading-item .message {
           color: black; }
         .topUp-refund-view .bottom-content li .name-content h2 {
           margin: 2%;
-          font-size: 125%;
+          font-size: 100%;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
           line-height: 50%; }
@@ -14490,7 +14490,8 @@ ion-side-menu .heading-item .message {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patient-reg-1-view ion-content {
     width: auto;
-    height: 100%; }
+    height: 100%;
+    overflow: hidden !important; }
   .patient-reg-1-view .bar-header .bar-light {
     background: transparent !important; }
   .patient-reg-1-view .top-content {
