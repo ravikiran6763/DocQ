@@ -6,6 +6,7 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope,$state, $
 	$rootScope.showNotification=false;
   $rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
+  $rootScope.inviteButton = false;
 
 
   console.log($state.$current.name);

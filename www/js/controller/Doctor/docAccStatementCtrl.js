@@ -6,6 +6,8 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
   $rootScope.hideSideMenu = true;
+  $rootScope.inviteButton = false;
+  
 
   console.log($localStorage.user);
   $rootScope.from ='';

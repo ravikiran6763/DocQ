@@ -10,23 +10,22 @@
 
    <!-- <ceneter><i class="icon ion-android-share-alt" ng-click="showAlert()"></i> -->
    </center>
-<!--
-      <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts ">
-
-        <ion-item ng-repeat="number in contact.phoneNumbers | groupBy: 'value' " item="item">
-        <label class="item-checkbox-right">
-          <input type="checkbox" ng-change="getNumber(number.value);" ng-model="phones[number.value]">
-        </label>
-        {{ contact.name.formatted  }}
-        </ion-item>
-
-      </ion-list> -->
-   <ion-list ng-show="phoneContacts" ng-repeat="contact in phoneContacts">
+   <!-- <ion-list  ng-repeat="contact in allContacts ">
 
     <ion-checkbox ng-repeat="number in contact.phoneNumbers "
                    ng-model="phones[number.value]"
                    class="item-checkbox-right" ng-click="getNumber(number.value);">
-                   {{ contact.name.formatted  }}
+                   {{ contact.name.formatted}}
+
+   </ion-checkbox>
+
+   </ion-list> -->
+   <ion-list  ng-repeat="cont in contact ">
+
+    <ion-checkbox ng-repeat="number in cont.phoneNumbers "
+                   ng-model="phones[number.value]"
+                   class="item-checkbox-right" ng-checked="myChange" ng-change="getNumber(number.value);">
+                   {{cont.name.formatted}}
 
    </ion-checkbox>
 

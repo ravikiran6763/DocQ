@@ -32,13 +32,16 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 	};
 		$ionicLoading.show({
-		    template: '',
-		    hideOnStageChange: true
+		    template: '<ion-spinner></ion-spinner><br><br>Loading',
+		    // hideOnStageChange: true
 		});
 
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
 		// alert('list');
     $scope.myConsultedDoctors=response;
+		if($scope.myConsultedDoctors){
+			$ionicLoading.hide();
+		}
 		console.log($scope.myConsultedDoctors);
 		$scope.getStars = function(rating) {
 			// Get the value
@@ -52,7 +55,6 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		  var size = val/5*100;
 		  return size + '%';
 		}
-		$ionicLoading.hide();
   }).catch(function(error){
   console.log('failure data', error);
   });

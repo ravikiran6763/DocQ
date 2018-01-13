@@ -299,20 +299,20 @@ $scope.BalanceForVoiceCall=function()
   		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
   			console.log(response);
 
-
-        if(response === "Doctor is offline")
-        {
-
-            alert('doctor is offline');
-
-
-        }
-        else {
-
-          alert('doctor is online');
-
-
-        }
+        // 
+        // if(response === "Doctor is offline")
+        // {
+        //
+        //     alert('doctor is offline');
+        //
+        //
+        // }
+        // else {
+        //
+        //   alert('doctor is online');
+        //
+        //
+        // }
 
 
   		}).catch(function(error){
@@ -403,7 +403,7 @@ $scope.BalanceForVoiceCall=function()
              var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
              $scope.$on('$destroy', function(){
                $scope.callAccept.close();
-               
+
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
              });
@@ -497,8 +497,8 @@ $scope.BalanceForVoiceCall=function()
   									else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
   									{
   										var confirmPopup = $ionicPopup.confirm({
-  														title: 'DoctorQuick',
-  														template: 'We detected slow nwtwork on your device ',
+  														// title: 'DoctorQuick',
+  														template: 'We detected slow nwtwork on your device. Please try after sometime ',
   														cssClass: 'videoPopup',
   														scope: $scope,
   														buttons: [

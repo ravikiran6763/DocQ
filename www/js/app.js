@@ -93,7 +93,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 
 DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage){
   $ionicPlatform.ready(function() {
-    window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+    // window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
     function successFunction() {
       // console.log("It worked!");
@@ -186,10 +186,11 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           }
 
           if (window.Connection){
-          if (navigator.connection.type == Connection.NONE)
-          {
-          toast.show("Internet is disconnected on your device");
-          };
+            if (navigator.connection.type == Connection.NONE)
+            {
+              
+            console.log("Internet is disconnected on your device");
+            };
           };
 
           function successFunction() {
@@ -201,7 +202,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           function trace(value){
           console.log(value);
           }
-          AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+          // AndroidFullScreen.immersiveMode(successFunction, errorFunction);
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
           window.plugins.OneSignal.getIds(function(ids) {
@@ -309,6 +310,19 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           }, 0);
 
 
+          var permissions = cordova.plugins.permissions;
+          // permissions.requestPermission(permissions.READ_CONTACTS, success, error);
+
+          permissions.requestPermission(permissions.CAMERA, success, error);
+          permissions.requestPermission(permissions.RECORD_AUDIO, success, error);
+
+          function error() {
+          console.warn('Turned on the permission');
+          }
+
+          function success( status ) {
+          if( !status.hasPermission ) error();
+          }
 
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
@@ -334,7 +348,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   $rootScope.previousState = fromState;
   console.log(toState.name.indexOf('app.patient_home'));
   console.log(toState.name.indexOf());
-  if(toState.name.indexOf('app.patient_home') > -1)
+  if(toState.name.indexOf('auth.loginNew') > -1)
   {
 
       // Restore platform default transition. We are just hardcoding android transitions to auth views.
@@ -357,13 +371,28 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
-
+  // if (toState.name === "auth.patient_reg1" && fromState.name === "app.patient_home") {
+  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
+  // }
+  // if (toState.name === "auth.patient_reg2" && fromState.name === "app.patient_home") {
+  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
+  // }
+  // if (toState.name === "auth.patient_reg3" && fromState.name === "app.patient_home") {
+  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
+  // }
+  // if (toState.name === "auth.loginNew" && fromState.name === "app.patient_home") {
+  //   $state.go('app.loginNew',{}, {location: "replace", reload: true})
+  // }
   if (toState.name != "app.searchDoctors") {
     $rootScope.sideMenuForSearch = false;
   }
   if (toState.name != "templates.invite_reviews") {
     $rootScope.inviteButton = false;
     $rootScope.hideSideMenu = true;
+  }
+  if (toState.name === "templates.invite_reviews") {
+    $rootScope.inviteButton = true;
+    $rootScope.hideSideMenu = false;
   }
   if (toState.name === "templates.doctor_home") {
     $rootScope.showNotification = true;
@@ -379,9 +408,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('summary');
   }
   console.log($rootScope.previousState.name);
-  $ionicPlatform.registerBackButtonAction(function (event) {
+  $ionicPlatform.registerBackButtonAction(function (event){
       console.log($state.$current.name);
-      if ( ( $rootScope.previousState.name=="templates.diagnosisForPatient" || $rootScope.previousState.name=="templates.medicationForPatient") || $rootScope.previousState.name=="templates.patientTests"){
+      if (( $rootScope.previousState.name==="templates.diagnosisForPatient" || $rootScope.previousState.name === "templates.medicationForPatient") || $rootScope.previousState.name ==="templates.patientTests"){
             // alert('route to home page and set the root to homepage');
 
             $rootScope.completeConsultation = $ionicPopup.show({
@@ -458,24 +487,30 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
       }
       else if($state.$current.name === "templates.doctor_home"){
-          $rootScope.inviteButton = true;
-          $ionicHistory.clearCache();
-          $ionicHistory.clearHistory();
-          $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-          });
+        $ionicHistory.nextViewOptions({
+            disableBack: true,
+            disableAnimate: true,
+            historyRoot: true
+        });
+        $ionicHistory.clearCache();
+        $ionicHistory.clearHistory();
+          $rootScope.inviteButton = false;
+          // window.location.reload();
+
           $state.go("templates.doctor_home",{reload:true})
 
       }
+
       else if($state.$current.name === "app.patient_home"){
-          $ionicHistory.clearCache();
-          $ionicHistory.clearHistory();
-          $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-          });
-          $state.go("app.patient_home",{reload:true})
+        console.log('reload homepage');
+        $ionicHistory.nextViewOptions({
+            disableBack: true,
+            disableAnimate: true,
+            historyRoot: true
+        });
+        $ionicHistory.clearCache();
+        $ionicHistory.clearHistory();
+          $state.go($state.$current,{reload:true})
       }
       else if($state.$current.name === "auth.loginNew"){
           $ionicHistory.clearCache();
@@ -487,8 +522,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
           $state.go("auth.loginNew",{reload:true})
       }
+
       else {
         console.log('goback to prev view');
+        console.log($state.$current-1);
           // For all other states, the H/W BACK button is enabled
           // navigator.app.backHistory();
           window.history.back();
@@ -637,6 +674,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     controller : 'splashCtrl'
   })
   .state('auth', {
+    cache : false,
     url: "/auth",
     templateUrl: "views/auth/auth.html",
     abstract: true,
@@ -644,17 +682,20 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
   })
 
   .state('auth.loginNew', {
+    cache : false,
     url: '/loginNew',
     templateUrl: "views/auth/loginNew.html",
     controller : 'LoginCtrl'
   })
 
   .state('auth.getPassword', {
+    cache : false,
     url: "/getPassword",
     templateUrl: "views/auth/getPassword.html",
     controller: 'ForgotPasswordCtrl'
   })
   .state('auth.terms', {
+    cache : false,
     url: "/terms",
     templateUrl: "views/auth/terms.html"
   })
@@ -665,29 +706,34 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
 //newly added for Doctor
 $stateProvider
 .state('auth.doctorRegistration', {
+  cache : false,
   url: "/doc_reg1",
   templateUrl: "views/auth/doc_reg1.html"
 
 })
 .state('auth.doctorRegistration2', {
+  cache : false,
   url: "/doc_reg2",
   templateUrl: "views/auth/doc_reg2.html"
   })
 
 //Patient
 .state('auth.patient_reg1', {
+  cache : false,
   url: "/patient_reg1",
   templateUrl: "views/auth/patient_reg1.html"
 
 })
 
 .state('auth.patient_reg2', {
+  cache : false,
   url: "/patient_reg2",
   templateUrl: "views/auth/patient_reg2.html"
 
 })
 
 .state('auth.patient_reg3', {
+  cache : false,
   url: "/patient_reg3/:pateientPhone",
   templateUrl: "views/auth/patient_reg3.html"
 
@@ -701,7 +747,9 @@ $stateProvider
   })
 
   .state('app.patient_home', {
+    cache : false,
     url: "/patientScreens",
+    // abstract: true,
     views: {
       'menuContent': {
         templateUrl: "views/app/patient_home.html",
@@ -1033,15 +1081,7 @@ $stateProvider
       }
     }
   })
-  // .state('templates.chat_with_patient', {
-  //   url: "/chat_with_patient",
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: "views/templates/chat_with_patient.html",
-  //       controller:'chatWithPatientCtrl'
-  //     }
-  //   }
-  // })
+
   .state('templates.doc-customercare', {
     url: "/doc_customercare",
     views: {
@@ -1055,7 +1095,7 @@ $stateProvider
 /* serach results by patients */
 
   .state('templates.invite_reviews', {
-    url: "/invite_reviews",
+    url: "/invite_reviews/:countofselected",
     views: {
       'menuContent': {
         templateUrl: "views/templates/invite_reviews.html",
@@ -1131,7 +1171,7 @@ $stateProvider
 
 
   .state('templates.inviteresult', {
-    url: "/inviteresult/:countofselected",
+    url: "/inviteresult",
     views: {
       'menuContent': {
         templateUrl: "views/templates/inviteresult.html",

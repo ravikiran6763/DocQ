@@ -76,25 +76,30 @@ console.log($localStorage.doctororpatient);
 
   $scope.resendOtp = function()
   {
-
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner><br>Resending OTP'
+    });
     patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
     {
       $scope.otpentered = {};
         $scope.otp=response;
-        window.plugins.toast.showWithOptions({
-        message: "OTP has been sent to your mobile number",
-        duration: "short", // 2000 ms
-        position: "bottom",
-        styling: {
-        opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-        backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-        textColor: '#ffffff', // Ditto. Default #FFFFFF
-        textSize: 13, // Default is approx. 13.
-        cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-        horizontalPadding: 16, // iOS default 16, Android default 50
-        verticalPadding: 12 // iOS default 12, Android default 30
+        if($scope.otp){
+          $ionicLoading.hide();
+          window.plugins.toast.showWithOptions({
+          message: "OTP has been sent to your mobile number",
+          duration: "short", // 2000 ms
+          position: "bottom",
+          styling: {
+          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+          backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+          textColor: '#ffffff', // Ditto. Default #FFFFFF
+          textSize: 13, // Default is approx. 13.
+          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+          horizontalPadding: 16, // iOS default 16, Android default 50
+          verticalPadding: 12 // iOS default 12, Android default 30
+          }
+          });
         }
-        });
       })
       .catch(function(error)
       {
@@ -168,6 +173,40 @@ $scope.patientRegistration = function()
               $scope.submitted = false;
               $scope.submitted2ndPage = false;
               $rootScope.loginDatasubmitted=false;
+
+            //   $ionicLoading.show({
+            //     template:'<ion-spinner></ion-spinner><br>Loading'
+            //   });
+            //   var uname1 = "greet+"+$rootScope.PatientDetail.patient_mob;
+  					// 	var pw1 = "DQ_patient";
+            //   var success = function(message)
+            //   {
+            //     // console.log(message);
+            //
+            //     $ionicLoading.hide().then(function(){
+            //       console.log("The loading indicator is now hidden");
+            //
+            //       $ionicHistory.nextViewOptions({
+            //         disableAnimate: true,
+            //         disableBack: true,
+            //         historyRoot:true
+            //       });
+            //       $state.go('app.patient_home', {}, {location: "replace", reload: true});
+            //
+            //     });
+            //     $timeout( function(){
+            //     console.log('interval started');
+            //     $interval(checkNewMessages,2000);
+            //     }, 5000 );
+            //   }
+            //
+            //   var failure = function()
+            //   {
+            //
+            //     alert("Error Occurred While Loggin in to DoctoQuick");
+            //
+            //   }
+            // hello.login(uname1,pw1,success, failure);
 
               $state.go('auth.loginNew', {}, {location: "replace", reload: true});
               var details = {
@@ -614,6 +653,22 @@ $scope.patientRegistration = function()
   $scope.videoPlayerPopup.close();
   };
 }
+
+var currentTime = new Date()
+
+// returns the month (from 0 to 11)
+var month = currentTime.getMonth() ;
+$rootScope.currentMonth= month;
+// returns the day of the month (from 1 to 31)
+var day = currentTime.getDate();
+$rootScope.currentDay= day;
+
+
+// returns the year (four digits)
+var year = currentTime.getFullYear();
+$rootScope.currentYear= year;
+
+
 $rootScope.dateOfBirth='';
 var ipObj2 = {
     callback: function (val) {  //Mandatory
@@ -626,7 +681,7 @@ var ipObj2 = {
     },
 
     from: new Date(1950, 1, 1), //Optional
-    to: new Date(2050, 12, 31), //Optional
+    to: new Date($rootScope.currentYear, $rootScope.currentMonth, $rootScope.currentDay), //Optional
     inputDate: new Date(),      //Optional
     mondayFirst: false,          //Optional
     // disableWeekdays: [0],       //Optional

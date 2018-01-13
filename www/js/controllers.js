@@ -188,7 +188,8 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 				if(response === 'MailSent'){
 				var confirmPopup = $ionicPopup.confirm({
 					// title: 'DoctorQuick',
-					template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+					template: '<center>Click the link in the email sent to you to complete your registration process</center>',
+					// template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
 					cssClass: 'videoPopup',
 					scope: $scope,
 					buttons: [
@@ -197,7 +198,7 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 							type: 'button-assertive',
 							onTap: function(e) {
 							console.log('offline');
-							$state.go("templates.doctor_home");
+							$state.go("templates.doc_profile");
 							}
 						},
 					]
@@ -223,7 +224,8 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 				console.log('toast here');
 				var confirmPopup = $ionicPopup.confirm({
 				// title: 'DoctorQuick',
-				template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+				template: '<center>Click the link in the email sent to you to complete your registration process</center>',
+				// template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
 				cssClass: 'videoPopup',
 				scope: $scope,
 				buttons: [
@@ -232,7 +234,7 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 						type: 'button-assertive',
 						onTap: function(e) {
 						console.log('offline');
-						$state.go("templates.doctor_home");
+						// $state.go("templates.doctor_home");
 						}
 					},
 				]
@@ -285,7 +287,8 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 				if(response){
 				var confirmPopup = $ionicPopup.confirm({
 				// title: 'DoctorQuick',
-				template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+				template: '<center>Click the link in the email sent to you to complete your registration process</center>',
+				// template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
 				cssClass: 'videoPopup',
 				scope: $scope,
 				buttons: [
@@ -294,7 +297,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 					type: 'button-assertive',
 					onTap: function(e) {
 					console.log('offline');
-					$state.go("app.patient_home");
+					// $state.go("app.patient_home");
 					}
 				},
 				]
@@ -359,7 +362,8 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 				// alert('sent');
 				var confirmPopup = $ionicPopup.confirm({
 				// title: 'DoctorQuick',
-				template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+				template: '<center>Click the link in the email sent to you to complete your registration process</center>',
+				// template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
 				cssClass: 'videoPopup',
 				scope: $scope,
 				buttons: [
@@ -368,7 +372,9 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 						type: 'button-assertive',
 						onTap: function(e) {
 						console.log('offline');
-						$state.go("app.patient_home");
+						$scope.emailToUpdate={};
+
+							$state.go("app.patient_profile",{reload:false});
 						}
 					},
 				]
@@ -422,19 +428,19 @@ DoctorQuickApp.controller('reviewCtrl', function($scope,$rootScope, $ionicConfig
 
 })
 
-DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ionicConfig, $http) {
-	$rootScope.headerTxt="My Consultations";
-	$rootScope.showBackBtn=true;
-	$rootScope.checkedValue = false;
-
-})
-
-DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicConfig, $http) {
-	$rootScope.headerTxt="Customer Care";
-	$rootScope.showBackBtn=true;
-	$rootScope.checkedValue = false;
-
-})
+// DoctorQuickApp.controller('myconsultationsCtrl', function($scope,$rootScope,$ionicConfig, $http) {
+// 	$rootScope.headerTxt="My Consultations";
+// 	$rootScope.showBackBtn=true;
+// 	$rootScope.checkedValue = false;
+//
+// })
+//
+// DoctorQuickApp.controller('patientCareCtrl', function($scope,$rootScope,$ionicConfig, $http) {
+// 	$rootScope.headerTxt="Customer Care";
+// 	$rootScope.showBackBtn=true;
+// 	$rootScope.checkedValue = false;
+//
+// })
 
 DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig) {
 	$scope.toggle = true;

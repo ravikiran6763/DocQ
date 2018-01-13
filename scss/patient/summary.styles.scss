@@ -31,7 +31,10 @@
           font-family: Ubuntu,bold,sans-serif !important;
           }
           p{
-            font-size: 85%;
+              font-size: 85%;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
           }
           .ratingContainer{
             margin-top: -12%;

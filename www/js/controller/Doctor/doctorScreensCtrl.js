@@ -7,11 +7,17 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 		$rootScope.showDocStatus=false;
     $scope.docAvailable=true;
     $scope.docNotAvailable=false;
+    $rootScope.inviteButton = false;
+
     $rootScope.homePage=$ionicHistory.currentStateName();
     $ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
 
     HardwareBackButtonManager.disable();
     $ionicConfig.views.swipeBackEnabled(false);//disables swipe back in iphone
+
+
+
+
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
     $rootScope.goToConsultation = function ()
@@ -433,6 +439,7 @@ $scope.videoPlayerPopup.close();
 //invite Reviews
   $scope.contacts='';
 $scope.inviteForReview=function(){
+<<<<<<< HEAD
 
   $scope.contacts = invitereviews.getinvitecontacts();
 	console.log($scope.contacts.length);
@@ -480,6 +487,53 @@ $scope.inviteForReview=function(){
 
 
   }
+=======
+            $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
+
+          // $scope.contacts = invitereviews.getselectedContacts();
+          console.log($scope.contacts.length);
+
+          if($scope.contacts.length === 0)
+          {
+
+                window.plugins.toast.showWithOptions({
+                message: "Please select your contacts",
+                duration: "short", // 2000 ms
+                position: "bottom",
+                styling: {
+                opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+                textColor: '#ffffff', // Ditto. Default #FFFFFF
+                textSize: 13, // Default is approx. 13.
+                cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+                horizontalPadding: 16, // iOS default 16, Android default 50
+                verticalPadding: 12 // iOS default 12, Android default 30
+                }
+                });
+
+          }
+          else {
+
+                  $ionicLoading.show({
+                  template:'<ion-spinner></ion-spinner><br><center>Sending Invite</center>'
+                  })
+
+                  $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+                  invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
+                  if(response){
+                  $ionicLoading.hide();
+                  $scope.contacts='';
+                  $state.go("templates.doctor_home")
+                  $rootScope.inviteSent=[]
+                  window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.inviteSent);
+
+                  }
+                  }).catch(function(error){
+                  console.log('failure data', error);
+                  })
+
+          }
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 
 
 

@@ -53,6 +53,13 @@
 			width: 100% !important;
 			// height: 100%;
 			}
+			.input-group-addon:first-child {
+			    /* border-right: 0; */
+			    position: absolute !important;
+			    margin: 5.5% 0 0 2% !important;
+			    border: none;
+			    background: #fff;
+			}
 		}
 		.button {
 					color: #ffffff;
@@ -73,7 +80,7 @@
 			    font-size: smaller;
 					h2{
 							font-size: 97%;
-							color: #7b736d;
+							color: black;
 							text-align: center;
 							margin-top: 1%;
 							line-height: 1.5;

@@ -16,6 +16,7 @@ DoctorQuickApp.service('RazorPayService', function ($http,$q,$rootScope, BASE_UR
 
 
     }
+    console.log('deposit Details :',storePaymentDetails);
     // alert(storePaymentDetails.paymentId);
     // alert(storePaymentDetails.amountPaid);
     // alert(storePaymentDetails.patientPhone);

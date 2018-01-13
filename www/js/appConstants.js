@@ -59,6 +59,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'getDocRatingsByAll' : 'patient/getDocRatingsByAll.php',
         'docSummary' : 'patient/docSummary.php',
         'topMeup' : 'patient/topMeUp.php',
+        'refundRequest' : 'patient/refundRequest.php',
+
         'callAccepted' : 'patient/callAccepted.php',
         'callDecline' : 'patient/callDecline.php',
         'cancelCallReq' : 'patient/cancelCallReq.php',
@@ -85,6 +87,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'checkEmailVerification':'patient/checkEmailVerification.php',
         'sendVerificationMail':'patient/sendVerificationMail.php',
         'updateEmail':'patient/updateEmail.php',
+
 
 
         'verifyemail':'verifyemail/verifyemail.php',

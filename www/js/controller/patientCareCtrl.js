@@ -7,7 +7,8 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$state, $rootScope,
 	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 	$rootScope.cc={};
-$scope.submitted = false;
+
+	$scope.submitted = false;
 	$scope.sendQuery=function(isQueryValid){
 		console.log(isQueryValid);
 		$scope.submitted = true;

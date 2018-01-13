@@ -13,6 +13,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			$scope.currentState=$ionicHistory.currentStateName();
 
+			$ionicConfig.views.swipeBackEnabled(false);
+
 			console.log($scope.currentState);
 			$rootScope.goToConsultation = function ()
 	    {
@@ -37,8 +39,16 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 	        console.log($localStorage.showConnecting);
 	        if($localStorage.showConnecting == true){
 	          $ionicLoading.show({
-	            template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
-	          });
+	            template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick',
+							duration:30000
+	          }).then(function(){
+				       //the function you want to execute after showing..
+				       console.log("The loading indicator is now hidden");
+				    });
+							// $timeout(function(){
+							// $ionicLoading.hide();
+							// 	alert('no network');
+							// },10000);
 
 	        }
 	        $interval(availableInVsee,2000,1);
@@ -59,17 +69,20 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							// alert('loggedin');
 							$localStorage.showConnecting = false;
 							$ionicHistory.nextViewOptions({
-							disableAnimate: true,
-							disableBack: true
+									disableBack: true,
+									disableAnimate: true,
+									historyRoot: true
 							});
+							$ionicHistory.clearCache();
+							$ionicHistory.clearHistory();
 							$interval.cancel(availableInVsee);
-							$state.go($state.current, {}, {reload: false});
+							$state.go($state.current, {}, {reload: true});
 							});
 							// alert(message);
 							}
 							var failure = function()
 							{
-							alert("Error calling Hello Plugin");
+								alert("Error calling Hello Plugin");
 							}
 
 							hello.login(uname1,pw1,success, failure);

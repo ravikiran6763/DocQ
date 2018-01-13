@@ -18,8 +18,13 @@
     "com.razorpay.cordova": "git+https://github.com/razorpay/razorpay-cordova.git",
     "cordova-android": "^6.3.0",
     "cordova-ios": "^4.5.4",
+<<<<<<< HEAD
     "cordova-plugin-camera": "^2.4.1",
     "cordova-plugin-compat": "^1.2.0",
+=======
+    "cordova-plugin-android-permissions": "^1.0.0",
+    "cordova-plugin-camera": "^4.0.1",
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
     "cordova-plugin-contacts": "^3.0.1",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^5.0.0",
@@ -79,14 +84,17 @@
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
+<<<<<<< HEAD
       "cordova-plugin-camera": {
         "CAMERA_USAGE_DESCRIPTION": " ",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
       },
+=======
+      "com.razorpay.cordova": {},
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
       "cordova-plugin-device": {
         "MY_VARIABLE": "my_variable_value"
       },
-      "cordova-plugin-fullscreen": {},
       "cordova-plugin-network-information": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-x-toast": {},
@@ -97,9 +105,18 @@
       "cordova-plugin-compat": {},
       "cordova-plugin-splashscreen": {},
       "ionic-plugin-keyboard": {},
+<<<<<<< HEAD
       "com.greettelehealth.DoctorQuick": {},
       "cordova-plugin-contacts": {},
       "com.razorpay.cordova": {}
+=======
+      "cordova-plugin-fullscreen": {},
+      "cordova-plugin-contacts": {},
+      "cordova-plugin-x-socialsharing": {},
+      "cordova-plugin-android-permissions": {},
+      "com.example.hello": {},
+      "cordova-plugin-camera": {}
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
     },
     "platforms": [
       "android"

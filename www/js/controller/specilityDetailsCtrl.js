@@ -223,7 +223,7 @@ console.log($rootScope.specialId);
              });
              $timeout( function(){
                var confirmPopup = $ionicPopup.confirm({
-                 title: 'Slow Data',
+                 // title: 'Slow Data',
                  template: 'Unable to send request at the moment as we detected slow network on your device. Please try after sometime ',
                  cssClass: 'videoPopup',
                  scope: $scope,
@@ -256,7 +256,7 @@ console.log($rootScope.specialId);
                       disableAnimate: true,
                       disableBack: true
                     });
-                    $state.go('app.patient_home',{}, {location: "replace", reload: false})
+                    $state.go($state.$current,{}, {location: "replace", reload: true})
    								}
    							},
    							{

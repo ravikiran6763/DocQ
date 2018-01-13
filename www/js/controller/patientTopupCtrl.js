@@ -24,7 +24,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 								$scope.payment.topUpAmt=($scope.payment.topUp*100);
 								console.log($scope.payment.topUp);
-							 if($scope.payment.topUp < 270){//250
+							 if($scope.payment.topUp < 1){//250
 								 window.plugins.toast.showWithOptions({
 								 message: "Amount must be ₹270 or higher.",
 								 duration: "short", // 2000 ms
@@ -66,18 +66,43 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									var successCallback = function(payment_id) {
 									console.log('payment_id: ' + payment_id)
+<<<<<<< HEAD
 
 								
 
 									$window.location.reload(true);
+=======
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){
 									   $rootScope.patientWalletUpdate=response;
 										 console.log($rootScope.patientWalletUpdate);
 										 if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
+<<<<<<< HEAD
 
 											 console.log('TransactionSuccessful');
+=======
+											 $window.location.reload(true);
+											 var confirmPopup = $ionicPopup.confirm({
+							 					// title: 'DoctorQuick',
+							 					template: '<center>Successfully added the amount to you DoctorQuick Deposit</center>',
+							 					// template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
+							 					cssClass: 'videoPopup',
+							 					scope: $scope,
+							 					buttons: [
+							 						{
+							 							text: 'OK',
+							 							type: 'button-assertive',
+							 							onTap: function(e) {
+							 							console.log('offline');
+							 							// $state.go("templates.doctor_home");
+							 							}
+							 						},
+							 					]
+							 				});
+
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 											  // $state.go('app.patient_topup');
 
 												// $state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});

@@ -5,6 +5,8 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope,$state, $rootScope,$
 	$rootScope.showBadge=false;
 	$rootScope.showNotification=false;
 	$rootScope.hideSideMenu = true;
+
+	
 	$rootScope.cc={};
 	$scope.doctorQuery=function(){
 

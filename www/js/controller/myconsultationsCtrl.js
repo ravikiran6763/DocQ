@@ -1,18 +1,19 @@
 DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $ionicPlatform,$localStorage, $ionicLoading, $ionicConfig, $http,$interval, LoginService, patientCareService, doctorServices,myConsultationService,Factory) {
 
-	$rootScope.headerTxt="My consultations";
+	$rootScope.headerTxt="My Consultations";
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
+	$rootScope.inviteButton = false;
+
 
 	$scope.names = {};
 	$scope.listofnames = [];
 	$scope.fromusername = [];
 	$scope.listofphones = [];
 // for doctors consultationDetails
-$ionicLoading.show();
 // console.log('consultations');
 
 var username = "greet+"+$localStorage.user;
@@ -27,19 +28,24 @@ else{
 
 $ionicLoading.show({
 			template: '<ion-spinner></ion-spinner><br>Loading',
-			duration:3000
+			// duration:3000
 		});
 
 if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
-	var data = response;
-	for(var i=0; i<data.length; i++){
-	$rootScope.doctorFname=data[i].doctorFname;
-	$rootScope.doctorLname=data[i].doctorLname;
-	$rootScope.doctorMname=data[i].doctorMname;
-	$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+	if($rootScope.ConsultedDoctor){
+		$ionicLoading.hide();
+
+		var data = response;
+		for(var i=0; i<data.length; i++){
+		$rootScope.doctorFname=data[i].doctorFname;
+		$rootScope.doctorLname=data[i].doctorLname;
+		$rootScope.doctorMname=data[i].doctorMname;
+		$rootScope.fullname = $rootScope.doctorFname+" "+$rootScope.doctorLname;
+		}
 	}
+
 	}).catch(function(error){
 	// console.log('failure data', error);
 	});
@@ -48,16 +54,21 @@ else{
 	myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
 	console.log($scope.myPatients);
-	var data = $scope.myPatients;
-	for(var i=0; i<data.length; i++){
-	$scope.patientFname=data[i].patientFname;
-	$scope.patientLname=data[i].patientLname;
-	$scope.patientPhone=data[i].patientPhone;
-	$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
-	$scope.listofnames.push($scope.fullname);
-	$scope.listofphones.push(data[i].patientPhone);
-	//console.log($localStorage.user);
+	if($scope.myPatients){
+		$ionicLoading.hide();
+		
+		var data = $scope.myPatients;
+		for(var i=0; i<data.length; i++){
+		$scope.patientFname=data[i].patientFname;
+		$scope.patientLname=data[i].patientLname;
+		$scope.patientPhone=data[i].patientPhone;
+		$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
+		$scope.listofnames.push($scope.fullname);
+		$scope.listofphones.push(data[i].patientPhone);
+		//console.log($localStorage.user);
+		}
 	}
+
 	}).catch(function(error){
 	console.log('failure data', error);
 	});
@@ -229,7 +240,7 @@ $rootScope.checkNewMessages = $interval(function(){
 		}
 
 		hello.chatcounts(username,password,success, failure);
-}, 5000);
+}, 1000);
 
 $scope.pagedecision=$ionicHistory.currentStateName();
 var username = "greet+"+$localStorage.user;

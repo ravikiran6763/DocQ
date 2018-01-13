@@ -1,22 +1,29 @@
 DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
 
 	$rootScope.headerTxt='';
-	$rootScope.showBackBtn=false;
+	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 	$rootScope.hideSideMenu = true;
+
 	$scope.myDocDetail = {};
 
 	$rootScope.showSPecialities=false;
 	$rootScope.showSex=false;
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
-	$rootScope.hideSideMenu = true;
 	$rootScope.inviteButton = false;
 
 
+<<<<<<< HEAD
 	$ionicConfig.views.swipeBackEnabled(false);
+=======
+	$scope.closeSideMenu = function() {
+		console.log('closing side menu');
+	 $ionicSideMenuDelegate.toggleRight();
+ };
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 
 	var specialitywise = "";
 	var catwise = "";
@@ -42,66 +49,6 @@ $scope.devicePlatform = ionic.Platform.isIOS();
 console.log($rootScope.previousState);
 
 
-// if($localStorage.doctororpatient === 'doctor'){
-// 	console.log('make doc available');
-//
-// 	var uname1 = "greet+"+$localStorage.user;
-// 	var pw1 = "DQ_doctor";
-// 	var success = function(message)
-// 	{
-// 		loggedIn=true;
-// 			$ionicLoading.hide().then(function(){
-// 				console.log("The loading indicator is now hidden");
-// 				$ionicHistory.nextViewOptions({
-// 					disableAnimate: true,
-// 					disableBack: true
-// 				});
-// 				$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
-// 			});
-//
-//
-// 	}
-// 	var failure = function()
-// 	{
-//
-// 		alert("Error calling Hello Plugin");
-//
-// 	}
-// 	// $state.go('app.patient_home');//for browser login
-// 	hello.login(uname1,pw1,success, failure);
-// }
-// else{
-// 	var uname1 = "greet+"+$localStorage.user;
-// 	var pw1 = "DQ_patient";
-// 	var success = function(message)
-// 	{
-// 		loggedIn=true;
-// 			$ionicLoading.hide().then(function(){
-// 				console.log("The loading indicator is now hidden");
-// 				$ionicHistory.nextViewOptions({
-// 					disableAnimate: true,
-// 					disableBack: true
-// 				});
-// 				$state.go('app.patient_home', {}, {location: "replace", reload: false});
-// 			});
-//
-//
-// 	}
-// 	var failure = function()
-// 	{
-//
-// 		alert("Error calling Hello Plugin");
-//
-// 	}
-// 	// $state.go('app.patient_home');//for browser login
-// 	hello.login(uname1,pw1,success, failure);
-// 	console.log('make patient available');
-// }
-
-
-// $interval.cancel(checkAcceptedReq,2000);
-
-// console.log($location.path());
 ion.sound({
     sounds: [
         {
@@ -580,6 +527,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 						{
 						text: 'Cancel',
 						type: 'button-royal',
+						onTap: function(e) {
+								$ionicSideMenuDelegate.toggleRight();
+							}
 						},
 						{
 							text: 'OK',
@@ -594,6 +544,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$ionicHistory.clearHistory();
 										$window.localStorage.clear();
 										$scope.loginDatasubmitted = false;
+<<<<<<< HEAD
 
 										$state.go('auth.loginNew');
 
@@ -609,6 +560,25 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										// 	console.log('error calling hello plugin');
 										// }
 										// hello.logout(unametologout,pwtologout,success, failure);
+=======
+										var success = function(message)
+										{
+													console.log(message);
+													$ionicHistory.nextViewOptions({
+															disableBack: true,
+															disableAnimate: true,
+															historyRoot: true
+													});
+													$ionicHistory.clearCache();
+													$ionicHistory.clearHistory();
+													$state.go('auth.loginNew');
+										}
+										var failure = function()
+										{
+											console.log('error calling hello plugin');
+										}
+										hello.logout(unametologout,pwtologout,success, failure);
+>>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 								}
 							}).catch(function(error){
 							console.log('failure data', error);
@@ -651,17 +621,17 @@ console.log($state.$current.name);
 		$state.go('templates.updatePassword');
 	}
 
-	$rootScope.login={};
+	$rootScope.passwordToUpdate={};
 	$rootScope.ratedBy;
 
 		$scope.updatePwd=function(){
-			$rootScope.ratedBy=$scope.login.userPhone;
+			// $rootScope.ratedBy=$scope.passwordToUpdate.userPhone;
 			var newPwd={
-			newPwd1:$scope.login.password,
+			newPwd1:$scope.passwordToUpdate.password,
 			userPhone:$localStorage.user
 			};
-			console.log($scope.login.password);
-			if(!$scope.login.password){
+			console.log($scope.passwordToUpdate.password);
+			if(!$scope.passwordToUpdate.password){
 	      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
 	      $scope.submittedPwd = true;
 
@@ -681,12 +651,12 @@ console.log($state.$current.name);
 	      });
 
 	    }
-			console.log($scope.login.verify);
-			if($scope.login.password && $scope.login.verify){
-				if($scope.login.password === $scope.login.verify){
+			console.log($scope.passwordToUpdate.verify);
+			if($scope.passwordToUpdate.password && $scope.passwordToUpdate.verify){
+				if($scope.passwordToUpdate.password === $scope.passwordToUpdate.verify){
 					patientProfileDetailsService.changePwd2(newPwd).then(function(response){
 					console.log(response);
-						$scope.login='';
+						$scope.passwordToUpdate='';
 						window.plugins.toast.showWithOptions({
 							message: "Your password has been updated.",
 							duration: "short", // 2000 ms
@@ -709,7 +679,7 @@ console.log($state.$current.name);
 					disableAnimate: true,
 					disableBack: true
 				 });
-					$state.go("app.patient_home",{}, {location: "replace", reload: false});
+					$state.go("app.patient_profile",{}, {location: "replace", reload: false});
 				}
 				else{
 					window.plugins.toast.showWithOptions({
@@ -732,20 +702,20 @@ console.log($state.$current.name);
 
 		}
 		$scope.updateDocPwd=function(){
-			$rootScope.ratedBy=$scope.login.userPhone;
-			console.log('dddd');
+			$rootScope.ratedBy=$scope.passwordToUpdate.userPhone;
 			var newPwd={
-			newPwd1:$scope.login.password,
+			newPwd1:$scope.passwordToUpdate.password,
 			userPhone:$localStorage.user
 			};
-			console.log($scope.login.password);
-			console.log($scope.login.verify);
+			console.log($scope.passwordToUpdate.password);
+			console.log($scope.passwordToUpdate.verify);
 
 			console.log(newPwd);
-			if($scope.login.password === $scope.login.verify){
+			if($scope.passwordToUpdate.password === $scope.passwordToUpdate.verify){
 				doctorServices.changeDocPwd(newPwd).then(function(response){
 				console.log(response);
-				$scope.login='';
+				$state.go("templates.doc_profile")
+				$scope.passwordToUpdate='';
 				window.plugins.toast.showWithOptions({
 					message: "Your password has been updated.",
 					duration: "short", // 2000 ms
@@ -818,7 +788,7 @@ $scope.ratingsObject = {
 
 		if($scope.deviceAndroid)
 		{
-
+				$ionicSideMenuDelegate.toggleRight();
 				window.open("market://details?id=com.greettech.DoctorQuick","_system");
 
 		}

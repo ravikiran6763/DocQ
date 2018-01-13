@@ -245,6 +245,8 @@ console.log(checkPatientActivity);
  }
  $scope.$watch('docDeclined', function (newValue, oldValue, scope){
  		console.log('changed');
+		console.log('oldValue',oldValue);
+		console.log('newValue',newValue);
 
  		if(newValue > oldValue){
 			setTimeout(function (){

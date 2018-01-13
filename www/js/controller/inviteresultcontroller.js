@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,$stateParams,$ionicPlatform, $localStorage,$ionicLoading,$ionicPopup,invitereviews,invitereviewsresultservice,IonicClosePopupService){
+DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,$stateParams,$ionicPlatform,  $cordovaContacts ,$localStorage,$ionicLoading,$ionicPopup,invitereviews,invitereviewsresultservice,IonicClosePopupService){
 
   $scope.toggle = true;
   $rootScope.headerTxt="Invite Reviews";
@@ -20,6 +20,15 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,
   });
 console.log($localStorage.docTinyUrl);
 
+var permissions = cordova.plugins.permissions;
+permissions.requestPermission(permissions.READ_CONTACTS, success, error);
+function error() {
+console.warn('Turned on the permission');
+}
+
+function success( status ) {
+if( !status.hasPermission ) error();
+}
 
   $scope.query = "Hi,\nPlease visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients. Thanks.\nClick here: ";
   $scope.tiny=$localStorage.docTinyUrl;
@@ -59,7 +68,33 @@ $scope.Savedata = function()
              text: 'DoctorQuick',
              type: 'button-positive',
              onTap: function(e) {
-                $state.go("templates.invite_reviews");
+                    $ionicLoading.show({
+                       template: '<ion-spinner></ion-spinner><br><p>Fetching your contacts</p>'
+                   });
+                   var options = {};
+                   options.multiple = true;
+                   options.hasPhoneNumber = true;
+                   options.fields = ['name.formatted', 'phoneNumbers'];
+                   $cordovaContacts.find(options).then(function(result) {
+                       $scope.contacts = result;
+
+                       var contactsWithAtLeastOnePhoneNumber = _.filter(result, function(contact){
+                           return contact.phoneNumbers.length > 0
+                       });
+
+                       //
+                       // Contacts with at least one phone number...
+                       $scope.deviceContacts=contactsWithAtLeastOnePhoneNumber;
+                       // $scope.deviceContacts='ravikiran';
+                       console.log( $scope.deviceContacts);
+                       console.log(contactsWithAtLeastOnePhoneNumber);
+                       invitereviews.invitereviewpatient(contactsWithAtLeastOnePhoneNumber);
+                       $state.go("templates.invite_reviews");
+                       // $ionicLoading.hide();
+
+                   }, function(error) {
+                       console.log("ERROR: " + error);
+                   });
              }
            },
            {

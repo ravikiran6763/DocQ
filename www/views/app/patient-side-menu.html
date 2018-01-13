@@ -1,17 +1,13 @@
 <ion-side-menus enable-menu-with-back-views="true" width="80%">
   <ion-side-menu-content class="post-size-14px" >
     <ion-nav-bar class="bar app-top-bar" align-title="center" >
-
+      <ion-nav-back-button class="button-clear" ng-click="goBack()"  ng-show="showBackBtn">
+        <i class="back-btn-cls ion-ios-arrow-back"   ng-click="goBack()" ></i>
+     </ion-nav-back-button>
       <ion-nav-buttons side="left">
-
         <button class="button-clear"  ui-sref="app.my_consultations">
           <i class="icon ion-ios-chatbubble-outline" ng-show="showNotification" ><span class="badge badge-stable icon-badge" ng-show="showBadge">{{unreadchatforpatient}}</span></i>
         </button>
-
-        <button class="button-clear" ng-click="goBack()" ng-show="showBackBtn"  >
-          <i class="back-btn-cls ion-ios-arrow-back" ng-click="goBack()" ></i>
-       </button>
-
       </ion-nav-buttons>
 
       <ion-nav-title>
@@ -19,9 +15,8 @@
       </ion-nav-title>
 
       <ion-nav-buttons side="right" >
-        <!-- <button  ng-hide="hideSideMenu" ng-click="toggleLeftSideMenu()" class="button button-icon button-clear ion-navicon">
-        </button> -->
-        <a class="button button-icon button-clear ion-navicon" menu-toggle="right" ng-show="hideSideMenu" ng-click="toggleLeftSideMenu()">
+
+        <a class="button button-icon button-clear ion-navicon"  menu-toggle ="right" ng-show="hideSideMenu" ng-click="toggleLeftSideMenu()">
         </a>
       </ion-nav-buttons>
 
@@ -35,42 +30,42 @@
     <ion-content class="sidemenu-padding" ng-class="{'search-side-menu' : sideMenuForSearch}">
 
       <ion-list ng-hide="sideMenuForSearch">
-        <ion-item class="item-icon-left" ng-click="clearAllHistory();"  ui-sref="app.patient_home" menu-close>
+        <ion-item class="item-icon-left"   ui-sref="app.patient_home" ng-click="closeSideMenu()">
           <i class="icon ion-ios-home"></i>
           <h2 class="menu-text">Home</h2>
         </ion-item>
-        <ion-item class="item-icon-left" ng-click="getPatientDetails();"  ui-sref="app.patient_profile" menu-close>
+        <ion-item class="item-icon-left" ui-sref="app.patient_profile" ng-click="closeSideMenu()">
           <i class="icon ion-android-bookmark"></i>
           <h2 class="menu-text">Profile</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ng-click="myDoctors();" ui-sref="app.my_doctors">
+        <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu()"  ui-sref="app.my_doctors">
           <i class="icon ion-radio-waves"></i>
           <h2 class="menu-text">My Doctors</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close  ng-click="goToConsultation();" style="background-color: #20242c !important;"  >
+        <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu()"  ui-sref="app.my_consultations" style="background-color: #20242c !important;"  >
           <i class="icon ion-social-wordpress"></i>
           <h2 class="menu-text">My Consultations</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_payments" ng-click="getWallet();">
+        <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu()" ui-sref="app.patient_payments" ng-click="getWallet();">
           <i class="icon ion-wand"></i>
           <h2 class="menu-text">Payments</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close style="background-color: #21252d;" ng-click="ReviewApp();">
+        <ion-item class="item-icon-left" nav-clear  style="background-color: #21252d;" ng-click="ReviewApp();">
           <i class="icon ion-asterisk"></i>
           <h2 class="menu-text" >Review App</h2>
         </ion-item>
 
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_customercare">
+        <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu()" ui-sref="app.patient_customercare">
           <i class="icon ion-gear-a"></i>
           <h2 class="menu-text">Customer Care</h2>
         </ion-item>
 
-        <!-- <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_summary">
+        <!-- <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu()" ui-sref="app.patient_summary">
           <i class="icon ion-document"></i>
           <h2 class="menu-text">Summary</h2>
         </ion-item> -->
 
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.patient_home">
+        <ion-item class="item-icon-left" nav-clear ng-click="closeSideMenu()" ui-sref="app.patient_home">
           <i class="icon ion-document"></i>
           <h2 class="menu-text">Notifications</h2>
         </ion-item>
@@ -87,24 +82,24 @@
 
 
       <div class="radio_bg" ng-repeat="item in specialityList1">
-          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="selectSpeciality(item.special);" ng-show="showSPecialities" menu-close ><h2 >{{item.special}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.search" ng-value=item.special ng-click="selectSpeciality(item.special);" ng-show="showSPecialities" ng-click="closeSideMenu()" ><h2 >{{item.special}} </h2></ion-radio>
           <!-- selected:indexOf({{specialityList.search}}) -->
       </div>
 
       <div class="radio_bg" ng-repeat="type in sexList">
-          <ion-radio  ng-model="specialityList.sex" ng-value=type.sex ng-click="selectSex(type.sex);" ng-show="showSex" menu-close><h2 >{{type.sex}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.sex" ng-value=type.sex ng-click="selectSex(type.sex);" ng-show="showSex" ng-click="closeSideMenu()"><h2 >{{type.sex}} </h2></ion-radio>
       </div>
       <div class="radio_bg" ng-repeat="st in statusList">
-          <ion-radio  ng-model="specialityList.stat" ng-value=st.stat ng-click="selectStatus(st.stat);" ng-show="showStatus" menu-close><h2 >{{st.stat}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.stat" ng-value=st.stat ng-click="selectStatus(st.stat);" ng-show="showStatus" ng-click="closeSideMenu()"><h2 >{{st.stat}} </h2></ion-radio>
       </div>
       <div class="radio_bg" ng-repeat="ln in LanguageList">
-          <ion-radio  ng-model="specialityList.language" ng-value=ln.language ng-click="selectLanguage(ln.language);" ng-show="showLanguage"  menu-close><h2 >{{ln.language}} </h2></ion-radio>
+          <ion-radio  ng-model="specialityList.language" ng-value=ln.language ng-click="selectLanguage(ln.language);" ng-show="showLanguage"  ng-click="closeSideMenu()"><h2 >{{ln.language}} </h2></ion-radio>
       </div>
 
     </ion-list>
 
     </ion-content>
-    <ion-footer-bar align-title="left" class="item-icon-left" style="height:8%; background-color: #20242c;" ng-click="confirmSignout();" ng-hide="sideMenuForSearch" nav-clear menu-close >
+    <ion-footer-bar align-title="left" class="item-icon-left" style="height:8%; background-color: #20242c;" ng-click="confirmSignout();" ng-hide="sideMenuForSearch" nav-clear ng-click="closeSideMenu()" >
         <i class="icon ion-log-out"></i>
         <h5  style="color: white; font-family:Ubuntu,bold,sans-serif !important; ">Sign Out</h5>
     </ion-footer-bar>
