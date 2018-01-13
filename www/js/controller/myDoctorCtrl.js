@@ -32,7 +32,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 	};
 		$ionicLoading.show({
-		    template: '<ion-spinner></ion-spinner><br><br>Loading',
+		    template: '<ion-spinner></ion-spinner>',
 		    // hideOnStageChange: true
 		});
 

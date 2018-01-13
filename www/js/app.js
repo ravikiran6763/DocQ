@@ -188,7 +188,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           if (window.Connection){
             if (navigator.connection.type == Connection.NONE)
             {
-              
+
             console.log("Internet is disconnected on your device");
             };
           };
@@ -371,18 +371,19 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
-  // if (toState.name === "auth.patient_reg1" && fromState.name === "app.patient_home") {
-  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
-  // }
-  // if (toState.name === "auth.patient_reg2" && fromState.name === "app.patient_home") {
-  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
-  // }
-  // if (toState.name === "auth.patient_reg3" && fromState.name === "app.patient_home") {
-  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
-  // }
-  // if (toState.name === "auth.loginNew" && fromState.name === "app.patient_home") {
-  //   $state.go('app.loginNew',{}, {location: "replace", reload: true})
-  // }
+  if (fromState.name === "app.changeEmail_patient" ) {
+    $state.go('app.patient_profile')
+  }
+  if (fromState.name === "app.changePassword_patient") {
+    $state.go('app.patient_profile')
+  }
+  if (fromState.name === "templates.changeEmail_doctor") {
+    $state.go('templates.doc_profile')
+  }
+  if (fromState.name === "templates.updatePassword") {
+    $state.go('templates.doc_profile')
+
+  }
   if (toState.name != "app.searchDoctors") {
     $rootScope.sideMenuForSearch = false;
   }
@@ -510,7 +511,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
         });
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
-          $state.go($state.$current,{reload:true})
+          $state.go($state.$current,{location: "replace", reload:true})
       }
       else if($state.$current.name === "auth.loginNew"){
           $ionicHistory.clearCache();
@@ -522,6 +523,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
           $state.go("auth.loginNew",{reload:true})
       }
+      
 
       else {
         console.log('goback to prev view');

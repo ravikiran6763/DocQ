@@ -27,7 +27,7 @@ console.todo('RAVI');
 
 	$scope.updatePatientEmail=function(){
 
-$state.go('app.changeEmail_patient');
+		$state.go('app.changeEmail_patient');
 	// 	patientProfileDetailsService.updateEmail($localStorage.user).then(function(response){
 	// 		$scope.patient_email=response;
 	// 		console.log($scope.patient_email);
@@ -46,8 +46,6 @@ $scope.register = function() {
  $scope.accptNotifications=true;
  $scope.rejectNotifications=false;
  // Register with the Ionic Push service.  All parameters are optional.
-
-
 
 };
 	function updatedPIc(){

@@ -7,6 +7,8 @@ DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope,$w
     $rootScope.showNotification=false;
     $rootScope.hideSideMenu = true;
     $rootScope.showBadge=false;
+    $rootScope.showSubPatients=false;
+
 
 
 // TO CHECK NO OF DOCTORS ONLINE IN VSEE
@@ -51,6 +53,7 @@ console.log($rootScope.specialId);
    .then(function(response){
       console.log('Details', response);
       $scope.specialityDetails = response;
+      $rootScope.showSubPatients=true;
    }).catch(function(error){
        console.log('failure data', error);
    });
@@ -62,6 +65,9 @@ console.log($rootScope.specialId);
    $rootScope.popUpClosed == false;
   $scope.sendrequesttoonlinedoctors = function()
   {
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner><br>Please wait'
+    });
     patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
      $rootScope.patientWalletdetails=response;
      $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
@@ -79,6 +85,7 @@ console.log($rootScope.specialId);
          medicalSpecialityService.sendrequesttodoctor($localStorage.SpecilityId).then(function(response){
            console.log('successfull data', response);
            if(response === 'Inserted'){
+             $ionicLoading.hide();
              $scope.counter = 120;
              $scope.onTimeout = function(){
                // console.log($scope.counter);
@@ -242,38 +249,39 @@ console.log($rootScope.specialId);
        }
      }
      else{
-       var confirmPopup = $ionicPopup.confirm({
-   						title: 'Low Balance',
-   						template: '<center>Your request could not be processed as yourDoctorQuick deposit is less than ₹270.</center> ',
-   						cssClass: 'videoPopup',
-   						scope: $scope,
-   						buttons: [
-                {
-   								text: 'Cancel',
-   								type: 'button-royal',
-   								onTap: function(e) {
-                    $ionicHistory.nextViewOptions({
-                      disableAnimate: true,
-                      disableBack: true
-                    });
-                    $state.go($state.$current,{}, {location: "replace", reload: true})
-   								}
-   							},
-   							{
-   								text: 'Topup',
-   								type: 'button-positive',
-   								onTap: function(e) {
-                    $ionicHistory.nextViewOptions({
-                      disableAnimate: true,
-                      disableBack: true
-                    });
-                    $state.go('app.patient_topup',{}, {location: "replace", reload: false});
-   								}
-   							},
+              $ionicLoading.hide();
+               var confirmPopup = $ionicPopup.confirm({
+           						title: 'Low Balance',
+           						template: '<center>Your request could not be processed as yourDoctorQuick deposit is less than ₹270.</center> ',
+           						cssClass: 'videoPopup',
+           						scope: $scope,
+           						buttons: [
+                        {
+           								text: 'Cancel',
+           								type: 'button-royal',
+           								onTap: function(e) {
+                            $ionicHistory.nextViewOptions({
+                              disableAnimate: true,
+                              disableBack: true
+                            });
+                            $state.go($state.$current,{}, {location: "replace", reload: false})
+           								}
+           							},
+           							{
+           								text: 'Topup',
+           								type: 'button-positive',
+           								onTap: function(e) {
+                            $ionicHistory.nextViewOptions({
+                              disableAnimate: true,
+                              disableBack: true
+                            });
+                            $state.go('app.patient_topup',{}, {location: "replace", reload: false});
+           								}
+           							},
 
-   						]
-   					});
-     }
+           						]
+           					});
+         }
      }).catch(function(error){
        console.log('failure data', error);
      });

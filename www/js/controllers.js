@@ -297,7 +297,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 					type: 'button-assertive',
 					onTap: function(e) {
 					console.log('offline');
-					// $state.go("app.patient_home");
+					$state.go("app.patient_profile");
 					}
 				},
 				]

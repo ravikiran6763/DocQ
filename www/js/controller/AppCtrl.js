@@ -337,6 +337,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 				$scope.specfic = val;
 				$scope.choice= val;
 				console.log($scope.specfic);
+				$ionicSideMenuDelegate.toggleRight();
 				searchbyspecialities.specialitywisesearch($scope.specfic);
 				$scope.specialdata =  searchbyspecialities.getSpecialData();
 			}
@@ -350,6 +351,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 				{
 					$scope.gender = "Female";
 				}
+				$ionicSideMenuDelegate.toggleRight();
 				searchbyspecialities.categorywisesearch($scope.gender);
 				$scope.genderdata =  searchbyspecialities.getcategoryData();
 				console.log($scope.gender);
@@ -367,13 +369,14 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 					// $scope.onoff = 'Offline';
 					$scope.onoff =  "Offline";
 				}
-
+				$ionicSideMenuDelegate.toggleRight();
 				searchbyspecialities.genderwisesearch($scope.onoff);
 				$scope.statusdata =  searchbyspecialities.getgenderData();
 
 			}
 			$scope.selectLanguage = function(val)	{
 				console.log(val);
+				$ionicSideMenuDelegate.toggleRight();
 					searchbyspecialities.languagewisesearch(val);
 					$scope.languagedataselected =  searchbyspecialities.getlanguageData();
 					console.log($scope.languagedataselected);
@@ -614,18 +617,18 @@ console.log($state.$current.name);
 	      $scope.submittedPwd = true;
 
 	      window.plugins.toast.showWithOptions({
-	      message: "Valid 4 digit password must be entered",
-	      duration: "short", // 2000 ms
-	      position: "bottom",
-	      styling: {
-	      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-	      backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
-	      textColor: '#ffffff', // Ditto. Default #FFFFFF
-	      textSize: 13, // Default is approx. 13.
-	      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-	      horizontalPadding: 16, // iOS default 16, Android default 50
-	      verticalPadding: 12 // iOS default 12, Android default 30
-	      }
+		      message: "Valid 4 digit password must be entered",
+		      duration: "short", // 2000 ms
+		      position: "bottom",
+		      styling: {
+		      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+		      backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+		      textColor: '#ffffff', // Ditto. Default #FFFFFF
+		      textSize: 13, // Default is approx. 13.
+		      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+		      horizontalPadding: 16, // iOS default 16, Android default 50
+		      verticalPadding: 12 // iOS default 12, Android default 30
+		      }
 	      });
 
 	    }

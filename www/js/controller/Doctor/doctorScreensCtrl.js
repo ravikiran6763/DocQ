@@ -28,9 +28,19 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
         console.log('interval started');
         console.log($localStorage.showConnecting);
         if($localStorage.showConnecting == true){
+          $timeout( function(){
+          $rootScope.connectingMessage = 'Internet connection appears very slow. Please try later'
+        }, 60000 );
+          $rootScope.connectingMessage = 'Connecting to DoctorQuick'
           $ionicLoading.show({
-            template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+            template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
+            // duration:3000,
+            noBackdrop: true
           });
+            // $timeout(function(){
+            // $ionicLoading.hide();
+            // 	alert('no network');
+            // },10000);
 
         }
         $interval(availableInVsee,2000,1);
@@ -83,7 +93,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             }).catch(function(error){
             console.log('failure data', error);
             });
-            $state.go($state.current, {}, {reload: false});
+            $state.go($state.current, {}, {reload: true});
             });
             }
             var failure = function()

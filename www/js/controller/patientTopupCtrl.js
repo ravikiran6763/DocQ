@@ -126,7 +126,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 										verticalPadding: 12 // iOS default 12, Android default 30
 										}
 										});
-										$window.location.reload(true);
+										// $window.location.reload(true);
 									}
 
 									RazorpayCheckout.open(options, successCallback, cancelCallback);
