@@ -367,6 +367,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   console.log(toState.name);
   console.log(fromState.name);
 
+//to stop back from update view
   if(!$rootScope.previousState && toState.name === "templates.doctor_home"){
     console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
@@ -384,6 +385,23 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     $state.go('templates.doc_profile')
 
   }
+
+//to allow back from update view from and to states are interchanged
+  // if (toState.name === "app.changeEmail_patient" && fromState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
+  // }
+  // if (toState.name === "app.changePassword_patient"  && fromState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
+  // }
+  // if (toState.name === "templates.changeEmail_doctor" && fromState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  // }
+  // if (toState.name === "templates.updatePassword" && fromState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  //
+  // }
+
+
   if (toState.name != "app.searchDoctors") {
     $rootScope.sideMenuForSearch = false;
   }
@@ -685,7 +703,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
 
   .state('auth.loginNew', {
     cache : false,
-    url: '/loginNew',
+    url: '/loginNew/:userPhone/:userPassword',
     templateUrl: "views/auth/loginNew.html",
     controller : 'LoginCtrl'
   })

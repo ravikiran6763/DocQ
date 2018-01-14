@@ -53,9 +53,23 @@ $scope.setRating = function(ratings,val){
 	console.log(ratings);
 	if(ratings <= 3)
 	{
-			$scope.unhappy = true;
-			$scope.happy = false;
+			// $scope.unhappy = true;
+			// $scope.happy = false;
 			console.log($scope.unhappy);
+			var filRatings = $ionicPopup.confirm({
+				template: '<p>Please share details with us why you were<br>unhappy with the consultation so that we <br>can improve our services.</p><br><textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment"></textarea>',
+				cssClass: 'videoPopup',
+				scope: $scope,
+				buttons: [
+				{
+					text: 'OK',
+					type: 'button-positive',
+					onTap: function(e) {
+					console.log('ok');
+					}
+				},
+				]
+			});
 	}
 	else if (ratings >= 4)
 	{

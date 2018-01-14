@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -154,17 +154,70 @@ $scope.patientRegistration = function()
                   'phone': $rootScope.PatientDetail.patient_mob,
                   'password': $rootScope.PatientDetail.pat_password
                 };
+                $localStorage.user=$rootScope.PatientDetail.patient_mob;
+                $localStorage.pass=$rootScope.PatientDetail.pat_password;
 
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
             console.log(response);
             if(response){
-              $ionicHistory.clearCache();
-              $ionicHistory.clearHistory();
-              $window.localStorage.clear();
+
+              // window.plugins.OneSignal.getIds(function(ids) {
+              //   $scope.playerId=JSON.stringify(ids['userId']);
+              //   // console.log($scope.playerId);
+              //   var updatePlayer ={
+              //     palyerId:$scope.playerId,
+              //     userNum:$localStorage.user,
+              //     user:'patient'
+              //   }
+              //   console.log(updatePlayer);
+              //   LoginService.updatePlayer(updatePlayer).then(function(response){
+              //     console.log(response);
+              //   })
+              // });
+
+              patientProfileDetailsService.fetchPatient($rootScope.PatientDetail.patient_mob).then(function(response){
+  							window.localStorage['patientDetails'] = angular.toJson(response);
+  						}).catch(function(error){
+  						console.log('failure data', error);
+  						})
+
+              patientProfileDetailsService.fetchPatientImage($rootScope.PatientDetail.patient_mob).then(function(response){
+  							console.log(response);
+  							window.localStorage['patientProfileImage'] = angular.toJson(response);
+  						}).catch(function(error){
+  						console.log('failure data', error);
+  						})
+
+  						searchDoctorServices.specialitySearch().then(function(response){
+  							window.localStorage['specialityList1'] = angular.toJson(response);
+  							// console.log(window.localStorage['specialityList1']);
+  						}).catch(function(error){
+  						console.log('failure data', error);
+  						});
+
+  						searchDoctorServices.getLanguages().then(function(response){
+  							window.localStorage['languages'] = angular.toJson(response);
+  							// console.log(window.localStorage['languages']);
+  						}).catch(function(error){
+  						console.log('failure data', error);
+  						});
+
+              medicalSpecialityService.getMedicalSpecialist().then(function(response){
+                  console.log('successfull data', response);
+                  $scope.specialitiesList = response;
+                  window.localStorage['specialitiesList'] = angular.toJson(response);
+               }).catch(function(error){
+                   console.log('failure data', error);
+               });
+
+
+
+              // $ionicHistory.clearCache();
+              // $ionicHistory.clearHistory();
+              // $window.localStorage.clear();
               $scope.otpentered={};
-              $rootScope.PatientDetail={};
               $rootScope.dateOfBirth='';
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
@@ -174,45 +227,54 @@ $scope.patientRegistration = function()
               $scope.submitted2ndPage = false;
               $rootScope.loginDatasubmitted=false;
 
-            //   $ionicLoading.show({
-            //     template:'<ion-spinner></ion-spinner><br>Loading'
-            //   });
-            //   var uname1 = "greet+"+$rootScope.PatientDetail.patient_mob;
-  					// 	var pw1 = "DQ_patient";
-            //   var success = function(message)
-            //   {
-            //     // console.log(message);
-            //
-            //     $ionicLoading.hide().then(function(){
-            //       console.log("The loading indicator is now hidden");
-            //
-            //       $ionicHistory.nextViewOptions({
-            //         disableAnimate: true,
-            //         disableBack: true,
-            //         historyRoot:true
-            //       });
-            //       $state.go('app.patient_home', {}, {location: "replace", reload: true});
-            //
-            //     });
-            //     $timeout( function(){
-            //     console.log('interval started');
-            //     $interval(checkNewMessages,2000);
-            //     }, 5000 );
-            //   }
-            //
-            //   var failure = function()
-            //   {
-            //
-            //     alert("Error Occurred While Loggin in to DoctoQuick");
-            //
-            //   }
+              $ionicLoading.show({
+                template:'<ion-spinner></ion-spinner><br>Loading'
+              });
+              var uname1 = "greet+"+$rootScope.PatientDetail.patient_mob;
+  						var pw1 = "DQ_patient";
+              var success = function(message)
+              {
+                // console.log(message);
+
+                $ionicLoading.hide().then(function(){
+                  console.log("The loading indicator is now hidden");
+                  $rootScope.PatientDetail={};
+
+                  $ionicHistory.nextViewOptions({
+                    disableAnimate: true,
+                    disableBack: true,
+                    historyRoot:true
+                  });
+                  $state.go('app.patient_home', {}, {location: "replace", reload: true});
+
+                });
+                $timeout( function(){
+                console.log('interval started');
+                $interval(checkNewMessages,2000);
+                }, 5000 );
+              }
+
+              var failure = function()
+              {
+
+                alert("Error Occurred While Loggin in to DoctoQuick");
+
+              }
+              $ionicHistory.nextViewOptions({
+                disableAnimate: true,
+                disableBack: true,
+                historyRoot:true
+              });
+              $state.go('app.patient_home', {}, {location: "replace", reload: true});
+
             // hello.login(uname1,pw1,success, failure);
 
-              $state.go('auth.loginNew', {}, {location: "replace", reload: true});
-              var details = {
-                'phone': $rootScope.PatientDetail.patient_mob,
-                'password': $rootScope.PatientDetail.pat_password
-              }
+            // var details = {
+            //   'phone': $rootScope.PatientDetail.patient_mob,
+            //   'password': $rootScope.PatientDetail.pat_password
+            // }
+            // console.log(details);
+            //   $state.go('auth.loginNew', {userPhone:$rootScope.PatientDetail.patient_mob,userPassword:$rootScope.PatientDetail.pat_password}, {location: "replace", reload: true});
 
             }
             else{

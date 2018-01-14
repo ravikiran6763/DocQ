@@ -1,10 +1,18 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
 {
 		var loggedIn=false;
+
+		console.log($stateParams.userPhone);
+		console.log($stateParams.userPassword);
 
 		$scope.user = {};
 		$scope.user.rememberMe = false;
 		$scope.loginData = {};
+
+		$scope.loginData.phone=$stateParams.userPhone;
+		$scope.loginData.pin=$stateParams.userPassword;
+
+
 			$scope.rememberme =  function()
 			{
 						if($scope.user.rememberMe)
