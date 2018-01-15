@@ -366,9 +366,12 @@
     <plugin name="cordova-plugin-fullscreen" spec="^1.2.0" />
     <plugin name="cordova-plugin-contacts" spec="^3.0.1" />
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
-    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
+<<<<<<< HEAD
 >>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
+=======
+    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
+>>>>>>> 449530e8a33b22c185d7aefe2c135e88842185dc
     <engine name="android" spec="^6.3.0" />
 </widget>

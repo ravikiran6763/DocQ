@@ -15,8 +15,8 @@ console.log($stateParams.calledDoctor);
 // $ionicLoading.show();
 
 var confirmPopup = $ionicPopup.confirm({
-	template: '<center>Prescription if, filled by the doctor will be available in My Consultation shortly</center>',
-	cssClass: 'videoPopup',
+	template: '<center>Prescription filled by the doctor will be available in My Consultation shortly</center>',
+	cssClass: 'summaryPopup',
 	scope: $scope,
 	buttons: [
 	{
@@ -53,9 +53,109 @@ $scope.setRating = function(ratings,val){
 	console.log(ratings);
 	if(ratings <= 3)
 	{
-			$scope.unhappy = true;
-			$scope.happy = false;
+			// $scope.unhappy = true;
+			// $scope.happy = false;
 			console.log($scope.unhappy);
+			var filRatings = $ionicPopup.confirm({
+				// template: '<p>Please share details with us why you were<br>unhappy with the consultation so that we <br>can improve our services.</p><br><textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment"></textarea>',
+				template: '<p>Please tell us why you were unhappy with the consultation</p><textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment" style="height: 15%; border: 1px solid teal;"></textarea>',
+
+				cssClass: 'videoPopup',
+				scope: $scope,
+				buttons: [
+					{
+						text: 'Cancel',
+						type: 'button-royal',
+						onTap: function(e) {
+							$ionicHistory.clearCache();
+							$ionicHistory.clearHistory();
+							$ionicHistory.nextViewOptions({
+									disableBack: true,
+									disableAnimate: true,
+									historyRoot: true
+							});
+
+							$state.go("app.patient_home");
+						}
+					},
+				{
+					text: 'Send',
+					type: 'button-positive',
+					onTap: function(e) {
+					console.log('ok');
+
+
+										$scope.patient_details ={};
+										// $scope.userPhone=LoginService.returnUserPhone();
+
+										if($scope.ratingComments.comment)
+										{
+
+
+											var ratedValues={
+												rates:$rootScope.ratingValue,
+												//ratedBy:$localStorage.user,
+												ratedTo:$stateParams.calledDoctor,
+												ratingComments:$scope.ratingComments.comment
+											};
+											console.log(ratedValues);
+											rateDoctorServices.rateDoctor(ratedValues).then(function(response){
+												console.log(ratedValues);
+												$scope.rated=response;
+												console.log($scope.rated);
+												$scope.ratingComments.comment="";
+
+												//$state.go('app.patient_home', {}, {reload: true});
+												$ionicHistory.nextViewOptions({
+												disableAnimate: true,
+												disableBack: true,
+												historyRoot:true
+												});
+												$state.go('app.patient_home',{},{location: "replace", reload: false});
+
+
+											}).catch(function(error){
+												console.log('failure data', error);
+											});
+
+
+										}
+										else
+										{
+
+											window.plugins.toast.showWithOptions({
+											message: "Please Enter Rating Comments",
+											duration: "short", // 2000 ms
+											position: "bottom",
+											styling: {
+											opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+											backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+											textColor: '#ffffff', // Ditto. Default #FFFFFF
+											textSize: 13, // Default is approx. 13.
+											cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+											horizontalPadding: 16, // iOS default 16, Android default 50
+											verticalPadding: 12 // iOS default 12, Android default 30
+											}
+											});
+											$timeout(function() {
+												 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
+											}, 1000);
+
+
+
+										}
+
+
+
+
+
+
+
+					}
+				}
+
+				]
+			});
 	}
 	else if (ratings >= 4)
 	{

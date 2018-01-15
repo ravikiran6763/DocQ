@@ -188,7 +188,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           if (window.Connection){
             if (navigator.connection.type == Connection.NONE)
             {
-              
+
             console.log("Internet is disconnected on your device");
             };
           };
@@ -367,22 +367,42 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   console.log(toState.name);
   console.log(fromState.name);
 
+//to stop back from update view
   if(!$rootScope.previousState && toState.name === "templates.doctor_home"){
     console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
-  // if (toState.name === "auth.patient_reg1" && fromState.name === "app.patient_home") {
-  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
+
+  // if (fromState.name === "app.changeEmail_patient" && toState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
   // }
-  // if (toState.name === "auth.patient_reg2" && fromState.name === "app.patient_home") {
-  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
+  // if (fromState.name === "app.changePassword_patient"  && toState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
   // }
-  // if (toState.name === "auth.patient_reg3" && fromState.name === "app.patient_home") {
-  //   $state.go('app.patient_home',{}, {location: "replace", reload: true})
+  // if (fromState.name === "templates.changeEmail_doctor" && toState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
   // }
-  // if (toState.name === "auth.loginNew" && fromState.name === "app.patient_home") {
-  //   $state.go('app.loginNew',{}, {location: "replace", reload: true})
+  // if (fromState.name === "templates.updatePassword" && toState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  //
   // }
+
+//to allow back from update view from and to states are interchanged
+  // if (toState.name === "app.changeEmail_patient" && fromState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
+  // }
+  // if (toState.name === "app.changePassword_patient"  && fromState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
+  // }
+  // if (toState.name === "templates.changeEmail_doctor" && fromState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  // }
+  // if (toState.name === "templates.updatePassword" && fromState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  //
+  // }
+
+
   if (toState.name != "app.searchDoctors") {
     $rootScope.sideMenuForSearch = false;
   }
@@ -487,41 +507,42 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
 
       }
       else if($state.$current.name === "templates.doctor_home"){
-        $ionicHistory.nextViewOptions({
-            disableBack: true,
-            disableAnimate: true,
-            historyRoot: true
-        });
+        // $ionicHistory.nextViewOptions({
+        //     disableBack: true,
+        //     disableAnimate: true,
+        //     historyRoot: true
+        // });
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
           $rootScope.inviteButton = false;
           // window.location.reload();
 
-          $state.go("templates.doctor_home",{reload:true})
+          $state.go("templates.doctor_home")
 
       }
 
       else if($state.$current.name === "app.patient_home"){
         console.log('reload homepage');
-        $ionicHistory.nextViewOptions({
-            disableBack: true,
-            disableAnimate: true,
-            historyRoot: true
-        });
+        // $ionicHistory.nextViewOptions({
+        //     disableBack: true,
+        //     disableAnimate: true,
+        //     historyRoot: true
+        // });
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
-          $state.go($state.$current,{reload:true})
+          $state.go($state.$current)
       }
       else if($state.$current.name === "auth.loginNew"){
           $ionicHistory.clearCache();
           $ionicHistory.clearHistory();
-          $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-          });
+          // $ionicHistory.nextViewOptions({
+          // disableAnimate: true,
+          // disableBack: true
+          // });
 
-          $state.go("auth.loginNew",{reload:true})
+          $state.go("auth.loginNew")
       }
+
 
       else {
         console.log('goback to prev view');

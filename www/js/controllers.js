@@ -33,7 +33,7 @@ DoctorQuickApp.controller('patientTestsCtrl', function($scope,$state,$rootScope,
 		$rootScope.showNotification=false;
 		$rootScope.showBadge=false;
 		$scope.toggle = true;
-		$rootScope.headerTxt="Tests";
+		$rootScope.headerTxt="Test Recommended";
 		$rootScope.showBackBtn=true;
 		$rootScope.hideSideMenu = false;
 
@@ -198,7 +198,7 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 							type: 'button-assertive',
 							onTap: function(e) {
 							console.log('offline');
-							$state.go("templates.doc_profile");
+							// $state.go("templates.doc_profile");
 							}
 						},
 					]
@@ -297,7 +297,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 					type: 'button-assertive',
 					onTap: function(e) {
 					console.log('offline');
-					// $state.go("app.patient_home");
+					// $state.go("app.patient_profile");
 					}
 				},
 				]
@@ -374,7 +374,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 						console.log('offline');
 						$scope.emailToUpdate={};
 
-							$state.go("app.patient_profile",{reload:false});
+							// $state.go("app.patient_profile",{reload:false});
 						}
 					},
 				]

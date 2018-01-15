@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams, $rootScope,$filter,ionicDatePicker, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
+DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams,$window, $rootScope,$filter,ionicDatePicker, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
   $scope.toggle = true;
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -12,6 +12,9 @@ if($state.$current.name === 'app.addSubPatient'){
   $rootScope.headerTxt="Add Patient";
 
 }
+
+$scope.defaultPatient = angular.fromJson($window.localStorage['patientDetails']);
+console.log($scope.defaultPatient);
   $rootScope.editNewPatient=function(sub){
     $rootScope.editPatient=sub;
     console.log($rootScope.editPatient);

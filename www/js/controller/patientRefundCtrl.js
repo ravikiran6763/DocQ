@@ -29,7 +29,7 @@ console.log($rootScope.debit);
 
 
 						window.plugins.toast.showWithOptions({
-						message: "Amount must be entered.",
+						message: "Amount must be entered",
 						duration: "short", // 2000 ms
 						position: "bottom",
 						styling: {
@@ -48,7 +48,7 @@ console.log($rootScope.debit);
 
 
 			window.plugins.toast.showWithOptions({
-			message: "Amount more than available balance.",
+			message: "Amount more than available balance",
 			duration: "short", // 2000 ms
 			position: "bottom",
 			styling: {

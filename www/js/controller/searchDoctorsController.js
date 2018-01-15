@@ -22,7 +22,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			$rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
 
 			$rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
-	    if($rootScope.myWalletBal >= 250)
+	    if($rootScope.myWalletBal >= 270)
 	    {
 	      hello.audiocallvsee(uname,pw,persontocall,success, failure);
 	      var confirmPopup = $ionicPopup.confirm({
@@ -46,7 +46,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    {
 	      var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
- 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹250.</b></center> ',
+ 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹270.</b></center> ',
  				 cssClass: 'videoPopup',
  				 scope: $scope,
  				 buttons: [
@@ -130,7 +130,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	},true);
 
-// $interval(checkDocStatus, 1000);
+$interval(checkDocStatus, 1000);
 
 	function checkDocStatus(){
 	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
@@ -177,6 +177,9 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	$scope.callDoctor=function(num,callType)
 	{
+		$ionicLoading.show({
+			template:'<ion-spinner></ion-spinner>'
+		});
 
 		$rootScope.callType=callType;
 
@@ -204,10 +207,11 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			console.log($rootScope.myWalletBal);
 
 						$scope.counter = 0;
-			if($rootScope.myWalletBal >= 250)
+			if($rootScope.myWalletBal >= 270)
 			{
 
 					searchDoctorServices.requestForCall(callRequest).then(function(response){
+						$ionicLoading.hide();
 						console.log('print response',response);
 					window.localStorage['one2oneReq'] = angular.toJson(response);
 					$rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
@@ -293,7 +297,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			{
 
 				var confirmPopup = $ionicPopup.confirm({
-					title: 'DoctorQuick',
+					// title: 'DoctorQuick',
 					template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
 					cssClass: 'videoPopup',
 					scope: $scope,

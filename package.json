@@ -114,9 +114,14 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-android-permissions": {},
+<<<<<<< HEAD
       "com.example.hello": {},
       "cordova-plugin-camera": {}
 >>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
+=======
+      "cordova-plugin-camera": {},
+      "com.example.hello": {}
+>>>>>>> 449530e8a33b22c185d7aefe2c135e88842185dc
     },
     "platforms": [
       "android"

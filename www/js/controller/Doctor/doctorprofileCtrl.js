@@ -299,7 +299,7 @@ $scope.BalanceForVoiceCall=function()
   		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
   			console.log(response);
 
-        // 
+        //
         // if(response === "Doctor is offline")
         // {
         //
@@ -565,13 +565,14 @@ $scope.BalanceForVoiceCall=function()
     {
       console.log(num);
       console.log(type);
-
+      $ionicLoading.show({
+        template:'<ion-spinner></ion-spinner>'
+      });
       $rootScope.onGoingDoc=num;
       $rootScope.callType=type;
       console.log(type);
       $rootScope.docNumToCall = num;
       $interval(checkMyCallStatus,2000);
-
       $interval(checkDocStatusOnTheGo,2000);
 
       var callRequest={
