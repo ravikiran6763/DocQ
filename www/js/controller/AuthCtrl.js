@@ -163,19 +163,19 @@ $scope.patientRegistration = function()
             console.log(response);
             if(response){
 
-              // window.plugins.OneSignal.getIds(function(ids) {
-              //   $scope.playerId=JSON.stringify(ids['userId']);
-              //   // console.log($scope.playerId);
-              //   var updatePlayer ={
-              //     palyerId:$scope.playerId,
-              //     userNum:$localStorage.user,
-              //     user:'patient'
-              //   }
-              //   console.log(updatePlayer);
-              //   LoginService.updatePlayer(updatePlayer).then(function(response){
-              //     console.log(response);
-              //   })
-              // });
+              window.plugins.OneSignal.getIds(function(ids) {
+                $scope.playerId=JSON.stringify(ids['userId']);
+                // console.log($scope.playerId);
+                var updatePlayer ={
+                  palyerId:$scope.playerId,
+                  userNum:$localStorage.user,
+                  user:'patient'
+                }
+                console.log(updatePlayer);
+                LoginService.updatePlayer(updatePlayer).then(function(response){
+                  console.log(response);
+                })
+              });
 
               patientProfileDetailsService.fetchPatient($rootScope.PatientDetail.patient_mob).then(function(response){
   							window.localStorage['patientDetails'] = angular.toJson(response);
@@ -228,7 +228,7 @@ $scope.patientRegistration = function()
               $rootScope.loginDatasubmitted=false;
 
               $ionicLoading.show({
-                template:'<ion-spinner></ion-spinner><br>Loading'
+                template:'<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick'
               });
               var uname1 = "greet+"+$rootScope.PatientDetail.patient_mob;
   						var pw1 = "DQ_patient";
@@ -265,9 +265,9 @@ $scope.patientRegistration = function()
                 disableBack: true,
                 historyRoot:true
               });
-              $state.go('app.patient_home', {}, {location: "replace", reload: true});
+              // $state.go('app.patient_home', {}, {location: "replace", reload: true});
 
-            // hello.login(uname1,pw1,success, failure);
+            hello.login(uname1,pw1,success, failure);
 
             // var details = {
             //   'phone': $rootScope.PatientDetail.patient_mob,

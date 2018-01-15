@@ -27,7 +27,7 @@ else{
 }
 
 $ionicLoading.show({
-			template: '<ion-spinner></ion-spinner><br>Loading',
+			template: '<ion-spinner></ion-spinner>',
 			// duration:3000
 		});
 
@@ -56,7 +56,7 @@ else{
 	console.log($scope.myPatients);
 	if($scope.myPatients){
 		$ionicLoading.hide();
-		
+
 		var data = $scope.myPatients;
 		for(var i=0; i<data.length; i++){
 		$scope.patientFname=data[i].patientFname;

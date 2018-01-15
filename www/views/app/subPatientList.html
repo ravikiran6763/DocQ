@@ -20,12 +20,30 @@
 
       <ul>
 
+
+
+        <li ng-repeat="def in defaultPatient">
+
+          <!-- <div class="profile-img" >
+            <img  ng-hide="def.image == null "ng-src="{{def.image}}" >
+            <img  ng-show="def.image == null " ng-src="img/patientAvatar.png">
+          </div> -->
+
+          <div class="name-content" ng-click="selectSubPatient(0)">
+            <div class="name" >
+              <!-- <ionic-letter-avatar data="{{sub.newPatientFname}}">{{sub.newPatientFname}}  {{sub.newPatientLname}}</ionic-letter-avatar> -->
+              <h2 style="margin: 5% 0 0 5%;"> {{def.patientFname}}  {{def.patientLname}}  </h2>
+            </div>
+
+          </div>
+
+        </li>
       <li ng-repeat="sub in subPatients" >
 
-        <div class="profile-img" >
+        <!-- <div class="profile-img" >
           <img  ng-src="img/patientAvatar.png">
 
-        </div>
+        </div> -->
 
         <div class="name-content" ng-click="selectSubPatient({{sub.id}})">
           <div class="name" >

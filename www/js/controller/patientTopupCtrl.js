@@ -24,9 +24,9 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 								$scope.payment.topUpAmt=($scope.payment.topUp*100);
 								console.log($scope.payment.topUp);
-							 if($scope.payment.topUp < 1){//250
+							 if($scope.payment.topUp < 270){//250
 								 window.plugins.toast.showWithOptions({
-								 message: "Amount must be ₹270 or higher.",
+								 message: "Amount must be ₹270 or higher",
 								 duration: "short", // 2000 ms
 								 position: "bottom",
 								 styling: {
@@ -113,7 +113,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var cancelCallback = function(error) {
 									console.log(error.description + ' (Error '+error.code+')')
 										window.plugins.toast.showWithOptions({
-										message: "Transaction cancelled.",
+										message: "Transaction cancelled",
 										duration: "short", // 2000 ms
 										position: "bottom",
 										styling: {
@@ -152,7 +152,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	  }
 		else{
 			window.plugins.toast.showWithOptions({
-			message: "amount must be ₹270 or higher.",
+			message: "Amount must be ₹270 or higher",
 			duration: "short", // 2000 ms
 			position: "bottom",
 			styling: {

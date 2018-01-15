@@ -335,10 +335,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 															console.log("The loading indicator is now hidden");
 
 															$ionicHistory.nextViewOptions({
-																disableAnimate: true,
-																disableBack: true
+																	disableBack: true,
+																	disableAnimate: true,
+																	historyRoot: true
 															});
-															$state.go('templates.doctor_home', {}, {location: "replace", reload: false});
+															$ionicHistory.clearCache();
+															$ionicHistory.clearHistory();
+															$state.go('templates.doctor_home', {}, {location: "replace", reload: true});
 
 														});
 														$timeout( function(){

@@ -66,7 +66,7 @@ console.log($rootScope.specialId);
   $scope.sendrequesttoonlinedoctors = function()
   {
     $ionicLoading.show({
-      template:'<ion-spinner></ion-spinner><br>Please wait'
+      template:'<ion-spinner></ion-spinner>'
     });
     patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
      $rootScope.patientWalletdetails=response;

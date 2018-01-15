@@ -67,34 +67,39 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             var pw1 = "DQ_doctor";
             var success = function(message)
             {
-            // alert(message);
+                    // alert(message);
 
-            $ionicLoading.hide().then(function(){
-            console.log("The loading indicator is now hidden");
-            // alert('loggedin');
-            $localStorage.showConnecting = false;
-            $ionicHistory.nextViewOptions({
-            disableAnimate: true,
-            disableBack: true
-            });
-            $interval.cancel(availableInVsee);
-            doctorServices.doctorStatus($localStorage.user).then(function(response){
-            console.log(response);
-            $localStorage.onOff=response;
-            if(response == 1){
-            $scope.docAvailable=true;
-            $scope.docNotAvailable=false;
+                    $ionicLoading.hide().then(function(){
+                    console.log("The loading indicator is now hidden");
+                    // alert('loggedin');
+                    $localStorage.showConnecting = false;
 
-            }
-            else{
-            $scope.docAvailable=false;
-            $scope.docNotAvailable=true;
-            }
-            }).catch(function(error){
-            console.log('failure data', error);
-            });
-            $state.go($state.current, {}, {reload: true});
-            });
+                    $interval.cancel(availableInVsee);
+                    // $ionicHistory.nextViewOptions({
+                    //     disableAnimate: true,
+                    //     disableBack: true,
+                    //     historyRoot: true
+                    // });
+                    // $ionicHistory.clearCache();
+                    // $ionicHistory.clearHistory();
+                    // $state.go($state.current, {}, {location: "replace",reload: true});
+                    doctorServices.doctorStatus($localStorage.user).then(function(response){
+                        console.log(response);
+                        $localStorage.onOff=response;
+                        if(response == 1){
+                        $scope.docAvailable=true;
+                        $scope.docNotAvailable=false;
+
+                        }
+                        else{
+                        $scope.docAvailable=false;
+                        $scope.docNotAvailable=true;
+                        }
+                    }).catch(function(error){
+                    console.log('failure data', error);
+                    });
+
+                    });
             }
             var failure = function()
             {

@@ -98,8 +98,8 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-android-permissions": {},
-      "com.example.hello": {},
-      "cordova-plugin-camera": {}
+      "cordova-plugin-camera": {},
+      "com.example.hello": {}
     },
     "platforms": [
       "android"

@@ -372,19 +372,20 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
-  if (fromState.name === "app.changeEmail_patient" && toState.name === "app.patient_profile") {
-    $state.go('app.patient_profile')
-  }
-  if (fromState.name === "app.changePassword_patient"  && toState.name === "app.patient_profile") {
-    $state.go('app.patient_profile')
-  }
-  if (fromState.name === "templates.changeEmail_doctor" && toState.name === "templates.doc_profile") {
-    $state.go('templates.doc_profile')
-  }
-  if (fromState.name === "templates.updatePassword" && toState.name === "templates.doc_profile") {
-    $state.go('templates.doc_profile')
 
-  }
+  // if (fromState.name === "app.changeEmail_patient" && toState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
+  // }
+  // if (fromState.name === "app.changePassword_patient"  && toState.name === "app.patient_profile") {
+  //   $state.go('app.patient_profile')
+  // }
+  // if (fromState.name === "templates.changeEmail_doctor" && toState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  // }
+  // if (fromState.name === "templates.updatePassword" && toState.name === "templates.doc_profile") {
+  //   $state.go('templates.doc_profile')
+  //
+  // }
 
 //to allow back from update view from and to states are interchanged
   // if (toState.name === "app.changeEmail_patient" && fromState.name === "app.patient_profile") {
@@ -703,7 +704,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
 
   .state('auth.loginNew', {
     cache : false,
-    url: '/loginNew/:userPhone/:userPassword',
+    url: '/loginNew',
     templateUrl: "views/auth/loginNew.html",
     controller : 'LoginCtrl'
   })

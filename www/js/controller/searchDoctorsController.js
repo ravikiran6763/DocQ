@@ -130,7 +130,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	},true);
 
-// $interval(checkDocStatus, 1000);
+$interval(checkDocStatus, 1000);
 
 	function checkDocStatus(){
 	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
@@ -177,6 +177,9 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	$scope.callDoctor=function(num,callType)
 	{
+		$ionicLoading.show({
+			template:'<ion-spinner></ion-spinner>'
+		});
 
 		$rootScope.callType=callType;
 
@@ -208,6 +211,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			{
 
 					searchDoctorServices.requestForCall(callRequest).then(function(response){
+						$ionicLoading.hide();
 						console.log('print response',response);
 					window.localStorage['one2oneReq'] = angular.toJson(response);
 					$rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
@@ -293,7 +297,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			{
 
 				var confirmPopup = $ionicPopup.confirm({
-					title: 'DoctorQuick',
+					// title: 'DoctorQuick',
 					template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
 					cssClass: 'videoPopup',
 					scope: $scope,

@@ -228,9 +228,14 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							// alert('decline call here');
 							// ion.sound.play("bell_ring");
 						}
-						else if($scope.prevPage === 'templates.consulted_patient'){
-								$state.go('templates.doctor_home');
-								$ionicHistory.clearHistory();
+						// else if($scope.prevPage === 'templates.consulted_patient'){
+						// 		$state.go('templates.doctor_home');
+						// 		$ionicHistory.clearHistory();
+						// }
+						else if($scope.prevPage === 'app.changeEmail_patient'){
+								// $state.go('templates.doctor_home');
+								// $ionicHistory.clearHistory();
+								window.history.go(-1);
 						}
 						else{
 							window.history.go(-1);
@@ -386,12 +391,14 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 			{
 
 						$scope.doclist = {};
-
+						$ionicLoading.show({
+							template:'<ion-spinner><ion-spinner>'
+						});
 						//PUT ONE ERROR MESSAGE HERE
 						if(specialitywise == null && catwise == null && genderwise == null && languagewise == null)
 						{
 							console.log('Please Select Atlease One Search Criteria');
-
+							$ionicLoading.hide();
 							window.plugins.toast.showWithOptions({
 							message: "Please select atleast one search criteria",
 							duration: "short", // 2000 ms
@@ -476,6 +483,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 									}
 									else if(Object.keys(response).length == 0)
 									{
+										$ionicLoading.hide();
 										console.log('empty');
 												var confirmPopup = $ionicPopup.confirm({
 															 title: 'No Doctors Available',
@@ -545,7 +553,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$scope.loginDatasubmitted = false;
 										var success = function(message)
 										{
-													console.log(message);
+													alert(message);
 													$ionicHistory.nextViewOptions({
 															disableBack: true,
 															disableAnimate: true,
@@ -659,7 +667,7 @@ console.log($state.$current.name);
 					// disableAnimate: true,
 					// disableBack: true
 				 // });
-					$state.go("app.patient_profile");
+					// $state.go("app.patient_profile");
 				}
 				else{
 					window.plugins.toast.showWithOptions({
@@ -691,10 +699,31 @@ console.log($state.$current.name);
 			console.log($rootScope.passwordToUpdate.verify);
 
 			console.log(newPwd);
+			if(!$rootScope.passwordToUpdate.password){
+				// $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
+				$scope.submittedPwd = true;
+
+				window.plugins.toast.showWithOptions({
+					message: "Valid 4 digit password must be entered",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+					}
+				});
+
+			}
+			if($rootScope.passwordToUpdate.password && $rootScope.passwordToUpdate.verify){
 			if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
 				doctorServices.changeDocPwd(newPwd).then(function(response){
 				console.log(response);
-				$state.go("templates.doc_profile")
+				// $state.go("templates.doc_profile")
 				$rootScope.passwordToUpdate='';
 				window.plugins.toast.showWithOptions({
 					message: "Your password has been updated",
@@ -711,8 +740,7 @@ console.log($state.$current.name);
 				}
 				});
 
-
-				$state.go("templates.doctor_home");
+				// $state.go("templates.doctor_home");
 
 				}).catch(function(error){
 				console.log('failure data', error);
@@ -725,7 +753,7 @@ console.log($state.$current.name);
 					position: "bottom",
 					styling: {
 					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-					backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+					backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
 					textColor: '#ffffff', // Ditto. Default #FFFFFF
 					textSize: 13, // Default is approx. 13.
 					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
@@ -734,6 +762,8 @@ console.log($state.$current.name);
 				}
 				});
 			}
+		}
+
 
 		}
 	$scope.myDoctors=function(){
@@ -881,7 +911,7 @@ $scope.checkWalletBalance=function()
 				 console.log(persontocall);
 				 var success = function(message)
 					{
-							alert(message);
+							console.log(message);
 					}
 					var failure = function()
 					{

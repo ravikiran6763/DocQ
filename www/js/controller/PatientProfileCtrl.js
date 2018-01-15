@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootScope,$cordovaEmailComposer,$ionicPlatform,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService,IonicClosePopupService) {
+DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$ionicHistory,$rootScope,$cordovaEmailComposer,$ionicPlatform,$state,$window,$ionicConfig,$localStorage,$timeout, $ionicLoading ,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService,IonicClosePopupService) {
 
 // /DoctorQuickApp.controller('patientProfileCtrl', function($scope,$rootScope,$state,$ionicConfig,$localStorage,$ionicLoading, $interval,$http, $ionicPopup, LoginService,patientProfileDetailsService,$cordovaCamera,cameraService) {
 
@@ -15,8 +15,14 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$rootS
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
 	// console.time('Timer1');
-	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
-	console.log($scope.patient_details);
+	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+		window.localStorage['patientDetails'] = angular.toJson(response);
+		$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+		console.log($scope.patient_details);
+	}).catch(function(error){
+	console.log('failure data', error);
+	})
+
 	// debugger;
 	var msg='raaa';
 	console.todo = function(msg) {
@@ -26,7 +32,10 @@ console.todo('RAVI');
 	$scope.patientProfileImage = angular.fromJson($window.localStorage['patientProfileImage']);
 
 	$scope.updatePatientEmail=function(){
-
+		// $ionicHistory.nextViewOptions({
+		// 		disableBack: true,
+		// 		disableAnimate: true,
+		// });
 		$state.go('app.changeEmail_patient');
 	// 	patientProfileDetailsService.updateEmail($localStorage.user).then(function(response){
 	// 		$scope.patient_email=response;
