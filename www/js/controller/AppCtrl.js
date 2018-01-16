@@ -553,7 +553,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 										$scope.loginDatasubmitted = false;
 										var success = function(message)
 										{
-													alert(message);
+													console.log(message);
 													$ionicHistory.nextViewOptions({
 															disableBack: true,
 															disableAnimate: true,

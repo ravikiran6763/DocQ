@@ -918,7 +918,7 @@ $stateProvider
 })
 .state('app.editPatient', {
   cache : false,
-  url: "/editPatient/:id/:fname/:lname/:sex/:dob",
+  url: "/editPatient",
   views: {
     'menuContent': {
       templateUrl: "views/app/editPatient.html",

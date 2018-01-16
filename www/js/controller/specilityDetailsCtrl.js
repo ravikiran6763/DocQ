@@ -68,6 +68,7 @@ console.log($rootScope.specialId);
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
     });
+      $interval(checkAcceptedReqDocStatus,2000);
     patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
      $rootScope.patientWalletdetails=response;
      $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
@@ -123,7 +124,7 @@ console.log($rootScope.specialId);
           console.log('destroyed');
           });
 
-          $interval(checkAcceptedReqDocStatus,2000);
+
 
           $rootScope.buttonText='Request sent' ;
           $scope.callReqPopUp = $ionicPopup.show({

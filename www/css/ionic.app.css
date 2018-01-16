@@ -14275,10 +14275,10 @@ ion-side-menu .heading-item .message {
     margin: 0 !important;
     padding: 0 !important; }
   .add-patient-view .card {
+    background-color: transparent !important;
+    box-shadow: none !important;
     font-size: 4vw;
     max-width: 100%; }
-    .add-patient-view .card .col-75 {
-      padding: 3%; }
     .add-patient-view .card .row {
       height: 8%;
       margin: 0;
