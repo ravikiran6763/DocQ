@@ -44,7 +44,7 @@
         </div>
       </div>
       <div class="card " style="margin-top: -4%;">
-        <div class="row" style="margin-left: 0% !important;">
+        <div class="row" >
           <!-- ui-sref="templates.addNewPatient" -->
               <div  class="col col-75" class="item-icon-right" ng-click="changePatient();" ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
               <div class="col col-75"  class="item-icon-right" ng-click="changePatient();" ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>

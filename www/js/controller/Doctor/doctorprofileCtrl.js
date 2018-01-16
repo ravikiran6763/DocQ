@@ -12,7 +12,7 @@ $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
 $ionicLoading.show();
-$interval(checkDocStatus, 1000);
+// $interval(checkDocStatus, 1000);
 
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
 $scope.myDocDetails1=response;
