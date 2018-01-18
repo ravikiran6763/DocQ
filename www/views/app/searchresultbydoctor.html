@@ -5,7 +5,7 @@
 
       <ul>
         <!-- <li  ui-sref="app.viewdoctor_profile({myDocFname:doctor.doctorFname,myDocLname:doctor.doctorLname,myDocNum:doctor.doctorPhone,myDocDegree:doctor.doctorDegrees})"> -->
-      <li  ng-repeat="doc in doclist" ng-click="viewDoc2({{doc.doctorPhone}});">
+      <li  ng-repeat="doc in doclist" ng-click="docClicked({{doc.doctorPhone}});">
         <div class="profile-img">
           <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
           <img  ng-hide="doc.docImage2 == null "ng-src="{{doc.docImage2}}"   >

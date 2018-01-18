@@ -54,25 +54,25 @@ DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval,$i
 
     });
 }])
-DoctorQuickApp.run(function($rootScope, $ionicPlatform, $ionicScrollDelegate){
-
-      $ionicPlatform.ready(function () {
-          if (window.cordova && window.cordova.plugins.Keyboard){
-              cordova.plugins.Keyboard.disableScroll(true); // This will prevent the view to bounce when inputs are on focus
-          }
-      });
-
-      // $rootScope.$on('$ionicView.loaded', function () {
-      //     if (window.cordova && window.cordova.plugins.Keyboard) {
-      //         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false); // This makes the accessory bar visible and it only works when the view is loaded and DOM ready
-      //     }
-      // });
-
-      // window.addEventListener('native.keyboardshow', function () {
-      //     $ionicScrollDelegate.scrollBy(0, 1); //This will return focus to the current input once the keyboard slides-up in the view
-      // });
-
-});
+// DoctorQuickApp.run(function($rootScope, $ionicPlatform, $ionicScrollDelegate){
+//
+//       $ionicPlatform.ready(function () {
+//           if (window.cordova && window.cordova.plugins.Keyboard){
+//               cordova.plugins.Keyboard.disableScroll(true); // This will prevent the view to bounce when inputs are on focus
+//           }
+//       });
+//
+//       // $rootScope.$on('$ionicView.loaded', function () {
+//       //     if (window.cordova && window.cordova.plugins.Keyboard) {
+//       //         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(false); // This makes the accessory bar visible and it only works when the view is loaded and DOM ready
+//       //     }
+//       // });
+//
+//       // window.addEventListener('native.keyboardshow', function () {
+//       //     $ionicScrollDelegate.scrollBy(0, 1); //This will return focus to the current input once the keyboard slides-up in the view
+//       // });
+//
+// });
 
 DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
   // console.log(navigator.onLine);
@@ -95,6 +95,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   $ionicPlatform.ready(function() {
     // window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
+    ionic.Platform.isFullScreen = true
     function successFunction() {
       // console.log("It worked!");
     }
@@ -106,6 +107,7 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
     }
     ionic.Platform.fullScreen();
 
@@ -125,9 +127,19 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       //     document.activeElement.scrollIntoViewIfNeeded();
       //   }, 100);
       // });
-      window.addEventListener('native.keyboardshow', function (e) {
-       console.log('keyboard opened');
-   });
+      window.addEventListener('native.keyboardshow', keyboardShowHandler);
+document.addEventListener('focusout', function(e) {
+  console.log('focused');
+  window.scrollTo(0, 0);
+});
+function keyboardShowHandler(e){
+    console.log('Keyboard height is: ' + e.keyboardHeight);
+    container.style.height = scrollViewOffsetHeight + "px";
+
+}
+   //    window.addEventListener('native.keyboardshow', function (e) {
+   //     console.log('keyboard opened');
+   // });
 
    window.addEventListener('native.keyboardhide', function () {
 
@@ -966,7 +978,7 @@ $stateProvider
 
   //doctor profile
     .state('app.results', {
-      url: "/results/",
+      url: "/results",
       views: {
         'menuContent': {
           templateUrl: "views/app/results.html",

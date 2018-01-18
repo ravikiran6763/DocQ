@@ -1,3 +1,13 @@
+
+ion-app, ion-nav, ion-tab, ion-tabs, .app-root{
+  -webkit-transition: bottom 0.3s;
+  transition: bottom 0.3s;
+}
+
+.keyboard-open .hide-on-keyboard-open {
+    display: none !important;
+    
+}
 // Respnsive video player
 
 .dont-break-out {
@@ -167,8 +177,9 @@ h5.menu-text{
   visibility: visible !important;
 }
 ion-content.scroll-content.ionic-scroll {
-    height: auto !important;
-    overflow: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  overflow: scroll !important;
+    padding-bottom: 0 !important;
 }
 scroll-bar-indicator{
     height: 6%;
@@ -178,10 +189,10 @@ scroll-bar-indicator{
   opacity:1 !important
 
 }
-ion-content.scroll-content.ionic-scroll{
-  height: auto !important;
-  overflow: visible;
-}
+// ion-content.scroll-content.ionic-scroll{
+//   height: auto !important;
+//   overflow: visible;
+// }
 .spinner-android {
     stroke: #489808 !important;
 }

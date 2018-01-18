@@ -249,7 +249,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}
 		}
 
-				$scope.viewDoc2=function(docPhone){
+				$scope.docClicked=function(docPhone){
+					$localStorage.docPhone=docPhone;
 					console.log(docPhone);
 					doctorServices.specificSearch(docPhone).then(function(response){
 					$scope.myDocDetail=response;
@@ -522,8 +523,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	$scope.confirmSignout = function() {
 
-		var unametologout = "greet+"+$localStorage.user;
-		var pwtologout = "DQ_patient";
+
 
    	var confirmPopup = $ionicPopup.confirm({
 
@@ -547,21 +547,27 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
 								if($scope.loggedOut){
-										$ionicHistory.clearCache();
-										$ionicHistory.clearHistory();
-										$window.localStorage.clear();
+									// $ionicHistory.clearCache();
+									// 	$ionicHistory.clearHistory();
 										$scope.loginDatasubmitted = false;
+
+										var unametologout = "greet+"+$localStorage.user;
+										var pwtologout = "DQ_patient";
+
+
 										var success = function(message)
 										{
-													console.log(message);
-													$ionicHistory.nextViewOptions({
-															disableBack: true,
-															disableAnimate: true,
-															historyRoot: true
-													});
-													$ionicHistory.clearCache();
-													$ionicHistory.clearHistory();
-													$state.go('auth.loginNew');
+													alert(message);
+													// $ionicHistory.nextViewOptions({
+													// 		disableBack: true,
+													// 		disableAnimate: true,
+													// 		historyRoot: true
+													// });
+													// $ionicHistory.clearCache();
+													// $ionicHistory.clearHistory();
+													// // $window.localStorage.clear();
+                          //
+													// $state.go('auth.loginNew');
 										}
 										var failure = function()
 										{

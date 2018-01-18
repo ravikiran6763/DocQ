@@ -134,6 +134,7 @@ $interval(checkDocStatus, 1000);
 
 	function checkDocStatus(){
 	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+			console.log($localStorage.docPhone);
 	  $scope.myDocDetail=response;
 	  var data=$scope.myDocDetail;//take all json data into this variable
 	    for(var i=0; i<data.length; i++){

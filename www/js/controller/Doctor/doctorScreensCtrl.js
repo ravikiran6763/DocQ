@@ -258,19 +258,19 @@ function checkConsultations(){
         console.log('failure data', error);
         });
 
-        // var unametologout = "greet+"+$localStorage.user;
-        // var pwtologout = "DQ_doctor";
-        //
-        // // alert(unametologout);
-        // var success = function(message)
-        // {
-        // console.log(message);
-        // }
-        // var failure = function()
-        // {
-        // console.log("An Error occured kindly check your Interner Connection");
-        // }
-        // hello.logout(unametologout,pwtologout,success, failure);
+        var unametologout = "greet+"+$localStorage.user;
+        var pwtologout = "DQ_doctor";
+
+        // alert(unametologout);
+        var success = function(message)
+        {
+        console.log(message);
+        }
+        var failure = function()
+        {
+        console.log("An Error occured kindly check your Interner Connection");
+        }
+        hello.logout(unametologout,pwtologout,success, failure);
 
 
         $scope.accptNotifications=true;
