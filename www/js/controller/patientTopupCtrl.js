@@ -66,23 +66,18 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									var successCallback = function(payment_id) {
 									console.log('payment_id: ' + payment_id)
-<<<<<<< HEAD
 
-								
+
 
 									$window.location.reload(true);
-=======
->>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){
 									   $rootScope.patientWalletUpdate=response;
 										 console.log($rootScope.patientWalletUpdate);
 										 if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
-<<<<<<< HEAD
 
 											 console.log('TransactionSuccessful');
-=======
 											 $window.location.reload(true);
 											 var confirmPopup = $ionicPopup.confirm({
 							 					// title: 'DoctorQuick',
@@ -102,7 +97,6 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 							 					]
 							 				});
 
->>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 											  // $state.go('app.patient_topup');
 
 												// $state.go("app.patient_payments", $stateParams, {reload: true, inherit: false});

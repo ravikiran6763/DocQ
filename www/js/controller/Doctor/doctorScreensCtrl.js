@@ -258,19 +258,19 @@ function checkConsultations(){
         console.log('failure data', error);
         });
 
-        // var unametologout = "greet+"+$localStorage.user;
-        // var pwtologout = "DQ_doctor";
-        //
-        // // alert(unametologout);
-        // var success = function(message)
-        // {
-        // console.log(message);
-        // }
-        // var failure = function()
-        // {
-        // console.log("An Error occured kindly check your Interner Connection");
-        // }
-        // hello.logout(unametologout,pwtologout,success, failure);
+        var unametologout = "greet+"+$localStorage.user;
+        var pwtologout = "DQ_doctor";
+
+        // alert(unametologout);
+        var success = function(message)
+        {
+        console.log(message);
+        }
+        var failure = function()
+        {
+        console.log("An Error occured kindly check your Interner Connection");
+        }
+        hello.logout(unametologout,pwtologout,success, failure);
 
 
         $scope.accptNotifications=true;
@@ -454,7 +454,6 @@ $scope.videoPlayerPopup.close();
 //invite Reviews
   $scope.contacts='';
 $scope.inviteForReview=function(){
-<<<<<<< HEAD
 
   $scope.contacts = invitereviews.getinvitecontacts();
 	console.log($scope.contacts.length);
@@ -502,7 +501,6 @@ $scope.inviteForReview=function(){
 
 
   }
-=======
             $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
 
           // $scope.contacts = invitereviews.getselectedContacts();
@@ -548,7 +546,6 @@ $scope.inviteForReview=function(){
                   })
 
           }
->>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 
 
 

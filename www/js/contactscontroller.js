@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope,$cordovaContacts,$state, $ionicLoading, $timeout, invitereviews){
   $scope.toggle = true;
 	$rootScope.headerTxt="Invite Reviews";
@@ -74,7 +73,6 @@ DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope,$cordovaCo
             // }
 
             $ionicLoading.hide();
-=======
 DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaContacts, $state,$stateParams, $ionicLoading, $timeout, invitereviews){
     $scope.toggle = true;
     $rootScope.headerTxt="Invite Reviews";
@@ -100,7 +98,6 @@ console.log($rootScope.allContacts);
           console.log($rootScope.contact);
           // $scope.phoneContacts.push(contact);
           // console.log($scope.phoneContacts);
->>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
       }
 
     //
@@ -187,7 +184,7 @@ console.log($rootScope.allContacts);
           if($rootScope.selectedNumber.length == 0){
             $rootScope.selectedNumber=[];
             window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
-            
+
           }else{
             window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
 

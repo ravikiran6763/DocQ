@@ -16,14 +16,11 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.inviteButton = false;
 
 
-<<<<<<< HEAD
 	$ionicConfig.views.swipeBackEnabled(false);
-=======
 	$scope.closeSideMenu = function() {
 		console.log('closing side menu');
 	 $ionicSideMenuDelegate.toggleRight();
  };
->>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 
 	var specialitywise = "";
 	var catwise = "";
@@ -526,8 +523,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	$scope.confirmSignout = function() {
 
-		// var unametologout = "greet+"+$localStorage.user;
-		// var pwtologout = "DQ_patient";
+		var unametologout = "greet+"+$localStorage.user;
+		var pwtologout = "DQ_patient";
 
    	var confirmPopup = $ionicPopup.confirm({
 
@@ -551,30 +548,9 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
 								if($scope.loggedOut){
-										$ionicHistory.clearCache();
-										$ionicHistory.clearHistory();
-										$window.localStorage.clear();
-										$scope.loginDatasubmitted = false;
-<<<<<<< HEAD
-
-										$state.go('auth.loginNew');
-
-										
-										// }
-										// var success = function(message)
-										// {
-										// 			console.log(message);
-										// 			$state.go('auth.loginNew');
-										// }
-										// var failure = function()
-										// {
-										// 	console.log('error calling hello plugin');
-										// }
-										// hello.logout(unametologout,pwtologout,success, failure);
-=======
 										var success = function(message)
 										{
-													alert(message);
+
 													$ionicHistory.nextViewOptions({
 															disableBack: true,
 															disableAnimate: true,
@@ -589,7 +565,6 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 											console.log('error calling hello plugin');
 										}
 										hello.logout(unametologout,pwtologout,success, failure);
->>>>>>> ad336315f0d081d0c0823c32ce010d877df70b25
 								}
 							}).catch(function(error){
 							console.log('failure data', error);
