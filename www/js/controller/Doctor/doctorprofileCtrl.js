@@ -117,15 +117,15 @@ console.log('failure data', error);
 
              var success = function(message)
               {
-                  alert(message);
+                  console.log(message);
               }
               var failure = function()
               {
-                alert("Error calling Hello Plugin");
+                console.log("Error calling Hello Plugin");
               }
 
 
-        if($scope.myBalance >= 250)
+        if($scope.myBalance >= 270)
         {
 
           // hello.greet(uname,pw,persontocall,success, failure);
@@ -154,7 +154,7 @@ console.log('failure data', error);
         {
 
           var confirmPopup = $ionicPopup.confirm({
-            template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹250.</b></center> ',
+            template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹270.</b></center> ',
             cssClass: 'videoPopup',
             scope: $scope,
             buttons: [
@@ -207,7 +207,7 @@ $scope.BalanceForVoiceCall=function()
 
 
 
-        if($scope.myBalance >= 250)
+        if($scope.myBalance >= 270)
         {
         hello.audiocallvsee(uname,pw,persontocall,success, failure);
         var confirmPopup = $ionicPopup.confirm({
@@ -295,25 +295,16 @@ $scope.BalanceForVoiceCall=function()
   			patient:$localStorage.user,
   			doctor:num
   		}
+      $ionicLoading.show({
+        template:'<ion-spinner></ion-spinner>'
+      });
       console.log(sendMessage);
   		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
   			console.log(response);
-
-        //
-        // if(response === "Doctor is offline")
-        // {
-        //
-        //     alert('doctor is offline');
-        //
-        //
-        // }
-        // else {
-        //
-        //   alert('doctor is online');
-        //
-        //
-        // }
-
+        if(response){
+          console.log('hide loading');
+          $ionicLoading.hide();
+        }
 
   		}).catch(function(error){
   		console.log('failure data', error);

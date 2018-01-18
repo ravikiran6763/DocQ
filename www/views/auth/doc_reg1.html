@@ -3,7 +3,7 @@
 
   </ion-header-bar> -->
 <ion-content >
-  <div class="top-content ">
+  <div class="top-content hide-on-keyboard-open ">
       <div class="regTitle">
           <div class="regHeader">
             <div class="backButton " ng-click="goBack();">
@@ -14,7 +14,7 @@
                 <img  src="./img/progress1.png" >
                 </div>
                 <div class="regMsg">
-                  <p class="reg_message"> DoctorQuick is a unique technology to help you consult and treat patients at your own time and pace from different corners of the country and get paid for your time. </p>
+                  <p class="reg_message "> DoctorQuick is a unique technology to help you consult and treat patients at your own time and pace from different corners of the country and get paid for your time. </p>
                 </div>
           </div>
       </div>
@@ -26,9 +26,9 @@
         <div class="form-group" >
           <input type="text" class="form-control" placeholder="First Name" name="doc_fname" ng-model="Doctor.doc_fname" no-special-char required>
         </div>
-        <!-- <div class="form-group" >
+        <div class="form-group" >
           <input type="text" class="form-control" placeholder="Middle Name" name="doc_mname" ng-model="Doctor.doc_mname" no-special-char >
-        </div> -->
+        </div>
 
         <div class="form-group" ng-class={submittedLname:submittedLname}>
           <input type="text" class="form-control" placeholder="Last Name" name="doc_lname" ng-model="Doctor.doc_lname" no-special-char required>

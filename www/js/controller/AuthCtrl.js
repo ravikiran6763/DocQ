@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$interval,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
+=======
+DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
+>>>>>>> dc799f35ef421729a10550d753a586d58792db33
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -16,6 +20,8 @@ DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ioni
     console.log($ionicHistory.currentStateName());
 
     $ionicConfig.views.swipeBackEnabled(false);
+
+$ionicScrollDelegate.$getByHandle('nomineeDiv').scrollBy(500,100,true);
 
     ionic.Platform.ready(function(){
         // will execute when device is ready, or immediately if the device is already ready.
@@ -113,6 +119,7 @@ console.log($localStorage.doctororpatient);
 $scope.patientRegistration = function()
 {
         console.log('reg clicked');
+
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
           window.plugins.toast.showWithOptions({
@@ -156,12 +163,15 @@ $scope.patientRegistration = function()
                 };
                 $localStorage.user=$rootScope.PatientDetail.patient_mob;
                 $localStorage.pass=$rootScope.PatientDetail.pat_password;
-
+                $localStorage.doctororpatient='patient'
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
             console.log(response);
             if(response){
+              $ionicLoading.show({
+                template:'<ion-spinner></ion-spinner><br><br><br>Logging into DoctorQuick'
+              });
 
               window.plugins.OneSignal.getIds(function(ids) {
                 $scope.playerId=JSON.stringify(ids['userId']);
@@ -212,12 +222,6 @@ $scope.patientRegistration = function()
                    console.log('failure data', error);
                });
 
-
-
-              // $ionicHistory.clearCache();
-              // $ionicHistory.clearHistory();
-              // $window.localStorage.clear();
-              $scope.otpentered={};
               $rootScope.dateOfBirth='';
               $ionicHistory.nextViewOptions({
               disableAnimate: true,
@@ -227,9 +231,9 @@ $scope.patientRegistration = function()
               $scope.submitted2ndPage = false;
               $rootScope.loginDatasubmitted=false;
 
-              $ionicLoading.show({
-                template:'<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick'
-              });
+              // $ionicLoading.show({
+              //   template:'<ion-spinner></ion-spinner><br><br><br>Logging into DoctorQuick'
+              // });
               var uname1 = "greet+"+$rootScope.PatientDetail.patient_mob;
   						var pw1 = "DQ_patient";
               var success = function(message)
@@ -260,11 +264,11 @@ $scope.patientRegistration = function()
                 alert("Error Occurred While Loggin in to DoctoQuick");
 
               }
-              $ionicHistory.nextViewOptions({
-                disableAnimate: true,
-                disableBack: true,
-                historyRoot:true
-              });
+              // $ionicHistory.nextViewOptions({
+              //   disableAnimate: true,
+              //   disableBack: true,
+              //   historyRoot:true
+              // });
               // $state.go('app.patient_home', {}, {location: "replace", reload: true});
 
             hello.login(uname1,pw1,success, failure);
@@ -337,6 +341,7 @@ $scope.patientRegistration = function()
       $scope.currentDate = new Date();
       console.log($scope.currentDate);
       console.log($rootScope.dateOfBirth);
+      console.log($rootScope.PatientDetail.dob);
 
       var date2 = new Date();
       var date1 = new Date($rootScope.dateOfBirth);
@@ -354,28 +359,32 @@ $scope.patientRegistration = function()
       if(isFormValid) {
         console.log(isFormValid);
 
-        if($rootScope.dateOfBirth === '' || $scope.dayDifference < 6570){
-          $scope.submittedAge = true;
-          window.plugins.toast.showWithOptions({
-          message: "You should be 18+ to use DoctorQuick",
-          duration: "short", // 2000 ms
-          position: "bottom",
-          styling: {
-          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-          backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-          textColor: '#ffffff', // Ditto. Default #FFFFFF
-          textSize: 13, // Default is approx. 13.
-          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-          horizontalPadding: 16, // iOS default 16, Android default 50
-          verticalPadding: 12 // iOS default 12, Android default 30
-          }
-          });
-        }
+///this is for calender
 
-        else{
-          $rootScope.PatientDetail.patient_age=$rootScope.dateOfBirth;
-          $state.go('auth.patient_reg2');
-        }
+        // if($rootScope.dateOfBirth === '' || $scope.dayDifference < 6570){
+        //   $scope.submittedAge = true;
+        //   window.plugins.toast.showWithOptions({
+        //   message: "You should be 18+ to use DoctorQuick",
+        //   duration: "short", // 2000 ms
+        //   position: "bottom",
+        //   styling: {
+        //   opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+        //   backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+        //   textColor: '#ffffff', // Ditto. Default #FFFFFF
+        //   textSize: 13, // Default is approx. 13.
+        //   cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+        //   horizontalPadding: 16, // iOS default 16, Android default 50
+        //   verticalPadding: 12 // iOS default 12, Android default 30
+        //   }
+        //   });
+        // }
+        //
+        // else{
+        //   $rootScope.PatientDetail.patient_age=$rootScope.dateOfBirth;
+        //   $state.go('auth.patient_reg2');
+        // }
+        $state.go('auth.patient_reg2');
+
       }
 
     }
@@ -488,7 +497,7 @@ $scope.patientRegistration = function()
             if($scope.patientExist === 'patient'){
               $scope.myPopup=$ionicPopup.show({
                 // title: '',
-                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number/Device Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 
                 cssClass: 'loginPopup',
                 scope: $scope,

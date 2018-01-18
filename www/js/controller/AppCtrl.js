@@ -250,7 +250,8 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							}
 		}
 
-				$scope.viewDoc2=function(docPhone){
+				$scope.docClicked=function(docPhone){
+					$localStorage.docPhone=docPhone;
 					console.log(docPhone);
 					doctorServices.specificSearch(docPhone).then(function(response){
 					$scope.myDocDetail=response;
@@ -523,8 +524,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	$scope.confirmSignout = function() {
 
-		var unametologout = "greet+"+$localStorage.user;
-		var pwtologout = "DQ_patient";
+
 
    	var confirmPopup = $ionicPopup.confirm({
 
@@ -548,6 +548,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
 								if($scope.loggedOut){
+<<<<<<< HEAD
 										var success = function(message)
 										{
 
@@ -559,6 +560,29 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 													$ionicHistory.clearCache();
 													$ionicHistory.clearHistory();
 													$state.go('auth.loginNew');
+=======
+									// $ionicHistory.clearCache();
+									// 	$ionicHistory.clearHistory();
+										$scope.loginDatasubmitted = false;
+
+										var unametologout = "greet+"+$localStorage.user;
+										var pwtologout = "DQ_patient";
+
+
+										var success = function(message)
+										{
+													alert(message);
+													// $ionicHistory.nextViewOptions({
+													// 		disableBack: true,
+													// 		disableAnimate: true,
+													// 		historyRoot: true
+													// });
+													// $ionicHistory.clearCache();
+													// $ionicHistory.clearHistory();
+													// // $window.localStorage.clear();
+                          //
+													// $state.go('auth.loginNew');
+>>>>>>> dc799f35ef421729a10550d753a586d58792db33
 										}
 										var failure = function()
 										{
