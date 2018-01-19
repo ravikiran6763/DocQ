@@ -16,6 +16,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.inviteButton = false;
 
 
+	$ionicConfig.views.swipeBackEnabled(false);
 	$scope.closeSideMenu = function() {
 		console.log('closing side menu');
 	 $ionicSideMenuDelegate.toggleRight();
@@ -547,6 +548,19 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 							$scope.loggedOut=response;
 								console.log($scope.loggedOut);
 								if($scope.loggedOut){
+<<<<<<< HEAD
+										var success = function(message)
+										{
+
+													$ionicHistory.nextViewOptions({
+															disableBack: true,
+															disableAnimate: true,
+															historyRoot: true
+													});
+													$ionicHistory.clearCache();
+													$ionicHistory.clearHistory();
+													$state.go('auth.loginNew');
+=======
 									// $ionicHistory.clearCache();
 									// 	$ionicHistory.clearHistory();
 										$scope.loginDatasubmitted = false;
@@ -568,6 +582,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 													// // $window.localStorage.clear();
                           //
 													// $state.go('auth.loginNew');
+>>>>>>> dc799f35ef421729a10550d753a586d58792db33
 										}
 										var failure = function()
 										{

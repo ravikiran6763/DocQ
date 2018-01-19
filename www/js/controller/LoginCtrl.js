@@ -171,7 +171,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 										            });
 										            $ionicHistory.clearCache();
 										            $ionicHistory.clearHistory();
-																$state.go('app.patient_home', {}, {location: "replace", reload: true});
+																$state.go('app.patient_home', {}, {location: "replace", reload: false});
 
 										// $ionicHistory.nextViewOptions({
 										// 	disableAnimate: true,

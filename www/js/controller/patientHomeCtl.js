@@ -78,7 +78,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							$ionicHistory.clearCache();
 							$ionicHistory.clearHistory();
 							$interval.cancel(availableInVsee);
-							$state.go($state.current, {}, {location: "replace",reload: true});
+							$state.go($state.current, {}, {location: "replace",reload: false});
 							});
 							// alert(message);
 							}

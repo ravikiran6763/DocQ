@@ -1,0 +1,8 @@
+/Users/amittantia/Desktop/DocQ/platforms/android/build/output/apk
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore DoctorQuick.keystore  android-release-unsigned.apk greettelehealth
+
+
+/Users/amittantia/Library/Android/sdk/build-tools/26.0.0
+
+zipalign -v 4 HelloWorld-release-unsigned.apk HelloWorld.apk
