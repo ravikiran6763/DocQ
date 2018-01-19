@@ -218,7 +218,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						}
 						else{
 							$ionicLoading.show({
-						        template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+						        template: '<ion-spinner></ion-spinner><br><br>Logging to DoctorQuick'
 						      });
 							var success = function(message)
 							{

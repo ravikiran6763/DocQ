@@ -9844,6 +9844,10 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
   -webkit-transition: bottom 0.3s;
   transition: bottom 0.3s; }
 
+.hide {
+  display: block !important;
+  visibility: visible !important; }
+
 .keyboard-open .hide-on-keyboard-open {
   display: none !important; }
 

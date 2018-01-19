@@ -13,7 +13,6 @@
     "body-parser": "~1.9.2",
     "clean-css": "^4.1.9",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
-    "com.example.hello": "file:../VSEE/VseePlugin",
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-ios": "^4.5.4",
@@ -98,8 +97,7 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-android-permissions": {},
-      "cordova-plugin-camera": {},
-      "com.example.hello": {}
+      "cordova-plugin-camera": {}
     },
     "platforms": [
       "android"
