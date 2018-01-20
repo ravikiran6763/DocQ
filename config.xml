@@ -83,13 +83,10 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashShowOnlyFirstTime" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
-<<<<<<< HEAD
     <preference name="android-windowSoftInputMode" value="stateVisible" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
-=======
     <preference name="android-fitsSystemWindows" value="true" />
     <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="adjustResize" />
->>>>>>> dc799f35ef421729a10550d753a586d58792db33
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -364,10 +361,8 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
-<<<<<<< HEAD
-=======
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
->>>>>>> 7dcc8fb34e99290267a8cd09a16cf6c79df583df
+    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
     <engine name="android" spec="^6.3.0" />
 </widget>

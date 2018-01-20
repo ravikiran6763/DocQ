@@ -557,17 +557,17 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	var success = function(message)
 	{
-	alert(message);
-	// $ionicHistory.nextViewOptions({
-	// 	disableBack: true,
-	// 	disableAnimate: true,
-	// 	historyRoot: true
-	// });
-	// $ionicHistory.clearCache();
-	// $ionicHistory.clearHistory();
-	// // $window.localStorage.clear();
-                          //
-	// $state.go('auth.loginNew');
+	console.log(message);
+	$ionicHistory.nextViewOptions({
+		disableBack: true,
+		disableAnimate: true,
+		historyRoot: true
+	});
+	$ionicHistory.clearCache();
+	$ionicHistory.clearHistory();
+	$window.localStorage.clear();
+
+	$state.go('auth.loginNew');
 	}
 	var failure = function()
 	{

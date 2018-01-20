@@ -113,10 +113,10 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
 
     setTimeout(function() {
       console.log('hide splash ');
-        navigator.splashscreen.hide();
+        // navigator.splashscreen.hide();
     }, 300);
 
-    window.MobileAccessibility.usePreferredTextZoom(true);
+    // window.MobileAccessibility.usePreferredTextZoom(true);
    function getTextZoomCallback(textZoom) {
      console.log('WebView text should be scaled to the preferred value ' + textZoom + '%')
    }
@@ -134,7 +134,7 @@ document.addEventListener('focusout', function(e) {
 });
 function keyboardShowHandler(e){
     console.log('Keyboard height is: ' + e.keyboardHeight);
-    container.style.height = scrollViewOffsetHeight + "px";
+    // container.style.height = scrollViewOffsetHeight + "px";
 
 }
    //    window.addEventListener('native.keyboardshow', function (e) {

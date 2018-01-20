@@ -357,29 +357,29 @@ $scope.patientRegistration = function()
 
 ///this is for calender
 
-        // if($rootScope.dateOfBirth === '' || $scope.dayDifference < 6570){
-        //   $scope.submittedAge = true;
-        //   window.plugins.toast.showWithOptions({
-        //   message: "You should be 18+ to use DoctorQuick",
-        //   duration: "short", // 2000 ms
-        //   position: "bottom",
-        //   styling: {
-        //   opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-        //   backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-        //   textColor: '#ffffff', // Ditto. Default #FFFFFF
-        //   textSize: 13, // Default is approx. 13.
-        //   cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-        //   horizontalPadding: 16, // iOS default 16, Android default 50
-        //   verticalPadding: 12 // iOS default 12, Android default 30
-        //   }
-        //   });
-        // }
-        //
-        // else{
-        //   $rootScope.PatientDetail.patient_age=$rootScope.dateOfBirth;
-        //   $state.go('auth.patient_reg2');
-        // }
-        $state.go('auth.patient_reg2');
+        if($rootScope.dateOfBirth === '' || $scope.dayDifference < 6570){
+          $scope.submittedAge = true;
+          window.plugins.toast.showWithOptions({
+          message: "You should be 18+ to use DoctorQuick",
+          duration: "short", // 2000 ms
+          position: "bottom",
+          styling: {
+          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+          backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+          textColor: '#ffffff', // Ditto. Default #FFFFFF
+          textSize: 13, // Default is approx. 13.
+          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+          horizontalPadding: 16, // iOS default 16, Android default 50
+          verticalPadding: 12 // iOS default 12, Android default 30
+          }
+          });
+        }
+
+        else{
+          $rootScope.PatientDetail.patient_age=$rootScope.dateOfBirth;
+          $state.go('auth.patient_reg2');
+        }
+        // $state.go('auth.patient_reg2');
 
       }
 
@@ -754,7 +754,7 @@ var ipObj2 = {
     // disableWeekdays: [0],       //Optional
     closeOnSelect: true,
     dateFormat: 'dd MMMM yyyy',     //Optional
-    templateType: 'popup'       //Optional
+    // templateType: 'Modal'       //Optional
   };
 
 $scope.openDatePickerDOB = function(){
@@ -762,20 +762,20 @@ $scope.openDatePickerDOB = function(){
   ionicDatePicker.openDatePicker(ipObj2);
 };
 
-autoPlayYouTubeModal();
-
-//FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
-function autoPlayYouTubeModal() {
-    var trigger = $("body").find('[data-toggle="modal"]');
-    trigger.click(function () {
-        var theModal = $(this).data("target"),
-            videoSRC = $(this).attr("data-theVideo"),
-            videoSRCauto = videoSRC + "?autoplay=1";
-        $(theModal + ' iframe').attr('src', videoSRCauto);
-        $(theModal + ' button.close').click(function () {
-            $(theModal + ' iframe').attr('src', videoSRC);
-        });
-    });
-}
+// autoPlayYouTubeModal();
+//
+// //FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
+// function autoPlayYouTubeModal() {
+//     var trigger = $("body").find('[data-toggle="modal"]');
+//     trigger.click(function () {
+//         var theModal = $(this).data("target"),
+//             videoSRC = $(this).attr("data-theVideo"),
+//             videoSRCauto = videoSRC + "?autoplay=1";
+//         $(theModal + ' iframe').attr('src', videoSRCauto);
+//         $(theModal + ' button.close').click(function () {
+//             $(theModal + ' iframe').attr('src', videoSRC);
+//         });
+//     });
+// }
 
 })

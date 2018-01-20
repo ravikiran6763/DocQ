@@ -84,8 +84,15 @@ console.log($rootScope.specialId);
          console.log($localStorage.SpecilityId);
 
          medicalSpecialityService.sendrequesttodoctor($localStorage.SpecilityId).then(function(response){
-           console.log('successfull data', response);
-           if(response === 'Inserted'){
+           console.log('successfull data', response[0][1]);
+           $rootScope.sentReqResponse=response;
+           $rootScope.sentReqId=$rootScope.sentReqResponse[0];
+           $rootScope.sentReqStat=$rootScope.sentReqResponse[1];
+           console.log($rootScope.sentReqStat);
+           console.log($rootScope.sentReqId);
+
+
+           if($rootScope.sentReqStat === 'Inserted'){
              $ionicLoading.hide();
              $scope.counter = 120;
              $scope.onTimeout = function(){
@@ -174,8 +181,13 @@ console.log($rootScope.specialId);
               $interval(checkAcceptedReq,2000);
 
               var checkAcceptedReq = $interval(function () {
+                var newCallStatus = {
+                  patient:$localStorage.user,
+                  reqId:$rootScope.sentReqId
+                }
                  console.log('intervalStarted');
-                    medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
+                 console.log(newCallStatus);
+                    medicalSpecialityService.checkForAccptedReq(newCallStatus).then(function(response){
                     $scope.accptdReq=response;
                     console.log($scope.accptdReq);
                       if($scope.accptdReq != ''){

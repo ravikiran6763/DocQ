@@ -14,11 +14,8 @@
     "body-parser": "~1.9.2",
     "clean-css": "^4.1.9",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
-<<<<<<< HEAD
-=======
-    "com.example.hello": "file:../newpluginforandroid/cordova-plugin-hello",
+    "com.example.hello": "file:../VSEE/VseePlugin",
     "com.greettelehealth.DoctorQuick": "../newpluginforandroid/cordova-plugin-hello",
->>>>>>> 7dcc8fb34e99290267a8cd09a16cf6c79df583df
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-plugin-android-permissions": "^1.0.0",
@@ -105,15 +102,12 @@
       "cordova-plugin-contacts": {},
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-android-permissions": {},
-<<<<<<< HEAD
-      "cordova-plugin-camera": {}
-=======
       "cordova-plugin-camera": {
         "CAMERA_USAGE_DESCRIPTION": " ",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
       },
-      "com.greettelehealth.DoctorQuick": {}
->>>>>>> 7dcc8fb34e99290267a8cd09a16cf6c79df583df
+      "com.greettelehealth.DoctorQuick": {},
+      "com.example.hello": {}
     },
     "platforms": [
       "android"
