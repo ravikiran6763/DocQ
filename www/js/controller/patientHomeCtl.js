@@ -60,11 +60,12 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 	    }, 0 );
 
 			function availableInVsee() {
+				console.log('login check');
 							var uname1 = "greet+"+$localStorage.user;
 							var pw1 = "DQ_patient";
 							var success = function(message)
 							{
-							// alert(message);
+							console.log(message);
 
 							$ionicLoading.hide().then(function(){
 							console.log("The loading indicator is now hidden");
@@ -77,8 +78,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							});
 							$ionicHistory.clearCache();
 							$ionicHistory.clearHistory();
-							$interval.cancel(availableInVsee);
 							$state.go($state.current, {}, {location: "replace",reload: false});
+
 							});
 							// alert(message);
 							}

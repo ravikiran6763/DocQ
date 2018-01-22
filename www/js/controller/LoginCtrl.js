@@ -204,7 +204,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	                var success = function(message)
 	                {
 	                  $scope.unreadchatforpatient = message;
-	                  // console.log($scope.unreadchatforpatient);
+	                  console.log($scope.unreadchatforpatient);
 	                }
 
 	                var failure = function()
@@ -495,6 +495,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 
 		}
+
+		// $scope.$on('$destroy', function(){
+		// 		$interval.cancel(checkNewMessages);
+		// });
 
 
 })

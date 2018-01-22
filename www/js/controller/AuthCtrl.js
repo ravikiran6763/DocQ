@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cordovaDatePicker, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -757,9 +757,27 @@ var ipObj2 = {
     // templateType: 'Modal'       //Optional
   };
 
-$scope.openDatePickerDOB = function(){
 
-  ionicDatePicker.openDatePicker(ipObj2);
+  var options = {
+     date: new Date(),
+     mode: 'date', // or 'time'
+     // minDate: new Date() - 10000,
+     // allowOldDates: true,
+     allowFutureDates: false,
+     androidTheme : 3,
+     cancelButtonLabel: 'CANCEL',
+     cancelButtonColor: '#ff0101',
+     doneButtonLabel: 'DONE',
+     doneButtonColor: '#6aa13e'
+
+   };
+
+$scope.openDatePickerDOB = function(){
+  $cordovaDatePicker.show(options).then(function(date){
+    $rootScope.dateOfBirth=date;
+          console.log(date);
+      });
+  // ionicDatePicker.openDatePicker(ipObj2);
 };
 
 // autoPlayYouTubeModal();

@@ -567,7 +567,7 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 	$ionicHistory.clearHistory();
 	$window.localStorage.clear();
 
-	$state.go('auth.loginNew');
+	$state.go('auth.loginNew',{},{location:"replace",reload:true});
 	}
 	var failure = function()
 	{

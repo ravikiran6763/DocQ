@@ -640,10 +640,9 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                               console.log($injector.get("$state").$current.name);
 
                                 // window.location = "noresponse.html";
-                                $injector.get("$ionicLoading").show({
-                  						        template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
-
-                  						      });
+                                // $injector.get("$ionicLoading").show({
+                  						  //       template: '<ion-spinner></ion-spinner><br><br>Recovering lost connection',
+                  						  //     });
                       }
                       else{
 
