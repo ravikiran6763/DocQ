@@ -72,6 +72,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	{
 		console.log($rootScope.loginDatasubmitted);
 				$rootScope.loginDatasubmitted=true;
+				$localStorage.showConnecting=false;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
@@ -86,7 +87,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 				var userDetails={
 					userNum : $scope.loginData.phone,
-					password : $scope.loginData.pin
+					password : $scope.loginData.pin,
+					deviceID : $localStorage.deviceID,
+					serial:$localStorage.serial
 				};
 
 				$scope.lastView = $ionicHistory.backView();

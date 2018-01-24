@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $ionicConfig, $localStorage, $filter, $ionicLoading, ionicDatePicker,accountsService) {
+DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope,$cordovaDatePicker, $ionicConfig, $localStorage, $filter, $ionicLoading,accountsService) {
   console.log('Doc Account statements');
 	$rootScope.headerTxt="Account Statement";
 	$rootScope.showBackBtn=true;
@@ -7,7 +7,7 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope, $i
 	$rootScope.showBadge=false;
   $rootScope.hideSideMenu = true;
   $rootScope.inviteButton = false;
-  
+
 
   console.log($localStorage.user);
   $rootScope.from ='';
@@ -66,11 +66,55 @@ $rootScope.transcMsg='Select Dates';
         dateFormat: 'dd MMMM yyyy',     //Optional
         templateType: 'popup'       //Optional
       };
+
+
+      var options = {
+         date: new Date(),
+         mode: 'date', // or 'time'
+         // minDate: new Date() - 10000,
+         // allowOldDates: true,
+         allowFutureDates: false,
+         androidTheme : 3,
+         cancelButtonLabel: 'CANCEL',
+         cancelButtonColor: '#ff0101',
+         doneButtonLabel: 'DONE',
+         doneButtonColor: '#6aa13e'
+
+       };
+
+
+
       $scope.openDatePickerfrom = function(){
-        ionicDatePicker.openDatePicker(ipObj1);
+
+        $cordovaDatePicker.show(options).then(function(date){
+          $rootScope.from=date;
+                console.log(date);
+            });
+            accountsService.docAccountsDetails($rootScope.from);
+        // ionicDatePicker.openDatePicker(ipObj1);
       };
     $scope.openDatePickerTo = function(){
-      ionicDatePicker.openDatePicker(ipObj2);
+
+      $cordovaDatePicker.show(options).then(function(date){
+        $rootScope.toDate =date;
+              console.log(date);
+              if($rootScope.toDate){
+                accountsService.docAccountsDetails().then(function(response){
+                    console.log(response);
+                    $scope.DocAcc=response;
+                  if($scope.DocAcc.length === 0){
+                    $rootScope.transcMsg='No Transactions';
+                  }else{
+                    $rootScope.transcMsg='';
+                  }
+
+                    }).catch(function(error){
+                  console.log('failure data', error);
+                });
+              }
+          });
+
+      // ionicDatePicker.openDatePicker(ipObj2);
     };
 
 

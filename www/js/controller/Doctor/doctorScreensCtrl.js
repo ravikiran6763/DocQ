@@ -15,9 +15,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     HardwareBackButtonManager.disable();
     $ionicConfig.views.swipeBackEnabled(false);//disables swipe back in iphone
 
-
-
-
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
     $rootScope.goToConsultation = function ()
@@ -41,10 +38,10 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             // $ionicLoading.hide();
             // 	alert('no network');
             // },10000);
+            $interval(availableInVsee,2000,1);
 
         }
-        $interval(availableInVsee,2000,1);
-        $interval(checkNewMessages,2000);
+        // $interval(checkNewMessages,2000);
 
 
     }, 0 );
@@ -63,16 +60,18 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
 
     function availableInVsee() {
+      console.log('LOGIN CHECK');
             var uname1 = "greet+"+$localStorage.user;
             var pw1 = "DQ_doctor";
             var success = function(message)
             {
-                    // alert(message);
+                    console.log(message);
 
                     $ionicLoading.hide().then(function(){
                     console.log("The loading indicator is now hidden");
                     // alert('loggedin');
                     $localStorage.showConnecting = false;
+                    $interval(checkNewMessages,2000);
 
                     $interval.cancel(availableInVsee);
                     // $ionicHistory.nextViewOptions({
@@ -157,9 +156,13 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     },true);
 
-
+var doctorDeviceDetails ={
+  doctorNum:$localStorage.user,
+  deviceId:$localStorage.deviceID,
+  deviceSerial:$localStorage.serial
+}
 function checkConsultations(){
-    doctoronoffdetails.getdoctorrequest($localStorage.user).then(function(response){
+    doctoronoffdetails.getdoctorrequest(doctorDeviceDetails).then(function(response){
     $scope.pendingRequests = response;
     // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
@@ -167,6 +170,143 @@ function checkConsultations(){
   // .catch(function(error){
   //   console.log('failure data', error);
   // })
+
+
+  doctoronoffdetails.doctorDeviceUpdate($localStorage.user).then(function(response){
+    $scope.deviceDetails = response;
+    console.log( $scope.deviceDetails);
+    console.log('deviceUUID:',$scope.deviceDetails[0][0]);
+    console.log('DeviceSerial:',$scope.deviceDetails[0][1]);
+
+    // $localStorage.deviceUUID = $scope.deviceDetails[0][0];
+    // $scope.deviceUUID=$localStorage.deviceUUID;
+    if($localStorage.deviceID === $scope.deviceDetails[0][0]){
+
+    }
+    else {
+      // alert('device changed');
+      var confirmPopup = $ionicPopup.confirm({
+
+                template: '<center>Your phone number is no longer registered on this phone with DoctorQuick</center>',
+                cssClass: 'videoPopup',
+                scope: $scope,
+                buttons: [
+
+                          {
+                                  text: 'OK',
+                                  type: 'button-positive',
+                                  onTap: function(e) {
+
+                                  LoginService.logoutFromDq($localStorage.user).then(function(response){
+                                        $scope.loggedOut=response;
+                                        console.log($scope.loggedOut);
+                                        if($scope.loggedOut){
+                                                // $ionicHistory.clearCache();
+                                                // 	$ionicHistory.clearHistory();
+                                                $scope.loginDatasubmitted = false;
+
+                                                var unametologout = "greet+"+$localStorage.user;
+                                                var pwtologout = "DQ_doctor";
+                                                var success = function(message)
+                                                {
+                                                      console.log(message);
+                                                      $ionicHistory.nextViewOptions({
+                                                      disableBack: true,
+                                                      disableAnimate: true,
+                                                      historyRoot: true
+                                                      });
+                                                      $ionicHistory.clearCache();
+                                                      $ionicHistory.clearHistory();
+                                                      $window.localStorage.clear();
+                                                      $state.go('auth.loginNew',{},{location:"replace",reload:true});
+                                                }
+                                                var failure = function()
+                                                {
+                                                  console.log('error calling hello plugin');
+                                                }
+                                                hello.logout(unametologout,pwtologout,success, failure);
+                                        }
+                                  }).catch(function(error){
+                                  console.log('failure data', error);
+                                  });
+                                  }
+                          },
+                ]
+      });
+    }
+
+  })
+  .catch(function(error){
+    console.log('failure data', error);
+  })
+
+  // $scope.$watch('deviceUUID', function (newValue, oldValue, scope){
+  //     console.log('changed');
+  //     console.log(newValue);
+  //     console.log(oldValue);
+  //     console.log($localStorage.deviceID);
+  //
+  //     $scope.result = angular.equals($localStorage.deviceID, newValue);
+  //     console.log($scope.result);
+  //     if(angular.equals(newValue, oldValue)){
+  //       return; // simply skip that
+  //   }
+  //     else{
+  //       console.log('Device Changed');
+  //     // alert('Device Changed');
+  //     var confirmPopup = $ionicPopup.confirm({
+  //
+  //               template: '<center>Your phone number is no longer registered on this phone with DoctorQuick</center>',
+  //               cssClass: 'videoPopup',
+  //               scope: $scope,
+  //               buttons: [
+  //
+  //                         {
+  //                                 text: 'OK',
+  //                                 type: 'button-positive',
+  //                                 onTap: function(e) {
+  //
+  //                                 LoginService.logoutFromDq($localStorage.user).then(function(response){
+  //                                       $scope.loggedOut=response;
+  //                                       console.log($scope.loggedOut);
+  //                                       if($scope.loggedOut){
+  //                                               // $ionicHistory.clearCache();
+  //                                               // 	$ionicHistory.clearHistory();
+  //                                               $scope.loginDatasubmitted = false;
+  //
+  //                                               var unametologout = "greet+"+$localStorage.user;
+  //                                               var pwtologout = "DQ_doctor";
+  //                                               var success = function(message)
+  //                                               {
+  //                                                     console.log(message);
+  //                                                     $ionicHistory.nextViewOptions({
+  //                                                     disableBack: true,
+  //                                                     disableAnimate: true,
+  //                                                     historyRoot: true
+  //                                                     });
+  //                                                     $ionicHistory.clearCache();
+  //                                                     $ionicHistory.clearHistory();
+  //                                                     $window.localStorage.clear();
+  //                                                     $state.go('auth.loginNew',{},{location:"replace",reload:true});
+  //                                               }
+  //                                               var failure = function()
+  //                                               {
+  //                                                 console.log('error calling hello plugin');
+  //                                               }
+  //                                               hello.logout(unametologout,pwtologout,success, failure);
+  //                                       }
+  //                                 }).catch(function(error){
+  //                                 console.log('failure data', error);
+  //                                 });
+  //                                 }
+  //                         },
+  //               ]
+  //     });
+  //
+  //     }
+  //
+  // },true);
+
     //$interval(checkNewMsgs,2000);
     // doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
     // $scope.one2oneRequests = response;
@@ -258,19 +398,19 @@ function checkConsultations(){
         console.log('failure data', error);
         });
 
-        var unametologout = "greet+"+$localStorage.user;
-        var pwtologout = "DQ_doctor";
-
-        // alert(unametologout);
-        var success = function(message)
-        {
-        console.log(message);
-        }
-        var failure = function()
-        {
-        console.log("An Error occured kindly check your Interner Connection");
-        }
-        hello.logout(unametologout,pwtologout,success, failure);
+        // var unametologout = "greet+"+$localStorage.user;
+        // var pwtologout = "DQ_doctor";
+        //
+        // // alert(unametologout);
+        // var success = function(message)
+        // {
+        // console.log(message);
+        // }
+        // var failure = function()
+        // {
+        // console.log("An Error occured kindly check your Interner Connection");
+        // }
+        // hello.logout(unametologout,pwtologout,success, failure);
 
 
         $scope.accptNotifications=true;
@@ -397,7 +537,7 @@ function checkConsultations(){
 //////////////////////////////
 // $scope.$watch('pending', function() { console.log('watch!'); });
 
-    $scope.$watch('requests', function (newValue, oldValue, scope) {
+    $scope.$watch('requests', function (newValue, oldValue, scope){
         // console.log('changed');
         // console.log(newValue);
         // console.log(oldValue);
@@ -407,16 +547,7 @@ function checkConsultations(){
         }
 
     },true);
-    function lookForPrescription() {
-      // $state.go('templates.prescription');
-      doctorServices.lookForPrescription($localStorage.user).then(function(response){
-      $scope.res = response;
-      // console.log($scope.res);
-      }).catch(function(error){
-      console.log('failure data', error);
-      })
-   		console.log('lookForPrescription');
-   	}
+
 
 
 $rootScope.ExpiredAlert= false;

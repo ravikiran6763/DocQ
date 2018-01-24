@@ -35,7 +35,7 @@ $scope.user = {};
 
           var confirmPopup = $ionicPopup.confirm({
 
-    				template: '<center>Your password has been sent to registerd mobile number</center>',
+    				template: '<center>Your password has been sent to registered mobile number</center>',
     				cssClass: 'videoPopup',
     				scope: $scope,
     				buttons: [

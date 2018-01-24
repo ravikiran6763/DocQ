@@ -27,7 +27,7 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   'ngTagsInput',
   'ionic-ratings',
   'base64',
-  'ionic-datepicker',
+  // 'ionic-datepicker',
   'ngMessages',
   // 'ion-alpha-scroll',
   // 'angular-circular-progress',

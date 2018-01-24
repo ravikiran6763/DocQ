@@ -521,67 +521,65 @@ if($ionicHistory.currentStateName() === 'app.patient_home'){
 
 	//signout
 
-	$scope.confirmSignout = function() {
+$scope.confirmSignout = function() {
+
+							var confirmPopup = $ionicPopup.confirm({
+
+												template: '<center>Are you sure you want to Signout?</center>',
+												cssClass: 'videoPopup',
+												scope: $scope,
+												buttons: [
+																	{
+																			text: 'Cancel',
+																			type: 'button-royal',
+																			onTap: function(e) {
+																			$ionicSideMenuDelegate.toggleRight();
+																			}
+																	},
+																	{
+																					text: 'OK',
+																					type: 'button-positive',
+																					onTap: function(e) {
+
+																					LoginService.logoutFromDq($localStorage.user).then(function(response){
+																								$scope.loggedOut=response;
+																								console.log($scope.loggedOut);
+																								if($scope.loggedOut){
+																												// $ionicHistory.clearCache();
+																												// 	$ionicHistory.clearHistory();
+																												$scope.loginDatasubmitted = false;
+
+																												var unametologout = "greet+"+$localStorage.user;
+																												var pwtologout = "DQ_patient";
 
 
+																												var success = function(message)
+																												{
+																															console.log(message);
+																															$ionicHistory.nextViewOptions({
+																															disableBack: true,
+																															disableAnimate: true,
+																															historyRoot: true
+																															});
+																															$ionicHistory.clearCache();
+																															$ionicHistory.clearHistory();
+																															$window.localStorage.clear();
 
-   	var confirmPopup = $ionicPopup.confirm({
-
-	template: '<center>Are you sure you want to Signout?</center>',
-	cssClass: 'videoPopup',
-	scope: $scope,
-	buttons: [
-	{
-	text: 'Cancel',
-	type: 'button-royal',
-	onTap: function(e) {
-	$ionicSideMenuDelegate.toggleRight();
-	}
-	},
-	{
-	text: 'OK',
-	type: 'button-positive',
-	onTap: function(e) {
-
-	LoginService.logoutFromDq($localStorage.user).then(function(response){
-	$scope.loggedOut=response;
-	console.log($scope.loggedOut);
-	if($scope.loggedOut){
-	// $ionicHistory.clearCache();
-	// 	$ionicHistory.clearHistory();
-	$scope.loginDatasubmitted = false;
-
-	var unametologout = "greet+"+$localStorage.user;
-	var pwtologout = "DQ_patient";
-
-
-	var success = function(message)
-	{
-	console.log(message);
-	$ionicHistory.nextViewOptions({
-		disableBack: true,
-		disableAnimate: true,
-		historyRoot: true
-	});
-	$ionicHistory.clearCache();
-	$ionicHistory.clearHistory();
-	$window.localStorage.clear();
-
-	$state.go('auth.loginNew',{},{location:"replace",reload:true});
-	}
-	var failure = function()
-	{
-	console.log('error calling hello plugin');
-	}
-	hello.logout(unametologout,pwtologout,success, failure);
-	}
-	}).catch(function(error){
-	console.log('failure data', error);
-	});
-	}
-	},
-	]
-	});
+																															$state.go('auth.loginNew',{},{location:"replace",reload:true});
+																												}
+																												var failure = function()
+																												{
+																													console.log('error calling hello plugin');
+																												}
+																												hello.logout(unametologout,pwtologout,success, failure);
+																								}
+																					}).catch(function(error){
+																					console.log('failure data', error);
+																					});
+																					}
+																	},
+												]
+							});
 
  }
 

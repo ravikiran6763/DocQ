@@ -14376,7 +14376,7 @@ ion-side-menu .heading-item .message {
       .add-patient-view .form-content .form-group input[type="number"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding: 4% !important;
+        padding: 0 0 0 4% !important;
         width: 100% !important;
         border: 1px solid #cdcdcf; }
       .add-patient-view .form-content .form-group input[type="tel"] {
@@ -14387,12 +14387,13 @@ ion-side-menu .heading-item .message {
       .add-patient-view .form-content .form-group input[type="password"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding: 4% !important;
+        padding: 0 0 0 4% !important;
         width: 100% !important; }
       .add-patient-view .form-content .form-group input[type="text"] {
+        padding-left: 5% !important;
         margin-top: 4% !important;
         height: 18% !important;
-        padding-left: 10px;
+        padding: 0 0 0 4% !important;
         width: 100% !important; }
       .add-patient-view .form-content .form-group .item-radio .item-content {
         padding-top: 5% !important;
@@ -14404,7 +14405,7 @@ ion-side-menu .heading-item .message {
   .add-patient-view .item-radio input:checked + .radio-content .radio-icon {
     visibility: visible;
     color: #6aa13e;
-    margin: -10px 0 0 0 !important; }
+    margin: -6px 0 0 0 !important; }
   .add-patient-view .myDoctor-list {
     width: 100%;
     overflow: scroll !important; }

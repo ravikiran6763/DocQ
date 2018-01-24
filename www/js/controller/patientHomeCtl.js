@@ -51,10 +51,9 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							// $ionicLoading.hide();
 							// 	alert('no network');
 							// },10000);
+							$interval(availableInVsee,2000,1);
 
 	        }
-	        $interval(availableInVsee,2000,1);
-					$interval(checkNewMessages,2000);
 
 
 	    }, 0 );
@@ -66,6 +65,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							var success = function(message)
 							{
 							console.log(message);
+							$interval(checkNewMessages,2000);
 
 							$ionicLoading.hide().then(function(){
 							console.log("The loading indicator is now hidden");

@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.greettech.DoctorQuick" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.greettech.DoctorQuick" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>DoctorQuick</name>
     <description>
       A Greet Telehealth Product
@@ -363,8 +363,8 @@
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
     <plugin name="cordova-plugin-datepicker" spec="https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git" />
+    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
     <engine name="android" spec="^6.3.0" />
 </widget>
