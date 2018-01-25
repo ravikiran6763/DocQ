@@ -42,11 +42,11 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 						$rootScope.connectingMessage = 'Internet connection appears very slow'
 					}, 60000 );
 						$rootScope.connectingMessage = 'Connecting to DoctorQuick'
-	          $ionicLoading.show({
-	            template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
-							// duration:3000,
-							noBackdrop: true
-	          });
+	          // $ionicLoading.show({
+	          //   template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
+						// 	// duration:3000,
+						// 	noBackdrop: true
+	          // });
 							// $timeout(function(){
 							// $ionicLoading.hide();
 							// 	alert('no network');

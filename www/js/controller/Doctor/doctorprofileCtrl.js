@@ -575,14 +575,21 @@ $scope.BalanceForVoiceCall=function()
       console.log($localStorage.selectedSubPatient);
       doctorServices.checkMyBalance($localStorage.user).then(function(response){
         $scope.patientWalletdetails=response;
-        console.log($scope.patientWalletdetails);
-  			$scope.myCredit=$scope.patientWalletdetails[0][0];
-  			$scope.myDebit=$scope.patientWalletdetails[0][1];
+        if($rootScope.patientWalletdetails === 'agent'){
+          // alert('agent');
+          $rootScope.myWalletBal='agent';
+        }
+        else{
+          console.log($rootScope.patientWalletdetails);
+          $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
+          $rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
 
-  			$scope.myWalletBal=$scope.myCredit-$scope.myDebit;
-        console.log($scope.myWalletBal);
+          $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
+
+          console.log($rootScope.myWalletBal);
+        }
               $scope.counter = 0;
-        if($scope.myWalletBal >= 270)
+        if($scope.myWalletBal >= 270 || $scope.myWalletBal === 'agent')
         {
           console.log(callRequest);
 

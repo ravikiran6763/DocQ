@@ -91,7 +91,7 @@ DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
 
 })
 
-DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage){
+DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStorage, $rootScope){
   $ionicPlatform.ready(function() {
     // window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
@@ -161,6 +161,7 @@ function keyboardShowHandler(e){
       states[Connection.NONE]     = 'None';
 
       $localStorage.networkType = states[networkState];
+      $rootScope.networkType = $localStorage.networkType;
       //console.log('Connection type: ' + $localStorage.networkType);
   }
 
@@ -601,20 +602,26 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     return {
           request: function (config) {
               //config.cache = true;
-              config.timeout = 60000;
+              config.timeout = 10000;
               return config;
           },
           responseError: function (rejection,response) {
             console.log(rejection);
             console.log(response);
 
-            $rootScope.$watch('online', function(newValue, oldValue){
+            $rootScope.$watch('networkType', function(newValue, oldValue){
+              // console.log($injector.get("$localStorage").networkType);
               console.log('newValue',newValue);
               console.log('oldValue',oldValue);
-                   if (newValue !== oldValue) {
+
+
+                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' || newValue ==='2G') {
                       //  $rootScope.online=$rootScope.online;
-                       $injector.get("$ionicLoading").hide();
                         // $injector.get("$state").reload()
+                   }
+                   else{
+                     $injector.get("$ionicLoading").hide();
+
                    }
                   // else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
                   //    console.log('on');
@@ -647,7 +654,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                       else{
 
                         $injector.get("$ionicLoading").show({
-                              template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
+                              template: 'Recovering lost connection',
                             });
 
                             // $injector.get("$ionicLoading").hide();

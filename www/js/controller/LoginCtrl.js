@@ -466,7 +466,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
 							template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Already Logged In</p></div><div class="errorContent"><p>The user is alreaady Logged in</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-							cssClass: 'loginPopup',
+							cssClass: 'videoPopup',
 							scope: $scope,
 						});
 						$scope.closethis = function()
@@ -478,14 +478,28 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 								$ionicLoading.hide();
 								$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
-								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-								cssClass: 'loginPopup',
+								template: '<div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to receive the same instantly</p></div>',
+								cssClass: 'requestPopup',
 								scope: $scope,
+								buttons: [
+								{
+								text: 'OK',
+								type: 'button-royal',
+								onTap:function(){
+									$ionicHistory.clearCache();
+									$ionicHistory.clearHistory();
+									$window.localStorage.clear();
+								}
+								},
+								]
+
+
 							});
 							$scope.closethis = function()
 							{
 							$scope.myPopup.close();
 							};
+
 						}
 
 				}).catch(function(error){
