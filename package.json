@@ -16,12 +16,8 @@
     "body-parser": "~1.9.2",
     "clean-css": "^4.1.9",
     "com.bunkerpalace.cordova.YoutubeVideoPlayer": "git+https://github.com/JonSmart/CordovaYoutubeVideoPlayer.git",
-<<<<<<< HEAD
-    "com.example.hello": "file:../newpluginforandroid/cordova-plugin-hello",
-=======
     "com.example.hello": "file:../VSEE/VseePlugin",
     "com.greettelehealth.DoctorQuick": "../newpluginforandroid/cordova-plugin-hello",
->>>>>>> 8e69ad8846422ead1f2c510973f4878e1a34ce05
     "com.razorpay.cordova": "^1.3.1",
     "cordova-android": "^6.3.0",
     "cordova-fabric-plugin": "^1.1.10",
@@ -117,19 +113,15 @@
         "CAMERA_USAGE_DESCRIPTION": " ",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
       },
-<<<<<<< HEAD
       "info.protonet.imageresizer": {},
       "com.greettelehealth.DoctorQuick": {},
       "cordova-fabric-plugin": {
         "FABRIC_API_KEY": "ad99658b46c527c8efd4106bcdd26760def1a477",
         "FABRIC_API_SECRET": "d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9"
-      }
-=======
-      "com.greettelehealth.DoctorQuick": {},
+      },
       "com.example.hello": {},
       "cordova-plugin-calendar": {},
       "cordova-plugin-datepicker": {}
->>>>>>> 8e69ad8846422ead1f2c510973f4878e1a34ce05
     },
     "platforms": [
       "android"

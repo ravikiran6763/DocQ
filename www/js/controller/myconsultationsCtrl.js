@@ -28,6 +28,7 @@ else{
 
 $ionicLoading.show({
 			template: '<ion-spinner></ion-spinner>',
+			showBackdrop:true
 			// duration:3000
 		});
 

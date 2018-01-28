@@ -2,7 +2,7 @@
   <ion-content  scrollbar-y="false" has-bouncing="false" >
     <div class="top-content">
       <div class="details">
-        <div class="profileImage" ng-repeat="im in patientProfileImage">
+        <div class="profileImage"  ng-repeat="im in patientProfileImage">
             <img  ng-hide="im.image == null "ng-src="{{im.image}}"  ng-click="changeProfilePhoto();" >
             <img  ng-show="im.image == null " ng-src="img/patientAvatar.png"  ng-click="changeProfilePhoto();">
         </div>

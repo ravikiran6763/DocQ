@@ -605,7 +605,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     return {
           request: function (config) {
               //config.cache = true;
-              config.timeout = 10000;
+              // config.timeout = 30000;
               return config;
           },
           responseError: function (rejection,response) {
@@ -618,12 +618,20 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               console.log('oldValue',oldValue);
 
 
-                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' || newValue ==='2G') {
+                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' ) {
                       //  $rootScope.online=$rootScope.online;
                         // $injector.get("$state").reload()
                    }
+                   else if( newValue ==='2G'){
+                     $injector.get("$state").reload();
+                   }
+                   else if( newValue ==='2G' && oldValue ==='2G'){
+                     $injector.get("$ionicLoading").hide();
+                   }
                    else{
                      $injector.get("$ionicLoading").hide();
+                     $injector.get("$state").reload();
+                     
 
                    }
                   // else if(newValue == false && oldValue == false || newValue == true && oldValue == true){

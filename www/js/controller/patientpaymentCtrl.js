@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientpaymentCtrl', function($scope, $ionicConfig, $rootScope, $localStorage,$ionicPopup,  $window, $ionicSideMenuDelegate, LoginService, patientWalletServices) {
+DoctorQuickApp.controller('patientpaymentCtrl', function($scope, $ionicConfig, $rootScope, $localStorage,$ionicPopup,$ionicLoading,  $window, $ionicSideMenuDelegate, LoginService, patientWalletServices) {
 
 console.log($localStorage.user);
   $rootScope.headerTxt="Payments";
@@ -8,8 +8,15 @@ console.log($localStorage.user);
   $rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
+$ionicLoading.show({
+  template:'<ion-spinner></ion-spinner>',
+  showBackdrop:true
+})
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
    $rootScope.patientWalletdetails=response;
+   if($rootScope.patientWalletdetails){
+     $ionicLoading.hide();
+   }
    $rootScope.patientWalletdetails.length;
    console.log($rootScope.patientWalletdetails.length);
    if($rootScope.patientWalletdetails === 'agent'){

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfig, $http, $timeout, $interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
+DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfig, $http, $window,$timeout, $interval, $state, $localStorage, $ionicLoading, doctorServices,rateDoctorServices) {
 
 	$rootScope.headerTxt="My Doctors";
 	$rootScope.showBackBtn=true;
@@ -7,7 +7,13 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
 
+	$ionicLoading.show({
+			template: '<ion-spinner></ion-spinner>',
+			showBackdrop:true
 
+			// hideOnStageChange: true
+	});
+	$scope.myConsultedDoctors = angular.fromJson($window.localStorage['myDoctors']);
 
  var username = "greet+"+$localStorage.user;
  var password = "DQ_patient";
@@ -33,12 +39,22 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	};
 		$ionicLoading.show({
 		    template: '<ion-spinner></ion-spinner>',
+				showBackdrop:true
+
 		    // hideOnStageChange: true
 		});
 
   doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
 		// alert('list');
-    $scope.myConsultedDoctors=response;
+		$ionicLoading.show({
+		    template: '<ion-spinner></ion-spinner>',
+				showBackdrop:true
+		    // hideOnStageChange: true
+		});
+		window.localStorage['myDoctors'] = angular.toJson(response);
+		$scope.myConsultedDoctors = angular.fromJson($window.localStorage['myDoctors']);
+
+    // $scope.myConsultedDoctors=response;
 		if($scope.myConsultedDoctors){
 			$ionicLoading.hide();
 		}

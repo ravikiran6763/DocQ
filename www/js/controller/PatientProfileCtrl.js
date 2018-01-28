@@ -16,8 +16,12 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$ionic
 	$rootScope.patient=$localStorage.user;
 	// console.time('Timer1');
 	$ionicLoading.show({
-		templates:'<ion-spinner></ion-spinner>'
+		templates:'<ion-spinner></ion-spinner>',
+		showBackdrop:true
 	});
+	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+	
+
 	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
 		if(response){
 			$ionicLoading.hide();

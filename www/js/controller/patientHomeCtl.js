@@ -42,32 +42,16 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 						$rootScope.connectingMessage = 'Internet connection appears very slow'
 					}, 60000 );
 						$rootScope.connectingMessage = 'Connecting to DoctorQuick'
-<<<<<<< HEAD
 	          $ionicLoading.show({
 	            template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
 							// duration:3000,
 							noBackdrop: true
 	          });
-							$timeout(function(){
-							$ionicLoading.hide();
-								alert('no network');
-							},0);
-
-
-							$interval(availableInVsee,2000,1);
-
-=======
-	          // $ionicLoading.show({
-	          //   template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
-						// 	// duration:3000,
-						// 	noBackdrop: true
-	          // });
 							// $timeout(function(){
 							// $ionicLoading.hide();
 							// 	alert('no network');
 							// },10000);
 							$interval(availableInVsee,2000,1);
->>>>>>> 8e69ad8846422ead1f2c510973f4878e1a34ce05
 
 	        }
 
@@ -82,9 +66,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							{
 							console.log(message);
 							$interval(checkNewMessages,2000);
-
-							$interval(checkNewMessages,2000);
-
 
 							$ionicLoading.hide().then(function(){
 							console.log("The loading indicator is now hidden");

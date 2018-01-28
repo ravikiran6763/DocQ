@@ -145,6 +145,15 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						});
 
 						///////////get all specialities///////////
+						doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+							// alert('list');
+					    $scope.myConsultedDoctors=response;
+							window.localStorage['myDoctors'] = angular.toJson(response);
+
+					  }).catch(function(error){
+					  console.log('failure data', error);
+					  });
+
 
 						 medicalSpecialityService.getMedicalSpecialist().then(function(response){
 				         console.log('successfull data', response);

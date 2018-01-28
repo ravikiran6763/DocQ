@@ -11,7 +11,11 @@ console.log('docprofileview');
 $rootScope.docRates=$stateParams.rates;
 $rootScope.docTotalRates=$stateParams.totalRates;
 
-$ionicLoading.show();
+$ionicLoading.show({
+  templates:'<ion-spinner></ion-spinner>',
+  showBackdrop:true
+  
+});
 $interval(checkDocStatus, 1000);
 
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
