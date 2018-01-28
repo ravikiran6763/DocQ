@@ -30,6 +30,7 @@ var subPatientToShow={
 }
 console.log(subPatientToShow);
 console.log($localStorage.selectedSubPatient);
+$ionicLoading
 medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
    $rootScope.newPAtient=response;
    console.log($rootScope.newPAtient.length);
@@ -49,8 +50,14 @@ medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(respon
 console.log($rootScope.newPatientFname);
   //hello.logininformation(username,password,success, failure);
 console.log($rootScope.specialId);
+$ionicLoading.show({
+  template:'<ion-spinner></ion-spinner>'
+})
   medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
    .then(function(response){
+     if(response){
+       $ionicLoading.hide();
+     }
       console.log('Details', response);
       $scope.specialityDetails = response;
       $rootScope.showSubPatients=true;
@@ -71,21 +78,37 @@ console.log($rootScope.specialId);
       $interval(checkAcceptedReqDocStatus,2000);
     patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
      $rootScope.patientWalletdetails=response;
-     $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
-     $rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
+     if($rootScope.patientWalletdetails === 'agent'){
+       // alert('agent');
+       $rootScope.myWalletBal='agent';
+     }
+     else{
+       console.log($rootScope.patientWalletdetails);
+       $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
+       $rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
 
-     $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
-     console.log($rootScope.myWalletBal);
+       $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
+
+       console.log($rootScope.myWalletBal);
+     }
+
      $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
      console.log($rootScope.newPAtient);
-     if($rootScope.myWalletBal >= 270){
+     if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal === 'agent'){
        console.log($localStorage.networkType);
        if($localStorage.networkType === '4G' || $localStorage.networkType === 'WiFi' || $localStorage.networkType === 'Unknown'){
          console.log($localStorage.SpecilityId);
 
          medicalSpecialityService.sendrequesttodoctor($localStorage.SpecilityId).then(function(response){
-           console.log('successfull data', response);
-           if(response === 'Inserted'){
+           console.log('successfull data', response[0][1]);
+           $rootScope.sentReqResponse=response;
+           $rootScope.sentReqId=$rootScope.sentReqResponse[0];
+           $rootScope.sentReqStat=$rootScope.sentReqResponse[1];
+           console.log($rootScope.sentReqStat);
+           console.log($rootScope.sentReqId);
+
+
+           if($rootScope.sentReqStat === 'Inserted'){
              $ionicLoading.hide();
              $scope.counter = 120;
              $scope.onTimeout = function(){
@@ -174,8 +197,13 @@ console.log($rootScope.specialId);
               $interval(checkAcceptedReq,2000);
 
               var checkAcceptedReq = $interval(function () {
+                var newCallStatus = {
+                  patient:$localStorage.user,
+                  reqId:$rootScope.sentReqId
+                }
                  console.log('intervalStarted');
-                    medicalSpecialityService.checkForAccptedReq($localStorage.user).then(function(response){
+                 console.log(newCallStatus);
+                    medicalSpecialityService.checkForAccptedReq(newCallStatus).then(function(response){
                     $scope.accptdReq=response;
                     console.log($scope.accptdReq);
                       if($scope.accptdReq != ''){

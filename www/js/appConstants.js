@@ -88,11 +88,11 @@ DoctorQuickApp.constant('BASE_URL', {
         'sendVerificationMail':'patient/sendVerificationMail.php',
         'updateEmail':'patient/updateEmail.php',
 
-
-
         'verifyemail':'verifyemail/verifyemail.php',
         'checkDocStatusOnTheGo':'patient/checkDocStatusOnTheGo.php',
 
+        /*AGENT*/
+        'agentDetails':'dqagent/dqAgentLogin.php',
 
 
         /*DOCTOR APIS*/
@@ -142,10 +142,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'doctorEmailVerification':'doctor/doctorEmailVerification.php',
         'updateDoctorEmail':'doctor/updateDoctorEmail.php',
         'sendVerificationMailToDoc':'doctor/sendVerificationMailToDoc.php',
-
-
-
-
+        'doctorDeviceUpdate':'doctor/doctorDeviceUpdate.php',
 
 
     })

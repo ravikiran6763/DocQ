@@ -10,6 +10,15 @@ console.log($localStorage.user);
 
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
    $rootScope.patientWalletdetails=response;
+   $rootScope.patientWalletdetails.length;
+   console.log($rootScope.patientWalletdetails.length);
+   if($rootScope.patientWalletdetails === 'agent'){
+      $rootScope.patientWalletdetails={
+        credit:0,
+        debit:0
+      };
+      console.log($rootScope.patientWalletdetails);
+   }
    console.log($rootScope.patientWalletdetails);
    }).catch(function(error){
      console.log('failure data', error);

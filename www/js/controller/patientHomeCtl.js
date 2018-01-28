@@ -42,6 +42,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 						$rootScope.connectingMessage = 'Internet connection appears very slow'
 					}, 60000 );
 						$rootScope.connectingMessage = 'Connecting to DoctorQuick'
+<<<<<<< HEAD
 	          $ionicLoading.show({
 	            template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
 							// duration:3000,
@@ -55,6 +56,18 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 							$interval(availableInVsee,2000,1);
 
+=======
+	          // $ionicLoading.show({
+	          //   template: '<ion-spinner></ion-spinner><br><br>{{connectingMessage}}',
+						// 	// duration:3000,
+						// 	noBackdrop: true
+	          // });
+							// $timeout(function(){
+							// $ionicLoading.hide();
+							// 	alert('no network');
+							// },10000);
+							$interval(availableInVsee,2000,1);
+>>>>>>> 8e69ad8846422ead1f2c510973f4878e1a34ce05
 
 	        }
 
@@ -62,11 +75,13 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 	    }, 0 );
 
 			function availableInVsee() {
+				console.log('login check');
 							var uname1 = "greet+"+$localStorage.user;
 							var pw1 = "DQ_patient";
 							var success = function(message)
 							{
-							// alert(message);
+							console.log(message);
+							$interval(checkNewMessages,2000);
 
 							$interval(checkNewMessages,2000);
 
@@ -82,8 +97,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							});
 							$ionicHistory.clearCache();
 							$ionicHistory.clearHistory();
-							$interval.cancel(availableInVsee);
 							$state.go($state.current, {}, {location: "replace",reload: false});
+
 							});
 							// alert(message);
 							}

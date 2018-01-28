@@ -9844,6 +9844,10 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
   -webkit-transition: bottom 0.3s;
   transition: bottom 0.3s; }
 
+.hide {
+  display: block !important;
+  visibility: visible !important; }
+
 .keyboard-open .hide-on-keyboard-open {
   display: none !important; }
 
@@ -12666,7 +12670,8 @@ ion-side-menu .heading-item .message {
         float: left;
         padding: 11px 0 0 6px; }
         .patient-payment-view .bottom-content li .name-content .name {
-          width: 70%; }
+          width: 100%;
+          margin-top: 12%; }
         .patient-payment-view .bottom-content li .name-content .date {
           position: absolute;
           width: 20%;
@@ -14372,7 +14377,7 @@ ion-side-menu .heading-item .message {
       .add-patient-view .form-content .form-group input[type="number"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding: 4% !important;
+        padding: 0 0 0 4% !important;
         width: 100% !important;
         border: 1px solid #cdcdcf; }
       .add-patient-view .form-content .form-group input[type="tel"] {
@@ -14383,12 +14388,13 @@ ion-side-menu .heading-item .message {
       .add-patient-view .form-content .form-group input[type="password"] {
         margin-top: 4% !important;
         height: 18% !important;
-        padding: 4% !important;
+        padding: 0 0 0 4% !important;
         width: 100% !important; }
       .add-patient-view .form-content .form-group input[type="text"] {
+        padding-left: 5% !important;
         margin-top: 4% !important;
         height: 18% !important;
-        padding-left: 10px;
+        padding: 0 0 0 4% !important;
         width: 100% !important; }
       .add-patient-view .form-content .form-group .item-radio .item-content {
         padding-top: 5% !important;
@@ -14400,7 +14406,7 @@ ion-side-menu .heading-item .message {
   .add-patient-view .item-radio input:checked + .radio-content .radio-icon {
     visibility: visible;
     color: #6aa13e;
-    margin: -10px 0 0 0 !important; }
+    margin: -6px 0 0 0 !important; }
   .add-patient-view .myDoctor-list {
     width: 100%;
     overflow: scroll !important; }
@@ -14748,7 +14754,7 @@ ion-side-menu .heading-item .message {
       padding: 20px 0 0 8px;
       background-color: white; }
     .patient-reg-1-view .form-content input[readonly]:not(.cloned-text-input) {
-      background-color: #eee !important; }
+      background-color: white !important; }
   .patient-reg-1-view .bottom-content {
     height: 17% !important; }
     .patient-reg-1-view .bottom-content .login_button {

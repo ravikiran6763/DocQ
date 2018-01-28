@@ -6,7 +6,7 @@
 				$rootScope.hideSideMenu = true;
 				$rootScope.showBadge=false;
         $rootScope.inviteButton = false;
-        
+
 
 				$scope.toggleText = "Accept";
 				console.log($state.$current.name);
@@ -287,10 +287,13 @@
 			$localStorage.accpt=1;
 			$scope.isDisabled = true;
 			$scope.toggleText ='Accepted';
-
+      $ionicLoading.show({
+        template:'<ion-spinner></ion-spinner>'
+      })
 			doctorServices.pushReqStatus($stateParams.reqId).then(function(response){
 				// alert('this alert is showing');
 				if(response === '"expired"'){
+          $ionicLoading.hide();
 					$rootScope.expiredReq = $ionicPopup.show({
 					template: "<div >This Request has been served/Expired </b></div>",
 					cssClass: 'requestPopup',
@@ -312,6 +315,7 @@
 					});
 				}
 				else{
+                $ionicLoading.hide();
 
                 ion.sound.stop("androidtone");
 
@@ -367,6 +371,36 @@
 														else{
 																  if($localStorage.networkType === '4G' || $localStorage.networkType === 'WiFi' || $localStorage.networkType === 'Unknown'){
 																				// $interval(videoOrAudio,2000);
+                                        $ionicLoading.hide();
+                                        $rootScope.callReqPopUp = $ionicPopup.show({
+																					template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+																					cssClass: 'requestPopup',
+																					scope: $scope,
+																					buttons: [
+																					{
+																					text: 'Cancel',
+																					type: 'button-royal',
+																					onTap:function(){
+																						$interval.cancel($rootScope.videoOrAudio);
+																						$interval.cancel($rootScope.checkAcceptedReq);
+
+																						console.log('cancel');
+																						console.log($scope.counter);
+																						console.log($localStorage.reqId);
+
+																						$state.go("templates.doctor_home");
+
+																						doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
+																						$scope.cancelledByDoc=response;
+																						console.log($scope.cancelledByDoc);
+																						//  $state.go($state.current, {}, {reload: true});
+																						}).catch(function(error){
+																						console.log('failure data', error);
+																						});
+																					}
+																					},
+																					]
+																				});
 																				var patAct = {
 																					accpetcode : "2",
 																					doctorphno : $localStorage.user,
@@ -397,35 +431,7 @@
 																					console.log('failure data', error);
 																					});
 																				}, 2000);
-																				$rootScope.callReqPopUp = $ionicPopup.show({
-																					template: "<div >Please wait for the call<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
-																					cssClass: 'requestPopup',
-																					scope: $scope,
-																					buttons: [
-																					{
-																					text: 'Cancel',
-																					type: 'button-royal',
-																					onTap:function(){
-																						$interval.cancel($rootScope.videoOrAudio);
-																						$interval.cancel($rootScope.checkAcceptedReq);
 
-																						console.log('cancel');
-																						console.log($scope.counter);
-																						console.log($localStorage.reqId);
-
-																						$state.go("templates.doctor_home");
-
-																						doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
-																						$scope.cancelledByDoc=response;
-																						console.log($scope.cancelledByDoc);
-																						//  $state.go($state.current, {}, {reload: true});
-																						}).catch(function(error){
-																						console.log('failure data', error);
-																						});
-																					}
-																					},
-																					]
-																				});
 																}
 																// else{
 																// 	$ionicLoading.show({

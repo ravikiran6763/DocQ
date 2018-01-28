@@ -16,14 +16,14 @@
   <ion-item class="item-divider">Transaction History</ion-item>
   <div class="calender-container">
     <div class="date-container">
-      <div class="from-date">
+      <div class="from-date" ng-click="openDatePickerfrom();">
 
-        <p>From {{from| date: "dd-MM-yyyy"}}<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerfrom();"></i></span></p>
+        <p>From {{from| date: "dd-MM-yyyy"}}<span><i class="ion-ios-calendar-outline"></i></span></p>
                   <!-- <input type="date" ng-model="data.dueDate"> -->
 
       </div>
-      <div class="to-date">
-          <p>To {{toDate| date: "dd-MM-yyyy"}}<span><i class="ion-ios-calendar-outline" ng-click="openDatePickerTo();"></i></span></p>
+      <div class="to-date" ng-click="openDatePickerTo();">
+          <p>To {{toDate| date: "dd-MM-yyyy"}}<span><i class="ion-ios-calendar-outline" ></i></span></p>
           <!-- <input type="date" ng-model="data.dueDate"> -->
 
       </div>

@@ -72,6 +72,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	{
 		console.log($rootScope.loginDatasubmitted);
 				$rootScope.loginDatasubmitted=true;
+				$localStorage.showConnecting=false;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
@@ -88,7 +89,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 				var userDetails={
 					userNum : $scope.loginData.phone,
-					password : $scope.loginData.pin
+					password : $scope.loginData.pin,
+					deviceID : $localStorage.deviceID,
+					serial:$localStorage.serial
 				};
 
 				$scope.lastView = $ionicHistory.backView();
@@ -209,7 +212,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	                var success = function(message)
 	                {
 	                  $scope.unreadchatforpatient = message;
-	                  // console.log($scope.unreadchatforpatient);
+	                  console.log($scope.unreadchatforpatient);
 	                }
 
 	                var failure = function()
@@ -223,7 +226,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						}
 						else{
 							$ionicLoading.show({
-						        template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
+						        template: '<ion-spinner></ion-spinner><br><br>Logging to DoctorQuick'
 						      });
 							var success = function(message)
 							{
@@ -468,7 +471,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
 							template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Already Logged In</p></div><div class="errorContent"><p>The user is alreaady Logged in</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-							cssClass: 'loginPopup',
+							cssClass: 'videoPopup',
 							scope: $scope,
 						});
 						$scope.closethis = function()
@@ -480,14 +483,28 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 								$ionicLoading.hide();
 								$scope.myPopup = $ionicPopup.show({
 								// title: 'Invalid Credentials',
-								template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Credentials</p></div><div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to receive the same instantly</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-								cssClass: 'loginPopup',
+								template: '<div class="errorContent"><p>The Username or Password is incorrect.<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to receive the same instantly</p></div>',
+								cssClass: 'requestPopup',
 								scope: $scope,
+								buttons: [
+								{
+								text: 'OK',
+								type: 'button-royal',
+								onTap:function(){
+									$ionicHistory.clearCache();
+									$ionicHistory.clearHistory();
+									$window.localStorage.clear();
+								}
+								},
+								]
+
+
 							});
 							$scope.closethis = function()
 							{
 							$scope.myPopup.close();
 							};
+
 						}
 
 				}).catch(function(error){
@@ -500,6 +517,10 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 
 		}
+
+		// $scope.$on('$destroy', function(){
+		// 		$interval.cancel(checkNewMessages);
+		// });
 
 
 })

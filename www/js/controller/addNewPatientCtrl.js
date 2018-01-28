@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams,$window, $rootScope,$filter,ionicDatePicker, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
+DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
   $scope.toggle = true;
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -130,9 +130,28 @@ $rootScope.loginDatasubmitted=false;
        templateType: 'popup'       //Optional
      };
 
-   $scope.openDatePickerDOB = function(){
 
-     ionicDatePicker.openDatePicker(ipObj2);
+     var options = {
+        date: new Date(),
+        mode: 'date', // or 'time'
+        // minDate: new Date() - 10000,
+        // allowOldDates: true,
+        allowFutureDates: false,
+        androidTheme : 3,
+        cancelButtonLabel: 'CANCEL',
+        cancelButtonColor: '#ff0101',
+        doneButtonLabel: 'DONE',
+        doneButtonColor: '#6aa13e'
+
+      };
+
+   $scope.openDatePickerDOB = function(){
+     $cordovaDatePicker.show(options).then(function(date){
+       $rootScope.dateOfBirth=date;
+             console.log(date);
+             $rootScope.dateOfBirth =date;
+         });
+     // ionicDatePicker.openDatePicker(ipObj2);
    };
 
 

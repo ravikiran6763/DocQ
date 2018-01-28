@@ -83,6 +83,10 @@ $stable:                          red !default;
 //@import "media-queries";
 // Include Sass mixins
 @import "scss/utils/mixins";
+// @import "scss/common/bootstrap";
+// @import "scss/common/normalize";
+
+
 // Include Theme variables
 @import "scss/common/theme.variables";
 // Include Ionic override variables

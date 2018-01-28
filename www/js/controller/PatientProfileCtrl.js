@@ -15,7 +15,13 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$ionic
 	$scope.loginData={};
 	$rootScope.patient=$localStorage.user;
 	// console.time('Timer1');
+	$ionicLoading.show({
+		templates:'<ion-spinner></ion-spinner>'
+	});
 	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+		if(response){
+			$ionicLoading.hide();
+		}
 		window.localStorage['patientDetails'] = angular.toJson(response);
 		$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
 		console.log($scope.patient_details);
@@ -100,7 +106,52 @@ $scope.register = function() {
 				}
 
 				$scope.changeProfilePhoto = function() {
-					console.log('change pic');
+					var options = {
+						quality: 75,
+						destinationType: Camera.DestinationType.DATA_URL,
+						sourceType: Camera.PictureSourceType.CAMERA,
+						allowEdit: true,
+						encodingType: Camera.EncodingType.JPEG,
+						targetWidth: 300,
+						targetHeight: 300,
+						popoverOptions: CameraPopoverOptions,
+						saveToPhotoAlbum: true
+				};
+
+						$cordovaCamera.getPicture(options).then(function (imageData) {
+								$rootScope.imgURI = "data:image/jpeg;base64," + imageData;
+
+								var imageUploadData ={
+									image:$rootScope.imgURI,
+									patientPhone:$rootScope.patient
+								}
+								$window.localStorage['patientProfileImage'] = JSON.stringify([{
+									image: $rootScope.imgURI,
+								}]);
+								console.log($rootScope.imgURI)
+								cameraService.uploadPicture(imageUploadData).then(function(response){
+									$scope.uploadedData=response;
+									console.log($scope.uploadedData);
+									// $ionicLoading.hide();
+									 $window.location.reload();
+								$scope.reload = function() {
+								return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
+								$scope.hideContent = true;
+								return $timeout(function() {
+								return $scope.hideContent = false;
+								}, 1);
+								});
+								};
+
+
+							}).catch(function(error){
+							console.log('failure data', error);
+							})
+
+						}, function (err) {
+								// An error occured. Show a message to the user
+						});
+
 
 				}
 
@@ -108,6 +159,7 @@ $scope.register = function() {
 				// $ionicPlatform.onHardwareBackButton(function(e) {
 				// 		console.log('close popup');
 				//   },400);
+
 
 			$scope.changePhoto = function() {
 							// console.trace('trace');

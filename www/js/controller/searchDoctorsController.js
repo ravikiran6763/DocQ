@@ -134,7 +134,7 @@ $interval(checkDocStatus, 1000);
 
 	function checkDocStatus(){
 	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
-			console.log($localStorage.docPhone);
+			// console.log($localStorage.docPhone);
 	  $scope.myDocDetail=response;
 	  var data=$scope.myDocDetail;//take all json data into this variable
 	    for(var i=0; i<data.length; i++){
@@ -200,15 +200,21 @@ $interval(checkDocStatus, 1000);
 		console.log(callRequest);
 		doctorServices.checkMyBalance($localStorage.user).then(function(response){
 			$rootScope.patientWalletdetails=response;
-      $rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
-      $rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
+			if($rootScope.patientWalletdetails === 'agent'){
+				// alert('agent');
+				$rootScope.myWalletBal='agent';
+			}
+			else{
+				console.log($rootScope.patientWalletdetails);
+				$rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
+				$rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
 
-      $rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
+				$rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
 
-			console.log($rootScope.myWalletBal);
-
+				console.log($rootScope.myWalletBal);
+			}
 						$scope.counter = 0;
-			if($rootScope.myWalletBal >= 270)
+			if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal ==='agent')
 			{
 
 					searchDoctorServices.requestForCall(callRequest).then(function(response){

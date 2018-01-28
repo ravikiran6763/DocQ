@@ -15,7 +15,7 @@ DoctorQuickApp.service('accountsService', function ($http,$q, BASE_URL, API,$roo
 }
 
 
-	this.docAccountsDetails = function (docPhone) {
+	this.docAccountsDetails = function (docPhone){
 		$rootScope.docPhone=docPhone;
 		console.log('service:',docPhone);
     var docAccDetails={
@@ -23,7 +23,7 @@ DoctorQuickApp.service('accountsService', function ($http,$q, BASE_URL, API,$roo
       fromDate :$rootScope.from,
       toDate:$rootScope.toDate
     }
-console.log(docAccDetails);
+		console.log(docAccDetails);
     if($rootScope.from && $rootScope.toDate){
       // alert('get details')
       console.log('from Service',docAccDetails);

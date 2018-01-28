@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.greettech.DoctorQuick" version="1.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.greettech.DoctorQuick" version="1.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>DoctorQuick</name>
     <description>
       A Greet Telehealth Product
@@ -362,11 +362,17 @@
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+<<<<<<< HEAD
     <plugin name="info.protonet.imageresizer" spec="https://github.com/protonet/cordova-plugin-image-resizer.git" />
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="cordova-fabric-plugin" spec="^1.1.10">
         <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
         <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
     </plugin>
+=======
+    <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
+    <plugin name="cordova-plugin-datepicker" spec="https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git" />
+    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
+>>>>>>> 8e69ad8846422ead1f2c510973f4878e1a34ce05
     <engine name="android" spec="^6.3.0" />
 </widget>
