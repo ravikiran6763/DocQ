@@ -6,10 +6,12 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root{
 
 .keyboard-open .hide-on-keyboard-open {
     display: none !important;
-    
+
 }
 // Respnsive video player
-
+.hide{
+  display: block !important;
+}
 .dont-break-out {
 
   /* These are technically the same, but use both */

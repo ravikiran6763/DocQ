@@ -83,13 +83,10 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashShowOnlyFirstTime" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
-<<<<<<< HEAD
     <preference name="android-windowSoftInputMode" value="stateVisible" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
-=======
     <preference name="android-fitsSystemWindows" value="true" />
     <preference name="android-manifest/application/activity/@android:windowSoftInputMode" value="adjustResize" />
->>>>>>> dc799f35ef421729a10550d753a586d58792db33
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -364,7 +361,12 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
-    <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="info.protonet.imageresizer" spec="https://github.com/protonet/cordova-plugin-image-resizer.git" />
+    <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
+    <plugin name="cordova-fabric-plugin" spec="^1.1.10">
+        <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
+        <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
+    </plugin>
     <engine name="android" spec="^6.3.0" />
 </widget>

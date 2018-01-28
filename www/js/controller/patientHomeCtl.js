@@ -47,14 +47,16 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							// duration:3000,
 							noBackdrop: true
 	          });
-							// $timeout(function(){
-							// $ionicLoading.hide();
-							// 	alert('no network');
-							// },10000);
+							$timeout(function(){
+							$ionicLoading.hide();
+								alert('no network');
+							},0);
+
+
+							$interval(availableInVsee,2000,1);
+
 
 	        }
-	        $interval(availableInVsee,2000,1);
-					$interval(checkNewMessages,2000);
 
 
 	    }, 0 );
@@ -65,6 +67,9 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							var success = function(message)
 							{
 							// alert(message);
+
+							$interval(checkNewMessages,2000);
+
 
 							$ionicLoading.hide().then(function(){
 							console.log("The loading indicator is now hidden");

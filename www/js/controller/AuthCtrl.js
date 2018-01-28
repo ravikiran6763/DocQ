@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-DoctorQuickApp.controller('AuthCtrl', function($scope, $state,$ionicConfig,$ionicHistory,$interval,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
-=======
 DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,ionicDatePicker,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
->>>>>>> dc799f35ef421729a10550d753a586d58792db33
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};

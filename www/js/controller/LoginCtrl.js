@@ -75,6 +75,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
 				$rootScope.u = $scope.loginData.phone;
+				$localStorage.showConnecting = false;
+
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
@@ -161,6 +163,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						  //     });
 							var success = function(message)
 							{
+
+									console.log('vsee plugin called');
+
 								loggedIn=true;
 									$ionicLoading.hide().then(function(){
 										console.log("The loading indicator is now hidden");
@@ -171,13 +176,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 										            });
 										            $ionicHistory.clearCache();
 										            $ionicHistory.clearHistory();
-																$state.go('app.patient_home', {}, {location: "replace", reload: false});
+																$state.go('app.patient_home',{}, {location: "replace", reload: true});
 
-										// $ionicHistory.nextViewOptions({
-										// 	disableAnimate: true,
-										// 	// disableBack: true,
-										// 	historyRoot:true
-										// });
+										$ionicHistory.nextViewOptions({
+											disableAnimate: true,
+											// disableBack: true,
+											historyRoot:true
+										});
 
 									});
 									$timeout( function(){

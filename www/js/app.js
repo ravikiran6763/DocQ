@@ -32,7 +32,10 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   // 'ion-alpha-scroll',
   // 'angular-circular-progress',
   'ionic-letter-avatar',
-  'ionic.closePopup',
+  'ionic.closePopup',,
+  'base64',
+  // 'ImageCropper'
+  // 'ngImageCompress',
   // 'ngMaterial'
   // 'ionic.cloud'
 ])
@@ -134,7 +137,7 @@ document.addEventListener('focusout', function(e) {
 });
 function keyboardShowHandler(e){
     console.log('Keyboard height is: ' + e.keyboardHeight);
-    container.style.height = scrollViewOffsetHeight + "px";
+    // container.style.height = scrollViewOffsetHeight + "px";
 
 }
    //    window.addEventListener('native.keyboardshow', function (e) {
