@@ -361,8 +361,13 @@
     <plugin name="cordova-plugin-x-socialsharing" spec="git+https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
-    <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <plugin name="info.protonet.imageresizer" spec="https://github.com/protonet/cordova-plugin-image-resizer.git" />
+    <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
+    <plugin name="cordova-fabric-plugin" spec="^1.1.10">
+        <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />
+        <variable name="FABRIC_API_SECRET" value="d69845857efc6c7cfa6cf0fa5061374382e4304018db53cea857b75257b7c3e9" />
+    </plugin>
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
     <plugin name="cordova-plugin-datepicker" spec="https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git" />
     <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />

@@ -14,7 +14,9 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root{
 
 }
 // Respnsive video player
-
+.hide{
+  display: block !important;
+}
 .dont-break-out {
 
   /* These are technically the same, but use both */

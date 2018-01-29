@@ -32,7 +32,10 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   // 'ion-alpha-scroll',
   // 'angular-circular-progress',
   'ionic-letter-avatar',
-  'ionic.closePopup',
+  'ionic.closePopup',,
+  'base64',
+  // 'ImageCropper'
+  // 'ngImageCompress',
   // 'ngMaterial'
   // 'ionic.cloud'
 ])
@@ -602,7 +605,11 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     return {
           request: function (config) {
               //config.cache = true;
+<<<<<<< HEAD
               config.timeout = 60000;
+=======
+              // config.timeout = 30000;
+>>>>>>> 432ff97e0d5dc33d978550f5deac08971233070b
               return config;
           },
           responseError: function (rejection,response) {
@@ -615,12 +622,24 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               console.log('oldValue',oldValue);
 
 
+<<<<<<< HEAD
                    if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet') {
+=======
+                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' ) {
+>>>>>>> 432ff97e0d5dc33d978550f5deac08971233070b
                       //  $rootScope.online=$rootScope.online;
                         // $injector.get("$state").reload()
                    }
+                   else if( newValue ==='2G'){
+                     $injector.get("$state").reload();
+                   }
+                   else if( newValue ==='2G' && oldValue ==='2G'){
+                     $injector.get("$ionicLoading").hide();
+                   }
                    else{
                      $injector.get("$ionicLoading").hide();
+                     $injector.get("$state").reload();
+                     
 
                    }
                   // else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
