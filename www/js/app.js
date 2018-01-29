@@ -594,7 +594,7 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
-  $httpProvider.defaults.timeout = 5000;
+  $httpProvider.defaults.timeout = 30000;
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // $httpProvider.interceptors.push('Interceptor');
@@ -602,7 +602,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     return {
           request: function (config) {
               //config.cache = true;
-              config.timeout = 10000;
+              config.timeout = 60000;
               return config;
           },
           responseError: function (rejection,response) {
@@ -615,7 +615,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               console.log('oldValue',oldValue);
 
 
-                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' || newValue ==='2G') {
+                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet') {
                       //  $rootScope.online=$rootScope.online;
                         // $injector.get("$state").reload()
                    }
