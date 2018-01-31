@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cordovaDatePicker, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cordovaDatePicker,$interval, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,$filter, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -16,6 +16,29 @@ DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cord
     console.log($ionicHistory.currentStateName());
 
     $ionicConfig.views.swipeBackEnabled(false);
+
+    medicalSpecialityService.getMedicalSpecialist().then(function(response){
+        console.log('successfull data', response);
+        $scope.specialitiesList = response;
+        window.localStorage['specialitiesList'] = angular.toJson(response);
+     }).catch(function(error){
+         console.log('failure data', error);
+     });
+
+     searchDoctorServices.specialitySearch().then(function(response){
+       window.localStorage['specialityList1'] = angular.toJson(response);
+       // console.log(window.localStorage['specialityList1']);
+     }).catch(function(error){
+     console.log('failure data', error);
+     });
+
+     searchDoctorServices.getLanguages().then(function(response){
+       window.localStorage['languages'] = angular.toJson(response);
+       // console.log(window.localStorage['languages']);
+     }).catch(function(error){
+     console.log('failure data', error);
+     });
+
 
 $ionicScrollDelegate.$getByHandle('nomineeDiv').scrollBy(500,100,true);
 
@@ -114,10 +137,14 @@ console.log($localStorage.doctororpatient);
 
 $scope.patientRegistration = function()
 {
+  $ionicLoading.show({
+    template:'<ion-spinner></ion-spinner><br><br><br>Logging into DoctorQuick'
+  });
         console.log('reg clicked');
 
         if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
         {
+          $ionicLoading.hide();
           window.plugins.toast.showWithOptions({
           message: "Valid OTP must be entered",
           duration: "short", // 2000 ms
@@ -138,6 +165,7 @@ $scope.patientRegistration = function()
         }
         else if($scope.otpentered.OTP1 === $scope.otp[0] && $scope.otpentered.OTP2 ===  $scope.otp[1] && $scope.otpentered.OTP3 === $scope.otp[2] && $scope.otpentered.OTP4 === $scope.otp[3])
         {
+
               patientDetails=
                 {
                   pateientFname : $rootScope.PatientDetail.patient_fname,
@@ -163,11 +191,9 @@ $scope.patientRegistration = function()
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
+
             console.log(response);
             if(response){
-              $ionicLoading.show({
-                template:'<ion-spinner></ion-spinner><br><br><br>Logging into DoctorQuick'
-              });
 
               window.plugins.OneSignal.getIds(function(ids) {
                 $scope.playerId=JSON.stringify(ids['userId']);
@@ -269,6 +295,26 @@ $scope.patientRegistration = function()
 
             hello.login(uname1,pw1,success, failure);
 
+            var username = "greet+"+$rootScope.PatientDetail.patient_mob;
+            var password = "DQ_patient";
+            $rootScope.unreadchatforpatient = 0;
+            
+            function checkNewMessages()
+            {
+                var success = function(message)
+                {
+                  $rootScope.unreadchatforpatient = message;
+                  console.log($rootScope.unreadchatforpatient);
+                }
+
+                var failure = function()
+                {
+                  console.log("Error calling Hello Plugin");
+                  //console.log(‘error’);
+
+                }
+                  hello.unreadchatfromusers(username,password,success, failure);
+            }
             // var details = {
             //   'phone': $rootScope.PatientDetail.patient_mob,
             //   'password': $rootScope.PatientDetail.pat_password
@@ -301,20 +347,20 @@ $scope.patientRegistration = function()
         else
         {
               // alert('Incorrect OTP');
-
+              $ionicLoading.hide();
               window.plugins.toast.showWithOptions({
-              message: "Valid code must be entered",
-              duration: "short", // 2000 ms
-              position: "bottom",
-              styling: {
-              opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-              backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-              textColor: '#ffffff', // Ditto. Default #FFFFFF
-              textSize: 13, // Default is approx. 13.
-              cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-              horizontalPadding: 16, // iOS default 16, Android default 50
-              verticalPadding: 12 // iOS default 12, Android default 30
-              }
+                message: "Valid code must be entered",
+                duration: "short", // 2000 ms
+                position: "bottom",
+                styling: {
+                opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+                textColor: '#ffffff', // Ditto. Default #FFFFFF
+                textSize: 13, // Default is approx. 13.
+                cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+                horizontalPadding: 16, // iOS default 16, Android default 50
+                verticalPadding: 12 // iOS default 12, Android default 30
+                }
               });
         			// $timeout(function() {
         		  //    $scope.queryPopup.close(); //close the popup after 3 seconds for some reason

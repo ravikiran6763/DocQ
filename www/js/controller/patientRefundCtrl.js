@@ -80,7 +80,7 @@ console.log($rootScope.debit);
 			 $rootScope.refundRequested=response;
 			 if($rootScope.refundRequested){
 				 var confirmPopup = $ionicPopup.confirm({
-	 				title: 'Refund',
+	 				// title: 'Refund',
 	 				template: 'Your request for refund is processed and it will be credited to your account within 7 business days',
 	 				cssClass: 'videoPopup',
 	 				scope: $scope,

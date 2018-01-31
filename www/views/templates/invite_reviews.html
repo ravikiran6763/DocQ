@@ -1,37 +1,46 @@
-<ion-view class="review-view" cache-view="false">
-  <ion-nav-title>
-   <span>Invite Reviews</span>
- </ion-nav-title>
- <ion-content ng-controller="contactsCtrl" scroll="true">
+    <ion-view class="review-view" cache-view="false">
+    <ion-nav-title>
+    <span>Invite Reviews</span>
+    </ion-nav-title>
+    <ion-content ng-controller="contactsCtrl" scroll="true">
 
-   <div class="top-content">
-     <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
-   </div>
+    <div class="top-content">
+    <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
+    </div>
 
-   <!-- <ceneter><i class="icon ion-android-share-alt" ng-click="showAlert()"></i> -->
-   </center>
-   <!-- <ion-list  ng-repeat="contact in allContacts ">
+    <!-- <ceneter><i class="icon ion-android-share-alt" ng-click="showAlert()"></i> -->
+    </center>
 
-    <ion-checkbox ng-repeat="number in contact.phoneNumbers "
-                   ng-model="phones[number.value]"
-                   class="item-checkbox-right" ng-click="getNumber(number.value);">
-                   {{ contact.name.formatted}}
-
-   </ion-checkbox>
-
-   </ion-list> -->
-   <ion-list  ng-repeat="cont in contact ">
+    <!-- <ion-list  ng-repeat="cont in contact ">
 
     <ion-checkbox ng-repeat="number in cont.phoneNumbers "
-                   ng-model="phones[number.value]"
-                   class="item-checkbox-right" ng-checked="myChange" ng-change="getNumber(number.value);">
-                   {{cont.name.formatted}}
+    ng-model="phones[number.value]"
+    class="item-checkbox-right" ng-checked="myChange" ng-change="getNumber(number.value);">
+    {{cont.name.formatted}}
 
-   </ion-checkbox>
+    </ion-checkbox>
 
-   </ion-list>
+    </ion-list> -->
 
-     </ion-content>
+    <ion-checkbox class="item-checkbox-right" ng-model="allcontacts.checked" ng-checked="allcontacts.checked" ng-click="checkAll()">
+    SELECT ALL
+    </ion-checkbox>
 
 
-</ion-view>
+    <ion-list ng-repeat="con in contact| orderBy:'displayName'">
+
+    <ion-checkbox ng-repeat="number in con.phoneNumbers"
+
+    ng-model="con.checked"
+    ng-checked="con.checked" class="item-checkbox-right" ng-click="getNumber(number.value);">
+    <h2>{{con.name.formatted}}</h2>
+
+    <!-- <h2>{{con.phoneNumbers[].value}}</h2> -->
+
+
+    </ion-checkbox>
+    </ion-list>
+    </ion-content>
+
+
+    </ion-view>

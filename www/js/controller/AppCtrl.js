@@ -207,19 +207,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 				}
 	}
 
-		$scope.docClicked=function(docPhone){
-			$localStorage.docPhone=docPhone;
-			console.log(docPhone);
-			doctorServices.specificSearch(docPhone).then(function(response){
-				$scope.myDocDetail=response;
-				console.log(response);
-				$state.go('app.results');
-			}).catch(function(error){
-			console.log('failure data', error);
-			});
-			// $state.go('app.results');
-			$scope.myDoctorRatings={}
-		}
+		
 
 	$rootScope.specialityList = {};
 	$rootScope.sexList = {};
@@ -391,84 +379,87 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 								$rootScope.rates=0;
 								$rootScope.totalRates=0;
 								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
-								console.log(response);
+										$ionicLoading.show();
 								if(Object.keys(response).length)
 								{
-								$state.go('app.doctorsearch');
-								$ionicLoading.show();
-								console.log('result fetched');
-								$scope.doclist = response;
-								console.log($scope.doclist);
-								$ionicLoading.hide();
+												console.log(response);
+												window.localStorage['doclist'] = angular.toJson(response);
+												$scope.doclist = angular.fromJson($window.localStorage['doclist']);
 
-								var data=$scope.doclist;//take all json data into this variable
-								for(var i=0; i<data.length; i++){
 
-								$rootScope.rate=data[i].ratings,
-								//$rootScope.totalRates=data[i].totalRates
-								$rootScope.totalRates=data[i].ratingCount
-								console.log($rootScope.rate);
-								console.log($rootScope.totalRates);
-								$rootScope.totalRates=data[i].ratingCount
+												$state.go('app.doctorsearch');
 
-								if($rootScope.rate == 0 || $rootScope.totalRates == 0){
-								$rootScope.overallRating= 1;
-								}
+												// $scope.doclist = response;
+												$ionicLoading.hide();
 
-								else{
-								$rootScope.overallRating = $rootScope.rate/$rootScope.totalRates;
+												var data=$scope.doclist;//take all json data into this variable
+												for(var i=0; i<data.length; i++){
 
-								}
-								// console.log($rootScope.overallRating);
-								$scope.ratings = [{
-								current: $rootScope.overallRating,
-								max: 5
-								}];
-								console.log($scope.ratings);
-								$scope.getStars = function(rating) {
-								// Get the value
-								var val = parseFloat(rating);
-								// Turn value into number/100
-								var size = val/5*100;
-								return size + '%';
-								}
-								// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+												$rootScope.rate=data[i].ratings,
+												//$rootScope.totalRates=data[i].totalRates
+												$rootScope.totalRates=data[i].ratingCount
+												console.log($rootScope.rate);
+												console.log($rootScope.totalRates);
+												$rootScope.totalRates=data[i].ratingCount
 
-								}
+												if($rootScope.rate == 0 || $rootScope.totalRates == 0){
+												$rootScope.overallRating= 1;
+												}
+
+												else{
+												$rootScope.overallRating = $rootScope.rate/$rootScope.totalRates;
+
+												}
+												// console.log($rootScope.overallRating);
+												$scope.ratings = [{
+												current: $rootScope.overallRating,
+												max: 5
+												}];
+												console.log($scope.ratings);
+												$scope.getStars = function(rating) {
+												// Get the value
+												var val = parseFloat(rating);
+												// Turn value into number/100
+												var size = val/5*100;
+												return size + '%';
+												}
+												// $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+
+												}
 
 
 								}
 								else if(Object.keys(response).length == 0)
 								{
-								$ionicLoading.hide();
-								console.log('empty');
-								var confirmPopup = $ionicPopup.confirm({
-								title: 'No Doctors Available',
-								template: '<center>Please try again after some time.</center>',
-								cssClass: 'videoPopup',
-								scope: $scope,
-								buttons: [
+											$ionicLoading.hide();
+											console.log('empty');
+											var confirmPopup = $ionicPopup.confirm({
+											title: 'No Doctors Available',
+											template: '<center>Please try again after some time.</center>',
+											cssClass: 'videoPopup',
+											scope: $scope,
+											buttons: [
 
-								{
-								text: 'OK',
-								type: 'button-royal',
-								onTap: function(e) {
-								console.log('ok');
+											{
+											text: 'OK',
+											type: 'button-royal',
+											onTap: function(e) {
+											console.log('ok');
 
-								}
-								},
-								]
-								});
+											}
+											},
+											]
+											});
 
-								return true;
+											return true;
 
 								}
 								else {
-								$scope.doclist = response;
-								console.log(response);
-								$state.go('app.doctorsearch');
-								$rootScope.doclist = "no doctors found";
-								}
+										$scope.doclist = response;
+										console.log(response);
+										$state.go('app.doctorsearch');
+										$rootScope.doclist = "no doctors found";
+										}
 								}).catch(function (response, data, status, header) {
 								});
 					}
@@ -496,7 +487,9 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 							text: 'OK',
 							type: 'button-positive',
 							onTap: function(e) {
-
+								$ionicLoading.show({
+									template:'<ion-spinner></ion-spinner><br><br>Logging out from DoctorQuick'
+								})
 							LoginService.logoutFromDq($localStorage.user).then(function(response){
 							$scope.loggedOut=response;
 							console.log($scope.loggedOut);
@@ -511,6 +504,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 
 								var success = function(message)
 								{
+											$ionicLoading.hide();
 											console.log(message);
 											$ionicHistory.nextViewOptions({
 											disableBack: true,
@@ -571,156 +565,193 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	$rootScope.passwordToUpdate={};
 	$rootScope.ratedBy;
 	$scope.updatePwd=function(){
-	// $rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
-	var newPwd={
-		newPwd1:$rootScope.passwordToUpdate.password,
-		userPhone:$localStorage.user
-	};
-	console.log($rootScope.passwordToUpdate.password);
-	if(!$rootScope.passwordToUpdate.password){
-			// $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
-			$scope.submittedPwd = true;
+							$ionicLoading.show({
+								template:'<ion-spinner>,ion-spinner>'
+							})
+							// $rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
+							var newPwd={
+							newPwd1:$rootScope.passwordToUpdate.password,
+							userPhone:$localStorage.user
+							};
+							console.log($rootScope.passwordToUpdate.password);
+							if(!$rootScope.passwordToUpdate.password){
+									$ionicLoading.hide();
+										// $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
+										$scope.submittedPwd = true;
 
-			window.plugins.toast.showWithOptions({
-			message: "Valid 4 digit password must be entered",
-			duration: "short", // 2000 ms
-			position: "bottom",
-			styling: {
-			opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-			backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
-			textColor: '#ffffff', // Ditto. Default #FFFFFF
-			textSize: 13, // Default is approx. 13.
-			cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-			horizontalPadding: 16, // iOS default 16, Android default 50
-			verticalPadding: 12 // iOS default 12, Android default 30
-			}
-			});
+										window.plugins.toast.showWithOptions({
+										message: "Valid 4 digit password must be entered",
+										duration: "short", // 2000 ms
+										position: "bottom",
+										styling: {
+										opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+										backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+										textColor: '#ffffff', // Ditto. Default #FFFFFF
+										textSize: 13, // Default is approx. 13.
+										cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+										horizontalPadding: 16, // iOS default 16, Android default 50
+										verticalPadding: 12 // iOS default 12, Android default 30
+										}
+										});
 
-	}
-	console.log($rootScope.passwordToUpdate.verify);
-if($rootScope.passwordToUpdate.password && $rootScope.passwordToUpdate.verify){
-if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
-patientProfileDetailsService.changePwd2(newPwd).then(function(response){
-console.log(response);
-$rootScope.passwordToUpdate={};
-window.plugins.toast.showWithOptions({
-message: "Your password has been updated",
-duration: "short", // 2000 ms
-position: "bottom",
-styling: {
-opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-textColor: '#ffffff', // Ditto. Default #FFFFFF
-textSize: 13, // Default is approx. 13.
-cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-horizontalPadding: 16, // iOS default 16, Android default 50
-verticalPadding: 12 // iOS default 12, Android default 30
-}
-});
-}).catch(function(error){
-console.log('failure data', error);
-});
-//
-// $ionicHistory.nextViewOptions({
-// disableAnimate: true,
-// disableBack: true
-// });
-// $state.go("app.patient_profile");
-}
-else{
-window.plugins.toast.showWithOptions({
-message: "Password did not match",
-duration: "short", // 2000 ms
-position: "bottom",
-styling: {
-opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
-textColor: '#ffffff', // Ditto. Default #FFFFFF
-textSize: 13, // Default is approx. 13.
-cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-horizontalPadding: 16, // iOS default 16, Android default 50
-verticalPadding: 12 // iOS default 12, Android default 30
-}
-});
-}
-}
+							}
+							if($rootScope.passwordToUpdate.password && !$rootScope.passwordToUpdate.verify){
+									$ionicLoading.hide();
+										// $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
+										$scope.submittedPwd = true;
+
+										window.plugins.toast.showWithOptions({
+										message: "Please confirm your new password",
+										duration: "short", // 2000 ms
+										position: "bottom",
+										styling: {
+										opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+										backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+										textColor: '#ffffff', // Ditto. Default #FFFFFF
+										textSize: 13, // Default is approx. 13.
+										cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+										horizontalPadding: 16, // iOS default 16, Android default 50
+										verticalPadding: 12 // iOS default 12, Android default 30
+										}
+										});
+
+							}
+							console.log($rootScope.passwordToUpdate.verify);
+							if($rootScope.passwordToUpdate.password && $rootScope.passwordToUpdate.verify){
+									if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
+											patientProfileDetailsService.changePwd2(newPwd).then(function(response){
+												console.log(response);
+												$ionicLoading.hide();
+
+												$rootScope.passwordToUpdate={};
+												window.plugins.toast.showWithOptions({
+												message: "Your password has been updated",
+												duration: "short", // 2000 ms
+												position: "bottom",
+												styling: {
+												opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+												backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+												textColor: '#ffffff', // Ditto. Default #FFFFFF
+												textSize: 13, // Default is approx. 13.
+												cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+												horizontalPadding: 16, // iOS default 16, Android default 50
+												verticalPadding: 12 // iOS default 12, Android default 30
+												}
+												});
+												}).catch(function(error){
+											console.log('failure data', error);
+											});
+											//
+											// $ionicHistory.nextViewOptions({
+											// disableAnimate: true,
+											// disableBack: true
+											// });
+											// $state.go("app.patient_profile");
+									}
+									else{
+												$ionicLoading.hide();
+
+												window.plugins.toast.showWithOptions({
+												message: "Password did not match",
+												duration: "short", // 2000 ms
+												position: "bottom",
+												styling: {
+												opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+												backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+												textColor: '#ffffff', // Ditto. Default #FFFFFF
+												textSize: 13, // Default is approx. 13.
+												cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+												horizontalPadding: 16, // iOS default 16, Android default 50
+												verticalPadding: 12 // iOS default 12, Android default 30
+												}
+												});
+									}
+							}
 
 
 }
 $scope.updateDocPwd=function(){
-$rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
-var newPwd={
-newPwd1:$rootScope.passwordToUpdate.password,
-userPhone:$localStorage.user
-};
-console.log($rootScope.passwordToUpdate.password);
-console.log($rootScope.passwordToUpdate.verify);
+					$ionicLoading.show({
+						template:'<ion-spinner></ion-spinner>'
+					})
+					$rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
+					var newPwd={
+					newPwd1:$rootScope.passwordToUpdate.password,
+					userPhone:$localStorage.user
+					};
+					console.log($rootScope.passwordToUpdate.password);
+					console.log($rootScope.passwordToUpdate.verify);
 
-console.log(newPwd);
-if(!$rootScope.passwordToUpdate.password){
-// $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
-$scope.submittedPwd = true;
+					console.log(newPwd);
+					if(!$rootScope.passwordToUpdate.password){
+								$ionicLoading.hide();
+								// $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
+								$scope.submittedPwd = true;
 
-window.plugins.toast.showWithOptions({
-message: "Valid 4 digit password must be entered",
-duration: "short", // 2000 ms
-position: "bottom",
-styling: {
-opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
-textColor: '#ffffff', // Ditto. Default #FFFFFF
-textSize: 13, // Default is approx. 13.
-cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-horizontalPadding: 16, // iOS default 16, Android default 50
-verticalPadding: 12 // iOS default 12, Android default 30
-}
-});
+								window.plugins.toast.showWithOptions({
+								message: "Valid 4 digit password must be entered",
+								duration: "short", // 2000 ms
+								position: "bottom",
+								styling: {
+								opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+								backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+								textColor: '#ffffff', // Ditto. Default #FFFFFF
+								textSize: 13, // Default is approx. 13.
+								cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+								horizontalPadding: 16, // iOS default 16, Android default 50
+								verticalPadding: 12 // iOS default 12, Android default 30
+								}
+								});
 
-}
-if($rootScope.passwordToUpdate.password && $rootScope.passwordToUpdate.verify){
-if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
-doctorServices.changeDocPwd(newPwd).then(function(response){
-console.log(response);
-// $state.go("templates.doc_profile")
-$rootScope.passwordToUpdate='';
-window.plugins.toast.showWithOptions({
-message: "Your password has been updated",
-duration: "short", // 2000 ms
-position: "bottom",
-styling: {
-opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
-textColor: '#ffffff', // Ditto. Default #FFFFFF
-textSize: 13, // Default is approx. 13.
-cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-horizontalPadding: 16, // iOS default 16, Android default 50
-verticalPadding: 12 // iOS default 12, Android default 30
-}
-});
+					}
+					if($rootScope.passwordToUpdate.password && $rootScope.passwordToUpdate.verify){
+							if($rootScope.passwordToUpdate.password === $rootScope.passwordToUpdate.verify){
+									doctorServices.changeDocPwd(newPwd).then(function(response){
+									console.log(response);
+									$ionicLoading.hide();
 
-// $state.go("templates.doctor_home");
+									// $state.go("templates.doc_profile")
+									$rootScope.passwordToUpdate='';
+									window.plugins.toast.showWithOptions({
+									message: "Your password has been updated",
+									duration: "short", // 2000 ms
+									position: "bottom",
+									styling: {
+									opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+									backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+									textColor: '#ffffff', // Ditto. Default #FFFFFF
+									textSize: 13, // Default is approx. 13.
+									cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+									horizontalPadding: 16, // iOS default 16, Android default 50
+									verticalPadding: 12 // iOS default 12, Android default 30
+									}
+									});
 
-}).catch(function(error){
-console.log('failure data', error);
-});
-}
-else{
-window.plugins.toast.showWithOptions({
-message: "Password did not match",
-duration: "short", // 2000 ms
-position: "bottom",
-styling: {
-opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
-textColor: '#ffffff', // Ditto. Default #FFFFFF
-textSize: 13, // Default is approx. 13.
-cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-horizontalPadding: 16, // iOS default 16, Android default 50
-verticalPadding: 12 // iOS default 12, Android default 30
-}
-});
-}
-}
+									// $state.go("templates.doctor_home");
+
+									}).catch(function(error){
+									console.log('failure data', error);
+									});
+							}
+							else{
+									$ionicLoading.hide();
+
+									window.plugins.toast.showWithOptions({
+									message: "Password did not match",
+									duration: "short", // 2000 ms
+									position: "bottom",
+									styling: {
+									opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+									backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+									textColor: '#ffffff', // Ditto. Default #FFFFFF
+									textSize: 13, // Default is approx. 13.
+									cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+									horizontalPadding: 16, // iOS default 16, Android default 50
+									verticalPadding: 12 // iOS default 12, Android default 30
+									}
+									});
+							}
+					}
 
 
 }
@@ -1480,6 +1511,10 @@ $rootScope.newPatient={};
 				var patientToDisplay =$localStorage.patientToDisplay;
 				if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
 				{
+
+							$ionicLoading.show({
+								templates:'<ion-spinner></ion-spinner>'
+							})
 								// $rootScope.newpatientAdded=doctorServices.getNewPatient();
 								// console.log($rootScope.newpatientAdded);
 								// $scope.newPatientFname=$scope.newpatientAdded.fname;
@@ -1508,20 +1543,21 @@ $rootScope.newPatient={};
 								$scope.pic=response
 								console.log(prescriptiondetails);
 								if($scope.pic === "DiagnosisError"){
-								window.plugins.toast.showWithOptions({
-								message: "Please Enter Diagnosis as it is Mandatory.",
-								duration: "short", // 2000 ms
-								position: "bottom",
-								styling: {
-								opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-								backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-								textColor: '#ffffff', // Ditto. Default #FFFFFF
-								textSize: 13, // Default is approx. 13.
-								cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-								horizontalPadding: 16, // iOS default 16, Android default 50
-								verticalPadding: 12 // iOS default 12, Android default 30
-								}
-								});
+										$ionicLoading.hide();
+										window.plugins.toast.showWithOptions({
+										message: "Please Enter Diagnosis as it is Mandatory.",
+										duration: "short", // 2000 ms
+										position: "bottom",
+										styling: {
+										opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+										backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+										textColor: '#ffffff', // Ditto. Default #FFFFFF
+										textSize: 13, // Default is approx. 13.
+										cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+										horizontalPadding: 16, // iOS default 16, Android default 50
+										verticalPadding: 12 // iOS default 12, Android default 30
+										}
+										});
 								}
 								else{
 								var auname =  "greet+"+$localStorage.user;
@@ -1539,20 +1575,22 @@ $rootScope.newPatient={};
 
 								var success = function(message)
 								{
-								$localStorage.sendPrescTo = "";
+										$ionicLoading.hide();
 
-								console.log('prescription clicked');
-								console.log(message);
-								$rootScope.prescription = {};
-								prescriptiondetails='';
-								$localStorage.subPatientId='';
-								$ionicHistory.nextViewOptions({
-								disableAnimate: true,
-								disableBack: true
-								});
-								$state.go('templates.consulted_patient',{},{location:"replace",reload:true});
-								// alert(message);
-								console.log(message);
+										$localStorage.sendPrescTo = "";
+
+										console.log('prescription clicked');
+										console.log(message);
+										$rootScope.prescription = {};
+										prescriptiondetails='';
+										$localStorage.subPatientId='';
+										$ionicHistory.nextViewOptions({
+										disableAnimate: true,
+										disableBack: true
+										});
+										$state.go('templates.consulted_patient',{},{location:"replace",reload:true});
+										// alert(message);
+										console.log(message);
 								}
 
 								var failure = function()

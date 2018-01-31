@@ -77,12 +77,27 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 
 
 	$scope.viewDocProfile=function(docPhone,rates,total){
+		$ionicLoading.show({
+			template:'<ion-spinner>,ion-spinner>'
+		})
 		$localStorage.docPhone=docPhone
 		$rootScope.ratesForDoc=rates
 		$rootScope.totalRate=total
 
+		doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+			if(response){
+				$ionicLoading.hide();
+				$scope.myDocDetails1=response;
+				window.localStorage['myDocDetails1'] = angular.toJson(response);
+				$state.go('app.viewdoctor_profile', {rates: $rootScope.ratesForDoc,totalRates: $rootScope.totalRate})
 
-	$state.go('app.viewdoctor_profile', {rates: $rootScope.ratesForDoc,totalRates: $rootScope.totalRate})
+			}
+
+		console.log('doc',$scope.myDocDetails1);
+
+		}).catch(function(error){
+		console.log('failure data', error);
+		});
 		// $state.go('app.viewdoctor_profile');
 
 

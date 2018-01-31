@@ -12,9 +12,16 @@ $ionicLoading.show({
   template:'<ion-spinner></ion-spinner>',
   showBackdrop:true
 })
+
+$scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWalletdetails']);
+
+
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
-   $rootScope.patientWalletdetails=response;
-   if($rootScope.patientWalletdetails){
+   // $rootScope.patientWalletdetails=response;
+   if(response){
+     window.localStorage['patientWalletdetails'] = angular.toJson(response);
+     $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWalletdetails']);
+     
      $ionicLoading.hide();
    }
    $rootScope.patientWalletdetails.length;

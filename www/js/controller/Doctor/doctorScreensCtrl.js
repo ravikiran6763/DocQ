@@ -174,9 +174,9 @@ function checkConsultations(){
 
   doctoronoffdetails.doctorDeviceUpdate($localStorage.user).then(function(response){
     $scope.deviceDetails = response;
-    console.log( $scope.deviceDetails);
-    console.log('deviceUUID:',$scope.deviceDetails[0][0]);
-    console.log('DeviceSerial:',$scope.deviceDetails[0][1]);
+    // console.log( $scope.deviceDetails);
+    // console.log('deviceUUID:',$scope.deviceDetails[0][0]);
+    // console.log('DeviceSerial:',$scope.deviceDetails[0][1]);
 
     // $localStorage.deviceUUID = $scope.deviceDetails[0][0];
     // $scope.deviceUUID=$localStorage.deviceUUID;

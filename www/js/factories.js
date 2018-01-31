@@ -22,6 +22,22 @@ angular.module('DoctorQuick.factories', [])
 
 })
 
+.factory('Socket', function($rootScope) {
+    var socket = io.connect('http://localhost:3000');
+
+    //Override socket.on to $apply the changes to angular
+    return {
+        on: function(eventName, fn) {
+            socket.on(eventName, function(data) {
+                $rootScope.$apply(function() {
+                    fn(data);
+                });
+            });
+        },
+        emit: socket.emit
+    };
+})
+
 
 
 .factory('isLoggedIn', function($http){

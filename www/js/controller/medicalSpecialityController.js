@@ -8,23 +8,7 @@ DoctorQuickApp.controller('medicalSpecialityController', function($state, $rootS
     $rootScope.hideSideMenu = true;
     $rootScope.showBadge=false;
 
-    $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
-    console.log($scope.specialitiesList);
-
-
-       $scope.specialityDetailsNew=function(id){
-         $localStorage.SpecilityId=id;
-         console.log($localStorage.SpecilityId);
-         medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
-        		 .then(function(response){
-        				console.log('Details', response);
-        				$scope.specialityDetails = response;
-               $ionicLoading.hide();
-        		 }).catch(function(error){
-        				 console.log('failure data', error);
-        		 });
-         $state.go("app.specialityDetailsNew");
-       }
+    
 
 
 });

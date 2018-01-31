@@ -24,13 +24,20 @@ console.log($rootScope.defaultPatientLname);
 
 // $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
 
+
+
+
+
+$interval(CheckOnlineDocs, 2000);
+
+
 var subPatientToShow={
   subPatId:$localStorage.selectedSubPatient,
   mainPatient:$localStorage.user
 }
 console.log(subPatientToShow);
 console.log($localStorage.selectedSubPatient);
-$ionicLoading
+
 medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
    $rootScope.newPAtient=response;
    console.log($rootScope.newPAtient.length);
@@ -49,13 +56,38 @@ medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(respon
 });
 console.log($rootScope.newPatientFname);
   //hello.logininformation(username,password,success, failure);
-console.log($rootScope.specialId);
+console.log($rootScope.SpecilityId);
 $ionicLoading.show({
   template:'<ion-spinner></ion-spinner>'
 })
+
+
+
+$scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
+console.log($localStorage.SpecilityId);
+
+// var result = JSON.parse(localStorage.getItem("specialitiesList"));
+// $scope.specialityDetails = JSON.parse(localStorage.getItem("specialitiesList"))[$localStorage.SpecilityIndex];
+// console.log($scope.specialityDetails);
+// console.log($scope.specialitiesList[$localStorage.SpecilityId]);
+
   medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
    .then(function(response){
      if(response){
+       console.log(response);
+       $rootScope.oldDocStatus=response[0]['noofonlinedoctors']
+       console.log($rootScope.oldDocStatus);
+
+       var data = response;
+       for(var i=0; i<data.length; i++){
+         $rootScope.doctorFname=data[i].doctorFname;
+       console.log(i);
+       }
+
+
+       window.localStorage['specialityDetails'] = angular.toJson(response);
+       $scope.specialityDetails = angular.fromJson($window.localStorage['specialityDetails']);
+       console.log($scope.specialityDetails[0][1] );
        $ionicLoading.hide();
      }
       console.log('Details', response);
@@ -121,7 +153,7 @@ $ionicLoading.show({
                $timeout.cancel(patientTimeout);
 
                var noResponsePopup = $ionicPopup.alert({
-               template: "<div ><p>None of the doctors have accepted your request .</p></div>",
+               template: "<div ><p>None of the doctors have accepted your request</p></div>",
                cssClass: 'requestPopup',
                scope: $scope,
                });
@@ -129,7 +161,7 @@ $ionicLoading.show({
                noResponsePopup.then(function(res) {
                  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
                  $scope.cancelledReq=response;
-                 $state.go("app.medical_speciality");
+                 // $state.go("app.medical_speciality");
                  $interval.cancel(checkAcceptedReq);
                  $interval.cancel(checkAcceptedReqDocStatus);
                  }).catch(function(error){
@@ -280,8 +312,8 @@ $ionicLoading.show({
      else{
               $ionicLoading.hide();
                var confirmPopup = $ionicPopup.confirm({
-           						title: 'Low Balance',
-           						template: '<center>Your request could not be processed as yourDoctorQuick deposit is less than ₹270.</center> ',
+           						// title: 'Low Balance',
+           						template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270.</center> ',
            						cssClass: 'videoPopup',
            						scope: $scope,
            						buttons: [
@@ -317,14 +349,32 @@ $ionicLoading.show({
 
   }
 
-   $interval(CheckOnlineDocs, 2000);
+
+
 
    function CheckOnlineDocs(){
-  //  $localStorage.SpecilityId=$rootScope.specialId;
+   // $localStorage.SpecilityId=$rootScope.SpecilityId;
    medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
     .then(function(response){
+      $rootScope.newDocStatus=response[0]['noofonlinedoctors']
+      if($rootScope.newDocStatus === $rootScope.oldDocStatus){
+
+        console.log('same data');
+      }
+      else{
+        $rootScope.oldDocStatus = $rootScope.newDocStatus;
+        console.log($scope.specialityDetails);
+        console.log(response);
+        $scope.specialityDetails =response;
+      }
+      console.log(response[0]['noofonlinedoctors']);
+
+      console.log($scope.specialityDetails);
+
+      // $rootScope.newValueForOnlineDoc=$rootScope.specialityDetails[]['noofonlinedoctors'];
+      console.log($rootScope.newValueForOnlineDoc);
       $scope.specialityDetails = response;
-      // console.log($scope.specialityDetails);
+      console.log($scope.specialityDetails);
     }).catch(function(error){
        console.log('failure data', error);
     });
@@ -397,9 +447,11 @@ $ionicLoading.show({
 
   }
 
+
+
   $scope.$on('$destroy', function(){
+      console.log('destroyed');
       $interval.cancel(checkAcceptedReqDocStatus);
-      // $interval.cancel(checkAcceptedReq);
       $interval.cancel(CheckOnlineDocs);
 
   });

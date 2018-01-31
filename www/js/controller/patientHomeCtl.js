@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,pingService) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
@@ -55,6 +55,17 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 	        }
 
+					patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
+					 $rootScope.patientWalletdetails=response;
+					 if(response){
+						 window.localStorage['patientWalletdetails'] = angular.toJson(response);
+					 }
+
+					 console.log($rootScope.patientWalletdetails);
+					 }).catch(function(error){
+						 console.log('failure data', error);
+					 });
+
 
 	    }, 0 );
 
@@ -110,7 +121,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				}
 					hello.unreadchatfromusers(uname1,pw1,success, failure);
 			}
-				$rootScope.unreadchatforpatient = 0;
 
 				function startPinging()
 				{
@@ -132,6 +142,59 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				if($scope.deviceAndroid === false){
 					$localStorage.iphoneLogin=0;
 				}
+
+
+				doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+					// alert('list');
+					$scope.myConsultedDoctors=response;
+					window.localStorage['myDoctors'] = angular.toJson(response);
+
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+
+
+				patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+					window.localStorage['patientDetails'] = angular.toJson(response);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+
+				patientProfileDetailsService.fetchPatientImage($localStorage.user).then(function(response){
+					console.log(response);
+					window.localStorage['patientProfileImage'] = angular.toJson(response);
+				}).catch(function(error){
+				console.log('failure data', error);
+				})
+
+				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+					console.log(response);
+
+				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+				}).catch(function(error){
+				// console.log('failure data', error);
+				});
+
+
+				///////////get all specialities///////////
+				doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+					// alert('list');
+					$scope.myConsultedDoctors=response;
+					window.localStorage['myDoctors'] = angular.toJson(response);
+
+				}).catch(function(error){
+				console.log('failure data', error);
+				});
+
+
+				 medicalSpecialityService.getMedicalSpecialist().then(function(response){
+						 console.log('successfull data', response);
+						 $scope.specialitiesList = response;
+						 window.localStorage['specialitiesList'] = angular.toJson(response);
+					}).catch(function(error){
+							console.log('failure data', error);
+					});
+
 
 
 

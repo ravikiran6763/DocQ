@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('addNewPatientCtrl', function($state, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
+DoctorQuickApp.controller('addNewPatientCtrl', function($state,$ionicLoading, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
   $scope.toggle = true;
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -72,6 +72,9 @@ console.log($scope.defaultPatient);
   }
 $rootScope.loginDatasubmitted=false;
   $rootScope.savePatient=function(){
+    $ionicLoading.show({
+      template:'<ion-spinner><ion-spinner>'
+    })
     $rootScope.loginDatasubmitted=true;
     // alert('add new patient');
     $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
@@ -88,6 +91,10 @@ $rootScope.loginDatasubmitted=false;
 
       medicalSpecialityService.savePatient(patientAdded).then(function(response){
          console.log('saved', response);
+         $ionicLoading.hide();
+         
+         if(response){
+         }
          $state.go("app.subPatientList");
          $rootScope.newPatient={};
          console.log(patientAdded);
@@ -97,6 +104,41 @@ $rootScope.loginDatasubmitted=false;
 
     }
     else{
+      $rootScope.loginDatasubmitted=true;
+      if(!$rootScope.newPatient.dob){
+          $ionicLoading.hide();
+          window.plugins.toast.showWithOptions({
+          message: "Please fill DOB",
+          duration: "short", // 2000 ms
+          position: "bottom",
+          styling: {
+          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+          backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+          textColor: '#ffffff', // Ditto. Default #FFFFFF
+          textSize: 13, // Default is approx. 13.
+          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+          horizontalPadding: 16, // iOS default 16, Android default 50
+          verticalPadding: 12 // iOS default 12, Android default 30
+          }
+          });
+      }
+      if(!$rootScope.newPatient.sex){
+        $ionicLoading.hide();
+        window.plugins.toast.showWithOptions({
+          message: "Please select Gender",
+          duration: "short", // 2000 ms
+          position: "bottom",
+          styling: {
+          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+          backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+          textColor: '#ffffff', // Ditto. Default #FFFFFF
+          textSize: 13, // Default is approx. 13.
+          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+          horizontalPadding: 16, // iOS default 16, Android default 50
+          verticalPadding: 12 // iOS default 12, Android default 30
+          }
+        });
+      }
       console.log("nodata");
     }
   }

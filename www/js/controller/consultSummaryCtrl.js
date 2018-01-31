@@ -322,18 +322,18 @@ $scope.ratingsObject = {
 					{
 
 						window.plugins.toast.showWithOptions({
-						message: "Please Enter Rating Comments",
-						duration: "short", // 2000 ms
-						position: "bottom",
-						styling: {
-						opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-						backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-						textColor: '#ffffff', // Ditto. Default #FFFFFF
-						textSize: 13, // Default is approx. 13.
-						cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-						horizontalPadding: 16, // iOS default 16, Android default 50
-						verticalPadding: 12 // iOS default 12, Android default 30
-						}
+							message: "Please Enter Rating Comments",
+							duration: "short", // 2000 ms
+							position: "bottom",
+							styling: {
+							opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+							backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+							textColor: '#ffffff', // Ditto. Default #FFFFFF
+							textSize: 13, // Default is approx. 13.
+							cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+							horizontalPadding: 16, // iOS default 16, Android default 50
+							verticalPadding: 12 // iOS default 12, Android default 30
+							}
 						});
 						$timeout(function() {
 							 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
@@ -388,7 +388,7 @@ $scope.removeFavorite=function(fav){
 	rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
 		$scope.added=response;
 		console.log(response);
-		$state.go($state.current, {}, {reload: true});
+		$state.go($state.current, {}, {reload: false});
 					window.plugins.toast.showWithOptions({
 					message: "Doctor added to favorites",
 					duration: "short", // 2000 ms
@@ -410,21 +410,21 @@ $scope.removeFavorite=function(fav){
 
 }
 $scope.addToFavorite=function(fav){
-	$scope.favorite=fav;
-	console.log($scope.favorite);
-if($scope.favorite == true){
-	$scope.favorite=1;
+	$rootScope.favorite=fav;
+	console.log($rootScope.favorite);
+if($rootScope.favorite == true){
+	$rootScope.favorite=1;
 
 	}
 	else{
-		$scope.favorite=2;
+		$rootScope.favorite=2;
 
 	}
 
 	var favoriteDoc={
 		ratedBy:$localStorage.user,
 		ratedTo:$stateParams.calledDoctor,
-		favorite:$scope.favorite
+		favorite:$rootScope.favorite
 	};
 
 	console.log(favoriteDoc);
@@ -434,7 +434,7 @@ $scope.added={};
 		 $scope.added=response;
 		 console.log(response);
 		 //console.log($scope.added.favorite);
-		 if($scope.added.favorite == 1){
+		 if($rootScope.favorite=== 1){
 			 //console.log($scope.added.favorite);
 
 			 window.plugins.toast.showWithOptions({

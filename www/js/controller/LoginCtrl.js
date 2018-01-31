@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices,myConsultationService)
 {
 		var loggedIn=false;
 
@@ -39,13 +39,13 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 			$scope.loginData.phone = $cookies.get('Phone');
 			$scope.loginData.pin = $cookies.get('password');
 
-			$(document).ready(function() {
-			    $(".input-group > input").focus(function(e){
-			        $(this).parent().addClass("input-group-focus");
-			    }).blur(function(e){
-			        // $(this).parent().removeClass("input-group-focus");
-			    });
-			});
+			// $(document).ready(function() {
+			//     $(".input-group > input").focus(function(e){
+			//         $(this).parent().addClass("input-group-focus");
+			//     }).blur(function(e){
+			//         // $(this).parent().removeClass("input-group-focus");
+			//     });
+			// });
 			$scope.countries = [
 					{
 					name: "India",
@@ -75,7 +75,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 				$localStorage.showConnecting=false;
         $localStorage.user = $scope.loginData.phone;
 				$localStorage.pass = $scope.loginData.pin;
-				$rootScope.u = $scope.loginData.phone;
+				$rootScope.user = $scope.loginData.phone;
 				$localStorage.showConnecting = false;
 
 
@@ -117,51 +117,42 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							})
 						});
 
-						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
-							window.localStorage['patientDetails'] = angular.toJson(response);
-						}).catch(function(error){
-						console.log('failure data', error);
-						})
+						// patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
+						// 	window.localStorage['patientDetails'] = angular.toJson(response);
+						// }).catch(function(error){
+						// console.log('failure data', error);
+						// })
+            //
+						// patientProfileDetailsService.fetchPatientImage($scope.loginData.phone).then(function(response){
+						// 	console.log(response);
+						// 	window.localStorage['patientProfileImage'] = angular.toJson(response);
+						// }).catch(function(error){
+						// console.log('failure data', error);
+						// })
+            //
+						// myConsultationService.myConsultedDoctors($scope.loginData.phone).then(function(response){
+						// 	console.log(response);
+            //
+						// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+						// }).catch(function(error){
+						// // console.log('failure data', error);
+						// });
 
-						patientProfileDetailsService.fetchPatientImage($scope.loginData.phone).then(function(response){
-							console.log(response);
-							window.localStorage['patientProfileImage'] = angular.toJson(response);
-						}).catch(function(error){
-						console.log('failure data', error);
-						})
+            //
 
-						searchDoctorServices.specialitySearch().then(function(response){
-							window.localStorage['specialityList1'] = angular.toJson(response);
-							// console.log(window.localStorage['specialityList1']);
-						}).catch(function(error){
-						console.log('failure data', error);
-						});
+            //
+						// ///////////get all specialities///////////
+						// doctorServices.myDoctorsFetched($scope.loginData.phone).then(function(response){
+						// 	// alert('list');
+					  //   $scope.myConsultedDoctors=response;
+						// 	window.localStorage['myDoctors'] = angular.toJson(response);
+            //
+					  // }).catch(function(error){
+					  // console.log('failure data', error);
+					  // });
+            //
+            //
 
-						searchDoctorServices.getLanguages().then(function(response){
-							window.localStorage['languages'] = angular.toJson(response);
-							// console.log(window.localStorage['languages']);
-						}).catch(function(error){
-						console.log('failure data', error);
-						});
-
-						///////////get all specialities///////////
-						doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
-							// alert('list');
-					    $scope.myConsultedDoctors=response;
-							window.localStorage['myDoctors'] = angular.toJson(response);
-
-					  }).catch(function(error){
-					  console.log('failure data', error);
-					  });
-
-
-						 medicalSpecialityService.getMedicalSpecialist().then(function(response){
-				         console.log('successfull data', response);
-				         $scope.specialitiesList = response;
-								 window.localStorage['specialitiesList'] = angular.toJson(response);
-				      }).catch(function(error){
-				          console.log('failure data', error);
-				      });
 
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_patient";
@@ -220,8 +211,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	            {
 	                var success = function(message)
 	                {
-	                  $scope.unreadchatforpatient = message;
-	                  console.log($scope.unreadchatforpatient);
+	                  $rootScope.unreadchatforpatient = message;
+	                  console.log($rootScope.unreadchatforpatient);
 	                }
 
 	                var failure = function()

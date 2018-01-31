@@ -138,14 +138,14 @@ $scope.callDoctor = function(callType)
            disableAnimate: true,
            disableBack: true
            });
-					 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
+					 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: true});
 
            });
 
          }, 10000 );
 			 }
 			 else{
-				 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: false});
+				 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc,consultId:$scope.callId},{location: "replace", reload: true});
 			 }
 
 			 	console.log('callEnded');
@@ -212,7 +212,7 @@ $scope.BalanceForVoiceCall = function()
  						 	disableAnimate: true,
  						 	disableBack: true
  						 });
- 						 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: false});
+ 						 $state.go('app.patient_summary',{calledDoctor:$rootScope.accptdDoc}, {location: "replace", reload: true});
 
 				}
 				var failure = function()

@@ -3,6 +3,7 @@
   <ion-content scroll="false">
     <div class="top-content"  ng-repeat="mydocs in myDocDetails1">
       <div class="imageContainer">
+        <!-- {{example.value}} -->
         <i class="icon ion-android-add-circle" ng-show="{{mydocs.onoff == 1}}"></i>
         <i class="icon ion-android-arrow-dropdown-circle" ng-show="{{mydocs.onoff == 2}}"></i>
         <!-- <img class="item-icon-right" ng-src="img/doc.jpg" > -->
@@ -77,7 +78,9 @@
           <button type="submit" class="button button-block button-assertive" ng-click="sendOfflineMessage({{mydocs.doctorPhone}});">
             Send Notification
           </button>
+
         </div>
     </div>
+
   </ion-content>
 </ion-view>

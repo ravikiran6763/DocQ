@@ -92,9 +92,9 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			 $scope.callReqPopUp.close();
 
 			 var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
-			 $scope.$on('$destroy', function(){
-			 $timeout.cancel(patientTimeout);
-			 console.log('destroyed');
+				 $scope.$on('$destroy', function(){
+				 $timeout.cancel(patientTimeout);
+				 console.log('destroyed');
 			 });
 
 			 searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
@@ -131,32 +131,102 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	},true);
 
 $interval(checkDocStatus, 1000);
+$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
+$ionicLoading.show({
+	template:'<ion-spinner></ion-spinner>'
+})
+doctorServices.myDoctorsDetails($localStorage.docPhoneSearch).then(function(response){
+	// console.log($localStorage.docPhone);
+	if(response){
+		$ionicLoading.hide();
+		$rootScope.searchDocStatus=response[0]['onoff'];
+		console.log($rootScope.searchDocStatus);
+		window.localStorage['myDocDetail'] = angular.toJson(response);
+
+		$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
+
+	$scope.myDocDetail=response;
+	var data=$scope.myDocDetail;//take all json data into this variable
+		for(var i=0; i<data.length; i++){
+
+					$rootScope.rates=data[i].ratings,
+					$rootScope.totalRates=data[i].totalRates
+
+					if($rootScope.rates == null ){
+						$rootScope.rates=''
+					}
+					if($rootScope.totalRates == null ){
+						$rootScope.totalRates=''
+					}
+					// console.log($rootScope.rates);
+					$rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+					// console.log('rates',$rootScope.DocRates);
+					// console.log('total',$rootScope.totalRates);
+			}
+	}
+
+
+}).catch(function(error){
+console.log('failure data', error);
+});
+
+
+$scope.docClicked=function(docPhone){
+	$ionicLoading.show({
+		template:'<ion-spinner></ion-spinner>'
+	})
+	$localStorage.docPhoneSearch=docPhone;
+	console.log(docPhone);
+	doctorServices.specificSearch($localStorage.docPhoneSearch).then(function(response){
+		if(response){
+			window.localStorage['myDocDetail'] = angular.toJson(response);
+			$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
+			console.log(response);
+			$ionicLoading.hide();
+
+		}
+		$state.go('app.results');
+	}).catch(function(error){
+	console.log('failure data', error);
+	});
+	// $state.go('app.results');
+	$scope.myDoctorRatings={}
+}
 
 	function checkDocStatus(){
-	  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+	  doctorServices.myDoctorsDetails($localStorage.docPhoneSearch).then(function(response){
 			// console.log($localStorage.docPhone);
-	  $scope.myDocDetail=response;
-	  var data=$scope.myDocDetail;//take all json data into this variable
-	    for(var i=0; i<data.length; i++){
+			if(response){
+				console.log(response);
+				window.localStorage['myDocDetail'] = angular.toJson(response);
+				$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
 
-	          $rootScope.rates=data[i].ratings,
-	          $rootScope.totalRates=data[i].totalRates
+			if($rootScope.searchDocStatus === response[0]['onoff']){
+				console.log('nochange');
+			}
+			else{
+				$scope.myDocDetail =response;
+			}
 
-	          if($rootScope.rates == null ){
-	            $rootScope.rates=''
-	          }
-	          if($rootScope.totalRates == null ){
-	            $rootScope.totalRates=''
-	          }
-	          // console.log($rootScope.rates);
+		  $scope.myDocDetail=response;
+		  var data=$scope.myDocDetail;//take all json data into this variable
+		    for(var i=0; i<data.length; i++){
 
-	          $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
-	          // console.log('rates',$rootScope.DocRates);
-	          // console.log('total',$rootScope.totalRates);
+		          $rootScope.rates=data[i].ratings,
+		          $rootScope.totalRates=data[i].totalRates
 
-
-
-	      }
+		          if($rootScope.rates == null ){
+		            $rootScope.rates=''
+		          }
+		          if($rootScope.totalRates == null ){
+		            $rootScope.totalRates=''
+		          }
+		          // console.log($rootScope.rates);
+		          $rootScope.DocRates= $rootScope.rates/$rootScope.totalRates;
+		          // console.log('rates',$rootScope.DocRates);
+		          // console.log('total',$rootScope.totalRates);
+		      }
+			}
 
 
 	  }).catch(function(error){
@@ -165,8 +235,8 @@ $interval(checkDocStatus, 1000);
 	}
 
 	function checkDocStatusOnTheGo(){
-		console.log($localStorage.docPhone);
-		searchDoctorServices.checkDocStatusOnTheGo($localStorage.docPhone).then(function(response){
+		console.log($localStorage.docPhoneSearch);
+		searchDoctorServices.checkDocStatusOnTheGo($localStorage.docPhoneSearch).then(function(response){
 			console.log($localStorage.myCallId);
 		$scope.myDocStatSearch = response;
 		console.log($scope.myDocStatSearch);
@@ -305,7 +375,7 @@ $interval(checkDocStatus, 1000);
 
 				var confirmPopup = $ionicPopup.confirm({
 					// title: 'DoctorQuick',
-					template: '<b><center>Your DoctorQuick Balance is too low.</center></b>',
+					template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270.</center> ',
 					cssClass: 'videoPopup',
 					scope: $scope,
 					buttons: [
@@ -530,11 +600,17 @@ $interval(checkDocStatus, 1000);
 	},true);
 
 	$scope.sendOfflineMessage=function(num){
+		$ionicLoading.show({
+			template:'<ion-spinner></ion-spinner>'
+		})
 		var sendMessage={
 			patient:$localStorage.user,
 			doctor:num
 		}
 		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
+			if(response){
+				$ionicLoading.hide()
+			}
 			console.log(response);
 		}).catch(function(error){
 		console.log('failure data', error);

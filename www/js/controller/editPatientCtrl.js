@@ -59,14 +59,31 @@ DoctorQuickApp.controller('editPatientCtrl', function($state, $scope,$stateParam
 
   $rootScope.editNewPatient=function(newdata){
     console.log(newdata.newPatientDOB);
-    console.log("save patient");
-    medicalSpecialityService.editNewPatient(newdata).then(function(response){
-       console.log('saved', response);
-       $state.go("app.subPatientList");
-       $rootScope.newPatient={};
-    }).catch(function(error){
-        console.log('failure data', error);
-    });
+    console.log(newdata.newPatientFname);
+    console.log(newdata.newPatientLname);
+    if(!newdata.newPatientFname){
+      // alert('lname missed');
+      $rootScope.loginDatasubmitted=true;
+    }
+
+    else if(!newdata.newPatientLname){
+      // alert('lname missed');
+      $rootScope.loginDatasubmitted=true;
+    }
+
+    else if(!newdata.newPatientDOB){
+      alert('fill dob');
+    }
+    else{
+      medicalSpecialityService.editNewPatient(newdata).then(function(response){
+         console.log('saved', response);
+         $state.go("app.subPatientList");
+         $rootScope.newPatient={};
+      }).catch(function(error){
+          console.log('failure data', error);
+      });
+    }
+
   }
 
 })

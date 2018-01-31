@@ -165,7 +165,7 @@ function keyboardShowHandler(e){
 
       $localStorage.networkType = states[networkState];
       $rootScope.networkType = $localStorage.networkType;
-      //console.log('Connection type: ' + $localStorage.networkType);
+      console.log('Connection type: ' + $localStorage.networkType);
   }
 
 })
@@ -389,47 +389,25 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
 
-  // if (fromState.name === "app.changeEmail_patient" && toState.name === "app.patient_profile") {
-  //   $state.go('app.patient_profile')
-  // }
-  // if (fromState.name === "app.changePassword_patient"  && toState.name === "app.patient_profile") {
-  //   $state.go('app.patient_profile')
-  // }
-  // if (fromState.name === "templates.changeEmail_doctor" && toState.name === "templates.doc_profile") {
-  //   $state.go('templates.doc_profile')
-  // }
-  // if (fromState.name === "templates.updatePassword" && toState.name === "templates.doc_profile") {
-  //   $state.go('templates.doc_profile')
-  //
-  // }
+  if(!$rootScope.previousState && toState.name === "templates.doctor_home"){
+    console.log('this is it');
+    $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
+  }
 
-//to allow back from update view from and to states are interchanged
-  // if (toState.name === "app.changeEmail_patient" && fromState.name === "app.patient_profile") {
-  //   $state.go('app.patient_profile')
-  // }
-  // if (toState.name === "app.changePassword_patient"  && fromState.name === "app.patient_profile") {
-  //   $state.go('app.patient_profile')
-  // }
-  // if (toState.name === "templates.changeEmail_doctor" && fromState.name === "templates.doc_profile") {
-  //   $state.go('templates.doc_profile')
-  // }
-  // if (toState.name === "templates.updatePassword" && fromState.name === "templates.doc_profile") {
-  //   $state.go('templates.doc_profile')
-  //
-  // }
-
-
-  if (toState.name != "app.searchDoctors") {
-    $rootScope.sideMenuForSearch = false;
+  if (toState.name === "templates.prescription" && fromState.name ==="templates.consulted_patient") {
+    $ionicHistory.clearCache();
+    $ionicHistory.clearHistory();
+    $ionicHistory.nextViewOptions({
+    disableBack: true,
+    historyRoot: true
+    });
+    $state.go("templates.doctor_home");
   }
   if (toState.name != "templates.invite_reviews") {
     $rootScope.inviteButton = false;
     $rootScope.hideSideMenu = true;
   }
-  if (toState.name === "templates.invite_reviews") {
-    $rootScope.inviteButton = true;
-    $rootScope.hideSideMenu = false;
-  }
+
   if (toState.name === "templates.doctor_home") {
     $rootScope.showNotification = true;
     	$rootScope.showBadge=true;
@@ -491,7 +469,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
       }
       else if($state.$current.name === "templates.prescription"){
             $rootScope.prescriptioAlert = $ionicPopup.show({
-            title:"Alert!!!",
+            // title:"Alert!!!",
             template: "<div >Please send the prescription to the Patient</b></div>",
             cssClass: 'requestPopup',
             buttons: [
@@ -597,7 +575,7 @@ DoctorQuickApp.config(function( $ionicConfigProvider) {
 DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
-  $httpProvider.defaults.timeout = 30000;
+  $httpProvider.defaults.timeout = 5000;
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // $httpProvider.interceptors.push('Interceptor');
@@ -605,11 +583,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     return {
           request: function (config) {
               //config.cache = true;
-<<<<<<< HEAD
-              config.timeout = 60000;
-=======
               // config.timeout = 30000;
->>>>>>> 432ff97e0d5dc33d978550f5deac08971233070b
               return config;
           },
           responseError: function (rejection,response) {
@@ -622,24 +596,20 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               console.log('oldValue',oldValue);
 
 
-<<<<<<< HEAD
-                   if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet') {
-=======
                    if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' ) {
->>>>>>> 432ff97e0d5dc33d978550f5deac08971233070b
                       //  $rootScope.online=$rootScope.online;
                         // $injector.get("$state").reload()
                    }
-                   else if( newValue ==='2G'){
-                     $injector.get("$state").reload();
-                   }
-                   else if( newValue ==='2G' && oldValue ==='2G'){
-                     $injector.get("$ionicLoading").hide();
-                   }
+                   // else if( newValue ==='2G'){
+                   //   $injector.get("$state").reload();
+                   // }
+                   // else if( newValue ==='2G' && oldValue ==='2G'){
+                   //   $injector.get("$ionicLoading").hide();
+                   // }
                    else{
                      $injector.get("$ionicLoading").hide();
-                     $injector.get("$state").reload();
-                     
+                     // $injector.get("$state").reload();
+
 
                    }
                   // else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
@@ -928,7 +898,8 @@ $stateProvider
   url: "/medical_speciality",
   views: {
     'menuContent': {
-      templateUrl: "views/app/medical_speciality.html"
+      templateUrl: "views/app/medical_speciality.html",
+      controller:"specilityListCtrl"
     }
   }
 })
@@ -982,7 +953,7 @@ $stateProvider
   views: {
     'menuContent': {
       templateUrl: "views/app/searchDoctorNew.html",
-      controller:"searchDoctorsController"
+      controller:"SearchCtrl"
 
     }
   }

@@ -362,7 +362,6 @@
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
     <plugin name="cordova-plugin-camera" spec="^4.0.1" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
-    <plugin name="info.protonet.imageresizer" spec="https://github.com/protonet/cordova-plugin-image-resizer.git" />
     <plugin name="com.greettelehealth.DoctorQuick" spec="../newpluginforandroid/cordova-plugin-hello" />
     <plugin name="cordova-fabric-plugin" spec="^1.1.10">
         <variable name="FABRIC_API_KEY" value="ad99658b46c527c8efd4106bcdd26760def1a477" />

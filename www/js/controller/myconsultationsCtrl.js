@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope, $rootScope, $ionicPlatform,$localStorage, $ionicLoading, $ionicConfig, $http,$interval, LoginService, patientCareService, doctorServices,myConsultationService,Factory) {
+DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$scope,$window, $rootScope, $ionicPlatform,$localStorage, $ionicLoading, $ionicConfig, $http,$interval, LoginService, patientCareService, doctorServices,myConsultationService,Factory) {
 
 	$rootScope.headerTxt="My Consultations";
 	$rootScope.showBackBtn=true;
@@ -33,8 +33,14 @@ $ionicLoading.show({
 		});
 
 if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
+	$rootScope.ConsultedDoctor = angular.fromJson($window.localStorage['ConsultedDoctor']);
+
 	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
+	window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+	$rootScope.ConsultedDoctor = angular.fromJson($window.localStorage['ConsultedDoctor']);
+	console.log($rootScope.ConsultedDoctor);
+
 	if($rootScope.ConsultedDoctor){
 		$ionicLoading.hide();
 

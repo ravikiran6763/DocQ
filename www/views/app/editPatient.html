@@ -34,7 +34,7 @@
       </div>
       <div class="form-group col-75">
 
-        <input type='text' placeholder="DOB"  ng-model="editPatient.newPatientDOB" ng-click="openDatePickerDOB();"  required readonly="true" style="width: 100%; background-color: white; padding: 0 0 0 4%;">
+        <input type='text' placeholder="DOB"  ng-model="editPatient.newPatientDOB" ng-click="openDatePickerDOB();" ng-value="editPatient.newPatientDOB| date: 'dd-MM-yyyy' " required readonly="true" style="width: 100%; background-color: white; padding: 0 0 0 4%;">
       </div>
     </div>
 

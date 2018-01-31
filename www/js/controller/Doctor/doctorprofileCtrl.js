@@ -14,13 +14,22 @@ $rootScope.docTotalRates=$stateParams.totalRates;
 $ionicLoading.show({
   templates:'<ion-spinner></ion-spinner>',
   showBackdrop:true
-  
+
 });
 $interval(checkDocStatus, 1000);
 
+$scope.myDocDetails1 = angular.fromJson($window.localStorage['myDocDetails1']);
+
+
 doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
-$scope.myDocDetails1=response;
+  console.log(response[0]['onoff']);
+  $rootScope.myDocAvailable=response[0]['onoff'];
+  window.localStorage['myDocDetails1'] = angular.toJson(response);
+
+// $scope.myDocDetails1=response;
 console.log('doc',$scope.myDocDetails1);
+$scope.myDocDetails1 = angular.fromJson($window.localStorage['myDocDetails1']);
+
 var data=$scope.myDocDetails1;//take all json data into this variable
   for(var i=0; i<data.length; i++){
 
@@ -59,15 +68,37 @@ var data=$scope.myDocDetails1;//take all json data into this variable
 console.log('failure data', error);
 });
 
+$scope.example = {
+       value: new Date()
+     };
 
 function checkDocStatus(){
+
   doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
   $scope.myDocDetails1=response;
+  console.log($scope.myDocDetails1);
   var data=$scope.myDocDetails1;//take all json data into this variable
     for(var i=0; i<data.length; i++){
 
           $rootScope.rates=data[i].ratings,
           $rootScope.totalRates=data[i].totalRates
+          $rootScope.onoff=data[i].onoff;
+          if($rootScope.myDocAvailable ===  $rootScope.onoff ){
+
+            console.log('docAvailability',$rootScope.myDocAvailable);
+            console.log($rootScope.myDocAvailable);
+          }
+          else{
+            $scope.example = {
+                   value: new Date()
+                 };
+            $scope.myDocDetails1 = response;
+            // $rootScope.counter++;
+            $rootScope.myDocAvailable =  $rootScope.onoff ;
+            console.log('update data');
+          }
+          console.log($rootScope.onoff);
+          console.log($scope.myDocDetails1);
 
           if($rootScope.rates == null ){
             $rootScope.rates=''
@@ -234,7 +265,7 @@ $scope.BalanceForVoiceCall=function()
         else
         {
         var confirmPopup = $ionicPopup.confirm({
-        template: '<b>Your DoctorQuick Balance is too low.</b>',
+        template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270.</center> ',
         cssClass: 'videoPopup',
         scope: $scope,
         buttons: [
