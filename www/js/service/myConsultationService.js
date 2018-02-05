@@ -51,5 +51,21 @@ this.myConsultedPatients = function (doctor_phone) {
 }
 
 
+this.firstConsultation = function (patient) {
+// console.log(patient_phone);
+  var deferred = $q.defer();
+  $http.post(BASE_URL.url + API.firstConsultation,patient)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+
+  return deferred.promise;
+
+}
+
+
 
 });

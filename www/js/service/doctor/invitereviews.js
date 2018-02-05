@@ -56,6 +56,20 @@ this.generateTinyUrl = function (docPhone) {
 
 }
 
+this.invitereviewforall = function (contact) {
+  var deferred = $q.defer();
+  // console.log(docPhone);
+  $http.post(BASE_URL.url + API.invitereviewforall,contact)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
 
 
 });

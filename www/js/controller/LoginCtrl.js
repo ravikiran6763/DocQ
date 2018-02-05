@@ -299,7 +299,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 					else if(response === "doctor")
 					{
 						$localStorage.doctororpatient = response;
-						window.plugins.OneSignal.getIds(function(ids) {
+						window.plugins.OneSignal.getIds(function(ids){
 							$scope.playerId=JSON.stringify(ids['userId']);
 
 							console.log('OneSignal for doctor');
@@ -388,7 +388,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						                }
 						                  hello.unreadchatfromusers(username,password,success, failure);
 						            }
-												$localStorage.onOff=1;
+												// $localStorage.onOff=1;
 
 						}
 						else{

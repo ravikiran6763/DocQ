@@ -97,7 +97,7 @@ console.log($localStorage.SpecilityId);
        console.log('failure data', error);
    });
 
-   $scope.counter = 0;
+  $rootScope.counter = 0;
    $scope.stopped = false;
    $scope.buttonText='Send Request';
 
@@ -142,11 +142,11 @@ console.log($localStorage.SpecilityId);
 
            if($rootScope.sentReqStat === 'Inserted'){
              $ionicLoading.hide();
-             $scope.counter = 120;
-             $scope.onTimeout = function(){
+            $rootScope.counter = 120;
+             $rootScope.onTimeout = function(){
                // console.log($scope.counter);
-               $scope.counter--;
-               patientTimeout = $timeout($scope.onTimeout,1000);
+              $rootScope.counter--;
+               patientTimeout = $timeout($rootScope.onTimeout,1000);
                if($scope.counter == 0){
                console.log('one minute over');
                $rootScope.buttonText='Send Request';
@@ -173,7 +173,7 @@ console.log($localStorage.SpecilityId);
 
                }
              }
-          var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+          var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
           $scope.$on('$destroy', function(){
           $timeout.cancel(patientTimeout);
           console.log('destroyed');
@@ -256,7 +256,7 @@ console.log($localStorage.SpecilityId);
                             disableAnimate: true,
                             disableBack: true
                           });
-                          var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+                          var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
                           $scope.$on('$destroy', function(){
                           $timeout.cancel(patientTimeout);
                           console.log('destroyed');
@@ -414,7 +414,7 @@ console.log($localStorage.SpecilityId);
    					 scope: $scope,
    		     });
    		     	 alertPopup.then(function(res) {
-               var test = $timeout($scope.onTimeout,1000);//timer interval
+               var test = $timeout($rootScope.onTimeout,1000);//timer interval
          			$scope.$on('$destroy', function(){
          			$timeout.cancel(test);
          			console.log('destroyed');

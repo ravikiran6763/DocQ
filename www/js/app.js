@@ -893,6 +893,17 @@ $stateProvider
     }
   }
 })
+
+.state('app.termsOfuse', {
+  url: "/termsOfuse",
+  views: {
+    'menuContent': {
+      templateUrl: "views/app/termsOfuse.html",
+      controller:'termsCtrl'
+    }
+  }
+})
+
 //medical_speciality
 .state('app.medical_speciality', {
   url: "/medical_speciality",

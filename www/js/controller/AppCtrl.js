@@ -44,31 +44,11 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 
 	console.log($rootScope.previousState);
 
+	// if($localStorage.doctororpatient === 'doctor')
+	// {
+  //
+	// }
 
-	ion.sound({
-		sounds: [
-			{
-				name: "beer_can_opening",
-				volume: 0.2
-			},
-			{
-				name: "notify_sound",
-				volume: 0.2
-			},
-			{
-				name: "bell_ring",
-				volume: 0.1,
-				preload: false
-			}
-		],
-		volume: 0.5,
-		path: "sounds/",
-		preload: true
-	});
-
-		// play sound
-		// ion.sound.play("beer_can_opening");
-		//ion.sound.stop("witchdoctor");
 
 		//var networkState= $cordovaNetwork.isOnline();
 		////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +187,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 				}
 	}
 
-		
+
 
 	$rootScope.specialityList = {};
 	$rootScope.sexList = {};

@@ -17,12 +17,31 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
+
+    doctorServices.doctorStatus($localStorage.user).then(function(response){
+        console.log(response);
+        $localStorage.onOff=response;
+        if(response == 1){
+        $scope.docAvailable=true;
+        $scope.docNotAvailable=false;
+
+        }
+        else{
+        $scope.docAvailable=false;
+        $scope.docNotAvailable=true;
+        }
+    }).catch(function(error){
+    console.log('failure data', error);
+    });
+
     $rootScope.goToConsultation = function ()
     {
       $state.go("templates.consulted_patient")
     }
     $timeout( function(){
         console.log('interval started');
+
+
         console.log($localStorage.showConnecting);
         if($localStorage.showConnecting == true){
           $timeout( function(){
@@ -34,10 +53,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             // duration:3000,
             noBackdrop: true
           });
-            // $timeout(function(){
-            // $ionicLoading.hide();
-            // 	alert('no network');
-            // },10000);
+
             $interval(availableInVsee,2000,1);
 
         }
@@ -56,7 +72,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     });
 
 
-    $scope.docStatus = $localStorage.onOff;
+    // $scope.docStatus = $localStorage.onOff;
 
 
     function availableInVsee() {
@@ -128,7 +144,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
           }
           hello.unreadchatfromusers(username,password,success, failure);
     }
-
+$rootScope.unreadchatforpatient = 0;
     invitereviews.generateTinyUrl($localStorage.user).then(function(response){
       $rootScope.docTinyUrl=response;
       $localStorage.docTinyUrl=$rootScope.docTinyUrl;
@@ -140,13 +156,11 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $scope.docAvailable=false;
     $scope.docNotAvailable=true;
     // $localStorage.onOff=2;
-
-
   }
     console.log($ionicHistory.viewHistory());
     $interval(checkConsultations,2000,false);
     console.log($localStorage.onOff);
-    $scope.docStatus=$localStorage.onOff;
+    // $scope.docStatus=$localStorage.onOff;
     $scope.$watch('docStatus', function (newValue, oldValue, scope){
        console.log('changed');
 
@@ -183,57 +197,57 @@ function checkConsultations(){
     if($localStorage.deviceID === $scope.deviceDetails[0][0]){
 
     }
-    else {
-      // alert('device changed');
-      var confirmPopup = $ionicPopup.confirm({
-
-                template: '<center>Your phone number is no longer registered on this phone with DoctorQuick</center>',
-                cssClass: 'videoPopup',
-                scope: $scope,
-                buttons: [
-
-                          {
-                                  text: 'OK',
-                                  type: 'button-positive',
-                                  onTap: function(e) {
-
-                                  LoginService.logoutFromDq($localStorage.user).then(function(response){
-                                        $scope.loggedOut=response;
-                                        console.log($scope.loggedOut);
-                                        if($scope.loggedOut){
-                                                // $ionicHistory.clearCache();
-                                                // 	$ionicHistory.clearHistory();
-                                                $scope.loginDatasubmitted = false;
-
-                                                var unametologout = "greet+"+$localStorage.user;
-                                                var pwtologout = "DQ_doctor";
-                                                var success = function(message)
-                                                {
-                                                      console.log(message);
-                                                      $ionicHistory.nextViewOptions({
-                                                      disableBack: true,
-                                                      disableAnimate: true,
-                                                      historyRoot: true
-                                                      });
-                                                      $ionicHistory.clearCache();
-                                                      $ionicHistory.clearHistory();
-                                                      $window.localStorage.clear();
-                                                      $state.go('auth.loginNew',{},{location:"replace",reload:true});
-                                                }
-                                                var failure = function()
-                                                {
-                                                  console.log('error calling hello plugin');
-                                                }
-                                                hello.logout(unametologout,pwtologout,success, failure);
-                                        }
-                                  }).catch(function(error){
-                                  console.log('failure data', error);
-                                  });
-                                  }
-                          },
-                ]
-      });
-    }
+    // else {
+    //   // alert('device changed');
+    //   var confirmPopup = $ionicPopup.confirm({
+    //
+    //             template: '<center>Your phone number is no longer registered on this phone with DoctorQuick</center>',
+    //             cssClass: 'videoPopup',
+    //             scope: $scope,
+    //             buttons: [
+    //
+    //                       {
+    //                               text: 'OK',
+    //                               type: 'button-positive',
+    //                               onTap: function(e) {
+    //
+    //                               LoginService.logoutFromDq($localStorage.user).then(function(response){
+    //                                     $scope.loggedOut=response;
+    //                                     console.log($scope.loggedOut);
+    //                                     if($scope.loggedOut){
+    //                                             // $ionicHistory.clearCache();
+    //                                             // 	$ionicHistory.clearHistory();
+    //                                             $scope.loginDatasubmitted = false;
+    //
+    //                                             var unametologout = "greet+"+$localStorage.user;
+    //                                             var pwtologout = "DQ_doctor";
+    //                                             var success = function(message)
+    //                                             {
+    //                                                   console.log(message);
+    //                                                   $ionicHistory.nextViewOptions({
+    //                                                   disableBack: true,
+    //                                                   disableAnimate: true,
+    //                                                   historyRoot: true
+    //                                                   });
+    //                                                   $ionicHistory.clearCache();
+    //                                                   $ionicHistory.clearHistory();
+    //                                                   $window.localStorage.clear();
+    //                                                   $state.go('auth.loginNew',{},{location:"replace",reload:true});
+    //                                             }
+    //                                             var failure = function()
+    //                                             {
+    //                                               console.log('error calling hello plugin');
+    //                                             }
+    //                                             hello.logout(unametologout,pwtologout,success, failure);
+    //                                     }
+    //                               }).catch(function(error){
+    //                               console.log('failure data', error);
+    //                               });
+    //                               }
+    //                       },
+    //             ]
+    //   });
+    // }
 
   })
   .catch(function(error){
@@ -320,7 +334,7 @@ function checkConsultations(){
     $scope.emailNotification = 'Subscribed';
     // console.log($scope.emailNotification);
     $scope.Online = function (message) {
-
+      $scope.status=message;
       console.log($localStorage.user);
       doctorServices.notifyPatient($localStorage.user).then(function(response){
         console.log(response);
@@ -328,10 +342,10 @@ function checkConsultations(){
           console.log(message);
           $scope.docAvailable=true;
           $scope.docNotAvailable=false;
-          $localStorage.onOff=1
+
           var whichdoctoronoff = {
             doctorphno : $localStorage.user,
-            onoff : $localStorage.onOff
+            onoff :1
           }
           doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
   				console.log(response);
@@ -362,7 +376,8 @@ function checkConsultations(){
     							var updatePlayer ={
     								palyerId:$scope.playerId,
     								userNum:$localStorage.user,
-    								user:'doctor'
+    								user:'doctor',
+                    status:$scope.status
     							}
 
 
@@ -370,48 +385,34 @@ function checkConsultations(){
 
                 LoginService.updatePlayer(updatePlayer).then(function(response){
                   console.log(response);
-                })
-
-
-
-
               });
+
+
+              })
+
+
 
         };
   $scope.Offline = function (message) {
         console.log(message);
+        $scope.status=message;
         // $window.location.reload();
         $scope.docAvailable=false;
         $scope.docNotAvailable=true;
         // if (angular.isDefined($scope.Timer)) {
         //     $interval.cancel($scope.Timer);
         // }
-        $localStorage.onOff=2
-        var whichdoctoronoff = {
-        doctorphno : $localStorage.user,
-        onoff : $localStorage.onOff
-        }
-        console.log(whichdoctoronoff);
-        doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
-        console.log(response);
-        }).catch(function(error){
-        console.log('failure data', error);
-        });
-
-        // var unametologout = "greet+"+$localStorage.user;
-        // var pwtologout = "DQ_doctor";
-        //
-        // // alert(unametologout);
-        // var success = function(message)
-        // {
-        // console.log(message);
+        // $localStorage.onOff=2
+        // var whichdoctoronoff = {
+        // doctorphno : $localStorage.user,
+        // onoff : 2
         // }
-        // var failure = function()
-        // {
-        // console.log("An Error occured kindly check your Interner Connection");
-        // }
-        // hello.logout(unametologout,pwtologout,success, failure);
-
+        // console.log(whichdoctoronoff);
+        // doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
+        // console.log(response);
+        // }).catch(function(error){
+        // console.log('failure data', error);
+        // });
 
         $scope.accptNotifications=true;
         $scope.rejectNotifications=false;
@@ -438,7 +439,8 @@ function checkConsultations(){
         var updatePlayer ={
         palyerId:'',
         userNum:$localStorage.user,
-        user:'doctor'
+        user:'doctor',
+        status:$scope.status
         }
 
         LoginService.updatePlayer(updatePlayer).then(function(response){
@@ -504,7 +506,7 @@ function checkConsultations(){
 				else
 				{
 						$scope.checkedValue = false;
-            $localStorage.onOff=2
+            // $localStorage.onOff=2
 						var whichdoctoronoff = {
 								doctorphno : $localStorage.user,
 								onoff : $localStorage.onOff
@@ -552,14 +554,18 @@ function checkConsultations(){
 
 $rootScope.ExpiredAlert= false;
 $scope.viewRequest=function(patient){
+  console.log('view');
+  // $ionicLoading.show({
+  //   template:'<ion-spinner></ion-spinner>'
+  // })
   $rootScope.currentPatient = patient;
   window.localStorage['currentPatient'] = angular.toJson($rootScope.currentPatient);
 
   console.log($rootScope.currentPatient);
   console.log($rootScope.currentPatient.requestedTime);
-        $rootScope.id= $rootScope.currentPatient.id
-
+        $rootScope.id= $rootScope.currentPatient.id;
   $state.go('templates.patientRequest',{'reqId':$rootScope.currentPatient.id,'reqPat':$rootScope.currentPatient.patientNum,'reqTime':$rootScope.currentPatient.awstime})
+  // $state.go('templates.patientRequest',{},{location:"replace",reload:true})
 }
 $scope.playDemoVideo = function() {
 
@@ -585,98 +591,145 @@ $scope.videoPlayerPopup.close();
 //invite Reviews
   $scope.contacts='';
 $scope.inviteForReview=function(){
+  $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
 
-  $scope.contacts = invitereviews.getinvitecontacts();
+  $scope.allConatctsFetched = angular.fromJson($window.localStorage['allConatctsFetched']);
+  console.log($scope.allConatctsFetched);
+
+  console.log($scope.allConatctsFetched.length);
+
+  // $scope.contacts = invitereviews.getinvitecontacts();
 	console.log($scope.contacts.length);
 
 
-  if($scope.contacts.length === 0)
+  if($scope.contacts.length === 0 && $scope.allConatctsFetched.length === 0)
   {
 
-
+    $ionicLoading.hide();
     window.plugins.toast.showWithOptions({
-    message: "Please select your contacts",
-    duration: "short", // 2000 ms
-    position: "bottom",
-    styling: {
-    opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-    backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-    textColor: '#ffffff', // Ditto. Default #FFFFFF
-    textSize: 13, // Default is approx. 13.
-    cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-    horizontalPadding: 16, // iOS default 16, Android default 50
-    verticalPadding: 12 // iOS default 12, Android default 30
-    }
+      message: "Please select your contacts",
+      duration: "short", // 2000 ms
+      position: "bottom",
+      styling: {
+      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+      backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+      textColor: '#ffffff', // Ditto. Default #FFFFFF
+      textSize: 13, // Default is approx. 13.
+      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+      horizontalPadding: 16, // iOS default 16, Android default 50
+      verticalPadding: 12 // iOS default 12, Android default 30
+      }
     });
 
 
   }
-  else {
-
-
+  else if($scope.allConatctsFetched.length === 0 &&  $scope.contacts.length > 0)
+  {
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner><br><center>Sending invite</center>'
     })
+    $scope.all=2;
 
     $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-    invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user).then(function(response){
+    invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl,$scope.all).then(function(response){
       if(response){
+        console.log(response);
         $ionicLoading.hide();
-        $scope.contacts='';
+        $scope.contacts=[];
+        window.localStorage['numbersToSendInvites'] = angular.toJson($scope.contacts);
         $state.go("templates.doctor_home")
       }
     }).catch(function(error){
     console.log('failure data', error);
     })
 
+  }
+  else if($scope.allConatctsFetched.length > 0 &&  $scope.contacts.length === 0)
+  {
+    $ionicLoading.show({
+      template:'<ion-spinner></ion-spinner><br><center>Sending invite</center>'
+    })
+    $scope.all=1;
+
+    $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+    invitereviews.sendsmstoinvitereviews($scope.allConatctsFetched,$scope.query,$localStorage.user,$localStorage.docTinyUrl,$scope.all).then(function(response){
+      if(response){
+        console.log(response);
+        $ionicLoading.hide();
+        $scope.contacts=[];
+        window.localStorage['allConatctsFetched'] = angular.toJson($scope.contacts);
+        $state.go("templates.doctor_home")
+      }
+    }).catch(function(error){
+    console.log('failure data', error);
+    })
+
+  }
+  else {
+
+
+    // $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+    // invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
+    //   if(response){
+    //     $ionicLoading.hide();
+    //     $scope.contacts=[];
+    //     window.localStorage['contacts'] = angular.toJson($scope.contacts);
+    //     $state.go("templates.doctor_home")
+    //   }
+    // }).catch(function(error){
+    // console.log('failure data', error);
+    // })
+
+
+
 
 
   }
-            $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
+
 
           // $scope.contacts = invitereviews.getselectedContacts();
-          console.log($scope.contacts.length);
-
-          if($scope.contacts.length === 0)
-          {
-
-                window.plugins.toast.showWithOptions({
-                message: "Please select your contacts",
-                duration: "short", // 2000 ms
-                position: "bottom",
-                styling: {
-                opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-                backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-                textColor: '#ffffff', // Ditto. Default #FFFFFF
-                textSize: 13, // Default is approx. 13.
-                cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-                horizontalPadding: 16, // iOS default 16, Android default 50
-                verticalPadding: 12 // iOS default 12, Android default 30
-                }
-                });
-
-          }
-          else {
-
-                  $ionicLoading.show({
-                  template:'<ion-spinner></ion-spinner><br><center>Sending Invite</center>'
-                  })
-
-                  $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-                  invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
-                  if(response){
-                  $ionicLoading.hide();
-                  $scope.contacts='';
-                  $state.go("templates.doctor_home")
-                  $rootScope.inviteSent=[]
-                  window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.inviteSent);
-
-                  }
-                  }).catch(function(error){
-                  console.log('failure data', error);
-                  })
-
-          }
+          // console.log($scope.contacts.length);
+          //
+          // if($scope.contacts.length === 0)
+          // {
+          //
+          //       window.plugins.toast.showWithOptions({
+          //       message: "Please select your contacts",
+          //       duration: "short", // 2000 ms
+          //       position: "bottom",
+          //       styling: {
+          //       opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+          //       backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+          //       textColor: '#ffffff', // Ditto. Default #FFFFFF
+          //       textSize: 13, // Default is approx. 13.
+          //       cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+          //       horizontalPadding: 16, // iOS default 16, Android default 50
+          //       verticalPadding: 12 // iOS default 12, Android default 30
+          //       }
+          //       });
+          //
+          // }
+          // else {
+          //
+          //         $ionicLoading.show({
+          //         template:'<ion-spinner></ion-spinner><br><center>Sending Invite</center>'
+          //         })
+          //
+          //         $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+          //         invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
+          //         if(response){
+          //         $ionicLoading.hide();
+          //         $scope.contacts='';
+          //         $state.go("templates.doctor_home")
+          //         $rootScope.inviteSent=[]
+          //         window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.inviteSent);
+          //
+          //         }
+          //         }).catch(function(error){
+          //         console.log('failure data', error);
+          //         })
+          //
+          // }
 
 
 

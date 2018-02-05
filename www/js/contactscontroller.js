@@ -1,120 +1,161 @@
-DoctorQuickApp.controller('contactsCtrl', function($scope, $rootScope, $cordovaContacts, $state,$stateParams, $ionicLoading, $timeout, invitereviews){
-  $scope.toggle = true;
-  $rootScope.headerTxt="Invite Reviews";
-  $rootScope.showBackBtn=true;
-  $rootScope.showNotification=false;
-  $rootScope.showBadge=false;
-  $rootScope.hideSideMenu = false;
-  $rootScope.inviteButton = true;
+DoctorQuickApp.controller('contactsCtrl', function($scope,$filter,$rootScope, $cordovaContacts, $state,$stateParams, $ionicLoading, $timeout, invitereviews){
+    $scope.toggle = true;
+    $rootScope.headerTxt="Invite Reviews";
+    $rootScope.showBackBtn=true;
+    $rootScope.showNotification=false;
+    $rootScope.showBadge=false;
+    $rootScope.hideSideMenu = false;
+    $rootScope.inviteButton = true;
+
+    $ionicLoading.hide();
+
+    $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+
+    // console.log($stateParams.countofselected);
+
+    $rootScope.contact = {};
+    $scope.phoneContacts = [];
 
 
-  $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
+    $rootScope.allContacts = invitereviews.getinvitecontacts();
 
-  // console.log($stateParams.countofselected);
+      for (var i = 0; i < $rootScope.allContacts.length; i++) {
 
-  $scope.phoneContacts = [];
-  $rootScope.allContacts = invitereviews.getinvitecontacts();
+          $rootScope.contact = $rootScope.allContacts[i];
 
-  console.log($rootScope.allContacts);
-  $scope.fetchContacts=0;
-  // console.log(allContacts.length);
-  for (var i = 0; i < $rootScope.allContacts.length; i++) {
-    $rootScope.contact = $rootScope.allContacts[i];
-    console.log($rootScope.contact);
-    if($scope.fetchContacts === $rootScope.allContacts.length){
-      $ionicLoading.hide();
-    }
-
-    // $scope.phoneContacts.push(contact);
-    // console.log($scope.phoneContacts);
-  }
-  $scope.checkAll = function()
-  {
+      }
 
 
-              $ionicLoading.show({
-                template:'<ion-spinner></ion-spinner><br>Selecting All Contacts',
-                duration:7000
-              });
 
 
-          if ($scope.allcontacts.checked)
-          {
 
-          $scope.allcontacts.checked = true;
-          console.log($scope.allcontacts.checked);
+      $scope.checkAll = function()
+      {
 
-          // invitereviews.invitereviewforall($rootScope.contact).then(function(response){
-          //
-          //
-          //   console.log(response);
-          //
-          // }).catch(function(error){
-          // console.log('failure data', error);
-          // })
 
-          }
+                    $ionicLoading.show({
+                      template:'<ion-spinner></ion-spinner><br>Selecting All Contacts'
+                    });
+
+
+        if ($scope.allcontacts.checked)
+        {
+
+            $scope.allcontacts.checked = true;
+            console.log($scope.allcontacts.checked);
+
+                invitereviews.invitereviewforall($rootScope.contact).then(function(response){
+
+                  window.localStorage['allConatctsFetched'] = angular.toJson(response);
+                  console.log(response);
+
+                }).catch(function(error){
+                console.log('failure data', error);
+                })
+
+        }
         else
         {
 
           $scope.allcontacts.checked = false;
-
+          $scope.unChecked=[];
+            window.localStorage['allConatctsFetched'] = angular.toJson($scope.unChecked);
           console.log($scope.allcontacts.checked);
 
         }
 
-        $scope.selected=0;
+
         for (var i=0; i < $rootScope.contact.length; i++) {
-          $rootScope.contact[i].checked = $scope.allcontacts.checked;
-          $scope.selected++;
-          if($scope.selected === $rootScope.contact.length){
-             $ionicLoading.hide();
-          }
+       $rootScope.contact[i].checked = $scope.allcontacts.checked;
 
-        };
+        $ionicLoading.hide();
 
 
+     };
 
-    }
+      }
 
 
-  $scope.numbersToInvite = [];
-  $scope.phones = {};
-  console.log($scope.myChange);
-  $scope.getNumber=function(number){
-  $rootScope.selectedNumber=[];
-angular.forEach($scope.phones, function(value, key) {
-    if(value){
-    var pushNumber = key.replace(/ /g, '');
-    console.log(pushNumber);
-    $rootScope.selectedNumber.push(parseInt(pushNumber));
-    console.log($rootScope.selectedNumber);
-    console.log($rootScope.selectedNumber.length);
+    $scope.numbersToInvite = [];
+    $scope.phones = {};
+  var index = 0;
 
-    if($rootScope.selectedNumber.length == 0){
     $rootScope.selectedNumber=[];
-    window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
 
-    }else{
-    window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+    $scope.getNumber=function(checkedvalue,number){
+
+
+
+      // angular.forEach($scope.phones, function(value, key) {
+      //   if(value){
+      //
+
+
+        var pushNumber = number.replace(/ /g, '');
+        console.log(pushNumber);
+
+
+        if(checkedvalue)
+        {
+
+          $rootScope.selectedNumber.push(number);
+          console.log($rootScope.selectedNumber);
+          window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+        }
+        else {
+
+          console.log(number);
+                 // $rootScope.selectedNumber.splice(number);
+
+                 var index = $rootScope.selectedNumber.indexOf(number);
+                 $rootScope.selectedNumber.splice(index, 1);
+
+                 console.log($rootScope.selectedNumber);
+                 window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+                 
+
+        }
+
+
+
+
+
+          // if($rootScope.selectedNumber.length == 0){
+          //   $rootScope.selectedNumber=[];
+          //   window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+          //
+          // }else{
+          //   window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
+          //
+          // }
+
+
+
+
+
+      // invitereviews.selectedContacts($rootScope.selectedNumber);
+    //     }
+    // });
+
 
     }
 
-    // invitereviews.selectedContacts($rootScope.selectedNumber);
-    }
+
+
+
+
+
+
+
+    // $scope.getNumber = function (checked) {
+    //
+    //   invitereviews.invitereviewpatient($scope.numbersToInvite);
+    //   $scope.numbersToInvite.push(checked);
+    //
+    //   console.log($scope.numbersToInvite);
+    //
+    //
+    // };
+
+
 });
-}
-
-
-// $scope.getNumber = function (checked) {
-//
-//   invitereviews.invitereviewpatient($scope.numbersToInvite);
-//   $scope.numbersToInvite.push(checked);
-//
-//   console.log($scope.numbersToInvite);
-//
-//
-// };
-
-
-})

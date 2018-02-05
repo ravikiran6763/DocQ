@@ -59,8 +59,7 @@ $scope.setRating = function(ratings,val){
 			var filRatings = $ionicPopup.confirm({
 				// template: '<p>Please share details with us why you were<br>unhappy with the consultation so that we <br>can improve our services.</p><br><textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment"></textarea>',
 				template: '<p>Please tell us why you were unhappy with the consultation</p><textarea name="ratingComments" id="ratingComments" ng-model="ratingComments.comment" style="height: 15%; border: 1px solid teal;"></textarea>',
-
-				cssClass: 'videoPopup',
+				cssClass: 'summaryPopup',
 				scope: $scope,
 				buttons: [
 					{
@@ -388,7 +387,7 @@ $scope.removeFavorite=function(fav){
 	rateDoctorServices.addToFavorite(favoriteDoc).then(function(response){
 		$scope.added=response;
 		console.log(response);
-		$state.go($state.current, {}, {reload: false});
+		$state.go($state.current, {}, {reload: true});
 					window.plugins.toast.showWithOptions({
 					message: "Doctor added to favorites",
 					duration: "short", // 2000 ms

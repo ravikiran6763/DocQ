@@ -354,7 +354,7 @@ $scope.BalanceForVoiceCall=function()
        if(newValue == 2){
          $scope.callReqPopUp.close();
 
-         var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+         var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
            $scope.$on('$destroy', function(){
            $timeout.cancel(patientTimeout);
            console.log('destroyed');
@@ -376,7 +376,7 @@ $scope.BalanceForVoiceCall=function()
            scope: $scope,
          });
            alertPopup.then(function(res) {
-             var patientTimeout = $timeout($scope.onTimeout,1000);//timer inerval
+             var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer inerval
              $scope.$on('$destroy', function(){
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
@@ -426,7 +426,7 @@ $scope.BalanceForVoiceCall=function()
            scope: $scope,
          });
            alertPopup.then(function(res){
-             var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
+             var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
              $scope.$on('$destroy', function(){
                $scope.callAccept.close();
 
@@ -623,96 +623,115 @@ $scope.BalanceForVoiceCall=function()
 
           console.log($rootScope.myWalletBal);
         }
-              $scope.counter = 0;
+              $rootScope.counter = 0;
         if($scope.myWalletBal >= 270 || $scope.myWalletBal === 'agent')
         {
-          console.log(callRequest);
+              console.log(callRequest);
+              if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi'){
+                searchDoctorServices.requestForCall(callRequest).then(function(response){
+                console.log('one2oneReq',response);
+                window.localStorage['one2oneReq'] = angular.toJson(response);
+                $rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
+                $localStorage.myCallId = $rootScope.one2oneReq.reqId;
 
-              searchDoctorServices.requestForCall(callRequest).then(function(response){
-              console.log('one2oneReq',response);
-              window.localStorage['one2oneReq'] = angular.toJson(response);
-              $rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
-              $localStorage.myCallId = $rootScope.one2oneReq.reqId;
+                console.log($localStorage.myCallId);
+                console.log($rootScope.one2oneReq.callStatus);
 
-              console.log($localStorage.myCallId);
-              console.log($rootScope.one2oneReq.callStatus);
-
-              }).catch(function(error){
-              console.log('failure data', error);
-              });
-
-          // hello.greet(uname,pw,persontocall,success, failure);
-          $scope.counter = 120;
-          $scope.onTimeout = function(){
-            console.log($scope.counter);
-            $scope.counter--;
-            patientTimeout = $timeout($scope.onTimeout,1000);
-            if($scope.counter == 0){
-            console.log('one minute over');
-            $rootScope.buttonText='Send Request';
-            $timeout.cancel(patientTimeout);
-
-            var noResponsePopup = $ionicPopup.alert({
-            template: "<div ><p>Doctor did not accept your request</p></div>",
-            cssClass: 'requestPopup',
-            scope: $scope,
-            });
-
-            noResponsePopup.then(function(res){
-              console.log('delete request here');
-              searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
-                $scope.alertPopup.close();
-
-              $scope.cancelledReq=response;
-              $localStorage.myCallId=0;
-              $localStorage.callStatus=0;
-              console.log($scope.cancelledReq);
-              }).catch(function(error){
+                }).catch(function(error){
                 console.log('failure data', error);
+                });
+
+            // hello.greet(uname,pw,persontocall,success, failure);
+            $rootScope.counter = 120;
+            $rootScope.onTimeout = function(){
+              console.log($rootScope.counter);
+              $rootScope.counter--;
+              patientTimeout = $timeout($rootScope.onTimeout,1000);
+              if($rootScope.counter == 0){
+              console.log('one minute over');
+              $rootScope.buttonText='Send Request';
+              $timeout.cancel(patientTimeout);
+
+              var noResponsePopup = $ionicPopup.alert({
+              template: "<div ><p>Doctor did not accept your request</p></div>",
+              cssClass: 'requestPopup',
+              scope: $scope,
               });
-            });
-            $scope.callReqPopUp.close();
 
+              noResponsePopup.then(function(res){
+                console.log('delete request here');
+                searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
+                  $scope.alertPopup.close();
+
+                $scope.cancelledReq=response;
+                $localStorage.myCallId=0;
+                $localStorage.callStatus=0;
+                console.log($scope.cancelledReq);
+                }).catch(function(error){
+                  console.log('failure data', error);
+                });
+              });
+              $scope.callReqPopUp.close();
+
+              }
             }
-          }
 
-            var patientTimeout = $timeout($scope.onTimeout,1000);//timer interval
-            $scope.$on('$destroy', function(){
-            $timeout.cancel(patientTimeout);
-            console.log('destroyed');
-            });
-
+              var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
+              $scope.$on('$destroy', function(){
+              $timeout.cancel(patientTimeout);
+              console.log('destroyed');
+              });
 
 
-          $scope.callReqPopUp = $ionicPopup.show({
-               template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
-               cssClass: 'requestPopup',
-               scope: $scope,
-               buttons: [
-               {
-               text: 'Cancel',
-               type: 'button-royal',
-               onTap:function(){
-                 console.log('cancel');
-                 console.log($scope.counter);
-                 console.log($localStorage.user);
-                 $scope.callReqPopUp.close();
-                  $state.go($state.current, {}, {reload: true});
-                  searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
-                  $scope.cancelledReq=response;
-                  $localStorage.myCallId=0;
-                  $localStorage.callStatus=0;
-                  console.log($scope.cancelledReq);
-                  }).catch(function(error){
-                    console.log('failure data', error);
-                  });
 
-               }
-               },
+            $scope.callReqPopUp = $ionicPopup.show({
+                 template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+                 cssClass: 'requestPopup',
+                 scope: $scope,
+                 buttons: [
+                 {
+                 text: 'Cancel',
+                 type: 'button-royal',
+                 onTap:function(){
+                   console.log('cancel');
+                   console.log($rootScope.counter);
+                   console.log($localStorage.user);
+                   $scope.callReqPopUp.close();
+                    $state.go($state.current, {}, {reload: true});
+                    searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
+                    $scope.cancelledReq=response;
+                    $localStorage.myCallId=0;
+                    $localStorage.callStatus=0;
+                    console.log($scope.cancelledReq);
+                    }).catch(function(error){
+                      console.log('failure data', error);
+                    });
 
-             ]
+                 }
+                 },
 
-             });
+               ]
+
+               });
+
+              }
+              else{
+                var slowData = $ionicPopup.confirm({
+    							// title: 'Slow Data',
+    							template: 'Unable to send request at the moment as we detected slow network on your device. Please try after sometime ',
+    							cssClass: 'videoPopup',
+    							scope: $scope,
+    							buttons: [
+    							{
+    								text: 'OK',
+    								type: 'button-positive',
+    								onTap: function(e) {
+    								console.log('ok');
+    								}
+    							},
+    							]
+    						});
+              }
 
         }
         else

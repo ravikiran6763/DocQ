@@ -140,10 +140,20 @@
 						 reqPat:$stateParams.reqPat
 					 }
 
+
+           $rootScope.reqPatDetails1 = angular.fromJson($window.localStorage['currentPatient']);
+           $ionicLoading.show({
+             template:'<ion-spinner></ion-spinner>'
+           })
+           console.log($rootScope.reqPatDetails1);
 					 console.log('consutation:',consltDetails);
 					 console.log($rootScope.existingId);
 					 doctorServices.fetchReqPatientDetails(consltDetails).then(function(response){
 						 console.log('Response::',response);
+             if(response){
+               $ionicLoading.hide();
+
+             }
 					 $rootScope.reqPatDetails=response;
 					 var data=$rootScope.reqPatDetails//take all json data into this variable
 					 		for(var i=0; i<data.length; i++){
@@ -157,45 +167,13 @@
               $localStorage.currentReqId=$rootScope.reqId;
 					 		}
 
-					 $ionicLoading.hide();
 					  //  $state.go($state.current, {}, {reload: true});
 					 }).catch(function(error){
 					 console.log('failure data', error);
 					 });
 
 
-					 ion.sound({
-					     sounds: [
-					         {
-					             name: "androidtone",
-					 						volume: 0.2
-					         },
-									 {
-									 		name: "iphone",
-									 	 volume: 0.2,
-										  preload: true
-									 },
-					         {
-					             name: "bell_ring",
-					             volume: 0.1,
-					             preload: false
-					         }
-					     ],
-					     volume: 0.5,
-					     path: "sounds/",
-					     preload: true
-					 });
-
 					 $scope.deviceAndroid = ionic.Platform.isAndroid();
-					 if($scope.deviceAndroid === true){
-						 ion.sound.play("androidtone");
-					 }
-					 else{
-						//  alert($scope.deviceAndroid);
-						 ion.sound.play("iphone");
-					 }
-					 // play sound
-					 //ion.sound.stop("androidtone");
 
 					 $scope.currentPatient={};
 					 $scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
@@ -316,15 +294,6 @@
 				}
 				else{
                 $ionicLoading.hide();
-
-                ion.sound.stop("androidtone");
-
-								// if($scope.deviceAndroid === true){
-								// 	ion.sound.stop("androidtone");
-								// }
-								// else{
-								// 	ion.sound.stop("iphone");
-								// }
 
 								$rootScope.chekDiag=false;
 								$rootScope.chekTests=false;
@@ -513,12 +482,7 @@
 			$scope.isDisabled = true;
 		}
 		else if($scope.type === 'Decline'){
-			if($scope.deviceAndroid === true){
-				ion.sound.stop("androidtone");
-			}
-			else{
-				ion.sound.stop("iphone");
-			}
+
 			console.log($scope.type);
 			$localStorage.accpt='';
 

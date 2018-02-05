@@ -8,7 +8,7 @@
           <img  ng-show="doctor.docImage2 == null " ng-src="img/patientAvatar.png"  >
         </div>
         <div class="name-content">
-          <h2>Dr.{{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h2>
+          <h2>Dr. {{doctor.doctorFname | capitalize}} {{doctor.doctorMname | capitalize}} {{doctor.doctorLname | capitalize}} </h2>
 
           <span class="stars " ng-show="{{doctor.ratingCount == 0}}">
             <span ng-style="{ 'width': getStars(0) }"></span>

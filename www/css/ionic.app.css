@@ -9851,6 +9851,9 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
 .keyboard-open .hide-on-keyboard-open {
   display: none !important; }
 
+.hide {
+  display: block !important; }
+
 .dont-break-out {
   /* These are technically the same, but use both */
   overflow-wrap: break-word;
@@ -10636,6 +10639,38 @@ ion-side-menu.menu-left.menu {
 .inviteReviewPopup .button-positive {
   background-color: #6a9136 !important;
   margin: 0 2px 0 0; }
+
+.summaryPopup .popup {
+  width: 85%;
+  border-radius: 10px;
+  margin-top: -50%; }
+
+.summaryPopup .popup-head {
+  padding: 0%;
+  border-bottom: 1px solid #eee;
+  text-align: center; }
+
+.summaryPopup .popup-title {
+  margin-top: 7%; }
+  .summaryPopup .popup-title i {
+    font-size: 218%;
+    margin-top: 9%;
+    color: #6e9636; }
+
+.summaryPopup .popup-buttons {
+  padding: 0;
+  min-height: 0; }
+
+.summaryPopup .popup-buttons .button {
+  border-radius: 0;
+  margin-right: 0;
+  color: #fff; }
+
+.summaryPopup .button-royal {
+  background-color: #9e3136 !important; }
+
+.summaryPopup .button-positive {
+  background-color: #6a9136 !important; }
 
 .videoPopup .popup {
   width: 85%;

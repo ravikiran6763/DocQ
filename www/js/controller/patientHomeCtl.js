@@ -7,6 +7,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
 
+
+
 			$localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
@@ -170,6 +172,19 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
 					console.log(response);
 
+				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+				}).catch(function(error){
+				// console.log('failure data', error);
+				});
+
+				myConsultationService.firstConsultation($localStorage.user).then(function(response){
+					console.log(response);
+				if(response === 'DONE'){
+						$rootScope.firstConsultationDone = false;
+				}
+				else{
+					$rootScope.firstConsultationDone = true;
+				}
 				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
 				}).catch(function(error){
 				// console.log('failure data', error);
