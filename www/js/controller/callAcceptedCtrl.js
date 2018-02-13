@@ -67,8 +67,8 @@ $scope.callDoctor = function(callType)
 	$scope.callid = $rootScope.callId;
 	// $localStorage.ViewDoc=1;
 
-	console.log($localStorage.networkType);
-	var uname = "greet+"+$localStorage.user;
+	console.log(window.localStorage.networkType);
+	var uname = "greet+"+window.localStorage.user;
 	var pw = "DQ_patient";
 
 		 var persontocall = "greet+" + $rootScope.accptdDoc;
@@ -76,7 +76,7 @@ $scope.callDoctor = function(callType)
 		 console.log(persontocall);
 		 console.log($scope.callid);
 
-	if($localStorage.networkType == 'None')
+	if(window.localStorage.networkType == 'None')
 	{
 		var confirmPopup = $ionicPopup.confirm({
 						// title: 'DoctorQuick',
@@ -94,7 +94,7 @@ $scope.callDoctor = function(callType)
 						]
 					});
 	}
-	else if($localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
+	else if(window.localStorage.networkType == 'Ethernet' || window.localStorage.networkType == '2G' || window.localStorage.networkType == '3G')
 	{
 		var confirmPopup = $ionicPopup.confirm({
 						// title: 'DoctorQuick',
@@ -112,7 +112,7 @@ $scope.callDoctor = function(callType)
 						]
 					});
 	}
-	else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi' || $localStorage.networkType == 'Unknown')
+	else if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi' || window.localStorage.networkType == 'Unknown')
 	{
 		var success = function(message)
 		{
@@ -151,10 +151,10 @@ $scope.callDoctor = function(callType)
 			 	console.log('callEnded');
 				//
 				$scope.enddate = new Date();
-				console.log($localStorage.user);
+				console.log(window.localStorage.user);
 				console.log($rootScope.accptdDoc);
 				// console.log($localStorage.Doctocall);
-				callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callId);
+				callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callId);
 
 				console.log($rootScope.reqId);
 
@@ -194,7 +194,7 @@ $scope.BalanceForVoiceCall = function()
 	$scope.startdate = new Date();
 	$scope.callid = $rootScope.callId;
 
-				var unametoaudiocall = "greet+"+$localStorage.user;
+				var unametoaudiocall = "greet+"+window.localStorage.user;
 			 	var pwtoaudiocall = "DQ_patient";
 
 			 	var persontocallforaudio = "greet+" + $localStorage.Doctocall;
@@ -205,9 +205,9 @@ $scope.BalanceForVoiceCall = function()
 
 						console.log(message);
 						$scope.enddate = new Date();
-							console.log($localStorage.user);
+							console.log(window.localStorage.user);
 							console.log($localStorage.Doctocall);
-							callacceptedbydoctor.accpeteddoctor($localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
+							callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 							$ionicHistory.nextViewOptions({
  						 	disableAnimate: true,
  						 	disableBack: true
@@ -269,7 +269,7 @@ console.log(checkPatientActivity);
 
  $scope.declineCall=function(){
 		 var calldecline={
-		 patient:$localStorage.user,
+		 patient:window.localStorage.user,
 		 doctor:$rootScope.doctorPhone,
 		 callId:$rootScope.callId
 		 }

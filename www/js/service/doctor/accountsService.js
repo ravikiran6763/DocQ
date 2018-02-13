@@ -19,7 +19,7 @@ DoctorQuickApp.service('accountsService', function ($http,$q, BASE_URL, API,$roo
 		$rootScope.docPhone=docPhone;
 		console.log('service:',docPhone);
     var docAccDetails={
-			docPhone:$localStorage.user,
+			docPhone:window.localStorage.user,
       fromDate :$rootScope.from,
       toDate:$rootScope.toDate
     }

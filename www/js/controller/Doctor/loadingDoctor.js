@@ -2,7 +2,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
 
 
 
-  var username = "greet+"+$localStorage.user;
+  var username = "greet+"+window.localStorage.user;
   var password = "DQ_doctor";
   function checkNewMessages()
   {
@@ -30,7 +30,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
         template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick',
         duration:7000
         });
-    var uname1 = "greet+"+$localStorage.user;
+    var uname1 = "greet+"+window.localStorage.user;
     var pw1 = "DQ_doctor";
 
     // window.plugins.OneSignal.getIds(function(ids) {
@@ -38,7 +38,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     //   // console.log($scope.playerId);
     //   var updatePlayer ={
     //     palyerId:$scope.playerId,
-    //     userNum:$localStorage.user,
+    //     userNum:window.localStorage.user,
     //     user:'doctor'
     //   }
     //   console.log(updatePlayer);
@@ -47,7 +47,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     //   })
     // });
 
-    doctorServices.doctorDetails($localStorage.user).then(function(response,data){
+    doctorServices.doctorDetails(window.localStorage.user).then(function(response,data){
       $rootScope.doctor_details=response;//store the response array in doctor details
       console.log($rootScope.doctor_details);
       window.localStorage['doctorDetails'] = angular.toJson(response);
@@ -55,11 +55,11 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
     }).catch(function(error){
       console.log('failure data', error);
     });
-    doctorServices.notifyPatient($localStorage.user).then(function(response){
+    doctorServices.notifyPatient(window.localStorage.user).then(function(response){
       console.log(response);
     })
     var whichdoctoronoff = {
-      doctorphno : $localStorage.user,
+      doctorphno : window.localStorage.user,
       onoff : 1
     }
     doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
@@ -93,7 +93,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
         hello.login(uname1,pw1,success, failure);
         $timeout( function(){
         console.log('interval started');
-        var username = "greet+"+$localStorage.user;
+        var username = "greet+"+window.localStorage.user;
         var password = "DQ_doctor";
           $rootScope.checkNewMessages = $interval(function(){
           //code goes here
@@ -140,7 +140,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
           }, 10000 );
 
 
-            var username = "greet+"+$localStorage.user;
+            var username = "greet+"+window.localStorage.user;
             var password = "DQ_doctor";
 
             function checkNewMessages()

@@ -15,7 +15,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 	});
 	$scope.myConsultedDoctors = angular.fromJson($window.localStorage['myDoctors']);
 
- var username = "greet+"+$localStorage.user;
+ var username = "greet+"+window.localStorage.user;
  var password = "DQ_patient";
 
 	$scope.getDocRatingsAll = function(doctorPhone) {
@@ -44,7 +44,7 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		    // hideOnStageChange: true
 		});
 
-  doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+  doctorServices.myDoctorsFetched(window.localStorage.user).then(function(response){
 		// alert('list');
 		$ionicLoading.show({
 		    template: '<ion-spinner></ion-spinner>',

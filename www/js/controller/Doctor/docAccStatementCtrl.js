@@ -9,11 +9,11 @@ DoctorQuickApp.controller('docAccStatementCtrl', function($scope, $rootScope,$co
   $rootScope.inviteButton = false;
 
 
-  console.log($localStorage.user);
+  console.log(window.localStorage.user);
   $rootScope.from ='';
   $rootScope.toDate='';
 
-accountsService.docAccountsBalance($localStorage.user).then(function(response){
+accountsService.docAccountsBalance(window.localStorage.user).then(function(response){
     $scope.availableBalance=response;
     console.log($scope.availableBalance);
   }).catch(function(error){

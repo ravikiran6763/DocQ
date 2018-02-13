@@ -16,7 +16,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 // for doctors consultationDetails
 // console.log('consultations');
 
-var username = "greet+"+$localStorage.user;
+var username = "greet+"+window.localStorage.user;
 // console.log('MY CONSULTATION CALLED');
 if($localStorage.doctororpatient == 'doctor'){
 	var password = "DQ_doctor";
@@ -35,7 +35,7 @@ $ionicLoading.show({
 if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
 	$rootScope.ConsultedDoctor = angular.fromJson($window.localStorage['ConsultedDoctor']);
 
-	myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+	myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
 	$rootScope.ConsultedDoctor=response;//store the response array in doctor details
 	window.localStorage['ConsultedDoctor'] = angular.toJson(response);
 	$rootScope.ConsultedDoctor = angular.fromJson($window.localStorage['ConsultedDoctor']);
@@ -58,7 +58,7 @@ if($localStorage.doctororpatient === "patient"){ //to list out the consulted pat
 	});
 }
 else{
-	myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+	myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
 	$scope.myPatients=response;//store the response array in doctor details
 	console.log($scope.myPatients);
 	if($scope.myPatients){
@@ -72,7 +72,7 @@ else{
 		$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
 		$scope.listofnames.push($scope.fullname);
 		$scope.listofphones.push(data[i].patientPhone);
-		//console.log($localStorage.user);
+		//console.log(window.localStorage.user);
 		}
 	}
 
@@ -97,7 +97,7 @@ $rootScope.checkNewMessages = $interval(function(){
 								var forandroidchatlist = {};
 								forandroidchatlist = $scope.chatlist1;
 								var dataofandroid = JSON.parse(forandroidchatlist);
-								dataofandroid.chatTo=$localStorage.user;
+								dataofandroid.chatTo=window.localStorage.user;
 								doctorServices.createChatHistory(dataofandroid).then(function(response){
 								$scope.chatHistory=response;//store the response array in doctor details
 							//  console.log('dataSent :',response);
@@ -106,7 +106,7 @@ $rootScope.checkNewMessages = $interval(function(){
 								});
 
 
-								myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+								myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
 								$rootScope.ConsultedDoctor=response;//store the response array in doctor details
 								// console.log($rootScope.ConsultedDoctor);
 								var data = response;
@@ -131,7 +131,7 @@ $rootScope.checkNewMessages = $interval(function(){
 								var forandroidchatlist = {};
 								forandroidchatlist = $scope.chatlist1;
 								var dataofandroid = JSON.parse(forandroidchatlist);
-								dataofandroid.chatTo=$localStorage.user;
+								dataofandroid.chatTo=window.localStorage.user;
 								doctorServices.createChatHistoryforDoctor(dataofandroid).then(function(response){
 								$scope.chatHistory=response;//store the response array in doctor details
 								//  console.log('dataSent :',response);
@@ -139,7 +139,7 @@ $rootScope.checkNewMessages = $interval(function(){
 								console.log('failure data', error);
 								});
 
-								myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+								myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
 								$scope.myPatients=response;//store the response array in doctor details
 								// console.log($scope.myPatients);
 								var data = $scope.myPatients;
@@ -150,7 +150,7 @@ $rootScope.checkNewMessages = $interval(function(){
 								$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
 								$scope.listofnames.push($scope.fullname);
 								$scope.listofphones.push(data[i].patientPhone);
-								//console.log($localStorage.user);
+								//console.log(window.localStorage.user);
 								}
 								}).catch(function(error){
 								console.log('failure data', error);
@@ -184,7 +184,7 @@ $rootScope.checkNewMessages = $interval(function(){
 						console.log('failure data', error);
 						});
 
-						myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+						myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
 						$rootScope.ConsultedDoctor=response;//store the response array in doctor details
 						var data = response;
 						$ionicLoading.hide();
@@ -216,7 +216,7 @@ $rootScope.checkNewMessages = $interval(function(){
 							console.log('failure data', error);
 							});
 
-							myConsultationService.myConsultedPatients($localStorage.user).then(function(response){
+							myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
 							$scope.myPatients=response;//store the response array in doctor details
 							// console.log($scope.myPatients);
 							var data = $scope.myPatients;
@@ -227,7 +227,7 @@ $rootScope.checkNewMessages = $interval(function(){
 							$scope.fullname = $scope.patientFname+" "+$scope.patientLname;
 							$scope.listofnames.push($scope.fullname);
 							$scope.listofphones.push(data[i].patientPhone);
-							//console.log($localStorage.user);
+							//console.log(window.localStorage.user);
 							}
 							$ionicLoading.hide();
 							}).catch(function(error){
@@ -250,7 +250,7 @@ $rootScope.checkNewMessages = $interval(function(){
 }, 1000);
 
 $scope.pagedecision=$ionicHistory.currentStateName();
-var username = "greet+"+$localStorage.user;
+var username = "greet+"+window.localStorage.user;
 
 if($scope.pagedecision === 'templates.consulted_patient')
 		{
@@ -266,7 +266,7 @@ $scope.deviceAndroid = ionic.Platform.isAndroid();
 $scope.consultationDetails=function(consultedDoc)
 {
 
-			var username = "greet+"+$localStorage.user;
+			var username = "greet+"+window.localStorage.user;
 			var password = "DQ_patient";
 		 	var persontocall = "greet+" + consultedDoc;
 			console.log(persontocall);
@@ -296,7 +296,7 @@ $scope.clicktochat = function(pateientPhone)
 		}
 
 		$scope.patientToChat=pateientPhone;
-		var username = "greet+"+$localStorage.user;
+		var username = "greet+"+window.localStorage.user;
 		var password = "DQ_doctor";
 	 	var persontocall = "greet+" + $scope.patientToChat;
 		var success = function(message)

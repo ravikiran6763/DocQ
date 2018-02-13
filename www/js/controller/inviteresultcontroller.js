@@ -12,7 +12,7 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,
   $scope.cc ={};
   $scope.contacts = {};
 
-  invitereviews.generateTinyUrl($localStorage.user).then(function(response){
+  invitereviews.generateTinyUrl(window.localStorage.user).then(function(response){
     $rootScope.docTinyUrl=response;
     $localStorage.docTinyUrl=$rootScope.docTinyUrl;
   }).catch(function(error){

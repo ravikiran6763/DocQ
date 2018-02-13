@@ -1,5 +1,5 @@
 DoctorQuickApp.controller('CameraCtrl', function ($scope, $rootScope, $cordovaCamera, $ionicLoading, $localStorage,cameraService) {
-console.log($localStorage.user);
+console.log(window.localStorage.user);
 	$scope.takePhoto = function () {
 	                  var options = {
 	                    quality: 75,
@@ -42,7 +42,7 @@ console.log($localStorage.user);
 	                    }, function (err) {
 	                        // An error occured. Show a message to the user
 	                    });
-											alert($localStorage.user);
+											alert(window.localStorage.user);
 	                }
 
 

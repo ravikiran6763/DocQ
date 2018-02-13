@@ -94,8 +94,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 				var userDetails={
 					userNum : $scope.loginData.phone,
 					password : $scope.loginData.pin,
-					deviceID : $localStorage.deviceID,
-					serial:$localStorage.serial
+					deviceID : window.localStorage.deviceID,
+					serial:window.localStorage.serial
 				};
 
 				$scope.lastView = $ionicHistory.backView();
@@ -112,7 +112,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							// console.log($scope.playerId);
 							var updatePlayer ={
 								palyerId:$scope.playerId,
-								userNum:$localStorage.user,
+								userNum:window.localStorage.user,
 								user:'patient'
 							}
 							console.log(updatePlayer);
@@ -209,7 +209,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							hello.login(uname1,pw1,success, failure);
 
 
-							var username = "greet+"+$localStorage.user;
+							var username = "greet+"+window.localStorage.user;
 	            var password = "DQ_patient";
 	            function checkNewMessages()
 	            {
@@ -256,7 +256,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 						         }, 10000 );
 
-										 var username = "greet+"+$localStorage.user;
+										 var username = "greet+"+window.localStorage.user;
 										 var password = "DQ_patient";
 										 function checkNewMessages()
 										 {
@@ -310,7 +310,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							// console.log($scope.playerId);
 							var updatePlayer ={
 								palyerId:$scope.playerId,
-								userNum:$localStorage.user,
+								userNum:window.localStorage.user,
 								user:'doctor'
 							}
 							console.log(updatePlayer);
@@ -374,7 +374,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 
 
-												var username = "greet+"+$localStorage.user;
+												var username = "greet+"+window.localStorage.user;
 						            var password = "DQ_doctor";
 						            function checkNewMessages()
 						            {
@@ -419,7 +419,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 												$interval(checkNewMessages,2000);
 
 						         }, 10000 );
-										 var username = "greet+"+$localStorage.user;
+										 var username = "greet+"+window.localStorage.user;
 				             var password = "DQ_doctor";
 				             function checkNewMessages()
 				             {

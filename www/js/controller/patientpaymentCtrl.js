@@ -1,6 +1,6 @@
 DoctorQuickApp.controller('patientpaymentCtrl', function($scope, $ionicConfig, $rootScope, $localStorage,$ionicPopup,$ionicLoading,  $window, $ionicSideMenuDelegate, LoginService, patientWalletServices) {
 
-console.log($localStorage.user);
+console.log(window.localStorage.user);
   $rootScope.headerTxt="Payments";
   $rootScope.showBackBtn=true;
   $rootScope.checkedValue = false;
@@ -16,7 +16,7 @@ $ionicLoading.show({
 $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWalletdetails']);
 
 
-  patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
+  patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
     console.log(response);
    // $rootScope.patientWalletdetails=response;
    if(response){
@@ -30,7 +30,7 @@ $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWall
      console.log('failure data', error);
    });
 
-   patientWalletServices.claimFreeConsultation($localStorage.user).then(function(response){
+   patientWalletServices.claimFreeConsultation(window.localStorage.user).then(function(response){
     $rootScope.freeDetails=response;
     if($rootScope.freeDetails == "Claimed"){
       var confirmPopup = $ionicPopup.confirm({
@@ -53,7 +53,7 @@ $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWall
       console.log('failure data', error);
     });
 
-   patientWalletServices.paidToDoctors($localStorage.user).then(function(response){
+   patientWalletServices.paidToDoctors(window.localStorage.user).then(function(response){
     $rootScope.doctorsList=response;
     console.log($rootScope.doctorsList);
     }).catch(function(error){

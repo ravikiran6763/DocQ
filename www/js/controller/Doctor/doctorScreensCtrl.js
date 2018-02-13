@@ -18,7 +18,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
 
-    doctorServices.doctorStatus($localStorage.user).then(function(response){
+    doctorServices.doctorStatus(window.localStorage.user).then(function(response){
         console.log(response);
         $localStorage.onOff=response;
         if(response == 1){
@@ -62,7 +62,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     }, 0 );
 
-    doctorServices.doctorDetails($localStorage.user).then(function(response,data){
+    doctorServices.doctorDetails(window.localStorage.user).then(function(response,data){
       $rootScope.doctor_details=response;//store the response array in doctor details
       console.log($rootScope.doctor_details);
       window.localStorage['doctorDetails'] = angular.toJson(response);
@@ -77,7 +77,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     function availableInVsee() {
       console.log('LOGIN CHECK');
-            var uname1 = "greet+"+$localStorage.user;
+            var uname1 = "greet+"+window.localStorage.user;
             var pw1 = "DQ_doctor";
             var success = function(message)
             {
@@ -98,7 +98,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
                     // $ionicHistory.clearCache();
                     // $ionicHistory.clearHistory();
                     // $state.go($state.current, {}, {location: "replace",reload: true});
-                    doctorServices.doctorStatus($localStorage.user).then(function(response){
+                    doctorServices.doctorStatus(window.localStorage.user).then(function(response){
                         console.log(response);
                         $localStorage.onOff=response;
                         if(response == 1){
@@ -128,7 +128,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     function checkNewMessages()
     {
-          var username = "greet+"+$localStorage.user;
+          var username = "greet+"+window.localStorage.user;
           var password = "DQ_doctor";
           var success = function(message)
           {
@@ -145,7 +145,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
           hello.unreadchatfromusers(username,password,success, failure);
     }
 $rootScope.unreadchatforpatient = 0;
-    invitereviews.generateTinyUrl($localStorage.user).then(function(response){
+    invitereviews.generateTinyUrl(window.localStorage.user).then(function(response){
       $rootScope.docTinyUrl=response;
       $localStorage.docTinyUrl=$rootScope.docTinyUrl;
     }).catch(function(error){
@@ -171,7 +171,7 @@ $rootScope.unreadchatforpatient = 0;
     },true);
 
 var doctorDeviceDetails ={
-  doctorNum:$localStorage.user,
+  doctorNum:window.localStorage.user,
   deviceId:$localStorage.deviceID,
   deviceSerial:$localStorage.serial
 }
@@ -186,7 +186,7 @@ function checkConsultations(){
   // })
 
 
-  doctoronoffdetails.doctorDeviceUpdate($localStorage.user).then(function(response){
+  doctoronoffdetails.doctorDeviceUpdate(window.localStorage.user).then(function(response){
     $scope.deviceDetails = response;
     // console.log( $scope.deviceDetails);
     // console.log('deviceUUID:',$scope.deviceDetails[0][0]);
@@ -211,7 +211,7 @@ function checkConsultations(){
     //                               type: 'button-positive',
     //                               onTap: function(e) {
     //
-    //                               LoginService.logoutFromDq($localStorage.user).then(function(response){
+    //                               LoginService.logoutFromDq(window.localStorage.user).then(function(response){
     //                                     $scope.loggedOut=response;
     //                                     console.log($scope.loggedOut);
     //                                     if($scope.loggedOut){
@@ -219,7 +219,7 @@ function checkConsultations(){
     //                                             // 	$ionicHistory.clearHistory();
     //                                             $scope.loginDatasubmitted = false;
     //
-    //                                             var unametologout = "greet+"+$localStorage.user;
+    //                                             var unametologout = "greet+"+window.localStorage.user;
     //                                             var pwtologout = "DQ_doctor";
     //                                             var success = function(message)
     //                                             {
@@ -280,7 +280,7 @@ function checkConsultations(){
   //                                 type: 'button-positive',
   //                                 onTap: function(e) {
   //
-  //                                 LoginService.logoutFromDq($localStorage.user).then(function(response){
+  //                                 LoginService.logoutFromDq(window.localStorage.user).then(function(response){
   //                                       $scope.loggedOut=response;
   //                                       console.log($scope.loggedOut);
   //                                       if($scope.loggedOut){
@@ -288,7 +288,7 @@ function checkConsultations(){
   //                                               // 	$ionicHistory.clearHistory();
   //                                               $scope.loginDatasubmitted = false;
   //
-  //                                               var unametologout = "greet+"+$localStorage.user;
+  //                                               var unametologout = "greet+"+window.localStorage.user;
   //                                               var pwtologout = "DQ_doctor";
   //                                               var success = function(message)
   //                                               {
@@ -322,7 +322,7 @@ function checkConsultations(){
   // },true);
 
     //$interval(checkNewMsgs,2000);
-    // doctoronoffdetails.fetchOne2OneReq($localStorage.user).then(function(response){
+    // doctoronoffdetails.fetchOne2OneReq(window.localStorage.user).then(function(response){
     // $scope.one2oneRequests = response;
     // // console.log('one2onePending:',$scope.one2oneRequests);
     // $scope.one2oneRequests=$scope.one2oneRequests.length;
@@ -335,8 +335,8 @@ function checkConsultations(){
     // console.log($scope.emailNotification);
     $scope.Online = function (message) {
       $scope.status=message;
-      console.log($localStorage.user);
-      doctorServices.notifyPatient($localStorage.user).then(function(response){
+      console.log(window.localStorage.user);
+      doctorServices.notifyPatient(window.localStorage.user).then(function(response){
         console.log(response);
       })
           console.log(message);
@@ -344,7 +344,7 @@ function checkConsultations(){
           $scope.docNotAvailable=false;
 
           var whichdoctoronoff = {
-            doctorphno : $localStorage.user,
+            doctorphno : window.localStorage.user,
             onoff :1
           }
           doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
@@ -368,14 +368,14 @@ function checkConsultations(){
     						if($localStorage.doctororpatient === 'patient'){
     							var updatePlayer ={
     								palyerId:$scope.playerId,
-    								userNum:$localStorage.user,
+    								userNum:window.localStorage.user,
     								user:'patient'
     							}
     						}
     						else{
     							var updatePlayer ={
     								palyerId:$scope.playerId,
-    								userNum:$localStorage.user,
+    								userNum:window.localStorage.user,
     								user:'doctor',
                     status:$scope.status
     							}
@@ -404,7 +404,7 @@ function checkConsultations(){
         // }
         // $localStorage.onOff=2
         // var whichdoctoronoff = {
-        // doctorphno : $localStorage.user,
+        // doctorphno : window.localStorage.user,
         // onoff : 2
         // }
         // console.log(whichdoctoronoff);
@@ -419,7 +419,7 @@ function checkConsultations(){
         if($localStorage.doctororpatient === 'patient'){
         var updatePlayer ={
         palyerId:'',
-        userNum:$localStorage.user,
+        userNum:window.localStorage.user,
         user:'patient'
         }
 
@@ -438,7 +438,7 @@ function checkConsultations(){
         else{
         var updatePlayer ={
         palyerId:'',
-        userNum:$localStorage.user,
+        userNum:window.localStorage.user,
         user:'doctor',
         status:$scope.status
         }
@@ -480,12 +480,12 @@ function checkConsultations(){
 						$scope.checkedValue = true;
             $localStorage.onOff=1
 						var whichdoctoronoff = {
-							doctorphno : $localStorage.user,
+							doctorphno : window.localStorage.user,
 							onoff : $localStorage.onOff
 						}
 						doctoronoffdetails.doctoronoff(whichdoctoronoff);
 
-							var uname1 = "greet+"+$localStorage.user;
+							var uname1 = "greet+"+window.localStorage.user;
 							var pw1 = "DQ_doctor";
 								console.log(uname1);
 								console.log(pw1);
@@ -508,11 +508,11 @@ function checkConsultations(){
 						$scope.checkedValue = false;
             // $localStorage.onOff=2
 						var whichdoctoronoff = {
-								doctorphno : $localStorage.user,
+								doctorphno : window.localStorage.user,
 								onoff : $localStorage.onOff
 					}
 					doctoronoffdetails.doctoronoff(whichdoctoronoff);
-					var unametologout = "greet+"+$localStorage.user;
+					var unametologout = "greet+"+window.localStorage.user;
 					var pwtologout = "DQ_doctor";
 
 					// alert(unametologout);
@@ -631,7 +631,7 @@ $scope.inviteForReview=function(){
     $scope.all=2;
 
     $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-    invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl,$scope.all).then(function(response){
+    invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,window.localStorage.user,$localStorage.docTinyUrl,$scope.all).then(function(response){
       if(response){
         console.log(response);
         $ionicLoading.hide();
@@ -652,7 +652,7 @@ $scope.inviteForReview=function(){
     $scope.all=1;
 
     $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-    invitereviews.sendsmstoinvitereviews($scope.allConatctsFetched,$scope.query,$localStorage.user,$localStorage.docTinyUrl,$scope.all).then(function(response){
+    invitereviews.sendsmstoinvitereviews($scope.allConatctsFetched,$scope.query,window.localStorage.user,$localStorage.docTinyUrl,$scope.all).then(function(response){
       if(response){
         console.log(response);
         $ionicLoading.hide();
@@ -669,7 +669,7 @@ $scope.inviteForReview=function(){
 
 
     // $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-    // invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
+    // invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,window.localStorage.user,$localStorage.docTinyUrl).then(function(response){
     //   if(response){
     //     $ionicLoading.hide();
     //     $scope.contacts=[];
@@ -716,7 +716,7 @@ $scope.inviteForReview=function(){
           //         })
           //
           //         $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
-          //         invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,$localStorage.user,$localStorage.docTinyUrl).then(function(response){
+          //         invitereviews.sendsmstoinvitereviews($scope.contacts,$scope.query,window.localStorage.user,$localStorage.docTinyUrl).then(function(response){
           //         if(response){
           //         $ionicLoading.hide();
           //         $scope.contacts='';

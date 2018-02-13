@@ -85,7 +85,7 @@ $rootScope.loginDatasubmitted=false;
         lname:$rootScope.newPatient.lname,
         dob:$rootScope.newPatient.dob,
         sex:$rootScope.newPatient.sex,
-        addedBy:$localStorage.user
+        addedBy:window.localStorage.user
       }
       console.log(patientAdded);
 
@@ -142,7 +142,7 @@ $rootScope.loginDatasubmitted=false;
       console.log("nodata");
     }
   }
-  medicalSpecialityService.getSubPatients($localStorage.user)
+  medicalSpecialityService.getSubPatients(window.localStorage.user)
    .then(function(response){
      $scope.subPatients = response;
      window.localStorage['subPatients'] = angular.toJson(response);

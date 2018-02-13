@@ -13,7 +13,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$ionic
 	console.log($state.current.name);
 
 	$scope.loginData={};
-	$rootScope.patient=$localStorage.user;
+	$rootScope.patient=window.localStorage.user;
 	// console.time('Timer1');
 	$ionicLoading.show({
 		templates:'<ion-spinner></ion-spinner>',
@@ -22,7 +22,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$ionic
 	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
 
 
-	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+	patientProfileDetailsService.fetchPatient(window.localStorage.user).then(function(response){
 		if(response){
 			$ionicLoading.hide();
 		}
@@ -47,7 +47,7 @@ console.todo('RAVI');
 		// 		disableAnimate: true,
 		// });
 		$state.go('app.changeEmail_patient');
-	// 	patientProfileDetailsService.updateEmail($localStorage.user).then(function(response){
+	// 	patientProfileDetailsService.updateEmail(window.localStorage.user).then(function(response){
 	// 		$scope.patient_email=response;
 	// 		console.log($scope.patient_email);
 	// 		console.log($scope.patient_email);
@@ -69,7 +69,7 @@ $scope.register = function() {
 };
 	function updatedPIc(){
 
-		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+		patientProfileDetailsService.fetchPatient(window.localStorage.user).then(function(response){
 			$scope.patient_details=response;
 			$ionicLoading.hide();
 			console.log($scope.patient_details);
@@ -135,7 +135,7 @@ $scope.register = function() {
 								}]);
 								console.log($rootScope.imgURI)
 
-								patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+								patientProfileDetailsService.fetchPatient(window.localStorage.user).then(function(response){
 									console.log(response);
 									window.localStorage['patientDetails'] = angular.toJson(response);
 								}).catch(function(error){
@@ -321,7 +321,7 @@ $scope.register = function() {
 			};
 
 
-			patientProfileDetailsService.emailVerification($localStorage.user).then(function(response){
+			patientProfileDetailsService.emailVerification(window.localStorage.user).then(function(response){
 				$rootScope.email=response;
 				if($rootScope.email == 1){
 					$rootScope.emailVerified = false;

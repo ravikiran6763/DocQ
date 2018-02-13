@@ -57,7 +57,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 	        }
 
-					patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
+					patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
 					 $rootScope.patientWalletdetails=response;
 					 if(response){
 						 window.localStorage['patientWalletdetails'] = angular.toJson(response);
@@ -73,7 +73,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			function availableInVsee() {
 				console.log('login check');
-							var uname1 = "greet+"+$localStorage.user;
+							var uname1 = "greet+"+window.localStorage.user;
 							var pw1 = "DQ_patient";
 							var success = function(message)
 							{
@@ -106,7 +106,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			function checkNewMessages()
 			{
-				var uname1 = "greet+"+$localStorage.user;
+				var uname1 = "greet+"+window.localStorage.user;
 				var pw1 = "DQ_patient";
 
 				var success = function(message)
@@ -146,7 +146,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				}
 
 
-				doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+				doctorServices.myDoctorsFetched(window.localStorage.user).then(function(response){
 					// alert('list');
 					$scope.myConsultedDoctors=response;
 					window.localStorage['myDoctors'] = angular.toJson(response);
@@ -156,20 +156,20 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				});
 
 
-				patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+				patientProfileDetailsService.fetchPatient(window.localStorage.user).then(function(response){
 					window.localStorage['patientDetails'] = angular.toJson(response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				})
 
-				patientProfileDetailsService.fetchPatientImage($localStorage.user).then(function(response){
+				patientProfileDetailsService.fetchPatientImage(window.localStorage.user).then(function(response){
 					console.log(response);
 					window.localStorage['patientProfileImage'] = angular.toJson(response);
 				}).catch(function(error){
 				console.log('failure data', error);
 				})
 
-				myConsultationService.myConsultedDoctors($localStorage.user).then(function(response){
+				myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
 					console.log(response);
 
 				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
@@ -177,7 +177,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				// console.log('failure data', error);
 				});
 
-				myConsultationService.firstConsultation($localStorage.user).then(function(response){
+				myConsultationService.firstConsultation(window.localStorage.user).then(function(response){
 					console.log(response);
 				if(response === 'DONE'){
 						$rootScope.firstConsultationDone = false;
@@ -192,7 +192,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 				///////////get all specialities///////////
-				doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+				doctorServices.myDoctorsFetched(window.localStorage.user).then(function(response){
 					// alert('list');
 					$scope.myConsultedDoctors=response;
 					window.localStorage['myDoctors'] = angular.toJson(response);

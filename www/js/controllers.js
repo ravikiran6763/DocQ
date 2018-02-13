@@ -157,7 +157,7 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 				$rootScope.showBadge=false;
 				$rootScope.showDocStatus=false;
 
-				doctorServices.doctorEmailVerification($localStorage.user).then(function(response){
+				doctorServices.doctorEmailVerification(window.localStorage.user).then(function(response){
 				$rootScope.email=response;
 				if($rootScope.email == 1){
 				$rootScope.emailVerified = false;
@@ -227,7 +227,7 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 							else if($scope.emailToUpdate.email === $scope.emailToUpdate.verify){
 							var emailDetails={
 							newMail:$scope.emailToUpdate.email,
-							phone:$localStorage.user
+							phone:window.localStorage.user
 							}
 							console.log('verified');
 							doctorServices.updateDoctorEmail(emailDetails).then(function(response){
@@ -270,7 +270,7 @@ DoctorQuickApp.controller('updateDoctorDetailsCtrl', function($scope,$state,$roo
 							template:'<ion-spinner></ion-spinner>'
 						})
 						console.log('send mail');
-						doctorServices.sendVerificationMailToDoc($localStorage.user).then(function(response){
+						doctorServices.sendVerificationMailToDoc(window.localStorage.user).then(function(response){
 
 						if(response === 'MailSent'){
 							$ionicLoading.hide();
@@ -312,7 +312,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 				$rootScope.showDocStatus=false;
 
 				console.log('update controller active');
-				patientProfileDetailsService.emailVerification($localStorage.user).then(function(response){
+				patientProfileDetailsService.emailVerification(window.localStorage.user).then(function(response){
 				$rootScope.email=response;
 				if($rootScope.email == 1){
 				$rootScope.emailVerified = false;
@@ -337,7 +337,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 				$ionicLoading.show({
 					template:'<ion-spinner></ion-spinner>'
 				})
-				patientProfileDetailsService.sendVerificationMail($localStorage.user).then(function(response){
+				patientProfileDetailsService.sendVerificationMail(window.localStorage.user).then(function(response){
 
 				$rootScope.emailSent=response;
 				if(response){
@@ -417,7 +417,7 @@ DoctorQuickApp.controller('updatePatientDetailsCtrl', function($scope,$state,$ro
 				console.log('verified');
 				var mailData={
 				newMail:$scope.emailToUpdate.email,
-				phone:$localStorage.user
+				phone:window.localStorage.user
 				}
 				patientProfileDetailsService.updateEmail(mailData).then(function(response){
 
@@ -534,7 +534,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				console.log($scope.playerId);
 				var updatePlayer ={
 					palyerId:$scope.playerId,
-					userNum:$localStorage.user,
+					userNum:window.localStorage.user,
 					user:'patient'
 				}
 				console.log(updatePlayer);
@@ -544,7 +544,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				});
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				console.log($scope.deviceAndroid);
-				var uname1 = "greet+"+$localStorage.user;
+				var uname1 = "greet+"+window.localStorage.user;
 				var pw1 = "DQ_patient";
 				if($scope.deviceAndroid === true){
 
@@ -572,7 +572,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 											$interval(checkNewMessages,1000);
 
 											}, 3000);
-											var username = "greet+"+$localStorage.user;
+											var username = "greet+"+window.localStorage.user;
 											var password = "DQ_patient";
 											function checkNewMessages()
 											{
@@ -619,7 +619,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 
 									}, 10000 );
 
-									var username = "greet+"+$localStorage.user;
+									var username = "greet+"+window.localStorage.user;
 									var password = "DQ_patient";
 									function checkNewMessages()
 									{
@@ -673,7 +673,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				// console.log($scope.playerId);
 				var updatePlayer ={
 				palyerId:$scope.playerId,
-				userNum:$localStorage.user,
+				userNum:window.localStorage.user,
 				user:'doctor'
 				}
 				console.log(updatePlayer);
@@ -683,7 +683,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				});
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				console.log($scope.deviceAndroid);
-				var uname1 = "greet+"+$localStorage.user;
+				var uname1 = "greet+"+window.localStorage.user;
 				var pw1 = "DQ_doctor";
 				if($scope.deviceAndroid === true){
 
@@ -714,7 +714,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 									$interval(checkNewMessages,1000);
 
 									}, 3000);
-									var username = "greet+"+$localStorage.user;
+									var username = "greet+"+window.localStorage.user;
 									var password = "DQ_doctor";
 									function checkNewMessages()
 									{
@@ -810,7 +810,7 @@ DoctorQuickApp.controller('callAccptCtrl', function($scope,$rootScope, $statePar
 
 		var docpatphno = {
 		accpetcode : "1",
-		doctorphno : $localStorage.user,
+		doctorphno : window.localStorage.user,
 		patientphno : $localStorage.reqPat,
 		reqId:$localStorage.reqId
 		}

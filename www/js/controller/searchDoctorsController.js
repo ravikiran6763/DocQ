@@ -12,10 +12,10 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	$scope.audioCall=function(num)
 	{
-		console.log('user:',$localStorage.user);
+		console.log('user:',window.localStorage.user);
 		$rootScope.docNumToCall=num;
 	  $ionicLoading.show();
-	  doctorServices.checkMyBalance($localStorage.user).then(function(response){
+	  doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
 	    // console.log(response[0][0]);
 			$rootScope.patientWalletdetails=response;
 			$rootScope.myCredit=$rootScope.patientWalletdetails[0][0];
@@ -261,14 +261,14 @@ $scope.docClicked=function(docPhone){
 		$rootScope.docNumToCall = num;
 		$ionicLoading.show();
 		var callRequest={
-		patient:$localStorage.user,
+		patient:window.localStorage.user,
 		doctor:$rootScope.docNumToCall,
 		subPatient:$localStorage.selectedSubPatient
 
 		// callId:$rootScope.callId
 		}
 		console.log(callRequest);
-		doctorServices.checkMyBalance($localStorage.user).then(function(response){
+		doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
 			$rootScope.patientWalletdetails=response;
 			if($rootScope.patientWalletdetails === 'agent'){
 				// alert('agent');
@@ -287,7 +287,7 @@ $scope.docClicked=function(docPhone){
 			if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal ==='agent')
 			{
 
-					if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi'){
+					if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi'){
 
 
 											searchDoctorServices.requestForCall(callRequest).then(function(response){
@@ -353,7 +353,7 @@ $scope.docClicked=function(docPhone){
 									 			 onTap:function(){
 									 				 console.log('cancel');
 									 				 console.log($rootScope.counter);
-									 				 console.log($localStorage.user);
+									 				 console.log(window.localStorage.user);
 													 $scope.callReqPopUp.close();
 													  $state.go($state.current, {}, {reload: true});
 													  searchDoctorServices.cancelOne2oneReq($localStorage.one2oneId).then(function(response){
@@ -469,7 +469,7 @@ $scope.docClicked=function(docPhone){
 				 			 type: 'button-royal',
 				 			 onTap:function(){
 				 				 console.log('cancel');
-				 				 console.log($localStorage.user);
+				 				 console.log(window.localStorage.user);
 								 $interval.cancel(checkCallStatus);
 								 $scope.callReqPopUp.close();
 								  searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
@@ -493,15 +493,15 @@ $scope.docClicked=function(docPhone){
 									$scope.callid = $rootScope.callId;
 									// $localStorage.ViewDoc=1;
 									$interval.cancel(checkCallStatus);
-									console.log($localStorage.networkType);
-									var uname = "greet+"+$localStorage.user;
+									console.log(window.localStorage.networkType);
+									var uname = "greet+"+window.localStorage.user;
 									var pw = "DQ_patient";
 
 										 var persontocall = "greet+" + $rootScope.docNumToCall;
 										 console.log(uname);
 										 console.log(persontocall);
 
-									if($localStorage.networkType == 'None')
+									if(window.localStorage.networkType == 'None')
 									{
 										var confirmPopup = $ionicPopup.confirm({
 														title: 'DoctorQuick',
@@ -519,7 +519,7 @@ $scope.docClicked=function(docPhone){
 														]
 													});
 									}
-									else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
+									else if(window.localStorage.networkType == 'Unknown' || window.localStorage.networkType == 'Ethernet' || window.localStorage.networkType == '2G' || window.localStorage.networkType == '3G')
 									{
 										var confirmPopup = $ionicPopup.confirm({
 														// title: 'DoctorQuick',
@@ -537,7 +537,7 @@ $scope.docClicked=function(docPhone){
 														]
 													});
 									}
-									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi')
+									else if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi')
 									{
 										console.log($rootScope.callType );
 										var success = function(message)
@@ -550,10 +550,10 @@ $scope.docClicked=function(docPhone){
 
 												//
 												$scope.enddate = new Date();
-												console.log($localStorage.user);
+												console.log(window.localStorage.user);
 												console.log($rootScope.accptdDoc);
 												// console.log($localStorage.Doctocall);
-												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
+												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
 													console.log('inserted to consultation',response);
 
 													$state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
@@ -626,7 +626,7 @@ $scope.docClicked=function(docPhone){
 			template:'<ion-spinner></ion-spinner>'
 		})
 		var sendMessage={
-			patient:$localStorage.user,
+			patient:window.localStorage.user,
 			doctor:num
 		}
 		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
@@ -658,7 +658,7 @@ $scope.docClicked=function(docPhone){
 	     if($localStorage.newPatientVal == 0){
 	       console.log('select patient to edit');
 	     }
-	     else if($localStorage.newPatientVal === $localStorage.user || $localStorage.newPatientVal === 'new'){
+	     else if($localStorage.newPatientVal === window.localStorage.user || $localStorage.newPatientVal === 'new'){
 	       console.log('can not edit default patient');
 	     }
 	     else{
@@ -670,7 +670,7 @@ $scope.docClicked=function(docPhone){
 	    }
 			var subPatientToShow={
 				subPatId:$localStorage.selectedSubPatient,
-				mainPatient:$localStorage.user
+				mainPatient:window.localStorage.user
 			}
 			medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
 				 $rootScope.newPAtient=response;

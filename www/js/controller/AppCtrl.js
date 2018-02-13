@@ -58,7 +58,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		$localStorage.chekedData =0;
 		$localStorage.dataConnection=navigator.onLine;
 		// $scope.dataLost=$localStorage.dataConnection;
-		$scope.dataLost=$localStorage.networkType;
+		$scope.dataLost=window.localStorage.networkType;
 
 		$scope.showAlert==false;
 
@@ -476,7 +476,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 								$ionicLoading.show({
 									template:'<ion-spinner></ion-spinner><br><br>Logging out from DoctorQuick'
 								})
-							LoginService.logoutFromDq($localStorage.user).then(function(response){
+							LoginService.logoutFromDq(window.localStorage.user).then(function(response){
 							$scope.loggedOut=response;
 							console.log($scope.loggedOut);
 							if($scope.loggedOut){
@@ -484,7 +484,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 								// 	$ionicHistory.clearHistory();
 								$scope.loginDatasubmitted = false;
 
-								var unametologout = "greet+"+$localStorage.user;
+								var unametologout = "greet+"+window.localStorage.user;
 								var pwtologout = "DQ_patient";
 
 
@@ -558,7 +558,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 							// $rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
 							var newPwd={
 							newPwd1:$rootScope.passwordToUpdate.password,
-							userPhone:$localStorage.user
+							userPhone:window.localStorage.user
 							};
 							console.log($rootScope.passwordToUpdate.password);
 							if(!$rootScope.passwordToUpdate.password){
@@ -664,7 +664,7 @@ $scope.updateDocPwd=function(){
 					$rootScope.ratedBy=$rootScope.passwordToUpdate.userPhone;
 					var newPwd={
 					newPwd1:$rootScope.passwordToUpdate.password,
-					userPhone:$localStorage.user
+					userPhone:window.localStorage.user
 					};
 					console.log($rootScope.passwordToUpdate.password);
 					console.log($rootScope.passwordToUpdate.verify);
@@ -793,7 +793,7 @@ $rootScope.myBalance;
 function callReqInterval() {
 
 if($ionicHistory.currentStateName() != 'auth.loginNew'){
-medicalSpecialityService.callAccepted($localStorage.user).then(function(response){
+medicalSpecialityService.callAccepted(window.localStorage.user).then(function(response){
 // console.log('successfull data', response);
 $scope.calledDetails=response;
 console.log($rootScope.online);
@@ -868,17 +868,17 @@ $scope.checkWalletBalance=function()
 {
 $ionicLoading.show();
 var calldecline={
-patient:$localStorage.user,
+patient:window.localStorage.user,
 doctor:$rootScope.doctorPhone,
 callId:$rootScope.callId
 }
 console.log(calldecline);
-doctorServices.checkMyBalance($localStorage.user).then(function(response){
+doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
 // console.log(response[0][0]);
 $scope.myBalance=response[0][0];
 $localStorage.patientWalletBalance=$scope.myBalance;
 console.log('pop up page clicked');
-var uname = "greet+"+$localStorage.user;
+var uname = "greet+"+window.localStorage.user;
 var pw = "DQ_patient";
 
 var persontocall = "greet+" + $localStorage.docPhone;
@@ -955,10 +955,10 @@ console.log('failure data', error);
 $scope.BalanceForVoiceCall=function()
 {
 $ionicLoading.show();
-doctorServices.checkMyBalance($localStorage.user).then(function(response){
+doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
 // console.log(response[0][0]);
 $scope.myBalance=response[0][0];
-var uname = "greet+"+$localStorage.user;
+var uname = "greet+"+window.localStorage.user;
 var pw = "DQ_patient";
 
 var persontocall = "greet+" + $localStorage.docPhone;
@@ -1034,7 +1034,7 @@ $scope.rejectNotifications=false;
 if($localStorage.doctororpatient === 'patient'){
 var updatePlayer ={
 palyerId:'',
-userNum:$localStorage.user,
+userNum:window.localStorage.user,
 user:'patient'
 }
 
@@ -1053,7 +1053,7 @@ console.log(response);
 else{
 var updatePlayer ={
 palyerId:'',
-userNum:$localStorage.user,
+userNum:window.localStorage.user,
 user:'doctor'
 }
 
@@ -1081,14 +1081,14 @@ console.log($scope.playerId);
 if($localStorage.doctororpatient === 'patient'){
 var updatePlayer ={
 palyerId:$scope.playerId,
-userNum:$localStorage.user,
+userNum:window.localStorage.user,
 user:'patient'
 }
 }
 else{
 var updatePlayer ={
 palyerId:$scope.playerId,
-userNum:$localStorage.user,
+userNum:window.localStorage.user,
 user:'doctor'
 }
 }
@@ -1512,7 +1512,7 @@ $rootScope.newPatient={};
 								}
 
 								var prescriptiondetails = {
-										docphno : $localStorage.user,
+										docphno : window.localStorage.user,
 										patientphno : patientToDisplay,
 										diagnosis : $scope.diagnosis,
 										tests : $scope.tests,
@@ -1547,7 +1547,7 @@ $rootScope.newPatient={};
 										});
 								}
 								else{
-								var auname =  "greet+"+$localStorage.user;
+								var auname =  "greet+"+window.localStorage.user;
 								var apw = "DQ_doctor";
 								if(!patientToDisplay){
 								patientToDisplay=$stateParams.reqPat;

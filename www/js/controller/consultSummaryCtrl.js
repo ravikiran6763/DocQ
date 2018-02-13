@@ -93,7 +93,7 @@ $scope.setRating = function(ratings,val){
 
 											var ratedValues={
 												rates:$rootScope.ratingValue,
-												//ratedBy:$localStorage.user,
+												//ratedBy:window.localStorage.user,
 												ratedTo:$stateParams.calledDoctor,
 												ratingComments:$scope.ratingComments.comment
 											};
@@ -185,7 +185,7 @@ $scope.setRating = function(ratings,val){
 
 			var ratedValues={
 				rates:$rootScope.ratingValue,
-				//ratedBy:$localStorage.user,
+				//ratedBy:window.localStorage.user,
 				ratedTo:$stateParams.calledDoctor
 				//ratingComments:$scope.ratingComments.comment
 			};
@@ -226,7 +226,7 @@ $scope.setRating = function(ratings,val){
 
 var myDoc={
 	calledDoctor:$stateParams.calledDoctor,
-	patient:$localStorage.user
+	patient:window.localStorage.user
 }
 console.log(myDoc);
  myConsultationService.docSummaryDetails(myDoc).then(function(response){
@@ -291,7 +291,7 @@ $scope.ratingsObject = {
 
 						var ratedValues={
 							rates:$rootScope.ratingValue,
-							//ratedBy:$localStorage.user,
+							//ratedBy:window.localStorage.user,
 							ratedTo:$stateParams.calledDoctor,
 							ratingComments:$scope.ratingComments.comment
 						};
@@ -349,7 +349,7 @@ $scope.ratingsObject = {
 				}
 
 		var myDocratedValues={
-		ratedBy:$localStorage.user,
+		ratedBy:window.localStorage.user,
 		ratedTo:$localStorage.consultedDoctor
 		// ratedTo:$localStorage.consultedDoctor
 		};
@@ -379,7 +379,7 @@ rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(r
 
 $scope.removeFavorite=function(fav){
 	var favoriteDoc={
-		ratedBy:$localStorage.user,
+		ratedBy:window.localStorage.user,
 		ratedTo:$stateParams.calledDoctor,
 		favorite:2
 	};
@@ -421,7 +421,7 @@ if($rootScope.favorite == true){
 	}
 
 	var favoriteDoc={
-		ratedBy:$localStorage.user,
+		ratedBy:window.localStorage.user,
 		ratedTo:$stateParams.calledDoctor,
 		favorite:$rootScope.favorite
 	};

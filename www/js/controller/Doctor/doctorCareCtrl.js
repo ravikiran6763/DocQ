@@ -30,7 +30,7 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope,$state, $rootScope,$
 		}
 		else{
 			var doctorQuery={
-	      patientPhone:$localStorage.user,
+	      patientPhone:window.localStorage.user,
 	      query:$rootScope.cc.query
 	    }
 
@@ -71,7 +71,7 @@ DoctorQuickApp.controller('doctorCareCtrl', function($scope,$state, $rootScope,$
       template: '<ion-spinner icon="lines"/><p class="item-icon-left">Loading stuff...</p>'
     });
 
-    doctorCareService.submitCallBack($localStorage.user).then(function(response){
+    doctorCareService.submitCallBack(window.localStorage.user).then(function(response){
         console.log(response);
 				$ionicLoading.hide();
         $rootScope.cc.query="";

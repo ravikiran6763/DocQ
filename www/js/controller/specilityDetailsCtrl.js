@@ -33,7 +33,7 @@ $interval(CheckOnlineDocs, 2000);
 
 var subPatientToShow={
   subPatId:$localStorage.selectedSubPatient,
-  mainPatient:$localStorage.user
+  mainPatient:window.localStorage.user
 }
 console.log(subPatientToShow);
 console.log($localStorage.selectedSubPatient);
@@ -108,7 +108,7 @@ console.log($localStorage.SpecilityId);
       template:'<ion-spinner></ion-spinner>'
     });
       $interval(checkAcceptedReqDocStatus,2000);
-    patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
+    patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
      $rootScope.patientWalletdetails=response;
      if($rootScope.patientWalletdetails === 'agent'){
        // alert('agent');
@@ -127,8 +127,8 @@ console.log($localStorage.SpecilityId);
      $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
      console.log($rootScope.newPAtient);
      if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal === 'agent'){
-       console.log($localStorage.networkType);
-       if($localStorage.networkType === '4G' || $localStorage.networkType === 'WiFi' || $localStorage.networkType === 'Unknown'){
+       console.log(window.localStorage.networkType);
+       if(window.localStorage.networkType === '4G' || window.localStorage.networkType === 'WiFi' || window.localStorage.networkType === 'Unknown'){
          console.log($localStorage.SpecilityId);
 
          medicalSpecialityService.sendrequesttodoctor($localStorage.SpecilityId).then(function(response){
@@ -159,7 +159,7 @@ console.log($localStorage.SpecilityId);
                });
 
                noResponsePopup.then(function(res) {
-                 medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+                 medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
                  $scope.cancelledReq=response;
                  // $state.go("app.medical_speciality");
                  $interval.cancel(checkAcceptedReq);
@@ -197,8 +197,8 @@ console.log($localStorage.SpecilityId);
 
                   console.log('cancel');
                   console.log($scope.counter);
-                  console.log($localStorage.user);
-                  medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+                  console.log(window.localStorage.user);
+                  medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
                   $scope.cancelledReq=response;
                     $state.go($state.current, {}, {reload: true});
                   }).catch(function(error){
@@ -212,7 +212,7 @@ console.log($localStorage.SpecilityId);
               $scope.nonePopUp=false;
               var closePopup=function(){
                 console.log('cancelCall here');
-                medicalSpecialityService.cancelReq($localStorage.user).then(function(response){
+                medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
                 $scope.cancelledReq=response;
                 $scope.callReqPopUp.close(); //close the popup after 3 seconds for some reason
                  $scope.nonePopUp=true;
@@ -230,7 +230,7 @@ console.log($localStorage.SpecilityId);
 
               var checkAcceptedReq = $interval(function () {
                 var newCallStatus = {
-                  patient:$localStorage.user,
+                  patient:window.localStorage.user,
                   reqId:$rootScope.sentReqId
                 }
                  console.log('intervalStarted');
@@ -436,7 +436,7 @@ console.log($localStorage.SpecilityId);
      if($localStorage.newPatientVal == 0){
        console.log('select patient to edit');
      }
-     else if($localStorage.newPatientVal === $localStorage.user || $localStorage.newPatientVal === 'new'){
+     else if($localStorage.newPatientVal === window.localStorage.user || $localStorage.newPatientVal === 'new'){
        console.log('can not edit default patient');
      }
      else{

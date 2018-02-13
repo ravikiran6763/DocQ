@@ -24,8 +24,8 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope,$state, $
 	 $scope.$watch('toggle', function(){
 			 $scope.toggleText = $scope.toggle ? 'Accept!' : 'Accepted';
 	 });
-// console.log($localStorage.user);
-   rateDoctorServices.getDocRatingsByAll($localStorage.user).then(function(response){
+// console.log(window.localStorage.user);
+   rateDoctorServices.getDocRatingsByAll(window.localStorage.user).then(function(response){
    $scope.myDoctorRatings=response;//store the response array in doctor details
   //  console.log($scope.myDoctorRatings);
    $scope.ratings = [{
@@ -42,7 +42,7 @@ DoctorQuickApp.controller('docProfileCtrl', function($scope,$rootScope,$state, $
    }
 
 
-   doctorServices.doctorEmailVerification($localStorage.user).then(function(response){
+   doctorServices.doctorEmailVerification(window.localStorage.user).then(function(response){
      $rootScope.email=response;
      if($rootScope.email == 1){
        $rootScope.emailVerified = false;

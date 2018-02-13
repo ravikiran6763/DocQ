@@ -185,8 +185,8 @@ $scope.patientRegistration = function()
                   'phone': $rootScope.PatientDetail.patient_mob,
                   'password': $rootScope.PatientDetail.pat_password
                 };
-                $localStorage.user=$rootScope.PatientDetail.patient_mob;
-                $localStorage.pass=$rootScope.PatientDetail.pat_password;
+                window.localStorage.user=$rootScope.PatientDetail.patient_mob;
+                window.localStorage.pass=$rootScope.PatientDetail.pat_password;
                 $localStorage.doctororpatient='patient'
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
@@ -200,7 +200,7 @@ $scope.patientRegistration = function()
                 // console.log($scope.playerId);
                 var updatePlayer ={
                   palyerId:$scope.playerId,
-                  userNum:$localStorage.user,
+                  userNum:window.localStorage.user,
                   user:'patient'
                 }
                 console.log(updatePlayer);

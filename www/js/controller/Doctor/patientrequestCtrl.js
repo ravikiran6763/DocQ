@@ -25,7 +25,7 @@
 
 							doctorServices.pushReqStatus($stateParams.reqId).then(function(response){
 								console.log('exp',response);
-									var uname1 = "greet+"+$localStorage.user;
+									var uname1 = "greet+"+window.localStorage.user;
 									var pw1 = "DQ_doctor";
 
 									$ionicLoading.show({
@@ -122,7 +122,7 @@
 					console.log('from previous',$rootScope.dateAndTime);
 					console.log('from previous stateParams',$stateParams.reqTime);
 
-					doctorServices.currentPatient($localStorage.user).then(function(response){
+					doctorServices.currentPatient(window.localStorage.user).then(function(response){
 						console.log(response);
 					window.localStorage['currentPatient'] = angular.toJson(response);
 					// console.log('one2onePending:',$scope.one2oneRequests);
@@ -305,7 +305,7 @@
 
 								var accptdReq = {
 								accpetcode : "2",
-								doctorphno : $localStorage.user,
+								doctorphno : window.localStorage.user,
 								patientphno : $rootScope.reqPat,
 								consultId:$rootScope.reqId
 								}
@@ -338,7 +338,7 @@
 
 														}
 														else{
-																  if($localStorage.networkType === '4G' || $localStorage.networkType === 'WiFi' || $localStorage.networkType === 'Unknown'){
+																  if(window.localStorage.networkType === '4G' || window.localStorage.networkType === 'WiFi' || window.localStorage.networkType === 'Unknown'){
 																				// $interval(videoOrAudio,2000);
                                         $ionicLoading.hide();
                                         $rootScope.callReqPopUp = $ionicPopup.show({
@@ -372,7 +372,7 @@
 																				});
 																				var patAct = {
 																					accpetcode : "2",
-																					doctorphno : $localStorage.user,
+																					doctorphno : window.localStorage.user,
 																					patientphno : $rootScope.pushReqPat,
 																					consultId:$rootScope.pushReqId
 																				}
@@ -493,7 +493,7 @@
 			else{
 				var docpatphno = {
 				accpetcode : "2",
-				doctorphno : $localStorage.user,
+				doctorphno : window.localStorage.user,
 				patientphno :$stateParams.reqPat,
 				consultId:$rootScope.reqId
 				}
@@ -538,7 +538,7 @@ var checkPatientActivity={
 console.log(checkPatientActivity);
 // var patAct = {
 // accpetcode : "2",
-// doctorphno : $localStorage.user,
+// doctorphno : window.localStorage.user,
 // patientphno : $rootScope.pushReqPat,
 // consultId:$rootScope.pushReqId
 // }

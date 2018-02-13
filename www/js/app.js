@@ -163,9 +163,9 @@ function keyboardShowHandler(e){
       states[Connection.CELL_4G]  = '4G';
       states[Connection.NONE]     = 'None';
 
-      $localStorage.networkType = states[networkState];
-      $rootScope.networkType = $localStorage.networkType;
-      console.log('Connection type: ' + $localStorage.networkType);
+      window.localStorage.networkType = states[networkState];
+      $rootScope.networkType = window.localStorage.networkType;
+      console.log('Connection type: ' + window.localStorage.networkType);
   }
 
 })
@@ -174,12 +174,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   $ionicPlatform.on("deviceready", function(){
 
           var deviceID = device.uuid;
-          $localStorage.deviceID=deviceID;
-          console.log($localStorage.deviceID);
+          window.localStorage.deviceID=deviceID;
+          console.log(window.localStorage.deviceID);
 
           var deviceHardwareSerial = device.serial;
-          $localStorage.serial=deviceHardwareSerial;
-          console.log($localStorage.serial);
+          window.localStorage.serial=deviceHardwareSerial;
+          console.log(window.localStorage.serial);
 
           console.log(deviceHardwareSerial);
 

@@ -124,7 +124,7 @@ function checkDocStatus(){
 
 
 
-doctorServices.myDoctorsFetched($localStorage.user).then(function(response){
+doctorServices.myDoctorsFetched(window.localStorage.user).then(function(response){
     $scope.myConsultedDoctors=response;
     $ionicLoading.hide();
   }).catch(function(error){
@@ -134,13 +134,13 @@ console.log('failure data', error);
     $scope.checkWalletBalance=function()
     {
       $ionicLoading.show();
-      doctorServices.checkMyBalance($localStorage.user).then(function(response){
+      doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
         // console.log(response[0][0]);
       $scope.myBalance=response[0][0];
       $localStorage.patientWalletBalance=$scope.myBalance;
           console.log('pop up page clicked');
 
-          	var uname = "greet+"+$localStorage.user;
+          	var uname = "greet+"+window.localStorage.user;
              var pw = "DQ_patient";
              var persontocall = "greet+" + $localStorage.docPhone;
 
@@ -220,10 +220,10 @@ console.log('failure data', error);
 $scope.BalanceForVoiceCall=function()
 {
         $ionicLoading.show();
-        doctorServices.checkMyBalance($localStorage.user).then(function(response){
+        doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
         // console.log(response[0][0]);
         $scope.myBalance=response[0][0];
-        var uname = "greet+"+$localStorage.user;
+        var uname = "greet+"+window.localStorage.user;
         var pw = "DQ_patient";
 
         //var persontocall = "greet+" + $localStorage.docPhone;
@@ -301,7 +301,7 @@ $scope.BalanceForVoiceCall=function()
       console.log('dddd');
       // var newPwd={
       // newPwd1:$scope.login.password,
-      // userPhone:$localStorage.user
+      // userPhone:window.localStorage.user
       // };
       // console.log(newPwd);
       // patientProfileDetailsService.changePwd2(newPwd)
@@ -315,7 +315,7 @@ $scope.BalanceForVoiceCall=function()
     }
     // $scope.sendOfflineRequest=function()
     // {
-    //   patientrequesttodoctor.sendOfflineMessage($localStorage.user).then(function(response)
+    //   patientrequesttodoctor.sendOfflineMessage(window.localStorage.user).then(function(response)
     //   {
     //     $scope.otp=response;
     //     console.log($scope.otp);
@@ -327,7 +327,7 @@ $scope.BalanceForVoiceCall=function()
     // }
     $scope.sendOfflineMessage=function(num){
   		var sendMessage={
-  			patient:$localStorage.user,
+  			patient:window.localStorage.user,
   			doctor:num
   		}
       $ionicLoading.show({
@@ -469,7 +469,7 @@ $scope.BalanceForVoiceCall=function()
   				 			 type: 'button-royal',
   				 			 onTap:function(){
   				 				 console.log('cancel');
-  				 				 console.log($localStorage.user);
+  				 				 console.log(window.localStorage.user);
                    $interval.cancel(checkMyCallStatus);
   								 $scope.callReqPopUp.close();
   								  searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
@@ -494,15 +494,15 @@ $scope.BalanceForVoiceCall=function()
   									$scope.callid = $rootScope.callId;
   									// $localStorage.ViewDoc=1;
                     $interval.cancel(checkMyCallStatus);
-  									console.log($localStorage.networkType);
-  									var uname = "greet+"+$localStorage.user;
+  									console.log(window.localStorage.networkType);
+  									var uname = "greet+"+window.localStorage.user;
   									var pw = "DQ_patient";
 
   										 var persontocall = "greet+" + $rootScope.docNumToCall;
   										 console.log(uname);
   										 console.log(persontocall);
 
-  									if($localStorage.networkType == 'None')
+  									if(window.localStorage.networkType == 'None')
   									{
   										var confirmPopup = $ionicPopup.confirm({
   														title: 'DoctorQuick',
@@ -520,7 +520,7 @@ $scope.BalanceForVoiceCall=function()
   														]
   													});
   									}
-  									else if($localStorage.networkType == 'Unknown' || $localStorage.networkType == 'Ethernet' || $localStorage.networkType == '2G' || $localStorage.networkType == '3G')
+  									else if(window.localStorage.networkType == 'Unknown' || window.localStorage.networkType == 'Ethernet' || window.localStorage.networkType == '2G' || window.localStorage.networkType == '3G')
   									{
   										var confirmPopup = $ionicPopup.confirm({
   														// title: 'DoctorQuick',
@@ -538,7 +538,7 @@ $scope.BalanceForVoiceCall=function()
   														]
   													});
   									}
-  									else if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi' )
+  									else if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi' )
   									{
                         console.log(videocallflag);
   										var success = function(message)
@@ -550,11 +550,11 @@ $scope.BalanceForVoiceCall=function()
   											 });
   												//
   												$scope.enddate = new Date();
-  												console.log($localStorage.user);
+  												console.log(window.localStorage.user);
   												console.log($rootScope.accptdDoc);
   												// console.log($localStorage.Doctocall);
 
-  												callacceptedbydoctor.accpeteddoctor($localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.myCallId).then(function(response){
+  												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.myCallId).then(function(response){
   													console.log('inserted to consultation',response);
                             $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.myCallId}, {location: "replace", reload: false});
   					              }).catch(function(error){
@@ -602,13 +602,13 @@ $scope.BalanceForVoiceCall=function()
       $interval(checkDocStatusOnTheGo,2000);
 
       var callRequest={
-        patient:$localStorage.user,
+        patient:window.localStorage.user,
         doctor:$rootScope.docNumToCall,
         subPatient:$localStorage.selectedSubPatient
         // callId:$rootScope.callId
       }
       console.log($localStorage.selectedSubPatient);
-      doctorServices.checkMyBalance($localStorage.user).then(function(response){
+      doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
         $scope.patientWalletdetails=response;
         if($rootScope.patientWalletdetails === 'agent'){
           // alert('agent');
@@ -627,7 +627,7 @@ $scope.BalanceForVoiceCall=function()
         if($scope.myWalletBal >= 270 || $scope.myWalletBal === 'agent')
         {
               console.log(callRequest);
-              if($localStorage.networkType == '4G' || $localStorage.networkType == 'WiFi'){
+              if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi'){
                 searchDoctorServices.requestForCall(callRequest).then(function(response){
                 console.log('one2oneReq',response);
                 window.localStorage['one2oneReq'] = angular.toJson(response);
@@ -695,7 +695,7 @@ $scope.BalanceForVoiceCall=function()
                  onTap:function(){
                    console.log('cancel');
                    console.log($rootScope.counter);
-                   console.log($localStorage.user);
+                   console.log(window.localStorage.user);
                    $scope.callReqPopUp.close();
                     $state.go($state.current, {}, {reload: true});
                     searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
@@ -795,7 +795,7 @@ $scope.BalanceForVoiceCall=function()
      if($localStorage.newPatientVal == 0){
        console.log('select patient to edit');
      }
-     else if($localStorage.newPatientVal === $localStorage.user || $localStorage.newPatientVal === 'new'){
+     else if($localStorage.newPatientVal === window.localStorage.user || $localStorage.newPatientVal === 'new'){
        console.log('can not edit default patient');
      }
      else{
@@ -807,7 +807,7 @@ $scope.BalanceForVoiceCall=function()
     }
     var subPatientToShow={
       subPatId:$localStorage.selectedSubPatient,
-      mainPatient:$localStorage.user
+      mainPatient:window.localStorage.user
     }
     medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
        $rootScope.newPAtient=response;

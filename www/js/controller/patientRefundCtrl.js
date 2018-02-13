@@ -10,7 +10,7 @@ DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$local
 
 console.log('refundCtrl');
 
-patientWalletServices.paidToDoctors($localStorage.user).then(function(response){
+patientWalletServices.paidToDoctors(window.localStorage.user).then(function(response){
  $rootScope.doctorsList=response;
  console.log($rootScope.doctorsList);
  }).catch(function(error){
@@ -70,7 +70,7 @@ console.log($rootScope.debit);
 		}
 		else{
 			var refundDetails ={
-				reqBy:$localStorage.user,
+				reqBy:window.localStorage.user,
 				reqAmount:$scope.payment.refund
 			}
 

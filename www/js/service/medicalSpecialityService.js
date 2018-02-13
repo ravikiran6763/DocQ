@@ -29,7 +29,7 @@ DoctorQuickApp.service('medicalSpecialityService', function($http, $q, BASE_URL,
         this.sendrequesttodoctor = function(medicalSpecialityId)
         {
             var patientrequest = {
-              patientphno : $localStorage.user,
+              patientphno : window.localStorage.user,
               speciality : medicalSpecialityId,
               subPatientId:$localStorage.selectedSubPatient
             }

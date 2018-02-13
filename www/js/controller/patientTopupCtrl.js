@@ -56,7 +56,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 											},
 											prefill:{
 												email: $scope.patientEmail,
-												contact: $localStorage.user,
+												contact: window.localStorage.user,
 												name: $scope.patientFname
 											},
 
@@ -167,7 +167,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
   $scope.payment={};
 
-	patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
+	patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
    $rootScope.patientWalletdetails=response;
    console.log($rootScope.patientWalletdetails);
    }).catch(function(error){
@@ -181,7 +181,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 // https://rzp_test_mzUbTyUmUd2dyE:Ocof0Yf9Ms36q8Pq7EtE2zUd@api.razorpay.com/v1/payments
 
 $scope.patient_details=[];
-	 patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+	 patientProfileDetailsService.fetchPatient(window.localStorage.user).then(function(response){
 		$scope.patient_details=response;
 		console.log($scope.patient_details);
 		var data=$scope.patient_details//take all json data into this variable
@@ -200,7 +200,7 @@ $scope.patient_details=[];
  console.log('failure data', error);
  })
 
- patientWalletServices.paidToDoctors($localStorage.user).then(function(response){
+ patientWalletServices.paidToDoctors(window.localStorage.user).then(function(response){
 	$rootScope.doctorsList=response;
 	console.log($rootScope.doctorsList);
 	}).catch(function(error){

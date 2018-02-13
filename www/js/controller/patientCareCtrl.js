@@ -42,7 +42,7 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$state, $rootScope,
 		}
 		else{
 			var patientQuery={
-	      patientPhone:$localStorage.user,
+	      patientPhone:window.localStorage.user,
 	      query:$rootScope.cc.query
 	    }
 	    patientCareService.submitQuery(patientQuery).then(function(response,status){
@@ -96,7 +96,7 @@ DoctorQuickApp.controller('patientCareCtrl', function($scope,$state, $rootScope,
   $scope.requestCallback=function(){
     console.log('callback');
 
-		patientCareService.submitCallBack($localStorage.user).then(function(response){
+		patientCareService.submitCallBack(window.localStorage.user).then(function(response){
 			console.log('check network connection here');
 			console.log(response );
 			if(response === 'Query Submitted'){
