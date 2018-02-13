@@ -343,6 +343,28 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
   });
 
+  document.addEventListener("deviceready", (function() {
+  console.log(AppVersion.version); // e.g. "1.2.3"
+  console.log(AppVersion.build); // e.g. 1234
+
+  $localStorage.AppVersion=AppVersion.build;
+  console.log($localStorage.AppVersion);
+
+// cordova.plugins.market.open('com.greettech.DoctorQuick');
+// cordova.plugins.market.search('version');
+
+//   var newVersion = Jsoup
+//                       .connect("https://play.google.com/store/apps/details?id=com.greettech.DoctorQuick&hl=en")
+//                       .timeout(10000)
+//                       .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
+//                       .referrer("http://www.google.com").get()
+//                       .select("widget[itemprop=version]").first()
+//                       .ownText();
+// console.log(newVersion);
+
+  }), false);
+
+
   //cordova event handling
   document.addEventListener('deviceready', function () {
     console.log('splash hidden');
@@ -537,7 +559,27 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           $state.go("auth.loginNew")
       }
 
+      else if($state.$current.name === 'app.searchDoctors'){
+            console.log('clear search values here');
+            $rootScope.specialdata=null;
+            $rootScope.genderdata= null;
+            $rootScope.statusdata=null;
+            $rootScope.languagedataselected=null;
 
+            $rootScope.specialityList.sex = "";
+            $rootScope.specialityList.search = "";
+            $rootScope.specialityList.stat = "";
+            $rootScope.specialityList.language = "";
+
+            var specialitywise = "";
+            var catwise = "";
+            var genderwise = "";
+            var languagewise = "";
+
+            // console.log($scope.specialdata);
+            window.history.back();
+
+      }
       else {
         console.log('goback to prev view');
         console.log($state.$current-1);

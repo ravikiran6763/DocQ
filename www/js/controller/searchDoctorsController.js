@@ -197,12 +197,12 @@ $scope.docClicked=function(docPhone){
 	  doctorServices.myDoctorsDetails($localStorage.docPhoneSearch).then(function(response){
 			// console.log($localStorage.docPhone);
 			if(response){
-				console.log(response);
+				// console.log(response);
 				window.localStorage['myDocDetail'] = angular.toJson(response);
 				$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
 
 			if($rootScope.searchDocStatus === response[0]['onoff']){
-				console.log('nochange');
+				// console.log('nochange');
 			}
 			else{
 				$scope.myDocDetail =response;

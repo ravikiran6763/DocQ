@@ -73,14 +73,18 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 		console.log($rootScope.loginDatasubmitted);
 				$rootScope.loginDatasubmitted=true;
 				$localStorage.showConnecting=false;
-        $localStorage.user = $scope.loginData.phone;
-				$localStorage.pass = $scope.loginData.pin;
-				$rootScope.user = $scope.loginData.phone;
+
 				$localStorage.showConnecting = false;
 
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
+				window.localStorage.user = $scope.loginData.phone;
+				window.localStorage.pass = $scope.loginData.pin;
+				$rootScope.user = $scope.loginData.phone;
+				console.log('user:',window.localStorage.user);
+				console.log('user:',window.localStorage.pass);
+
 				$rootScope.logginMessage="Logging into DoctorQuick";
 				$ionicLoading.show({
 			        template: '<ion-spinner></ion-spinner><br><br>{{logginMessage}}'
@@ -117,19 +121,19 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							})
 						});
 
-						// patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
-						// 	window.localStorage['patientDetails'] = angular.toJson(response);
-						// }).catch(function(error){
-						// console.log('failure data', error);
-						// })
-            //
-						// patientProfileDetailsService.fetchPatientImage($scope.loginData.phone).then(function(response){
-						// 	console.log(response);
-						// 	window.localStorage['patientProfileImage'] = angular.toJson(response);
-						// }).catch(function(error){
-						// console.log('failure data', error);
-						// })
-            //
+						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
+							window.localStorage['patientDetails'] = angular.toJson(response);
+						}).catch(function(error){
+						console.log('failure data', error);
+						})
+
+						patientProfileDetailsService.fetchPatientImage($scope.loginData.phone).then(function(response){
+							console.log(response);
+							window.localStorage['patientProfileImage'] = angular.toJson(response);
+						}).catch(function(error){
+						console.log('failure data', error);
+						})
+
 						// myConsultationService.myConsultedDoctors($scope.loginData.phone).then(function(response){
 						// 	console.log(response);
             //
@@ -142,14 +146,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
             //
 						// ///////////get all specialities///////////
-						// doctorServices.myDoctorsFetched($scope.loginData.phone).then(function(response){
-						// 	// alert('list');
-					  //   $scope.myConsultedDoctors=response;
-						// 	window.localStorage['myDoctors'] = angular.toJson(response);
-            //
-					  // }).catch(function(error){
-					  // console.log('failure data', error);
-					  // });
+						doctorServices.myDoctorsFetched($scope.loginData.phone).then(function(response){
+							// alert('list');
+					    $scope.myConsultedDoctors=response;
+							window.localStorage['myDoctors'] = angular.toJson(response);
+
+					  }).catch(function(error){
+					  console.log('failure data', error);
+					  });
             //
             //
 

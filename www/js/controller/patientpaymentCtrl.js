@@ -17,22 +17,14 @@ $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWall
 
 
   patientWalletServices.myWalletBalance($localStorage.user).then(function(response){
+    console.log(response);
    // $rootScope.patientWalletdetails=response;
    if(response){
      window.localStorage['patientWalletdetails'] = angular.toJson(response);
      $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWalletdetails']);
-     
      $ionicLoading.hide();
    }
-   $rootScope.patientWalletdetails.length;
-   console.log($rootScope.patientWalletdetails.length);
-   if($rootScope.patientWalletdetails === 'agent'){
-      $rootScope.patientWalletdetails={
-        credit:0,
-        debit:0
-      };
-      console.log($rootScope.patientWalletdetails);
-   }
+
    console.log($rootScope.patientWalletdetails);
    }).catch(function(error){
      console.log('failure data', error);

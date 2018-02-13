@@ -67,10 +67,6 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var successCallback = function(payment_id) {
 									console.log('payment_id: ' + payment_id)
 
-
-
-									$window.location.reload(true);
-
 									$scope.paymentid = payment_id;
 										RazorPayService.topUp($scope.paymentid).then(function(response){
 									   $rootScope.patientWalletUpdate=response;
@@ -78,7 +74,6 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 										 if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
 
 											 console.log('TransactionSuccessful');
-											 $window.location.reload(true);
 											 var confirmPopup = $ionicPopup.confirm({
 							 					// title: 'DoctorQuick',
 							 					template: '<center>Successfully added the amount to you DoctorQuick Deposit</center>',
@@ -92,6 +87,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 							 							onTap: function(e) {
 							 							console.log('offline');
 							 							// $state.go("templates.doctor_home");
+														$window.location.reload(true);
+
 							 							}
 							 						},
 							 					]
@@ -137,22 +134,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									RazorpayCheckout.open(options, successCallback, cancelCallback);
 
-									// // var successCallback = function(payment_id) {
-									// // // alert('payment_id: ' + payment_id);
-									// // alert('payment_id: ' + success.razorpay_payment_id);
-								  // //  var orderId = success.razorpay_order_id
-								  // //  var signature = success.razorpay_signature
-									// //  // alert(orderId);
-									// //  // alert(signature);
-                  // //
-                  // //
-									// // }
-                  //
-									// var cancelCallback = function(error) {
-                  //
-									// // alert(error.description + ' (Error '+error.code+')');
-									// }
-									// RazorpayCheckout.open(options, successCallback, cancelCallback);
+
 
 								}
 	  }

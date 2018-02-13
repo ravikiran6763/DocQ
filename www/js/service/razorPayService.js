@@ -13,8 +13,6 @@ DoctorQuickApp.service('RazorPayService', function ($http,$q,$rootScope, BASE_UR
       paymentId:$rootScope.Id,
       amountPaid:$rootScope.options.amount/100,
       patientPhone:$rootScope.options.prefill.contact,
-
-
     }
     console.log('deposit Details :',storePaymentDetails);
     // alert(storePaymentDetails.paymentId);

@@ -44,11 +44,11 @@
 
         </div>
       </div>
-      <div class="card " style="margin-top: -4%;">
+      <div class="card " style="margin-top: -4%;" ng-click="changePatient();">
         <div class="row" >
           <!-- ui-sref="templates.addNewPatient" -->
-              <div  class="col col-75" class="item-icon-right" ng-click="changePatient();" ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
-              <div class="col col-75"  class="item-icon-right" ng-click="changePatient();" ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
+              <div  class="col col-75" class="item-icon-right"  ng-hide="defaultPatient" ng-repeat="def in patient_details">Patient : {{def.patientFname}} {{def.patientLname}}</div>
+              <div class="col col-75"  class="item-icon-right"  ng-show="defaultPatient" ng-repeat="subPat in newPAtient">Patient : {{subPat.newPatientFname}} {{subPat.newPatientLname}}</div>
               <i class="icon ion-chevron-right icon-accessory" style="margin-left: 17%; margin-top: 5%;"></i>
 
               <div class="col">

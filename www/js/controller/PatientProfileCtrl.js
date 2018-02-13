@@ -20,7 +20,7 @@ DoctorQuickApp.controller('patientProfileCtrl', function($scope,$interval,$ionic
 		showBackdrop:true
 	});
 	$scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
-	
+
 
 	patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
 		if(response){
@@ -68,6 +68,7 @@ $scope.register = function() {
 
 };
 	function updatedPIc(){
+
 		patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
 			$scope.patient_details=response;
 			$ionicLoading.hide();
@@ -133,6 +134,14 @@ $scope.register = function() {
 									image: $rootScope.imgURI,
 								}]);
 								console.log($rootScope.imgURI)
+
+								patientProfileDetailsService.fetchPatient($localStorage.user).then(function(response){
+									console.log(response);
+									window.localStorage['patientDetails'] = angular.toJson(response);
+								}).catch(function(error){
+								console.log('failure data', error);
+								})
+
 								cameraService.uploadPicture(imageUploadData).then(function(response){
 									$scope.uploadedData=response;
 									console.log($scope.uploadedData);

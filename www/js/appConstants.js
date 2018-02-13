@@ -146,6 +146,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'sendVerificationMailToDoc':'doctor/sendVerificationMailToDoc.php',
         'doctorDeviceUpdate':'doctor/doctorDeviceUpdate.php',
         'invitereviewforall':'doctor/invitereviewforall.php',
+        'getonlysinglecontact':'doctor/getonlysinglecontact.php',
+
 
 
 

@@ -11,6 +11,9 @@ this.getinvitecontacts = function()
 {
     return con;
     console.log(con);
+
+
+
 }
 
 
@@ -60,6 +63,20 @@ this.invitereviewforall = function (contact) {
   var deferred = $q.defer();
   // console.log(docPhone);
   $http.post(BASE_URL.url + API.invitereviewforall,contact)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
+this.getonlysinglecontact = function (contact) {
+  var deferred = $q.defer();
+  // console.log(docPhone);
+  $http.post(BASE_URL.url + API.getonlysinglecontact,contact)
   .success(function (data, status, headers, config){
     deferred.resolve(data);
   })

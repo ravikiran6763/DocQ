@@ -142,10 +142,10 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 				}
 				else if($scope.prevPage === 'app.searchDoctors'){
 							console.log('clear search values here');
-							$scope.specialdata=null;
-							$scope.genderdata= null;
-							$scope.statusdata=null;
-							$scope.languagedataselected=null;
+							$rootScope.specialdata=null;
+							$rootScope.genderdata= null;
+							$rootScope.statusdata=null;
+							$rootScope.languagedataselected=null;
 
 							$rootScope.specialityList.sex = "";
 							$rootScope.specialityList.search = "";
@@ -157,7 +157,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 							var genderwise = "";
 							var languagewise = "";
 
-							console.log($scope.specialdata);
+							console.log($rootScope.specialdata);
 							window.history.back();
 
 				}
@@ -201,7 +201,9 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 
 				$rootScope.sexList = [
 				{'sex': 'Male'},
-				{'sex': 'Female'}
+				{'sex': 'Female'},
+				{'sex': 'Any'}
+
 				]
 
 				$rootScope.SearchHeader='Gender';
@@ -269,7 +271,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		console.log($scope.specfic);
 		$ionicSideMenuDelegate.toggleRight();
 		searchbyspecialities.specialitywisesearch($scope.specfic);
-		$scope.specialdata =  searchbyspecialities.getSpecialData();
+		$rootScope.specialdata =  searchbyspecialities.getSpecialData();
 	}
 
 	$scope.selectSex = function(val)	{
@@ -277,22 +279,26 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		{
 			$scope.gender = "Male";
 		}
-		else
+		else if(val === "Female")
 		{
 			$scope.gender = "Female";
 		}
+		else
+		{
+			$scope.gender = "Any";
+		}
 			$ionicSideMenuDelegate.toggleRight();
 			searchbyspecialities.categorywisesearch($scope.gender);
-			$scope.genderdata =  searchbyspecialities.getcategoryData();
+			$rootScope.genderdata =  searchbyspecialities.getcategoryData();
 			console.log($scope.gender);
 
 	}
 	$scope.selectStatus = function(val)	{
+
 		if(val === "Online")
 		{
 		// $scope.onoff = 'Online';
 		$scope.onoff =  "Online";
-
 		}
 		else
 		{
@@ -301,14 +307,14 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		}
 		$ionicSideMenuDelegate.toggleRight();
 		searchbyspecialities.genderwisesearch($scope.onoff);
-		$scope.statusdata =  searchbyspecialities.getgenderData();
+		$rootScope.statusdata =  searchbyspecialities.getgenderData();
 
 	}
 	$scope.selectLanguage = function(val)	{
 		console.log(val);
 		$ionicSideMenuDelegate.toggleRight();
 		searchbyspecialities.languagewisesearch(val);
-		$scope.languagedataselected =  searchbyspecialities.getlanguageData();
+		$rootScope.languagedataselected =  searchbyspecialities.getlanguageData();
 		console.log($scope.languagedataselected);
 	}
 
@@ -496,6 +502,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 											$window.localStorage.clear();
 
 											$state.go('auth.loginNew',{},{location:"replace",reload:true});
+											
 								}
 								var failure = function()
 								{

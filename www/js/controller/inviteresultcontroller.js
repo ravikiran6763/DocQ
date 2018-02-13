@@ -75,7 +75,7 @@ $scope.Savedata = function()
                    options.multiple = true;
                    options.hasPhoneNumber = true;
                    options.fields = ['name.formatted', 'phoneNumbers'];
-                   $cordovaContacts.find(options).then(function(result){
+                   $cordovaContacts.find(options).then(function(result) {
                        $scope.contacts = result;
 
                        var contactsWithAtLeastOnePhoneNumber = _.filter(result, function(contact){
