@@ -84,7 +84,7 @@ $rootScope.loginDatasubmitted=false;
     // alert('add new patient');
     $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
     $rootScope.newPatient.dob=$rootScope.dateOfBirth;
-    if($rootScope.newPatient.fname && $rootScope.newPatient.lname && $rootScope.newPatient.dob  && $rootScope.newPatient.sex){//
+    if($rootScope.newPatient.fname && $rootScope.newPatient.lname && $rootScope.newPatient.dob  && $rootScope.newPatient.sex){
       var patientAdded={
         fname:$rootScope.newPatient.fname,
         lname:$rootScope.newPatient.lname,
@@ -128,6 +128,7 @@ $rootScope.loginDatasubmitted=false;
     }
     else{
       $rootScope.loginDatasubmitted=true;
+      $ionicLoading.hide();
       if(!$rootScope.newPatient.dob){
           $ionicLoading.hide();
           window.plugins.toast.showWithOptions({

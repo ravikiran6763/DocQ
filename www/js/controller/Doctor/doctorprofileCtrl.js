@@ -339,6 +339,22 @@ $scope.BalanceForVoiceCall=function()
         if(response){
           console.log('hide loading');
           $ionicLoading.hide();
+          var confirmPopup = $ionicPopup.confirm({
+          			template: '<center>You will be notified once the Doctor is available</center>',
+          			cssClass: 'videoPopup',
+          			scope: $scope,
+          			buttons: [
+          			{
+          				text: 'OK',
+          				type: 'button-positive',
+          				onTap: function(e) {
+          				console.log('OK');
+          				}
+          			},
+          			]
+          		});
+
+
         }
 
   		}).catch(function(error){

@@ -54,7 +54,9 @@
 
     <div class="sendRequest" ng-repeat="desc in specialityDetails">
       <div class="reqMsg">
-          <p class="sendRequest">Send request for a consultation to all {{special}} who are online</p>
+          <p class="sendRequest" ng-show="{{desc.noofonlinedoctors >= 1}}">Send request for a consultation</p>
+          <p class="sendRequest" ng-show="{{desc.noofonlinedoctors == 0}}">None of the Doctors are available</p>
+
       </div>
       <div class="buttons" ng-disabled="true">
         <button class="button button-block button-assertive" ng-disabled="{{desc.noofonlinedoctors == 0}}" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">

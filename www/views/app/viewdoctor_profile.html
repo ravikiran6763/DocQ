@@ -72,7 +72,7 @@
         <center><h4 style="margin-top: 7%;">Consultation Fee:₹{{mydocs.doctorFee}}</h4></center>
     </div>
     <div class="offline-content"  ng-repeat="mydocs in myDocDetails1" ng-show="{{mydocs.onoff == 2}}">
-        <h4 style="margin-top: 20%">Dr.{{mydocs.doctorFname |capitalize}} is offline<br>you may request a consultatiion <br>when back online by sending a<br>notification</h4>
+        <h4 style="margin-top: 20%">Dr.{{mydocs.doctorFname |capitalize}} is offline.<br>You may request a consultatiion <br>by sending a notification.</h4>
         <div class="buttons">
 
           <button type="submit" class="button button-block button-assertive" ng-click="sendOfflineMessage({{mydocs.doctorPhone}});">
