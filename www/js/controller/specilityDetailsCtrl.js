@@ -359,7 +359,7 @@ console.log($localStorage.SpecilityId);
       $rootScope.newDocStatus=response[0]['noofonlinedoctors']
       if($rootScope.newDocStatus === $rootScope.oldDocStatus){
 
-        console.log('same data');
+        // console.log('same data');
       }
       else{
         $rootScope.oldDocStatus = $rootScope.newDocStatus;
@@ -367,14 +367,14 @@ console.log($localStorage.SpecilityId);
         console.log(response);
         $scope.specialityDetails =response;
       }
-      console.log(response[0]['noofonlinedoctors']);
+      // console.log(response[0]['noofonlinedoctors']);
 
-      console.log($scope.specialityDetails);
+      // console.log($scope.specialityDetails);
 
       // $rootScope.newValueForOnlineDoc=$rootScope.specialityDetails[]['noofonlinedoctors'];
-      console.log($rootScope.newValueForOnlineDoc);
+      // console.log($rootScope.newValueForOnlineDoc);
       $scope.specialityDetails = response;
-      console.log($scope.specialityDetails);
+      // console.log($scope.specialityDetails);
     }).catch(function(error){
        console.log('failure data', error);
     });

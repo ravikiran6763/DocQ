@@ -17,7 +17,7 @@
     </div>
 
     <div class="middle-content" ng-repeat="mydocs in myDocDetails1">
-      <div class="card ">
+      <div class="card " ng-show="{{mydocs.ratingCount >5}}">
         <div class="row">
           <div class="  col">
             Rating

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('addNewPatientCtrl', function($state,$ionicLoading, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
+DoctorQuickApp.controller('addNewPatientCtrl', function($state,$ionicLoading,$ionicHistory, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
   $scope.toggle = true;
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -21,6 +21,11 @@ console.log($scope.defaultPatient);
     console.log($rootScope.editPatient.newPatientDOB);
 
 
+    $ionicHistory.nextViewOptions({
+        disableBack: true,
+        disableAnimate: true,
+        historyRoot: true
+    });
     $state.go("app.editPatient");
     // $state.go("app.editPatient",{id:sub.id,fname:sub.newPatientFname,lname:sub.newPatientLname,dob:sub.newPatientDOB,sex:sub.newPatientSex});
 
@@ -79,7 +84,7 @@ $rootScope.loginDatasubmitted=false;
     // alert('add new patient');
     $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
     $rootScope.newPatient.dob=$rootScope.dateOfBirth;
-    if($rootScope.newPatient.fname && $rootScope.newPatient.lname && $rootScope.newPatient.dob && $rootScope.newPatient.sex){
+    if($rootScope.newPatient.fname && $rootScope.newPatient.lname && $rootScope.newPatient.dob  && $rootScope.newPatient.sex){//
       var patientAdded={
         fname:$rootScope.newPatient.fname,
         lname:$rootScope.newPatient.lname,
@@ -91,11 +96,29 @@ $rootScope.loginDatasubmitted=false;
 
       medicalSpecialityService.savePatient(patientAdded).then(function(response){
          console.log('saved', response);
-         $ionicLoading.hide();
-         
+
+
          if(response){
+           $ionicLoading.hide();
+           $rootScope.loginDatasubmitted=false;
+           $rootScope.newPatient.dob='';
+           // $state.go("app.subPatientList");
+           window.plugins.toast.showWithOptions({
+             message: "New patient added",
+             duration: "short", // 2000 ms
+             position: "bottom",
+             styling: {
+             opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+             backgroundColor: '#026451', // make sure you use #RRGGBB. Default #333333
+             textColor: '#ffffff', // Ditto. Default #FFFFFF
+             textSize: 13, // Default is approx. 13.
+             cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+             horizontalPadding: 16, // iOS default 16, Android default 50
+             verticalPadding: 12 // iOS default 12, Android default 30
+             }
+           });
+
          }
-         $state.go("app.subPatientList");
          $rootScope.newPatient={};
          console.log(patientAdded);
       }).catch(function(error){

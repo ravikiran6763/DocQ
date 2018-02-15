@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast,$ionicNavBarDelegate, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=true;
@@ -113,6 +113,11 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		}, 1000);
 	};
 
+	$scope.$on('$ionicView.afterEnter', function (event, viewData) {
+	  $timeout(function() {
+	    $ionicNavBarDelegate.align('center');
+	  }, 100);
+	});
 
 	$rootScope.goBack = function()
 	{
@@ -502,7 +507,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 											$window.localStorage.clear();
 
 											$state.go('auth.loginNew',{},{location:"replace",reload:true});
-											
+
 								}
 								var failure = function()
 								{
@@ -1459,7 +1464,7 @@ $rootScope.newPatient={};
 				else
 				{
 							window.plugins.toast.showWithOptions({
-							message: "Please Select Atleast One Tests",
+							message: "Diagnosis has to be entered ",
 							duration: "short", // 2000 ms
 							position: "bottom",
 							styling: {
@@ -1475,7 +1480,7 @@ $rootScope.newPatient={};
 							// $timeout(function() {
 							// 	 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
 							// }, 1000);
-							console.log('Please Select Atleast One Tests')
+							console.log('Please select atleast one Test')
 				}
 					$scope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
 					// console.log('CURRENT PATIENT FOR SEND PRESCRIPTION',$scope.currentPatient);

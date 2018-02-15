@@ -12,7 +12,7 @@
       </div>
       <h1>Dr.{{mydocs.doctorFname |capitalize}} {{mydocs.doctorMname|capitalize}} {{ mydocs.doctorLname|capitalize}} </h1>
       <h2>{{mydocs.doctorDegrees}}<br><b>Practicing since {{mydocs.practicingSince}}</b></h2>
-      <div>
+      <div ng-show="{{mydocs.ratingCount >5}}">
         <span class="stars " style="margin: 0 auto" ng-show="{{mydocs.ratingCount == 0}}">
           <span ng-style="{ 'width': getStars(0) }"></span>
         </span>

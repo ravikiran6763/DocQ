@@ -11884,6 +11884,12 @@ ion-side-menu .heading-item .message {
   z-index: 999;
   margin: -11% 0 0 85%; }
 
+.ion-edit:before {
+  font-size: 150% !important; }
+
+.ion-android-delete:before {
+  font-size: 150% !important; }
+
 .patientscreen-view {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patientscreen-view ion-content {
@@ -12342,7 +12348,7 @@ ion-side-menu .heading-item .message {
           font-size: 1.8em; }
       .mydoctor-profile-view .myDoctor-list li .name-content {
         float: left;
-        padding: 4% 0%;
+        padding: 5% 0 0 3%;
         height: 100%;
         width: 70%; }
         .mydoctor-profile-view .myDoctor-list li .name-content p {

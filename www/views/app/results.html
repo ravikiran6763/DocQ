@@ -19,7 +19,7 @@
         <h2><b>Practicing since {{mydocs.practicingSince}}</b></h2>
       </div>
       <div class="rating-field " ng-repeat="mydocs in myDocDetail">
-        <div class="card " >
+        <div class="card " ng-show="{{mydocs.ratingCount >5}}">
           <div class="row" style="margin-left: 0;">
             <div class="  col">
               Rating

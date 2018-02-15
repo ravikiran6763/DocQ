@@ -181,3 +181,10 @@ margin: -5vh 11vw 0 0;
     z-index: 999;
     margin: -11% 0 0 85%;
 }
+
+.ion-edit:before {
+  font-size: 150% !important;
+}
+.ion-android-delete:before {
+  font-size: 150% !important;
+}

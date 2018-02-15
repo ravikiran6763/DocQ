@@ -21,7 +21,7 @@
 
           <p>Practicing since {{doc.practicingSince}}</p>
 
-            <div class="ratingContainer">
+            <div class="ratingContainer" ng-show="{{doc.ratingCount > 5}}">
               <span ng-repeat="rating in ratings">
                 <!-- <div    star-rating rating-value="doc.ratings / doc.totalRates" max=5 >
                 </div> -->

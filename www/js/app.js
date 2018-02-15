@@ -165,7 +165,7 @@ function keyboardShowHandler(e){
 
       window.localStorage.networkType = states[networkState];
       $rootScope.networkType = window.localStorage.networkType;
-      console.log('Connection type: ' + window.localStorage.networkType);
+      // console.log('Connection type: ' + window.localStorage.networkType);
   }
 
 })

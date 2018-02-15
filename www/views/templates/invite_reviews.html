@@ -9,36 +9,39 @@
    </div>
 
 
-    <ion-checkbox class="item-checkbox-right" ng-model="allcontacts.checked"  ng-click="checkAll(allcontacts.checked,3);">
+    <ion-checkbox class="item-checkbox-right" ng-model="allcontacts"  ng-click="checkAll();">
       SELECT ALL
     </ion-checkbox>
 
 
-  <ion-list ng-repeat="(key, value) in contact1 ">
+
+  <!-- <ion-list ng-repeat="(key, value) in contact1 "> -->
 
 
+  <ion-list ng-repeat="con in contact1 ">
 
-    <!-- <ion-checkbox
+  <!-- <ion-checkbox ng-repeat="number in con.phoneNumbers"
 
-        ng-model="single.checked"
-         class="item-checkbox-right" ng-click="checkAll(2,single.checked,value);">
-        <h2>{{key}}</h2>
+                    ng-model="con.checked"
+                    ng-checked="con.checked" class="item-checkbox-right" ng-click="getNumber(con.checked,number.value);">
+                    <h2>{{con.name.formatted}}</h2>
 
-    </ion-checkbox> -->
+      </ion-checkbox> -->
 
     <ion-checkbox
 
-          ng-model="single.checked"
-         class="item-checkbox-right" ng-click="checkAll(single.checked,value);">
-        <h2>{{key}}</h2>
+        ng-model="con.selected"
+         class="item-checkbox-right" ng-click="optionToggled(con.selected,con.value);">
+        <h2>{{con.name}}</h2>
 
     </ion-checkbox>
 
+   <!-- <ion-checkbox
+                  ng-model="phones[number.value]"
+                  class="item-checkbox-right" ng-checked="myChange" ng-change="getNumber(number.value);">
+                  {{cont.name.formatted}}
 
-
-
-
-
+  </ion-checkbox> -->
 
   </ion-list>
 

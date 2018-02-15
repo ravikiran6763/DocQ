@@ -133,7 +133,7 @@ $scope.register = function() {
 								$window.localStorage['patientProfileImage'] = JSON.stringify([{
 									image: $rootScope.imgURI,
 								}]);
-								console.log($rootScope.imgURI)
+								console.log($rootScope.imgURI);
 
 								patientProfileDetailsService.fetchPatient(window.localStorage.user).then(function(response){
 									console.log(response);
@@ -146,15 +146,22 @@ $scope.register = function() {
 									$scope.uploadedData=response;
 									console.log($scope.uploadedData);
 									// $ionicLoading.hide();
-									 $window.location.reload();
-								$scope.reload = function() {
-								return $state.transitionTo($state.current, $stateParams, {reload: true}).then(function() {
-								$scope.hideContent = true;
-								return $timeout(function() {
-								return $scope.hideContent = false;
-								}, 1);
-								});
-								};
+									 // $window.location.reload();
+									return $state.transitionTo($state.current, {}, {reload: true}).then(function() {
+	 								$scope.hideContent = true;
+	 								return $timeout(function() {
+	 								return $scope.hideContent = false;
+	 								}, 1);
+	 								});
+									 $scope.$on('$ionicView.afterEnter', function (event, viewData) {
+								 	  $timeout(function() {
+								 	    $ionicNavBarDelegate.align('center');
+								 	  }, 100);
+								 	});
+								//
+								// $scope.reload = function() {
+								//
+								// };
 
 
 							}).catch(function(error){

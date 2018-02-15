@@ -1,10 +1,4 @@
 DoctorQuickApp.controller('contactsCtrl', function($scope,$filter,$rootScope, $cordovaContacts, $state,$stateParams, $ionicLoading, $timeout, invitereviews){
-
-
-
-    console.log('contact controller called');
-
-
     $scope.toggle = true;
     $rootScope.headerTxt="Invite Reviews";
     $rootScope.showBackBtn=true;
@@ -17,117 +11,92 @@ DoctorQuickApp.controller('contactsCtrl', function($scope,$filter,$rootScope, $c
 
     $scope.query = "Hi,Please visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients.Many Thanks.";
 
+    // console.log($stateParams.countofselected);
 
-    $rootScope.contact = [];
+    $rootScope.contact = {};
     $scope.phoneContacts = [];
-   $rootScope.contact1 = [];
-    $rootScope.single={};
+    $rootScope.contact1 = {};
 
-    $rootScope.check = [];
-
-
-    $rootScope.allcontacts=[];
-
-
-
-  $rootScope.allcontacts.checked = false;
-  $rootScope.single.checked = false;
-
-
-
-
+    $rootScope.uniquename = {};
+    // $rootScope.con = {};
+    $rootScope.allcontacts = [];
+    $rootScope.allcontacts.checked = false;
 
     $rootScope.allContacts = invitereviews.getinvitecontacts();
+    for (var i = 0; i < $rootScope.allContacts.length; i++) {
 
-      for (var i = 0; i < $rootScope.allContacts.length; i++) {
-          $rootScope.contact = $rootScope.allContacts[i];
-         console.log($rootScope.contact);
-      }
+      $rootScope.contact = $rootScope.allContacts[i];
 
-
+    }
 
     invitereviews.getonlysinglecontact($rootScope.contact).then(function(response){
-      console.log($rootScope.contact);
-      //window.localStorage['allConatctsFetched'] = angular.toJson(response);
-         $rootScope.contact1  = response;
-
-         console.log($rootScope.contact1);
-
+    //window.localStorage['allConatctsFetched'] = angular.toJson(response);
+    $rootScope.contact1 = response;
+    console.log(response);
     }).catch(function(error){
     console.log('failure data', error);
     })
 
+    angular.forEach($rootScope.contact1, function(value,key) {
+     $rootScope.con.checked = $rootScope.allcontacts.checked;
+     console.log($rootScope.con.checked);
 
-      $scope.checkAll = function(checkedvalue,value)
-      {
+    });
 
 
-          if(checkedvalue)
+    var contactsList=[];
+
+    $scope.checkAll = function()
+    {
+
+        console.log($scope.allcontacts);
+        var toggleStatus = $scope.allcontacts;
+        console.log(toggleStatus);
+        if(toggleStatus){
+          angular.forEach($rootScope.contact1, function(itm)
           {
-
-              if(value == 3)
-              {
-
-                angular.forEach($rootScope.contact1, function(value,key) {
-                $rootScope.single.checked = checkedvalue;
-
-                console.log(key,value,checkedvalue);
+            itm.selected = toggleStatus;
+            contactsList.push(itm.value);
+            console.log(itm.value);
+            // window.localStorage['allConatctsFetched'] = angular.toJson($scope.contactsList);
+            // window.localStorage['allConatctsFetched'] = $scope.contactsList;
 
 
-                });
-
-
-              }
-              else {
-
-
-
-
-
-                console.log('this is for single contacts');
-
-
-              }
-
-
-
-          }
-          else
+          });
+          window.localStorage['allConatctsFetched'] = angular.toJson(contactsList);
+        }
+        else{
+          contactsList=[];
+          angular.forEach($rootScope.contact1, function(itm)
           {
+            itm.selected = toggleStatus;
+          });
+          $scope.empty=[];
+          window.localStorage['allConatctsFetched'] = angular.toJson($scope.empty);
 
-            if(value ==3)
+        }
+
+    }
+
+      var singleContList=[];
+
+      $scope.optionToggled = function(checkedvalue,value){
+            console.log(checkedvalue);
+            console.log(value);
+            if(checkedvalue)
             {
-
-              angular.forEach($rootScope.contact1, function(value,key) {
-              $rootScope.single.checked = checkedvalue;
-
-              console.log(key,value,$rootScope.single.checked);
-
-
-              });
-
+              singleContList.push(value);
+              window.localStorage['numbersToSendInvites'] = angular.toJson(singleContList);
+              console.log(value);
+            }
+            else {
+              var index = singleContList.indexOf(value);
+              singleContList.splice(index, 1);
+              console.log(value);
+              window.localStorage['numbersToSendInvites'] = angular.toJson(singleContList);
 
             }
-            else
-            {
-
-                $rootScope.single.checked = false;
-
-
-
-            }
-
-
-          }
-
-
-          // angular.forEach($rootScope.contact1, function(value,key) {
-          // $rootScope.single.checked = $rootScope.allcontacts.checked;
-          //
-          // });
-
 
       }
-
 
 });
