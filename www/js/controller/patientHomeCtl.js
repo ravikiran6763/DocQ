@@ -35,6 +35,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 					$state.go('app.searchDoctors');
 
 			}
+		
 
 			$timeout( function(){
 	        console.log('interval started');

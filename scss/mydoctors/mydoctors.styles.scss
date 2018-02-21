@@ -55,11 +55,11 @@
 
         p{
           font-size: 74%;
-  margin: 0% 2%;
-  color: black;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+          margin: 0% 2%;
+          color: black;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
           }
           .totalReview{
             margin-left: 38%;
@@ -81,6 +81,13 @@
           }
       }
 
+    }
+    .ImageContainer{
+      img{
+        width: 25%;
+        border-radius: 50%;
+
+      }
     }
   }
 

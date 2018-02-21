@@ -12383,6 +12383,9 @@ ion-side-menu .heading-item .message {
           line-height: 50%; }
         .mydoctor-profile-view .myDoctor-list li .name-content .rating {
           margin: 0% !important; }
+    .mydoctor-profile-view .myDoctor-list .ImageContainer img {
+      width: 25%;
+      border-radius: 50%; }
 
 .doctor-profile-view {
   background-color: #e2e2e2 !important;

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast,$ionicNavBarDelegate, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast,$ionicNavBarDelegate, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=true;
@@ -20,6 +20,16 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		console.log('closing side menu');
 		$ionicSideMenuDelegate.toggleRight();
 	};
+
+	$scope.showConsulation=function()
+	{
+		$ionicHistory.nextViewOptions({
+			disableAnimate: true,
+			disableBack: true,
+			historyRoot:true
+		});
+			$state.go('app.my_consultations',{}, {location: "replace", reload: false});
+	}
 
 	var specialitywise = "";
 	var catwise = "";
@@ -125,6 +135,17 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 				console.log($ionicHistory.backView());
 				$scope.prevPage=$ionicHistory.currentStateName();
 				console.log($ionicHistory.currentStateName());
+				console.log(window.localStorage.doctororpatient);
+				if(!$ionicHistory.backView()){
+					if(window.localStorage.doctororpatient === 'doctor'){
+						$state.go('templates.doctor_home');
+					}
+					else{
+						$state.go('app.patient_home');
+					}
+				}
+
+
 				if($scope.prevPage === 'app.patient_summary'){
 						// alert('summary page')
 						$state.go('app.patient_home');

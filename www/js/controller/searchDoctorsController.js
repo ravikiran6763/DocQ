@@ -9,6 +9,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	console.log('Search controller called');
 
+	$ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
 
 	$scope.audioCall=function(num)
 	{

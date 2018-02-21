@@ -32,9 +32,9 @@ var DoctorQuickApp = angular.module('DoctorQuick', [
   // 'ion-alpha-scroll',
   // 'angular-circular-progress',
   'ionic-letter-avatar',
-  'ionic.closePopup',,
+  'ionic.closePopup',
   'base64',
-  // 'ImageCropper'
+  // 'swipe.name'
   // 'ngImageCompress',
   // 'ngMaterial'
   // 'ionic.cloud'
@@ -559,27 +559,27 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           $state.go("auth.loginNew")
       }
 
-      else if($state.$current.name === 'app.searchDoctors'){
-            console.log('clear search values here');
-            $rootScope.specialdata=null;
-            $rootScope.genderdata= null;
-            $rootScope.statusdata=null;
-            $rootScope.languagedataselected=null;
-
-            $rootScope.specialityList.sex = "";
-            $rootScope.specialityList.search = "";
-            $rootScope.specialityList.stat = "";
-            $rootScope.specialityList.language = "";
-
-            var specialitywise = "";
-            var catwise = "";
-            var genderwise = "";
-            var languagewise = "";
-
-            // console.log($scope.specialdata);
-            window.history.back();
-
-      }
+      // else if($state.$current.name === 'app.searchDoctors'){
+      //       console.log('clear search values here');
+      //       $rootScope.specialdata=null;
+      //       $rootScope.genderdata= null;
+      //       $rootScope.statusdata=null;
+      //       $rootScope.languagedataselected=null;
+      //
+      //       $rootScope.specialityList.sex = "";
+      //       $rootScope.specialityList.search = "";
+      //       $rootScope.specialityList.stat = "";
+      //       $rootScope.specialityList.language = "";
+      //
+      //       var specialitywise = "";
+      //       var catwise = "";
+      //       var genderwise = "";
+      //       var languagewise = "";
+      //
+      //       // console.log($scope.specialdata);
+      //       window.history.back();
+      //
+      // }
       else {
         console.log('goback to prev view');
         console.log($state.$current-1);
