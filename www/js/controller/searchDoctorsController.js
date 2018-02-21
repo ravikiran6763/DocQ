@@ -97,10 +97,10 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 				 console.log('destroyed');
 			 });
 
-			 searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
+			 searchDoctorServices.declineOne2oneReqPatient(window.localStorage.one2oneId).then(function(response){
 			 $scope.declinedByPat=response;
-			 $localStorage.myCallId=0;
-			 $localStorage.callStatus=0;
+			 window.localStorage.myCallId=0;
+			 window.localStorage.callStatus=0;
 			 console.log($scope.declinedByPat);
 			 }).catch(function(error){
 				 console.log('failure data', error);
@@ -135,8 +135,8 @@ $scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
 $ionicLoading.show({
 	template:'<ion-spinner></ion-spinner>'
 })
-doctorServices.myDoctorsDetails($localStorage.docPhoneSearch).then(function(response){
-	// console.log($localStorage.docPhone);
+doctorServices.myDoctorsDetails(window.localStorage.docPhoneSearch).then(function(response){
+	// console.log(window.localStorage.docPhone);
 	if(response){
 		$ionicLoading.hide();
 		$rootScope.searchDocStatus=response[0]['onoff'];
@@ -175,9 +175,9 @@ $scope.docClicked=function(docPhone){
 	$ionicLoading.show({
 		template:'<ion-spinner></ion-spinner>'
 	})
-	$localStorage.docPhoneSearch=docPhone;
+	window.localStorage.docPhoneSearch=docPhone;
 	console.log(docPhone);
-	doctorServices.specificSearch($localStorage.docPhoneSearch).then(function(response){
+	doctorServices.specificSearch(window.localStorage.docPhoneSearch).then(function(response){
 		if(response){
 			window.localStorage['myDocDetail'] = angular.toJson(response);
 			$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
@@ -194,8 +194,8 @@ $scope.docClicked=function(docPhone){
 }
 
 	function checkDocStatus(){
-	  doctorServices.myDoctorsDetails($localStorage.docPhoneSearch).then(function(response){
-			// console.log($localStorage.docPhone);
+	  doctorServices.myDoctorsDetails(window.localStorage.docPhoneSearch).then(function(response){
+			// console.log(window.localStorage.docPhone);
 			if(response){
 				// console.log(response);
 				window.localStorage['myDocDetail'] = angular.toJson(response);
@@ -235,13 +235,13 @@ $scope.docClicked=function(docPhone){
 	}
 
 	function checkDocStatusOnTheGo(){
-		console.log($localStorage.docPhoneSearch);
-		searchDoctorServices.checkDocStatusOnTheGo($localStorage.docPhoneSearch).then(function(response){
-			console.log($localStorage.myCallId);
+		console.log(window.localStorage.docPhoneSearch);
+		searchDoctorServices.checkDocStatusOnTheGo(window.localStorage.docPhoneSearch).then(function(response){
+			console.log(window.localStorage.myCallId);
 		$scope.myDocStatSearch = response;
 		console.log($scope.myDocStatSearch);
-		$localStorage.myDocStatusSearch=$scope.myDocStatSearch;
-		$scope.checkDocStatusdfromSearch=$localStorage.myDocStatusSearch;
+		window.localStorage.myDocStatusSearch=$scope.myDocStatSearch;
+		$scope.checkDocStatusdfromSearch=window.localStorage.myDocStatusSearch;
 		})
 	}
 
@@ -263,7 +263,7 @@ $scope.docClicked=function(docPhone){
 		var callRequest={
 		patient:window.localStorage.user,
 		doctor:$rootScope.docNumToCall,
-		subPatient:$localStorage.selectedSubPatient
+		subPatient:window.localStorage.selectedSubPatient
 
 		// callId:$rootScope.callId
 		}
@@ -295,8 +295,8 @@ $scope.docClicked=function(docPhone){
 												console.log('print response',response);
 											window.localStorage['one2oneReq'] = angular.toJson(response);
 											$rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
-											$localStorage.one2oneId = $rootScope.one2oneReq.reqId;
-											console.log($localStorage.one2oneId);
+											window.localStorage.one2oneId = $rootScope.one2oneReq.reqId;
+											console.log(window.localStorage.one2oneId);
 											console.log($rootScope.one2oneReq.callStatus);
 
 										}).catch(function(error){
@@ -322,10 +322,10 @@ $scope.docClicked=function(docPhone){
 
 						          noResponsePopup.then(function(res) {
 												console.log('delete request here');
-												searchDoctorServices.cancelOne2oneReq($localStorage.one2oneId).then(function(response){
+												searchDoctorServices.cancelOne2oneReq(window.localStorage.one2oneId).then(function(response){
 												$scope.cancelledReq=response;
-												$localStorage.one2oneId=0;
-												$localStorage.callStatus=0;
+												window.localStorage.one2oneId=0;
+												window.localStorage.callStatus=0;
 												$scope.callAccept.close();
 												console.log($scope.cancelledReq);
 												}).catch(function(error){
@@ -356,10 +356,10 @@ $scope.docClicked=function(docPhone){
 									 				 console.log(window.localStorage.user);
 													 $scope.callReqPopUp.close();
 													  $state.go($state.current, {}, {reload: true});
-													  searchDoctorServices.cancelOne2oneReq($localStorage.one2oneId).then(function(response){
+													  searchDoctorServices.cancelOne2oneReq(window.localStorage.one2oneId).then(function(response){
 													  $scope.cancelledReq=response;
-														$localStorage.one2oneId=0;
-														$localStorage.callStatus=0;
+														window.localStorage.one2oneId=0;
+														window.localStorage.callStatus=0;
 														console.log($scope.cancelledReq);
 													  }).catch(function(error){
 													  	console.log('failure data', error);
@@ -440,12 +440,12 @@ $scope.docClicked=function(docPhone){
 
 
 	function checkCallStatus(){
-		searchDoctorServices.checkCallStatus($localStorage.one2oneId).then(function(response){
-			console.log($localStorage.one2oneId);
+		searchDoctorServices.checkCallStatus(window.localStorage.one2oneId).then(function(response){
+			console.log(window.localStorage.one2oneId);
 		$scope.calStat = response;
 		console.log($scope.calStat[0][0]);
-		$localStorage.callStatus=$scope.calStat[0][0];
-		$scope.checkStatus=$localStorage.callStatus;
+		window.localStorage.callStatus=$scope.calStat[0][0];
+		$scope.checkStatus=window.localStorage.callStatus;
 		})
 	}
 	$scope.$watch('checkStatus', function (newValue, oldValue, scope){
@@ -472,10 +472,10 @@ $scope.docClicked=function(docPhone){
 				 				 console.log(window.localStorage.user);
 								 $interval.cancel(checkCallStatus);
 								 $scope.callReqPopUp.close();
-								  searchDoctorServices.declineOne2oneReqPatient($localStorage.one2oneId).then(function(response){
+								  searchDoctorServices.declineOne2oneReqPatient(window.localStorage.one2oneId).then(function(response){
 								  $scope.declinedByPat=response;
-									$localStorage.one2oneId=0;
-									$localStorage.callStatus=0;
+									window.localStorage.one2oneId=0;
+									window.localStorage.callStatus=0;
 									console.log($scope.declinedByPat);
 								  }).catch(function(error){
 								  	console.log('failure data', error);
@@ -491,7 +491,7 @@ $scope.docClicked=function(docPhone){
 									var videocallflag = $rootScope.callType;
 									$scope.startdate = new Date();
 									$scope.callid = $rootScope.callId;
-									// $localStorage.ViewDoc=1;
+									// window.localStorage.ViewDoc=1;
 									$interval.cancel(checkCallStatus);
 									console.log(window.localStorage.networkType);
 									var uname = "greet+"+window.localStorage.user;
@@ -552,11 +552,11 @@ $scope.docClicked=function(docPhone){
 												$scope.enddate = new Date();
 												console.log(window.localStorage.user);
 												console.log($rootScope.accptdDoc);
-												// console.log($localStorage.Doctocall);
-												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.one2oneId).then(function(response){
+												// console.log(window.localStorage.Doctocall);
+												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,window.localStorage.one2oneId).then(function(response){
 													console.log('inserted to consultation',response);
 
-													$state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.one2oneId}, {location: "replace", reload: false});
+													$state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:window.localStorage.one2oneId}, {location: "replace", reload: false});
 
 
 					              }).catch(function(error){
@@ -631,7 +631,22 @@ $scope.docClicked=function(docPhone){
 		}
 		searchDoctorServices.sendOfflineMessage(sendMessage).then(function(response){
 			if(response){
-				$ionicLoading.hide()
+				$ionicLoading.hide();
+
+				var confirmPopup = $ionicPopup.confirm({
+							template: '<center>You will be notified once the Doctor is available</center>',
+							cssClass: 'videoPopup',
+							scope: $scope,
+							buttons: [
+							{
+								text: 'OK',
+								type: 'button-positive',
+								onTap: function(e) {
+								console.log('OK');
+								}
+							},
+							]
+						});
 			}
 			console.log(response);
 		}).catch(function(error){
@@ -655,21 +670,21 @@ $scope.docClicked=function(docPhone){
 	      $state.go("app.subPatientList");
 	    }
 	    $scope.editNewPatient=function () {
-	     if($localStorage.newPatientVal == 0){
+	     if(window.localStorage.newPatientVal == 0){
 	       console.log('select patient to edit');
 	     }
-	     else if($localStorage.newPatientVal === window.localStorage.user || $localStorage.newPatientVal === 'new'){
+	     else if(window.localStorage.newPatientVal === window.localStorage.user || window.localStorage.newPatientVal === 'new'){
 	       console.log('can not edit default patient');
 	     }
 	     else{
-	       $state.go("app.editPatient",{id:$localStorage.newPatientVal});
+	       $state.go("app.editPatient",{id:window.localStorage.newPatientVal});
 
 	     }
 
 
 	    }
 			var subPatientToShow={
-				subPatId:$localStorage.selectedSubPatient,
+				subPatId:window.localStorage.selectedSubPatient,
 				mainPatient:window.localStorage.user
 			}
 			medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){

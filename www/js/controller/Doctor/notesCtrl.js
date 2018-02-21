@@ -20,10 +20,10 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
   // $rootScope.prescription={};
   $scope.deviceAndroid = ionic.Platform.isAndroid();
   if($scope.deviceAndroid === false){
-    $localStorage.sendPrescTo='';
+    window.localStorage.sendPrescTo='';
   }
-  console.log($localStorage.subPatientId);
-  console.log($localStorage.patientNum);
+  console.log(window.localStorage.subPatientId);
+  console.log(window.localStorage.patientNum);
 
 console.log("inNotesCOntoller:",$state.$current.name);
 if($state.$current.name === 'templates.prescription'){
@@ -36,7 +36,7 @@ if($state.$current.name === 'templates.prescription'){
 
     $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
     // console.log($rootScope.currentPatient.patientNum);
-    $localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
+    window.localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
     $rootScope.patientFname=$scope.currentPatient.patientFname;
     $rootScope.patientLname=$scope.currentPatient.patientLname;
     $rootScope.patientAge=$scope.currentPatient.patientAge;
@@ -47,12 +47,12 @@ if($state.$current.name === 'templates.prescription'){
     $rootScope.patientNum=$scope.currentPatient.patientNum;
     $rootScope.subPatientId=$scope.currentPatient.subPatientId;
 
-    $localStorage.reqPat = $stateParams.reqPat;
+    window.localStorage.reqPat = $stateParams.reqPat;
 
-    var patientToDisplay =$localStorage.patientToDisplay;
+    var patientToDisplay =window.localStorage.patientToDisplay;
     var subPatientToShow ={
-      subPatId:$localStorage.subPatientId,
-      mainPatient:$localStorage.patientNum
+      subPatId:window.localStorage.subPatientId,
+      mainPatient:window.localStorage.patientNum
     }
     console.log(subPatientToShow);
     medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
@@ -101,9 +101,9 @@ if($state.$current.name === 'templates.prescription'){
 else {
   $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
-  $localStorage.activePatient=$stateParams.reqPat;
+  window.localStorage.activePatient=$stateParams.reqPat;
   $scope.subPatient='';
-  $localStorage.showConnecting =false;
+  window.localStorage.showConnecting =false;
   // $scope.newpatientAdded=doctorServices.getNewPatient();
   // $scope.newPatientFname=$scope.newpatientAdded.fname;
   // $scope.newPatientLname=$scope.newpatientAdded.lname;

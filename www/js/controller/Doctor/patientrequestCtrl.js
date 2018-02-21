@@ -63,7 +63,7 @@
 									{
 									// alert(message);
 									$scope.iosLoggin=message;
-									$localStorage.iosLogin=$scope.iosLoggin;
+									window.localStorage.iosLogin=$scope.iosLoggin;
 
 									}
 									var failure = function()
@@ -164,7 +164,7 @@
 					 		console.log($rootScope.reqId);
 					 		console.log($rootScope.reqPat);
               console.log($rootScope.subPatientId);
-              $localStorage.currentReqId=$rootScope.reqId;
+              window.localStorage.currentReqId=$rootScope.reqId;
 					 		}
 
 					  //  $state.go($state.current, {}, {reload: true});
@@ -182,8 +182,8 @@
            $rootScope.subPatientId=$scope.currentPatient.subPatientId;
 
            console.log($rootScope.subPatientId);
-           $localStorage.subPatientId=$rootScope.subPatientId;
-           $localStorage.patientNum=$rootScope.patientNum;
+           window.localStorage.subPatientId=$rootScope.subPatientId;
+           window.localStorage.patientNum=$rootScope.patientNum;
 
 
 
@@ -256,13 +256,13 @@
     $scope.isDisabled = false;
     $scope.type = angular.element(event.target).text();
 		console.log($scope.type);
-		if($scope.type === 'Decline' && $localStorage.accpt === 1){
+		if($scope.type === 'Decline' && window.localStorage.accpt === 1){
 
 				console.log('cant Decline now');
 
 		}
 		else if($scope.type === 'Accept'){
-			$localStorage.accpt=1;
+			window.localStorage.accpt=1;
 			$scope.isDisabled = true;
 			$scope.toggleText ='Accepted';
       $ionicLoading.show({
@@ -355,7 +355,7 @@
 
 																						console.log('cancel');
 																						console.log($scope.counter);
-																						console.log($localStorage.reqId);
+																						console.log(window.localStorage.reqId);
 
 																						$state.go("templates.doctor_home");
 
@@ -379,8 +379,8 @@
 																				$rootScope.checkAcceptedReq = $interval(function () {
 																					doctorServices.doctorActivity(patAct).then(function(response){
 																					$scope.consultStatus=response;
-																					$localStorage.patientDeclined=$scope.consultStatus[0][0];
-																					$scope.patDeclined=$localStorage.patientDeclined;
+																					window.localStorage.patientDeclined=$scope.consultStatus[0][0];
+																					$scope.patDeclined=window.localStorage.patientDeclined;
 																					// console.log($scope.consultStatus);
 																					}).catch(function(error){
 																					//  console.log('failure data', error);
@@ -393,8 +393,8 @@
 																					console.log("currentRequestId:",$rootScope.reqId);
 																					doctorServices.callStatus($rootScope.reqId).then(function(response){
 																					$rootScope.callStatus=response;//store the response array in doctor details
-																					$localStorage.callStatus=$rootScope.callStatus[0][0];
-																					$scope.notes=$localStorage.callStatus;
+																					window.localStorage.callStatus=$rootScope.callStatus[0][0];
+																					$scope.notes=window.localStorage.callStatus;
 																					console.log($scope.callStatus);
 																					}).catch(function(error){
 																					console.log('failure data', error);
@@ -467,7 +467,7 @@
 								$timeout.cancel(docTimeout);
 								console.log('destroyed');
 								});
-										$localStorage.accpt = 0;
+										window.localStorage.accpt = 0;
 
 								// patientrequesttodoctor.acceptedbydoctor(accptdReq);
 								// $state.go('templates.requestAccepted');
@@ -484,9 +484,9 @@
 		else if($scope.type === 'Decline'){
 
 			console.log($scope.type);
-			$localStorage.accpt='';
+			window.localStorage.accpt='';
 
-			if($localStorage.accpt === 1){
+			if(window.localStorage.accpt === 1){
 				$scope.isDisabled = true;
 				console.log('donNothing');
 			}
@@ -525,7 +525,7 @@ function checkForrDeclined(){
 
 	}
 }
-$localStorage.showPopUp = 1;
+window.localStorage.showPopUp = 1;
 
 // $interval(checkAcceptedReq,1000);
 $rootScope.path=$location.path();
@@ -582,8 +582,8 @@ $scope.popupShown = true;
  //  console.log($rootScope.reqId);
  //  doctorServices.callStatus($rootScope.reqId).then(function(response){
  //  		$rootScope.callStatus=response;//store the response array in doctor details
- // 		$localStorage.callStatus=$rootScope.callStatus[0][0];
- // 		$scope.notes=$localStorage.callStatus;
+ // 		window.localStorage.callStatus=$rootScope.callStatus[0][0];
+ // 		$scope.notes=window.localStorage.callStatus;
  //  		console.log($scope.callStatus);
  //  }).catch(function(error){
  //  	console.log('failure data', error);
@@ -602,16 +602,16 @@ $scope.popupShown = true;
 				 disableBack: true
 			 });
        if($stateParams.reqPat){
-         $localStorage.activePatient= $stateParams.reqPat;
+         window.localStorage.activePatient= $stateParams.reqPat;
        }
 			 else {
-           $localStorage.activePatient= $scope.currentPatient.patientPhone;
+           window.localStorage.activePatient= $scope.currentPatient.patientPhone;
 			 }
       //  $interval.cancel($rootScope.videoOrAudio);
-      //  $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false});
+      //  $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false});
 			 if($scope.deviceAndroid === true){
 				 $interval.cancel($rootScope.videoOrAudio);
-				 $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
+				 $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false})
 
 			 }
 			 else{
@@ -626,7 +626,7 @@ $scope.popupShown = true;
            disableAnimate: true,
            disableBack: true
            });
-           $state.go("templates.prescription",{"reqPat":$localStorage.activePatient},{location: "replace", reload: false})
+           $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false})
            $interval.cancel($rootScope.videoOrAudio);
 
            });

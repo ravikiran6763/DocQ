@@ -2,8 +2,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 {
 		var loggedIn=false;
 
-		console.log($stateParams.userPhone);
-		console.log($stateParams.userPassword);
 
 		$scope.user = {};
 		$scope.user.rememberMe = false;
@@ -72,9 +70,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	{
 		console.log($rootScope.loginDatasubmitted);
 				$rootScope.loginDatasubmitted=true;
-				$localStorage.showConnecting=false;
+				window.localStorage.showConnecting=false;
 
-				$localStorage.showConnecting = false;
+				window.localStorage.showConnecting = false;
 
 
 			if($scope.loginData.phone && $scope.loginData.pin)
@@ -106,7 +104,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 					if(response === "patient")
 					{
 
-						$localStorage.doctororpatient = response;
+						window.localStorage.doctororpatient = response;
 						window.plugins.OneSignal.getIds(function(ids) {
 							$scope.playerId=JSON.stringify(ids['userId']);
 							// console.log($scope.playerId);
@@ -236,7 +234,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							{
 										console.log(message);
 								$scope.iosLoggin=message;
-								$localStorage.iosLogin=$scope.iosLoggin;
+								window.localStorage.iosLogin=$scope.iosLoggin;
 
 
 							}
@@ -302,7 +300,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 					}
 					else if(response === "doctor")
 					{
-						$localStorage.doctororpatient = response;
+						window.localStorage.doctororpatient = response;
 						window.plugins.OneSignal.getIds(function(ids){
 							$scope.playerId=JSON.stringify(ids['userId']);
 
@@ -392,7 +390,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						                }
 						                  hello.unreadchatfromusers(username,password,success, failure);
 						            }
-												// $localStorage.onOff=1;
+												// window.localStorage.onOff=1;
 
 						}
 						else{
@@ -404,7 +402,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							{
 										console.log(message);
 								$scope.iosLoggin=message;
-								$localStorage.iosLogin=$scope.iosLoggin;
+								window.localStorage.iosLogin=$scope.iosLoggin;
 							}
 							var failure = function()
 							{

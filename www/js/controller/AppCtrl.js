@@ -44,7 +44,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 
 	console.log($rootScope.previousState);
 
-	// if($localStorage.doctororpatient === 'doctor')
+	// if(window.localStorage.doctororpatient === 'doctor')
 	// {
   //
 	// }
@@ -55,17 +55,17 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 		//console.log(networkState);
 		// $interval(checkForInternet, 1000);
 
-		$localStorage.chekedData =0;
-		$localStorage.dataConnection=navigator.onLine;
-		// $scope.dataLost=$localStorage.dataConnection;
+		window.localStorage.chekedData =0;
+		window.localStorage.dataConnection=navigator.onLine;
+		// $scope.dataLost=window.localStorage.dataConnection;
 		$scope.dataLost=window.localStorage.networkType;
 
 		$scope.showAlert==false;
 
-		console.log($localStorage.dataConnection);
+		console.log(window.localStorage.dataConnection);
 		$scope.$watch('dataLost', function (newValue, oldValue, scope){
 			// alert('changed');
-			// alert($localStorage.dataConnection);
+			// alert(window.localStorage.dataConnection);
 			console.log('newVal',newValue);
 			console.log('oldValue',oldValue);
 
@@ -506,7 +506,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 											$ionicHistory.clearHistory();
 											$window.localStorage.clear();
 
-											$state.go('auth.loginNew',{},{location:"replace",reload:true});
+											$state.go('auth.loginNew');
+											// $window.location.reload();
 
 								}
 								var failure = function()
@@ -531,12 +532,12 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope, $timeo
 	}
 
 		$scope.clearAllHistory = function(){
-			if($localStorage.doctororpatient === 'patient'){
+			if(window.localStorage.doctororpatient === 'patient'){
 				$ionicHistory.clearCache().then(function(){ $state.go('app.patient_home'); });
 				console.log($ionicHistory.viewHistory());
 
 			}
-			if($localStorage.doctororpatient === 'doctor'){
+			if(window.localStorage.doctororpatient === 'doctor'){
 				$ionicHistory.clearCache().then(function(){ $state.go('templates.doctor_home'); });
 				console.log($ionicHistory.viewHistory());
 			}
@@ -793,7 +794,7 @@ $state.go('app.patient_payments');
 $scope.balAmnt;
 $rootScope.myBalance;
 
-//  console.log($localStorage.seen);
+//  console.log(window.localStorage.seen);
 // $interval(callReqInterval, 15000);
 function callReqInterval() {
 
@@ -817,7 +818,7 @@ $rootScope.accptdDocLname=data[i].doctorLname,
 
 console.log($rootScope.popupSeen);
 
-$localStorage.Doctocall =  $rootScope.doctorPhone;
+window.localStorage.Doctocall =  $rootScope.doctorPhone;
 if($rootScope.cal_flag === '4'  && $rootScope.popupSeen === '1' ){
 
 $ionicPopup.confirm({
@@ -852,7 +853,7 @@ $state.go('app.callAccepted');
 
 }
 else{
-$localStorage.showPopup =2;
+window.localStorage.showPopup =2;
 }
 }
 
@@ -881,13 +882,13 @@ console.log(calldecline);
 doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
 // console.log(response[0][0]);
 $scope.myBalance=response[0][0];
-$localStorage.patientWalletBalance=$scope.myBalance;
+window.localStorage.patientWalletBalance=$scope.myBalance;
 console.log('pop up page clicked');
 var uname = "greet+"+window.localStorage.user;
 var pw = "DQ_patient";
 
-var persontocall = "greet+" + $localStorage.docPhone;
-//  var persontocall = "greet+" + $localStorage.consultedDoctor;
+var persontocall = "greet+" + window.localStorage.docPhone;
+//  var persontocall = "greet+" + window.localStorage.consultedDoctor;
 console.log(uname);
 console.log(persontocall);
 var success = function(message)
@@ -966,8 +967,8 @@ $scope.myBalance=response[0][0];
 var uname = "greet+"+window.localStorage.user;
 var pw = "DQ_patient";
 
-var persontocall = "greet+" + $localStorage.docPhone;
-//  var persontocall = "greet+" + $localStorage.consultedDoctor;
+var persontocall = "greet+" + window.localStorage.docPhone;
+//  var persontocall = "greet+" + window.localStorage.consultedDoctor;
 console.log(uname);
 console.log(persontocall);
 
@@ -1036,7 +1037,7 @@ $scope.hideNotifications = function (msg) {
 console.log(msg);
 $scope.accptNotifications=true;
 $scope.rejectNotifications=false;
-if($localStorage.doctororpatient === 'patient'){
+if(window.localStorage.doctororpatient === 'patient'){
 var updatePlayer ={
 palyerId:'',
 userNum:window.localStorage.user,
@@ -1083,7 +1084,7 @@ console.log(JSON.stringify(ids['userId']));
 $scope.playerId=JSON.stringify(ids['userId']);
 // alert('oneSignal')
 console.log($scope.playerId);
-if($localStorage.doctororpatient === 'patient'){
+if(window.localStorage.doctororpatient === 'patient'){
 var updatePlayer ={
 palyerId:$scope.playerId,
 userNum:window.localStorage.user,
@@ -1120,12 +1121,12 @@ $rootScope.chekDiag=true;
 $rootScope.val=$rootScope.prescription.diagnosisforpatient;
 if($rootScope.previousState.name === "templates.sendPrescription"){
 console.log('prescription view');
-$state.go('templates.sendPrescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+$state.go('templates.sendPrescription',{ "reqPat": window.localStorage.activePatient},{location: "replace", reload: false});
 return '/templates/sendPrescription';
 }
 else{
 console.log('notes view');
-$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+$state.go('templates.prescription',{ "reqPat": window.localStorage.activePatient},{location: "replace", reload: false});
 
 }
 }
@@ -1163,12 +1164,12 @@ $rootScope.testVal=$rootScope.prescription.checkedTests;
 // $state.go("templates.prescription");
 if($rootScope.previousState.name === "templates.sendPrescription"){
 console.log('prescription view');
-$state.go('templates.sendPrescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+$state.go('templates.sendPrescription',{ "reqPat": window.localStorage.activePatient},{location: "replace", reload: false});
 return '/templates/sendPrescription';
 }
 else{
 console.log('notes view');
-$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+$state.go('templates.prescription',{ "reqPat": window.localStorage.activePatient},{location: "replace", reload: false});
 
 }
 }
@@ -1206,12 +1207,12 @@ $rootScope.mediVal=$rootScope.prescription.medicationforpatient;
 // $state.go("templates.prescription");
 if($rootScope.previousState.name === "templates.sendPrescription"){
 console.log('prescription view');
-$state.go('templates.sendPrescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+$state.go('templates.sendPrescription',{ "reqPat": window.localStorage.activePatient},{location: "replace", reload: false});
 return '/templates/sendPrescription';
 }
 else{
 console.log('notes view');
-$state.go('templates.prescription',{ "reqPat": $localStorage.activePatient},{location: "replace", reload: false});
+$state.go('templates.prescription',{ "reqPat": window.localStorage.activePatient},{location: "replace", reload: false});
 
 }
 }
@@ -1258,11 +1259,11 @@ $rootScope.newPatient={};
 	{
 				console.log(type);
 				$rootScope.charge=type;
-				console.log($localStorage.subPatientId);
-				$localStorage.newPatientFname='';
-				$localStorage.newPatientLname='';
-				$localStorage.newPatientAge='';
-				$localStorage.newPatientSex='';
+				console.log(window.localStorage.subPatientId);
+				window.localStorage.newPatientFname='';
+				window.localStorage.newPatientLname='';
+				window.localStorage.newPatientAge='';
+				window.localStorage.newPatientSex='';
 
 				$scope.diagnosis ="";
 				$scope.tests = "";
@@ -1489,18 +1490,18 @@ $rootScope.newPatient={};
 
 				if(!$scope.currentPatient){
 					$rootScope.patientNum=$stateParams.reqPat;
-					$localStorage.patientToDisplay=$stateParams.reqPat;
+					window.localStorage.patientToDisplay=$stateParams.reqPat;
 				}
 				else{
 					console.log($stateParams.reqPat);
 					$rootScope.patientNum=$scope.currentPatient.patientNum;
-					$localStorage.patientToDisplay=$scope.currentPatient.patientNum;
+					window.localStorage.patientToDisplay=$scope.currentPatient.patientNum;
 
 				}
 
-					// $localStorage.patientToDisplay=$stateParams.reqPat;
+					// window.localStorage.patientToDisplay=$stateParams.reqPat;
 
-				var patientToDisplay =$localStorage.patientToDisplay;
+				var patientToDisplay =window.localStorage.patientToDisplay;
 				if($rootScope.chekDiag || $rootScope.chekTests || $rootScope.chekMedi)
 				{
 
@@ -1522,9 +1523,9 @@ $rootScope.newPatient={};
 										diagnosis : $scope.diagnosis,
 										tests : $scope.tests,
 										medication : $scope.medication,
-										subPatient:$localStorage.subPatientId,
+										subPatient:window.localStorage.subPatientId,
 										charge:$rootScope.charge,
-										currentReqId:$localStorage.currentReqId
+										currentReqId:window.localStorage.currentReqId
 								};
 								console.log(prescriptiondetails);
 								console.log($rootScope.chekDiag);
@@ -1569,13 +1570,13 @@ $rootScope.newPatient={};
 								{
 										$ionicLoading.hide();
 
-										$localStorage.sendPrescTo = "";
+										window.localStorage.sendPrescTo = "";
 
 										console.log('prescription clicked');
 										console.log(message);
 										$rootScope.prescription = {};
 										prescriptiondetails='';
-										$localStorage.subPatientId='';
+										window.localStorage.subPatientId='';
 										$ionicHistory.nextViewOptions({
 										disableAnimate: true,
 										disableBack: true

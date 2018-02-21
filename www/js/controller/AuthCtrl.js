@@ -60,7 +60,7 @@ $scope.sendForm = function($event,form)
 };
 
 
-console.log($localStorage.doctororpatient);
+console.log(window.localStorage.doctororpatient);
 
 
 //Validate  Doctor
@@ -177,8 +177,8 @@ $scope.patientRegistration = function()
                   pateientSex:$rootScope.PatientDetail.gender,
                   pateientPwd:$rootScope.PatientDetail.pat_password,
                   patientImage:$rootScope.imageData,
-                  deviceID:$localStorage.deviceID,
-                  serial:$localStorage.serial
+                  deviceID:window.localStorage.deviceID,
+                  serial:window.localStorage.serial
 
                 };
                 var loginData = {
@@ -187,7 +187,7 @@ $scope.patientRegistration = function()
                 };
                 window.localStorage.user=$rootScope.PatientDetail.patient_mob;
                 window.localStorage.pass=$rootScope.PatientDetail.pat_password;
-                $localStorage.doctororpatient='patient'
+                window.localStorage.doctororpatient='patient'
                 console.log(patientDetails);
           patientRegistrationService.patientRegistrationDone(patientDetails).then(function(response)
           {
@@ -298,7 +298,7 @@ $scope.patientRegistration = function()
             var username = "greet+"+$rootScope.PatientDetail.patient_mob;
             var password = "DQ_patient";
             $rootScope.unreadchatforpatient = 0;
-            
+
             function checkNewMessages()
             {
                 var success = function(message)
@@ -486,18 +486,18 @@ $scope.patientRegistration = function()
       $scope.submittedPwd = true;
 
       window.plugins.toast.showWithOptions({
-      message: "Valid 4 digit password must be entered",
-      duration: "short", // 2000 ms
-      position: "bottom",
-      styling: {
-      opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-      backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
-      textColor: '#ffffff', // Ditto. Default #FFFFFF
-      textSize: 13, // Default is approx. 13.
-      cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-      horizontalPadding: 16, // iOS default 16, Android default 50
-      verticalPadding: 12 // iOS default 12, Android default 30
-      }
+        message: "Valid 4 digit password must be entered",
+        duration: "short", // 2000 ms
+        position: "bottom",
+        styling: {
+        opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+        backgroundColor: '#EA0F0F', // make sure you use #RRGGBB. Default #333333
+        textColor: '#ffffff', // Ditto. Default #FFFFFF
+        textSize: 13, // Default is approx. 13.
+        cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+        horizontalPadding: 16, // iOS default 16, Android default 50
+        verticalPadding: 12 // iOS default 12, Android default 30
+        }
       });
 
     }
@@ -528,8 +528,8 @@ $scope.patientRegistration = function()
         //check for existing patient
           var checkDeviceReg={
             user:$rootScope.PatientDetail.patient_mob,
-            deviceID:$localStorage.deviceID,
-            serial:$localStorage.serial
+            deviceID:window.localStorage.deviceID,
+            serial:window.localStorage.serial
           }
           console.log(checkDeviceReg);
           patientRegistrationService.existingPatient(checkDeviceReg).then(function(response)

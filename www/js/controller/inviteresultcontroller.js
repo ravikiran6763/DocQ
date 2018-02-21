@@ -14,11 +14,11 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,
 
   invitereviews.generateTinyUrl(window.localStorage.user).then(function(response){
     $rootScope.docTinyUrl=response;
-    $localStorage.docTinyUrl=$rootScope.docTinyUrl;
+    window.localStorage.docTinyUrl=$rootScope.docTinyUrl;
   }).catch(function(error){
   console.log('failure data', error);
   });
-console.log($localStorage.docTinyUrl);
+console.log(window.localStorage.docTinyUrl);
 
 var permissions = cordova.plugins.permissions;
 permissions.requestPermission(permissions.READ_CONTACTS, success, error);
@@ -31,11 +31,11 @@ if( !status.hasPermission ) error();
 }
 
   $scope.query = "Hi,\nPlease visit my page at DoctorQuick and help me with a rating to promote my profile and boosting my access to many more patients. Thanks.\nClick here: ";
-  $scope.tiny=$localStorage.docTinyUrl;
+  $scope.tiny=window.localStorage.docTinyUrl;
 
 $scope.query =$scope.query+$scope.tiny;
 console.log($scope.query);
-// $scope.query=$scope.query $localStorage.docTinyUrl;
+// $scope.query=$scope.query window.localStorage.docTinyUrl;
   $scope.showAlert= function(){
 
     var options = {

@@ -101,7 +101,21 @@
         </div>
       </div>
 
+
       <div class="card ">
+        <div class="row">
+          <div class="col">Language</div>
+              <ul class="col">
+                <li  ng-repeat="elem in (doctor.doctorLanguage1 | customSplitString)">{{ elem }}</li>
+              </ul>
+          <!-- <div class="col" ng-repeat="elem in (doctor.doctorSpecialityId | customSplitString)">{{elem}}</div> -->
+        </div>
+      </div>
+      <!-- <div class="card ">
+          <div class="row">Language 1</div>
+        <ul class="col">
+          <li  ng-repeat="elem in (doctor.doctorLanguage1 | customSplitString)">{{ elem }}</li>
+        </ul>
         <div class="row">
               <div class="col">Language 1</div>
               <div class="col">{{doctor.doctorLanguage1 | capitalize}}</div>
@@ -110,7 +124,7 @@
               <div class="col">Language 2</div>
               <div class="col">{{doctor.doctorLanguage2 | capitalize}}</div>
         </div>
-      </div>
+      </div> -->
       <div class="card " ng-click="changeDocPwd();">
         <div class="row">
               <div class="col">Change Password {{doctor.dpass}}</div>

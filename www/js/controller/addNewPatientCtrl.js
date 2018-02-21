@@ -69,7 +69,7 @@ console.log($scope.defaultPatient);
 
   }
   $rootScope.selectSubPatient=function(id){
-    $localStorage.selectedSubPatient=id;
+    window.localStorage.selectedSubPatient=id;
     console.log(id);
     console.log('selected');
     window.history.back();
@@ -127,7 +127,6 @@ $rootScope.loginDatasubmitted=false;
 
     }
     else{
-      $rootScope.loginDatasubmitted=true;
       $ionicLoading.hide();
       if(!$rootScope.newPatient.dob){
           $ionicLoading.hide();

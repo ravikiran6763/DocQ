@@ -120,7 +120,7 @@ DoctorQuickApp.controller('loadingDoctor', function($state,$scope,$rootScope,$in
           {
           // alert(message);
           $scope.iosLoggin=message;
-          $localStorage.iosLogin=$scope.iosLoggin;
+          window.localStorage.iosLogin=$scope.iosLoggin;
 
           }
           var failure = function()

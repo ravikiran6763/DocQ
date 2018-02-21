@@ -80,11 +80,11 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		$ionicLoading.show({
 			template:'<ion-spinner>,ion-spinner>'
 		})
-		$localStorage.docPhone=docPhone
+		window.localStorage.docPhone=docPhone
 		$rootScope.ratesForDoc=rates
 		$rootScope.totalRate=total
 
-		doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+		doctorServices.myDoctorsDetails(window.localStorage.docPhone).then(function(response){
 			if(response){
 				$ionicLoading.hide();
 				$scope.myDocDetails1=response;

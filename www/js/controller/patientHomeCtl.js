@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval,$window, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
@@ -9,7 +9,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 
 
-			$localStorage.selectedSubPatient=0;
+			window.localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
 
@@ -38,8 +38,10 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			$timeout( function(){
 	        console.log('interval started');
-	        console.log($localStorage.showConnecting);
-	        if($localStorage.showConnecting == true){
+					console.log($localStorage.showConnecting);
+
+	        if($localStorage.showConnecting === true){
+
 						$timeout( function(){
 						$rootScope.connectingMessage = 'Internet connection appears very slow'
 					}, 60000 );
@@ -137,12 +139,12 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				$rootScope.unreadchatforpatient = 0;
 
 				$scope.statename = $ionicHistory.currentStateName();
-				$scope.iphone=$localStorage.iosLogin;
+				$scope.iphone=window.localStorage.iosLogin;
 
 				$scope.deviceAndroid = ionic.Platform.isAndroid();
 				// console.log();
 				if($scope.deviceAndroid === false){
-					$localStorage.iphoneLogin=0;
+					window.localStorage.iphoneLogin=0;
 				}
 
 

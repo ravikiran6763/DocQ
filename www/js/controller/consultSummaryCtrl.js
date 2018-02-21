@@ -350,8 +350,8 @@ $scope.ratingsObject = {
 
 		var myDocratedValues={
 		ratedBy:window.localStorage.user,
-		ratedTo:$localStorage.consultedDoctor
-		// ratedTo:$localStorage.consultedDoctor
+		ratedTo:window.localStorage.consultedDoctor
+		// ratedTo:window.localStorage.consultedDoctor
 		};
 
 		rateDoctorServices.getDocRatingsByMe(myDocratedValues).then(function(response){
@@ -365,7 +365,7 @@ $scope.ratingsObject = {
 		//to fetch the overall Rating o0f a doctor
 
 rateDoctorServices.getDocRatingsByAll($stateParams.calledDoctor).then(function(response){
-		// rateDoctorServices.getDocRatingsByAll($localStorage.consultedDoctor).then(function(response){
+		// rateDoctorServices.getDocRatingsByAll(window.localStorage.consultedDoctor).then(function(response){
 			$rootScope.myDocRating = response;
 				$scope.myRating=$rootScope.myDocRating;
 				$scope.ratings = [{

@@ -19,7 +19,7 @@ DoctorQuickApp.controller('chatWithPatientCtrl', function($scope, $rootScope, $l
 		 cancelText: 'Cancel',
 		 cancel: function() {
 			 console.log('CANCELLED');
-			 $localStorage.$reset;
+			 window.localStorage.$reset;
 		 },
 		 buttonClicked: function(index) {
 			 console.log('BUTTON CLICKED', index);

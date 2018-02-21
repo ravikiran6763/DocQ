@@ -131,8 +131,8 @@ DoctorQuickApp.controller('specilityListCtrl', function($scope,$rootScope,$state
  	 // $ionicLoading.show({
  	 //   template:'<ion-spinner></ion-spinner>'
  	 // })
- 	 $localStorage.SpecilityIndex=index;
- 	 $localStorage.SpecilityId=id;
+ 	 window.localStorage.SpecilityIndex=index;
+ 	 window.localStorage.SpecilityId=id;
  	 // $interval(CheckOnlineDocs, 2000);
 
  	 $state.go("app.specialityDetailsNew");
@@ -519,12 +519,12 @@ DoctorQuickApp.controller('termsCtrl', function($scope,$rootScope, $ionicConfig)
 
 DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoading,$localStorage,$interval,$window,$scope,$state,$ionicHistory,LoginService){
 	$timeout(function(){
-	// console.log($localStorage.doctororpatient);
+	// console.log(window.localStorage.doctororpatient);
 
 		$ionicLoading.show({
 		template: '<ion-spinner></ion-spinner><br><br>Connecting to DoctorQuick'
 		});
-		if($localStorage.doctororpatient === 'patient'){
+		if(window.localStorage.doctororpatient === 'patient'){
 				// $state.go('app.patient_home',{}, {location: "replace", reload: false})//for browser login
 				window.plugins.OneSignal.getIds(function(ids){
 				//document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -667,7 +667,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 				}
 
 		}
-		else if($localStorage.doctororpatient === 'doctor'){
+		else if(window.localStorage.doctororpatient === 'doctor'){
 				window.plugins.OneSignal.getIds(function(ids) {
 				$scope.playerId=JSON.stringify(ids['userId']);
 				// console.log($scope.playerId);
@@ -742,7 +742,7 @@ DoctorQuickApp.controller('splashCtrl',function($rootScope,$timeout,$ionicLoadin
 										{
 										// alert(message);
 											$scope.iosLoggin=message;
-											$localStorage.iosLogin=$scope.iosLoggin;
+											window.localStorage.iosLogin=$scope.iosLoggin;
 
 										}
 										var failure = function()
@@ -811,8 +811,8 @@ DoctorQuickApp.controller('callAccptCtrl', function($scope,$rootScope, $statePar
 		var docpatphno = {
 		accpetcode : "1",
 		doctorphno : window.localStorage.user,
-		patientphno : $localStorage.reqPat,
-		reqId:$localStorage.reqId
+		patientphno : window.localStorage.reqPat,
+		reqId:window.localStorage.reqId
 		}
 		console.log(docpatphno);
 		patientrequesttodoctor.accpetedbydoctor(docpatphno).then(function(response){

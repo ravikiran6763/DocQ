@@ -32,11 +32,11 @@ $interval(CheckOnlineDocs, 2000);
 
 
 var subPatientToShow={
-  subPatId:$localStorage.selectedSubPatient,
+  subPatId:window.localStorage.selectedSubPatient,
   mainPatient:window.localStorage.user
 }
 console.log(subPatientToShow);
-console.log($localStorage.selectedSubPatient);
+console.log(window.localStorage.selectedSubPatient);
 
 medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){
    $rootScope.newPAtient=response;
@@ -64,14 +64,14 @@ $ionicLoading.show({
 
 
 $scope.specialitiesList = angular.fromJson($window.localStorage['specialitiesList']);
-console.log($localStorage.SpecilityId);
+console.log(window.localStorage.SpecilityId);
 
 // var result = JSON.parse(localStorage.getItem("specialitiesList"));
-// $scope.specialityDetails = JSON.parse(localStorage.getItem("specialitiesList"))[$localStorage.SpecilityIndex];
+// $scope.specialityDetails = JSON.parse(localStorage.getItem("specialitiesList"))[window.localStorage.SpecilityIndex];
 // console.log($scope.specialityDetails);
-// console.log($scope.specialitiesList[$localStorage.SpecilityId]);
+// console.log($scope.specialitiesList[window.localStorage.SpecilityId]);
 
-  medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
+  medicalSpecialityService.getMedicalSpeciality(window.localStorage.SpecilityId)
    .then(function(response){
      if(response){
        console.log(response);
@@ -129,9 +129,9 @@ console.log($localStorage.SpecilityId);
      if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal === 'agent'){
        console.log(window.localStorage.networkType);
        if(window.localStorage.networkType === '4G' || window.localStorage.networkType === 'WiFi' || window.localStorage.networkType === 'Unknown'){
-         console.log($localStorage.SpecilityId);
+         console.log(window.localStorage.SpecilityId);
 
-         medicalSpecialityService.sendrequesttodoctor($localStorage.SpecilityId).then(function(response){
+         medicalSpecialityService.sendrequesttodoctor(window.localStorage.SpecilityId).then(function(response){
            console.log('successfull data', response[0][1]);
            $rootScope.sentReqResponse=response;
            $rootScope.sentReqId=$rootScope.sentReqResponse[0];
@@ -353,8 +353,8 @@ console.log($localStorage.SpecilityId);
 
 
    function CheckOnlineDocs(){
-   // $localStorage.SpecilityId=$rootScope.SpecilityId;
-   medicalSpecialityService.getMedicalSpeciality($localStorage.SpecilityId)
+   // window.localStorage.SpecilityId=$rootScope.SpecilityId;
+   medicalSpecialityService.getMedicalSpeciality(window.localStorage.SpecilityId)
     .then(function(response){
       $rootScope.newDocStatus=response[0]['noofonlinedoctors']
       if($rootScope.newDocStatus === $rootScope.oldDocStatus){
@@ -392,8 +392,8 @@ console.log($localStorage.SpecilityId);
    	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
    	 $scope.consultStatus=response;
    // 	 console.log($scope.consultStatus);
-   	 $localStorage.declinedByDoc = $scope.consultStatus[0][0];
-   	 $scope.docDeclined=$localStorage.declinedByDoc;
+   	 window.localStorage.declinedByDoc = $scope.consultStatus[0][0];
+   	 $scope.docDeclined=window.localStorage.declinedByDoc;
    	//  console.log($scope.consultStatus);
    	 }).catch(function(error){
    	//  console.log('failure data', error);
@@ -433,14 +433,14 @@ console.log($localStorage.SpecilityId);
       $state.go("app.subPatientList");
     }
    $scope.editNewPatient=function () {
-     if($localStorage.newPatientVal == 0){
+     if(window.localStorage.newPatientVal == 0){
        console.log('select patient to edit');
      }
-     else if($localStorage.newPatientVal === window.localStorage.user || $localStorage.newPatientVal === 'new'){
+     else if(window.localStorage.newPatientVal === window.localStorage.user || window.localStorage.newPatientVal === 'new'){
        console.log('can not edit default patient');
      }
      else{
-       $state.go("app.editPatient",{id:$localStorage.newPatientVal});
+       $state.go("app.editPatient",{id:window.localStorage.newPatientVal});
 
      }
 

@@ -37,7 +37,7 @@ accountsService.docAccountsBalance(window.localStorage.user).then(function(respo
       dateFormat: 'dd MMMM yyyy',      //Optional
       templateType: 'popup'       //Optional
     };
-// console.log($localStorage.fromDate);
+// console.log(window.localStorage.fromDate);
 $rootScope.transcMsg='Select Dates';
     var ipObj2 = {
         callback: function (val) {  //Mandatory

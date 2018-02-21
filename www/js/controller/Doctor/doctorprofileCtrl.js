@@ -3,7 +3,7 @@ DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $statePa
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
-$rootScope.docPhone = $localStorage.docPhone;
+$rootScope.docPhone = window.localStorage.docPhone;
 
 console.log($rootScope.docPhone);
 console.log('docprofileview');
@@ -21,7 +21,7 @@ $interval(checkDocStatus, 1000);
 $scope.myDocDetails1 = angular.fromJson($window.localStorage['myDocDetails1']);
 
 
-doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+doctorServices.myDoctorsDetails(window.localStorage.docPhone).then(function(response){
   console.log(response[0]['onoff']);
   $rootScope.myDocAvailable=response[0]['onoff'];
   window.localStorage['myDocDetails1'] = angular.toJson(response);
@@ -74,9 +74,9 @@ $scope.example = {
 
 function checkDocStatus(){
 
-  doctorServices.myDoctorsDetails($localStorage.docPhone).then(function(response){
+  doctorServices.myDoctorsDetails(window.localStorage.docPhone).then(function(response){
   $scope.myDocDetails1=response;
-  console.log($scope.myDocDetails1);
+  // console.log($scope.myDocDetails1);
   var data=$scope.myDocDetails1;//take all json data into this variable
     for(var i=0; i<data.length; i++){
 
@@ -85,8 +85,8 @@ function checkDocStatus(){
           $rootScope.onoff=data[i].onoff;
           if($rootScope.myDocAvailable ===  $rootScope.onoff ){
 
-            console.log('docAvailability',$rootScope.myDocAvailable);
-            console.log($rootScope.myDocAvailable);
+            // console.log('docAvailability',$rootScope.myDocAvailable);
+            // console.log($rootScope.myDocAvailable);
           }
           else{
             $scope.example = {
@@ -97,8 +97,8 @@ function checkDocStatus(){
             $rootScope.myDocAvailable =  $rootScope.onoff ;
             console.log('update data');
           }
-          console.log($rootScope.onoff);
-          console.log($scope.myDocDetails1);
+          // console.log($rootScope.onoff);
+          // console.log($scope.myDocDetails1);
 
           if($rootScope.rates == null ){
             $rootScope.rates=''
@@ -137,14 +137,14 @@ console.log('failure data', error);
       doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
         // console.log(response[0][0]);
       $scope.myBalance=response[0][0];
-      $localStorage.patientWalletBalance=$scope.myBalance;
+      window.localStorage.patientWalletBalance=$scope.myBalance;
           console.log('pop up page clicked');
 
           	var uname = "greet+"+window.localStorage.user;
              var pw = "DQ_patient";
-             var persontocall = "greet+" + $localStorage.docPhone;
+             var persontocall = "greet+" + window.localStorage.docPhone;
 
-            //  var persontocall = "greet+" + $localStorage.consultedDoctor;
+            //  var persontocall = "greet+" + window.localStorage.consultedDoctor;
 
 
              console.log(uname);
@@ -226,8 +226,8 @@ $scope.BalanceForVoiceCall=function()
         var uname = "greet+"+window.localStorage.user;
         var pw = "DQ_patient";
 
-        //var persontocall = "greet+" + $localStorage.docPhone;
-        var persontocall = "greet+" + $localStorage.consultedDoctor;
+        //var persontocall = "greet+" + window.localStorage.docPhone;
+        var persontocall = "greet+" + window.localStorage.consultedDoctor;
         console.log(uname);
         console.log(persontocall);
 
@@ -290,7 +290,7 @@ $scope.BalanceForVoiceCall=function()
 
 }
 
-    doctorServices.myDoctorsDetails($localStorage.consultedDoctor).then(function(response){
+    doctorServices.myDoctorsDetails(window.localStorage.consultedDoctor).then(function(response){
     $scope.myDocDetails=response;
     }).catch(function(error){
     console.log('failure data', error);
@@ -376,10 +376,10 @@ $scope.BalanceForVoiceCall=function()
            console.log('destroyed');
          });
 
-         searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+         searchDoctorServices.declineOne2oneReqPatient(window.localStorage.myCallId).then(function(response){
          $scope.declinedByPat=response;
-         $localStorage.myCallId=0;
-         $localStorage.callStatus=0;
+         window.localStorage.myCallId=0;
+         window.localStorage.callStatus=0;
          console.log($scope.declinedByPat);
          }).catch(function(error){
            console.log('failure data', error);
@@ -396,7 +396,7 @@ $scope.BalanceForVoiceCall=function()
              $scope.$on('$destroy', function(){
              $timeout.cancel(patientTimeout);
              console.log('destroyed');
-             console.log("callID:",$localStorage.myCallId);
+             console.log("callID:",window.localStorage.myCallId);
              $scope.callAccept.close();
              $window.location.reload();
 
@@ -413,22 +413,22 @@ $scope.BalanceForVoiceCall=function()
     function checkDocStatusOnTheGo(){
       console.log($rootScope.onGoingDoc);
       searchDoctorServices.checkDocStatusOnTheGo($rootScope.onGoingDoc).then(function(response){
-        console.log($localStorage.myCallId);
+        console.log(window.localStorage.myCallId);
       $scope.myDocStat = response;
       console.log($scope.myDocStat);
-      $localStorage.myDocStatus=$scope.myDocStat;
-      $scope.myDocStatus=$localStorage.myDocStatus;
+      window.localStorage.myDocStatus=$scope.myDocStat;
+      $scope.myDocStatus=window.localStorage.myDocStatus;
       })
     }
 
 
   	function checkMyCallStatus(){
-  		searchDoctorServices.checkCallStatus($localStorage.myCallId).then(function(response){
-  			console.log($localStorage.myCallId);
+  		searchDoctorServices.checkCallStatus(window.localStorage.myCallId).then(function(response){
+  			console.log(window.localStorage.myCallId);
   		$scope.myCalStat = response;
   		// console.log($scope.myCalStat[0][0]);
-  		$localStorage.myCallStatus=$scope.myCalStat[0][0];
-  		$scope.checkMyStatus=$localStorage.myCallStatus;
+  		window.localStorage.myCallStatus=$scope.myCalStat[0][0];
+  		$scope.checkMyStatus=window.localStorage.myCallStatus;
   		})
   	}
   	$scope.$watch('checkMyStatus', function (newValue, oldValue, scope){
@@ -450,10 +450,10 @@ $scope.BalanceForVoiceCall=function()
              console.log('destroyed');
              });
 
-             searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+             searchDoctorServices.declineOne2oneReqPatient(window.localStorage.myCallId).then(function(response){
              $scope.declinedByPat=response;
-             $localStorage.myCallId=0;
-             $localStorage.callStatus=0;
+             window.localStorage.myCallId=0;
+             window.localStorage.callStatus=0;
              console.log($scope.declinedByPat);
              // $scope.alertPopup.hide();
              $scope.callAccept.close();
@@ -488,10 +488,10 @@ $scope.BalanceForVoiceCall=function()
   				 				 console.log(window.localStorage.user);
                    $interval.cancel(checkMyCallStatus);
   								 $scope.callReqPopUp.close();
-  								  searchDoctorServices.declineOne2oneReqPatient($localStorage.myCallId).then(function(response){
+  								  searchDoctorServices.declineOne2oneReqPatient(window.localStorage.myCallId).then(function(response){
   								  $scope.declinedByPat=response;
-  									$localStorage.myCallId=0;
-  									$localStorage.callStatus=0;
+  									window.localStorage.myCallId=0;
+  									window.localStorage.callStatus=0;
   									console.log($scope.declinedByPat);
   								  }).catch(function(error){
   								  	console.log('failure data', error);
@@ -508,7 +508,7 @@ $scope.BalanceForVoiceCall=function()
                     console.log(videocallflag);
   									$scope.startdate = new Date();
   									$scope.callid = $rootScope.callId;
-  									// $localStorage.ViewDoc=1;
+  									// window.localStorage.ViewDoc=1;
                     $interval.cancel(checkMyCallStatus);
   									console.log(window.localStorage.networkType);
   									var uname = "greet+"+window.localStorage.user;
@@ -568,11 +568,11 @@ $scope.BalanceForVoiceCall=function()
   												$scope.enddate = new Date();
   												console.log(window.localStorage.user);
   												console.log($rootScope.accptdDoc);
-  												// console.log($localStorage.Doctocall);
+  												// console.log(window.localStorage.Doctocall);
 
-  												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,$localStorage.myCallId).then(function(response){
+  												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,window.localStorage.myCallId).then(function(response){
   													console.log('inserted to consultation',response);
-                            $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:$localStorage.myCallId}, {location: "replace", reload: false});
+                            $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:window.localStorage.myCallId}, {location: "replace", reload: false});
   					              }).catch(function(error){
   					              console.log('failure data', error);
   					              });
@@ -620,10 +620,10 @@ $scope.BalanceForVoiceCall=function()
       var callRequest={
         patient:window.localStorage.user,
         doctor:$rootScope.docNumToCall,
-        subPatient:$localStorage.selectedSubPatient
+        subPatient:window.localStorage.selectedSubPatient
         // callId:$rootScope.callId
       }
-      console.log($localStorage.selectedSubPatient);
+      console.log(window.localStorage.selectedSubPatient);
       doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
         $scope.patientWalletdetails=response;
         if($rootScope.patientWalletdetails === 'agent'){
@@ -648,9 +648,9 @@ $scope.BalanceForVoiceCall=function()
                 console.log('one2oneReq',response);
                 window.localStorage['one2oneReq'] = angular.toJson(response);
                 $rootScope.one2oneReq = angular.fromJson($window.localStorage['one2oneReq']);
-                $localStorage.myCallId = $rootScope.one2oneReq.reqId;
+                window.localStorage.myCallId = $rootScope.one2oneReq.reqId;
 
-                console.log($localStorage.myCallId);
+                console.log(window.localStorage.myCallId);
                 console.log($rootScope.one2oneReq.callStatus);
 
                 }).catch(function(error){
@@ -676,12 +676,12 @@ $scope.BalanceForVoiceCall=function()
 
               noResponsePopup.then(function(res){
                 console.log('delete request here');
-                searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
+                searchDoctorServices.cancelOne2oneReq(window.localStorage.myCallId).then(function(response){
                   $scope.alertPopup.close();
 
                 $scope.cancelledReq=response;
-                $localStorage.myCallId=0;
-                $localStorage.callStatus=0;
+                window.localStorage.myCallId=0;
+                window.localStorage.callStatus=0;
                 console.log($scope.cancelledReq);
                 }).catch(function(error){
                   console.log('failure data', error);
@@ -714,10 +714,10 @@ $scope.BalanceForVoiceCall=function()
                    console.log(window.localStorage.user);
                    $scope.callReqPopUp.close();
                     $state.go($state.current, {}, {reload: true});
-                    searchDoctorServices.cancelOne2oneReq($localStorage.myCallId).then(function(response){
+                    searchDoctorServices.cancelOne2oneReq(window.localStorage.myCallId).then(function(response){
                     $scope.cancelledReq=response;
-                    $localStorage.myCallId=0;
-                    $localStorage.callStatus=0;
+                    window.localStorage.myCallId=0;
+                    window.localStorage.callStatus=0;
                     console.log($scope.cancelledReq);
                     }).catch(function(error){
                       console.log('failure data', error);
@@ -808,21 +808,21 @@ $scope.BalanceForVoiceCall=function()
       $state.go("app.subPatientList");
     }
     $scope.editNewPatient=function () {
-     if($localStorage.newPatientVal == 0){
+     if(window.localStorage.newPatientVal == 0){
        console.log('select patient to edit');
      }
-     else if($localStorage.newPatientVal === window.localStorage.user || $localStorage.newPatientVal === 'new'){
+     else if(window.localStorage.newPatientVal === window.localStorage.user || window.localStorage.newPatientVal === 'new'){
        console.log('can not edit default patient');
      }
      else{
-       $state.go("app.editPatient",{id:$localStorage.newPatientVal});
+       $state.go("app.editPatient",{id:window.localStorage.newPatientVal});
 
      }
 
 
     }
     var subPatientToShow={
-      subPatId:$localStorage.selectedSubPatient,
+      subPatId:window.localStorage.selectedSubPatient,
       mainPatient:window.localStorage.user
     }
     medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(response){

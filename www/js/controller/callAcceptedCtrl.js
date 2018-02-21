@@ -65,7 +65,7 @@ $scope.callDoctor = function(callType)
 
 	$scope.startdate = new Date();
 	$scope.callid = $rootScope.callId;
-	// $localStorage.ViewDoc=1;
+	// window.localStorage.ViewDoc=1;
 
 	console.log(window.localStorage.networkType);
 	var uname = "greet+"+window.localStorage.user;
@@ -153,7 +153,7 @@ $scope.callDoctor = function(callType)
 				$scope.enddate = new Date();
 				console.log(window.localStorage.user);
 				console.log($rootScope.accptdDoc);
-				// console.log($localStorage.Doctocall);
+				// console.log(window.localStorage.Doctocall);
 				callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.accptdDoc,videocallflag,$scope.startdate,$scope.enddate,$scope.callId);
 
 				console.log($rootScope.reqId);
@@ -197,7 +197,7 @@ $scope.BalanceForVoiceCall = function()
 				var unametoaudiocall = "greet+"+window.localStorage.user;
 			 	var pwtoaudiocall = "DQ_patient";
 
-			 	var persontocallforaudio = "greet+" + $localStorage.Doctocall;
+			 	var persontocallforaudio = "greet+" + window.localStorage.Doctocall;
 			//  console.log(uname);
 			//  console.log(persontocallforaudio);
 				 var success = function(message)
@@ -206,8 +206,8 @@ $scope.BalanceForVoiceCall = function()
 						console.log(message);
 						$scope.enddate = new Date();
 							console.log(window.localStorage.user);
-							console.log($localStorage.Doctocall);
-							callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
+							console.log(window.localStorage.Doctocall);
+							callacceptedbydoctor.accpeteddoctor(window.localStorage.user,window.localStorage.Doctocall,audiocallflag,$scope.startdate,$scope.enddate,$scope.callid);
 							$ionicHistory.nextViewOptions({
  						 	disableAnimate: true,
  						 	disableBack: true
@@ -236,8 +236,8 @@ console.log(checkPatientActivity);
 	 doctorServices.patientActivity(checkPatientActivity).then(function(response){
 	 $scope.consultStatus=response;
 	 // console.log($scope.consultStatus);
-	 $localStorage.declinedByDoc = $scope.consultStatus[0][0];
-	 $scope.docDeclined=$localStorage.declinedByDoc;
+	 window.localStorage.declinedByDoc = $scope.consultStatus[0][0];
+	 $scope.docDeclined=window.localStorage.declinedByDoc;
 	//  console.log($scope.consultStatus);
 	 }).catch(function(error){
 	//  console.log('failure data', error);
@@ -275,7 +275,7 @@ console.log(checkPatientActivity);
 		 }
 		 console.log(calldecline);
 		 $interval.cancel(checkAcceptedReqDocStatus);
-		//  $localStorage.ViewDoc=0;
+		//  window.localStorage.ViewDoc=0;
 		 callAcceptedService.callDeclined(calldecline).then(function(response){
 			 $scope.declineStatus=response;
 			 console.log($scope.declineStatus);

@@ -6,8 +6,8 @@ DoctorQuickApp.controller('editPatientCtrl', function($state, $scope,$stateParam
   $rootScope.headerTxt="Edit Patient";
   $rootScope.hideSideMenu = true;
 
-  $localStorage.newPatientVal=0;
-  console.log($localStorage.newPatientVal);
+  window.localStorage.newPatientVal=0;
+  console.log(window.localStorage.newPatientVal);
   $rootScope.dateOfBirth='';
   var ipObj2 = {
       callback: function (val) {  //Mandatory

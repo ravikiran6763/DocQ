@@ -18,7 +18,7 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 
 var username = "greet+"+window.localStorage.user;
 // console.log('MY CONSULTATION CALLED');
-if($localStorage.doctororpatient == 'doctor'){
+if(window.localStorage.doctororpatient == 'doctor'){
 	var password = "DQ_doctor";
 
 }
@@ -32,7 +32,7 @@ $ionicLoading.show({
 			// duration:3000
 		});
 
-if($localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
+if(window.localStorage.doctororpatient === "patient"){ //to list out the consulted patient/doctors
 	$rootScope.ConsultedDoctor = angular.fromJson($window.localStorage['ConsultedDoctor']);
 
 	myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
@@ -82,14 +82,14 @@ else{
 }
 
 $rootScope.checkNewMessages = $interval(function(){
-	console.log('refreshing consultation list for new messages');
+	// console.log('refreshing consultation list for new messages');
 
 		var success = function(message)
 		{
 				// console.log(message.length);
 				if($scope.deviceAndroid)
 				{
-						if($localStorage.doctororpatient == 'patient')
+						if(window.localStorage.doctororpatient == 'patient')
 						{
 								//var password = "DQ_doctor";
 								$scope.chatlist1 = message;
@@ -165,7 +165,7 @@ $rootScope.checkNewMessages = $interval(function(){
 				// console.log('this is ios chat histroy');
 
 
-				if($localStorage.doctororpatient == 'patient')
+				if(window.localStorage.doctororpatient == 'patient')
 				{
 						// console.log('this is patient');
 
@@ -291,8 +291,8 @@ $scope.clicktochat = function(pateientPhone)
 
 		if($scope.deviceIOS === true){
 			console.log('iosPlatform');
-			$localStorage.sendPrescTo=pateientPhone;
-			console.log('tosend prescription',$localStorage.sendPrescTo);
+			window.localStorage.sendPrescTo=pateientPhone;
+			console.log('tosend prescription',window.localStorage.sendPrescTo);
 		}
 
 		$scope.patientToChat=pateientPhone;

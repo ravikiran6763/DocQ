@@ -170,7 +170,7 @@ function keyboardShowHandler(e){
 
 })
 
-DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
+DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicConfig, $ionicPlatform,$interval,$localStorage,$ionicLoading, $cordovaDevice, $timeout,$injector,$ionicHistory, $cordovaKeyboard, $cordovaNetwork, $ionicPopup) {
   $ionicPlatform.on("deviceready", function(){
 
           var deviceID = device.uuid;
@@ -190,9 +190,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
               });
           }
           else {
-          console.log("localStorage previous value",$localStorage.sendPrescTo);
-          $localStorage.sendPrescTo = "";
-          console.log("localStorage after value",$localStorage.sendPrescTo);
+          console.log("localStorage previous value",window.localStorage.sendPrescTo);
+          window.localStorage.sendPrescTo = "";
+          console.log("localStorage after value",window.localStorage.sendPrescTo);
           }
           //
           if(window.StatusBar){
@@ -263,7 +263,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           .endInit();
 
           console.log('deviceredy');
-          console.log($localStorage.doctororpatient);
+          console.log(window.localStorage.doctororpatient);
 
           $rootScope.deviceAndroid = ionic.Platform.isAndroid();
           $rootScope.deviceIOS = ionic.Platform.isIOS();
@@ -272,12 +272,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           console.log("iosDevice:",$rootScope.deviceIOS);
           }
 
-          console.log('iospatientValue:',$localStorage.sendPrescTo);
+          console.log('iospatientValue:',window.localStorage.sendPrescTo);
 
-          if($localStorage.doctororpatient === "doctor" ){
+          if(window.localStorage.doctororpatient === "doctor" ){
 
           if($rootScope.pat_phnofromwebview){
-          // $localStorage.onOff=2;
+          // window.localStorage.onOff=2;
           $ionicLoading.show({
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
           duration:5000
@@ -288,10 +288,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           }
 
           if($rootScope.deviceIOS === true){
-          if($localStorage.sendPrescTo != ''){
+          if(window.localStorage.sendPrescTo != ''){
           console.log("iosDevice:");
-          console.log("iospatient:",$localStorage.sendPrescTo);
-          $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+          console.log("iospatient:",window.localStorage.sendPrescTo);
+          $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
           return '/templates/sendPrescription';
           }
           }
@@ -305,7 +305,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           $timeout( function() {
           // $state.go('templates.loadingDoctor');
           if($rootScope.pat_phnofromwebview){
-          // $localStorage.onOff=2;
+          // window.localStorage.onOff=2;
           $ionicLoading.show({
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
           duration:5000
@@ -316,10 +316,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
           }
 
           if($rootScope.deviceIOS === true){
-          if($localStorage.sendPrescTo != ''){
+          if(window.localStorage.sendPrescTo != ''){
           console.log("iosDevice:");
-          console.log("iospatient:",$localStorage.sendPrescTo);
-          $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+          console.log("iospatient:",window.localStorage.sendPrescTo);
+          $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
           return '/templates/sendPrescription';
           }
           }
@@ -347,8 +347,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform, $rootScope, $ionicConfig, $io
   console.log(AppVersion.version); // e.g. "1.2.3"
   console.log(AppVersion.build); // e.g. 1234
 
-  $localStorage.AppVersion=AppVersion.build;
-  console.log($localStorage.AppVersion);
+  window.localStorage.AppVersion=AppVersion.build;
+  console.log(window.localStorage.AppVersion);
 
 // cordova.plugins.market.open('com.greettech.DoctorQuick');
 // cordova.plugins.market.search('version');
@@ -715,8 +715,8 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                                 type: 'button-royal',
                                 onTap: function(e) {
                                 console.log('ok');
-                                 console.log($localStorage.doctororpatient);
-                                 if($localStorage.doctororpatient === "patient"){
+                                 console.log(window.localStorage.doctororpatient);
+                                 if(window.localStorage.doctororpatient === "patient"){
                                    $injector.get("$state").go("app.patient_home");
                                  }
                                  else{
@@ -1296,18 +1296,20 @@ $stateProvider
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/auth/loginNew');
 
-$urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootScope) {
+$urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,$rootScope) {
 
   var $state = $injector.get('$state');
   var Storage = $injector.get('$localStorage');
   var rootScope = $injector.get('$rootScope');
 
-  console.log(Storage.doctororpatient);
-  if(Storage.doctororpatient === 'doctor'){
+  console.log(window.localStorage.doctororpatient);
+  console.log(window.localStorage.doctororpatient);
+
+  if(window.localStorage.doctororpatient === 'doctor'){
     Storage.showConnecting = true;
-    console.log(Storage.sendPrescTo);
-      var userType=Storage.doctororpatient;
-      var userNum=Storage.user;
+    console.log(window.localStorage.sendPrescTo);
+      var userType=window.localStorage.doctororpatient;
+      var userNum=window.localStorage.user;
       console.log(userType);
 
       var get = getUrlVars();
@@ -1330,7 +1332,7 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
 
     }
     if(rootScope.pat_phnofromwebview){
-      if($localStorage.doctororpatient === "doctor" ){
+      if(window.localStorage.doctororpatient === "doctor" ){
 
           if(rootScope.pat_phnofromwebview){
             console.log('Route to prescription view :)');
@@ -1345,10 +1347,10 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
           }
           //
           // if($rootScope.deviceIOS === true){
-          //   if($localStorage.sendPrescTo != ''){
+          //   if(window.localStorage.sendPrescTo != ''){
           //     console.log("iosDevice:");
-          //     console.log("iospatient:",$localStorage.sendPrescTo);
-          //     $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+          //     console.log("iospatient:",window.localStorage.sendPrescTo);
+          //     $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
           //     return '/templates/sendPrescription';
           //   }
           // }
@@ -1363,7 +1365,7 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
 
     }
   }
-  else if(Storage.doctororpatient === 'patient'){
+  else if(window.localStorage.doctororpatient === 'patient'){
     Storage.showConnecting = true;
     return '/app/patientScreens';
   }
@@ -1404,11 +1406,11 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
   //
   //     }
   //     if(rootScope.pat_phnofromwebview){
-  //       if($localStorage.doctororpatient === "doctor" ){
+  //       if(window.localStorage.doctororpatient === "doctor" ){
   //
   //   	      if($rootScope.pat_phnofromwebview){
   //   					console.log('Route to prescription view :)');
-  //   	          $localStorage.onOff=2;
+  //   	          window.localStorage.onOff=2;
   //   	          $ionicLoading.show({
   //   	          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
   //   	          duration:5000
@@ -1419,10 +1421,10 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$location,$rootSco
   //   	      }
   //           //
   //   	      // if($rootScope.deviceIOS === true){
-  //   	      //   if($localStorage.sendPrescTo != ''){
+  //   	      //   if(window.localStorage.sendPrescTo != ''){
   //   	      //     console.log("iosDevice:");
-  //   	      //     console.log("iospatient:",$localStorage.sendPrescTo);
-  //   	      //     $state.go('templates.sendPrescription',{"reqPat": $localStorage.sendPrescTo},{location: "replace", reload: false});
+  //   	      //     console.log("iospatient:",window.localStorage.sendPrescTo);
+  //   	      //     $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
   //   	      //     return '/templates/sendPrescription';
   //   	      //   }
   //   	      // }
