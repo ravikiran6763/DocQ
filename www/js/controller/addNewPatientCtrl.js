@@ -80,7 +80,7 @@ $rootScope.loginDatasubmitted=false;
     $ionicLoading.show({
       template:'<ion-spinner><ion-spinner>'
     })
-    $rootScope.loginDatasubmitted=true;
+
     // alert('add new patient');
     $rootScope.addedPatient=$rootScope.newPatient.fname+" "+$rootScope.newPatient.lname;
     $rootScope.newPatient.dob=$rootScope.dateOfBirth;
@@ -96,12 +96,11 @@ $rootScope.loginDatasubmitted=false;
 
       medicalSpecialityService.savePatient(patientAdded).then(function(response){
          console.log('saved', response);
-
-
          if(response){
            $ionicLoading.hide();
            $rootScope.loginDatasubmitted=false;
            $rootScope.newPatient.dob='';
+           patientAdded={};
            // $state.go("app.subPatientList");
            window.plugins.toast.showWithOptions({
              message: "New patient added",
@@ -128,7 +127,13 @@ $rootScope.loginDatasubmitted=false;
     }
     else{
       $ionicLoading.hide();
-      if(!$rootScope.newPatient.dob){
+      if(!$rootScope.newPatient.fname ){
+          $rootScope.loginDatasubmitted=true;
+      }
+      else if(!$rootScope.newPatient.lname){
+          $rootScope.loginDatasubmitted=true;
+      }
+      else if(!$rootScope.newPatient.dob){
           $ionicLoading.hide();
           window.plugins.toast.showWithOptions({
           message: "Please fill DOB",
@@ -145,7 +150,7 @@ $rootScope.loginDatasubmitted=false;
           }
           });
       }
-      if(!$rootScope.newPatient.sex){
+      else if(!$rootScope.newPatient.sex){
         $ionicLoading.hide();
         window.plugins.toast.showWithOptions({
           message: "Please select Gender",
@@ -161,6 +166,9 @@ $rootScope.loginDatasubmitted=false;
           verticalPadding: 12 // iOS default 12, Android default 30
           }
         });
+      }
+      else{
+        // #donothing
       }
       console.log("nodata");
     }

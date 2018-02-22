@@ -35,7 +35,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 					$state.go('app.searchDoctors');
 
 			}
-		
+
 
 			$timeout( function(){
 	        console.log('interval started');
@@ -174,7 +174,6 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 				myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
 					console.log(response);
-
 				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
 				}).catch(function(error){
 				// console.log('failure data', error);

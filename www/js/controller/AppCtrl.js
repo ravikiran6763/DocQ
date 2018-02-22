@@ -144,73 +144,75 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 						$state.go('app.patient_home');
 					}
 				}
-
-
-				if($scope.prevPage === 'app.patient_summary'){
-						// alert('summary page')
-						$state.go('app.patient_home');
-						$ionicHistory.clearHistory();
-				}
-				else if($scope.prevPage === 'templates.prescription'){
-						$state.go('templates.doctor_home');
-						$ionicHistory.clearHistory();
-				}
-				else if($scope.prevPage === 'templates.requestAccepted'){
-						$state.go('templates.doctor_home');
-						$ionicHistory.clearHistory();
-				}
-				else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
-						// $state.go('templates.doctor_home');
-						console.log('donothing');
-				}
-				else if($scope.prevPage === 'app.specialityDetailsNew'){
-						window.history.back();
-				}
-				else if($scope.prevPage === 'app.searchDoctors'){
-							console.log('clear search values here');
-							$rootScope.specialdata=null;
-							$rootScope.genderdata= null;
-							$rootScope.statusdata=null;
-							$rootScope.languagedataselected=null;
-
-							$rootScope.specialityList.sex = "";
-							$rootScope.specialityList.search = "";
-							$rootScope.specialityList.stat = "";
-							$rootScope.specialityList.language = "";
-
-							var specialitywise = "";
-							var catwise = "";
-							var genderwise = "";
-							var languagewise = "";
-
-							console.log($rootScope.specialdata);
-							window.history.back();
-
-				}
-				else if($scope.prevPage === 'templates.prescription'){
-						$state.go('templates.doctor_home');
-						$ionicHistory.clearHistory();
-				}
-				else if($scope.prevPage === 'app.callAccepted'){
-						// alert('decline call here');
-						// ion.sound.play("bell_ring");
-				}
-
-				else if($scope.prevPage === 'app.changeEmail_patient'){
-						// $state.go('templates.doctor_home');
-						// $ionicHistory.clearHistory();
-						window.history.go(-1);
-				}
 				else{
-							window.history.go(-1);
-							// window.history.back(-1);
-							// $scope.backView = $ionicHistory.backView();
-							//        $scope.backView.go();
-							// $ionicHistory.goBack();
-							// $ionicHistory.goBack(-1);
-							console.log(window.history.length);
-							// window.history.go(-(history.length - 1));
+
+									if($scope.prevPage === 'app.patient_summary'){
+											// alert('summary page')
+											$state.go('app.patient_home');
+											$ionicHistory.clearHistory();
+									}
+									else if($scope.prevPage === 'templates.prescription'){
+											$state.go('templates.doctor_home');
+											$ionicHistory.clearHistory();
+									}
+									else if($scope.prevPage === 'templates.requestAccepted'){
+											$state.go('templates.doctor_home');
+											$ionicHistory.clearHistory();
+									}
+									else if($scope.prevPage === 'app.patient_home' || $scope.prevPage === 'templates.doctor_home'){
+											// $state.go('templates.doctor_home');
+											console.log('donothing');
+									}
+									else if($scope.prevPage === 'app.specialityDetailsNew'){
+											window.history.back();
+									}
+									else if($scope.prevPage === 'app.searchDoctors'){
+												console.log('clear search values here');
+												$rootScope.specialdata=null;
+												$rootScope.genderdata= null;
+												$rootScope.statusdata=null;
+												$rootScope.languagedataselected=null;
+
+												$rootScope.specialityList.sex = "";
+												$rootScope.specialityList.search = "";
+												$rootScope.specialityList.stat = "";
+												$rootScope.specialityList.language = "";
+
+												var specialitywise = "";
+												var catwise = "";
+												var genderwise = "";
+												var languagewise = "";
+
+												console.log($rootScope.specialdata);
+												window.history.back();
+
+									}
+									else if($scope.prevPage === 'templates.prescription'){
+											$state.go('templates.doctor_home');
+											$ionicHistory.clearHistory();
+									}
+									else if($scope.prevPage === 'app.callAccepted'){
+											// alert('decline call here');
+											// ion.sound.play("bell_ring");
+									}
+
+									else if($scope.prevPage === 'app.changeEmail_patient'){
+											// $state.go('templates.doctor_home');
+											// $ionicHistory.clearHistory();
+											window.history.go(-1);
+									}
+									else{
+												window.history.go(-1);
+												// window.history.back(-1);
+												// $scope.backView = $ionicHistory.backView();
+												//        $scope.backView.go();
+												// $ionicHistory.goBack();
+												// $ionicHistory.goBack(-1);
+												console.log(window.history.length);
+												// window.history.go(-(history.length - 1));
+									}
 				}
+
 	}
 
 
