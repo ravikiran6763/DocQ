@@ -92,6 +92,8 @@ DoctorQuickApp.constant('BASE_URL', {
 
         'verifyemail':'verifyemail/verifyemail.php',
         'checkDocStatusOnTheGo':'patient/checkDocStatusOnTheGo.php',
+        'removeFavDoctor':'patient/removeFavDoctor.php',
+
 
         /*AGENT*/
         'agentDetails':'dqagent/dqAgentLogin.php',

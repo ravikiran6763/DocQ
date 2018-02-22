@@ -19,15 +19,14 @@ console.log($scope.defaultPatient);
     $rootScope.editPatient=sub;
     console.log($rootScope.editPatient);
     console.log($rootScope.editPatient.newPatientDOB);
-
-
-    $ionicHistory.nextViewOptions({
-        disableBack: true,
-        disableAnimate: true,
-        historyRoot: true
-    });
+    //
+    //
+    // $ionicHistory.nextViewOptions({
+    //     disableBack: true,
+    //     disableAnimate: true,
+    //     historyRoot: true
+    // });
     $state.go("app.editPatient");
-    // $state.go("app.editPatient",{id:sub.id,fname:sub.newPatientFname,lname:sub.newPatientLname,dob:sub.newPatientDOB,sex:sub.newPatientSex});
 
   }
 
@@ -101,6 +100,8 @@ $rootScope.loginDatasubmitted=false;
            $rootScope.loginDatasubmitted=false;
            $rootScope.newPatient.dob='';
            patientAdded={};
+           $state.reload();
+
            // $state.go("app.subPatientList");
            window.plugins.toast.showWithOptions({
              message: "New patient added",

@@ -75,6 +75,22 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
   console.log('failure data', error);
   });
 
+$scope.delItem=function(removeFav){
+	console.log(removeFav);
+	var docToRemove={
+		docPhone:removeFav,
+		patientPhone:window.localStorage.user
+	}
+	console.log(docToRemove);
+	doctorServices.removeFavDoctor(docToRemove).then(function(response){
+		console.log(response);
+		if(response === 'deleted'){
+			$state.reload();
+		}
+	}).catch(function(error){
+	console.log('failure data', error);
+	});
+}
 
 	$scope.viewDocProfile=function(docPhone,rates,total){
 		$ionicLoading.show({
@@ -98,6 +114,8 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
 		}).catch(function(error){
 		console.log('failure data', error);
 		});
+
+
 		// $state.go('app.viewdoctor_profile');
 
 
