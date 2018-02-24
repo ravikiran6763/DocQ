@@ -8,17 +8,17 @@ var config =  function() {
 
     // Source Path
     var src = {
-        root   : 'app',
-        css    : 'app/css',
-        scss   : 'app/scss',
-        components     : 'www/js',
-        globalServices: 'app/services',
-        images : 'app/images',
-        fonts  : 'app/fonts',
+        root   : 'www',
+        css    : 'www/css',
+        scss   : './scss',
+        components : 'www/js',
+        globalServices: 'www/services',
+        images : 'www/images',
+        fonts  : 'www/fonts',
         bower  : './bower_components',
         zip    : './zip',
-        libs   : 'app/libs',
-        locale : 'app/locale'
+        libs   : 'www/libs',
+        locale : 'www/locale'
     };
 
     // Build Path
