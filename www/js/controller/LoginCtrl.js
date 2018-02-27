@@ -71,9 +71,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 		console.log($rootScope.loginDatasubmitted);
 				$rootScope.loginDatasubmitted=true;
 				window.localStorage.showConnecting=false;
-
 				window.localStorage.showConnecting = false;
-
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
@@ -105,19 +103,19 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 					{
 
 						window.localStorage.doctororpatient = response;
-						// window.plugins.OneSignal.getIds(function(ids) {
-						// 	$scope.playerId=JSON.stringify(ids['userId']);
-						// 	// console.log($scope.playerId);
-						// 	var updatePlayer ={
-						// 		palyerId:$scope.playerId,
-						// 		userNum:window.localStorage.user,
-						// 		user:'patient'
-						// 	}
-						// 	console.log(updatePlayer);
-						// 	LoginService.updatePlayer(updatePlayer).then(function(response){
-						// 		console.log(response);
-						// 	})
-						// });
+						window.plugins.OneSignal.getIds(function(ids) {
+							$scope.playerId=JSON.stringify(ids['userId']);
+							// console.log($scope.playerId);
+							var updatePlayer ={
+								palyerId:$scope.playerId,
+								userNum:window.localStorage.user,
+								user:'patient'
+							}
+							console.log(updatePlayer);
+							LoginService.updatePlayer(updatePlayer).then(function(response){
+								console.log(response);
+							})
+						});
 
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
@@ -144,16 +142,17 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
             //
 						// ///////////get all specialities///////////
-						doctorServices.myDoctorsFetched($scope.loginData.phone).then(function(response){
-							// alert('list');
-					    $scope.myConsultedDoctors=response;
-							window.localStorage['myDoctors'] = angular.toJson(response);
 
-					  }).catch(function(error){
-					  console.log('failure data', error);
-					  });
-            //
-            //
+
+						// doctorServices.myDoctorsFetched($scope.loginData.phone).then(function(response){
+						// 	// alert('list');
+					  //   $scope.myConsultedDoctors=response;
+						// 	window.localStorage['myDoctors'] = angular.toJson(response);
+						//
+					  // }).catch(function(error){
+					  // console.log('failure data', error);
+					  // });
+						//
 
 
 						var uname1 = "greet+"+$scope.loginData.phone;
@@ -203,8 +202,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 								alert("Error calling Hello Plugin");
 
 							}
-							$state.go('app.patient_home');//for browser login
-							// hello.login(uname1,pw1,success, failure);
+							// $state.go('app.patient_home');//for browser login
+							hello.login(uname1,pw1,success, failure);
 
 
 							var username = "greet+"+window.localStorage.user;
@@ -368,9 +367,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 													}
 												// $state.go('templates.doctor_home');//for logging in from browser
 												hello.login(uname1,pw1,success, failure);
-
-
-
 
 												var username = "greet+"+window.localStorage.user;
 						            var password = "DQ_doctor";

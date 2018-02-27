@@ -1,3 +1,4 @@
+
 DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval,$window, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
 
 			$rootScope.headerTxt="DoctorQuick";
@@ -78,6 +79,8 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				console.log('login check');
 							var uname1 = "greet+"+window.localStorage.user;
 							var pw1 = "DQ_patient";
+
+							console.log(uname1);
 							var success = function(message)
 							{
 							console.log(message);
@@ -172,12 +175,12 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				console.log('failure data', error);
 				})
 
-				myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
-					console.log(response);
-				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
-				}).catch(function(error){
-				// console.log('failure data', error);
-				});
+				// myConsultationService.myConsultedDoctors(window.localStorage.user).then(function(response){
+				// 	console.log(response);
+				// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+				// }).catch(function(error){
+				// // console.log('failure data', error);
+				// });
 
 				myConsultationService.firstConsultation(window.localStorage.user).then(function(response){
 					console.log(response);
@@ -186,8 +189,9 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				}
 				else{
 					$rootScope.firstConsultationDone = true;
+					// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
 				}
-				window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+
 				}).catch(function(error){
 				// console.log('failure data', error);
 				});

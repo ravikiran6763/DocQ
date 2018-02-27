@@ -1,12 +1,12 @@
 <ion-view class="consultationList-view" cache-view="false" >
 
   <ion-content >
-      <div class="myDoctor-list"  >
+      <div class="myDoctor-list" ng-repeat="r in ConsultedDoctor" >
         <ul>
-        <li ng-repeat="r in ConsultedDoctor" ng-click="consultationDetails({{r.doctorPhone}});">
+        <li  ng-click="consultationDetails({{r.doctorPhone}});">
           <div class="profile-img">
             <img  ng-hide="r.docImage2 == null "ng-src="{{r.docImage2}}"   >
-            <img  ng-show="r.docImage2 == null " ng-src="img/doc.jpg" >
+            <!-- <img  ng-show="r.docImage2 == null " ng-src="img/doc.jpg" > -->
 
             <p class="chatCount"> {{r.unreadCount}} </p>
           </div>

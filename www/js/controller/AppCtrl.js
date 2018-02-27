@@ -345,11 +345,27 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 		$rootScope.languagedataselected =  searchbyspecialities.getlanguageData();
 		console.log($scope.languagedataselected);
 	}
+	$scope.items=[];
+	$scope.moredata = false;
+
+	$scope.loadMore=function()
+  {
+		console.log($rootScope.doclist.length);
+      $scope.items.push({id: $rootScope.doclist.length});
+			console.log($scope.items);
+
+      if($scope.items.length==10)
+      {
+          $scope.moredata=true;
+      }
+    $scope.$broadcast('scroll.infiniteScrollComplete');
+  };
+
 
 	$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
 	{
 
-					$scope.doclist = {};
+					$rootScope.doclist = {};
 					$ionicLoading.show({
 						template:'<ion-spinner><ion-spinner>'
 					});
@@ -398,15 +414,15 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 								{
 												console.log(response);
 												window.localStorage['doclist'] = angular.toJson(response);
-												$scope.doclist = angular.fromJson($window.localStorage['doclist']);
+												$rootScope.doclist = angular.fromJson($window.localStorage['doclist']);
 
 
 												$state.go('app.doctorsearch');
 
-												// $scope.doclist = response;
+												// $rootScope.doclist = response;
 												$ionicLoading.hide();
 
-												var data=$scope.doclist;//take all json data into this variable
+												var data=$rootScope.doclist;//take all json data into this variable
 												for(var i=0; i<data.length; i++){
 
 												$rootScope.rate=data[i].ratings,
@@ -469,7 +485,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 
 								}
 								else {
-										$scope.doclist = response;
+										$rootScope.doclist = response;
 										console.log(response);
 										$state.go('app.doctorsearch');
 										$rootScope.doclist = "no doctors found";

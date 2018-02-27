@@ -82,6 +82,7 @@
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="SplashShowOnlyFirstTime" value="true" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="android-windowSoftInputMode" value="stateVisible" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
@@ -364,7 +365,7 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-calendar" spec="^5.0.0" />
     <plugin name="cordova-plugin-datepicker" spec="https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git" />
-    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
     <plugin name="cordova-plugin-appversion" spec="^1.0.0" />
+    <plugin name="com.example.hello" spec="../VSEE/VseePlugin" />
     <engine name="android" spec="^6.3.0" />
 </widget>

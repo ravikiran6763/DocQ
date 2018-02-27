@@ -115,10 +115,10 @@
         "CAMERA_USAGE_DESCRIPTION": " ",
         "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
       },
-      "com.example.hello": {},
       "cordova-plugin-calendar": {},
       "cordova-plugin-datepicker": {},
-      "cordova-plugin-appversion": {}
+      "cordova-plugin-appversion": {},
+      "com.example.hello": {}
     },
     "platforms": [
       "android"

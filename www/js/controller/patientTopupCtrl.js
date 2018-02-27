@@ -73,7 +73,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 										 console.log($rootScope.patientWalletUpdate);
 										 if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
 
-											 console.log('TransactionSuccessful');
+											 // console.log('TransactionSuccessful');
 											 var confirmPopup = $ionicPopup.confirm({
 							 					// title: 'DoctorQuick',
 							 					template: '<center>Successfully added the amount to you DoctorQuick Deposit</center>',
@@ -87,7 +87,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 							 							onTap: function(e) {
 							 							console.log('offline');
 							 							// $state.go("templates.doctor_home");
-														$window.location.reload(true);
+														// $window.location.reload(true);
+														$state.reload();
 
 							 							}
 							 						},

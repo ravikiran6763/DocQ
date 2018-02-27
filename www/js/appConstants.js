@@ -131,7 +131,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'fetchChatHistory':'doctor/fetchChatHistory.php',
         'callStatus':'doctor/callStatus.php',
         'pushReqStatus':'doctor/pushReqStatus.php',
-
+        'doctorQuery'  :'doctor/doctorQuery.php',
         'testjpegimage' :'prescription/responseasimages.php',
         'fetchAllDoctors':'DQ/fetchDoctors.php',
         'sidemenulist':'DQ/sidemenulist.php',

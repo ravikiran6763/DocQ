@@ -15,7 +15,7 @@ DoctorQuickApp.controller('contactsCtrl', function($scope,$filter,$rootScope, $c
 
     $rootScope.contact = {};
     $scope.phoneContacts = [];
-    $rootScope.contact1 = {};
+    $rootScope.contact1 = [];
 
     $rootScope.uniquename = {};
     // $rootScope.con = {};

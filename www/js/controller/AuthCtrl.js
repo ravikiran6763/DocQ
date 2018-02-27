@@ -80,15 +80,15 @@ console.log(window.localStorage.doctororpatient);
   {
       $state.go('auth.patient_reg2');
   }
-  $scope.otp = "";
+  $rootScope.otp = "";
   $scope.goToNextView = function ()
   {
 
       $scope.phoneno = $rootScope.PatientDetail.patient_mob;
         patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
         {
-            $scope.otp=response;
-          console.log($scope.otp);
+            $rootScope.otp=response;
+          console.log($rootScope.otp);
           })
           .catch(function(error)
           {
@@ -98,7 +98,10 @@ console.log(window.localStorage.doctororpatient);
       $state.go('auth.patient_reg3');
   }
 
-
+  $scope.backView = function()
+  {
+    window.history.go(-1);
+  }
   $scope.resendOtp = function()
   {
     $ionicLoading.show({
@@ -106,9 +109,10 @@ console.log(window.localStorage.doctororpatient);
     });
     patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
     {
-      $scope.otpentered = {};
-        $scope.otp=response;
-        if($scope.otp){
+      $rootScope.otpentered = {};
+        $rootScope.otp=response;
+        console.log($rootScope.otp);
+        if($rootScope.otp){
           $ionicLoading.hide();
           window.plugins.toast.showWithOptions({
           message: "OTP has been sent to your mobile number",
@@ -132,7 +136,7 @@ console.log(window.localStorage.doctororpatient);
       });
   }
 
-    $scope.otpentered = {};
+    $rootScope.otpentered = {};
 
 
 $scope.patientRegistration = function()
@@ -141,29 +145,27 @@ $scope.patientRegistration = function()
     template:'<ion-spinner></ion-spinner><br><br><br>Logging into DoctorQuick'
   });
         console.log('reg clicked');
-
-        if($scope.otpentered.OTP1 === undefined && $scope.otpentered.OTP2 === undefined && $scope.otpentered.OTP3 === undefined && $scope.otpentered.OTP4 === undefined)
+        console.log($rootScope.otp);
+        if($rootScope.otpentered.OTP1 === undefined && $rootScope.otpentered.OTP2 === undefined && $rootScope.otpentered.OTP3 === undefined && $rootScope.otpentered.OTP4 === undefined)
         {
-          $ionicLoading.hide();
-          window.plugins.toast.showWithOptions({
-          message: "Valid OTP must be entered",
-          duration: "short", // 2000 ms
-          position: "bottom",
-          styling: {
-          opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-          backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-          textColor: '#ffffff', // Ditto. Default #FFFFFF
-          textSize: 13, // Default is approx. 13.
-          cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-          horizontalPadding: 16, // iOS default 16, Android default 50
-          verticalPadding: 12 // iOS default 12, Android default 30
-          }
-          });
-          $timeout(function() {
-             $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-          }, 3000);
+            $ionicLoading.hide();
+            window.plugins.toast.showWithOptions({
+                message: "Valid OTP must be entered",
+                duration: "short", // 2000 ms
+                position: "bottom",
+                styling: {
+                opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+                backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+                textColor: '#ffffff', // Ditto. Default #FFFFFF
+                textSize: 13, // Default is approx. 13.
+                cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+                horizontalPadding: 16, // iOS default 16, Android default 50
+                verticalPadding: 12 // iOS default 12, Android default 30
+                }
+            });
+
         }
-        else if($scope.otpentered.OTP1 === $scope.otp[0] && $scope.otpentered.OTP2 ===  $scope.otp[1] && $scope.otpentered.OTP3 === $scope.otp[2] && $scope.otpentered.OTP4 === $scope.otp[3])
+        else if($rootScope.otpentered.OTP1 === $rootScope.otp[0] && $rootScope.otpentered.OTP2 ===  $rootScope.otp[1] && $rootScope.otpentered.OTP3 === $rootScope.otp[2] && $rootScope.otpentered.OTP4 === $rootScope.otp[3])
         {
 
               patientDetails=
@@ -185,6 +187,7 @@ $scope.patientRegistration = function()
                   'phone': $rootScope.PatientDetail.patient_mob,
                   'password': $rootScope.PatientDetail.pat_password
                 };
+                console.log(loginData);
                 window.localStorage.user=$rootScope.PatientDetail.patient_mob;
                 window.localStorage.pass=$rootScope.PatientDetail.pat_password;
                 window.localStorage.doctororpatient='patient'
@@ -432,59 +435,29 @@ $scope.patientRegistration = function()
     }
 
     $rootScope.validInput=true;
-    $scope.validateUser1=function(isForm1Valid){
+  $scope.validateUser1=function(isForm1Valid){
 
     console.log('clicked');
     $rootScope.validInput=false;
     $scope.submitted2ndPage = true;
     // console.log($rootScope.PatientDetail.patient_mob);
-    $scope.otpentered = {};
+    $rootScope.otpentered = {};
     if(!$rootScope.PatientDetail.patient_mob){
       // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedMob = true;
       console.log($rootScope.PatientDetail.patient_mob);
 
-      // $scope.myPopup = $ionicPopup.show({
-      //   // title: 'Invalid Credentials',
-      //
-      //   template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Mobile Number</p></div><div class="errorContent"><center><p>Please Enter a valid mobile number</center> </p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-      //   cssClass: 'loginPopup',
-      //   scope: $scope,
-      // });
-      // $scope.closethis = function()
-      // {
-      // $scope.myPopup.close();
-      // };
     }
     else if(!$rootScope.PatientDetail.gender){
-      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
-
       $scope.submittedSex = true;
-      // $scope.myPopup = $ionicPopup.show({
-      //   // title: 'Invalid Credentials',
-      //
-      //   template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Invalid Mobile Number</p></div><div class="errorContent"><p>Please select gender</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-      //   cssClass: 'loginPopup',
-      //   scope: $scope,
-      // });
-      // $scope.closethis = function()
-      // {
-      // $scope.myPopup.close();
-      // };
+
     }
     else if(!$rootScope.PatientDetail.pat_email){
-      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedMail = true;
-      // $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
-      // // success
-      // }, function (error) {
-      // // error
-      // });
+
     }
     else if(!$rootScope.PatientDetail.pat_password){
-      // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       $scope.submittedPwd = true;
-
       window.plugins.toast.showWithOptions({
         message: "Valid 4 digit password must be entered",
         duration: "short", // 2000 ms
@@ -506,8 +479,12 @@ $scope.patientRegistration = function()
     }
 
     if(isForm1Valid) {
+      $ionicLoading.show({
+        template:'<ion-spinner></ion-spinner>'
+      })
       // console.log($rootScope.PatientDetail.pat_password.length());
-      if($scope.firstNum < 7){
+      if($scope.firstNum < 6){
+        $ionicLoading.hide();
         console.log($scope.firstNum);
         window.plugins.toast.showWithOptions({
         message: "Enter a Valid 10 digit phone number",
@@ -536,40 +513,46 @@ $scope.patientRegistration = function()
           {
             $scope.patientExist=response;
             console.log($scope.patientExist);
-            if($scope.patientExist === 'patient'){
-              $scope.myPopup=$ionicPopup.show({
-                // title: '',
-                template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+                if($scope.patientExist === 'patient'){
+                  $ionicLoading.hide();
+                    $scope.myPopup=$ionicPopup.show({
+                      // title: '',
+                      template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
 
-                cssClass: 'loginPopup',
-                scope: $scope,
-                          });
-              $scope.closethis = function()
-              {
-              $scope.myPopup.close();
-              $window.localStorage.clear();
-              // $state.go('auth.loginNew');
+                      cssClass: 'loginPopup',
+                      scope: $scope,
+                                });
+                    $scope.closethis = function()
+                    {
+                    $scope.myPopup.close();
+                    $window.localStorage.clear();
+                    // $state.go('auth.loginNew');
 
-              };
-            }
-              else{
-                $scope.phoneno = $rootScope.PatientDetail.patient_mob;
-                $rootScope.imageData=$base64.encode('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSHkDSrh4dvgrpmNFkYQOOmumy9dIBRAuKZmuuAm4V-DNeti04O');
-                // console.log($rootScope.imageData);
-                patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
-                {
-                  $scope.otp=response;
-                  console.log($scope.otp);
-                }).catch(function(error)
-                {
-                  console.log('failure data', error);
-                });
-                $ionicHistory.nextViewOptions({
-                disableAnimate: true,
-                disableBack: true
-                });
-                $state.go('auth.patient_reg3');
-              }
+                  };
+                }
+                else{
+                      $scope.phoneno = $rootScope.PatientDetail.patient_mob;
+
+                      patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
+                      {
+                            $rootScope.otp=response;
+                            console.log($rootScope.otp);
+                            if($rootScope.otp){
+                            $ionicLoading.hide();
+                            $ionicHistory.nextViewOptions({
+                            disableAnimate: true,
+                            disableBack: true,
+                            historyRoot: true
+
+                            });
+                            $state.go('auth.patient_reg3');
+                            }
+                      }).catch(function(error)
+                      {
+                        console.log('failure data', error);
+                      });
+
+                }
           })
           .catch(function(error)
           {
@@ -630,101 +613,135 @@ $scope.patientRegistration = function()
       console.log('enter mail');
       $scope.submittedMail = true;
       console.log($scope.Doctor.doc_email);
-      $cordovaToast.showLongCenter('Valid email must be entered', 'short', 'center').then(function(success){
-      // success
-      }, function (error) {
-      // error
-      });
+
+      // window.plugins.toast.showWithOptions({
+      // message: "Valid email must be entered",
+      // duration: "short", // 2000 ms
+      // position: "bottom",
+      // styling: {
+      // opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+      // backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+      // textColor: '#ffffff', // Ditto. Default #FFFFFF
+      // textSize: 13, // Default is approx. 13.
+      // cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+      // horizontalPadding: 16, // iOS default 16, Android default 50
+      // verticalPadding: 12 // iOS default 12, Android default 30
+      // }
+      // });
+
     }
     else if(!$scope.Doctor.doc_phone){
       // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
       console.log('enter mail');
       $scope.submittedMob = true;
       console.log($scope.Doctor.doc_phone);
-      $cordovaToast.showLongCenter('Valid phone number must be entered', 'short', 'center').then(function(success){
-      // success
-      }, function (error) {
-      // error
-      });
+
+      // window.plugins.toast.showWithOptions({
+      //     message: "Valid phone number must be entered",
+      //     duration: "short", // 2000 ms
+      //     position: "bottom",
+      //     styling: {
+      //     opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+      //     backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+      //     textColor: '#ffffff', // Ditto. Default #FFFFFF
+      //     textSize: 13, // Default is approx. 13.
+      //     cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+      //     horizontalPadding: 16, // iOS default 16, Android default 50
+      //     verticalPadding: 12 // iOS default 12, Android default 30
+      //     }
+      // });
+
     }
 
     else{
       console.log('2nd form validated');
-    }
-    var doctorDetails={
-      doctorFname : $scope.Doctor.doc_fname,
-      doctorMname : $scope.Doctor.doc_mname,
-      doctorLname:$scope.Doctor.doc_lname,
-      doctorEmail:$scope.Doctor.doc_email,
-      doctorPhone:$scope.Doctor.doc_phone
-    };
+      var doctorDetails={
+        doctorFname : $scope.Doctor.doc_fname,
+        doctorMname : $scope.Doctor.doc_mname,
+        doctorLname:$scope.Doctor.doc_lname,
+        doctorEmail:$scope.Doctor.doc_email,
+        doctorPhone:$scope.Doctor.doc_phone
+      };
 
-    doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
-      console.log(response);
-      if(response == 'ERROR'){
-        console.log("doctor Already Exist");
-        //Alert Popup goes healthcare
-        $scope.myPopup=$ionicPopup.show({
-          title: 'Number Already Registered',
+      doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
+        console.log(response);
+        if(response == 'ERROR'){
+          console.log("doctor Already Exist");
+          //Alert Popup goes healthcare
+
+          $scope.myPopup = $ionicPopup.show({
+          // title: 'Invalid Credentials',
+          cssClass: 'requestPopup',
           template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please wait someone from DoctorQuick will call you shortly to help you with registration.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-          cssClass: 'loginPopup',
           scope: $scope,
-        });
-
-        $scope.closethis = function()
-        {
-        $scope.myPopup.close();
-        $window.localStorage.clear();
-        // $state.go('auth.loginNew');
-
-        };
-
-      }
-      else if(response == 'Exist'){
-        $scope.myPopup=$ionicPopup.show({
-          // title: '',
-          template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-
-          cssClass: 'loginPopup',
-          scope: $scope,
-                    });
-        $scope.closethis = function()
-        {
-        $scope.myPopup.close();
-        $window.localStorage.clear();
-        // $state.go('auth.loginNew');
-
-        };
-      }
-      else{
-
-        $scope.regDoc=doctorDetails;
-        console.log($scope.regDoc);
-        var showDoc= $ionicPopup.show({
-          scope: $scope,
-          template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
-                      "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
-          // title: 'Thank You',
-          cssClass: 'videoPopup',
           buttons: [
-
-           {
-             text: 'Close',
-             type: 'button-positive',
-             onTap: function() {
-               console.log('Doctor Registered Successfully');
-               $state.go('auth.loginNew');
-
-             }
-           }
+          {
+          text: 'OK',
+          type: 'button-royal',
+          onTap:function(){
+            $ionicHistory.clearCache();
+            $ionicHistory.clearHistory();
+            $window.localStorage.clear();
+          }
+          },
           ]
-        });
-      }
-      $scope.Doctor = {};
-    }).catch(function(error){
-      console.log('failure data', error);
 
-    });
+
+          });
+          $scope.closethis = function()
+          {
+          $scope.myPopup.close();
+          };
+
+
+        }
+        else if(response == 'Exist'){
+          $scope.myPopup=$ionicPopup.show({
+            // title: '',
+            template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+
+            cssClass: 'loginPopup',
+            scope: $scope,
+                      });
+          $scope.closethis = function()
+          {
+          $scope.myPopup.close();
+          $window.localStorage.clear();
+          // $state.go('auth.loginNew');
+
+          };
+        }
+        else{
+
+          $scope.regDoc=doctorDetails;
+          console.log($scope.regDoc);
+          var showDoc= $ionicPopup.show({
+            scope: $scope,
+            template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
+                        "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
+            // title: 'Thank You',
+            cssClass: 'videoPopup',
+            buttons: [
+
+             {
+               text: 'Close',
+               type: 'button-positive',
+               onTap: function() {
+                 console.log('Doctor Registered Successfully');
+                 $state.go('auth.loginNew');
+
+               }
+             }
+            ]
+          });
+        }
+        $scope.Doctor = {};
+      }).catch(function(error){
+        console.log('failure data', error);
+
+      });
+    }
+
 
 
   }
@@ -823,23 +840,6 @@ $scope.openDatePickerDOB = function(){
     $rootScope.dateOfBirth=date;
           console.log(date);
       });
-  // ionicDatePicker.openDatePicker(ipObj2);
 };
-
-// autoPlayYouTubeModal();
-//
-// //FUNCTION TO GET AND AUTO PLAY YOUTUBE VIDEO FROM DATATAG
-// function autoPlayYouTubeModal() {
-//     var trigger = $("body").find('[data-toggle="modal"]');
-//     trigger.click(function () {
-//         var theModal = $(this).data("target"),
-//             videoSRC = $(this).attr("data-theVideo"),
-//             videoSRCauto = videoSRC + "?autoplay=1";
-//         $(theModal + ' iframe').attr('src', videoSRCauto);
-//         $(theModal + ' button.close').click(function () {
-//             $(theModal + ' iframe').attr('src', videoSRC);
-//         });
-//     });
-// }
 
 })
