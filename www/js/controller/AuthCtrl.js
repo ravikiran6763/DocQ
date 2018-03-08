@@ -690,7 +690,7 @@ $scope.patientRegistration = function()
           });
           $scope.closethis = function()
           {
-          $scope.myPopup.close();
+            $scope.myPopup.close();
           };
 
 

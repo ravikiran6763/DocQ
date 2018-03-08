@@ -149,6 +149,18 @@ function keyboardShowHandler(e){
        console.log('keyboard closed');
    });
 
+   var mailme = function() {
+       console.log('Caught!');
+   }
+
+   window.addEventListener('error', function(e) {
+       var ie = window.event || {};
+       var errMsg = e.message || ie.errorMessage || "404 error on " + window.location;
+       var errSrc = (e.filename || ie.errorUrl) + ': ' + (e.lineno || ie.errorLine);
+       mailme([errMsg, errSrc]);
+   }, true);
+
+
   });
 
   $interval(checkConnection, 1000)
@@ -416,7 +428,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
 
-  if (toState.name === "templates.prescription" && fromState.name ==="templates.consulted_patient") {
+  if(toState.name === "templates.prescription" && fromState.name ==="templates.consulted_patient") {
     $ionicHistory.clearCache();
     $ionicHistory.clearHistory();
     $ionicHistory.nextViewOptions({
@@ -442,6 +454,24 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
   if (toState.name == "app.patient_summary") {
     // $rootScope.hideSideMenu = true;
     console.log('summary');
+  }
+  if( fromState.name === "templates.doctor_home"){
+    console.log('this is it');
+    $rootScope.specialdata=null;
+    $rootScope.genderdata= null;
+    $rootScope.statusdata=null;
+    $rootScope.languagedataselected=null;
+
+    $rootScope.specialityList.sex = "";
+    $rootScope.specialityList.search = "";
+    $rootScope.specialityList.stat = "";
+    $rootScope.specialityList.language = "";
+
+    var specialitywise = "";
+    var catwise = "";
+    var genderwise = "";
+    var languagewise = "";
+
   }
   console.log($rootScope.previousState.name);
   $ionicPlatform.registerBackButtonAction(function (event){
@@ -559,27 +589,28 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           $state.go("auth.loginNew")
       }
 
-      // else if($state.$current.name === 'app.searchDoctors'){
-      //       console.log('clear search values here');
-      //       $rootScope.specialdata=null;
-      //       $rootScope.genderdata= null;
-      //       $rootScope.statusdata=null;
-      //       $rootScope.languagedataselected=null;
-      //
-      //       $rootScope.specialityList.sex = "";
-      //       $rootScope.specialityList.search = "";
-      //       $rootScope.specialityList.stat = "";
-      //       $rootScope.specialityList.language = "";
-      //
-      //       var specialitywise = "";
-      //       var catwise = "";
-      //       var genderwise = "";
-      //       var languagewise = "";
-      //
-      //       // console.log($scope.specialdata);
-      //       window.history.back();
-      //
-      // }
+      else if($state.$current.name === 'app.searchDoctors'){
+            console.log('clear search values here');
+            $rootScope.specialdata=null;
+            $rootScope.genderdata= null;
+            $rootScope.statusdata=null;
+            $rootScope.languagedataselected=null;
+
+            $rootScope.specialityList.sex = "";
+            $rootScope.specialityList.search = "";
+            $rootScope.specialityList.stat = "";
+            $rootScope.specialityList.language = "";
+
+            var specialitywise = "";
+            var catwise = "";
+            var genderwise = "";
+            var languagewise = "";
+
+            // console.log($scope.specialdata);
+            window.history.back();
+
+      }
+
       else {
         console.log('goback to prev view');
         console.log($state.$current-1);
@@ -595,29 +626,79 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
   })
 
 
-// DoctorQuickApp.config(['$httpProvider', function($httpProvider) {
-//   // $httpProvider.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
-//
-//
-//     }
-// ]);
-// DoctorQuickApp.config(function( $mdGestureProvider ) {
-//           $mdGestureProvider.skipClickHijack();
-//       });
+  DoctorQuickApp.config(['$provide', '$httpProvider', function($provide, $httpProvider) {
+      $httpProvider.interceptors.push('RequestsErrorHandler');
+
+      // --- Decorate $http to add a special header by default ---
+
+      function addHeaderToConfig(config) {
+          config = config || {};
+          config.headers = config.headers || {};
+
+          // Add the header unless user asked to handle errors himself
+          if (!specificallyHandleInProgress) {
+              config.headers[HEADER_NAME] = true;
+          }
+
+          return config;
+      }
+
+      // The rest here is mostly boilerplate needed to decorate $http safely
+      $provide.decorator('$http', ['$delegate', function($delegate) {
+          function decorateRegularCall(method) {
+              return function(url, config) {
+                  return $delegate[method](url, addHeaderToConfig(config));
+              };
+          }
+
+          function decorateDataCall(method) {
+              return function(url, data, config) {
+                  return $delegate[method](url, data, addHeaderToConfig(config));
+              };
+          }
+
+          function copyNotOverriddenAttributes(newHttp) {
+              for (var attr in $delegate) {
+                  if (!newHttp.hasOwnProperty(attr)) {
+                      if (typeof($delegate[attr]) === 'function') {
+                          newHttp[attr] = function() {
+                              return $delegate[attr].apply($delegate, arguments);
+                          };
+                      } else {
+                          newHttp[attr] = $delegate[attr];
+                      }
+                  }
+              }
+          }
+
+          var newHttp = function(config) {
+              return $delegate(addHeaderToConfig(config));
+          };
+
+          newHttp.get = decorateRegularCall('get');
+          newHttp.delete = decorateRegularCall('delete');
+          newHttp.head = decorateRegularCall('head');
+          newHttp.jsonp = decorateRegularCall('jsonp');
+          newHttp.post = decorateDataCall('post');
+          newHttp.put = decorateDataCall('put');
+
+          copyNotOverriddenAttributes(newHttp);
+
+          return newHttp;
+      }]);
+  }])
 
 DoctorQuickApp.config(function( $ionicConfigProvider) {
        $ionicConfigProvider.navBar.alignTitle('center');
        // $ionicConfigProvider.views.transition('platform');
        $ionicConfigProvider.views.transition('none')
        // $ionicConfigProvider.scrolling.jsScrolling(true);
-
-
 });
 
 DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider, $ionicConfigProvider,USER_ROLES) {
 // $ionicConfigProvider.navBar.alignTitle('left')
   //INTRO
-  $httpProvider.defaults.timeout = 5000;
+  $httpProvider.defaults.timeout = 60000;
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // $httpProvider.interceptors.push('Interceptor');
@@ -632,11 +713,21 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
             console.log(rejection);
             console.log(response);
 
+            $rootScope.$watchCollection('[networkType, online]', function(newValues, oldValues){
+                // do stuff here
+                // newValues and oldValues contain the new and respectively old value
+                // of the observed collection array
+                console.log('newValues',newValues[0],newValues[1]);
+                console.log('oldValues',oldValues[0],oldValues[1]);
+
+            });
+
+
             $rootScope.$watch('networkType', function(newValue, oldValue){
               // console.log($injector.get("$localStorage").networkType);
               console.log('newValue',newValue);
               console.log('oldValue',oldValue);
-
+              console.log($rootScope.online);
 
                    if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' ) {
                       //  $rootScope.online=$rootScope.online;
@@ -661,9 +752,9 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                   //
                   //  }
                });
+               console.log(rejection.status);
 
               switch (rejection.status) {
-                // console.log(rejection.status);
                   // case 0 :  var $http = $injector.get('$http');//for retry condition
                   //           return $http(response.config);
                   //         break;

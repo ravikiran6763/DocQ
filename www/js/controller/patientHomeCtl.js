@@ -53,24 +53,32 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							// duration:3000,
 							noBackdrop: true
 	          });
+
+						// if(window.localStorage.networkType != 'None' || window.localStorage.networkType != 'Unknown' || window.localStorage.networkType != 'Ethernet'){
+							$interval(availableInVsee,2000,1);
+							patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
+							 $rootScope.patientWalletdetails=response;
+							 if(response){
+								 window.localStorage['patientWalletdetails'] = angular.toJson(response);
+							 }
+
+							 console.log($rootScope.patientWalletdetails);
+							 }).catch(function(error){
+								 console.log('failure data', error);
+							 });
+						// }
+
 							// $timeout(function(){
 							// $ionicLoading.hide();
 							// 	alert('no network');
 							// },10000);
-							$interval(availableInVsee,2000,1);
 
 	        }
+					// else{
+					// 		alert('NOINTERNET')
+					// }
 
-					patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
-					 $rootScope.patientWalletdetails=response;
-					 if(response){
-						 window.localStorage['patientWalletdetails'] = angular.toJson(response);
-					 }
 
-					 console.log($rootScope.patientWalletdetails);
-					 }).catch(function(error){
-						 console.log('failure data', error);
-					 });
 
 
 	    }, 0 );
@@ -216,6 +224,13 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 							console.log('failure data', error);
 					});
 
+					medicalSpecialityService.getMedicalSpecialist().then(function(response){
+				 		 console.log('successfull data', response);
+				 		 $scope.specialitiesList1 = response;
+				 		 window.localStorage['specialitiesList1'] = angular.toJson(response);
+				 	}).catch(function(error){
+				 			console.log('failure data', error);
+				 	});
 
 
 

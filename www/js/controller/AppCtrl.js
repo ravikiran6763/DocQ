@@ -14,7 +14,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 	$rootScope.inviteButton = false;
-
+	$rootScope.showMore=false;
 
 	$scope.closeSideMenu = function() {
 		console.log('closing side menu');
@@ -348,18 +348,18 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 	$scope.items=[];
 	$scope.moredata = false;
 
-	$scope.loadMore=function()
-  {
-		console.log($rootScope.doclist.length);
-      $scope.items.push({id: $rootScope.doclist.length});
-			console.log($scope.items);
-
-      if($scope.items.length==10)
-      {
-          $scope.moredata=true;
-      }
-    $scope.$broadcast('scroll.infiniteScrollComplete');
-  };
+	// $scope.loadMore=function()
+  // {
+	// 	console.log($rootScope.doclist.length);
+  //     $scope.items.push({id: $rootScope.doclist.length});
+	// 		console.log($scope.items);
+	//
+  //     if($scope.items.length==10)
+  //     {
+  //         $scope.moredata=true;
+  //     }
+  //   $scope.$broadcast('scroll.infiniteScrollComplete');
+  // };
 
 
 	$scope.searchdoctorbydifferentscenario = function(specialitywise,catwise,genderwise,languagewise)
@@ -408,19 +408,45 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 								console.log(searchdoctor);
 								$rootScope.rates=0;
 								$rootScope.totalRates=0;
+									//// ///////////////////////////////////SEARCH PATTERN QUERY FORMATION/////////////////////////////////////////////////
+
+									console.log(searchdoctor.byspecial);
+
+									//// ///////////////////////////////////SEARCH PATTERN QUERY FORMATION/////////////////////////////////////////////////
+									var DEFAULT_PAGE_SIZE_STEP = 15;
+
+									  $rootScope.currentPage = 1;
+									  $rootScope.pageSize = $scope.currentPage * DEFAULT_PAGE_SIZE_STEP;
+
+									  $scope.loadNextPage = function(){
+											console.log($rootScope.searchResultLength);
+											console.log($rootScope.pageSize);
+											$ionicLoading.show({
+												template:"<ion-spinner></ion-spinner>",
+												duration:3000
+											});
+
+									    $rootScope.currentPage++;
+									    $rootScope.pageSize = $rootScope.currentPage * DEFAULT_PAGE_SIZE_STEP;
+											if($rootScope.pageSize>=$rootScope.searchResultLength){
+												console.log('hide show more');
+												$rootScope.showMore=true;
+											}
+									  }
+
 								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
 										$ionicLoading.show();
 								if(Object.keys(response).length)
 								{
+												$rootScope.searchResultLength = response.length;
 												console.log(response);
+												console.log($rootScope.pageSize);
+
+												$ionicLoading.hide();
 												window.localStorage['doclist'] = angular.toJson(response);
 												$rootScope.doclist = angular.fromJson($window.localStorage['doclist']);
-
-
 												$state.go('app.doctorsearch');
-
 												// $rootScope.doclist = response;
-												$ionicLoading.hide();
 
 												var data=$rootScope.doclist;//take all json data into this variable
 												for(var i=0; i<data.length; i++){
@@ -428,24 +454,23 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 												$rootScope.rate=data[i].ratings,
 												//$rootScope.totalRates=data[i].totalRates
 												$rootScope.totalRates=data[i].ratingCount
-												console.log($rootScope.rate);
-												console.log($rootScope.totalRates);
+												// console.log($rootScope.rate);
+												// console.log($rootScope.totalRates);
 												$rootScope.totalRates=data[i].ratingCount
 
 												if($rootScope.rate == 0 || $rootScope.totalRates == 0){
-												$rootScope.overallRating= 1;
+													$rootScope.overallRating= 1;
 												}
 
 												else{
-												$rootScope.overallRating = $rootScope.rate/$rootScope.totalRates;
-
+													$rootScope.overallRating = $rootScope.rate/$rootScope.totalRates;
 												}
 												// console.log($rootScope.overallRating);
 												$scope.ratings = [{
 												current: $rootScope.overallRating,
 												max: 5
 												}];
-												console.log($scope.ratings);
+												// console.log($scope.ratings);
 												$scope.getStars = function(rating) {
 												// Get the value
 												var val = parseFloat(rating);

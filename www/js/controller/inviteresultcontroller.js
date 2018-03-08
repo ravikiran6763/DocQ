@@ -5,7 +5,7 @@ DoctorQuickApp.controller('inviteresultCtrl', function($scope,$state,$rootScope,
   $rootScope.showBackBtn=true;
   $rootScope.showNotification=false;
   $rootScope.showBadge=false;
-  $rootScope.hideSideMenu = true;
+  // $rootScope.hideSideMenu = true;
   $rootScope.inviteButton = false;
 
   $scope.count = $stateParams.countofselected;
@@ -58,7 +58,6 @@ console.log($scope.query);
 $scope.Savedata = function()
 {
 
-
   var confirmPopup = $ionicPopup.show({
          template: '<center>You can send Review invites<br>through DoctorQuick or you<br>can use your own device apps.</center> ',
          cssClass: 'inviteReviewPopup',
@@ -68,6 +67,8 @@ $scope.Savedata = function()
              text: 'DoctorQuick',
              type: 'button-positive',
              onTap: function(e) {
+                    $rootScope.hideSideMenu = false;
+
                     $ionicLoading.show({
                        template: '<ion-spinner></ion-spinner><br><p>Fetching your contacts</p>'
                    });

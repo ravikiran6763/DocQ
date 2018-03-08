@@ -1,3 +1,7 @@
+var HEADER_NAME = 'DoctorQuick-HTTP-ErrorHandling';
+var specificallyHandleInProgress = false;
+
+
 angular.module('DoctorQuick.factories', [])
 .factory('patientReg', function($http){
   return{
@@ -383,6 +387,77 @@ angular.module('DoctorQuick.factories', [])
     }
 })
 
+// .factory('RequestsErrorHandler', function($q, $http, $rootScope){
+//   return {
+//       // --- The user's API for claiming responsiblity for requests ---
+//       specificallyHandled: function(specificallyHandledBlock) {
+//           specificallyHandleInProgress = true;
+//           try {
+//               return specificallyHandledBlock();
+//           } finally {
+//               specificallyHandleInProgress = false;
+//           }
+//       },
+//
+//       // --- Response interceptor for handling errors generically ---
+//       responseError: function(rejection) {
+//
+//
+//           var shouldHandle = (rejection && rejection.config && rejection.config.headers
+//               && rejection.config.headers[HEADER_NAME]);
+//               console.log('shouldHandle',shouldHandle);
+//           if (shouldHandle){
+//             console.log('handeled');
+//             console.log(rejection);
+//             console.log(rejection.config);
+//             console.log(rejection.config.headers);
+//             console.log(rejection.config.headers[HEADER_NAME]);
+//             // $ionicLoading.show({
+//             //     template:'<ion-spinner></ion-spinner><br></br>Lost Connection'
+//             //   });
+//               // --- Your generic error handling goes here ---
+//           }
+//           else{
+//             // $ionicLoading.hide();
+//           }
+//
+//           return $q.reject(rejection);
+//       }
+//   };
+// })
 
+.factory('RequestsErrorHandler', ['$q', function($q) {
+    return {
+        // --- The user's API for claiming responsiblity for requests ---
+        specificallyHandled: function(specificallyHandledBlock) {
+            specificallyHandleInProgress = true;
+            try {
+                return specificallyHandledBlock();
+            } finally {
+                specificallyHandleInProgress = false;
+            }
+        },
+
+        // --- Response interceptor for handling errors generically ---
+        responseError: function(rejection) {
+            // var $ionicLoading = $injector.get('$ionicLoading');
+            var shouldHandle = (rejection && rejection.config && rejection.config.headers
+                && rejection.config.headers[HEADER_NAME]);
+                console.log('shouldHandle',shouldHandle);
+            if (shouldHandle){
+              console.log('handeled');
+              console.log(rejection);
+              console.log(rejection.config);
+              console.log(rejection.config.headers);
+              console.log(rejection.config.headers[HEADER_NAME]);
+              // EROOR HANDLING 
+            }
+            else{
+            }
+
+            return $q.reject(rejection);
+        }
+    };
+}])
 
 ;

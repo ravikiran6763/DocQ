@@ -11,6 +11,12 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	$ionicSideMenuDelegate.canDragContent(false); //preventes sidemenu sliding
 
+
+	console.log(window.screen.width);
+	console.log(window.screen.height);
+
+
+
 	$scope.audioCall=function(num)
 	{
 		console.log('user:',window.localStorage.user);
@@ -140,8 +146,8 @@ doctorServices.myDoctorsDetails(window.localStorage.docPhoneSearch).then(functio
 	// console.log(window.localStorage.docPhone);
 	if(response){
 		$ionicLoading.hide();
-		$rootScope.searchDocStatus=response[0]['onoff'];
-		console.log($rootScope.searchDocStatus);
+		// $rootScope.searchDocStatus=response[0]['onoff'];
+		// console.log($rootScope.searchDocStatus);
 		window.localStorage['myDocDetail'] = angular.toJson(response);
 
 		$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
@@ -201,13 +207,13 @@ $scope.docClicked=function(docPhone){
 				// console.log(response);
 				window.localStorage['myDocDetail'] = angular.toJson(response);
 				$scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
-
-			if($rootScope.searchDocStatus === response[0]['onoff']){
-				// console.log('nochange');
-			}
-			else{
-				$scope.myDocDetail =response;
-			}
+			//
+			// if($rootScope.searchDocStatus === response[0]['onoff']){
+			// 	// console.log('nochange');
+			// }
+			// else{
+			// 	$scope.myDocDetail =response;
+			// }
 
 		  $scope.myDocDetail=response;
 		  var data=$scope.myDocDetail;//take all json data into this variable
@@ -692,7 +698,7 @@ $scope.docClicked=function(docPhone){
 				 $rootScope.newPAtient=response;
 				 console.log($rootScope.newPAtient.length);
 				 if($rootScope.newPAtient.length == 0){
-					 console.log('hide');
+					 // console.log('hide');
 					 $rootScope.defaultPatient=false;
 					 $rootScope.shownewPatient=true;
 

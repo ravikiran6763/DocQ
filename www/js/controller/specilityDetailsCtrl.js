@@ -24,12 +24,7 @@ console.log($rootScope.defaultPatientLname);
 
 // $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
 
-
-
-
-
 $interval(CheckOnlineDocs, 2000);
-
 
 var subPatientToShow={
   subPatId:window.localStorage.selectedSubPatient,
@@ -449,12 +444,6 @@ console.log(window.localStorage.SpecilityId);
 
 
 
-  $scope.$on('$destroy', function(){
-      console.log('destroyed');
-      $interval.cancel(checkAcceptedReqDocStatus);
-      $interval.cancel(CheckOnlineDocs);
-
-  });
 
   $rootScope.newpatientAdded=medicalSpecialityService.getNewPatient();
   console.log($rootScope.newpatientAdded);
@@ -466,4 +455,12 @@ console.log(window.localStorage.SpecilityId);
   else{
     $rootScope.shownewPatient=true;
   }
+  $scope.$on('$destroy', function(){
+      console.log('destroyed');
+      $interval.cancel(checkAcceptedReqDocStatus);
+      $interval.cancel(CheckOnlineDocs);
+
+  });
+
+
 });

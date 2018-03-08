@@ -368,6 +368,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 												// $state.go('templates.doctor_home');//for logging in from browser
 												hello.login(uname1,pw1,success, failure);
 
+
+
+
 												var username = "greet+"+window.localStorage.user;
 						            var password = "DQ_doctor";
 						            function checkNewMessages()

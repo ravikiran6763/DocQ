@@ -5,7 +5,7 @@
 
       <ul>
         <!-- <li  ui-sref="app.viewdoctor_profile({myDocFname:doctor.doctorFname,myDocLname:doctor.doctorLname,myDocNum:doctor.doctorPhone,myDocDegree:doctor.doctorDegrees})"> -->
-      <li  ng-repeat="doc in doclist" ng-click="docClicked({{doc.doctorPhone}});">
+      <li  ng-repeat="doc in doclist | limitTo:pageSize" ng-click="docClicked({{doc.doctorPhone}});">
         <div class="profile-img">
           <!-- <img src="./img/dq_icon_speciality_540x960.png"> -->
           <img  ng-hide="doc.docImage2 == null "ng-src="{{doc.docImage2}}"   >
@@ -50,8 +50,12 @@
       </li>
     </ul>
       </div>
-        <ion-infinite-scroll on-infinite="loadMore()" ng-if="!moredata" distance="2">
-        </ion-infinite-scroll>
+        <!-- <ion-infinite-scroll on-infinite="loadNextPage()" ng-if="!moredata" distance="2">
+        </ion-infinite-scroll> -->
+        <center>
+        <p ng-click="loadNextPage()" ng-hide="showMore" style="color:teal;font-family:inherit;">  Show More </p>
 
+
+        </center>
   </ion-content>
 </ion-view>
