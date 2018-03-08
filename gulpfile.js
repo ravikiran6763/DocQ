@@ -10,6 +10,8 @@ var gulploadPlugins = require('gulp-load-plugins');
 var requireDir = require('require-dir');
 var minify = require('gulp-minify');
 var uglify = require('gulp-uglify');
+const image = require('gulp-image');
+const htmlmin = require('gulp-minify-html');
 
 var tasks = requireDir('./tasks');
 
@@ -19,7 +21,7 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass', 'scripts', 'library']);
+gulp.task('default', ['sass', 'scripts', 'library', 'html']); //html
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -80,6 +82,18 @@ gulp.task('library', function () {
         .pipe(plugins.concat('library.js'))
         .pipe(plugins.size())
         .pipe(gulp.dest(config.build.libs));
+});
+ 
+gulp.task('image', function () {
+  gulp.src(config.source.images +'/*')
+    .pipe(image())
+    .pipe(gulp.dest(config.build.images));
+});
+
+gulp.task('html', function() {
+  return gulp.src(config.source.template+'/**/*.html')
+    .pipe(htmlmin({collapseWhitespace: true, comments: false, quotes: true, spare: true, empty: true, cdata: true}))
+    .pipe(gulp.dest(config.build.template));
 });
 
 gulp.task('compress', function() {

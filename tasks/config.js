@@ -13,12 +13,13 @@ var config =  function() {
         scss   : './scss',
         components : 'www/js',
         globalServices: 'www/services',
-        images : 'www/images',
+        images : 'www/img',
         fonts  : 'www/fonts',
         bower  : './bower_components',
         zip    : './zip',
         libs   : 'www/libs',
-        locale : 'www/locale'
+        locale : 'www/locale',
+        template : 'www/views'
     };
 
     // Build Path
@@ -26,10 +27,11 @@ var config =  function() {
         root   : 'www/js/build',
         css    : 'www/js/build/css',
         js     : 'www/js/build/js',
-        images : 'www/js/build/images',
+        images : 'www/js/build/img',
         fonts  : 'build/fonts',
         libs   : 'www/js/build/libs',
-        locale : 'www/js/build/locale'
+        locale : 'www/js/build/locale',
+        template : 'www/js/build/views'
     };
 
     // Server Configuration
