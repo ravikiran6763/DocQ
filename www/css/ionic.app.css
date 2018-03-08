@@ -12387,69 +12387,6 @@ ion-side-menu .heading-item .message {
       width: 25%;
       border-radius: 50%; }
 
-.myFavDoctor-profile-view {
-  background-color: #e2e2e2 !important;
-  font-family: Ubuntu,bold,sans-serif !important; }
-  .myFavDoctor-profile-view .myDoctor-list {
-    width: 100%;
-    overflow: scroll !important; }
-    .myFavDoctor-profile-view .myDoctor-list li {
-      height: 18%;
-      border-bottom: 2px solid #dadada;
-      *zoom: 1; }
-      .myFavDoctor-profile-view .myDoctor-list li:before, .myFavDoctor-profile-view .myDoctor-list li:after {
-        display: table;
-        content: "";
-        line-height: 0; }
-      .myFavDoctor-profile-view .myDoctor-list li:after {
-        clear: both; }
-      .myFavDoctor-profile-view .myDoctor-list li:last-child {
-        border-bottom: none !important;
-        margin-bottom: 10px auto; }
-      .myFavDoctor-profile-view .myDoctor-list li .profile-img {
-        width: 18%;
-        float: left;
-        margin: 5% 0 0 2%; }
-        .myFavDoctor-profile-view .myDoctor-list li .profile-img img {
-          border-radius: 100% !important;
-          width: 100% !important; }
-      .myFavDoctor-profile-view .myDoctor-list li .name-content {
-        float: left;
-        padding: 5% 0 0 3%;
-        height: 100%;
-        width: 70%; }
-        .myFavDoctor-profile-view .myDoctor-list li .name-content p {
-          font-size: 74%;
-          margin: 0% 2%;
-          color: black;
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis; }
-        .myFavDoctor-profile-view .myDoctor-list li .name-content h2 {
-          margin: 2%;
-          font-size: 125%;
-          color: black;
-          font-family: Ubuntu,bold,sans-serif !important;
-          line-height: 50%; }
-        .myFavDoctor-profile-view .myDoctor-list li .name-content .rating {
-          margin: 0% !important; }
-  .myFavDoctor-profile-view img {
-    width: 25%;
-    border-radius: 50%; }
-  .myFavDoctor-profile-view .doctorDetails {
-    position: absolute;
-    margin: -21% 0 0 23%; }
-  .myFavDoctor-profile-view .next-icon {
-    width: 5%;
-    float: right;
-    margin: -24% -9% 0 0; }
-    .myFavDoctor-profile-view .next-icon .ion-chevron-right:before {
-      color: black;
-      font-size: 1.8em; }
-  .myFavDoctor-profile-view .totalReview {
-    position: absolute;
-    margin: -11% 0 0 64%; }
-
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
   font-family: Ubuntu,bold,sans-serif !important; }
