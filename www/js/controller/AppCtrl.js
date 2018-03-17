@@ -14,7 +14,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 	$rootScope.showStatus=false;
 	$rootScope.showLanguage=false;
 	$rootScope.inviteButton = false;
-	$rootScope.showMore=false;
 
 	$scope.closeSideMenu = function() {
 		console.log('closing side menu');
@@ -421,10 +420,6 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 									  $scope.loadNextPage = function(){
 											console.log($rootScope.searchResultLength);
 											console.log($rootScope.pageSize);
-											$ionicLoading.show({
-												template:"<ion-spinner></ion-spinner>",
-												duration:3000
-											});
 
 									    $rootScope.currentPage++;
 									    $rootScope.pageSize = $rootScope.currentPage * DEFAULT_PAGE_SIZE_STEP;
@@ -432,12 +427,23 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 												console.log('hide show more');
 												$rootScope.showMore=true;
 											}
+
 									  }
 
 								searchbyspecialities.getlistofspecialist(searchdoctor).then(function (response) {
 										$ionicLoading.show();
-								if(Object.keys(response).length)
+
+
+										console.log(response.length);
+								if(response.length)
 								{
+												if(response.length <= 15){
+														console.log('hide show more');
+														$rootScope.showMore=true;
+												}
+												else{
+													$rootScope.showMore=false;
+												}
 												$rootScope.searchResultLength = response.length;
 												console.log(response);
 												console.log($rootScope.pageSize);

@@ -7,17 +7,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 	$rootScope.showBadge=false;
   $rootScope.inviteButton = false;
 
-  // $rootScope.newpatientAdded=doctorServices.getNewPatient();
-  // console.log($rootScope.newpatientAdded);
-  // $scope.newPatientFname=$scope.newpatientAdded.fname;
-  // $scope.newPatientLname=$scope.newpatientAdded.lname;
-  // if($rootScope.newpatientAdded){
-  //   $rootScope.shownewPatient=false;
-  // }
-  // else{
-  //   $rootScope.shownewPatient=true;
-  // }
-  // $rootScope.prescription={};
   $scope.deviceAndroid = ionic.Platform.isAndroid();
   if($scope.deviceAndroid === false){
     window.localStorage.sendPrescTo='';
@@ -35,7 +24,7 @@ if($state.$current.name === 'templates.prescription'){
     // console.log($rootScope.newpatientAdded);
 
     $rootScope.currentPatient = angular.fromJson($window.localStorage['currentPatient']);
-    // console.log($rootScope.currentPatient.patientNum);
+    console.log($rootScope.currentPatient);
     window.localStorage.patientToDisplay=$rootScope.currentPatient.patientNum;
     $rootScope.patientFname=$scope.currentPatient.patientFname;
     $rootScope.patientLname=$scope.currentPatient.patientLname;
@@ -83,7 +72,7 @@ if($state.$current.name === 'templates.prescription'){
       })
     }
     else{
-      // alert('from localStorage',$rootScope.currentPatient.patientNum);
+      console.log('from localStorage',$rootScope.currentPatient.patientNum);
       patientProfileDetailsService.fetchPatient($rootScope.currentPatient.patientNum).then(function(response){
         $scope.patient_details=response;
         console.log($scope.patient_details);

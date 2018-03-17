@@ -17,7 +17,7 @@ var config =  function() {
         fonts  : 'www/fonts',
         bower  : './bower_components',
         zip    : './zip',
-        libs   : 'www/libs',
+        lib   : 'www/lib',
         locale : 'www/locale',
         template : 'www/views'
     };
@@ -29,7 +29,7 @@ var config =  function() {
         js     : '../DocQBuild/www/js',
         images : '../DocQBuild/www/img',
         fonts  : '../DocQBuild/build/fonts',
-        libs   : '../DocQBuild/www/libs',
+        lib   : '../DocQBuild/www/lib',
         locale : '../DocQBuild/www/locale',
         template : '../DocQBuild/www/views'
     };

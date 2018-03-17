@@ -14,6 +14,7 @@ const image = require('gulp-image');
 const htmlmin = require('gulp-minify-html');
 
 var tasks = requireDir('./tasks');
+var config = require('./tasks/config');
 
 var plugins = gulploadPlugins();
 
@@ -21,33 +22,39 @@ var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass', 'scripts', 'library', 'html']); //html
+gulp.task('default', ['sass', 'scripts', 'library', 'image', 'html', 'copycss']); //html
 
 gulp.task('sass', function(done) {
-  gulp.src('./scss/ionic.app.scss')
-    .pipe(sass())
-    .on('error', sass.logError)
+  return gulp.src('./scss/ionic.app.scss')
+    .pipe(sass()
+      .on('error', sass.logError)
+    )
     .pipe(gulp.dest('./www/css/'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
     .pipe(gulp.dest('./www/css/'));
-    //.on('end', done);
+});
+
+//This task is used to copy the
+gulp.task('copycss', function() {
+  console.log(config.notify.update('\n--------- Copying CSS tasks to Build -----------------------------------------\n'));
+  return gulp.src('./www/css/*')
+  .pipe(gulp.dest(config.build.css));
 });
 
 var gulpIf = require('gulp-if'),
     jshintStylish = require('jshint-stylish');
 
 var plugins = gulploadPlugins();
-var config = require('./tasks/config');
 var rootPath = config.source.root;
 
 gulp.task('scripts', function () {
 
     console.log(config.notify.update('\n--------- Running SCRIPT tasks -----------------------------------------\n'));
     return gulp.src([
-        config.source.components + '/*.js', 
+        config.source.components + '/*.js',
         config.source.components + '/controller/*.js', config.source.components + '/controller/**/*.js',
         config.source.components + '/service/*.js', config.source.components + '/service/**/*.js'])
         //.pipe(plugins.jshint('.jshintrc'))
@@ -61,7 +68,7 @@ gulp.task('scripts', function () {
 gulp.task('library', function () {
 
     console.log(config.notify.update('\n--------- Running LIBRARY tasks -----------------------------------------\n'));
-    return gulp.src([config.source.libs + '/*.js',
+    return gulp.src([config.source.lib + '/*.js',
         "www/lib/ionic/js/ionic.bundle.js",
         "www/lib/angular-resource/angular-resource.min.js",
         "www/lib/underscore/underscore-min.js",
@@ -81,9 +88,9 @@ gulp.task('library', function () {
         ])
         .pipe(plugins.concat('library.js'))
         .pipe(plugins.size())
-        .pipe(gulp.dest(config.build.libs));
+        .pipe(gulp.dest(config.build.lib));
 });
- 
+
 gulp.task('image', function () {
   gulp.src(config.source.images +'/*')
     .pipe(image())
@@ -118,4 +125,4 @@ gulp.task('help', plugins.taskListing);
 gulp.task('watch', function() {
   gulp.watch(paths.sass, ['sass']);
 });
-
+gulp.task('serve:before', ["watch"]);

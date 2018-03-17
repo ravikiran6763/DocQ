@@ -76,6 +76,9 @@ DoctorQuickApp.controller('myDoctorCtrl', function($scope,$rootScope,$ionicConfi
   });
 
 $scope.delItem=function(removeFav){
+	$ionicLoading.show({
+		template:'<ion-spinner></ion-spinner>'
+	});
 	console.log(removeFav);
 	var docToRemove={
 		docPhone:removeFav,
@@ -85,6 +88,7 @@ $scope.delItem=function(removeFav){
 	doctorServices.removeFavDoctor(docToRemove).then(function(response){
 		console.log(response);
 		if(response === 'deleted'){
+			$ionicLoading.hide();
 			$state.reload();
 		}
 	}).catch(function(error){

@@ -29,8 +29,9 @@
         margin: 5% 0 0 2%;
 
         img {
-          border-radius: 100% !important;
-          width: 100% !important;
+          position: absolute;
+          // width: 30%;
+          border-radius: 50%;
         }
       }
 

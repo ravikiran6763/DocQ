@@ -122,11 +122,11 @@
 					console.log('from previous',$rootScope.dateAndTime);
 					console.log('from previous stateParams',$stateParams.reqTime);
 
-					doctorServices.currentPatient(window.localStorage.user).then(function(response){
-						console.log(response);
-					window.localStorage['currentPatient'] = angular.toJson(response);
-					// console.log('one2onePending:',$scope.one2oneRequests);
-					})
+					// doctorServices.currentPatient($stateParams.reqPat).then(function(response){
+					// 	console.log(response);
+					// window.localStorage['currentPatient'] = angular.toJson(response);
+					// // console.log('one2onePending:',$scope.one2oneRequests);
+					// })
 
 
 					console.log('from root scope',$rootScope.dateAndTime);
@@ -610,6 +610,7 @@ $scope.popupShown = true;
       //  $interval.cancel($rootScope.videoOrAudio);
       //  $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false});
 			 if($scope.deviceAndroid === true){
+         console.log(window.localStorage.activePatient);
 				 $interval.cancel($rootScope.videoOrAudio);
 				 $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false})
 
