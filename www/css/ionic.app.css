@@ -9844,6 +9844,16 @@ ion-app, ion-nav, ion-tab, ion-tabs, .app-root {
   -webkit-transition: bottom 0.3s;
   transition: bottom 0.3s; }
 
+ion-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0 90px 1px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: red; }
+
 .hide {
   display: block !important;
   visibility: visible !important; }
@@ -10306,9 +10316,10 @@ ion-side-menu.menu-left.menu {
   color: #FFFFFF !important;
   font-family: Ubuntu,bold,sans-serif !important;
   font-size: 100%;
-  text-align: center;
-  left: 0 !important;
-  right: 0 !important; }
+  transform: translate3d(10px, 0px, 0px) !important; }
+
+.title .title-center .header-item {
+  transform: translate3d(0px, 0px, 0px) !important; }
 
 .checkbox input:before, .checkbox-icon:before {
   display: table;
@@ -11884,6 +11895,12 @@ ion-side-menu .heading-item .message {
   z-index: 999;
   margin: -11% 0 0 85%; }
 
+.ion-edit:before {
+  font-size: 150% !important; }
+
+.ion-android-delete:before {
+  font-size: 150% !important; }
+
 .patientscreen-view {
   font-family: Ubuntu,bold,sans-serif !important; }
   .patientscreen-view ion-content {
@@ -12342,7 +12359,7 @@ ion-side-menu .heading-item .message {
           font-size: 1.8em; }
       .mydoctor-profile-view .myDoctor-list li .name-content {
         float: left;
-        padding: 4% 0%;
+        padding: 5% 0 0 3%;
         height: 100%;
         width: 70%; }
         .mydoctor-profile-view .myDoctor-list li .name-content p {
@@ -12366,6 +12383,72 @@ ion-side-menu .heading-item .message {
           line-height: 50%; }
         .mydoctor-profile-view .myDoctor-list li .name-content .rating {
           margin: 0% !important; }
+    .mydoctor-profile-view .myDoctor-list .ImageContainer img {
+      width: 25%;
+      border-radius: 50%; }
+
+.myFavDoctor-profile-view {
+  background-color: #e2e2e2 !important;
+  font-family: Ubuntu,bold,sans-serif !important; }
+  .myFavDoctor-profile-view .myDoctor-list {
+    width: 100%;
+    overflow: scroll !important; }
+    .myFavDoctor-profile-view .myDoctor-list li {
+      height: 18%;
+      border-bottom: 2px solid #dadada;
+      *zoom: 1; }
+      .myFavDoctor-profile-view .myDoctor-list li:before, .myFavDoctor-profile-view .myDoctor-list li:after {
+        display: table;
+        content: "";
+        line-height: 0; }
+      .myFavDoctor-profile-view .myDoctor-list li:after {
+        clear: both; }
+      .myFavDoctor-profile-view .myDoctor-list li:last-child {
+        border-bottom: none !important;
+        margin-bottom: 10px auto; }
+      .myFavDoctor-profile-view .myDoctor-list li .profile-img {
+        width: 18%;
+        float: left;
+        margin: 5% 0 0 2%; }
+        .myFavDoctor-profile-view .myDoctor-list li .profile-img img {
+          position: absolute;
+          border-radius: 50%; }
+      .myFavDoctor-profile-view .myDoctor-list li .name-content {
+        float: left;
+        padding: 5% 0 0 3%;
+        height: 100%;
+        width: 70%; }
+        .myFavDoctor-profile-view .myDoctor-list li .name-content p {
+          font-size: 74%;
+          margin: 0% 2%;
+          color: black;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
+        .myFavDoctor-profile-view .myDoctor-list li .name-content h2 {
+          margin: 2%;
+          font-size: 125%;
+          color: black;
+          font-family: Ubuntu,bold,sans-serif !important;
+          line-height: 50%; }
+        .myFavDoctor-profile-view .myDoctor-list li .name-content .rating {
+          margin: 0% !important; }
+  .myFavDoctor-profile-view img {
+    width: 25%;
+    border-radius: 50%; }
+  .myFavDoctor-profile-view .doctorDetails {
+    position: absolute;
+    margin: -21% 0 0 23%; }
+  .myFavDoctor-profile-view .next-icon {
+    width: 5%;
+    float: right;
+    margin: -24% -9% 0 0; }
+    .myFavDoctor-profile-view .next-icon .ion-chevron-right:before {
+      color: black;
+      font-size: 1.8em; }
+  .myFavDoctor-profile-view .totalReview {
+    position: absolute;
+    margin: -11% 0 0 64%; }
 
 .doctor-profile-view {
   background-color: #e2e2e2 !important;
