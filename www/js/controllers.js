@@ -108,6 +108,21 @@ DoctorQuickApp.controller('SearchCtrl', function($scope,$rootScope,$stateParams,
 	$rootScope.showBadge=false;
 	$rootScope.showDocStatus=false;
 
+	$rootScope.specialdata=null;
+	$rootScope.genderdata= null;
+	$rootScope.statusdata=null;
+	$rootScope.languagedataselected=null;
+
+	$rootScope.specialityList.sex = "";
+	$rootScope.specialityList.search = "";
+	$rootScope.specialityList.stat = "";
+	$rootScope.specialityList.language = "";
+
+	var specialitywise = "";
+	var catwise = "";
+	var genderwise = "";
+	var languagewise = "";
+
 	// alert($stateParams.reqPat);
 
 })

@@ -178,7 +178,7 @@ function checkConsultations(){
   //   console.log('failure data', error);
   // })
 
-  console.log($ionicHistory.currentStateName());
+  // console.log($ionicHistory.currentStateName());
   if ($ionicHistory.currentStateName() === 'auth.loginNew') {
     return false;
   }

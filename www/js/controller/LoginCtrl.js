@@ -210,7 +210,11 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	            var password = "DQ_patient";
 	            function checkNewMessages()
 	            {
-	                var success = function(message)
+								if($ionicHistory.currentStateName() === 'auth.loginNew'){
+									return false;
+								}
+								else{
+									var success = function(message)
 	                {
 	                  $rootScope.unreadchatforpatient = message;
 	                  console.log($rootScope.unreadchatforpatient);
@@ -223,6 +227,8 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 	                }
 	                  hello.unreadchatfromusers(username,password,success, failure);
+								}
+
 	            }
 						}
 						else{
@@ -375,19 +381,24 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						            var password = "DQ_doctor";
 						            function checkNewMessages()
 						            {
-						                var success = function(message)
-						                {
-						                  $rootScope.unreadchatforpatient = message;
-						                  console.log($rootScope.unreadchatforpatient);
-						                }
+													if($ionicHistory.currentStateName() === 'auth.loginNew'){
+														return false;
+													}
+						               else{
+														 var success = function(message)
+														 {
+															 $rootScope.unreadchatforpatient = message;
+															 console.log($rootScope.unreadchatforpatient);
+														 }
 
-						                var failure = function()
-						                {
-						                  console.log("Error calling Hello Plugin");
-						                  //console.log(‘error’);
+														 var failure = function()
+														 {
+															 console.log("Error calling Hello Plugin");
+															 //console.log(‘error’);
 
-						                }
-						                  hello.unreadchatfromusers(username,password,success, failure);
+														 }
+															 hello.unreadchatfromusers(username,password,success, failure);
+													 }
 						            }
 												// window.localStorage.onOff=1;
 

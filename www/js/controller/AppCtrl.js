@@ -20,6 +20,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 		$ionicSideMenuDelegate.toggleRight();
 	};
 
+	
+
 	$scope.showConsulation=function()
 	{
 		$ionicHistory.nextViewOptions({

@@ -85,57 +85,70 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			function availableInVsee() {
 				console.log('login check');
-							var uname1 = "greet+"+window.localStorage.user;
-							var pw1 = "DQ_patient";
+				if($ionicHistory.currentStateName() === 'auth.loginNew'){
+					return false;
+				}
+				else{
+					var uname1 = "greet+"+window.localStorage.user;
+					var pw1 = "DQ_patient";
 
-							console.log(uname1);
-							var success = function(message)
-							{
-							console.log(message);
-							$interval(checkNewMessages,2000);
+					console.log(uname1);
+					var success = function(message)
+					{
+					console.log(message);
 
-							$ionicLoading.hide().then(function(){
-							console.log("The loading indicator is now hidden");
-							// alert('loggedin');
-							$localStorage.showConnecting = false;
-							$ionicHistory.nextViewOptions({
-									disableBack: true,
-									disableAnimate: true,
-									historyRoot: true
-							});
-							$ionicHistory.clearCache();
-							$ionicHistory.clearHistory();
-							$state.go($state.current, {}, {location: "replace",reload: false});
+					$interval(checkNewMessages,2000);
 
-							});
-							// alert(message);
-							}
-							var failure = function()
-							{
-								alert("Error calling Hello Plugin");
-							}
+					$ionicLoading.hide().then(function(){
+					console.log("The loading indicator is now hidden");
+					// alert('loggedin');
+					$localStorage.showConnecting = false;
+					$ionicHistory.nextViewOptions({
+							disableBack: true,
+							disableAnimate: true,
+							historyRoot: true
+					});
+					$ionicHistory.clearCache();
+					$ionicHistory.clearHistory();
+					$state.go($state.current, {}, {location: "replace",reload: false});
 
-							hello.login(uname1,pw1,success, failure);
+					});
+					// alert(message);
+					}
+					var failure = function()
+					{
+						alert("Error calling Hello Plugin");
+					}
+
+					hello.login(uname1,pw1,success, failure);
+				}
+
 			}
 
 			function checkNewMessages()
 			{
-				var uname1 = "greet+"+window.localStorage.user;
-				var pw1 = "DQ_patient";
+				if($ionicHistory.currentStateName() === 'auth.loginNew'){
+					return false;
+				}
+				else{
+					var uname1 = "greet+"+window.localStorage.user;
+					var pw1 = "DQ_patient";
 
-				var success = function(message)
-				{
-					$rootScope.unreadchatforpatient = message;
-					// console.log($scope.unreadchatforpatient);
+					var success = function(message)
+					{
+						$rootScope.unreadchatforpatient = message;
+						// console.log($scope.unreadchatforpatient);
+					}
+
+					var failure = function()
+					{
+						console.log("Error calling Hello Plugin");
+						//console.log(‘error’);
+
+					}
+						hello.unreadchatfromusers(uname1,pw1,success, failure);
 				}
 
-				var failure = function()
-				{
-					console.log("Error calling Hello Plugin");
-					//console.log(‘error’);
-
-				}
-					hello.unreadchatfromusers(uname1,pw1,success, failure);
 			}
 
 				function startPinging()
