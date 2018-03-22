@@ -244,7 +244,7 @@ $scope.docClicked=function(docPhone){
 	function checkDocStatusOnTheGo(){
 		console.log(window.localStorage.docPhoneSearch);
 		searchDoctorServices.checkDocStatusOnTheGo(window.localStorage.docPhoneSearch).then(function(response){
-			console.log(window.localStorage.myCallId);
+			// console.log(window.localStorage.myCallId);
 		$scope.myDocStatSearch = response;
 		console.log($scope.myDocStatSearch);
 		window.localStorage.myDocStatusSearch=$scope.myDocStatSearch;
@@ -616,7 +616,7 @@ $scope.docClicked=function(docPhone){
 										 			$timeout.cancel(test);
 													console.log('declined here');
 										 			console.log('destroyed');
-													$scope.callAccept.close();
+													// $scope.callAccept.close();
 										 			});
 													 $state.go($state.current, {}, {reload: true});
 												 console.log('ok');

@@ -2,7 +2,7 @@
   <ion-nav-title>
    <span>Invite Reviews</span>
  </ion-nav-title>
- <ion-content  scroll="true">
+ <ion-content ng-controller="contactsCtrl" scroll="true">
 
    <div class="top-content">
      <h4>Select your contacts that you would like to invite to review. Reviews will help you to attract new patients.</h4>
@@ -15,16 +15,16 @@
 
   <ion-list ng-repeat="con in contact1 ">
 
-    <ion-checkbox
 
+    <ion-checkbox
         ng-model="con.selected"
          class="item-checkbox-right" ng-click="optionToggled(con.selected,con.value);">
         <h2>{{con.name}}</h2>
-
     </ion-checkbox>
 
 
   </ion-list>
+
 
      </ion-content>
 

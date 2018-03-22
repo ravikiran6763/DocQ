@@ -163,6 +163,7 @@
 									// $rootScope.dateAndTime=data[i].requestedTime
 					 		console.log($rootScope.reqId);
 					 		console.log($rootScope.reqPat);
+              window.localStorage.currentPatientPush=$rootScope.reqPat;
               console.log($rootScope.subPatientId);
               window.localStorage.currentReqId=$rootScope.reqId;
 					 		}

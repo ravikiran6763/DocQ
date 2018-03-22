@@ -441,6 +441,7 @@ function checkConsultations(){
 
 $rootScope.ExpiredAlert= false;
 $scope.viewRequest=function(patient){
+  console.log(patient);
   console.log('view');
   // $ionicLoading.show({
   //   template:'<ion-spinner></ion-spinner>'
@@ -476,7 +477,6 @@ $scope.closethis = function()
 $scope.contacts='';
 $scope.inviteForReview=function(){
   $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
-
   $scope.allConatctsFetched = angular.fromJson($window.localStorage['allConatctsFetched']);
   console.log($scope.allConatctsFetched);
 

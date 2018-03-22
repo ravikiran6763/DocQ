@@ -73,7 +73,8 @@ if($state.$current.name === 'templates.prescription'){
     }
     else{
       console.log('from localStorage',$rootScope.currentPatient.patientNum);
-      patientProfileDetailsService.fetchPatient($rootScope.currentPatient.patientNum).then(function(response){
+      window.localStorage.patientToDisplay=window.localStorage.currentPatientPush;
+      patientProfileDetailsService.fetchPatient(window.localStorage.currentPatientPush).then(function(response){
         $scope.patient_details=response;
         console.log($scope.patient_details);
         $ionicLoading.hide();
