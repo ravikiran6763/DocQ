@@ -3,6 +3,8 @@ DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $statePa
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
 $rootScope.checkedValue = false;
+$rootScope.onceClicked=false;
+
 $rootScope.docPhone = window.localStorage.docPhone;
 
 console.log($rootScope.docPhone);
@@ -217,78 +219,7 @@ console.log('failure data', error);
 
     }
 //for voice call
-$scope.BalanceForVoiceCall=function()
-{
-        $ionicLoading.show();
-        doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
-        // console.log(response[0][0]);
-        $scope.myBalance=response[0][0];
-        var uname = "greet+"+window.localStorage.user;
-        var pw = "DQ_patient";
 
-        //var persontocall = "greet+" + window.localStorage.docPhone;
-        var persontocall = "greet+" + window.localStorage.consultedDoctor;
-        console.log(uname);
-        console.log(persontocall);
-
-        var success = function(message)
-        {
-        alert(message);
-        }
-        var failure = function()
-        {
-        alert("Error calling Hello Plugin");
-        }
-
-
-
-        if($scope.myBalance >= 270)
-        {
-        hello.audiocallvsee(uname,pw,persontocall,success, failure);
-        var confirmPopup = $ionicPopup.confirm({
-        template: '<b>Request for Voice call has been sent <br><center>00:02</center></b>',
-        cssClass: 'videoPopup',
-        scope: $scope,
-        buttons: [
-        { text: 'Cancel',
-        type: 'button-royal', },
-
-        {
-        text: 'Resend',
-        type: 'button-positive',
-
-        },
-        ]
-        //templateUrl: "views/app/viewdoctor_profile.html",
-        });
-        }
-        else
-        {
-        var confirmPopup = $ionicPopup.confirm({
-        template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270.</center> ',
-        cssClass: 'videoPopup',
-        scope: $scope,
-        buttons: [
-        {
-        text: 'Cancel',
-        type: 'button-royal', },
-        {
-        text: 'Topup',
-        type: 'button-positive',
-        onTap: function(e) {
-        $state.go('app.patient_topup');
-        }
-        },
-        ]
-        //templateUrl: "views/app/viewdoctor_profile.html",
-        });
-        }
-        $ionicLoading.hide();
-        }).catch(function(error){
-        console.log('failure data', error);
-        });
-
-}
 
     doctorServices.myDoctorsDetails(window.localStorage.consultedDoctor).then(function(response){
     $scope.myDocDetails=response;
@@ -299,33 +230,11 @@ $scope.BalanceForVoiceCall=function()
     $scope.updateDocPwd=function(){
       $rootScope.ratedBy=$scope.login.userPhone;
       console.log('dddd');
-      // var newPwd={
-      // newPwd1:$scope.login.password,
-      // userPhone:window.localStorage.user
-      // };
-      // console.log(newPwd);
-      // patientProfileDetailsService.changePwd2(newPwd)
-      // .then(function(response){
-      // console.log(response);
-      //
-      // }).catch(function(error){
-      // console.log('failure data', error);
-      // });
 
     }
-    // $scope.sendOfflineRequest=function()
-    // {
-    //   patientrequesttodoctor.sendOfflineMessage(window.localStorage.user).then(function(response)
-    //   {
-    //     $scope.otp=response;
-    //     console.log($scope.otp);
-    //   }).catch(function(error)
-    //   {
-    //     console.log('failure data', error);
-    //   });
-    //
-    // }
+
     $scope.sendOfflineMessage=function(num){
+        $rootScope.onceClicked=true;
   		var sendMessage={
   			patient:window.localStorage.user,
   			doctor:num
@@ -617,6 +526,7 @@ $scope.BalanceForVoiceCall=function()
 
     $scope.callMyDoc=function(num,type)
     {
+      $rootScope.onceClicked=true;
       console.log(num);
       console.log(type);
       $ionicLoading.show({
@@ -713,7 +623,7 @@ $scope.BalanceForVoiceCall=function()
 
 
             $scope.callReqPopUp = $ionicPopup.show({
-                 template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+                 template: "<div >Your request for a<br>consultation has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
                  cssClass: 'requestPopup',
                  scope: $scope,
                  buttons: [

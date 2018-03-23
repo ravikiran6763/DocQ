@@ -59,7 +59,7 @@
 
       </div>
       <div class="buttons" >
-        <button class="button button-block button-assertive" ng-disabled="{{desc.noofonlinedoctors == 0}}" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">
+        <button class="button button-block button-assertive" ng-disabled="{{desc.noofonlinedoctors == 0 || clickedOnce }}" ng-click="sendrequesttoonlinedoctors(desc.id)" ng-click="startTimer(deadline)">
           {{buttonText}}
         </button>
       </div>

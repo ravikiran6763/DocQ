@@ -6,6 +6,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	$rootScope.showNotification=false;
 	$rootScope.hideSideMenu = true;
 	$rootScope.showBadge=false;
+	$rootScope.calledOnce=false;
 
 	console.log('Search controller called');
 
@@ -255,6 +256,8 @@ $scope.docClicked=function(docPhone){
 
 	$scope.callDoctor=function(num,callType)
 	{
+
+		$rootScope.calledOnce=true;
 		$ionicLoading.show({
 			template:'<ion-spinner></ion-spinner>'
 		});
@@ -350,7 +353,7 @@ $scope.docClicked=function(docPhone){
 							      console.log('destroyed');
 							      });
 										$scope.callReqPopUp = $ionicPopup.show({
-									 			 template: "<div >Your request for a<br>video call has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
+									 			 template: "<div >Your request for a<br>consultation has been sent<br><b>{{counter | secondsToDateTime | date:'mm:ss'}}</b></div>",
 									 			 cssClass: 'requestPopup',
 									 			 scope: $scope,
 									 			 buttons: [
@@ -629,6 +632,7 @@ $scope.docClicked=function(docPhone){
 	},true);
 
 	$scope.sendOfflineMessage=function(num){
+		$rootScope.calledOnce=true;
 		$ionicLoading.show({
 			template:'<ion-spinner></ion-spinner>'
 		})

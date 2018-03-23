@@ -8,7 +8,7 @@ DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope,$w
     $rootScope.hideSideMenu = true;
     $rootScope.showBadge=false;
     $rootScope.showSubPatients=false;
-
+    $rootScope.clickedOnce = false;
 
 
 // TO CHECK NO OF DOCTORS ONLINE IN VSEE
@@ -99,6 +99,7 @@ console.log(window.localStorage.SpecilityId);
    $rootScope.popUpClosed == false;
   $scope.sendrequesttoonlinedoctors = function()
   {
+    $rootScope.clickedOnce = true;
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
     });
