@@ -366,5 +366,6 @@
     <plugin name="cordova-plugin-appversion" spec="^1.0.0" />
     <plugin name="com.example.hello" spec="/Users/amittantia/Desktop/VSEE/VseePlugin" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
+    <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
     <engine name="android" spec="^6.3.0" />
 </widget>

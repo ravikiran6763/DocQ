@@ -47,7 +47,7 @@ DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval,$i
       //
       // $ionicPlatform.registerBackButtonAction(function(){
       //   if($ionicHistory.currentStateName === 'templates.inviteresult'){
-      //     console.log('back button disabled');
+      //     //console.log('back button disabled');
       //     event.preventDefault();
       //   }else{
       //     $ionicHistory.goBack();
@@ -78,7 +78,7 @@ DoctorQuickApp.run(['$rootScope', '$interval', function($rootScope, $interval,$i
 // });
 
 DoctorQuickApp.run(function($window,$timeout,$cordovaSplashscreen, $rootScope) {
-  // console.log(navigator.onLine);
+  // //console.log(navigator.onLine);
       // $cordovaSplashscreen.hide();
       $rootScope.online = navigator.onLine;
       $window.addEventListener("offline", function () {
@@ -100,10 +100,10 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     // window.plugin.backgroundMode.enable();
     ionic.Platform.isFullScreen = true
     function successFunction() {
-      // console.log("It worked!");
+      // //console.log("It worked!");
     }
     function errorFunction(error) {
-        console.log(error);
+        //console.log(error);
       }
 
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -115,13 +115,13 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
     ionic.Platform.fullScreen();
 
     setTimeout(function() {
-      console.log('hide splash ');
+      //console.log('hide splash ');
         // navigator.splashscreen.hide();
     }, 300);
 
     // window.MobileAccessibility.usePreferredTextZoom(true);
    function getTextZoomCallback(textZoom) {
-     console.log('WebView text should be scaled to the preferred value ' + textZoom + '%')
+     //console.log('WebView text should be scaled to the preferred value ' + textZoom + '%')
    }
    window.MobileAccessibility.getTextZoom(getTextZoomCallback);
 
@@ -132,25 +132,25 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       // });
       window.addEventListener('native.keyboardshow', keyboardShowHandler);
 document.addEventListener('focusout', function(e) {
-  console.log('focused');
+  //console.log('focused');
   window.scrollTo(0, 0);
 });
 function keyboardShowHandler(e){
-    console.log('Keyboard height is: ' + e.keyboardHeight);
+    //console.log('Keyboard height is: ' + e.keyboardHeight);
     // container.style.height = scrollViewOffsetHeight + "px";
 
 }
    //    window.addEventListener('native.keyboardshow', function (e) {
-   //     console.log('keyboard opened');
+   //     //console.log('keyboard opened');
    // });
 
    window.addEventListener('native.keyboardhide', function () {
 
-       console.log('keyboard closed');
+       //console.log('keyboard closed');
    });
 
    var mailme = function() {
-       console.log('Caught!');
+       //console.log('Caught!');
    }
 
    window.addEventListener('error', function(e) {
@@ -177,7 +177,7 @@ function keyboardShowHandler(e){
 
       window.localStorage.networkType = states[networkState];
       $rootScope.networkType = window.localStorage.networkType;
-      // console.log('Connection type: ' + window.localStorage.networkType);
+      // //console.log('Connection type: ' + window.localStorage.networkType);
   }
 
 })
@@ -187,13 +187,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           var deviceID = device.uuid;
           window.localStorage.deviceID=deviceID;
-          console.log(window.localStorage.deviceID);
+          //console.log(window.localStorage.deviceID);
 
           var deviceHardwareSerial = device.serial;
           window.localStorage.serial=deviceHardwareSerial;
-          console.log(window.localStorage.serial);
-
-          console.log(deviceHardwareSerial);
+          // //console.log(window.localStorage.serial);
+          // //console.log(deviceHardwareSerial);
 
           if (ionic.Platform.isAndroid()) {
               window.addEventListener("native.hidekeyboard", function () {
@@ -202,9 +201,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
               });
           }
           else {
-          console.log("localStorage previous value",window.localStorage.sendPrescTo);
+          //console.log("localStorage previous value",window.localStorage.sendPrescTo);
           window.localStorage.sendPrescTo = "";
-          console.log("localStorage after value",window.localStorage.sendPrescTo);
+          //console.log("localStorage after value",window.localStorage.sendPrescTo);
           }
           //
           if(window.StatusBar){
@@ -217,7 +216,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
             if (navigator.connection.type == Connection.NONE)
             {
 
-            console.log("Internet is disconnected on your device");
+            //console.log("Internet is disconnected on your device");
             };
           };
 
@@ -228,14 +227,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           console.error(error);
           }
           function trace(value){
-          console.log(value);
+          //console.log(value);
           }
           // AndroidFullScreen.immersiveMode(successFunction, errorFunction);
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
           window.plugins.OneSignal.getIds(function(ids) {
           // alert('getIds: ' + JSON.stringify(ids));
-          console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+          //console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
           });
           var iosSettings = {};
           iosSettings["kOSSettingsKeyAutoPrompt"] = true;
@@ -243,7 +242,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           var notificationOpenedCallback = function(jsonData) {
           alert("Notification opened:\n" + JSON.stringify(jsonData));
-          console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+          //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
           };
 
           // window.plugins.OneSignal.setLogLevel({logLevel: 4, visualLevel: 4});
@@ -262,9 +261,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           // None - notification is silent.
           .handleNotificationOpened(function(jsonData) {
           var data = jsonData.notification.payload.additionalData;
-          // console.log('fromPush',data.reqId);
-          console.log("Notification opened:\n" + JSON.stringify(jsonData));
-          console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+          // //console.log('fromPush',data.reqId);
+          //console.log("Notification opened:\n" + JSON.stringify(jsonData));
+          //console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
 
           $ionicHistory.nextViewOptions({
           disableAnimate: true,
@@ -274,17 +273,17 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           })
           .endInit();
 
-          console.log('deviceredy');
-          console.log(window.localStorage.doctororpatient);
+          //console.log('deviceredy');
+          //console.log(window.localStorage.doctororpatient);
 
           $rootScope.deviceAndroid = ionic.Platform.isAndroid();
           $rootScope.deviceIOS = ionic.Platform.isIOS();
 
           if($rootScope.deviceIOS){
-          console.log("iosDevice:",$rootScope.deviceIOS);
+          //console.log("iosDevice:",$rootScope.deviceIOS);
           }
 
-          console.log('iospatientValue:',window.localStorage.sendPrescTo);
+          //console.log('iospatientValue:',window.localStorage.sendPrescTo);
 
           if(window.localStorage.doctororpatient === "doctor" ){
 
@@ -294,15 +293,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
           duration:5000
           });
-          console.log($rootScope.pat_phnofromwebview);
+          //console.log($rootScope.pat_phnofromwebview);
           $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
           return '/templates/sendPrescription';
           }
 
           if($rootScope.deviceIOS === true){
           if(window.localStorage.sendPrescTo != ''){
-          console.log("iosDevice:");
-          console.log("iospatient:",window.localStorage.sendPrescTo);
+          //console.log("iosDevice:");
+          //console.log("iospatient:",window.localStorage.sendPrescTo);
           $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
           return '/templates/sendPrescription';
           }
@@ -312,7 +311,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           else{
           //do nothing
-          console.log('UNDEFINED');
+          //console.log('UNDEFINED');
           }
           $timeout( function() {
           // $state.go('templates.loadingDoctor');
@@ -322,15 +321,15 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           template: '<ion-spinner></ion-spinner><br><br>Please Wait',
           duration:5000
           });
-          console.log($rootScope.pat_phnofromwebview);
+          //console.log($rootScope.pat_phnofromwebview);
           $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
           return '/templates/sendPrescription';
           }
 
           if($rootScope.deviceIOS === true){
           if(window.localStorage.sendPrescTo != ''){
-          console.log("iosDevice:");
-          console.log("iospatient:",window.localStorage.sendPrescTo);
+          //console.log("iosDevice:");
+          //console.log("iospatient:",window.localStorage.sendPrescTo);
           $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
           return '/templates/sendPrescription';
           }
@@ -351,16 +350,35 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           function success( status ) {
           if( !status.hasPermission ) error();
           }
-
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
+
+          //-------------------------------------ANALYTICS SETUP---------------------
+            // window.ga.startTrackerWithId('UA-114659588-1')
+              window.ga.startTrackerWithId('UA-114659588-1', 1, function(msg) {
+                window.ga.trackView('Index.html');
+              });
+             window.ga.setAllowIDFACollection(true)
+             // window.ga.trackEvent('Request', 'Click', 'sendrequesttoonlinedoctors',1)// Label and Value are optional, Value is numeric
+             // window.ga.debugMode();
+             window.ga.enableUncaughtExceptionReporting(true, gasuccess, gaerror)
+             function gasuccess() {
+             console.info("Google Analytics working");
+             }
+             function gaerror(error){
+             console.error(error);
+             }
+             window.ga.trackView('Profile')
+          //-------------------------------------ANALYTICS SETUP---------------------
+
+
   });
 
   document.addEventListener("deviceready", (function() {
-  console.log(AppVersion.version); // e.g. "1.2.3"
-  console.log(AppVersion.build); // e.g. 1234
+  //console.log(AppVersion.version); // e.g. "1.2.3"
+  //console.log(AppVersion.build); // e.g. 1234
 
   window.localStorage.AppVersion=AppVersion.build;
-  console.log(window.localStorage.AppVersion);
+  //console.log(window.localStorage.AppVersion);
 
 // cordova.plugins.market.open('com.greettech.DoctorQuick');
 // cordova.plugins.market.search('version');
@@ -372,21 +390,21 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 //                       .referrer("http://www.google.com").get()
 //                       .select("widget[itemprop=version]").first()
 //                       .ownText();
-// console.log(newVersion);
+// //console.log(newVersion);
 
   }), false);
 
 
   //cordova event handling
   document.addEventListener('deviceready', function () {
-    console.log('splash hidden');
+    //console.log('splash hidden');
     navigator.splashscreen.hide();
   });
   document.addEventListener("resume", onResume, false);
   function onResume() {
 
         setTimeout(function() {
-        console.log('resume');
+        //console.log('resume');
               // $state.go("templates.doc_profile");//working
               // $state.go($state.current, {}, { reload: true, inherit: false, notify: true });
             //
@@ -396,8 +414,8 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 
   $rootScope.previousState = fromState;
-  console.log(toState.name.indexOf('app.patient_home'));
-  console.log(toState.name.indexOf());
+  //console.log(toState.name.indexOf('app.patient_home'));
+  //console.log(toState.name.indexOf());
   if(toState.name.indexOf('auth.loginNew') > -1)
   {
 
@@ -412,19 +430,19 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
       else{
           $ionicConfig.views.transition('platform');
       }
-      console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
+      //console.log("enabling swipe back and restoring transition to platform default", $ionicConfig.views.transition());
   }
-  console.log(toState.name);
-  console.log(fromState.name);
+  //console.log(toState.name);
+  //console.log(fromState.name);
 
 //to stop back from update view
   if(!$rootScope.previousState && toState.name === "templates.doctor_home"){
-    console.log('this is it');
+    //console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
 
   if(!$rootScope.previousState && toState.name === "templates.doctor_home"){
-    console.log('this is it');
+    //console.log('this is it');
     $state.go('templates.sendPrescription',{}, {location: "replace", reload: false});
   }
 
@@ -453,10 +471,10 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
   }
   if (toState.name == "app.patient_summary") {
     // $rootScope.hideSideMenu = true;
-    console.log('summary');
+    //console.log('summary');
   }
   if( fromState.name === "templates.doctor_home"){
-    console.log('this is it');
+    //console.log('this is it');
     $rootScope.specialdata=null;
     $rootScope.genderdata= null;
     $rootScope.statusdata=null;
@@ -473,9 +491,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
     var languagewise = "";
 
   }
-  console.log($rootScope.previousState.name);
+  //console.log($rootScope.previousState.name);
   $ionicPlatform.registerBackButtonAction(function (event){
-      console.log($state.$current.name);
+      //console.log($state.$current.name);
       if (( $rootScope.previousState.name==="templates.diagnosisForPatient" || $rootScope.previousState.name === "templates.medicationForPatient") || $rootScope.previousState.name ==="templates.patientTests"){
             // alert('route to home page and set the root to homepage');
 
@@ -487,7 +505,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
             text: 'Ok',
             type: 'button-royal',
             onTap:function(){
-            console.log('cancel');
+            //console.log('cancel');
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
             $ionicHistory.nextViewOptions({
@@ -529,7 +547,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
             text: 'Ok',
             type: 'button-royal',
             onTap:function(){
-            console.log('cancel');
+            //console.log('cancel');
             $ionicHistory.clearCache();
             $ionicHistory.clearHistory();
             $ionicHistory.nextViewOptions({
@@ -568,7 +586,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
       }
 
       else if($state.$current.name === "app.patient_home"){
-        console.log('reload homepage');
+        //console.log('reload homepage');
         // $ionicHistory.nextViewOptions({
         //     disableBack: true,
         //     disableAnimate: true,
@@ -590,7 +608,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
       }
 
       else if($state.$current.name === 'app.searchDoctors'){
-            console.log('clear search values here');
+            //console.log('clear search values here');
             $rootScope.specialdata=null;
             $rootScope.genderdata= null;
             $rootScope.statusdata=null;
@@ -606,14 +624,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
             var genderwise = "";
             var languagewise = "";
 
-            // console.log($scope.specialdata);
+            // //console.log($scope.specialdata);
             window.history.back();
 
       }
 
       else {
-        console.log('goback to prev view');
-        console.log($state.$current-1);
+        //console.log('goback to prev view');
+        //console.log($state.$current-1);
           // For all other states, the H/W BACK button is enabled
           // navigator.app.backHistory();
           window.history.back();
@@ -710,24 +728,24 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
               return config;
           },
           responseError: function (rejection,response) {
-            console.log(rejection);
-            console.log(response);
+            //console.log(rejection);
+            //console.log(response);
 
             $rootScope.$watchCollection('[networkType, online]', function(newValues, oldValues){
                 // do stuff here
                 // newValues and oldValues contain the new and respectively old value
                 // of the observed collection array
-                console.log('newValues',newValues[0],newValues[1]);
-                console.log('oldValues',oldValues[0],oldValues[1]);
+                //console.log('newValues',newValues[0],newValues[1]);
+                //console.log('oldValues',oldValues[0],oldValues[1]);
 
             });
 
 
             $rootScope.$watch('networkType', function(newValue, oldValue){
-              // console.log($injector.get("$localStorage").networkType);
-              console.log('newValue',newValue);
-              console.log('oldValue',oldValue);
-              console.log($rootScope.online);
+              // //console.log($injector.get("$localStorage").networkType);
+              //console.log('newValue',newValue);
+              //console.log('oldValue',oldValue);
+              //console.log($rootScope.online);
 
                    if (newValue ==='None' || newValue ==='Unknown' || newValue ==='Ethernet' ) {
                       //  $rootScope.online=$rootScope.online;
@@ -746,27 +764,27 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
 
                    }
                   // else if(newValue == false && oldValue == false || newValue == true && oldValue == true){
-                  //    console.log('on');
+                  //    //console.log('on');
                   //  }else{
-                  //    console.log('offf');
+                  //    //console.log('offf');
                   //
                   //  }
                });
-               console.log(rejection.status);
+               //console.log(rejection.status);
 
               switch (rejection.status) {
                   // case 0 :  var $http = $injector.get('$http');//for retry condition
                   //           return $http(response.config);
                   //         break;
                   case -1 :
-                      console.log('connection timed out!');
+                      //console.log('connection timed out!');
                       if($injector.get("$state").$current.name === "auth.loginNew"){
-                        console.log('loginview');
+                        //console.log('loginview');
                         // $injector.get("$ionicLoading").show({
                         //       template: '<ion-spinner></ion-spinner><br><br>Logging into DoctorQuick',
                         //       duration:30000
                         //     });
-                              console.log($injector.get("$state").$current.name);
+                              //console.log($injector.get("$state").$current.name);
 
                                 // window.location = "noresponse.html";
                                 // $injector.get("$ionicLoading").show({
@@ -781,7 +799,7 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
 
                             // $injector.get("$ionicLoading").hide();
                             // $injector.get("$ionicLoading").hide().then(function(){
-                            // console.log("The loading indicator is now hidden");
+                            // //console.log("The loading indicator is now hidden");
                             // // $injector.get("$ionicLoading").show({
                             // //       template: '<ion-spinner ></ion-spinner><br><br>Recovering lost connection',
                             // //     });
@@ -790,11 +808,11 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                       }
                       break;
                   case 404 :
-                      console.log('Error 404 - not found!');
+                      //console.log('Error 404 - not found!');
 
                       break;
                   case 408 :
-                      console.log('Timeout');
+                      //console.log('Timeout');
                       $injector.get("$ionicPopup").confirm({
                             // title: 'Unable to reach DoctorQuick servers',
                             template: '<center>Unable to reach DoctorQuick servers. Please check your connection and try again</center>',
@@ -805,8 +823,8 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
                                 text: 'OK',
                                 type: 'button-royal',
                                 onTap: function(e) {
-                                console.log('ok');
-                                 console.log(window.localStorage.doctororpatient);
+                                //console.log('ok');
+                                 //console.log(window.localStorage.doctororpatient);
                                  if(window.localStorage.doctororpatient === "patient"){
                                    $injector.get("$state").go("app.patient_home");
                                  }
@@ -1393,19 +1411,19 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
   var Storage = $injector.get('$localStorage');
   var rootScope = $injector.get('$rootScope');
 
-  console.log(window.localStorage.doctororpatient);
-  console.log(window.localStorage.doctororpatient);
+  //console.log(window.localStorage.doctororpatient);
+  //console.log(window.localStorage.doctororpatient);
 
   if(window.localStorage.doctororpatient === 'doctor'){
     Storage.showConnecting = true;
-    console.log(window.localStorage.sendPrescTo);
+    //console.log(window.localStorage.sendPrescTo);
       var userType=window.localStorage.doctororpatient;
       var userNum=window.localStorage.user;
-      console.log(userType);
+      //console.log(userType);
 
       var get = getUrlVars();
-      console.log('thisis after getting');
-      console.log(get["phno"]);
+      //console.log('thisis after getting');
+      //console.log(get["phno"]);
       rootScope.pat_phnofromwebview = get["phno"];
 
     function getUrlVars() {
@@ -1417,8 +1435,8 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
 
     });
 
-    console.log('from webviewactivity');
-    console.log(vars);
+    //console.log('from webviewactivity');
+    //console.log(vars);
     return vars;
 
     }
@@ -1426,21 +1444,21 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
       if(window.localStorage.doctororpatient === "doctor" ){
 
           if(rootScope.pat_phnofromwebview){
-            console.log('Route to prescription view :)');
+            //console.log('Route to prescription view :)');
               Storage.showConnecting = false;
               $ionicLoading.show({
               template: '<ion-spinner></ion-spinner><br><br>Please Wait',
               duration:5000
               });
-              console.log($rootScope.pat_phnofromwebview);
+              //console.log($rootScope.pat_phnofromwebview);
               $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
               return '/templates/sendPrescription';
           }
           //
           // if($rootScope.deviceIOS === true){
           //   if(window.localStorage.sendPrescTo != ''){
-          //     console.log("iosDevice:");
-          //     console.log("iospatient:",window.localStorage.sendPrescTo);
+          //     //console.log("iosDevice:");
+          //     //console.log("iospatient:",window.localStorage.sendPrescTo);
           //     $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
           //     return '/templates/sendPrescription';
           //   }
@@ -1451,7 +1469,7 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
       }
     }
     else{
-      console.log("normal routing");
+      //console.log("normal routing");
       return '/templates/doctor_home';
 
     }
@@ -1472,14 +1490,14 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
   //   var Storage = $injector.get('$localStorage');
   //   var rootScope = $injector.get('$rootScope');
   //
-  //   console.log(Storage.sendPrescTo);
+  //   //console.log(Storage.sendPrescTo);
   //     var userType=Storage.doctororpatient;
   //     var userNum=Storage.user;
-  //     console.log(userType);
+  //     //console.log(userType);
   //
   //     var get = getUrlVars();
-  //     console.log('thisis after getting');
-  //     console.log(get["phno"]);
+  //     //console.log('thisis after getting');
+  //     //console.log(get["phno"]);
   //     rootScope.pat_phnofromwebview = get["phno"];
   //
   //     function getUrlVars() {
@@ -1491,8 +1509,8 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
   //
   //     });
   //
-  //     console.log('from webviewactivity');
-  //     console.log(vars);
+  //     //console.log('from webviewactivity');
+  //     //console.log(vars);
   //     return vars;
   //
   //     }
@@ -1500,21 +1518,21 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
   //       if(window.localStorage.doctororpatient === "doctor" ){
   //
   //   	      if($rootScope.pat_phnofromwebview){
-  //   					console.log('Route to prescription view :)');
+  //   					//console.log('Route to prescription view :)');
   //   	          window.localStorage.onOff=2;
   //   	          $ionicLoading.show({
   //   	          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
   //   	          duration:5000
   //   	          });
-  //   	          console.log($rootScope.pat_phnofromwebview);
+  //   	          //console.log($rootScope.pat_phnofromwebview);
   //   	          $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
   //   	          return '/templates/sendPrescription';
   //   	      }
   //           //
   //   	      // if($rootScope.deviceIOS === true){
   //   	      //   if(window.localStorage.sendPrescTo != ''){
-  //   	      //     console.log("iosDevice:");
-  //   	      //     console.log("iospatient:",window.localStorage.sendPrescTo);
+  //   	      //     //console.log("iosDevice:");
+  //   	      //     //console.log("iospatient:",window.localStorage.sendPrescTo);
   //   	      //     $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
   //   	      //     return '/templates/sendPrescription';
   //   	      //   }
@@ -1525,7 +1543,7 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
   //   	  }
   //     }
   //     else{
-  //       console.log("normal routing");
+  //       //console.log("normal routing");
   //       return '/splash';
   //     }
   //
