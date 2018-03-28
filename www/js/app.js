@@ -230,11 +230,33 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           //console.log(value);
           }
           // AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+          //-------------------------------------FCM PUSH SETUP---------------------
+
+          // FCMPlugin.getToken(function(token){
+          //   console.log(token);
+          //   alert(token);
+          // });
+          //
+          //
+          // FCMPlugin.onNotification(function(data){
+          //     alert(data.questionTitle);
+          //     console.log(data);
+          //     if(data.wasTapped){
+          //       //Notification was received on device tray and tapped by the user.
+          //       alert( JSON.stringify(data) );
+          //     }
+          //     else{
+          //       //Notification was received in foreground. Maybe the user needs to be notified.
+          //       alert( JSON.stringify(data) );
+          //     }
+          // });
+          //-------------------------------------FCM PUSH SETUP---------------------
+
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
           window.plugins.OneSignal.getIds(function(ids) {
           // alert('getIds: ' + JSON.stringify(ids));
-          //console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+          console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
           });
           var iosSettings = {};
           iosSettings["kOSSettingsKeyAutoPrompt"] = true;
@@ -273,8 +295,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           })
           .endInit();
 
-          //console.log('deviceredy');
-          //console.log(window.localStorage.doctororpatient);
+          //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
           $rootScope.deviceAndroid = ionic.Platform.isAndroid();
           $rootScope.deviceIOS = ionic.Platform.isIOS();
@@ -283,29 +304,25 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           //console.log("iosDevice:",$rootScope.deviceIOS);
           }
 
-          //console.log('iospatientValue:',window.localStorage.sendPrescTo);
-
           if(window.localStorage.doctororpatient === "doctor" ){
 
-          if($rootScope.pat_phnofromwebview){
-          // window.localStorage.onOff=2;
-          $ionicLoading.show({
-          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-          duration:5000
-          });
-          //console.log($rootScope.pat_phnofromwebview);
-          $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-          return '/templates/sendPrescription';
-          }
+              if($rootScope.pat_phnofromwebview){
+                  $ionicLoading.show({
+                      template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+                      duration:5000
+                  });
+                  $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+                  return '/templates/sendPrescription';
+              }
 
-          if($rootScope.deviceIOS === true){
-          if(window.localStorage.sendPrescTo != ''){
-          //console.log("iosDevice:");
-          //console.log("iospatient:",window.localStorage.sendPrescTo);
-          $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
-          return '/templates/sendPrescription';
-          }
-          }
+              if($rootScope.deviceIOS === true){
+                if(window.localStorage.sendPrescTo != ''){
+                  //console.log("iosDevice:");
+                  //console.log("iospatient:",window.localStorage.sendPrescTo);
+                  $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
+                  return '/templates/sendPrescription';
+                }
+              }
 
           }
 
@@ -314,26 +331,26 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           //console.log('UNDEFINED');
           }
           $timeout( function() {
-          // $state.go('templates.loadingDoctor');
-          if($rootScope.pat_phnofromwebview){
-          // window.localStorage.onOff=2;
-          $ionicLoading.show({
-          template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-          duration:5000
-          });
-          //console.log($rootScope.pat_phnofromwebview);
-          $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-          return '/templates/sendPrescription';
-          }
+                  // $state.go('templates.loadingDoctor');
+                  if($rootScope.pat_phnofromwebview){
+                      // window.localStorage.onOff=2;
+                      $ionicLoading.show({
+                      template: '<ion-spinner></ion-spinner><br><br>Please Wait',
+                      duration:5000
+                      });
+                      //console.log($rootScope.pat_phnofromwebview);
+                      $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
+                      return '/templates/sendPrescription';
+                  }
 
-          if($rootScope.deviceIOS === true){
-          if(window.localStorage.sendPrescTo != ''){
-          //console.log("iosDevice:");
-          //console.log("iospatient:",window.localStorage.sendPrescTo);
-          $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
-          return '/templates/sendPrescription';
-          }
-          }
+                  if($rootScope.deviceIOS === true){
+                        if(window.localStorage.sendPrescTo != ''){
+                            //console.log("iosDevice:");
+                            //console.log("iospatient:",window.localStorage.sendPrescTo);
+                            $state.go('templates.sendPrescription',{"reqPat": window.localStorage.sendPrescTo},{location: "replace", reload: false});
+                            return '/templates/sendPrescription';
+                        }
+                  }
           }, 0);
 
 
@@ -350,7 +367,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           function success( status ) {
           if( !status.hasPermission ) error();
           }
-          //-------------------------------------ONESIGNAL PUSH SETUP---------------------
 
           //-------------------------------------ANALYTICS SETUP---------------------
             // window.ga.startTrackerWithId('UA-114659588-1')
@@ -368,32 +384,16 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
              console.error(error);
              }
              window.ga.trackView('Profile')
+             window.ga.trackView('specialityDetailsNew');
           //-------------------------------------ANALYTICS SETUP---------------------
 
 
   });
 
-  document.addEventListener("deviceready", (function() {
-  //console.log(AppVersion.version); // e.g. "1.2.3"
-  //console.log(AppVersion.build); // e.g. 1234
-
-  window.localStorage.AppVersion=AppVersion.build;
-  //console.log(window.localStorage.AppVersion);
-
-// cordova.plugins.market.open('com.greettech.DoctorQuick');
-// cordova.plugins.market.search('version');
-
-//   var newVersion = Jsoup
-//                       .connect("https://play.google.com/store/apps/details?id=com.greettech.DoctorQuick&hl=en")
-//                       .timeout(10000)
-//                       .userAgent("Mozilla/5.0 (Windows; U; WindowsNT 5.1; en-US; rv1.8.1.6) Gecko/20070725 Firefox/2.0.0.6")
-//                       .referrer("http://www.google.com").get()
-//                       .select("widget[itemprop=version]").first()
-//                       .ownText();
-// //console.log(newVersion);
-
-  }), false);
-
+  // document.addEventListener("deviceready", (function() {
+  //   window.localStorage.AppVersion=AppVersion.build;
+  // }), false);
+  //
 
   //cordova event handling
   document.addEventListener('deviceready', function () {
