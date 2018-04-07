@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices,myConsultationService)
+DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $cordovaNetwork,$interval, $q, $rootScope, $ionicPopover, $ionicPopup, $timeout, $remember,$ionicLoading, $ionicHistory, $localStorage, $sessionStorage, $cookies, $window, LoginService,doctorServices,medicalSpecialityService,patientProfileDetailsService,searchDoctorServices,myConsultationService,doctoronoffdetails)
 {
 		var loggedIn=false;
 
@@ -331,6 +331,16 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 							console.log('failure data', error);
 						});
 
+						var whichdoctoronoff = {
+							doctorphno : window.localStorage.user,
+							onoff :1
+						}
+						doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
+						console.log(response);
+						}).catch(function(error){
+						console.log('failure data', error);
+						});
+
 						var uname1 = "greet+"+$scope.loginData.phone;
 						var pw1 = "DQ_doctor";
 
@@ -373,9 +383,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 													}
 												// $state.go('templates.doctor_home');//for logging in from browser
 												hello.login(uname1,pw1,success, failure);
-
-
-
 
 												var username = "greet+"+window.localStorage.user;
 						            var password = "DQ_doctor";

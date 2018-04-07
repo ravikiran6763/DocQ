@@ -10,10 +10,10 @@
 
 				$scope.toggleText = "Accept";
 				console.log($state.$current.name);
-				// if($state.$current.name === "templates.viewPatientRequest"){
-				// 	alert("check for notification id existance here");
-				// 	alert("Patient:",$stateParams.reqPat,"reqId:",$stateParams.reqId);
-				// }
+				if($state.$current.name === "templates.viewPatientRequest"){
+					console.log("check for notification id existance here");
+					console.log("Patient:",$stateParams.reqPat,"reqId:",$stateParams.reqId);
+				}
 
 				$timeout( function(){
 						console.log('interval started');
@@ -185,8 +185,6 @@
            console.log($rootScope.subPatientId);
            window.localStorage.subPatientId=$rootScope.subPatientId;
            window.localStorage.patientNum=$rootScope.patientNum;
-
-
 
 
 			 	$scope.CurrentDate = new Date();
@@ -444,8 +442,17 @@
 
 									$rootScope.closeDocPopUp=true;
 									console.log($rootScope.closeDocPopUp);
+
+                  doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
+                  $scope.cancelledByDoc=response;
+                  console.log($scope.cancelledByDoc);
+                  //  $state.go($state.current, {}, {reload: true});
+                  }).catch(function(error){
+                  console.log('failure data', error);
+                  });
+
 									$scope.noResponsePopup = $ionicPopup.show({
-												template: "<div ng-app='refresh_div' ><p>No response has been received from patient .</p></div>",
+												template: "<div ng-app='refresh_div' ><p>No response has been received from patient</p></div>",
 												cssClass: 'requestPopup',
 												scope: $scope,
 												buttons: [
@@ -578,18 +585,6 @@ $scope.popupShown = true;
 
  },true);
 
- // $interval(videoOrAudio,1000);
- // function videoOrAudio(){
- //  console.log($rootScope.reqId);
- //  doctorServices.callStatus($rootScope.reqId).then(function(response){
- //  		$rootScope.callStatus=response;//store the response array in doctor details
- // 		window.localStorage.callStatus=$rootScope.callStatus[0][0];
- // 		$scope.notes=window.localStorage.callStatus;
- //  		console.log($scope.callStatus);
- //  }).catch(function(error){
- //  	console.log('failure data', error);
- //  });
- // }
  $scope.$watch('notes', function (newValue, oldValue, scope){
 
  		console.log('changed');

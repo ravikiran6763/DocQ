@@ -16,7 +16,7 @@ console.log($stateParams.calledDoctor);
 
 var confirmPopup = $ionicPopup.confirm({
 	template: '<center>Prescription filled by the doctor will be available in My Consultation shortly</center>',
-	cssClass: 'summaryPopup',
+	cssClass: 'videoPopup',
 	scope: $scope,
 	buttons: [
 	{

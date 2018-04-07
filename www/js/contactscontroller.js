@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('contactsCtrl', function($scope,$filter,$rootScope, $cordovaContacts, $state,$stateParams, $ionicLoading, $timeout, invitereviews){
+DoctorQuickApp.controller('contactsCtrl', function($scope,$filter,$rootScope, $cordovaContacts,$window, $state,$stateParams, $ionicLoading, $timeout, invitereviews){
     $scope.toggle = true;
     $rootScope.headerTxt="Invite Reviews";
     $rootScope.showBackBtn=true;
@@ -34,9 +34,10 @@ $rootScope.allcontacts.checked = false;
 
       }
 
+    // $rootScope.contact1 = angular.fromJson($window.localStorage['allDeviceContacts']);
 
     invitereviews.getonlysinglecontact($rootScope.contact).then(function(response){
-      //window.localStorage['allConatctsFetched'] = angular.toJson(response);
+      // window.localStorage['allDeviceContacts'] = angular.toJson(response);
           $rootScope.contact1 = response;
           console.log(response);
 
@@ -57,6 +58,8 @@ $rootScope.allcontacts.checked = false;
          });
 
 
+    $rootScope.allContactsSelected=[];
+    window.localStorage['allConatctsFetched']=angular.toJson($rootScope.allContactsSelected);
 
     $scope.checkAll = function()
     {
@@ -70,7 +73,6 @@ $rootScope.allcontacts.checked = false;
      console.log($scope.allcontacts);
 
         var toggleStatus = $scope.allcontacts;
-        $rootScope.allContactsSelected=[];
 
         if(toggleStatus)
         {
@@ -118,7 +120,9 @@ $rootScope.allcontacts.checked = false;
         }
 
      }
-$rootScope.selectedNumber=[];
+        $rootScope.selectedNumber=[];
+        window.localStorage['numbersToSendInvites']=angular.toJson($rootScope.selectedNumber);
+
         $scope.optionToggled = function(checkedvalue,value){
             console.log(checkedvalue);
             console.log(value);
@@ -137,7 +141,7 @@ $rootScope.selectedNumber=[];
 
                       console.log($rootScope.selectedNumber);
                       window.localStorage['numbersToSendInvites'] = angular.toJson($rootScope.selectedNumber);
-                      
+
 
                   }
             $scope.allcontacts = $rootScope.contact1.every(function(itm){

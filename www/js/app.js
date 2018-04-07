@@ -281,18 +281,20 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           // Notification - native notification display while user has app in focus (can be distracting).
           // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
           // None - notification is silent.
-          .handleNotificationOpened(function(jsonData) {
-          var data = jsonData.notification.payload.additionalData;
-          // //console.log('fromPush',data.reqId);
-          //console.log("Notification opened:\n" + JSON.stringify(jsonData));
-          //console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-
-          $ionicHistory.nextViewOptions({
-          disableAnimate: true,
-          disableBack: true
-          });
-          $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
-          })
+          // .handleNotificationOpened(function(jsonData) {
+          // var data = jsonData.notification.payload.additionalData;
+          // console.log('fromPush',data.reqId);
+          // console.log('fromPush',data.reqPat);
+          //
+          // console.log("Notification opened:\n" + JSON.stringify(jsonData));
+          // console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+          //
+          // $ionicHistory.nextViewOptions({
+          // disableAnimate: true,
+          // disableBack: true
+          // });
+          // $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+          // })
           .endInit();
 
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------
@@ -309,7 +311,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
               if($rootScope.pat_phnofromwebview){
                   $ionicLoading.show({
                       template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-                      duration:5000
+                      // duration:5000
                   });
                   $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
                   return '/templates/sendPrescription';
@@ -646,18 +648,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
   DoctorQuickApp.config(['$provide', '$httpProvider', function($provide, $httpProvider) {
       $httpProvider.interceptors.push('RequestsErrorHandler');
-
       // --- Decorate $http to add a special header by default ---
-
       function addHeaderToConfig(config) {
           config = config || {};
           config.headers = config.headers || {};
-
           // Add the header unless user asked to handle errors himself
           if (!specificallyHandleInProgress) {
               config.headers[HEADER_NAME] = true;
           }
-
           return config;
       }
 
@@ -852,6 +850,15 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     templateUrl:'splash.html',
     controller : 'splashCtrl'
   })
+
+  .state('error', {
+    cache : false,
+    url: "/errorPage",
+    templateUrl: "views/error/errorPage.html",
+    abstract: true,
+    controller: 'errorCtrl'
+  })
+
   .state('auth', {
     cache : false,
     url: "/auth",
@@ -1405,7 +1412,7 @@ $stateProvider
   // if none of the above states are matched, use this as the fallback
   // $urlRouterProvider.otherwise('/auth/loginNew');
 
-$urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,$rootScope) {
+$urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,$rootScope,$ionicLoading) {
 
   var $state = $injector.get('$state');
   var Storage = $injector.get('$localStorage');
@@ -1448,7 +1455,6 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
               Storage.showConnecting = false;
               $ionicLoading.show({
               template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-              duration:5000
               });
               //console.log($rootScope.pat_phnofromwebview);
               $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});

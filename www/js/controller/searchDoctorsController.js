@@ -324,6 +324,16 @@ $scope.docClicked=function(docPhone){
 						          $rootScope.buttonText='Send Request';
 						          $timeout.cancel(patientTimeout);
 
+											searchDoctorServices.cancelOne2oneReq(window.localStorage.one2oneId).then(function(response){
+											$scope.cancelledReq=response;
+											window.localStorage.one2oneId=0;
+											window.localStorage.callStatus=0;
+											$scope.callAccept.close();
+											console.log($scope.cancelledReq);
+											}).catch(function(error){
+												console.log('failure data', error);
+											});
+
 						          var noResponsePopup = $ionicPopup.alert({
 						          template: "<div ><p>Doctor did not accepted your request .</p></div>",
 						          cssClass: 'requestPopup',
@@ -600,9 +610,8 @@ $scope.docClicked=function(docPhone){
 
 				 		 });
 		 }
-		 if(newValue == 4){
+		 if(newValue == 4 || newValue == 5) {
 						//  alert('declined');
-
 						 $scope.callReqPopUp.close();
 						 var confirmPopup = $ionicPopup.confirm({
 										 // title: 'Declined!',
@@ -627,6 +636,8 @@ $scope.docClicked=function(docPhone){
 											 },
 										 ]
 						 });
+						 $scope.callAccept.close();
+
 		 }
 
 	},true);

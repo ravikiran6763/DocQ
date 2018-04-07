@@ -100,8 +100,10 @@ else {
   //
   // console.log($scope.newpatientAdded.fname);
   // console.log($scope.newpatientAdded.lname);
+  $ionicLoading.hide();
   $scope.selectedPatient=function(id){
     console.log(id);
+    window.localStorage.subPatientId=id;
     console.log('selected patient',$scope.subPatient.id);
   }
   medicalSpecialityService.getSubPatients($stateParams.reqPat)

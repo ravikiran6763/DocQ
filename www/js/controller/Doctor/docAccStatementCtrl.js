@@ -94,7 +94,9 @@ $rootScope.transcMsg='Select Dates';
         // ionicDatePicker.openDatePicker(ipObj1);
       };
     $scope.openDatePickerTo = function(){
-
+      $ionicLoading.show({
+        template:"<ion-spinner></ion-spinner>"
+      });
       $cordovaDatePicker.show(options).then(function(date){
         $rootScope.toDate =date;
               console.log(date);
@@ -107,7 +109,7 @@ $rootScope.transcMsg='Select Dates';
                   }else{
                     $rootScope.transcMsg='';
                   }
-
+                  $ionicLoading.hide();
                     }).catch(function(error){
                   console.log('failure data', error);
                 });

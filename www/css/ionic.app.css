@@ -12636,7 +12636,7 @@ ion-side-menu .heading-item .message {
       width: 90%;
       color: #4b9a0c;
       font-size: 112%;
-      margin-top: 4%; }
+      margin: 0 auto !important; }
   .callAccpted-view .bottom-content {
     height: 42%; }
     .callAccpted-view .bottom-content h5 {

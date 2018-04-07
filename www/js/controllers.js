@@ -1,5 +1,5 @@
 // APP
-DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,$localStorage,testresultbydoctor) {
+DoctorQuickApp.controller('diagnosisCtrl', function($scope,$state,$rootScope,$stateParams,$ionicConfig,$localStorage,testresultbydoctor){
 
 		$scope.toggle = true;
 		$rootScope.headerTxt="Diagnosis";

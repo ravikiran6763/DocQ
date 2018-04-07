@@ -28,7 +28,6 @@ else{
 
 $ionicLoading.show({
 			template: '<ion-spinner></ion-spinner>',
-			showBackdrop:true
 			// duration:3000
 		});
 
@@ -58,8 +57,14 @@ if(window.localStorage.doctororpatient === "patient"){ //to list out the consult
 	});
 }
 else{
+
+	$rootScope.myPatients = angular.fromJson($window.localStorage['ConsultedPatient']);
+
 	myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
-	$scope.myPatients=response;//store the response array in doctor details
+	$rootScope.myPatients=response;//store the response array in doctor details
+	window.localStorage['ConsultedPatient'] = angular.toJson(response);
+	$rootScope.myPatients = angular.fromJson($window.localStorage['ConsultedPatient']);
+
 	console.log($scope.myPatients);
 	if($scope.myPatients){
 		$ionicLoading.hide();

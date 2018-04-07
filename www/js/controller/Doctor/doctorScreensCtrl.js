@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager,LoginService,invitereviews) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager,LoginService,myConsultationService,invitereviews) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -55,6 +55,23 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             noBackdrop: true
           });
 
+          var whichdoctoronoff = {
+            doctorphno : window.localStorage.user,
+            onoff :1
+          }
+          doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
+          console.log(response);
+          }).catch(function(error){
+          console.log('failure data', error);
+          });
+
+// To load the my consultation list 
+          myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
+        	window.localStorage['ConsultedPatient'] = angular.toJson(response);
+        	}).catch(function(error){
+        	console.log('failure data', error);
+        	});
+
             $interval(availableInVsee,2000,1);
 
         }
@@ -90,6 +107,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
                     $interval(checkNewMessages,2000);
 
                     $interval.cancel(availableInVsee);
+
 
                     doctorServices.doctorStatus(window.localStorage.user).then(function(response){
                         console.log(response);
@@ -478,13 +496,8 @@ $scope.contacts='';
 $scope.inviteForReview=function(){
   $scope.contacts = angular.fromJson($window.localStorage['numbersToSendInvites']);
   $scope.allConatctsFetched = angular.fromJson($window.localStorage['allConatctsFetched']);
-  console.log($scope.allConatctsFetched);
-
-  console.log($scope.allConatctsFetched.length);
-
-  // $scope.contacts = invitereviews.getinvitecontacts();
-	console.log($scope.contacts.length);
-
+console.log("ALL:",$scope.allConatctsFetched.length);
+console.log("Single:",$scope.contacts.length);
 
   if($scope.contacts.length === 0 && $scope.allConatctsFetched.length === 0)
   {
@@ -507,6 +520,7 @@ $scope.inviteForReview=function(){
 
 
   }
+
   else if($scope.allConatctsFetched.length === 0 &&  $scope.contacts.length > 0)
   {
     $ionicLoading.show({

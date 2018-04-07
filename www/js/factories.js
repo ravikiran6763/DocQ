@@ -387,46 +387,36 @@ angular.module('DoctorQuick.factories', [])
     }
 })
 
-// .factory('RequestsErrorHandler', function($q, $http, $rootScope){
-//   return {
-//       // --- The user's API for claiming responsiblity for requests ---
-//       specificallyHandled: function(specificallyHandledBlock) {
-//           specificallyHandleInProgress = true;
-//           try {
-//               return specificallyHandledBlock();
-//           } finally {
-//               specificallyHandleInProgress = false;
-//           }
-//       },
-//
-//       // --- Response interceptor for handling errors generically ---
-//       responseError: function(rejection) {
-//
-//
-//           var shouldHandle = (rejection && rejection.config && rejection.config.headers
-//               && rejection.config.headers[HEADER_NAME]);
-//               console.log('shouldHandle',shouldHandle);
-//           if (shouldHandle){
-//             console.log('handeled');
-//             console.log(rejection);
-//             console.log(rejection.config);
-//             console.log(rejection.config.headers);
-//             console.log(rejection.config.headers[HEADER_NAME]);
-//             // $ionicLoading.show({
-//             //     template:'<ion-spinner></ion-spinner><br></br>Lost Connection'
-//             //   });
-//               // --- Your generic error handling goes here ---
-//           }
-//           else{
-//             // $ionicLoading.hide();
-//           }
-//
-//           return $q.reject(rejection);
-//       }
-//   };
-// })
+.factory('PopupFactory', function ($ionicPopup) {
+   function getPopup(scope) {
+     return $ionicPopup.show({
+     templateUrl: 'popup-template.html',
+     title: 'Enter Wi-Fi Password',
+     subTitle: 'Please use normal things',
+     scope: scope,
+     buttons: [
+       { text: 'Cancel' },
+       {
+         text: '<b>Save</b>',
+         type: 'button-positive',
+         onTap: function(e) {
+           if (!scope.data.wifi) {
+             //don't allow the user to close unless he enters wifi password
+             e.preventDefault();
+           } else {
+             return scope.data.wifi;
+           }
+         }
+       },
+     ]
+   })
+   }
 
-.factory('RequestsErrorHandler', ['$q', function($q) {
+   return {
+       getPopup: getPopup
+   };
+})
+.factory('RequestsErrorHandler', ['$q', function($q,$ionicPopup,$window,$location ) {
     return {
         // --- The user's API for claiming responsiblity for requests ---
         specificallyHandled: function(specificallyHandledBlock) {
@@ -446,13 +436,51 @@ angular.module('DoctorQuick.factories', [])
                 console.log('shouldHandle',shouldHandle);
             if (shouldHandle){
               console.log('handeled');
+              window.alert("No Internet");
+              window.localStorage.slowData=true;
+              // window.location.href = "http://www.doctorquick.com";
+              // window.location = "/error/errorPage";
+
+              // return '/error/errorPage';
+              // $location.path('error.errorPage');
+
+              // $state.go("app.patient_home");
+              // ionic.Platform.exitApp();
+            // var myPopup = PopupFactory.getPopup($scope);
+            // // An elaborate, custom popup
+            // myPopup.then(function(res) {
+            // console.log('Tapped!', res);
+            // });
+
+              // var confirmPopup = $ionicPopup.confirm({
+    					// 	title: 'DoctorQuick',
+    					// 	template: 'Seems you are disconnected from the internet',
+    					// 	cssClass: 'videoPopup',
+    					// 	scope: $scope,
+    					// 	buttons: [
+    					// 		{
+    					// 			text: 'Cancel',
+    					// 			type: 'button-royal',
+    					// 		},
+    					// 		{
+    					// 			text: 'Ok',
+    					// 			type: 'button-positive',
+    					// 			onTap: function(e) {
+    					// 			console.log('ok');
+              //
+    					// 		}
+    					// 		},
+    					// 	]
+    					// });
+
               console.log(rejection);
               console.log(rejection.config);
               console.log(rejection.config.headers);
               console.log(rejection.config.headers[HEADER_NAME]);
-              // EROOR HANDLING 
+              // EROOR HANDLING
             }
             else{
+
             }
 
             return $q.reject(rejection);
