@@ -70,13 +70,12 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 	{
 		console.log($rootScope.loginDatasubmitted);
 				$rootScope.loginDatasubmitted=true;
-				window.localStorage.showConnecting=false;
 				window.localStorage.showConnecting = false;
 
 			if($scope.loginData.phone && $scope.loginData.pin)
 			{
 				window.localStorage.user = $scope.loginData.phone;
-				window.localStorage.pass = $scope.loginData.pin;
+				// window.localStorage.pass = $scope.loginData.pin;
 				$rootScope.user = $scope.loginData.phone;
 				console.log('user:',window.localStorage.user);
 				console.log('user:',window.localStorage.pass);
@@ -91,7 +90,9 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 					userNum : $scope.loginData.phone,
 					password : $scope.loginData.pin,
 					deviceID : window.localStorage.deviceID,
-					serial:window.localStorage.serial
+					serial:window.localStorage.serial,
+					manufacturer : window.localStorage.manufacturer,
+					model:window.localStorage.model
 				};
 
 				$scope.lastView = $ionicHistory.backView();
@@ -101,6 +102,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 					if(response === "patient")
 					{
+
 
 						window.localStorage.doctororpatient = response;
 						window.plugins.OneSignal.getIds(function(ids) {
@@ -130,6 +132,22 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						console.log('failure data', error);
 						})
 
+						myConsultationService.firstConsultation(window.localStorage.user).then(function(response){
+							console.log(response);
+						if(response === 'DONE'){
+								$rootScope.firstConsultationDone = false;
+								window.localStorage.firstConsultationDone=false;
+						}
+						else{
+							$rootScope.firstConsultationDone = true;
+							window.localStorage.firstConsultationDone=true;
+
+							// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+						}
+
+						}).catch(function(error){
+						// console.log('failure data', error);
+						});
 						// myConsultationService.myConsultedDoctors($scope.loginData.phone).then(function(response){
 						// 	console.log(response);
             //
@@ -485,7 +503,7 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						console.log('doctor screen should entered');
 
 					}
-					else if(response === "alreadyLoggedIn"){
+					else if(response === "1"){
 						$ionicLoading.hide();
 						$scope.myPopup = $ionicPopup.show({
 							// title: 'Invalid Credentials',
@@ -497,6 +515,18 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						{
 						$scope.myPopup.close();
 						};
+					}
+					else if(response === "NewUser"){
+						window.localStorage.doctororpatient='NewUser'
+						$ionicLoading.hide();
+						var patientDetails = {};
+			      $rootScope.loginDatasubmitted=false;
+			      console.log($scope.loginDatasubmitted);
+						$ionicHistory.nextViewOptions({
+						disableAnimate: true,
+						disableBack: true
+						});
+			      $state.go('auth.patient_reg1', {}, {reload: true});
 					}
 						else{
 								$ionicLoading.hide();

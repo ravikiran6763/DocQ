@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices,medicalSpecialityService) {
+DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices,medicalSpecialityService,IonicClosePopupService) {
 
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
@@ -177,6 +177,7 @@ console.log('failure data', error);
           			},
           			]
           		});
+              IonicClosePopupService.register($scope.alertPopup);
 
 
         }
@@ -215,6 +216,10 @@ console.log('failure data', error);
            cssClass: 'requestPopup',
            scope: $scope,
          });
+
+         IonicClosePopupService.register($scope.alertPopup);
+
+
            alertPopup.then(function(res) {
              var patientTimeout = $timeout($rootScope.onTimeout,1000);//timer inerval
              $scope.$on('$destroy', function(){
@@ -298,8 +303,10 @@ console.log('failure data', error);
                    },
                  ]
          });
+         IonicClosePopupService.register(confirmPopup);
+
          $scope.callAccept.close();
-         
+
 
        }
   		 else if(newValue == 2){
@@ -372,6 +379,8 @@ console.log('failure data', error);
   															},
   														]
   													});
+                            IonicClosePopupService.register(confirmPopup);
+
   									}
   									else if(window.localStorage.networkType == 'Unknown' || window.localStorage.networkType == 'Ethernet' || window.localStorage.networkType == '2G' || window.localStorage.networkType == '3G')
   									{
@@ -390,6 +399,8 @@ console.log('failure data', error);
   															},
   														]
   													});
+                            IonicClosePopupService.register(confirmPopup);
+
   									}
   									else if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi' )
   									{
@@ -522,6 +533,7 @@ console.log('failure data', error);
               cssClass: 'requestPopup',
               scope: $scope,
               });
+              IonicClosePopupService.register(noResponsePopup);
 
               noResponsePopup.then(function(res){
                 console.log('delete request here');
@@ -596,6 +608,8 @@ console.log('failure data', error);
     							},
     							]
     						});
+                IonicClosePopupService.register(slowData);
+
               }
 
         }
@@ -633,6 +647,8 @@ console.log('failure data', error);
 
       						]
       					});
+                IonicClosePopupService.register(confirmPopup);
+
 
         }
           $ionicLoading.hide();

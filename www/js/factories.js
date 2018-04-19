@@ -436,7 +436,7 @@ angular.module('DoctorQuick.factories', [])
                 console.log('shouldHandle',shouldHandle);
             if (shouldHandle){
               console.log('handeled');
-              window.alert("No Internet");
+              // window.alert("No Internet");
               window.localStorage.slowData=true;
               // window.location.href = "http://www.doctorquick.com";
               // window.location = "/error/errorPage";

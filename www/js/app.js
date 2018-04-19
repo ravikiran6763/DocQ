@@ -191,6 +191,12 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           var deviceHardwareSerial = device.serial;
           window.localStorage.serial=deviceHardwareSerial;
+
+          var manufacturer = device.manufacturer;
+          window.localStorage.manufacturer=manufacturer;
+
+          var model = device.model;
+          window.localStorage.model=model;
           // //console.log(window.localStorage.serial);
           // //console.log(deviceHardwareSerial);
 
@@ -295,6 +301,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           // });
           // $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
           // })
+
+
+
           .endInit();
 
           //-------------------------------------ONESIGNAL PUSH SETUP---------------------

@@ -8,14 +8,11 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
 
-
-
 			window.localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();
 			$ionicConfig.views.swipeBackEnabled(false);
 
 			$scope.currentState=$ionicHistory.currentStateName();
-
 			$ionicConfig.views.swipeBackEnabled(false);
 
 			console.log($scope.currentState);
@@ -37,7 +34,23 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 
 			}
 
+			myConsultationService.firstConsultation(window.localStorage.user).then(function(response){
+				console.log(response);
+			if(response === 'DONE'){
+					$rootScope.firstConsultationDone = false;
+					window.localStorage.firstConsultationDone=false;
 
+			}
+			else{
+				$rootScope.firstConsultationDone = true;
+				window.localStorage.firstConsultationDone=true;
+
+				// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+			}
+
+			}).catch(function(error){
+			// console.log('failure data', error);
+			});
 			$timeout( function(){
 	        console.log('interval started');
 					console.log($localStorage.showConnecting);
@@ -203,19 +216,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 				// // console.log('failure data', error);
 				// });
 
-				myConsultationService.firstConsultation(window.localStorage.user).then(function(response){
-					console.log(response);
-				if(response === 'DONE'){
-						$rootScope.firstConsultationDone = false;
-				}
-				else{
-					$rootScope.firstConsultationDone = true;
-					// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
-				}
 
-				}).catch(function(error){
-				// console.log('failure data', error);
-				});
 
 
 				///////////get all specialities///////////

@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('addNewPatientCtrl', function($state,$ionicLoading,$ionicHistory, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService) {
+DoctorQuickApp.controller('addNewPatientCtrl', function($state,$ionicLoading,$ionicHistory, $scope,$stateParams,$window,$cordovaDatePicker, $rootScope,$filter, $ionicConfig, $ionicPopup,$http,$localStorage, $ionicSideMenuDelegate, $localStorage, LoginService, medicalSpecialityService, IonicClosePopupService) {
   $scope.toggle = true;
 	$rootScope.showBackBtn=true;
 	$rootScope.showNotification=false;
@@ -63,6 +63,8 @@ console.log($scope.defaultPatient);
         },
       ]
     });
+    IonicClosePopupService.register(confirmPopup);
+
     console.log(sub);
     // console.log('app.editPatient',{id:$scope.subPAtientDetails.id});
 

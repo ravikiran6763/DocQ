@@ -52,7 +52,10 @@
                   Decline
                 </button>
               </div>
-              <h5 >Consultation fee: ₹{{mydocs.doctorFee}}</h5>
+              <div ng-hide="{{firstConsultationDone == true}}"><h5 >Consultation fee: ₹{{mydocs.doctorFee}}</h5></div>
+              <div ng-show="{{firstConsultationDone == true}}"><h5 >Free Consultation</h5></div>
+
+
           </div>
 
     </div>

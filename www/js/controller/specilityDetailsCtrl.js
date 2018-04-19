@@ -24,7 +24,7 @@ console.log($rootScope.defaultPatientLname);
 
 // $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
 
-$interval(CheckOnlineDocs, 2000);
+// $interval(CheckOnlineDocs, 2000);
 
 var subPatientToShow={
   subPatId:window.localStorage.selectedSubPatient,
@@ -159,7 +159,7 @@ console.log(window.localStorage.SpecilityId);
                }).catch(function(error){
                console.log('failure data', error);
                });
-               
+
                var noResponsePopup = $ionicPopup.alert({
                template: "<div ><p>None of the doctors have accepted your request</p></div>",
                cssClass: 'requestPopup',
@@ -321,7 +321,7 @@ console.log(window.localStorage.SpecilityId);
               $ionicLoading.hide();
                var confirmPopup = $ionicPopup.confirm({
            						// title: 'Low Balance',
-           						template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270.</center> ',
+           						template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270</center> ',
            						cssClass: 'videoPopup',
            						scope: $scope,
            						buttons: [

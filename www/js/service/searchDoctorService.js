@@ -31,7 +31,7 @@ this.getLanguages = function () {
 //function to fetch all the Doctors
 
 this.fetchAllDoctors = function () {
-  console.log('function called to fetch doctors');
+  // console.log('function called to fetch doctors');
   var deferred = $q.defer();
   $http.post(BASE_URL.url + API.fetchAllDoctors)
   .success(function (data, status, headers, config){
@@ -87,9 +87,9 @@ var tags = [
  };
 
  this.requestForCall  = function (patient) {
-   console.log('from service',patient);
+   // console.log('from service',patient);
    var deferred = $q.defer();
-   console.log(BASE_URL.url + API.requestForCall);
+   // console.log(BASE_URL.url + API.requestForCall);
    $http.post(BASE_URL.url + API.requestForCall,patient)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
@@ -102,9 +102,9 @@ var tags = [
 
  }
  this.cancelOne2oneReq  = function (id) {
-   console.log('from service',id);
+   // console.log('from service',id);
    var deferred = $q.defer();
-   console.log(BASE_URL.url + API.cancelOne2oneReq);
+   // console.log(BASE_URL.url + API.cancelOne2oneReq);
    $http.post(BASE_URL.url + API.cancelOne2oneReq,id)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
@@ -118,9 +118,9 @@ var tags = [
  }
 
  this.checkCallStatus  = function (id) {
-   console.log('from service',id);
+   // console.log('from service',id);
    var deferred = $q.defer();
-   console.log(BASE_URL.url + API.checkCallStatus);
+   // console.log(BASE_URL.url + API.checkCallStatus);
    $http.post(BASE_URL.url + API.checkCallStatus,id)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
@@ -134,9 +134,9 @@ var tags = [
  }
 
  this.declineOne2oneReqPatient  = function (id) {
-   console.log('from service',id);
+   // console.log('from service',id);
    var deferred = $q.defer();
-   console.log(BASE_URL.url + API.declineOne2oneReqPatient);
+   // console.log(BASE_URL.url + API.declineOne2oneReqPatient);
    $http.post(BASE_URL.url + API.declineOne2oneReqPatient,id)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
@@ -149,13 +149,13 @@ var tags = [
 
  }
  this.sendOfflineMessage  = function (sendMessage) {
-   console.log('MessageDAta',sendMessage);
+   // console.log('MessageDAta',sendMessage);
    var deferred = $q.defer();
    $http.post(BASE_URL.url + API.sendOfflineMessage,sendMessage)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
 
-     console.log(data);
+     // console.log(data);
 
 
    })
@@ -167,13 +167,12 @@ var tags = [
  }
 
  this.checkDocStatusOnTheGo  = function (docNum) {
-   console.log('MessageDAta',docNum);
+   // console.log('MessageDAta',docNum);
    var deferred = $q.defer();
    $http.post(BASE_URL.url + API.checkDocStatusOnTheGo,docNum)
    .success(function (data, status, headers, config){
      deferred.resolve(data);
-
-     console.log(data);
+     // console.log(data);
 
 
    })

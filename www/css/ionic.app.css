@@ -12380,7 +12380,9 @@ ion-side-menu .heading-item .message {
           font-size: 125%;
           color: black;
           font-family: Ubuntu,bold,sans-serif !important;
-          line-height: 50%; }
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
         .mydoctor-profile-view .myDoctor-list li .name-content .rating {
           margin: 0% !important; }
     .mydoctor-profile-view .myDoctor-list .ImageContainer img {
@@ -12438,7 +12440,39 @@ ion-side-menu .heading-item .message {
     border-radius: 50%; }
   .myFavDoctor-profile-view .doctorDetails {
     position: absolute;
-    margin: -21% 0 0 23%; }
+    margin: -18% 0 0 23%; }
+    .myFavDoctor-profile-view .doctorDetails h2 {
+      margin-top: 1%;
+      font-size: 90%;
+      /* color: black; */
+      font-family: Ubuntu,bold,sans-serif !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .myFavDoctor-profile-view .doctorDetails h3 {
+      margin-top: 1%;
+      font-size: 90%;
+      /* color: black; */
+      font-family: Ubuntu,bold,sans-serif !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: absolute;
+      width: 65vw; }
+    .myFavDoctor-profile-view .doctorDetails h4 {
+      margin-top: 10%;
+      font-size: 90%;
+      /* color: black; */
+      font-family: Ubuntu,bold,sans-serif !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 65vw; }
+    .myFavDoctor-profile-view .doctorDetails .degrees {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 55%; }
   .myFavDoctor-profile-view .next-icon {
     width: 5%;
     float: right;
@@ -12899,8 +12933,12 @@ ion-side-menu .heading-item .message {
         font-size: 1.8em; }
     .sepecility-details-view .top-content .name-content {
       float: left;
-      padding: 5% 5%;
-      width: 72%; }
+      padding: 4% 2%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: absolute;
+      margin-left: 19%; }
       .sepecility-details-view .top-content .name-content h4 {
         margin-top: 4%;
         font-size: 106%;

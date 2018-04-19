@@ -74,7 +74,9 @@
             font-size: 125%;
             color: black;
             font-family: Ubuntu,bold,sans-serif !important;
-            line-height: 50%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
           .rating{
                 margin: 0% !important;

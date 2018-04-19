@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager,LoginService,myConsultationService,invitereviews) {
+DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$timeout,$window,$location,$rootScope,$localStorage,$interval,$ionicConfig, $state, $ionicSideMenuDelegate,$ionicLoading, $interval, $ionicPlatform, $ionicPopup,$localStorage,doctoronoffdetails,doctorServices,HardwareBackButtonManager,LoginService,myConsultationService,invitereviews,IonicClosePopupService) {
 
   	$rootScope.headerTxt="DoctorQuick";
 		$rootScope.showBackBtn=false;
@@ -18,21 +18,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
 
-    doctorServices.doctorStatus(window.localStorage.user).then(function(response){
-        console.log(response);
-        window.localStorage.onOff=response;
-        if(response == 1){
-        $scope.docAvailable=true;
-        $scope.docNotAvailable=false;
 
-        }
-        else{
-        $scope.docAvailable=false;
-        $scope.docNotAvailable=true;
-        }
-    }).catch(function(error){
-    console.log('failure data', error);
-    });
 
     $rootScope.goToConsultation = function ()
     {
@@ -55,17 +41,9 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             noBackdrop: true
           });
 
-          var whichdoctoronoff = {
-            doctorphno : window.localStorage.user,
-            onoff :1
-          }
-          doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
-          console.log(response);
-          }).catch(function(error){
-          console.log('failure data', error);
-          });
 
-// To load the my consultation list 
+
+          // To load the my consultation list
           myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
         	window.localStorage['ConsultedPatient'] = angular.toJson(response);
         	}).catch(function(error){
@@ -107,23 +85,60 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
                     $interval(checkNewMessages,2000);
 
                     $interval.cancel(availableInVsee);
+                    window.plugins.OneSignal.getIds(function(ids){
+                      //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
+                      //document.getElementById("OneSignalPushToken").innerHTML = "PushToken: " + ids.pushToken;
+                      console.log(JSON.stringify(ids['userId']));
+                      $scope.playerId=JSON.stringify(ids['userId']);
+                      // alert('oneSignal')
+                      console.log($scope.playerId);
+                      if(window.localStorage.doctororpatient === 'patient'){
+                        var updatePlayer ={
+                          palyerId:$scope.playerId,
+                          userNum:window.localStorage.user,
+                          user:'patient'
+                        }
+                      }
+                      else{
+                        var updatePlayer ={
+                          palyerId:$scope.playerId,
+                          userNum:window.localStorage.user,
+                          user:'doctor',
+                          status:'available',
+                          manufacturer:window.localStorage.manufacturer,
+                          model:window.localStorage.model
 
-
-                    doctorServices.doctorStatus(window.localStorage.user).then(function(response){
+                        }
+                      }
+                      console.log('window.localStorage.manufacturer:',window.localStorage.manufacturer);
+                      console.log('window.localStorage.model:',window.localStorage.model);
+                      LoginService.updatePlayer(updatePlayer).then(function(response){
                         console.log(response);
-                        window.localStorage.onOff=response;
-                        if(response == 1){
-                        $scope.docAvailable=true;
-                        $scope.docNotAvailable=false;
+                        if(response){
+                          doctorServices.doctorStatus(window.localStorage.user).then(function(response){
 
+                              console.log(response);
+                              window.localStorage.onOff=response;
+                              if(response == 1){
+                              $scope.docAvailable=true;
+                              $scope.docNotAvailable=false;
+
+                              }
+                              else{
+                              $scope.docAvailable=false;
+                              $scope.docNotAvailable=true;
+                              }
+                          }).catch(function(error){
+                          console.log('failure data', error);
+                          });
                         }
-                        else{
-                        $scope.docAvailable=false;
-                        $scope.docNotAvailable=true;
-                        }
-                    }).catch(function(error){
-                    console.log('failure data', error);
                     });
+
+
+                    })
+
+
+
 
                     });
             }
@@ -261,7 +276,7 @@ function checkConsultations(){
     // console.log($ionicHistory.currentStateName());
     $scope.emailNotification = 'Subscribed';
     // console.log($scope.emailNotification);
-    $scope.Online = function (message) {
+  $scope.Online = function (message) {
       $scope.status=message;
       console.log(window.localStorage.user);
       doctorServices.notifyPatient(window.localStorage.user).then(function(response){
@@ -275,6 +290,7 @@ function checkConsultations(){
             doctorphno : window.localStorage.user,
             onoff :1
           }
+
           doctoronoffdetails.doctoronoff(whichdoctoronoff).then(function(response){
   				console.log(response);
   				}).catch(function(error){
@@ -305,9 +321,10 @@ function checkConsultations(){
     								palyerId:$scope.playerId,
     								userNum:window.localStorage.user,
     								user:'doctor',
-                    status:$scope.status
+                    status:$scope.status,
+                    manufacturer:window.localStorage.manufacturer,
+                    model:window.localStorage.model
     							}
-
 
     						}
 
@@ -322,45 +339,45 @@ function checkConsultations(){
 
         };
   $scope.Offline = function (message) {
-        console.log(message);
-        $scope.status=message;
-        // $window.location.reload();
-        $scope.docAvailable=false;
-        $scope.docNotAvailable=true;
+          console.log(message);
+          $scope.status=message;
+          // $window.location.reload();
+          $scope.docAvailable=false;
+          $scope.docNotAvailable=true;
 
-        $scope.accptNotifications=true;
-        $scope.rejectNotifications=false;
-        if(window.localStorage.doctororpatient === 'patient'){
-        var updatePlayer ={
-        palyerId:'',
-        userNum:window.localStorage.user,
-        user:'patient'
-        }
+          $scope.accptNotifications=true;
+          $scope.rejectNotifications=false;
+          if(window.localStorage.doctororpatient === 'patient'){
+          var updatePlayer ={
+          palyerId:'',
+          userNum:window.localStorage.user,
+          user:'patient'
+          }
 
-        $scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
-        var playerId = JSON.parse($window.localStorage.getItem("patientDetails"));
-        playerId[0][8] = "";
-        console.log(playerId);
-        console.log($scope.patient_details[0][8]);
-        localStorage.setItem("patientDetails",JSON.stringify(playerId));
-        console.log(angular.fromJson($window.localStorage['patientDetails']));
+          $scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
+          var playerId = JSON.parse($window.localStorage.getItem("patientDetails"));
+          playerId[0][8] = "";
+          console.log(playerId);
+          console.log($scope.patient_details[0][8]);
+          localStorage.setItem("patientDetails",JSON.stringify(playerId));
+          console.log(angular.fromJson($window.localStorage['patientDetails']));
 
-        LoginService.updatePlayer(updatePlayer).then(function(response){
-        console.log(response);
-        })
-        }
-        else{
-        var updatePlayer ={
-        palyerId:'',
-        userNum:window.localStorage.user,
-        user:'doctor',
-        status:$scope.status
-        }
+          LoginService.updatePlayer(updatePlayer).then(function(response){
+          console.log(response);
+          })
+          }
+          else{
+          var updatePlayer ={
+          palyerId:'',
+          userNum:window.localStorage.user,
+          user:'doctor',
+          status:$scope.status
+          }
 
-        LoginService.updatePlayer(updatePlayer).then(function(response){
-        console.log(response);
-        })
-        }
+          LoginService.updatePlayer(updatePlayer).then(function(response){
+          console.log(response);
+          })
+          }
 
 
 
@@ -482,6 +499,7 @@ $scope.videoPlayerPopup = $ionicPopup.show({
   scope: $scope,
 
 });
+IonicClosePopupService.register($scope.videoPlayerPopup);
 
 $scope.closethis = function()
 {

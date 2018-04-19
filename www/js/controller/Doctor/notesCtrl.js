@@ -1,6 +1,5 @@
-
 DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope,$localStorage,$ionicConfig,$ionicLoading,$stateParams,$cordovaCamera,testresultbydoctor,$cordovaFileTransfer,patientProfileDetailsService,doctorServices,medicalSpecialityService) {
-
+  $rootScope.headerTxt="Prescription";
   $scope.toggle = true;
 	$rootScope.showBackBtn=false;
 	$rootScope.showNotification=false;
@@ -16,7 +15,6 @@ DoctorQuickApp.controller('notesCtrl', function($scope,$state,$window,$rootScope
 
 console.log("inNotesCOntoller:",$state.$current.name);
 if($state.$current.name === 'templates.prescription'){
-    $rootScope.headerTxt="Notes";
     $rootScope.hideSideMenu = false;
     $scope.currentPatient={};
     // $window.location.reload();
@@ -89,7 +87,6 @@ if($state.$current.name === 'templates.prescription'){
 }
 
 else {
-  $rootScope.headerTxt="Prescription";
   $rootScope.hideSideMenu = true;
   window.localStorage.activePatient=$stateParams.reqPat;
   $scope.subPatient='';

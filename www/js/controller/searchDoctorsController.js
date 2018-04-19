@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory,medicalSpecialityService) {
+DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory,medicalSpecialityService,IonicClosePopupService) {
 
 	$rootScope.headerTxt="Search Doctors";
 	$rootScope.showBackBtn=true;
@@ -54,7 +54,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    {
 	      var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
- 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹270.</b></center> ',
+ 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹270</b></center> ',
  				 cssClass: 'videoPopup',
  				 scope: $scope,
  				 buttons: [
@@ -127,9 +127,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 					 console.log('destroyed');
 					 $scope.callAccept.close();
 					 $window.location.reload();
-
-
-
 					 });
 				 $state.go("app.patient_home");
 				 $ionicHistory.clearHistory();
@@ -335,7 +332,7 @@ $scope.docClicked=function(docPhone){
 											});
 
 						          var noResponsePopup = $ionicPopup.alert({
-						          template: "<div ><p>Doctor did not accepted your request .</p></div>",
+						          template: "<div ><p>Doctor did not accepted your request</p></div>",
 						          cssClass: 'requestPopup',
 						          scope: $scope,
 						          });
@@ -409,6 +406,8 @@ $scope.docClicked=function(docPhone){
 							},
 							]
 						});
+						IonicClosePopupService.register(slowData);
+
 					}
 
 			}
@@ -417,7 +416,7 @@ $scope.docClicked=function(docPhone){
 
 				var confirmPopup = $ionicPopup.confirm({
 					// title: 'DoctorQuick',
-					template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270.</center> ',
+					template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270</center> ',
 					cssClass: 'videoPopup',
 					scope: $scope,
 					buttons: [
@@ -447,6 +446,8 @@ $scope.docClicked=function(docPhone){
 					]
 					//templateUrl: "views/app/viewdoctor_profile.html",
 				});
+				IonicClosePopupService.register(confirmPopup);
+
 
 			}
 				$ionicLoading.hide();
@@ -538,6 +539,8 @@ $scope.docClicked=function(docPhone){
 															},
 														]
 													});
+													IonicClosePopupService.register(confirmPopup);
+
 									}
 									else if(window.localStorage.networkType == 'Unknown' || window.localStorage.networkType == 'Ethernet' || window.localStorage.networkType == '2G' || window.localStorage.networkType == '3G')
 									{
@@ -556,6 +559,8 @@ $scope.docClicked=function(docPhone){
 															},
 														]
 													});
+													IonicClosePopupService.register(confirmPopup);
+
 									}
 									else if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi')
 									{
@@ -636,6 +641,8 @@ $scope.docClicked=function(docPhone){
 											 },
 										 ]
 						 });
+						 IonicClosePopupService.register(confirmPopup);
+
 						 $scope.callAccept.close();
 
 		 }
@@ -669,6 +676,8 @@ $scope.docClicked=function(docPhone){
 							},
 							]
 						});
+						IonicClosePopupService.register(confirmPopup);
+
 			}
 			console.log(response);
 		}).catch(function(error){

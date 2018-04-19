@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast,$ionicNavBarDelegate, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory) {
+DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window, $timeout,$location, $stateParams,$ionicPlatform,$cordovaDevice, $window, $ionicHistory, $interval, $ionicModal, $ionicPopover, $ionicLoading, $ionicConfig, $ionicPopup,$http, $ionicSideMenuDelegate, $localStorage, $sessionStorage, $cordovaInAppBrowser,$cordovaCamera, $cordovaNetwork,$cordovaToast,$ionicNavBarDelegate, LoginService, patientProfileDetailsService,searchDoctorServices, doctorServices, medicalSpecialityService,myConsultationService,rateDoctorServices,patientWalletServices,searchbyspecialities,rateDoctorServices,medicalSpecialityService, callAcceptedService,testresultbydoctor,searchDoctorServices,Factory,IonicClosePopupService) {
 
 	$rootScope.headerTxt='';
 	$rootScope.showBackBtn=true;
@@ -57,7 +57,23 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 	// {
   //
 	// }
+	myConsultationService.firstConsultation(window.localStorage.user).then(function(response){
+		console.log(response);
+	if(response === 'DONE'){
+			$rootScope.firstConsultationDone = false;
+			window.localStorage.firstConsultationDone=false;
 
+	}
+	else{
+		$rootScope.firstConsultationDone = true;
+		window.localStorage.firstConsultationDone=true;
+
+		// window.localStorage['ConsultedDoctor'] = angular.toJson(response);
+	}
+
+	}).catch(function(error){
+	// console.log('failure data', error);
+	});
 
 		//var networkState= $cordovaNetwork.isOnline();
 		////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +113,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 							},
 						]
 					});
+					IonicClosePopupService.register(confirmPopup);
 
 
 				}
@@ -133,12 +150,17 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 				$scope.prevPage=$ionicHistory.currentStateName();
 				console.log($ionicHistory.currentStateName());
 				console.log(window.localStorage.doctororpatient);
+			
 				if(!$ionicHistory.backView()){
 					if(window.localStorage.doctororpatient === 'doctor'){
 						$state.go('templates.doctor_home');
 					}
-					else{
+
+					else if(window.localStorage.doctororpatient === 'doctor'){
 						$state.go('app.patient_home');
+					}
+					else{
+						window.history.back();
 					}
 				}
 				else{
@@ -493,22 +515,23 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 											$ionicLoading.hide();
 											console.log('empty');
 											var confirmPopup = $ionicPopup.confirm({
-											title: 'No Doctors Available',
-											template: '<center>Please try again after some time.</center>',
-											cssClass: 'videoPopup',
-											scope: $scope,
-											buttons: [
+														title: 'No Doctors Available',
+														template: '<center>Please try again after some time.</center>',
+														cssClass: 'videoPopup',
+														scope: $scope,
+														buttons: [
 
-											{
-											text: 'OK',
-											type: 'button-royal',
-											onTap: function(e) {
-											console.log('ok');
+														{
+														text: 'OK',
+														type: 'button-royal',
+														onTap: function(e) {
+														console.log('ok');
 
-											}
-											},
-											]
+														}
+														},
+														]
 											});
+											IonicClosePopupService.register(confirmPopup);
 
 											return true;
 
@@ -591,6 +614,8 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 							},
 							]
 					});
+					IonicClosePopupService.register(confirmPopup);
+
 
 		}
 
@@ -1015,6 +1040,7 @@ $state.go('app.patient_topup');
 ]
 //templateUrl: "views/app/viewdoctor_profile.html",
 });
+IonicClosePopupService.register(confirmPopup);
 
 }
 $ionicLoading.hide();

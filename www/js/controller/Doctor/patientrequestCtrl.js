@@ -1,4 +1,4 @@
- DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootScope,$state,$localStorage,$stateParams,$interval,$location,$ionicPlatform,$ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService,medicalSpecialityService) {
+ DoctorQuickApp.controller('patientrequestCtrl', function($scope,$window,$rootScope,$state,$localStorage,$stateParams,$interval,$location,$ionicPlatform,$ionicHistory,$timeout,$ionicPopup,$ionicConfig,$ionicLoading,patientrequesttodoctor,doctorServices,patientProfileDetailsService,medicalSpecialityService,IonicClosePopupService) {
 			  $scope.toggle = true;
 				$rootScope.headerTxt="Request";
 				$rootScope.showBackBtn=true;
@@ -29,7 +29,7 @@
 									var pw1 = "DQ_doctor";
 
 									$ionicLoading.show({
-									template: '<ion-spinner></ion-spinner><br><br>Preparing for Consultation.'
+									template: '<ion-spinner></ion-spinner><br><br>Preparing for Consultation'
 									});
 
 									if($scope.deviceAndroid === true){
@@ -57,7 +57,7 @@
 									else{
 
 									$ionicLoading.show({
-									template: '<ion-spinner></ion-spinner><br><br>Preparing for Consultation.'
+									template: '<ion-spinner></ion-spinner><br><br>Preparing for Consultation'
 									});
 									var success = function(message)
 									{
@@ -466,6 +466,7 @@
 
 											]
 											});
+                      IonicClosePopupService.register($scope.noResponsePopup);
 
 									}
 								}
@@ -580,6 +581,8 @@ $scope.popupShown = true;
 						]
 
 						});
+            IonicClosePopupService.register($scope.patientDeclined);
+
 
 		 }
 

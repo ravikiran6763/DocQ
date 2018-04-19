@@ -79,7 +79,10 @@
                 </button>
               </div>
           </div>
-          <h5 ng-repeat="mydocs in myDocDetail" ng-hide="{{mydocs.onoff == 2}}">Consultation Fee: ₹{{mydocs.doctorFee}}</h5>
+          <!-- {{firstConsultationDone}} -->
+          <div ng-hide="{{firstConsultationDone == true}}"><h5 ng-repeat="mydocs in myDocDetail" ng-hide="{{mydocs.onoff == 2}}">Consultation Fee: ₹{{mydocs.doctorFee}}</h5></div>
+          <div ng-show="{{firstConsultationDone == true}}"><h5 ng-repeat="mydocs in myDocDetail" ng-hide="{{mydocs.onoff == 2}}">Free Consultation</h5></div>
+
     </div>
 
   </ion-content>
