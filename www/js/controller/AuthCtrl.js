@@ -873,7 +873,7 @@ var ipObj2 = {
      // minDate: new Date() - 10000,
      // allowOldDates: true,
      allowFutureDates: false,
-     androidTheme : 3,
+     androidTheme : 5,
      cancelButtonLabel: 'CANCEL',
      cancelButtonColor: '#ff0101',
      doneButtonLabel: 'DONE',

@@ -150,13 +150,13 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 				$scope.prevPage=$ionicHistory.currentStateName();
 				console.log($ionicHistory.currentStateName());
 				console.log(window.localStorage.doctororpatient);
-			
+
 				if(!$ionicHistory.backView()){
 					if(window.localStorage.doctororpatient === 'doctor'){
 						$state.go('templates.doctor_home');
 					}
 
-					else if(window.localStorage.doctororpatient === 'doctor'){
+					else if(window.localStorage.doctororpatient === 'patient'){
 						$state.go('app.patient_home');
 					}
 					else{

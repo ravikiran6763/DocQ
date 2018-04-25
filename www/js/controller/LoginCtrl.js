@@ -148,6 +148,14 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 						}).catch(function(error){
 						// console.log('failure data', error);
 						});
+
+						searchDoctorServices.specialitySearch().then(function(response){
+			        window.localStorage['specialityList1'] = angular.toJson(response);
+			        // console.log(window.localStorage['specialityList1']);
+			      }).catch(function(error){
+			      console.log('failure data', error);
+			      });
+
 						// myConsultationService.myConsultedDoctors($scope.loginData.phone).then(function(response){
 						// 	console.log(response);
             //

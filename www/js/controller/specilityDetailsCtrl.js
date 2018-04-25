@@ -24,7 +24,7 @@ console.log($rootScope.defaultPatientLname);
 
 // $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
 
-// $interval(CheckOnlineDocs, 2000);
+$interval(CheckOnlineDocs, 2000);
 
 var subPatientToShow={
   subPatId:window.localStorage.selectedSubPatient,
@@ -39,12 +39,10 @@ medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(respon
    if($rootScope.newPAtient.length == 0){
      console.log('hide');
      $rootScope.defaultPatient=false;
-     $rootScope.shownewPatient=true;
 
    }
    else{
      $rootScope.defaultPatient=true;
-     $rootScope.shownewPatient=false;
    }
 }).catch(function(error){
     console.log('failure data', error);
@@ -100,9 +98,11 @@ console.log(window.localStorage.SpecilityId);
   $scope.sendrequesttoonlinedoctors = function()
   {
 
-    window.ga.trackEvent('Request', 'Click', 'sendrequesttoonlinedoctors',1)// Label and Value are optional, Value is numeric
+    // window.ga.trackEvent('Request', 'Click', 'sendrequesttoonlinedoctors',1)// Label and Value are optional, Value is numeric
 
     $rootScope.clickedOnce = true;
+    $rootScope.defaultPatient = false;
+
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
     });
@@ -140,7 +140,8 @@ console.log(window.localStorage.SpecilityId);
 
 
            if($rootScope.sentReqStat === 'Inserted'){
-             $ionicLoading.hide();
+
+            $ionicLoading.hide();
             $rootScope.counter = 120;
              $rootScope.onTimeout = function(){
                // console.log($scope.counter);
@@ -166,7 +167,7 @@ console.log(window.localStorage.SpecilityId);
                scope: $scope,
                });
 
-               noResponsePopup.then(function(res) {
+               noResponsePopup.then(function(res){
                  medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
                  $scope.cancelledReq=response;
                  // $state.go("app.medical_speciality");
@@ -208,6 +209,7 @@ console.log(window.localStorage.SpecilityId);
                   console.log(window.localStorage.user);
                   medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
                   $scope.cancelledReq=response;
+                  console.log($scope.cancelledReq);
                     $state.go($state.current, {}, {reload: true});
                   }).catch(function(error){
                   console.log('failure data', error);
@@ -236,7 +238,7 @@ console.log(window.localStorage.SpecilityId);
               console.log('buttonclicked');
               $interval(checkAcceptedReq,2000);
 
-              var checkAcceptedReq = $interval(function () {
+              var checkAcceptedReq = $interval(function (){
                 var newCallStatus = {
                   patient:window.localStorage.user,
                   reqId:$rootScope.sentReqId
