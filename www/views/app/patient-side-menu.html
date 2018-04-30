@@ -5,9 +5,9 @@
         <i class="back-btn-cls ion-ios-arrow-back"   ng-click="goBack()" ></i>
      </ion-nav-back-button>
       <ion-nav-buttons side="left">
-        <button class="button-clear"  ng-click="showConsulation();" >
+        <button class="button-clear"   >
           <!--  my_consultations-->
-          <i class="icon ion-ios-chatbubble-outline" ng-show="showNotification" ><span class="badge badge-stable icon-badge" ng-show="showBadge">{{unreadchatforpatient}}</span></i>
+          <i class="icon ion-ios-chatbubble-outline" ng-show="showNotification" ng-click="showConsulation();"><span class="badge badge-stable icon-badge" ng-show="showBadge" ng-click="showConsulation();">{{unreadchatforpatient}}</span></i>
         </button>
       </ion-nav-buttons>
 
@@ -100,23 +100,9 @@
 
     </ion-content>
     <ion-footer-bar align-title="left" class="item-icon-left" style="background-color: #20242c;" ng-click="confirmSignout();" ng-hide="sideMenuForSearch" nav-clear ng-click="closeSideMenu()" >
-        <i class="icon ion-log-out" style="margin: 8% 0 0 0;"></i>
-        <h5  style="color: white; font-family:Ubuntu,bold,sans-serif !important; margin: 22% 0 0 0;">Sign Out</h5>
+        <!-- <i class="icon ion-log-out" style="margin: 8% 0 0 0;">Sign Out</i> -->
+        <i class="icon ion-log-out" style="margin: 7% 0 0 0;"><p style="color: white;  font-size: 15px; margin: 0 0 0 20px;">Sign Out</p></i>
+        <!-- <h5  style="color: white; font-family:Ubuntu,bold,sans-serif !important; margin: 22% 0 0 0;"></h5> -->
     </ion-footer-bar>
   </ion-side-menu>
 </ion-side-menus>
-
-
-
-<!-- <ion-nav-bar>
-</ion-nav-bar>
-<ion-nav-view name="menuContent">
-  <ion-view>
-    <ion-nav-title>
-      <p>{{headerTxt}}</p>
-    </ion-nav-title>
-    <ion-content>
-      Some super content here!
-    </ion-content>
-  </ion-view>
-</ion-nav-view> -->

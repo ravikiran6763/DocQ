@@ -103,7 +103,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 					if(response === "patient")
 					{
 
-
 						window.localStorage.doctororpatient = response;
 						window.plugins.OneSignal.getIds(function(ids) {
 							$scope.playerId=JSON.stringify(ids['userId']);
@@ -118,7 +117,6 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 								console.log(response);
 							})
 						});
-
 						patientProfileDetailsService.fetchPatient($scope.loginData.phone).then(function(response){
 							window.localStorage['patientDetails'] = angular.toJson(response);
 						}).catch(function(error){
@@ -337,14 +335,37 @@ DoctorQuickApp.controller('LoginCtrl', function($scope, $state,$stateParams, $co
 
 							console.log('OneSignal for doctor');
 							// console.log($scope.playerId);
+
 							var updatePlayer ={
 								palyerId:$scope.playerId,
-								userNum:window.localStorage.user,
-								user:'doctor'
+								userNum:$scope.loginData.phone,
+								user:'doctor',
+								status:'available',
+								manufacturer:window.localStorage.manufacturer,
+								model:window.localStorage.model
+
 							}
 							console.log(updatePlayer);
 							LoginService.updatePlayer(updatePlayer).then(function(response){
 								console.log(response);
+								if(response){
+									doctorServices.doctorStatus(window.localStorage.user).then(function(response){
+
+											console.log(response);
+											window.localStorage.onOff=response;
+											if(response == 1){
+											$scope.docAvailable=true;
+											$scope.docNotAvailable=false;
+
+											}
+											else{
+											$scope.docAvailable=false;
+											$scope.docNotAvailable=true;
+											}
+									}).catch(function(error){
+									console.log('failure data', error);
+									});
+								}
 							})
 						});
 

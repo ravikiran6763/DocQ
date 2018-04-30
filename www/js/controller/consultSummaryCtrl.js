@@ -4,7 +4,7 @@ DoctorQuickApp.controller('consultSummaryCtrl', function($state, $ionicHistory,$
 	$rootScope.checkedValue = false;
 	$rootScope.showNotification = false;
 	$rootScope.hideSideMenu = false;
-
+	$rootScope.showBadge=false;
 
 	$scope.rating = {};
 	  $scope.rating.rate = 3;

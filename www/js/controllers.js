@@ -829,7 +829,7 @@ DoctorQuickApp.controller('callAccptCtrl', function($scope,$rootScope, $statePar
 		$rootScope.showBackBtn=true;
 		$rootScope.checkedValue = false;
 		$rootScope.showNotification=false;
-
+		$rootScope.showBadge=false;
 		var docpatphno = {
 		accpetcode : "1",
 		doctorphno : window.localStorage.user,

@@ -22,6 +22,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 
 	$scope.showConsulation=function()
 	{
+		console.log('show consultation clicked');
 		$ionicHistory.nextViewOptions({
 			disableAnimate: true,
 			disableBack: true,

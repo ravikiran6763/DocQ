@@ -2,7 +2,7 @@ DoctorQuickApp.controller('patientRefundCtrl', function($scope,$rootScope,$local
 	$rootScope.headerTxt="Refund ";
 	$rootScope.showBackBtn=true;
 	$rootScope.checkedValue = false;
-
+	$rootScope.showBadge=false;
 	$rootScope.credit = $stateParams.credit;
 	$rootScope.debit = $stateParams.debit;
 	$scope.payment={};

@@ -608,15 +608,12 @@ $scope.popupShown = true;
 			 }
       //  $interval.cancel($rootScope.videoOrAudio);
       //  $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false});
-			 if($scope.deviceAndroid === true){
-         console.log(window.localStorage.activePatient);
-				 $interval.cancel($rootScope.videoOrAudio);
-				 $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false})
+         // console.log(window.localStorage.activePatient);
+				 // $interval.cancel($rootScope.videoOrAudio);
+				 // $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false})
 
-			 }
-			 else{
          $ionicLoading.show({
-         template: '<ion-spinner></ion-spinner><br><br>Loading'
+         template: '<ion-spinner></ion-spinner><br>Loading'
          });
          $timeout( function(){
            $ionicLoading.hide().then(function(){
@@ -631,10 +628,7 @@ $scope.popupShown = true;
 
            });
 
-         }, 10000 );
-
-			 }
-
+         }, 20000);
 
  		}
 

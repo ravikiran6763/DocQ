@@ -12788,7 +12788,7 @@ ion-side-menu .heading-item .message {
     box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, 0.8);
     overflow: scroll !important; }
     .patient-payment-view .bottom-content li {
-      height: 30%;
+      height: 35%;
       border-bottom: 2px solid #dadada;
       margin-top: 1%;
       *zoom: 1; }
@@ -12820,7 +12820,7 @@ ion-side-menu .heading-item .message {
           font-size: 1.8em; }
       .patient-payment-view .bottom-content li .name-content {
         float: left;
-        padding: 11px 0 0 6px; }
+        padding: 6px 0 0 6px; }
         .patient-payment-view .bottom-content li .name-content .name {
           width: 100%;
           margin-top: 12%; }
