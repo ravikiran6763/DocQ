@@ -93,7 +93,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'verifyemail':'verifyemail/verifyemail.php',
         'checkDocStatusOnTheGo':'patient/checkDocStatusOnTheGo.php',
         'removeFavDoctor':'patient/removeFavDoctor.php',
-
+        'noResponseFromDoc':'patient/noResponseFromDoc.php',
+        'one2oneNoResponse':'patient/one2oneNoResponse.php',
 
         /*AGENT*/
         'agentDetails':'dqagent/dqAgentLogin.php',
@@ -149,6 +150,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'doctorDeviceUpdate':'doctor/doctorDeviceUpdate.php',
         'invitereviewforall':'doctor/invitereviewforall.php',
         'getonlysinglecontact':'doctor/getonlysinglecontact.php',
+        'noResponseFromPatient':'doctor/noResponseFromPatient.php',
 
 
 

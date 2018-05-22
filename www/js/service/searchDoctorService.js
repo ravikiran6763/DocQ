@@ -116,7 +116,22 @@ var tags = [
    return deferred.promise;
 
  }
+ this.one2oneNoResponse  = function (id) {
+   // console.log('from service',id);
+   var deferred = $q.defer();
+   // console.log(BASE_URL.url + API.cancelOne2oneReq);
+   $http.post(BASE_URL.url + API.one2oneNoResponse,id)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
 
+   return deferred.promise;
+
+ }
+// .php
  this.checkCallStatus  = function (id) {
    // console.log('from service',id);
    var deferred = $q.defer();

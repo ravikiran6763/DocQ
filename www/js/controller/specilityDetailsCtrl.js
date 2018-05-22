@@ -152,7 +152,7 @@ console.log(window.localStorage.SpecilityId);
                $rootScope.buttonText='Send Request';
                $timeout.cancel(patientTimeout);
 
-               medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
+               medicalSpecialityService.noResponseFromDoc(window.localStorage.user).then(function(response){
                $scope.cancelledReq=response;
                // $state.go("app.medical_speciality");
                $interval.cancel(checkAcceptedReq);
@@ -168,7 +168,7 @@ console.log(window.localStorage.SpecilityId);
                });
 
                noResponsePopup.then(function(res){
-                 medicalSpecialityService.cancelReq(window.localStorage.user).then(function(response){
+                 medicalSpecialityService.noResponseFromDoc(window.localStorage.user).then(function(response){
                  $scope.cancelledReq=response;
                  // $state.go("app.medical_speciality");
                  $interval.cancel(checkAcceptedReq);

@@ -517,7 +517,7 @@ console.log('failure data', error);
               $rootScope.buttonText='Send Request';
               $timeout.cancel(patientTimeout);
 
-              searchDoctorServices.cancelOne2oneReq(window.localStorage.myCallId).then(function(response){
+              searchDoctorServices.one2oneNoResponse(window.localStorage.myCallId).then(function(response){
                 $scope.alertPopup.close();
 
               $scope.cancelledReq=response;
@@ -537,7 +537,7 @@ console.log('failure data', error);
 
               noResponsePopup.then(function(res){
                 console.log('delete request here');
-                searchDoctorServices.cancelOne2oneReq(window.localStorage.myCallId).then(function(response){
+                searchDoctorServices.one2oneNoResponse(window.localStorage.myCallId).then(function(response){
                   $scope.alertPopup.close();
 
                 $scope.cancelledReq=response;

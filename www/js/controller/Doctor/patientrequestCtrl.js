@@ -152,7 +152,6 @@
 						 console.log('Response::',response);
              if(response){
                $ionicLoading.hide();
-
              }
 					 $rootScope.reqPatDetails=response;
 					 var data=$rootScope.reqPatDetails//take all json data into this variable
@@ -443,7 +442,7 @@
 									$rootScope.closeDocPopUp=true;
 									console.log($rootScope.closeDocPopUp);
 
-                  doctorServices.cancelByDoc($rootScope.reqId).then(function(response){
+                  doctorServices.noResponseFromPatient($rootScope.reqId).then(function(response){
                   $scope.cancelledByDoc=response;
                   console.log($scope.cancelledByDoc);
                   //  $state.go($state.current, {}, {reload: true});

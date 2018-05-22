@@ -147,6 +147,21 @@ this.cancelByDoc = function(consultId){
 
 }
 
+this.noResponseFromPatient = function(consultId){
+
+  var deferred = $q.defer();
+
+  $http.post(BASE_URL.url + API.noResponseFromPatient,consultId)
+  .success(function (data, status, headers, config){
+    deferred.resolve(data);
+  })
+  .error(function (){
+    deferred.reject('Error while getting data');
+  });
+  return deferred.promise;
+
+}
+
 this.patientActivity = function(checkPatientActivity){
   var deferred = $q.defer();
 
