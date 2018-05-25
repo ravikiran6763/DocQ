@@ -528,12 +528,12 @@ console.log('failure data', error);
                 console.log('failure data', error);
               });
               $scope.callAccept.close();
-              var noResponsePopup = $ionicPopup.alert({
+              $scope.noResponsePopup = $ionicPopup.alert({
               template: "<div ><p>Doctor did not accept your request</p></div>",
               cssClass: 'requestPopup',
               scope: $scope,
               });
-              IonicClosePopupService.register(noResponsePopup);
+              IonicClosePopupService.register($scope.noResponsePopup);
 
               noResponsePopup.then(function(res){
                 console.log('delete request here');

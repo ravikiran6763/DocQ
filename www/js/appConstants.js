@@ -16,7 +16,7 @@ DoctorQuickApp.constant('BASE_URL', {
         //stage 1
         // 'url' : 'http://ec2-35-154-234-29.ap-south-1.compute.amazonaws.com/'
         //stage 2
-        'url' : 'http://ec2-13-126-101-210.ap-south-1.compute.amazonaws.com/'
+        'url' : 'http://doctorquickelb-549049736.ap-south-1.elb.amazonaws.com/'
 
     })
 .constant('API', {

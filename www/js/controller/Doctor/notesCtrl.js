@@ -111,6 +111,8 @@ else {
       console.log('failure data', error);
    });
 
+
+console.log('In Notes Controller:',$stateParams.reqPat);
   patientProfileDetailsService.fetchPatient($stateParams.reqPat).then(function(response){
     $scope.patient_details=response;
     console.log($scope.patient_details);

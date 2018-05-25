@@ -27,7 +27,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
     $timeout( function(){
         console.log('interval started');
 
-
         if($localStorage.showConnecting === true){
           console.log($localStorage.showConnecting);
 
@@ -40,9 +39,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             // duration:3000,
             noBackdrop: true
           });
-
-
-
           // To load the my consultation list
           myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
         	window.localStorage['ConsultedPatient'] = angular.toJson(response);
@@ -204,7 +200,7 @@ var doctorDeviceDetails ={
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest(doctorDeviceDetails).then(function(response){
     $scope.pendingRequests = response;
-    console.log('pending:',$scope.pendingRequests);
+    // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   });
   // .catch(function(error){
