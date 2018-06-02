@@ -287,6 +287,22 @@ console.log(window.localStorage.SpecilityId);
            }
           else{
               console.log('Database Error');
+
+              var restrictUser = $ionicPopup.confirm({
+                // title: 'Slow Data',
+                template: 'Please wait for two Minutes as you have already sent a request ',
+                cssClass: 'videoPopup',
+                scope: $scope,
+                buttons: [
+                {
+                  text: 'OK',
+                  type: 'button-positive',
+                  onTap: function(e) {
+                  console.log('ok');
+                  }
+                },
+                ]
+              });
           }
           }).catch(function(error){
               console.log('failure data', error);
