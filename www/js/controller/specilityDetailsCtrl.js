@@ -106,7 +106,7 @@ console.log(window.localStorage.SpecilityId);
     $ionicLoading.show({
       template:'<ion-spinner></ion-spinner>'
     });
-      $interval(checkAcceptedReqDocStatus,2000);
+
     patientWalletServices.myWalletBalance(window.localStorage.user).then(function(response){
      $rootScope.patientWalletdetails=response;
      if($rootScope.patientWalletdetails === 'agent'){
@@ -140,7 +140,7 @@ console.log(window.localStorage.SpecilityId);
 
 
            if($rootScope.sentReqStat === 'Inserted'){
-
+             $interval(checkAcceptedReqDocStatus,2000);
             $ionicLoading.hide();
             $rootScope.counter = 120;
              $rootScope.onTimeout = function(){
@@ -287,10 +287,9 @@ console.log(window.localStorage.SpecilityId);
            }
           else{
               console.log('Database Error');
-
               var restrictUser = $ionicPopup.confirm({
                 // title: 'Slow Data',
-                template: 'Please wait for two Minutes as you have already sent a request ',
+                template: 'Please wait for one minute to send a request or try another speciality',
                 cssClass: 'videoPopup',
                 scope: $scope,
                 buttons: [
@@ -400,7 +399,7 @@ console.log(window.localStorage.SpecilityId);
       // $rootScope.newValueForOnlineDoc=$rootScope.specialityDetails[]['noofonlinedoctors'];
       // console.log($rootScope.newValueForOnlineDoc);
       $scope.specialityDetails = response;
-      // console.log($scope.specialityDetails);
+      console.log($scope.specialityDetails);
     }).catch(function(error){
        console.log('failure data', error);
     });
