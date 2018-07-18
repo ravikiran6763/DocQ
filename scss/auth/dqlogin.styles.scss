@@ -72,14 +72,14 @@
 			}
 			.tAndC{
 				width: 100% !important;
-				height: 10% !important;
+				height: 9% !important;
 				margin: 0 auto;
 				.terms{
 					width: 100% !important;
 			    margin: 0 auto;
 			    font-size: smaller;
 					h2{
-							font-size: 97%;
+							font-size: 100%;
 							color: black;
 							text-align: center;
 							margin-top: 1%;
@@ -91,6 +91,17 @@
 					}
 				}
 
+			}
+			.forgot{
+				width: 100% !important;
+		    position: absolute;
+		    margin: 0 auto;
+		    text-align: center;
+				a{
+					color: inherit;
+					text-decoration: underline;
+					font-size: 98%;
+				}
 			}
 		.rememberMe{
 
@@ -109,17 +120,7 @@
     			margin: -2% 0 0 17%;
 				}
 			}
-			.forgot{
-				width: 40% !important;
-				position: absolute;
-				/* margin: 0 auto; */
-				margin: -1% 0 0 45%;
-				a{
-					color: inherit;
-					text-decoration: underline;
-					font-size: 98%;
-				}
-			}
+
 
 		}
 

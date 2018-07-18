@@ -283,7 +283,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           window.plugins.OneSignal
           .startInit( "e215d4e2-486f-4f19-984b-e54e8b63f891")
-          .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+          .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.None)
+          // .inFocusDisplaying(window.plugins.OneSignal.OSInFocusDisplayOption.Notification)
+
           // Notification - native notification display while user has app in focus (can be distracting).
           // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
           // None - notification is silent.
