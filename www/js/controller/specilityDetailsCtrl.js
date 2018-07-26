@@ -99,10 +99,14 @@ console.log(window.localStorage.SpecilityId);
   {
 
     // window.ga.trackEvent('Request', 'Click', 'sendrequesttoonlinedoctors',1)// Label and Value are optional, Value is numeric
-    $ionicLoading.show({
-      template:'<ion-spinner></ion-spinner>'
-    });
+
     $rootScope.clickedOnce = true;
+    if($rootScope.clickedOnce == true){
+      $ionicLoading.show({
+        template:'<ion-spinner></ion-spinner>'
+      });
+    }
+
     $rootScope.defaultPatient = false;
 
 

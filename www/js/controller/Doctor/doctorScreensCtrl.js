@@ -38,13 +38,54 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
             noBackdrop: true
           });
           // To load the my consultation list
+          doctorServices.inActiveDoc(window.localStorage.user).then(function(response){
+            console.log('DocActivity:',response);
+          $scope.inActive = response;
+            if($scope.inActive == 2){
+              console.log('inactive doctor');
+              $ionicLoading.hide();
+              var confirmPopup = $ionicPopup.confirm({
+                  template: '<center>Your Account with DoctorQuick is Deactivated. Please contact care@doctorquick.com</center>',
+                  cssClass: 'videoPopup',
+                  scope: $scope,
+                  buttons: [
+                          {
+                              text: 'OK',
+                              type: 'button-positive',
+                              onTap: function(e) {
+                                              $ionicHistory.nextViewOptions({
+                                              disableBack: true,
+                                              disableAnimate: true,
+                                              historyRoot: true
+                                              });
+                                              $ionicHistory.clearCache();
+                                              $ionicHistory.clearHistory();
+                                              $window.localStorage.clear();
+                                              confirmPopup.close();
+                                              $state.go('auth.loginNew');
+
+                              }
+                        }]
+                  });
+
+
+            }
+            else{
+              $interval(availableInVsee,2000,1);
+            }
+        	}).catch(function(error){
+        	console.log('failure data', error);
+        	});
+
+
+
           myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
         	window.localStorage['ConsultedPatient'] = angular.toJson(response);
         	}).catch(function(error){
         	console.log('failure data', error);
         	});
 
-            $interval(availableInVsee,2000,1);
+
 
         }
         // $interval(checkNewMessages,2000);
@@ -77,7 +118,7 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
                     // alert('loggedin');
                     $localStorage.showConnecting = false;
                     $interval(checkNewMessages,2000);
-                    
+
                     $interval.cancel(availableInVsee);
                     window.plugins.OneSignal.getIds(function(ids){
                       //document.getElementById("OneSignalUserID").innerHTML = "UserID: " + ids.userId;
@@ -199,15 +240,10 @@ var doctorDeviceDetails ={
 var consultations = this;
 consultations.pendingRequests = [];
 
-
-
-
-
-
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest(doctorDeviceDetails).then(function(response){
     $scope.pendingRequests = response;
-    console.log('pending:',$scope.pendingRequests);
+    // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   }).catch(function(error){
     console.log('failure data', error);
