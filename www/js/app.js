@@ -397,6 +397,28 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
   document.addEventListener('deviceready', function () {
     //console.log('splash hidden');
     navigator.splashscreen.hide();
+
+    var fbLoginSuccess = function (userData) {
+      console.log("UserInfo: ", userData);
+    }
+
+    facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+      function loginError (error) {
+        console.error(error)
+      }
+    );
+
+    facebookConnectPlugin.activateApp(fb_success, fb_fail);
+
+    //
+    // facebookConnectPlugin.activateApp(Function success, Function failure)
+    function fb_success() {
+      console.log("FB worked!");
+    }
+    function fb_fail() {
+      console.log("FB Failed!");
+    }
+
   });
   document.addEventListener("resume", onResume, false);
   function onResume() {

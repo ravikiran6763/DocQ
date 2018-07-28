@@ -367,5 +367,10 @@
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
     <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
     <plugin name="com.example.hello" spec="/Users/amittantia/Desktop/veeresh/VseePlugin" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
+        <variable name="APP_ID" value="403948566754335" />
+        <variable name="APP_NAME" value="DoctorQuick" />
+        <variable name="ANDROID_SDK_VERSION" value="4.+" />
+    </plugin>
     <engine name="android" spec="^6.4.0" />
 </widget>
