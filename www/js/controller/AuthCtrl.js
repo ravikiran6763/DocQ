@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cordovaDatePicker,$interval, $state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,$filter, $cordovaDevice, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService,IonicClosePopupService) {
+DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cordovaDatePicker,$interval, $http,$state,$ionicConfig,$ionicHistory,$base64,$window, $cordovaToast, $timeout, $rootScope, $ionicPlatform, $localStorage, $ionicModal, $http, $ionicPopup, $ionicLoading,$filter, $cordovaDevice, patientRegistrationService, doctorRegistrationService,LoginService,patientProfileDetailsService,searchDoctorServices,medicalSpecialityService,IonicClosePopupService) {
 
     $rootScope.showBackBtn=false;
     $rootScope.PatientDetail = {};
@@ -12,6 +12,13 @@ DoctorQuickApp.controller('AuthCtrl', function($scope,$ionicScrollDelegate,$cord
 
 	$scope.startdate = new Date();
   console.log($scope.startdate);
+
+  $http.get("https://ipinfo.io/json").then(function (response)
+      {
+        console.log('IP Object',response);
+        $rootScope.ip = response.data.ip;
+        console.log($rootScope.ip);
+      });
 
     // $timeout(function(){
     // // Any code in here will automatically have an $scope.apply() run afterwards
@@ -223,10 +230,8 @@ $scope.patientRegistration = function()
                   deviceID:window.localStorage.deviceID,
                   serial:window.localStorage.serial,
                   manufacturer:window.localStorage.manufacturer,
-                  model:window.localStorage.model
-
-
-
+                  model:window.localStorage.model,
+                  ipAddress:$rootScope.ip
                 };
                 var loginData = {
                   'phone': $rootScope.PatientDetail.patient_mob,
@@ -581,7 +586,7 @@ $scope.patientRegistration = function()
                       patientRegistrationService.sendotp($rootScope.PatientDetail.patient_mob).then(function(response)
                       {
                             $rootScope.otp=response;
-                            console.log($rootScope.otp);
+                            // console.log($rootScope.otp);
                             if($rootScope.otp){
                             $ionicLoading.hide();
                             $ionicHistory.nextViewOptions({

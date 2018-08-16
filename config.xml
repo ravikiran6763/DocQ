@@ -364,7 +364,6 @@
     <plugin name="cordova-plugin-datepicker" spec="https://github.com/VitaliiBlagodir/cordova-plugin-datepicker.git" />
     <plugin name="cordova-plugin-appversion" spec="^1.0.0" />
     <plugin name="cordova-plugin-x-socialsharing" spec="^5.3.2" />
-    <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
     <plugin name="onesignal-cordova-plugin" spec="^2.3.3" />
     <plugin name="com.example.hello" spec="/Users/amittantia/Desktop/veeresh/VseePlugin" />
     <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
@@ -372,5 +371,8 @@
         <variable name="APP_NAME" value="DoctorQuick" />
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
+    <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
+    <plugin name="cordova-plugin-networkinterface" spec="^2.0.0" />
+    <plugin name="cordova-plugin-cookieemperor" spec="https://github.com/rtk/cordova-cookie-emperor.git" />
     <engine name="android" spec="^6.4.0" />
 </widget>

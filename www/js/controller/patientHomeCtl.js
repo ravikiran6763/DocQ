@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval,$window, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval,$window,$http, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
@@ -7,6 +7,14 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showNotification=true;
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
+
+
+			$http.get("https://ipinfo.io/json").then(function (response)
+					{
+						console.log('IP Object',response);
+						$scope.ip = response.data.ip;
+						console.log($scope.ip);
+					});
 
 			window.localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();

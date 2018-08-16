@@ -398,30 +398,58 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
     //console.log('splash hidden');
     navigator.splashscreen.hide();
 
-    var fbLoginSuccess = function (userData) {
-      console.log("UserInfo: ", userData);
-    }
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ IP ADDRESS @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-    facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
-      function loginError (error) {
-        console.error(error)
-      }
-    );
-
-    facebookConnectPlugin.activateApp(fb_success, fb_fail);
-
+    // function onSuccess( ipInformation ) {
+    //   console.log( "IP: " + ipInformation.ip + " subnet:" + ipInformation.subnet );
+    // }
     //
-    // facebookConnectPlugin.activateApp(Function success, Function failure)
-    function fb_success() {
-      console.log("FB worked!");
-    }
-    function fb_fail() {
-      console.log("FB Failed!");
-    }
+    // function onError( error ) {
+    //   // Note: onError() will be called when an IP address can't be
+    //   // found, e.g. WiFi is disabled, no SIM card, Airplane mode
+    //   alert( error );
+    // }
+    //
+    // // networkinterface.getWiFiIPAddress( onSuccess, onError );
+    // networkinterface.getCarrierIPAddress( onSuccess, onError );
+    //
+
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@FACEBOOK@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // var fbLoginSuccess = function (userData) {
+    //   console.log("UserInfo: ", userData);
+    // }
+    //
+    // facebookConnectPlugin.login(["public_profile"], fbLoginSuccess,
+    //   function loginError (error) {
+    //     console.error(error)
+    //   }
+    // );
+    //
+    // facebookConnectPlugin.activateApp(fb_success, fb_fail);
+    //
+    // //
+    // // facebookConnectPlugin.activateApp(Function success, Function failure)
+    // function fb_success() {
+    //   console.log("FB worked!");
+    // }
+    // function fb_fail() {
+    //   console.log("FB Failed!");
+    // }
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@FACEBOOK@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@COOKIE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+      // window.cookieEmperor.getCookie('http://wwww.doctorquick.com/', '_gac_UA-120253677-1', function(data) {
+      //     console.log(data.cookieValue);
+      //   }, function(error) {
+      //     if (error) {
+      //       console.log('error: ' + error);
+      //     }
+      //   });
+        // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@COOKIE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
   });
   document.addEventListener("resume", onResume, false);
-  function onResume() {
+  function onResume(){
 
         setTimeout(function() {
         //console.log('resume');
