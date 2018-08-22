@@ -5,8 +5,8 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 		$rootScope.showNotification=true;
 		$rootScope.showBadge=true;
 		$rootScope.showDocStatus=false;
-    $scope.docAvailable=true;
-    $scope.docNotAvailable=false;
+    // $scope.docAvailable=true;
+    // $scope.docNotAvailable=false;
     $rootScope.inviteButton = false;
 
     $rootScope.homePage=$ionicHistory.currentStateName();
@@ -17,6 +17,23 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
 
     // alert($rootScope.previousState.name);
     // alert($rootScope.homePage);
+    console.log(window.localStorage.onOff);
+    doctorServices.doctorStatus(window.localStorage.user).then(function(response){
+
+        console.log(response);
+        window.localStorage.onOff=response;
+        if(response == 1){
+        $scope.docAvailable=true;
+        $scope.docNotAvailable=false;
+
+        }
+        else{
+        $scope.docAvailable=false;
+        $scope.docNotAvailable=true;
+        }
+    }).catch(function(error){
+    console.log('failure data', error);
+    });
 
     $rootScope.goToConsultation = function ()
     {
@@ -76,8 +93,6 @@ DoctorQuickApp.controller('doctorScreensCtrl', function($scope,$ionicHistory,$ti
         	}).catch(function(error){
         	console.log('failure data', error);
         	});
-
-
 
           myConsultationService.myConsultedPatients(window.localStorage.user).then(function(response){
         	window.localStorage['ConsultedPatient'] = angular.toJson(response);
@@ -253,7 +268,7 @@ function checkConsultations(){
     // console.log($ionicHistory.currentStateName());
     $scope.emailNotification = 'Subscribed';
     // console.log($scope.emailNotification);
-  $scope.Online = function (message) {
+  $scope.Online = function (message){
       $scope.status=message;
       console.log(window.localStorage.user);
       doctorServices.notifyPatient(window.localStorage.user).then(function(response){

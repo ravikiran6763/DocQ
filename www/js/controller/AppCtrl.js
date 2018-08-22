@@ -275,7 +275,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 
 			}
 
-			if (selectedSearch == "onlineOffline") {
+			if (selectedSearch == "onlineOffline"){
 				$rootScope.showSearchOption=true;
 
 				$rootScope.statusList = [
