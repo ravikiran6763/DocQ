@@ -14,6 +14,24 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	// 		alert('statusbar shown');
 	// }
 
+	document.addEventListener("resume", onResume, false);
+	function onResume(event){
+		// alert(event);
+		console.log(event);
+		RazorpayCheckout.on('payment.success', successCallback)
+		RazorpayCheckout.on('payment.cancel', cancelCallback)
+		// Pass on the event to RazorpayCheckout
+		RazorpayCheckout.onResume(event);
+				setTimeout(function() {
+				//console.log('resume');
+				      // $state.go("templates.doc_profile");//working
+				      $state.go($state.current);
+				    //
+						// $window.location.reload(true);
+
+				}, 0);
+	}
+
 	$scope.validateTopup=function(isDocTopUpValid){
 	  console.log('isDocTopUpValid ', isDocTopUpValid);
 	  console.log('clicked');
@@ -46,8 +64,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var options = {
 											description: 'GET WELL SOONER',
 											currency: 'INR',
-											// key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
-											key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											// key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
 											method:{
@@ -61,44 +79,21 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 											},
 
 									}
+
 									RazorPayService.topUpOptions(options);
+
 
 
 									var successCallback = function(payment_id) {
 									console.log('payment_id: ' + payment_id)
+									console.log('options:',options);
 
 									$scope.paymentid = payment_id;
+
 										RazorPayService.topUp($scope.paymentid).then(function(response){
 									   $rootScope.patientWalletUpdate=response;
 										 console.log($rootScope.patientWalletUpdate);
-										 // if($rootScope.patientWalletUpdate === 'TransactionSuccessful'){
-											//  // console.log('TransactionSuccessful');
-											//  var confirmPopup = $ionicPopup.confirm({
-							 				// 	// title: 'DoctorQuick',
-							 				// 	template: '<center>Successfully added the amount to you DoctorQuick Deposit</center>',
-							 				// 	// template: 'An email confirmation link to your email address has been sent. Click the link in that email to complete registering your email. Make sure to check your spam box in case it got filtered. ',
-							 				// 	cssClass: 'videoPopup',
-							 				// 	scope: $scope,
-							 				// 	buttons: [
-							 				// 		{
-							 				// 			text: 'OK',
-							 				// 			type: 'button-assertive',
-							 				// 			onTap: function(e) {
-							 				// 			console.log('offline');
-							 				// 			// $state.go("templates.doctor_home");
-											// 			// $window.location.reload(true);
-											// 			$state.reload();
-										 //
-							 				// 			}
-							 				// 		},
-							 				// 	]
-							 				// });
-										 //
-										 //
-										 // }
-										 // if($rootScope.patientWalletUpdate ==='ERROR'){
-											//   alert('Error While Initiating Payment');
-										 // }
+
 										 $scope.payment.topUpAmt="";
 										 $window.location.reload(true);
 										 $scope.reload = function() {
@@ -119,21 +114,6 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									var cancelCallback = function(error) {
 									console.log(error.description + ' (Error '+error.code+')')
-										// window.plugins.toast.showWithOptions({
-										// message: "Transaction cancelled",
-										// duration: "short", // 2000 ms
-										// position: "bottom",
-										// styling: {
-										// opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-										// backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-										// textColor: '#ffffff', // Ditto. Default #FFFFFF
-										// textSize: 13, // Default is approx. 13.
-										// cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-										// horizontalPadding: 16, // iOS default 16, Android default 50
-										// verticalPadding: 12 // iOS default 12, Android default 30
-										// }
-										// });
-										// $window.location.reload(true);
 									}
 
 									RazorpayCheckout.open(options, successCallback, cancelCallback);

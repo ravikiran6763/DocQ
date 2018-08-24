@@ -448,16 +448,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
         // @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@COOKIE@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
   });
-  document.addEventListener("resume", onResume, false);
-  function onResume(){
 
-        setTimeout(function() {
-        //console.log('resume');
-              // $state.go("templates.doc_profile");//working
-              // $state.go($state.current, {}, { reload: true, inherit: false, notify: true });
-            //
-        }, 0);
-  }
 
   $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams,$localStorage){
 
