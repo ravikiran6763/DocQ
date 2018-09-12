@@ -15,7 +15,7 @@ console.log($stateParams.calledDoctor);
 // $ionicLoading.show();
 
 var confirmPopup = $ionicPopup.confirm({
-	template: '<center>Prescription filled by the doctor will be available in <a ng-click=closethis()>My Consultation</a> shortly.<br>Your consultation will be open for the next 7 days to exchange reports or to address queries you might have with the Doctor.</center>',
+	template: '<center>Prescription filled by the doctor will be available in <span style="color:red">My Consultation</span> shortly.<br>Your consultation will be open for the next 7 days to exchange reports or to address queries you might have with the Doctor</center>',
 	cssClass: 'videoPopup',
 	scope: $scope,
 	buttons: [
@@ -31,7 +31,7 @@ var confirmPopup = $ionicPopup.confirm({
 $scope.closethis = function()
 {
 confirmPopup.close();
-$state.go('app.my_consultations');
+// $state.go('app.my_consultations');
 
 };
 

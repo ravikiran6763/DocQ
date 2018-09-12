@@ -22,14 +22,14 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 		RazorpayCheckout.on('payment.cancel', cancelCallback)
 		// Pass on the event to RazorpayCheckout
 		RazorpayCheckout.onResume(event);
-				setTimeout(function() {
-				//console.log('resume');
-				      // $state.go("templates.doc_profile");//working
-				      $state.go($state.current);
-				    //
-						// $window.location.reload(true);
-
-				}, 0);
+				// setTimeout(function() {
+				// //console.log('resume');
+				//       // $state.go("templates.doc_profile");//working
+				//       $state.go($state.current);
+				//     //
+				// 		// $window.location.reload(true);
+				//
+				// }, 0);
 	}
 
 	$scope.validateTopup=function(isDocTopUpValid){
@@ -64,8 +64,8 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 									var options = {
 											description: 'GET WELL SOONER',
 											currency: 'INR',
-											key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
-											// key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											// key: 'rzp_test_JTodx06v7mHqbr',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
+											key: 'rzp_live_gTFcR9lOEpUn71',//change this key to live account key rzp_live_gTFcR9lOEpUn71 // rzp_test_JTodx06v7mHqbr
 											amount:$scope.payment.topUpAmt ,
 											name: 'DoctorQuick',
 											method:{

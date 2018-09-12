@@ -135,7 +135,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 
 	},true);
 
-$interval(checkDocStatus, 1000);
+// $interval(checkDocStatus, 1000);
 $scope.myDocDetail = angular.fromJson($window.localStorage['myDocDetail']);
 $ionicLoading.show({
 	template:'<ion-spinner></ion-spinner>'
@@ -262,7 +262,7 @@ $scope.docClicked=function(docPhone){
 		$rootScope.callType=callType;
 
 		$interval(checkCallStatus,2000);
-		$interval(checkDocStatusOnTheGo,2000);
+		// $interval(checkDocStatusOnTheGo,2000);
 
 
 		$rootScope.docNumToCall = num;
