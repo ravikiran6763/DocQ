@@ -10,7 +10,6 @@ DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope,$w
     $rootScope.showSubPatients=false;
     $rootScope.clickedOnce = false;
 
-
 // TO CHECK NO OF DOCTORS ONLINE IN VSEE
 $scope.patient_details = angular.fromJson($window.localStorage['patientDetails']);
 console.log($scope.patient_details);
@@ -19,9 +18,29 @@ $rootScope.defaultPatientLname=$scope.patient_details[0][2];
 $rootScope.defaultPatientNum=$scope.patient_details[0][5];
 
 
-console.log($rootScope.defaultPatientFname);
-console.log($rootScope.defaultPatientLname);
+console.log(window.localStorage.callBack);
+$scope.callBack=window.localStorage.callBack;
+$scope.$watch('callBack', function (newValue, oldValue, scope){
 
+   if(newValue == true){
+     console.log('callback');
+    $scope.sendrequesttoonlinedoctors();
+   }
+
+},true);
+// if(window.localStorage.callBack == true){
+//   // alert('CAllBACK');$
+//
+//  //  $ionicLoading.show({
+//  //    template:'Resending..',
+//  //    duration:2000
+//  //  });
+//  //  setTimeout(function (){
+//  //   console.log('delay 3 sec');
+//  //
+//  //
+//  // }, 2000);
+// }
 // $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
 
 $interval(CheckOnlineDocs, 2000);
@@ -47,9 +66,9 @@ medicalSpecialityService.selectSubPatient(subPatientToShow).then(function(respon
 }).catch(function(error){
     console.log('failure data', error);
 });
-console.log($rootScope.newPatientFname);
+// console.log($rootScope.newPatientFname);
   //hello.logininformation(username,password,success, failure);
-console.log($rootScope.SpecilityId);
+// console.log($rootScope.SpecilityId);
 // $ionicLoading.show({
 //   template:'<ion-spinner></ion-spinner>'
 // })
@@ -95,6 +114,9 @@ console.log(window.localStorage.SpecilityId);
    $scope.buttonText='Send Request';
 
    $rootScope.popUpClosed == false;
+   $scope.hello=function(){
+     console.log('Hello GP');
+   }
   $scope.sendrequesttoonlinedoctors = function()
   {
     console.log('Button clicked');
@@ -162,8 +184,10 @@ console.log(window.localStorage.SpecilityId);
             else if($rootScope.sentReqStat === 'Inserted'){
 
                     $interval(checkAcceptedReqDocStatus,2000);
-
+                    window.localStorage.callBack= false;
                     $rootScope.counter = 120;
+                    // $rootScope.counter = 60;
+
                     $rootScope.onTimeout = function(){
                     $ionicLoading.hide();
                     // console.log($scope.counter);
@@ -183,11 +207,42 @@ console.log(window.localStorage.SpecilityId);
                               console.log('failure data', error);
                           });
 
-                          var noResponsePopup = $ionicPopup.alert({
-                            template: "<div ><p>None of the doctors have accepted your request<br>Would you like to Consult a General PHysician.</p></div>",
-                            cssClass: 'requestPopup',
-                            scope: $scope,
-                          });
+                          if(window.localStorage.SpecilityId == 16){
+                            var noResponsePopup = $ionicPopup.alert({
+                              template: "<div ><p>None of the doctors have accepted your request</p></div>",
+                              cssClass: 'requestPopup',
+                              scope: $scope,
+
+                            });
+                          }
+                          else{
+                            var noResponsePopup = $ionicPopup.alert({
+                              template: "<div ><p>None of the doctors have accepted your request.<br>Would you like to Consult a General Physician</p></div>",
+                              cssClass: 'requestPopup',
+                              scope: $scope,
+                              buttons: [
+                              {
+                              text: 'OK',
+                              type: 'button-assertive',
+                                  onTap:function(){
+                                    console.log(window.localStorage.SpecilityId);
+                                      window.localStorage.SpecilityId=14;
+                                      $scope.sendrequesttoonlinedoctors();
+                                    // $state.go($state.current, {}, {reload: true});
+
+                                  }
+                              },
+                              {
+                              text: 'Cancel',
+                              type: 'button-royal',
+                              onTap:function(){
+                                $state.go($state.current, {}, {reload: true});
+                              }
+
+                              }
+                              ]
+                            });
+                          }
 
                           noResponsePopup.then(function(res){
                               medicalSpecialityService.noResponseFromDoc(window.localStorage.user).then(function(response){

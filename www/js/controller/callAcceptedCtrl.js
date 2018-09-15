@@ -252,7 +252,7 @@ console.log(checkPatientActivity);
 		console.log('oldValue',oldValue);
 		console.log('newValue',newValue);
 
- 		if(newValue > oldValue){
+ 		if(newValue == 4){
 			setTimeout(function (){
 					 console.log('delay 3 sec');
 				 }, 3000);
@@ -262,13 +262,38 @@ console.log(checkPatientActivity);
 					 template: "<div>Doctor does not wish to proceed for a consultation at this time</div>",
 					 cssClass: 'requestPopup',
 					 scope: $scope,
+					 buttons: [
+					 {
+					 text: 'OK',
+					 type: 'button-assertive',
+							 onTap:function(){
+								 console.log(window.localStorage.SpecilityId);
+
+									 $state.go("app.specialityDetailsNew");
+									//  setTimeout(function (){
+									//  console.log('delay 3 sec');
+									 window.localStorage.callBack= true;
+									//  $scope.sendrequesttoonlinedoctors();
+								 // }, 2000);
+
+							 }
+					 },
+					 {
+					 text: 'Cancel',
+					 type: 'button-royal',
+					 onTap:function(){
+						 $state.go($state.current, {}, {reload: true});
+					 }
+
+					 }
+					 ]
 		     });
 				 IonicClosePopupService.register(alertPopup);
 
-		     	 alertPopup.then(function(res) {
-					 $state.go("app.patient_home");
-					 $ionicHistory.clearHistory();
-		     });
+		     // 	 alertPopup.then(function(res) {
+					//  $state.go("app.patient_home");
+					//  $ionicHistory.clearHistory();
+		     // });
  		}
 
  },true);
