@@ -1,4 +1,5 @@
 
+
 DoctorQuickApp.controller('specilityDetailsCtrl', function($state, $rootScope,$window, $scope, $interval,$ionicHistory, $stateParams,$ionicPopup ,$localStorage, $timeout, $stateParams, $cordovaToast, medicalSpecialityService,$localStorage, $ionicLoading,doctorServices,patientWalletServices) {
 
     $rootScope.headerTxt="Medical Speciality";
