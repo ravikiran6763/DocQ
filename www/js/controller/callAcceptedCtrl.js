@@ -262,38 +262,38 @@ console.log(checkPatientActivity);
 					 template: "<div>Doctor does not wish to proceed for a consultation at this time</div>",
 					 cssClass: 'requestPopup',
 					 scope: $scope,
-					 buttons: [
-					 {
-					 text: 'OK',
-					 type: 'button-assertive',
-							 onTap:function(){
-								 console.log(window.localStorage.SpecilityId);
-
-									 $state.go("app.specialityDetailsNew");
-									//  setTimeout(function (){
-									//  console.log('delay 3 sec');
-									 window.localStorage.callBack= true;
-									//  $scope.sendrequesttoonlinedoctors();
-								 // }, 2000);
-
-							 }
-					 },
-					 {
-					 text: 'Cancel',
-					 type: 'button-royal',
-					 onTap:function(){
-						 $state.go($state.current, {}, {reload: true});
-					 }
-
-					 }
-					 ]
+					 // buttons: [
+					 // {
+					 // text: 'OK',
+					 // type: 'button-assertive',
+						// 	 onTap:function(){
+						// 		 console.log(window.localStorage.SpecilityId);
+					 //
+						// 			 $state.go("app.specialityDetailsNew",{},{reload:true});
+						// 			//  setTimeout(function (){
+						// 			//  console.log('delay 3 sec');
+						// 			 window.localStorage.callBack= true;
+						// 			//  $scope.sendrequesttoonlinedoctors();
+						// 		 // }, 2000);
+					 //
+						// 	 }
+					 // },
+					 // {
+					 // text: 'Cancel',
+					 // type: 'button-royal',
+					 // onTap:function(){
+						//  $state.go("app.specialityDetailsNew");
+					 // }
+					 //
+					 // }
+					 // ]
 		     });
 				 IonicClosePopupService.register(alertPopup);
 
-		     // 	 alertPopup.then(function(res) {
-					//  $state.go("app.patient_home");
-					//  $ionicHistory.clearHistory();
-		     // });
+		     	 alertPopup.then(function(res) {
+					 $state.go("app.patient_home");
+					 $ionicHistory.clearHistory();
+		     });
  		}
 
  },true);

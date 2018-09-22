@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,$localStorage, $location, $ionicConfig,$cordovaInAppBrowser, $http, $cordovaToast, patientWalletServices, RazorPayService ,patientProfileDetailsService,BASE_URL, API) {
+DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,$localStorage,$ionicLoading, $location, $ionicConfig,$cordovaInAppBrowser, $http, $cordovaToast, patientWalletServices, RazorPayService ,patientProfileDetailsService,BASE_URL, API) {
 
 	$rootScope.headerTxt="Topup";
 	$rootScope.showBackBtn=true;
@@ -13,6 +13,9 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	//     // do something
 	// 		alert('statusbar shown');
 	// }
+
+$ionicLoading.show();
+
 
 	document.addEventListener("resume", onResume, false);
 	function onResume(event){
@@ -36,26 +39,34 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 	  console.log('isDocTopUpValid ', isDocTopUpValid);
 	  console.log('clicked');
 
+
+		patientWalletServices.getMinBalance().then(function(response){
+		$rootScope.minBAlance=response;
+		console.log($rootScope.minBAlance);
+		}).catch(function(error){
+			console.log('failure data', error);
+		});
+
 	  $scope.topUp = true;
 	  if(isDocTopUpValid) {
 	    // console.log('isDocFormValid ', isDocFormValid)
 
 								$scope.payment.topUpAmt=($scope.payment.topUp*100);
 								console.log($scope.payment.topUp);
-							 if($scope.payment.topUp < 270){//250
+							 if($scope.payment.topUp < $rootScope.minBAlance){//250
 								 window.plugins.toast.showWithOptions({
-								 message: "Amount must be ₹270 or higher",
-								 duration: "short", // 2000 ms
-								 position: "bottom",
-								 styling: {
-								 opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-								 backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-								 textColor: '#ffffff', // Ditto. Default #FFFFFF
-								 textSize: 13, // Default is approx. 13.
-								 cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-								 horizontalPadding: 16, // iOS default 16, Android default 50
-								 verticalPadding: 12 // iOS default 12, Android default 30
-								 }
+									 message: "Amount must be ₹ " + $rootScope.minBAlance + "  or higher",
+									 duration: "short", // 2000 ms
+									 position: "bottom",
+									 styling: {
+									 opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+									 backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+									 textColor: '#ffffff', // Ditto. Default #FFFFFF
+									 textSize: 13, // Default is approx. 13.
+									 cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+									 horizontalPadding: 16, // iOS default 16, Android default 50
+									 verticalPadding: 12 // iOS default 12, Android default 30
+									 }
 								 });
 
 								}
@@ -80,13 +91,16 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 									}
 
-									RazorPayService.topUpOptions(options);
+
 
 
 
 									var successCallback = function(payment_id) {
-									console.log('payment_id: ' + payment_id)
-									console.log('options:',options);
+
+									RazorPayService.topUpOptions(options);
+									//
+									// console.log('payment_id: ' + payment_id)
+									// console.log('options:',options);
 
 									$scope.paymentid = payment_id;
 
@@ -137,9 +151,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 			verticalPadding: 12 // iOS default 12, Android default 30
 			}
 			});
-			$timeout(function() {
-				 $scope.queryPopup.close(); //close the popup after 3 seconds for some reason
-			}, 1000);
+
 			// $cordovaToast.showLongCenter('amount must be ₹250 or higher.', 'short', 'center').then(function(success) {
 			// // success
 			// }, function (error) {
@@ -186,6 +198,9 @@ $scope.patient_details=[];
 
  patientWalletServices.paidToDoctors(window.localStorage.user).then(function(response){
 	$rootScope.doctorsList=response;
+	if($rootScope.doctorsList){
+		$ionicLoading.hide();
+	}
 	console.log($rootScope.doctorsList);
 	}).catch(function(error){
 		console.log('failure data', error);

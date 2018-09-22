@@ -94,6 +94,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'removeFavDoctor':'patient/removeFavDoctor.php',
         'noResponseFromDoc':'patient/noResponseFromDoc.php',
         'one2oneNoResponse':'patient/one2oneNoResponse.php',
+        'getMinBalance':'patient/getMinBalance.php',
 
         /*AGENT*/
         'agentDetails':'dqagent/dqAgentLogin.php',

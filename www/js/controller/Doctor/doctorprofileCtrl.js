@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices,medicalSpecialityService,IonicClosePopupService) {
+DoctorQuickApp.controller('doctorprofileCtrl', function($scope, $state, $stateParams, $ionicPopup,$ionicHistory, $timeout, $interval, $rootScope, $cordovaNetwork, $window,$localStorage, $ionicLoading,callacceptedbydoctor,doctorServices,patientrequesttodoctor,searchDoctorServices,medicalSpecialityService,IonicClosePopupService,patientWalletServices) {
 
 $rootScope.headerTxt="Doctor Profile";
 $rootScope.showBackBtn=true;
@@ -466,6 +466,15 @@ console.log('failure data', error);
       $interval(checkMyCallStatus,2000);
       $interval(checkDocStatusOnTheGo,2000);
 
+
+      patientWalletServices.getMinBalance().then(function(response){
+      $rootScope.minBAlance=response;
+      console.log($rootScope.minBAlance);
+      }).catch(function(error){
+        console.log('failure data', error);
+      });
+
+
       var callRequest={
         patient:window.localStorage.user,
         doctor:$rootScope.docNumToCall,
@@ -489,7 +498,7 @@ console.log('failure data', error);
           console.log($rootScope.myWalletBal);
         }
               $rootScope.counter = 0;
-        if($scope.myWalletBal >= 270 || $scope.myWalletBal === 'agent')
+        if($scope.myWalletBal >= $rootScope.minBAlance || $scope.myWalletBal === 'agent')
         {
               console.log(callRequest);
               if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi'){

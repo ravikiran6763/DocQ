@@ -23,7 +23,7 @@ console.log(window.localStorage.callBack);
 $scope.callBack=window.localStorage.callBack;
 $scope.$watch('callBack', function (newValue, oldValue, scope){
 
-   if(newValue == true){
+   if(oldValue == true){
      console.log('callback');
     $scope.sendrequesttoonlinedoctors();
    }
@@ -144,8 +144,16 @@ console.log(window.localStorage.SpecilityId);
      }
 
      $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
+
+     patientWalletServices.getMinBalance().then(function(response){
+     $rootScope.minBAlance=response;
+     console.log($rootScope.minBAlance);
+     }).catch(function(error){
+       console.log('failure data', error);
+     });
+
      // console.log($rootScope.newPAtient);
-     if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal === 'agent'){
+     if($rootScope.myWalletBal >= $rootScope.minBAlance || $rootScope.myWalletBal === 'agent'){
        console.log(window.localStorage.networkType);
        if(window.localStorage.networkType === '4G' || window.localStorage.networkType === 'WiFi' || window.localStorage.networkType === 'Unknown'){
          console.log(window.localStorage.SpecilityId);
@@ -208,9 +216,9 @@ console.log(window.localStorage.SpecilityId);
                               console.log('failure data', error);
                           });
 
-                          if(window.localStorage.SpecilityId == 16){
+                          if(window.localStorage.SpecilityId == 16 ||  window.localStorage.SpecilityId == 14){
                             var noResponsePopup = $ionicPopup.alert({
-                              template: "<div ><p>None of the doctors have accepted your request</p></div>",
+                              template: "<center ><p>None of the doctors have accepted your request</p></center>",
                               cssClass: 'requestPopup',
                               scope: $scope,
 
@@ -218,7 +226,7 @@ console.log(window.localStorage.SpecilityId);
                           }
                           else{
                             var noResponsePopup = $ionicPopup.alert({
-                              template: "<div ><p>None of the doctors have accepted your request.<br>Would you like to Consult a General Physician</p></div>",
+                              template: "<center ><p>None of the doctors have accepted your request.<br>Would you like to Consult a <br>General Physician?</p></center>",
                               cssClass: 'requestPopup',
                               scope: $scope,
                               buttons: [
@@ -427,7 +435,7 @@ console.log(window.localStorage.SpecilityId);
               // $ionicLoading.hide();
                var confirmPopup = $ionicPopup.confirm({
            						// title: 'Low Balance',
-           						template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270</center> ',
+           						template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹{{minBAlance}}</center> ',
            						cssClass: 'videoPopup',
            						scope: $scope,
            						buttons: [

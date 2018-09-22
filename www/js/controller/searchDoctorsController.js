@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory,medicalSpecialityService,IonicClosePopupService) {
+DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$interval,$ionicHistory, $ionicConfig,$timeout, $state,$rootScope, $ionicSideMenuDelegate,$localStorage, $ionicLoading, $ionicPopup, searchDoctorServices,doctorServices, searchbyspecialities,callacceptedbydoctor,$ionicHistory,medicalSpecialityService,IonicClosePopupService,patientWalletServices) {
 
 	$rootScope.headerTxt="Search Doctors";
 	$rootScope.showBackBtn=true;
@@ -23,6 +23,14 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 		console.log('user:',window.localStorage.user);
 		$rootScope.docNumToCall=num;
 	  $ionicLoading.show();
+
+		patientWalletServices.getMinBalance().then(function(response){
+		$rootScope.minBAlance=response;
+		console.log($rootScope.minBAlance);
+		}).catch(function(error){
+			console.log('failure data', error);
+		});
+
 	  doctorServices.checkMyBalance(window.localStorage.user).then(function(response){
 	    // console.log(response[0][0]);
 			$rootScope.patientWalletdetails=response;
@@ -30,7 +38,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 			$rootScope.myDebit=$rootScope.patientWalletdetails[0][1];
 
 			$rootScope.myWalletBal=$rootScope.myCredit-$rootScope.myDebit;
-	    if($rootScope.myWalletBal >= 270)
+	    if($rootScope.myWalletBal >= $rootScope.minBAlance)
 	    {
 	      hello.audiocallvsee(uname,pw,persontocall,success, failure);
 	      var confirmPopup = $ionicPopup.confirm({
@@ -54,7 +62,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    {
 	      var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
- 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹270</b></center> ',
+ 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹{{ minBAlance }}</b></center> ',
  				 cssClass: 'videoPopup',
  				 scope: $scope,
  				 buttons: [
@@ -259,6 +267,13 @@ $scope.docClicked=function(docPhone){
 			template:'<ion-spinner></ion-spinner>'
 		});
 
+		patientWalletServices.getMinBalance().then(function(response){
+		$rootScope.minBAlance=response;
+		console.log($rootScope.minBAlance);
+		}).catch(function(error){
+			console.log('failure data', error);
+		});
+
 		$rootScope.callType=callType;
 
 		$interval(checkCallStatus,2000);
@@ -291,7 +306,7 @@ $scope.docClicked=function(docPhone){
 				console.log($rootScope.myWalletBal);
 			}
 						$rootScope.counter = 0;
-			if($rootScope.myWalletBal >= 270 || $rootScope.myWalletBal ==='agent')
+			if($rootScope.myWalletBal >= $rootScope.minBAlance || $rootScope.myWalletBal ==='agent')
 			{
 
 					if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi'){
@@ -416,7 +431,7 @@ $scope.docClicked=function(docPhone){
 
 				var confirmPopup = $ionicPopup.confirm({
 					// title: 'DoctorQuick',
-					template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹270</center> ',
+					template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹{{ minBAlance }}</center> ',
 					cssClass: 'videoPopup',
 					scope: $scope,
 					buttons: [
