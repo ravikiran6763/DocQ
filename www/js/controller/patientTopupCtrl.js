@@ -138,7 +138,8 @@ $ionicLoading.show();
 	  }
 		else{
 			window.plugins.toast.showWithOptions({
-			message: "Amount must be ₹270 or higher",
+			message: "Amount must be ₹"+$rootScope.minBAlance+ " or higher",
+			// message: "Amount must be ₹270 or higher",
 			duration: "short", // 2000 ms
 			position: "bottom",
 			styling: {

@@ -118,6 +118,14 @@ console.log(window.localStorage.SpecilityId);
    $scope.hello=function(){
      console.log('Hello GP');
    }
+
+   patientWalletServices.getMinBalance().then(function(response){
+   $rootScope.minBAlance=response;
+   console.log($rootScope.minBAlance);
+   }).catch(function(error){
+     console.log('failure data', error);
+   });
+
   $scope.sendrequesttoonlinedoctors = function()
   {
     console.log('Button clicked');
@@ -145,12 +153,7 @@ console.log(window.localStorage.SpecilityId);
 
      $rootScope.newPAtient=medicalSpecialityService.getNewPatient();
 
-     patientWalletServices.getMinBalance().then(function(response){
-     $rootScope.minBAlance=response;
-     console.log($rootScope.minBAlance);
-     }).catch(function(error){
-       console.log('failure data', error);
-     });
+
 
      // console.log($rootScope.newPAtient);
      if($rootScope.myWalletBal >= $rootScope.minBAlance || $rootScope.myWalletBal === 'agent'){

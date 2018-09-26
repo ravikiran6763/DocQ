@@ -296,6 +296,40 @@ console.log(checkPatientActivity);
 		     });
  		}
 
+		else if(newValue == 8){
+			setTimeout(function (){
+					 console.log('delay 3 sec');
+				 }, 3000);
+
+		     var alertExpired = $ionicPopup.alert({
+		      //  title: 'Declined!',
+					 template: "<div>Consultation Expired</div>",
+					 cssClass: 'requestPopup',
+					 scope: $scope,
+					 buttons: [
+					 {
+					 text: 'OK',
+					 type: 'button-royal',
+							 onTap:function(){
+								 $state.go("app.patient_home");
+								 $ionicHistory.clearHistory();
+							 }
+					 },
+
+					 ]
+
+		     });
+				 // IonicClosePopupService.register(alertExpired);
+
+		     	 alertExpired.then(function(res) {
+					 $state.go("app.patient_home");
+					 $ionicHistory.clearHistory();
+		     });
+ 		}
+		else{
+			// do nothing
+		}
+
  },true);
 
  $scope.declineCall=function(){
