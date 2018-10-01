@@ -229,7 +229,7 @@ console.log(window.localStorage.SpecilityId);
                           }
                           else{
                             var noResponsePopup = $ionicPopup.alert({
-                              template: "<center ><p>None of the doctors have accepted your request.<br>Would you like to Consult a <br>General Physician?</p></center>",
+                              template: "<center><p>None of the doctors have accepted your request.<br>Would you like to Consult a <br>General Physician?</p></center>",
                               cssClass: 'requestPopup',
                               scope: $scope,
                               buttons: [

@@ -289,7 +289,6 @@ console.log(checkPatientActivity);
 					 // ]
 		     });
 				 IonicClosePopupService.register(alertPopup);
-
 		     	 alertPopup.then(function(res) {
 					 $state.go("app.patient_home");
 					 $ionicHistory.clearHistory();
