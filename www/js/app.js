@@ -98,7 +98,30 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
   $ionicPlatform.ready(function() {
     // window.AndroidFullScreen.immersiveMode(successFunction, errorFunction);
     // window.plugin.backgroundMode.enable();
-    ionic.Platform.isFullScreen = true
+
+    // ionic.Platform.isFullScreen = false;
+    // ionic.Platform.fullScreen();
+
+
+
+
+    if (ionic.Platform.isAndroid()) {
+        window.addEventListener("native.hidekeyboard", function () {
+            StatusBar.show();
+            // window.AndroidFullScreen.immersiveMode(false, false);
+        });
+    }
+
+
+
+        if (StatusBar.isVisible) {
+      console.log('status bar is seen');
+        }
+    if(window.StatusBar){
+    StatusBar.styleDefault();
+      // StatusBar.overlaysWebView(true);
+    return  StatusBar.show();
+    }
     function successFunction() {
       // //console.log("It worked!");
     }
@@ -112,18 +135,12 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
-    ionic.Platform.fullScreen();
 
     setTimeout(function() {
       //console.log('hide splash ');
         // navigator.splashscreen.hide();
     }, 300);
 
-    // window.MobileAccessibility.usePreferredTextZoom(true);
-   function getTextZoomCallback(textZoom) {
-     //console.log('WebView text should be scaled to the preferred value ' + textZoom + '%')
-   }
-   window.MobileAccessibility.getTextZoom(getTextZoomCallback);
 
       // window.addEventListener('native.keyboardshow', function(e){
       //   setTimeout(function() {
@@ -131,35 +148,23 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       //   }, 100);
       // });
       window.addEventListener('native.keyboardshow', keyboardShowHandler);
-document.addEventListener('focusout', function(e) {
-  //console.log('focused');
-  window.scrollTo(0, 0);
-});
-function keyboardShowHandler(e){
-    //console.log('Keyboard height is: ' + e.keyboardHeight);
-    // container.style.height = scrollViewOffsetHeight + "px";
+      document.addEventListener('focusout', function(e) {
+        //console.log('focused');
+        window.scrollTo(0, 0);
+      });
+      function keyboardShowHandler(e){
+          //console.log('Keyboard height is: ' + e.keyboardHeight);
+          // container.style.height = scrollViewOffsetHeight + "px";
 
-}
-   //    window.addEventListener('native.keyboardshow', function (e) {
-   //     //console.log('keyboard opened');
-   // });
+      }
+       //    window.addEventListener('native.keyboardshow', function (e) {
+       //     //console.log('keyboard opened');
+       // });
 
-   window.addEventListener('native.keyboardhide', function () {
+       window.addEventListener('native.keyboardhide', function () {
 
        //console.log('keyboard closed');
    });
-
-   var mailme = function() {
-       //console.log('Caught!');
-   }
-
-   window.addEventListener('error', function(e) {
-       var ie = window.event || {};
-       var errMsg = e.message || ie.errorMessage || "404 error on " + window.location;
-       var errSrc = (e.filename || ie.errorUrl) + ': ' + (e.lineno || ie.errorLine);
-       mailme([errMsg, errSrc]);
-   }, true);
-
 
   });
 
@@ -197,26 +202,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           var model = device.model;
           window.localStorage.model=model;
-          // //console.log(window.localStorage.serial);
-          // //console.log(deviceHardwareSerial);
-
-          if (ionic.Platform.isAndroid()) {
-              window.addEventListener("native.hidekeyboard", function () {
-                  StatusBar.hide();
-                  window.AndroidFullScreen.immersiveMode(false, false);
-              });
-          }
-          else {
-          //console.log("localStorage previous value",window.localStorage.sendPrescTo);
-          window.localStorage.sendPrescTo = "";
-          //console.log("localStorage after value",window.localStorage.sendPrescTo);
-          }
-          //
-          if(window.StatusBar){
-          // StatusBar.styleDefault();
-            // StatusBar.overlaysWebView(true);
-            StatusBar.hide();
-          }
 
           if (window.Connection){
             if (navigator.connection.type == Connection.NONE)
@@ -225,17 +210,22 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
             //console.log("Internet is disconnected on your device");
             };
           };
+          //-------------------------------------immersiveMode---------------------
 
-          function successFunction() {
-          console.info("It worked!");
-          }
-          function errorFunction(error){
-          console.error(error);
-          }
-          function trace(value){
-          //console.log(value);
-          }
+          // function successFunction() {
+          // console.info("It worked!");
+          // }
+          // function errorFunction(error){
+          // console.error(error);
+          // }
+          // function trace(value){
+          // //console.log(value);
+          // }
           // AndroidFullScreen.immersiveMode(successFunction, errorFunction);
+
+          //-------------------------------------immersiveMode---------------------
+
+
           //-------------------------------------FCM PUSH SETUP---------------------
 
           // FCMPlugin.getToken(function(token){
@@ -269,7 +259,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           iosSettings["kOSSettingsKeyInAppLaunchURL"] = false;
 
           var notificationOpenedCallback = function(jsonData) {
-          alert("Notification opened:\n" + JSON.stringify(jsonData));
+          // alert("Notification opened:\n" + JSON.stringify(jsonData));
           //console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
           };
 
@@ -317,41 +307,6 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           //console.log("iosDevice:",$rootScope.deviceIOS);
           }
 
-          // if(window.localStorage.doctororpatient === "doctor" ){
-          //
-          //     if($rootScope.pat_phnofromwebview){
-          //         $ionicLoading.show({
-          //             template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-          //             // duration:5000
-          //         });
-          //         $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-          //         return '/templates/sendPrescription';
-          //     }
-          //
-          //
-          // }
-          //
-          // else{
-          // //do nothing
-          // //console.log('UNDEFINED');
-          // }
-          // $timeout( function() {
-          //         // $state.go('templates.loadingDoctor');
-          //         if($rootScope.pat_phnofromwebview){
-          //             // window.localStorage.onOff=2;
-          //             $ionicLoading.show({
-          //             template: '<ion-spinner></ion-spinner><br><br>Please Wait',
-          //             duration:5000
-          //             });
-          //             //console.log($rootScope.pat_phnofromwebview);
-          //             $state.go('templates.sendPrescription',{"reqPat": $rootScope.pat_phnofromwebview},{location: "replace", reload: false});
-          //             return '/templates/sendPrescription';
-          //         }
-          //
-          //
-          // }, 0);
-
-
           var permissions = cordova.plugins.permissions;
           // permissions.requestPermission(permissions.READ_CONTACTS, success, error);
 
@@ -369,7 +324,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           //-------------------------------------ANALYTICS SETUP---------------------
             // window.ga.startTrackerWithId('UA-114659588-1')
               window.ga.startTrackerWithId('UA-114659588-1', 1, function(msg) {
-                window.ga.trackView('Index.html');
+                window.ga.trackView('index.html');
               });
              window.ga.setAllowIDFACollection(true)
              // window.ga.trackEvent('Request', 'Click', 'sendrequesttoonlinedoctors',1)// Label and Value are optional, Value is numeric
@@ -392,7 +347,14 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
   //   window.localStorage.AppVersion=AppVersion.build;
   // }), false);
   //
-
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady(){
+      console.log(StatusBar);
+      StatusBar.isVisible = true;
+      StatusBar.backgroundColorByName("red")
+      StatusBar.overlaysWebView(true);
+      StatusBar.show();
+  }
   //cordova event handling
   document.addEventListener('deviceready', function () {
     //console.log('splash hidden');
@@ -888,13 +850,13 @@ DoctorQuickApp.config(function($stateProvider, $httpProvider,$urlRouterProvider,
     controller : 'splashCtrl'
   })
 
-  .state('error', {
-    cache : false,
-    url: "/errorPage",
-    templateUrl: "views/error/errorPage.html",
-    abstract: true,
-    controller: 'errorCtrl'
-  })
+  // .state('error', {
+  //   cache : false,
+  //   url: "/errorPage",
+  //   templateUrl: "views/error/errorPage.html",
+  //   abstract: true,
+  //   controller: 'errorCtrl'
+  // })
 
   .state('auth', {
     cache : false,

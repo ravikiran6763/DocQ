@@ -10,8 +10,9 @@ console.log(window.localStorage.user);
 
 $ionicLoading.show({
   template:'<ion-spinner></ion-spinner>',
-  showBackdrop:true
 })
+
+
 
 $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWalletdetails']);
 
@@ -22,7 +23,6 @@ $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWall
    if(response){
      window.localStorage['patientWalletdetails'] = angular.toJson(response);
      $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWalletdetails']);
-     $ionicLoading.hide();
    }
 
    console.log($rootScope.patientWalletdetails);
@@ -33,6 +33,8 @@ $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWall
    patientWalletServices.claimFreeConsultation(window.localStorage.user).then(function(response){
     $rootScope.freeDetails=response;
     if($rootScope.freeDetails == "Claimed"){
+      $ionicLoading.hide();
+
       var confirmPopup = $ionicPopup.confirm({
         template: '<center>Free consultation for this device <br>has been already claimed with another phone number.<br>A deposit is required to continue with consultations.<br>Contact Customer Care for Help.</center>',
         cssClass: 'videoPopup',
@@ -55,6 +57,8 @@ $scope.patientWalletdetails = angular.fromJson($window.localStorage['patientWall
 
    patientWalletServices.paidToDoctors(window.localStorage.user).then(function(response){
     $rootScope.doctorsList=response;
+    $ionicLoading.hide();
+
     console.log($rootScope.doctorsList);
     }).catch(function(error){
       console.log('failure data', error);
