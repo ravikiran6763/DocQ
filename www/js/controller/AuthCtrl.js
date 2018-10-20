@@ -664,21 +664,6 @@ $scope.patientRegistration = function()
       $scope.submittedMail = true;
       console.log($scope.Doctor.doc_email);
 
-      // window.plugins.toast.showWithOptions({
-      // message: "Valid email must be entered",
-      // duration: "short", // 2000 ms
-      // position: "bottom",
-      // styling: {
-      // opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-      // backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-      // textColor: '#ffffff', // Ditto. Default #FFFFFF
-      // textSize: 13, // Default is approx. 13.
-      // cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-      // horizontalPadding: 16, // iOS default 16, Android default 50
-      // verticalPadding: 12 // iOS default 12, Android default 30
-      // }
-      // });
-
     }
     else if(!$scope.Doctor.doc_phone){
       // $scope.firstNum=$rootScope.PatientDetail.patient_mob.charAt(0);
@@ -686,110 +671,147 @@ $scope.patientRegistration = function()
       $scope.submittedMob = true;
       console.log($scope.Doctor.doc_phone);
 
-      // window.plugins.toast.showWithOptions({
-      //     message: "Valid phone number must be entered",
-      //     duration: "short", // 2000 ms
-      //     position: "bottom",
-      //     styling: {
-      //     opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-      //     backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-      //     textColor: '#ffffff', // Ditto. Default #FFFFFF
-      //     textSize: 13, // Default is approx. 13.
-      //     cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-      //     horizontalPadding: 16, // iOS default 16, Android default 50
-      //     verticalPadding: 12 // iOS default 12, Android default 30
-      //     }
-      // });
-
     }
 
     else{
       console.log('2nd form validated');
-      var doctorDetails={
-        doctorFname : $scope.Doctor.doc_fname,
-        doctorMname : $scope.Doctor.doc_mname,
-        doctorLname:$scope.Doctor.doc_lname,
-        doctorEmail:$scope.Doctor.doc_email,
-        doctorPhone:$scope.Doctor.doc_phone
-      };
-
-      doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
-        console.log(response);
-        if(response == 'ERROR'){
-          console.log("doctor Already Exist");
-          //Alert Popup goes healthcare
-
-          $scope.myPopup = $ionicPopup.show({
-          // title: 'Invalid Credentials',
-          cssClass: 'requestPopup',
-          template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please wait someone from DoctorQuick will call you shortly to help you with registration.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
-          scope: $scope,
-          buttons: [
-          {
-          text: 'OK',
-          type: 'button-royal',
-          onTap:function(){
-            $ionicHistory.clearCache();
-            $ionicHistory.clearHistory();
-            $window.localStorage.clear();
-          }
-          },
-          ]
 
 
-          });
-          $scope.closethis = function()
-          {
-            $scope.myPopup.close();
-          };
+
+      $scope.areYouDoctor = $ionicPopup.show({
+      // title: 'Are you a Doctor?',
+      cssClass: 'requestPopup',
+      template: '<center>Are you a Doctor?</center.',
+      scope: $scope,
+      buttons: [
+      {
+      text: 'Yes',
+      type: 'button-royal',
+      onTap:function(){
 
 
-        }
-        else if(response == 'Exist'){
-          $scope.myPopup=$ionicPopup.show({
-            // title: '',
-            template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+                var docMCI = $ionicPopup.show({
+                template: '<center>Please Enter your MCI Registration Number<br><input type="text" ng-model="Doctor.mci"></center>',
+                scope: $scope,
+                buttons: [
+                { text: 'Register',
+                  type: 'button-positive',
+                        onTap: function(e)
+                        {
+                             // console.log('registered');
+                              var doctorDetails={
+                                doctorFname : $scope.Doctor.doc_fname,
+                                doctorMname : $scope.Doctor.doc_mname,
+                                doctorLname:$scope.Doctor.doc_lname,
+                                doctorEmail:$scope.Doctor.doc_email,
+                                doctorPhone:$scope.Doctor.doc_phone,
+                                doctorMCI:$scope.Doctor.mci
 
-            cssClass: 'loginPopup',
-            scope: $scope,
-                      });
-          $scope.closethis = function()
-          {
-          $scope.myPopup.close();
-          $window.localStorage.clear();
-          // $state.go('auth.loginNew');
+                              };
+                                 console.log(doctorDetails);
+                                 doctorRegistrationService.doctorRegistrationDone(doctorDetails).then(function(response){
+                                   console.log(response);
+                                   if(response == 'ERROR'){
+                                     console.log("doctor Already Exist");
+                                     //Alert Popup goes healthcare
 
-          };
-        }
-        else{
+                                     $scope.myPopup = $ionicPopup.show({
+                                     // title: 'Invalid Credentials',
+                                     cssClass: 'requestPopup',
+                                     template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Please wait someone from DoctorQuick will call you shortly to help you with registration.</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+                                     scope: $scope,
+                                     buttons: [
+                                     {
+                                     text: 'OK',
+                                     type: 'button-royal',
+                                     onTap:function(){
+                                       $ionicHistory.clearCache();
+                                       $ionicHistory.clearHistory();
+                                       $window.localStorage.clear();
+                                     }
+                                     },
+                                     ]
 
-          $scope.regDoc=doctorDetails;
-          console.log($scope.regDoc);
-          var showDoc= $ionicPopup.show({
-            scope: $scope,
-            template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
-                        "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
-            // title: 'Thank You',
-            cssClass: 'videoPopup',
-            buttons: [
 
-             {
-               text: 'Close',
-               type: 'button-positive',
-               onTap: function() {
-                 console.log('Doctor Registered Successfully');
-                 $state.go('auth.loginNew');
+                                     });
+                                     $scope.closethis = function()
+                                     {
+                                       $scope.myPopup.close();
+                                     };
 
-               }
-             }
-            ]
-          });
-        }
-        $scope.Doctor = {};
-      }).catch(function(error){
-        console.log('failure data', error);
+
+                                   }
+                                   else if(response == 'Exist'){
+                                     $scope.myPopup=$ionicPopup.show({
+                                       // title: '',
+                                       template: '<i class="icon-left ion-alert-circled"></i><div class="heading"><p>Mobile Number Already Registered<br>Tap on <a ui-sref="auth.getPassword" ng-click=closethis()>Forgot Password</a> to get your password instantly on your registered mobile number</p></div><div class="closeButton" ng-controller="LoginCtrl" ng-Click="closethis();"><p style="margin: -1vh 3px 0 1vw; font-size: 8vw; color: #fff;">X</p>',
+
+                                       cssClass: 'loginPopup',
+                                       scope: $scope,
+                                                 });
+                                     $scope.closethis = function()
+                                     {
+                                     $scope.myPopup.close();
+                                     $window.localStorage.clear();
+                                     // $state.go('auth.loginNew');
+
+                                     };
+                                   }
+                                   else{
+
+                                     $scope.regDoc=doctorDetails;
+                                     console.log($scope.regDoc);
+                                     var showDoc= $ionicPopup.show({
+                                       scope: $scope,
+                                       template: "<style>.button{background-color:#648c39;} .popup-buttons{padding:0; min-height:0;} .popup-body { padding: 10px; overflow: scroll; text-align: center; font-family: Ubuntu,bold,sans-serif !important;	 } </style>"+
+                                                   "<body ><p >Thank you for registering <br/> Dr. {{regDoc.doctorFname}} {{regDoc.doctorMname}} {{regDoc.doctorLname}}<br/><br/> Someone from DoctorQuick will call you soon to help you with your Signup.<p/></body>",
+                                       // title: 'Thank You',
+                                       cssClass: 'videoPopup',
+                                       buttons: [
+
+                                        {
+                                          text: 'Close',
+                                          type: 'button-positive',
+                                          onTap: function() {
+                                            console.log('Doctor Registered Successfully');
+                                            $state.go('auth.loginNew');
+
+                                          }
+                                        }
+                                       ]
+                                     });
+                                   }
+                                   $scope.Doctor = {};
+                                 }).catch(function(error){
+                                   console.log('failure data', error);
+
+                                 });
+
+                        }
+                    }
+                ]
+                });
+
+
+
+      }
+      },
+      {
+      text: 'No',
+      type: 'button-positive',
+      onTap:function(){
+        $state.go('auth.patient_reg1');
+      }
+      },
+      ]
+
 
       });
+
+
+
+
+
     }
 
 
