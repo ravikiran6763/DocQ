@@ -426,23 +426,29 @@
                   }).catch(function(error){
                   console.log('failure data', error);
                   });
+                  console.log($ionicHistory.currentStateName());
 
-									$scope.noResponsePopup = $ionicPopup.show({
-												template: "<div ng-app='refresh_div' ><p>No response has been received from patient</p></div>",
-												cssClass: 'requestPopup',
-												scope: $scope,
-												buttons: [
-												{
-												text: 'OK',
-												type: 'button-positive',
-												onTap:function(){
-													$state.go("templates.doctor_home");
-												}
-												},
+									if($ionicHistory.currentStateName() === 'templates.patientRequest'){
+                    $scope.noResponsePopup = $ionicPopup.show({
+  												template: "<div ng-app='refresh_div' ><p>No response has been received from patient</p></div>",
+  												cssClass: 'requestPopup',
+  												scope: $scope,
+  												buttons: [
+  												{
+  												text: 'OK',
+  												type: 'button-positive',
+  												onTap:function(){
+  													$state.go("templates.doctor_home");
+  												}
+  												},
 
-											]
-											});
-                      IonicClosePopupService.register($scope.noResponsePopup);
+  											]
+  											});
+                        IonicClosePopupService.register($scope.noResponsePopup);
+                  }
+                  else{
+
+                  }
 
 									}
 								}
@@ -533,31 +539,31 @@ $scope.popupShown = true;
 		 console.log('changed');
 
 		 if(newValue == 3){
-			 $scope.callReqPopUp.close();
-		 	setTimeout(function (){
-					console.log('delay 3 sec');
-				}, 3000);
+    			 $scope.callReqPopUp.close();
+    		 	setTimeout(function (){
+    					console.log('delay 3 sec');
+    				}, 3000);
 
-				$scope.patientDeclined = $ionicPopup.show({
-							template: "<div >Patient does not wish to proceed for a consultation at this time</div>",
-							cssClass: 'requestPopup',
-							scope: $scope,
-							buttons: [
-							{
-							text: 'OK',
-							type: 'button-positive',
-							onTap:function(){
-								console.log('patient Declined to call');
-								$interval.cancel($rootScope.videoOrAudio);
-								$interval.cancel($rootScope.checkAcceptedReq);
-								$state.go("templates.doctor_home", {}, {reload: false});
+    				$scope.patientDeclined = $ionicPopup.show({
+    							template: "<div >Patient does not wish to proceed for a consultation at this time</div>",
+    							cssClass: 'requestPopup',
+    							scope: $scope,
+    							buttons: [
+    							{
+    							text: 'OK',
+    							type: 'button-positive',
+    							onTap:function(){
+    								console.log('patient Declined to call');
+    								$interval.cancel($rootScope.videoOrAudio);
+    								$interval.cancel($rootScope.checkAcceptedReq);
+    								$state.go("templates.doctor_home", {}, {reload: false});
 
-							}
-							},
-						]
+    							}
+    							},
+    						]
 
-						});
-            IonicClosePopupService.register($scope.patientDeclined);
+    						});
+                IonicClosePopupService.register($scope.patientDeclined);
 
 
 		 }

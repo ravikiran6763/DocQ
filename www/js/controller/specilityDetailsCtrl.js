@@ -438,7 +438,7 @@ console.log(window.localStorage.SpecilityId);
               // $ionicLoading.hide();
                var confirmPopup = $ionicPopup.confirm({
            						// title: 'Low Balance',
-           						template: '<center>Free Consultation for this device has been already utilised.<br>Your request could not be processed as your DoctorQuick deposit is less than ₹{{minBAlance}}</center> ',
+           						template: '<center>Your request could not be processed as your DoctorQuick deposit is less than ₹{{minBAlance}}</center> ',
            						cssClass: 'videoPopup',
            						scope: $scope,
            						buttons: [

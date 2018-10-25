@@ -62,7 +62,7 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	    {
 	      var confirmPopup = $ionicPopup.confirm({
 					title: 'DoctorQuick',
- 				 template: '<center><b>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹{{ minBAlance }}</b></center> ',
+ 				 template: '<center>Your request could not be processed as your<br>DoctorQuick deposit is less than ₹{{ minBAlance }}</center> ',
  				 cssClass: 'videoPopup',
  				 scope: $scope,
  				 buttons: [
@@ -474,7 +474,10 @@ $scope.docClicked=function(docPhone){
 
 
 
+	console.log($ionicHistory.currentStateName());
 
+
+if($ionicHistory.currentStateName() === 'app.results'){
 	function checkCallStatus(){
 		searchDoctorServices.checkCallStatus(window.localStorage.one2oneId).then(function(response){
 			console.log(window.localStorage.one2oneId);
@@ -484,6 +487,11 @@ $scope.docClicked=function(docPhone){
 		$scope.checkStatus=window.localStorage.callStatus;
 		})
 	}
+}
+else{
+	return false;
+}
+
 	$scope.$watch('checkStatus', function (newValue, oldValue, scope){
 		 console.log('changed');
 

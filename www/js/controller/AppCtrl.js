@@ -147,22 +147,27 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 	$rootScope.goBack = function()
 	{
 
-				console.log($ionicHistory.backView());
+				console.log($ionicHistory.backView().stateName);
 				$scope.prevPage=$ionicHistory.currentStateName();
 				console.log($ionicHistory.currentStateName());
-				console.log(window.localStorage.doctororpatient);
+				console.log($scope.prevPage);
 
+				// if($ionicHistory.backView().stateName === "auth.doctorRegistration2"){
+				// 	console.log('ghidshdfsh');
+				// 		$state.go('auth.loginNew');
+				//
+				// }
 				if(!$ionicHistory.backView()){
-					if(window.localStorage.doctororpatient === 'doctor'){
-						$state.go('templates.doctor_home');
-					}
+						if(window.localStorage.doctororpatient === 'doctor'){
+							$state.go('templates.doctor_home');
+						}
 
-					else if(window.localStorage.doctororpatient === 'patient'){
-						$state.go('app.patient_home');
-					}
-					else{
-						window.history.back();
-					}
+						else if(window.localStorage.doctororpatient === 'patient'){
+							$state.go('app.patient_home');
+						}
+						else{
+							window.history.back();
+						}
 				}
 				else{
 
