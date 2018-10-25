@@ -195,11 +195,11 @@
 					var timestamp = new Date($rootScope.dateAndTime).getTime();
 					var tt = $rootScope.dateAndTime;
 					var date_test = new Date(tt.replace(/-/g,"/"));
-					console.log('converted date and time',date_test);
+					// console.log('converted date and time',date_test);
 					var timestamp = new Date(date_test).getTime();
 					var currentTimestamp = new Date($scope.CurrentDate).getTime();
-					console.log('from date and time',$rootScope.dateAndTime);
-					console.log('current date and time',$scope.CurrentDate);
+					// console.log('from date and time',$rootScope.dateAndTime);
+					// console.log('current date and time',$scope.CurrentDate);
 					var justdate = $rootScope.dateAndTime;
 
 					var t = justdate.split(/[- :]/);
@@ -210,11 +210,11 @@
 
           var timestamp = new Date(actiondate).getTime();
 
-
-          console.log('actiondate',timestamp);
-
-					console.log('timestamp',timestamp);
-					console.log('currentTimestamp',currentTimestamp);
+          //
+          // console.log('actiondate',timestamp);
+          //
+					// console.log('timestamp',timestamp);
+					// console.log('currentTimestamp',currentTimestamp);
 
 
 
@@ -223,25 +223,25 @@
 					var diffHrs = Math.round((diffMs % 86400000) / 3600000); // hours
 					var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
 
-					console.log('diffDays',diffDays);
-					console.log('diffMins',diffMins);
-				  console.log('diffHrs',diffHrs);
+					// console.log('diffDays',diffDays);
+					// console.log('diffMins',diffMins);
+				  // console.log('diffHrs',diffHrs);
           $rootScope.requestedDUration= diffMins+ " Minutes"+" ago";
           // next line displys hr min and sec
 					// $rootScope.requestedDUration= diffDays + " days, " + diffHrs + " Hours, " + diffMins+ " Minutes"+" ago";
 					// $rootScope.requestedDUration= diffDays + " day " + "ago";
-					console.log($rootScope.requestedDUration);
+					// console.log($rootScope.requestedDUration);
 					var diff = currentTimestamp-timestamp;
-					console.log('diff',diff);
+					// console.log('diff',diff);
 
-					console.log('diffDays',diffDays);
-					console.log('diffHrs',diffHrs);
-					console.log('diffMins',diffMins);
-					console.log('timestamp',timestamp);
-					console.log('currentTimestamp',currentTimestamp);
+					// console.log('diffDays',diffDays);
+					// console.log('diffHrs',diffHrs);
+					// console.log('diffMins',diffMins);
+					// console.log('timestamp',timestamp);
+					// console.log('currentTimestamp',currentTimestamp);
 
 					var diffMs = (currentTimestamp - timestamp);
-					console.log('datedifference in min',diffMs);
+					// console.log('datedifference in min',diffMs);
 
 
 				//////
@@ -352,7 +352,7 @@
 																						$interval.cancel($rootScope.checkAcceptedReq);
 
 																						console.log('cancel');
-																						console.log($scope.counter);
+																						console.log($rootScope.counter);
 																						console.log(window.localStorage.reqId);
 
 																						$state.go("templates.doctor_home");
@@ -400,43 +400,20 @@
 																				}, 2000);
 
 																}
-																// else{
-																// 	$ionicLoading.show({
-																// 		template: 'Accepting',
-																// 		duration: 5000
-																// 	});
-																// 	$timeout( function(){
-																// 		var confirmPopup = $ionicPopup.confirm({
-																// 			title: 'Slow Data',
-																// 			template: 'Unable to accept the consultation request at the moment as we detected slow network on your device.',
-																// 			cssClass: 'videoPopup',
-																// 			scope: $scope,
-																// 			buttons: [
-																// 			{
-																// 				text: 'OK',
-																// 				type: 'button-positive',
-																// 				onTap: function(e) {
-																// 				console.log('OK');
-																// 				$state.go("templates.doctor_home");
-																// 				}
-																// 			},
-																// 			]
-																// 		});
-																// 	}, 5000 );
-																// }
+
 														}
 								});
 
 
-								$scope.counter = 120;
-								$scope.onTimeout = function(){
-									$scope.counter--;
-									console.log($scope.counter);
-									docTimeout = $timeout($scope.onTimeout,1000);
-									if($scope.counter == 0){
+								$rootScope.counter = 120;
+								$rootScope.onTimeout = function(){
+									$rootScope.counter--;
+									console.log($rootScope.counter);
+									$rootScope.docTimeout = $timeout($rootScope.onTimeout,1000);
+									if($rootScope.counter == 0){
 									console.log('one minute over');
 									$rootScope.buttonText='Send Request';
-									$timeout.cancel(docTimeout);
+									$timeout.cancel($rootScope.docTimeout);
 									$rootScope.callReqPopUp.close();
 
 									$rootScope.closeDocPopUp=true;
@@ -470,9 +447,9 @@
 									}
 								}
 
-								var docTimeout = $timeout($scope.onTimeout,1000);//timer interval
+								$rootScope.docTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
 								$scope.$on('$destroy', function(){
-								$timeout.cancel(docTimeout);
+								$timeout.cancel($rootScope.docTimeout);
 								console.log('destroyed');
 								});
 										window.localStorage.accpt = 0;
@@ -618,16 +595,25 @@ $scope.popupShown = true;
            $ionicLoading.hide().then(function(){
            console.log("The loading indicator is now hidden");
            // alert('loggedin');
+
+           $rootScope.docTimeout = $timeout($rootScope.onTimeout,1000);//timer interval
+            $scope.$on('$destroy', function(){
+            $timeout.cancel($rootScope.docTimeout);
+            console.log('destroyed');
+            });
+
            $ionicHistory.nextViewOptions({
            disableAnimate: true,
            disableBack: true
            });
+
+
            $state.go("templates.prescription",{"reqPat":window.localStorage.activePatient},{location: "replace", reload: false})
            $interval.cancel($rootScope.videoOrAudio);
 
            });
 
-         }, 20000);
+         }, 10000);
 
  		}
 
@@ -635,6 +621,7 @@ $scope.popupShown = true;
 
  $scope.$on('$destroy', function(){
      $interval.cancel(checkForrDeclined,5000);
+     $timeout.cancel($rootScope.docTimeout);
  });
 
 

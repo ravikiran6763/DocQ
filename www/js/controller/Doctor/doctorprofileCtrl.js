@@ -304,8 +304,7 @@ console.log('failure data', error);
                  ]
          });
          IonicClosePopupService.register(confirmPopup);
-
-         $scope.callAccept.close();
+         // $scope.callAccept.close();
 
 
        }
@@ -420,6 +419,7 @@ console.log('failure data', error);
 
   												callacceptedbydoctor.accpeteddoctor(window.localStorage.user,$rootScope.docNumToCall,videocallflag,$scope.startdate,$scope.enddate,window.localStorage.myCallId).then(function(response){
   													console.log('inserted to consultation',response);
+                            
                             $state.go('app.patient_summary',{calledDoctor:$rootScope.docNumToCall,consultId:window.localStorage.myCallId}, {location: "replace", reload: false});
   					              }).catch(function(error){
   					              console.log('failure data', error);
@@ -547,11 +547,10 @@ console.log('failure data', error);
               noResponsePopup.then(function(res){
                 console.log('delete request here');
                 searchDoctorServices.one2oneNoResponse(window.localStorage.myCallId).then(function(response){
-                  $scope.alertPopup.close();
-
                 $scope.cancelledReq=response;
                 window.localStorage.myCallId=0;
                 window.localStorage.callStatus=0;
+                $scope.alertPopup.close();
                 console.log($scope.cancelledReq);
                 }).catch(function(error){
                   console.log('failure data', error);
