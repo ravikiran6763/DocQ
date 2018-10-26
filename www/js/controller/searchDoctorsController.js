@@ -346,11 +346,20 @@ $scope.docClicked=function(docPhone){
 												console.log('failure data', error);
 											});
 
-						          var noResponsePopup = $ionicPopup.alert({
-						          template: "<div ><p>Doctor did not accepted your request</p></div>",
-						          cssClass: 'requestPopup',
-						          scope: $scope,
-						          });
+											if($ionicHistory.currentStateName() === 'app.results'){
+
+												noResponsePopup = $ionicPopup.alert({
+													template: "<div ><p>Doctor did not accept your request</p></div>",
+													cssClass: 'requestPopup',
+													scope: $scope,
+												});
+												IonicClosePopupService.register(noResponsePopup);
+
+											}
+											else{
+												return false;
+											}
+
 
 						          noResponsePopup.then(function(res) {
 												console.log('delete request here');
@@ -487,10 +496,6 @@ if($ionicHistory.currentStateName() === 'app.results'){
 		$scope.checkStatus=window.localStorage.callStatus;
 		})
 	}
-}
-else{
-	return false;
-}
 
 	$scope.$watch('checkStatus', function (newValue, oldValue, scope){
 		 console.log('changed');
@@ -671,6 +676,14 @@ else{
 		 }
 
 	},true);
+
+
+}
+else{
+	return false;
+}
+
+
 
 	$scope.sendOfflineMessage=function(num){
 		$rootScope.calledOnce=true;

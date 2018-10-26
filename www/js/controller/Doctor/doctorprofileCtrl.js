@@ -231,7 +231,7 @@ console.log('failure data', error);
            //
            var confirmPopup = $ionicPopup.confirm({
                    // title: 'Declined!',
-                   template: '<center>Doctor has declined for consultation</center>',
+                   template: '<center>Doctor has declined your consultation</center>',
                    cssClass: 'videoPopup',
                    scope: $scope,
                    buttons: [
