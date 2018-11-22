@@ -147,7 +147,7 @@ DoctorQuickApp.controller('AppCtrl', function($state, $scope, $rootScope,$window
 	$rootScope.goBack = function()
 	{
 
-				console.log($ionicHistory.backView().stateName);
+				// console.log($ionicHistory.backView().stateName);
 				$scope.prevPage=$ionicHistory.currentStateName();
 				console.log($ionicHistory.currentStateName());
 				console.log($scope.prevPage);

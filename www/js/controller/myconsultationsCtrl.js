@@ -268,8 +268,48 @@ if($scope.pagedecision === 'templates.consulted_patient')
 
 $scope.deviceAndroid = ionic.Platform.isAndroid();
 
-$scope.consultationDetails=function(consultedDoc)
+$scope.consultationDetails=function(consultedDoc,consulteddate)
 {
+
+
+	var array = consulteddate.split(' ');
+console.log('the splitted date is:');
+console.log(array[0]);
+
+
+	var date =array[0];
+
+
+
+
+	var d = new Date();
+	var curr_date = d.getDate();
+	var curr_month = d.getMonth();
+	curr_month++;
+	var curr_year = d.getFullYear();
+
+
+	var todaydate = curr_year + "-" + curr_month + "-" + curr_date;
+
+	console.log('TODAY DATE IS:');
+	console.log(todaydate);
+		var today = todaydate;
+
+
+
+
+
+	var date2 = new Date(today);
+	var date1 = new Date(date);
+	var timeDiff = Math.abs(date2.getTime() - date1.getTime());
+	$scope.dayDifference = Math.ceil(timeDiff / (1000 * 3600 * 24));
+	console.log('the diff is:');
+	console.log($scope.dayDifference);
+
+
+	var daydiff = $scope.dayDifference;
+
+
 
 			var username = "greet+"+window.localStorage.user;
 			var password = "DQ_patient";
@@ -285,7 +325,7 @@ $scope.consultationDetails=function(consultedDoc)
 			console.log("Error calling Hello Plugin");
 		}
 
- hello.chat(username,password,persontocall,success, failure);
+ hello.chat(username,password,persontocall,daydiff,success, failure);
 
 }
 $scope.clicktochat = function(pateientPhone)

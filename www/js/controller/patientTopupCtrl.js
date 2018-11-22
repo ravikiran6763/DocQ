@@ -196,9 +196,11 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 
 
 										}
-										else if($scope.payment.topUp < $rootScope.minBAlance){//250
+										else if($scope.payment.topUp < $rootScope.minBAlance){ //250
+
+											// console.log($rootScope.diffBalance);
 																		 window.plugins.toast.showWithOptions({
-																			 message: "Amount must be ₹ " + $rootScope.minBAlance + "  or higher",
+																			 message: "Amount must be ₹ " + $rootScope.diffBalance + "  or higher",
 																			 duration: "short", // 2000 ms
 																			 position: "bottom",
 																			 styling: {
@@ -212,7 +214,7 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 																			 }
 																		 });
 
-																		}
+											}
 
 									else{
 												var options = {
@@ -328,21 +330,32 @@ DoctorQuickApp.controller('patientTopupCtrl', function($scope,$rootScope,$state,
 											}
 		  }
 			else{
-				window.plugins.toast.showWithOptions({
-				message: "Amount must be ₹"+$rootScope.minBAlance+ " or higher",
-				// message: "Amount must be ₹270 or higher",
-				duration: "short", // 2000 ms
-				position: "bottom",
-				styling: {
-				opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
-				backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
-				textColor: '#ffffff', // Ditto. Default #FFFFFF
-				textSize: 13, // Default is approx. 13.
-				cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
-				horizontalPadding: 16, // iOS default 16, Android default 50
-				verticalPadding: 12 // iOS default 12, Android default 30
+				console.log($rootScope.patientWalletdetails);
+				$rootScope.balanceToDeposit = $rootScope.minBAlance - ($rootScope.myCredit - $rootScope.myDebit);
+				console.log($rootScope.balanceToDeposit);
+
+				if($rootScope.balanceToDeposit<0){
+					console.log('no deposit required');
 				}
-				});
+				else{
+
+					window.plugins.toast.showWithOptions({
+					message: "Amount must be ₹"+$rootScope.balanceToDeposit+ " or higher",
+					// message: "Amount must be ₹270 or higher",
+					duration: "short", // 2000 ms
+					position: "bottom",
+					styling: {
+					opacity: 1.0, // 0.0 (transparent) to 1.0 (opaque). Default 0.8
+					backgroundColor: '#9d2122', // make sure you use #RRGGBB. Default #333333
+					textColor: '#ffffff', // Ditto. Default #FFFFFF
+					textSize: 13, // Default is approx. 13.
+					cornerRadius: 16, // minimum is 0 (square). iOS default 20, Android default 100
+					horizontalPadding: 16, // iOS default 16, Android default 50
+					verticalPadding: 12 // iOS default 12, Android default 30
+					}
+					});
+				}
+
 
 				// $cordovaToast.showLongCenter('amount must be ₹250 or higher.', 'short', 'center').then(function(success) {
 				// // success

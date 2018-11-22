@@ -181,6 +181,25 @@ var tags = [
 
  }
 
+ this.alertDoctor  = function (sendMessage) {
+   // console.log('MessageDAta',sendMessage);
+   var deferred = $q.defer();
+   $http.post(BASE_URL.url + API.alertDoctor,sendMessage)
+   .success(function (data, status, headers, config){
+     deferred.resolve(data);
+
+     // console.log(data);
+
+
+   })
+   .error(function (){
+     deferred.reject('Error while getting data');
+   });
+   return deferred.promise;
+
+ }
+
+
  this.checkDocStatusOnTheGo  = function (docNum) {
    // console.log('MessageDAta',docNum);
    var deferred = $q.defer();

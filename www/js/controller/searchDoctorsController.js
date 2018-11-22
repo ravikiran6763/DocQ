@@ -16,8 +16,6 @@ DoctorQuickApp.controller('searchDoctorsController', function($scope,$window,$in
 	console.log(window.screen.width);
 	console.log(window.screen.height);
 
-
-
 	$scope.audioCall=function(num)
 	{
 		console.log('user:',window.localStorage.user);
