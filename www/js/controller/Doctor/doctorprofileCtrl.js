@@ -735,11 +735,11 @@ console.log('failure data', error);
       								text: 'Cancel',
       								type: 'button-royal',
       								onTap: function(e) {
-                       $ionicHistory.nextViewOptions({
-                         disableAnimate: true,
-                         disableBack: true
-                       });
-                       $state.go('app.patient_home',{}, {location: "replace", reload: false})
+                       // $ionicHistory.nextViewOptions({
+                       //   disableAnimate: true,
+                       //   disableBack: true
+                       // });
+                       // $state.go('app.patient_home',{}, {location: "replace", reload: false})
       								}
       							},
       							{

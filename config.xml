@@ -220,6 +220,6 @@
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="onesignal-cordova-plugin" spec="2.4.5" />
-    <plugin name="com.example.hello" spec="../../veeresh/VseePlugin" />
+    <plugin name="com.example.hello" spec="/Users/amittantia/Desktop/veeresh/VseePlugin" />
     <engine name="android" spec="^6.4.0" />
 </widget>
