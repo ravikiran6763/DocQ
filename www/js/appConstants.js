@@ -10,13 +10,13 @@
 DoctorQuickApp.constant('BASE_URL', {
 
         //testing
-        'url' : 'http://ec2-13-126-101-210.ap-south-1.compute.amazonaws.com/'
+        // 'url' : 'http://ec2-13-126-101-210.ap-south-1.compute.amazonaws.com/'
 
         //Development services.doctorquick
         //stage 1
         // 'url' : 'http://ec2-35-154-234-29.ap-south-1.compute.amazonaws.com/'
         //Live
-        // 'url' : 'http://doctorquickelb-549049736.ap-south-1.elb.amazonaws.com/'
+        'url' : 'http://doctorquickelb-549049736.ap-south-1.elb.amazonaws.com/'
 
     })
 .constant('API', {
@@ -156,6 +156,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'invitereviewforall':'doctor/invitereviewforall.php',
         'getonlysinglecontact':'doctor/getonlysinglecontact.php',
         'noResponseFromPatient':'doctor/noResponseFromPatient.php',
+        'missedConsultations':'doctor/missedConsultations.php',
+        'sendSmsToPatient':'doctor/sendSmsToPatient.php',
 
 
 
