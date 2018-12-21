@@ -90,6 +90,8 @@ DoctorQuickApp.constant('BASE_URL', {
         'sendVerificationMail':'patient/sendVerificationMail.php',
         'updateEmail':'patient/updateEmail.php',
         'firstConsultation':'patient/firstConsultation.php',
+        'referalCode':'patient/referalCode.php',
+
 
 
         'verifyemail':'verifyemail/verifyemail.php',

@@ -1,5 +1,5 @@
 
-DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval,$window,$http, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService) {
+DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$interval,$window,$http, $ionicLoading, $ionicConfig, $ionicHistory, 	$timeout, $ionicPlatform, $ionicPopup,$localStorage,medicalSpecialityService, HardwareBackButtonManager,doctoronoffdetails,doctorServices,patientProfileDetailsService,myConsultationService,patientWalletServices,pingService,referalService) {
 
 			$rootScope.headerTxt="DoctorQuick";
 			$rootScope.showBackBtn=false;
@@ -15,6 +15,15 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 						$scope.ip = response.data.ip;
 						console.log($scope.ip);
 					});
+
+					referalService.referalCode(window.localStorage.user).then(function(response){
+						$rootScope.refCode=response;
+						console.log($rootScope.refCode);
+						window.localStorage.refCode=$rootScope.refCode;
+					}).catch(function(error){
+					console.log('failure data', error);
+					});
+
 
 			window.localStorage.selectedSubPatient=0;
 			HardwareBackButtonManager.disable();

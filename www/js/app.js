@@ -267,20 +267,20 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
           // Notification - native notification display while user has app in focus (can be distracting).
           // InAppAlert (DEFAULT) - native alert dialog display, which can be helpful during development.
           // None - notification is silent.
-          // .handleNotificationOpened(function(jsonData) {
-          // var data = jsonData.notification.payload.additionalData;
-          // console.log('fromPush',data.reqId);
-          // console.log('fromPush',data.reqPat);
-          //
-          // console.log("Notification opened:\n" + JSON.stringify(jsonData));
-          // console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
-          //
-          // $ionicHistory.nextViewOptions({
-          // disableAnimate: true,
-          // disableBack: true
-          // });
-          // $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
-          // })
+          .handleNotificationOpened(function(jsonData) {
+          var data = jsonData.notification.payload.additionalData;
+            // console.log('fromPush',data.reqId);
+            // console.log('fromPush',data.reqPat);
+            //
+            // console.log("Notification opened:\n" + JSON.stringify(jsonData));
+            // console.log('didOpenRemoteNotificationCallBack: ' + JSON.stringify(jsonData));
+
+            $ionicHistory.nextViewOptions({
+            disableAnimate: true,
+            disableBack: true
+            });
+            $state.go('templates.viewPatientRequest',{ "reqId": data.reqId,"reqPat": data.reqPat,"reqTime": data.reqTime},{location: "replace", reload: false});
+          })
 
 
 
@@ -1172,6 +1172,27 @@ $stateProvider
     }
   })
 
+
+  .state('app.refer_contacts', {
+    url: "/refer_contacts/:countofselected",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/refer_contacts.html",
+        controller:'contactsCtrl'
+      }
+    }
+  })
+
+  .state('app.refer_contacts_result', {
+    url: "/refer_contacts_result",
+    views: {
+      'menuContent': {
+        templateUrl: "views/app/refer_contacts_result.html",
+        controller : 'inviteToDqCtrl'
+      }
+    }
+  })
+
   .state('templates', {
     url: "/templates",
     abstract: true,
@@ -1474,6 +1495,26 @@ $urlRouterProvider.otherwise(function($injector,$localStorage,$window,$location,
   else if(window.localStorage.doctororpatient === 'patient'){
     Storage.showConnecting = true;
     return '/app/patientScreens';
+
+    var get = getUrlVars();
+    //console.log('thisis after getting');
+    //console.log(get["phno"]);
+    rootScope.custNumber = get["custNum"];
+
+    function getUrlVars() {
+    var vars = {};
+    /*Splits the variables into chuncks*/
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+    /*Takes those chunks and removes anything after the hashtag*/
+    vars[key] = value.replace(/#\b[^#]*$/gi, '');
+
+    });
+
+    //console.log('from webviewactivity');
+    //console.log(vars);
+    return vars;
+
+    }
   }
   else{
     Storage.showConnecting = false;

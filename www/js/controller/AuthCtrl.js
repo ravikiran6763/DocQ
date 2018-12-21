@@ -196,7 +196,9 @@ $scope.patientRegistration = function()
                   serial:window.localStorage.serial,
                   manufacturer:window.localStorage.manufacturer,
                   model:window.localStorage.model,
-                  ipAddress:$rootScope.ip
+                  ipAddress:$rootScope.ip,
+                  patientRefCode:$rootScope.patient_refCode
+
                 };
                 var loginData = {
                   'phone': $rootScope.PatientDetail.patient_mob,
@@ -402,6 +404,8 @@ $scope.patientRegistration = function()
       console.log($scope.currentDate);
       console.log($rootScope.dateOfBirth);
       console.log($rootScope.PatientDetail.dob);
+      console.log($rootScope.PatientDetail.patient_refCode);
+
 
       var date2 = new Date();
       var date1 = new Date($rootScope.dateOfBirth);
@@ -825,7 +829,7 @@ $scope.patientRegistration = function()
   $scope.videoPlayerPopup = $ionicPopup.show({
     // title: 'DoctorQuick',
     template: '<div ><p style="color:#fcfff4; margin: -21px 0 0 15px; "></div><div style="position: absolute; margin-top: 0px; margin-bottom: 0; top: 23px;left: 95%; border-radius: 22px; font-size: 4vw; color: teal; text-align: center; padding: 0px; background-color: white; width: 5%;font-weight: bolder;color: #777;" ng-Click="closethis();">X</div>'+
-        '<iframe style="width: 100%; height: 59%; border: 4px solid green; margin-top: 7%;" src="https://www.youtube.com/embed/xrLtb9Pkkjg?rel=0&amp;showinfo=0" frameborder="0"  autoplay></iframe>',
+        '<iframe style="width: 100%; height: 59%; border: 4px solid green; margin-top: 7%;" src="https://www.youtube.com/embed/99M2cK6E98Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
     // template:'test',
     cssClass: 'videoPlayerPopup',
     scope: $scope,

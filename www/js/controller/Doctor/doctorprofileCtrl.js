@@ -594,7 +594,7 @@ console.log('failure data', error);
         if($rootScope.myWalletBal >= $rootScope.minBAlance || $scope.myWalletBal === 'agent')
         {
               console.log(callRequest);
-              if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi'){
+              // if(window.localStorage.networkType == '4G' || window.localStorage.networkType == 'WiFi' || window.localStorage.networkType == ''){
                 searchDoctorServices.requestForCall(callRequest).then(function(response){
                 console.log('one2oneReq',response);
                 window.localStorage['one2oneReq'] = angular.toJson(response);
@@ -700,26 +700,26 @@ console.log('failure data', error);
 
                });
 
-              }
-              else{
-                var slowData = $ionicPopup.confirm({
-    							// title: 'Slow Data',
-    							template: 'Unable to send request at the moment as we detected slow network on your device. Please try after sometime ',
-    							cssClass: 'videoPopup',
-    							scope: $scope,
-    							buttons: [
-    							{
-    								text: 'OK',
-    								type: 'button-positive',
-    								onTap: function(e) {
-    								console.log('ok');
-    								}
-    							},
-    							]
-    						});
-                IonicClosePopupService.register(slowData);
-
-              }
+              // }
+              // else{
+              //   var slowData = $ionicPopup.confirm({
+    					// 		// title: 'Slow Data',
+    					// 		template: 'Unable to send request at the moment as we detected slow network on your device. Please try after sometime ',
+    					// 		cssClass: 'videoPopup',
+    					// 		scope: $scope,
+    					// 		buttons: [
+    					// 		{
+    					// 			text: 'OK',
+    					// 			type: 'button-positive',
+    					// 			onTap: function(e) {
+    					// 			console.log('ok');
+    					// 			}
+    					// 		},
+    					// 		]
+    					// 	});
+              //   IonicClosePopupService.register(slowData);
+              //
+              // }
 
         }
         else

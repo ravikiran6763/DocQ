@@ -16,6 +16,14 @@ DoctorQuickApp.controller('myconsultationsCtrl', function($state,$ionicHistory,$
 // for doctors consultationDetails
 // console.log('consultations');
 
+
+$rootScope.patientDetails = angular.fromJson($window.localStorage['patientDetails']);
+
+
+$scope.pfname = $rootScope.patientDetails[0][0];
+$scope.plname = $rootScope.patientDetails[0][2];
+
+
 var username = "greet+"+window.localStorage.user;
 // console.log('MY CONSULTATION CALLED');
 if(window.localStorage.doctororpatient == 'doctor'){
