@@ -7,6 +7,7 @@ DoctorQuickApp.controller('patientHomeCtrl', function($scope,$state,$rootScope,$
 			$rootScope.showNotification=true;
 			$rootScope.showBadge=true;
 			$rootScope.hideSideMenu = true;
+			$rootScope.inviteButtonforref =false;
 
 
 			$http.get("https://ipinfo.io/json").then(function (response)

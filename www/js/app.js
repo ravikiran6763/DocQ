@@ -449,6 +449,11 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
     $rootScope.hideSideMenu = true;
   }
 
+  if (toState.name != "app.refer_contacts") {
+    $rootScope.inviteButtonforref = false;
+    $rootScope.hideSideMenu = true;
+  }
+
   if (toState.name === "templates.doctor_home") {
     $rootScope.showNotification = true;
     	$rootScope.showBadge=true;
@@ -480,6 +485,9 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
     var languagewise = "";
 
   }
+
+
+
   //console.log($rootScope.previousState.name);
   $ionicPlatform.registerBackButtonAction(function (event){
       //console.log($state.$current.name);
@@ -581,6 +589,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
         //     disableAnimate: true,
         //     historyRoot: true
         // });
+
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
           $state.go($state.$current)
@@ -1178,7 +1187,7 @@ $stateProvider
     views: {
       'menuContent': {
         templateUrl: "views/app/refer_contacts.html",
-        controller:'contactsCtrl'
+        controller:'invite_reviewsforreferal'
       }
     }
   })
@@ -1192,6 +1201,8 @@ $stateProvider
       }
     }
   })
+
+
 
   .state('templates', {
     url: "/templates",

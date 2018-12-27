@@ -91,6 +91,7 @@ DoctorQuickApp.constant('BASE_URL', {
         'updateEmail':'patient/updateEmail.php',
         'firstConsultation':'patient/firstConsultation.php',
         'referalCode':'patient/referalCode.php',
+        'inviterefpatient':'patient/inviteforref.php',
 
 
 

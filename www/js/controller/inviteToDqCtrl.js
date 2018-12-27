@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('inviteToDqCtrl', function($scope,$state,$rootScope,$stateParams,$ionicPlatform,  $cordovaContacts ,$localStorage,$ionicLoading,$ionicPopup,referalService,IonicClosePopupService){
+DoctorQuickApp.controller('inviteToDqCtrl', function($scope,$state,$rootScope,$stateParams,$ionicPlatform,  $cordovaContacts ,$localStorage,$ionicLoading,$ionicPopup,invitereviews,referalService,IonicClosePopupService){
 
   $scope.toggle = true;
   $rootScope.headerTxt="Refer A Friend";
@@ -91,7 +91,12 @@ $scope.Savedata = function()
                        console.log( $scope.deviceContacts);
                        console.log(contactsWithAtLeastOnePhoneNumber);
                        invitereviews.invitereviewpatient(contactsWithAtLeastOnePhoneNumber);
-                       $state.go("templates.invite_reviews");
+                       // $state.go("templates.invite_reviews");
+
+                       $state.go("app.refer_contacts");
+
+
+
                        // $ionicLoading.hide();
 
                    }, function(error) {
@@ -136,9 +141,6 @@ $scope.Cleardata = function()
 {
   $scope.cc.query = "";
 }
-
-
-
 
 
 
