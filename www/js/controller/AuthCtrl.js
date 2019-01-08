@@ -156,8 +156,8 @@ $scope.patientRegistration = function()
   $ionicLoading.show({
     template:'<ion-spinner></ion-spinner><br><br><br>Logging into DoctorQuick'
   });
-        console.log('reg clicked');
-        console.log($rootScope.otp);
+        // console.log('reg clicked');
+        // console.log($rootScope.otp);
         if($rootScope.otpentered.OTP1 === undefined && $rootScope.otpentered.OTP2 === undefined && $rootScope.otpentered.OTP3 === undefined && $rootScope.otpentered.OTP4 === undefined)
         {
             $ionicLoading.hide();
@@ -197,7 +197,7 @@ $scope.patientRegistration = function()
                   manufacturer:window.localStorage.manufacturer,
                   model:window.localStorage.model,
                   ipAddress:$rootScope.ip,
-                  patientRefCode:$rootScope.patient_refCode
+                  patientRefCode:$rootScope.PatientDetail.patient_refCode
 
                 };
                 var loginData = {

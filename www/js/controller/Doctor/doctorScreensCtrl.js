@@ -258,6 +258,26 @@ consultations.pendingRequests = [];
 function checkConsultations(){
     doctoronoffdetails.getdoctorrequest(doctorDeviceDetails).then(function(response){
     $scope.pendingRequests = response;
+
+    if(response.length != 0){
+
+      var data = response;
+      for(var i=0; i<data.length; i++){
+        $rootScope.id=data[i].id;
+        $rootScope.patientNum=data[i].patientNum;
+        $rootScope.awstime=data[i].awstime;
+
+      }
+
+      $rootScope.currentPatient = $scope.pendingRequests;
+      window.localStorage['currentPatient'] = angular.toJson($rootScope.currentPatient);
+      console.log($rootScope.currentPatient);
+      $state.go('templates.patientRequest',{'reqId':$rootScope.id,'reqPat':$rootScope.patientNum,'reqTime':$rootScope.awstime})
+
+      // $state.go('templates.doc-customercare');
+    }
+
+
     // console.log('pending:',$scope.pendingRequests);
     $scope.requests=$scope.pendingRequests.length;
   }).catch(function(error){

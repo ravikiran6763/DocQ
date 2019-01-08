@@ -99,9 +99,9 @@ DoctorQuickApp.run(function($ionicPlatform,$interval,$cordovaNetwork,$localStora
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
     }
-      if (StatusBar.isVisible) {
-        console.log('status bar is seen');
-      }
+      // if (StatusBar.isVisible) {
+      //   console.log('status bar is seen');
+      // }
       if(window.StatusBar){
       StatusBar.styleDefault();
       // StatusBar.overlaysWebView(true);
@@ -240,7 +240,7 @@ DoctorQuickApp.run(function($state,$ionicPlatform,$window, $rootScope, $ionicCon
 
           window.plugins.OneSignal.getIds(function(ids) {
           // alert('getIds: ' + JSON.stringify(ids));
-          console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
+          // console.log("userId = " + ids.userId + ", pushToken = " + ids.pushToken);
           });
           var iosSettings = {};
           iosSettings["kOSSettingsKeyAutoPrompt"] = true;

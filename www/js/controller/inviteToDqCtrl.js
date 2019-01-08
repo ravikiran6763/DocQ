@@ -1,4 +1,4 @@
-DoctorQuickApp.controller('inviteToDqCtrl', function($scope,$state,$rootScope,$stateParams,$ionicPlatform,  $cordovaContacts ,$localStorage,$ionicLoading,$ionicPopup,invitereviews,referalService,IonicClosePopupService){
+DoctorQuickApp.controller('inviteToDqCtrl', function($scope,$state,$rootScope,$stateParams,$window,$ionicPlatform,  $cordovaContacts ,$localStorage,$ionicLoading,$ionicPopup,invitereviews,referalService,IonicClosePopupService){
 
   $scope.toggle = true;
   $rootScope.headerTxt="Refer A Friend";
@@ -6,7 +6,7 @@ DoctorQuickApp.controller('inviteToDqCtrl', function($scope,$state,$rootScope,$s
   $rootScope.showNotification=false;
   $rootScope.showBadge=false;
   // $rootScope.hideSideMenu = true;
-  $rootScope.inviteButton = false;
+  $rootScope.inviteButtonforref = false;
 
   $scope.count = $stateParams.countofselected;
   $scope.cc ={};
@@ -21,6 +21,16 @@ DoctorQuickApp.controller('inviteToDqCtrl', function($scope,$state,$rootScope,$s
   });
 console.log(window.localStorage.refCode);
 
+$scope.patientProfile = angular.fromJson($window.localStorage['patientDetails']);
+console.log($scope.patientProfile);
+var data = $scope.patientProfile;
+for(var i=0; i<data.length; i++){
+
+  $rootScope.patientFname=data[i].patientFname;
+  $rootScope.patientLname=data[i].patientLname;
+}
+console.log($rootScope.patientFname, $rootScope.patientLname);
+
 // var permissions = cordova.plugins.permissions;
 // permissions.requestPermission(permissions.READ_CONTACTS, success, error);
 // function error() {
@@ -31,10 +41,10 @@ console.log(window.localStorage.refCode);
 // if( !status.hasPermission ) error();
 // }
 
-  $scope.query = "Use DoctorQuick for consulting a Doctor online from your smart phone. use my code "+window.localStorage.refCode+" to get a first consultation free.\n";
+  $scope.query = " wants you to use DoctorQuick for consulting a Doctor online from your smart phone. Use referal code "+window.localStorage.refCode+" to get a first consultation free.\n";
   $scope.tiny='https://appurl.io/jpwavzgm';
 
-$scope.query =$scope.query+$scope.tiny;
+$scope.query =$rootScope.patientFname+" "+$rootScope.patientLname+$scope.query+$scope.tiny;
 console.log($scope.query);
 // $scope.query=$scope.query window.localStorage.docTinyUrl;
   $scope.showAlert= function(){

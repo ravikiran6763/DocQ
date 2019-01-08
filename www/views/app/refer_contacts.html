@@ -9,11 +9,11 @@
    </div>
 
 
-    <ion-checkbox class="item-checkbox-right" ng-model="allcontacts"  ng-click="checkAll();">
+    <ion-checkbox class="item-checkbox-right" ng-model="allcontactsforref.selected"  ng-click="checkAllforref(allcontactsforref.selected);">
       SELECT ALL
     </ion-checkbox>
 
-  <ion-list ng-repeat="con in contact1 ">
+  <ion-list ng-repeat="con in contact3 ">
 
     <ion-checkbox
         ng-model="con.selected"
