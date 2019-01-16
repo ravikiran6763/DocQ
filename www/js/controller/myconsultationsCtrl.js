@@ -32,6 +32,16 @@ if(window.localStorage.doctororpatient == 'doctor'){
 }
 else{
 	var password = "DQ_patient";
+
+	$rootScope.patientDetails = angular.fromJson($window.localStorage['patientDetails']);
+
+	$scope.pfname = $rootScope.patientDetails[0][0];
+	$scope.plname = $rootScope.patientDetails[0][2];
+
+	$scope.pname = $scope.pfname+ " " +$scope.plname;
+
+
+
 }
 
 $ionicLoading.show({
@@ -280,6 +290,9 @@ $scope.consultationDetails=function(consultedDoc,consulteddate)
 {
 
 
+	var patientName = $scope.pname;
+
+
 	var array = consulteddate.split(' ');
 console.log('the splitted date is:');
 console.log(array[0]);
@@ -333,7 +346,7 @@ console.log(array[0]);
 			console.log("Error calling Hello Plugin");
 		}
 
- hello.chat(username,password,persontocall,daydiff,success, failure);
+ hello.chat(username,password,persontocall,daydiff,patientName,success, failure);
 
 }
 $scope.clicktochat = function(pateientPhone)
